@@ -1,0 +1,2 @@
+timestamp,benchmark,dataset,compiler,optimization,repetitions,mean_seconds,median_seconds,min_seconds,max_seconds,std_dev,reference_sha256
+2026-09-01T15:03:29.339802,gemm,LARGE,clang,-O3,5,0.6140902,0.602373,0.59657,0.653161,0.021063078591696874,def89518449953ba02f9f8be46621924b35200a94b89c460ed842ddf03ac60d5
