@@ -1,0 +1,27 @@
+{
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/kernels/dot/sequential.cpp",
+  "function": "dot_product",
+  "loop_count": 1,
+  "loops": [
+    {
+      "id": "loop_1",
+      "kind": "for",
+      "line": 17,
+      "nesting_depth": 1,
+      "referenced_variables": [
+        "A",
+        "B",
+        "N",
+        "i",
+        "sum"
+      ],
+      "operators": [
+        "<",
+        "++",
+        "+=",
+        "*"
+      ],
+      "array_access_count": 2
+    }
+  ]
+}

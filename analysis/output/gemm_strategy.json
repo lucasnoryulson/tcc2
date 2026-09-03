@@ -1,0 +1,35 @@
+{
+  "version": "0.1",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c",
+  "plans": [
+    {
+      "kernel": "kernel_gemm",
+      "detected_pattern": "DOALL_CANDIDATE",
+      "family": "MAP / DATA_PARALLEL",
+      "classification_confidence": "medium",
+      "strategy": {
+        "strategy": "DOALL",
+        "openmp_construct": "parallel for",
+        "schedule": "static",
+        "synchronization": "implicit_end_barrier",
+        "candidate_loops": [
+          {
+            "loop_id": 2,
+            "iterator": "j",
+            "depth": 1,
+            "confidence": "medium"
+          },
+          {
+            "loop_id": 4,
+            "iterator": "j",
+            "depth": 2,
+            "confidence": "medium"
+          }
+        ],
+        "loop_selection": "defer_to_loop_hierarchy_analysis",
+        "direct_code_transformation": false,
+        "reason": "DOALL evidence exists, but local loop analysis alone is not always sufficient to select the best nesting level."
+      }
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "version": "0.1",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c",
+  "plans": [
+    {
+      "kernel": "kernel_jacobi_2d",
+      "detected_pattern": "STENCIL_CANDIDATE",
+      "family": "STENCIL",
+      "classification_confidence": "high",
+      "strategy": {
+        "strategy": "STENCIL",
+        "parallel_region": "persistent",
+        "spatial_construct": "omp for",
+        "schedule": "static",
+        "keep_temporal_loop_order": true,
+        "barrier_between_phases": true,
+        "phases": [
+          {
+            "stencil_loop_id": 3,
+            "stencil_iterator": "j",
+            "recommended_spatial_loop_id": 2,
+            "recommended_spatial_iterator": "i",
+            "temporal_loop_id": 1,
+            "temporal_iterator": "t",
+            "offsets": [
+              [
+                -1,
+                0
+              ],
+              [
+                0,
+                -1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "stencil_points": 5
+          },
+          {
+            "stencil_loop_id": 5,
+            "stencil_iterator": "j",
+            "recommended_spatial_loop_id": 4,
+            "recommended_spatial_iterator": "i",
+            "temporal_loop_id": 1,
+            "temporal_iterator": "t",
+            "offsets": [
+              [
+                -1,
+                0
+              ],
+              [
+                0,
+                -1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "stencil_points": 5
+          }
+        ],
+        "direct_code_transformation": false,
+        "reason": "Spatial iterations can be parallel, but temporal and phase ordering must be preserved."
+      }
+    }
+  ]
+}

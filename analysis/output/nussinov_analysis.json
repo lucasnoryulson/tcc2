@@ -1,0 +1,185 @@
+{
+  "version": "0.2",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c",
+  "kernels": [
+    {
+      "name": "kernel_nussinov",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 86,
+          "end_line": 106,
+          "iterator": "i",
+          "initialization": "i = _PB_N-1",
+          "condition": "i >= 0",
+          "increment": "i--",
+          "reads": [],
+          "writes": [],
+          "operators": []
+        },
+        {
+          "id": 2,
+          "nesting_depth": 1,
+          "start_line": 87,
+          "end_line": 105,
+          "iterator": "j",
+          "initialization": "j=i+1",
+          "condition": "j<_PB_N",
+          "increment": "j++",
+          "reads": [
+            {
+              "array": "table",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "table[i][j]"
+            },
+            {
+              "array": "table",
+              "indices": [
+                "i",
+                "j-1"
+              ],
+              "expression": "table[i][j-1]"
+            },
+            {
+              "array": "table",
+              "indices": [
+                "i+1",
+                "j"
+              ],
+              "expression": "table[i+1][j]"
+            },
+            {
+              "array": "table",
+              "indices": [
+                "i+1",
+                "j-1"
+              ],
+              "expression": "table[i+1][j-1]"
+            },
+            {
+              "array": "seq",
+              "indices": [
+                "i"
+              ],
+              "expression": "seq[i]"
+            },
+            {
+              "array": "seq",
+              "indices": [
+                "j"
+              ],
+              "expression": "seq[j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "table",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "table[i][j]"
+            }
+          ],
+          "operators": [
+            ">=",
+            "-",
+            "=",
+            ">=",
+            "-",
+            "-",
+            "<",
+            "+",
+            "=",
+            ">=",
+            "+",
+            "+",
+            "&&",
+            ">=",
+            "-",
+            "<",
+            "+",
+            "<",
+            "-",
+            "=",
+            ">=",
+            "+",
+            "+",
+            "-",
+            "==",
+            "+",
+            "+",
+            "+",
+            "-",
+            "==",
+            "+",
+            "=",
+            ">=",
+            "+",
+            "-",
+            "+",
+            "-"
+          ]
+        },
+        {
+          "id": 3,
+          "nesting_depth": 2,
+          "start_line": 102,
+          "end_line": 104,
+          "iterator": "k",
+          "initialization": "k=i+1",
+          "condition": "k<j",
+          "increment": "k++",
+          "reads": [
+            {
+              "array": "table",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "table[i][j]"
+            },
+            {
+              "array": "table",
+              "indices": [
+                "i",
+                "k"
+              ],
+              "expression": "table[i][k]"
+            },
+            {
+              "array": "table",
+              "indices": [
+                "k+1",
+                "j"
+              ],
+              "expression": "table[k+1][j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "table",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "table[i][j]"
+            }
+          ],
+          "operators": [
+            "=",
+            ">=",
+            "+",
+            "+",
+            "+",
+            "+"
+          ]
+        }
+      ]
+    }
+  ]
+}

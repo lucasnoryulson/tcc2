@@ -1,0 +1,249 @@
+{
+  "version": "0.2",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/datamining/covariance/covariance.c",
+  "kernels": [
+    {
+      "name": "kernel_covariance",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 73,
+          "end_line": 79,
+          "iterator": "j",
+          "initialization": "j = 0",
+          "condition": "j < _PB_M",
+          "increment": "j++",
+          "reads": [
+            {
+              "array": "mean",
+              "indices": [
+                "j"
+              ],
+              "expression": "mean[j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "mean",
+              "indices": [
+                "j"
+              ],
+              "expression": "mean[j]"
+            }
+          ],
+          "operators": [
+            "=",
+            "/="
+          ],
+          "scalar_updates": []
+        },
+        {
+          "id": 2,
+          "nesting_depth": 1,
+          "start_line": 76,
+          "end_line": 77,
+          "iterator": "i",
+          "initialization": "i = 0",
+          "condition": "i < _PB_N",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "mean",
+              "indices": [
+                "j"
+              ],
+              "expression": "mean[j]"
+            },
+            {
+              "array": "data",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "data[i][j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "mean",
+              "indices": [
+                "j"
+              ],
+              "expression": "mean[j]"
+            }
+          ],
+          "operators": [
+            "+="
+          ],
+          "scalar_updates": []
+        },
+        {
+          "id": 3,
+          "nesting_depth": 0,
+          "start_line": 81,
+          "end_line": 83,
+          "iterator": "i",
+          "initialization": "i = 0",
+          "condition": "i < _PB_N",
+          "increment": "i++",
+          "reads": [],
+          "writes": [],
+          "operators": [],
+          "scalar_updates": []
+        },
+        {
+          "id": 4,
+          "nesting_depth": 1,
+          "start_line": 82,
+          "end_line": 83,
+          "iterator": "j",
+          "initialization": "j = 0",
+          "condition": "j < _PB_M",
+          "increment": "j++",
+          "reads": [
+            {
+              "array": "data",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "data[i][j]"
+            },
+            {
+              "array": "mean",
+              "indices": [
+                "j"
+              ],
+              "expression": "mean[j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "data",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "data[i][j]"
+            }
+          ],
+          "operators": [
+            "-="
+          ],
+          "scalar_updates": []
+        },
+        {
+          "id": 5,
+          "nesting_depth": 0,
+          "start_line": 85,
+          "end_line": 93,
+          "iterator": "i",
+          "initialization": "i = 0",
+          "condition": "i < _PB_M",
+          "increment": "i++",
+          "reads": [],
+          "writes": [],
+          "operators": [],
+          "scalar_updates": []
+        },
+        {
+          "id": 6,
+          "nesting_depth": 1,
+          "start_line": 86,
+          "end_line": 93,
+          "iterator": "j",
+          "initialization": "j = i",
+          "condition": "j < _PB_M",
+          "increment": "j++",
+          "reads": [
+            {
+              "array": "cov",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "cov[i][j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "cov",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "cov[i][j]"
+            },
+            {
+              "array": "cov",
+              "indices": [
+                "j",
+                "i"
+              ],
+              "expression": "cov[j][i]"
+            }
+          ],
+          "operators": [
+            "=",
+            "/=",
+            "-",
+            "="
+          ],
+          "scalar_updates": []
+        },
+        {
+          "id": 7,
+          "nesting_depth": 2,
+          "start_line": 89,
+          "end_line": 90,
+          "iterator": "k",
+          "initialization": "k = 0",
+          "condition": "k < _PB_N",
+          "increment": "k++",
+          "reads": [
+            {
+              "array": "cov",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "cov[i][j]"
+            },
+            {
+              "array": "data",
+              "indices": [
+                "k",
+                "i"
+              ],
+              "expression": "data[k][i]"
+            },
+            {
+              "array": "data",
+              "indices": [
+                "k",
+                "j"
+              ],
+              "expression": "data[k][j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "cov",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "cov[i][j]"
+            }
+          ],
+          "operators": [
+            "+=",
+            "*"
+          ],
+          "scalar_updates": []
+        }
+      ]
+    }
+  ]
+}

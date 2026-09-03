@@ -1,0 +1,6 @@
+[submodule "benchmarks/PolyBenchC-4.2.1"]
+	path = benchmarks/PolyBenchC-4.2.1
+	url = https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1.git
+[submodule "benchmarks/everythingsreduced"]
+	path = benchmarks/everythingsreduced
+	url = https://github.com/UoB-HPC/everythingsreduced.git

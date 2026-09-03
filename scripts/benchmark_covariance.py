@@ -16,31 +16,42 @@ POLYBENCH_ROOT = (
 
 UTILITIES_DIR = POLYBENCH_ROOT / "utilities"
 
-GEMM_DIR = (
+COVARIANCE_DIR = (
     POLYBENCH_ROOT
-    / "linear-algebra"
-    / "blas"
-    / "gemm"
+    / "datamining"
+    / "covariance"
 )
 
-SOURCE = PROJECT_ROOT / "kernels" / "gemm" / "manual_openmp.c"
+SOURCE = (
+    PROJECT_ROOT
+    / "kernels"
+    / "covariance"
+    / "manual_openmp.c"
+)
 
-BUILD_DIR = PROJECT_ROOT / "build" / "gemm"
-RESULTS_DIR = PROJECT_ROOT / "results" / "gemm"
+BUILD_DIR = PROJECT_ROOT / "build" / "covariance"
+RESULTS_DIR = PROJECT_ROOT / "results" / "covariance"
 
 BUILD_DIR.mkdir(parents=True, exist_ok=True)
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-BINARY = BUILD_DIR / "gemm_openmp_time"
-CSV_FILE = RESULTS_DIR / "openmp_scaling.csv"
+BINARY = BUILD_DIR / "covariance_openmp_time"
+
+CSV_FILE = (
+    RESULTS_DIR
+    / "openmp_scaling.csv"
+)
 
 THREAD_COUNTS = [1, 2, 4]
 REPETITIONS = 5
 
+# Baseline sequencial obtido anteriormente
+SEQUENTIAL_BASELINE = 12.17804366
+
 
 def compile_program():
 
-    print("[1/3] Compilando versão OpenMP...")
+    print("[1/3] Compilando Covariance OpenMP...")
 
     command = [
         "clang",
@@ -48,12 +59,16 @@ def compile_program():
         "-fopenmp",
         "-DLARGE_DATASET",
         "-DPOLYBENCH_TIME",
+
         f"-I{UTILITIES_DIR}",
-        f"-I{GEMM_DIR}",
+        f"-I{COVARIANCE_DIR}",
+
         str(SOURCE),
         str(UTILITIES_DIR / "polybench.c"),
+
         "-o",
         str(BINARY),
+
         "-lm",
     ]
 
@@ -75,7 +90,11 @@ def run_with_threads(thread_count):
     times = []
 
     env = os.environ.copy()
+
     env["OMP_NUM_THREADS"] = str(thread_count)
+    env["OMP_DYNAMIC"] = "FALSE"
+    env["OMP_PROC_BIND"] = "TRUE"
+    env["OMP_PLACES"] = "cores"
 
     for run in range(1, REPETITIONS + 1):
 
@@ -103,6 +122,7 @@ def run_with_threads(thread_count):
 
 
 def main():
+
     compile_program()
 
     print("\n[2/3] Executando benchmarks...\n")
@@ -133,8 +153,7 @@ def main():
             f"Mean={mean:.6f}s\n"
         )
 
-    baseline = all_results[0]["median"]
-    SEQUENTIAL_BASELINE = 0.602373
+    openmp_one_thread = all_results[0]["median"]
 
     print("\n[3/3] RESULTADOS\n")
 
@@ -145,6 +164,7 @@ def main():
         writer = csv.writer(file)
 
         if new_file:
+
             writer.writerow([
                 "timestamp",
                 "threads",
@@ -160,14 +180,19 @@ def main():
 
         for result in all_results:
 
-            scaling_speedup = baseline / result["median"]
+            scaling_speedup = (
+                openmp_one_thread
+                / result["median"]
+            )
 
             speedup_vs_sequential = (
-                SEQUENTIAL_BASELINE / result["median"]
+                SEQUENTIAL_BASELINE
+                / result["median"]
             )
 
             efficiency = (
-                speedup_vs_sequential / result["threads"]
+                speedup_vs_sequential
+                / result["threads"]
             )
 
             writer.writerow([

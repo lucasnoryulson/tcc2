@@ -1,0 +1,93 @@
+{
+  "version": "0.1",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/datamining/covariance/covariance.c",
+  "plans": [
+    {
+      "kernel": "kernel_covariance",
+      "detected_pattern": "MIXED_CANDIDATE",
+      "family": "MIXED / MAP+REDUCE",
+      "classification_confidence": "medium",
+      "strategy": {
+        "strategy": "MIXED",
+        "components": {
+          "map_doall": {
+            "strategy": "DOALL",
+            "openmp_construct": "parallel for",
+            "schedule": "static",
+            "synchronization": "implicit_end_barrier",
+            "candidate_loops": [
+              {
+                "loop_id": 1,
+                "iterator": "j",
+                "depth": 0,
+                "confidence": "medium"
+              },
+              {
+                "loop_id": 4,
+                "iterator": "j",
+                "depth": 1,
+                "confidence": "medium"
+              }
+            ],
+            "loop_selection": "defer_to_loop_hierarchy_analysis",
+            "direct_code_transformation": false,
+            "reason": "DOALL evidence exists, but local loop analysis alone is not always sufficient to select the best nesting level."
+          },
+          "reductions": {
+            "strategy": "REDUCTION",
+            "reductions": [
+              {
+                "loop_id": 2,
+                "iterator": "i",
+                "reduction_type": "array_element",
+                "write": "mean[j]",
+                "operator": "+",
+                "parallelize_this_loop_directly": false,
+                "preferred_policy": "keep accumulation loop serial and search for an independent outer loop",
+                "ancestor_loops": [
+                  {
+                    "loop_id": 1,
+                    "iterator": "j",
+                    "depth": 0
+                  }
+                ],
+                "direct_code_transformation": false
+              },
+              {
+                "loop_id": 7,
+                "iterator": "k",
+                "reduction_type": "array_element",
+                "write": "cov[i][j]",
+                "operator": "+",
+                "parallelize_this_loop_directly": false,
+                "preferred_policy": "keep accumulation loop serial and search for an independent outer loop",
+                "ancestor_loops": [
+                  {
+                    "loop_id": 6,
+                    "iterator": "j",
+                    "depth": 1
+                  },
+                  {
+                    "loop_id": 5,
+                    "iterator": "i",
+                    "depth": 0
+                  }
+                ],
+                "direct_code_transformation": false
+              }
+            ]
+          }
+        },
+        "unresolved_regions": [
+          {
+            "loop_id": 6,
+            "iterator": "j",
+            "reason": "The loop contains relationships that the current affine analyzer cannot resolve."
+          }
+        ],
+        "direct_code_transformation": false,
+        "reason": "The kernel contains multiple parallel patterns and requires a composed transformation plan."
+      }
+    }
+  ]
+}

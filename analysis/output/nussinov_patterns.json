@@ -1,0 +1,61 @@
+{
+  "version": "0.6",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c",
+  "kernels": [
+    {
+      "name": "kernel_nussinov",
+      "classification": "WAVEFRONT_CANDIDATE",
+      "family": "WAVEFRONT / DOACROSS",
+      "confidence": "high",
+      "reason": "At least one loop contains resolved shifted dependences.",
+      "loops": [
+        {
+          "classification": "NO_DIRECT_EVIDENCE",
+          "family": "UNKNOWN",
+          "confidence": "low",
+          "reason": "No direct READ/WRITE dependence candidate was associated with this loop level.",
+          "evidence": {},
+          "loop_id": 1,
+          "iterator": "i"
+        },
+        {
+          "classification": "WAVEFRONT_CANDIDATE",
+          "family": "WAVEFRONT / DOACROSS",
+          "confidence": "high",
+          "reason": "Shifted accesses to the same written array were detected.",
+          "evidence": {
+            "shifted_accesses": 3,
+            "offsets": [
+              [
+                0,
+                -1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "symbolic_relations": 0
+          },
+          "loop_id": 2,
+          "iterator": "j"
+        },
+        {
+          "classification": "UNKNOWN_DEPENDENCE",
+          "family": "UNKNOWN",
+          "confidence": "low",
+          "reason": "The loop contains relationships that the current affine analyzer cannot resolve.",
+          "evidence": {
+            "symbolic_relations": 2
+          },
+          "loop_id": 3,
+          "iterator": "k"
+        }
+      ]
+    }
+  ]
+}

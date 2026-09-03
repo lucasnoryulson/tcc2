@@ -46,6 +46,30 @@ BENCHMARKS = {
             / "jacobi-2d"
             / "reference_output.txt",
     },
+    "covariance": {
+    "source_dir":
+        POLYBENCH_ROOT
+        / "datamining"
+        / "covariance",
+
+    "reference":
+        PROJECT_ROOT
+        / "results"
+        / "covariance"
+        / "reference_output.txt",
+    },
+    "nussinov": {
+    "source_dir":
+        POLYBENCH_ROOT
+        / "medley"
+        / "nussinov",
+
+    "reference":
+        PROJECT_ROOT
+        / "results"
+        / "nussinov"
+        / "reference_output.txt",
+    },
 }
 
 

@@ -1,0 +1,203 @@
+{
+  "version": "0.2",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c",
+  "kernels": [
+    {
+      "name": "kernel_jacobi_2d",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 73,
+          "end_line": 81,
+          "iterator": "t",
+          "initialization": "t = 0",
+          "condition": "t < _PB_TSTEPS",
+          "increment": "t++",
+          "reads": [],
+          "writes": [],
+          "operators": [],
+          "scalar_updates": []
+        },
+        {
+          "id": 2,
+          "nesting_depth": 1,
+          "start_line": 75,
+          "end_line": 77,
+          "iterator": "i",
+          "initialization": "i = 1",
+          "condition": "i < _PB_N - 1",
+          "increment": "i++",
+          "reads": [],
+          "writes": [],
+          "operators": [],
+          "scalar_updates": []
+        },
+        {
+          "id": 3,
+          "nesting_depth": 2,
+          "start_line": 76,
+          "end_line": 77,
+          "iterator": "j",
+          "initialization": "j = 1",
+          "condition": "j < _PB_N - 1",
+          "increment": "j++",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "A[i][j]"
+            },
+            {
+              "array": "A",
+              "indices": [
+                "i",
+                "j-1"
+              ],
+              "expression": "A[i][j-1]"
+            },
+            {
+              "array": "A",
+              "indices": [
+                "i",
+                "1+j"
+              ],
+              "expression": "A[i][1+j]"
+            },
+            {
+              "array": "A",
+              "indices": [
+                "1+i",
+                "j"
+              ],
+              "expression": "A[1+i][j]"
+            },
+            {
+              "array": "A",
+              "indices": [
+                "i-1",
+                "j"
+              ],
+              "expression": "A[i-1][j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "B",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "B[i][j]"
+            }
+          ],
+          "operators": [
+            "=",
+            "*",
+            "+",
+            "+",
+            "+",
+            "+",
+            "-",
+            "+",
+            "+",
+            "-"
+          ],
+          "scalar_updates": []
+        },
+        {
+          "id": 4,
+          "nesting_depth": 1,
+          "start_line": 78,
+          "end_line": 80,
+          "iterator": "i",
+          "initialization": "i = 1",
+          "condition": "i < _PB_N - 1",
+          "increment": "i++",
+          "reads": [],
+          "writes": [],
+          "operators": [],
+          "scalar_updates": []
+        },
+        {
+          "id": 5,
+          "nesting_depth": 2,
+          "start_line": 79,
+          "end_line": 80,
+          "iterator": "j",
+          "initialization": "j = 1",
+          "condition": "j < _PB_N - 1",
+          "increment": "j++",
+          "reads": [
+            {
+              "array": "B",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "B[i][j]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "i",
+                "j-1"
+              ],
+              "expression": "B[i][j-1]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "i",
+                "1+j"
+              ],
+              "expression": "B[i][1+j]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "1+i",
+                "j"
+              ],
+              "expression": "B[1+i][j]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "i-1",
+                "j"
+              ],
+              "expression": "B[i-1][j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "A",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "A[i][j]"
+            }
+          ],
+          "operators": [
+            "=",
+            "*",
+            "+",
+            "+",
+            "+",
+            "+",
+            "-",
+            "+",
+            "+",
+            "-"
+          ],
+          "scalar_updates": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "version": "0.3",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c",
+  "kernels": [
+    {
+      "name": "kernel_jacobi_2d",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "t",
+          "dependencies": []
+        },
+        {
+          "id": 2,
+          "iterator": "i",
+          "dependencies": []
+        },
+        {
+          "id": 3,
+          "iterator": "j",
+          "dependencies": []
+        },
+        {
+          "id": 4,
+          "iterator": "i",
+          "dependencies": []
+        },
+        {
+          "id": 5,
+          "iterator": "j",
+          "dependencies": []
+        }
+      ]
+    }
+  ]
+}

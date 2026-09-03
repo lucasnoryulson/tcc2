@@ -1,0 +1,46 @@
+{
+  "version": "0.1",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c",
+  "plans": [
+    {
+      "kernel": "kernel_nussinov",
+      "detected_pattern": "WAVEFRONT_CANDIDATE",
+      "family": "WAVEFRONT / DOACROSS",
+      "classification_confidence": "high",
+      "strategy": {
+        "strategy": "WAVEFRONT",
+        "wavefronts": [
+          {
+            "loop_id": 2,
+            "original_iterators": [
+              "i",
+              "j"
+            ],
+            "dependence_offsets": [
+              [
+                0,
+                -1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "transformation": "wavefront_diagonalization",
+            "direct_parallel_for": false,
+            "restructure_iteration_space": true,
+            "parallelize_within_front": true,
+            "barrier_between_fronts": true,
+            "schedule": "static"
+          }
+        ],
+        "direct_code_transformation": false,
+        "reason": "Loop-carried dependences prevent a direct parallel-for transformation."
+      }
+    }
+  ]
+}

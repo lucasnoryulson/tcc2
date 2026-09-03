@@ -1,0 +1,205 @@
+{
+  "version": "0.3",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/datamining/covariance/covariance.c",
+  "kernels": [
+    {
+      "name": "kernel_covariance",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "j",
+          "dependencies": [
+            {
+              "array": "mean",
+              "write": "mean[j]",
+              "read": "mean[j]",
+              "resolved": true,
+              "relation": "same_location",
+              "offsets": [
+                0
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "iterator": "i",
+          "dependencies": [
+            {
+              "array": "mean",
+              "write": "mean[j]",
+              "read": "mean[j]",
+              "resolved": true,
+              "relation": "same_location",
+              "offsets": [
+                0
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "iterator": "i",
+          "dependencies": []
+        },
+        {
+          "id": 4,
+          "iterator": "j",
+          "dependencies": [
+            {
+              "array": "data",
+              "write": "data[i][j]",
+              "read": "data[i][j]",
+              "resolved": true,
+              "relation": "same_location",
+              "offsets": [
+                0,
+                0
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 0,
+                  "write": "i",
+                  "read": "i"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "iterator": "i",
+          "dependencies": []
+        },
+        {
+          "id": 6,
+          "iterator": "j",
+          "dependencies": [
+            {
+              "array": "cov",
+              "write": "cov[i][j]",
+              "read": "cov[i][j]",
+              "resolved": true,
+              "relation": "same_location",
+              "offsets": [
+                0,
+                0
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 0,
+                  "write": "i",
+                  "read": "i"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            },
+            {
+              "array": "cov",
+              "write": "cov[j][i]",
+              "read": "cov[i][j]",
+              "resolved": false,
+              "relation": "symbolic_relation",
+              "offsets": [
+                null,
+                null
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": false,
+                  "write": "j",
+                  "read": "i",
+                  "write_variable": "j",
+                  "read_variable": "i",
+                  "reason": "different_iterators"
+                },
+                {
+                  "resolved": false,
+                  "write": "i",
+                  "read": "j",
+                  "write_variable": "i",
+                  "read_variable": "j",
+                  "reason": "different_iterators"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "iterator": "k",
+          "dependencies": [
+            {
+              "array": "cov",
+              "write": "cov[i][j]",
+              "read": "cov[i][j]",
+              "resolved": true,
+              "relation": "same_location",
+              "offsets": [
+                0,
+                0
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 0,
+                  "write": "i",
+                  "read": "i"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

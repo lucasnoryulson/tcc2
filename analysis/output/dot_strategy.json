@@ -1,0 +1,28 @@
+{
+  "version": "0.1",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/analysis/fixtures/dot_product.c",
+  "plans": [
+    {
+      "kernel": "kernel_dot",
+      "detected_pattern": "REDUCTION_CANDIDATE",
+      "family": "REDUCE / AGGREGATION",
+      "classification_confidence": "medium",
+      "strategy": {
+        "strategy": "REDUCTION",
+        "reductions": [
+          {
+            "loop_id": 1,
+            "iterator": "i",
+            "reduction_type": "scalar",
+            "variable": "sum",
+            "operator": "+",
+            "openmp_construct": "parallel for",
+            "openmp_clause": "reduction(+:sum)",
+            "schedule": "static",
+            "direct_code_transformation": true
+          }
+        ]
+      }
+    }
+  ]
+}

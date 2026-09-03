@@ -1,0 +1,122 @@
+{
+  "version": "0.6",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c",
+  "kernels": [
+    {
+      "name": "kernel_jacobi_2d",
+      "classification": "STENCIL_CANDIDATE",
+      "family": "STENCIL",
+      "confidence": "high",
+      "reason": "At least one loop contains a regular neighborhood access pattern.",
+      "loops": [
+        {
+          "classification": "NO_DIRECT_EVIDENCE",
+          "family": "UNKNOWN",
+          "confidence": "low",
+          "reason": "No direct READ/WRITE dependence candidate was associated with this loop level.",
+          "evidence": {},
+          "loop_id": 1,
+          "iterator": "t"
+        },
+        {
+          "classification": "NO_DIRECT_EVIDENCE",
+          "family": "UNKNOWN",
+          "confidence": "low",
+          "reason": "No direct READ/WRITE dependence candidate was associated with this loop level.",
+          "evidence": {},
+          "loop_id": 2,
+          "iterator": "i"
+        },
+        {
+          "classification": "STENCIL_CANDIDATE",
+          "family": "STENCIL",
+          "confidence": "high",
+          "reason": "A regular multidimensional neighborhood of array reads was detected around the written element.",
+          "evidence": {
+            "write": "B[i][j]",
+            "write_array": "B",
+            "read_array": "A",
+            "dimensions": 2,
+            "offsets": [
+              [
+                -1,
+                0
+              ],
+              [
+                0,
+                -1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "stencil_points": 5,
+            "center_present": true,
+            "symmetric_pairs": 2,
+            "confidence": "high"
+          },
+          "loop_id": 3,
+          "iterator": "j"
+        },
+        {
+          "classification": "NO_DIRECT_EVIDENCE",
+          "family": "UNKNOWN",
+          "confidence": "low",
+          "reason": "No direct READ/WRITE dependence candidate was associated with this loop level.",
+          "evidence": {},
+          "loop_id": 4,
+          "iterator": "i"
+        },
+        {
+          "classification": "STENCIL_CANDIDATE",
+          "family": "STENCIL",
+          "confidence": "high",
+          "reason": "A regular multidimensional neighborhood of array reads was detected around the written element.",
+          "evidence": {
+            "write": "A[i][j]",
+            "write_array": "A",
+            "read_array": "B",
+            "dimensions": 2,
+            "offsets": [
+              [
+                -1,
+                0
+              ],
+              [
+                0,
+                -1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "stencil_points": 5,
+            "center_present": true,
+            "symmetric_pairs": 2,
+            "confidence": "high"
+          },
+          "loop_id": 5,
+          "iterator": "j"
+        }
+      ]
+    }
+  ]
+}

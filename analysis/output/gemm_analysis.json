@@ -1,0 +1,121 @@
+{
+  "version": "0.2",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c",
+  "kernels": [
+    {
+      "name": "kernel_gemm",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 89,
+          "end_line": 96,
+          "iterator": "i",
+          "initialization": "i = 0",
+          "condition": "i < _PB_NI",
+          "increment": "i++",
+          "reads": [],
+          "writes": [],
+          "operators": []
+        },
+        {
+          "id": 2,
+          "nesting_depth": 1,
+          "start_line": 90,
+          "end_line": 91,
+          "iterator": "j",
+          "initialization": "j = 0",
+          "condition": "j < _PB_NJ",
+          "increment": "j++",
+          "reads": [
+            {
+              "array": "C",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "C[i][j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "C",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "C[i][j]"
+            }
+          ],
+          "operators": [
+            "*="
+          ]
+        },
+        {
+          "id": 3,
+          "nesting_depth": 1,
+          "start_line": 92,
+          "end_line": 95,
+          "iterator": "k",
+          "initialization": "k = 0",
+          "condition": "k < _PB_NK",
+          "increment": "k++",
+          "reads": [],
+          "writes": [],
+          "operators": []
+        },
+        {
+          "id": 4,
+          "nesting_depth": 2,
+          "start_line": 93,
+          "end_line": 94,
+          "iterator": "j",
+          "initialization": "j = 0",
+          "condition": "j < _PB_NJ",
+          "increment": "j++",
+          "reads": [
+            {
+              "array": "C",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "C[i][j]"
+            },
+            {
+              "array": "A",
+              "indices": [
+                "i",
+                "k"
+              ],
+              "expression": "A[i][k]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "k",
+                "j"
+              ],
+              "expression": "B[k][j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "C",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "C[i][j]"
+            }
+          ],
+          "operators": [
+            "+=",
+            "*",
+            "*"
+          ]
+        }
+      ]
+    }
+  ]
+}

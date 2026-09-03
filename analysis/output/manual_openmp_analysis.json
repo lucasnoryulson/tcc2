@@ -1,0 +1,128 @@
+{
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/kernels/gemm/manual_openmp.c",
+  "kernels": [
+    {
+      "name": "kernel_gemm",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 91,
+          "end_line": 99,
+          "variables": [
+            "A",
+            "B",
+            "C",
+            "alpha",
+            "beta",
+            "i",
+            "j",
+            "k",
+            "ni",
+            "nj",
+            "nk"
+          ],
+          "arrays": [
+            "A",
+            "B",
+            "C"
+          ],
+          "operators": [
+            "=",
+            "<",
+            "=",
+            "<",
+            "*=",
+            "=",
+            "<",
+            "=",
+            "<",
+            "+=",
+            "*",
+            "*"
+          ]
+        },
+        {
+          "id": 2,
+          "nesting_depth": 1,
+          "start_line": 92,
+          "end_line": 93,
+          "variables": [
+            "C",
+            "beta",
+            "i",
+            "j",
+            "nj"
+          ],
+          "arrays": [
+            "C"
+          ],
+          "operators": [
+            "=",
+            "<",
+            "*="
+          ]
+        },
+        {
+          "id": 3,
+          "nesting_depth": 1,
+          "start_line": 95,
+          "end_line": 98,
+          "variables": [
+            "A",
+            "B",
+            "C",
+            "alpha",
+            "i",
+            "j",
+            "k",
+            "nj",
+            "nk"
+          ],
+          "arrays": [
+            "A",
+            "B",
+            "C"
+          ],
+          "operators": [
+            "=",
+            "<",
+            "=",
+            "<",
+            "+=",
+            "*",
+            "*"
+          ]
+        },
+        {
+          "id": 4,
+          "nesting_depth": 2,
+          "start_line": 96,
+          "end_line": 97,
+          "variables": [
+            "A",
+            "B",
+            "C",
+            "alpha",
+            "i",
+            "j",
+            "k",
+            "nj"
+          ],
+          "arrays": [
+            "A",
+            "B",
+            "C"
+          ],
+          "operators": [
+            "=",
+            "<",
+            "+=",
+            "*",
+            "*"
+          ]
+        }
+      ]
+    }
+  ]
+}

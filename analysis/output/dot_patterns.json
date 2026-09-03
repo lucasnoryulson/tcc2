@@ -1,0 +1,34 @@
+{
+  "version": "0.6",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/analysis/fixtures/dot_product.c",
+  "kernels": [
+    {
+      "name": "kernel_dot",
+      "classification": "REDUCTION_CANDIDATE",
+      "family": "REDUCE / AGGREGATION",
+      "confidence": "medium",
+      "reason": "At least one loop contains a reduction update.",
+      "loops": [
+        {
+          "classification": "REDUCTION_CANDIDATE",
+          "family": "REDUCE / AGGREGATION",
+          "confidence": "medium",
+          "reason": "A scalar variable is updated with a reduction-compatible compound operator inside the loop.",
+          "evidence": {
+            "reduction_type": "scalar",
+            "scalar_updates": [
+              {
+                "variable": "sum",
+                "operator": "+=",
+                "rhs": "A[i]*B[i]",
+                "expression": "sum += A[i]*B[i]"
+              }
+            ]
+          },
+          "loop_id": 1,
+          "iterator": "i"
+        }
+      ]
+    }
+  ]
+}

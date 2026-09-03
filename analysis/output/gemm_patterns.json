@@ -1,0 +1,65 @@
+{
+  "version": "0.6",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c",
+  "kernels": [
+    {
+      "name": "kernel_gemm",
+      "classification": "DOALL_CANDIDATE",
+      "family": "MAP / DATA_PARALLEL",
+      "confidence": "medium",
+      "reason": "Independent-index candidates were detected and no shifted or symbolic dependences were found.",
+      "loops": [
+        {
+          "classification": "NO_DIRECT_EVIDENCE",
+          "family": "UNKNOWN",
+          "confidence": "low",
+          "reason": "No direct READ/WRITE dependence candidate was associated with this loop level.",
+          "evidence": {},
+          "loop_id": 1,
+          "iterator": "i"
+        },
+        {
+          "classification": "DOALL_CANDIDATE",
+          "family": "MAP / DATA_PARALLEL",
+          "confidence": "medium",
+          "reason": "Only same-location updates were detected and the current iterator participates in the written array index.",
+          "evidence": {
+            "same_location": 1,
+            "iterator_in_write": true,
+            "operators": [
+              "*="
+            ]
+          },
+          "loop_id": 2,
+          "iterator": "j"
+        },
+        {
+          "classification": "NO_DIRECT_EVIDENCE",
+          "family": "UNKNOWN",
+          "confidence": "low",
+          "reason": "No direct READ/WRITE dependence candidate was associated with this loop level.",
+          "evidence": {},
+          "loop_id": 3,
+          "iterator": "k"
+        },
+        {
+          "classification": "DOALL_CANDIDATE",
+          "family": "MAP / DATA_PARALLEL",
+          "confidence": "medium",
+          "reason": "Only same-location updates were detected and the current iterator participates in the written array index.",
+          "evidence": {
+            "same_location": 1,
+            "iterator_in_write": true,
+            "operators": [
+              "+=",
+              "*",
+              "*"
+            ]
+          },
+          "loop_id": 4,
+          "iterator": "j"
+        }
+      ]
+    }
+  ]
+}
