@@ -1,0 +1,38 @@
+==================================
+TCC2 DEPENDENCE ANALYZER v0.3
+==================================
+Input: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/gemm_analysis.json
+
+Kernel: kernel_gemm
+
+  Loop #1
+    Iterator: i
+    Dependence candidates: (none)
+
+  Loop #2
+    Iterator: j
+    Dependence candidates: 1
+
+      WRITE: C[i][j]
+      READ:  C[i][j]
+      Relation: same_location
+      Offset: [0, 0]
+
+
+  Loop #3
+    Iterator: k
+    Dependence candidates: (none)
+
+  Loop #4
+    Iterator: j
+    Dependence candidates: 1
+
+      WRITE: C[i][j]
+      READ:  C[i][j]
+      Relation: same_location
+      Offset: [0, 0]
+
+
+==================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/gemm_dependences.json
+==================================

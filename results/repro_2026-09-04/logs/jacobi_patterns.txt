@@ -1,0 +1,67 @@
+=================================
+TCC2 PATTERN CLASSIFIER v0.6
+=================================
+Static:     /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/jacobi_2d_analysis.json
+Dependence: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/jacobi_2d_dependences.json
+
+Kernel: kernel_jacobi_2d
+Classification: STENCIL_CANDIDATE
+Family: STENCIL
+Confidence: high
+Reason: At least one loop contains a regular neighborhood access pattern.
+
+Loop classifications:
+
+  Loop #1 (t)
+    Pattern: NO_DIRECT_EVIDENCE
+    Family: UNKNOWN
+    Confidence: low
+    Reason: No direct READ/WRITE dependence candidate was associated with this loop level.
+
+  Loop #2 (i)
+    Pattern: NO_DIRECT_EVIDENCE
+    Family: UNKNOWN
+    Confidence: low
+    Reason: No direct READ/WRITE dependence candidate was associated with this loop level.
+
+  Loop #3 (j)
+    Pattern: STENCIL_CANDIDATE
+    Family: STENCIL
+    Confidence: high
+    Reason: A regular multidimensional neighborhood of array reads was detected around the written element.
+    Evidence:
+      write: B[i][j]
+      write_array: B
+      read_array: A
+      dimensions: 2
+      offsets: [[-1, 0], [0, -1], [0, 0], [0, 1], [1, 0]]
+      stencil_points: 5
+      center_present: True
+      symmetric_pairs: 2
+      confidence: high
+
+  Loop #4 (i)
+    Pattern: NO_DIRECT_EVIDENCE
+    Family: UNKNOWN
+    Confidence: low
+    Reason: No direct READ/WRITE dependence candidate was associated with this loop level.
+
+  Loop #5 (j)
+    Pattern: STENCIL_CANDIDATE
+    Family: STENCIL
+    Confidence: high
+    Reason: A regular multidimensional neighborhood of array reads was detected around the written element.
+    Evidence:
+      write: A[i][j]
+      write_array: A
+      read_array: B
+      dimensions: 2
+      offsets: [[-1, 0], [0, -1], [0, 0], [0, 1], [1, 0]]
+      stencil_points: 5
+      center_present: True
+      symmetric_pairs: 2
+      confidence: high
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/jacobi_2d_patterns.json
+=================================

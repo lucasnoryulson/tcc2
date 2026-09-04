@@ -1,0 +1,32 @@
+=================================
+TCC2 STRATEGY PLANNER v0.1
+=================================
+Static:   /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/dot_analysis.json
+Patterns: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/dot_patterns.json
+
+Kernel: kernel_dot
+Pattern: REDUCTION_CANDIDATE
+Family: REDUCE / AGGREGATION
+Classification confidence: medium
+Strategy: REDUCTION
+
+{
+  "strategy": "REDUCTION",
+  "reductions": [
+    {
+      "loop_id": 1,
+      "iterator": "i",
+      "reduction_type": "scalar",
+      "variable": "sum",
+      "operator": "+",
+      "openmp_construct": "parallel for",
+      "openmp_clause": "reduction(+:sum)",
+      "schedule": "static",
+      "direct_code_transformation": true
+    }
+  ]
+}
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/dot_strategy.json
+=================================

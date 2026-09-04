@@ -1,0 +1,27 @@
+Calling Coordinator Agent...
+Model: llama3.1:8b
+=================================
+TCC2 COORDINATOR AGENT v0.1
+=================================
+Model: llama3.1:8b
+
+Decision: ACCEPT
+Recommended threads: 2
+Risk: LOW
+Next action: PROMOTE_CANDIDATE
+
+Reason:
+  The candidate passed correctness validation and provides a meaningful measured speedup.
+
+Evidence used:
+  - Correctness validation PASS
+  - Measured performance improvement (1.257684823026716x)
+  - Resource-aware recommendation matches fastest configuration
+
+LLM metadata:
+  Prompt tokens: 1536
+  Output tokens: 101
+  Done reason: stop
+=================================
+
+Decision salva em: /home/liswsz220-01/Desktop/TCC2/tcc2/results/repro_2026-09-04/latency/llama3.1-8b/warm.json

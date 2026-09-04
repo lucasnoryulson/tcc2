@@ -1,0 +1,42 @@
+{
+  "status": "SELECTED",
+  "decision": "FASTEST_CONFIGURATION",
+  "sequential": {
+    "mode": "sequential",
+    "threads": 1,
+    "median_seconds": 0.01044670859,
+    "mean_seconds": 0.010525735718,
+    "speedup": 1.0,
+    "efficiency": 1.0
+  },
+  "raw_fastest": {
+    "mode": "openmp",
+    "threads": 2,
+    "median_seconds": 0.00830630091,
+    "mean_seconds": 0.008237002042000001,
+    "speedup": 1.257684823026716,
+    "efficiency": 0.628842411513358
+  },
+  "near_tie_threshold": 0.02,
+  "near_tie_candidates": [
+    {
+      "mode": "openmp",
+      "threads": 2,
+      "median_seconds": 0.00830630091,
+      "mean_seconds": 0.008237002042000001,
+      "speedup": 1.257684823026716,
+      "efficiency": 0.628842411513358,
+      "slowdown_vs_fastest": 0.0
+    }
+  ],
+  "recommended": {
+    "mode": "openmp",
+    "threads": 2,
+    "median_seconds": 0.00830630091,
+    "mean_seconds": 0.008237002042000001,
+    "speedup": 1.257684823026716,
+    "efficiency": 0.628842411513358,
+    "slowdown_vs_fastest": 0.0
+  },
+  "reason": "The fastest configuration is also the resource-aware recommendation."
+}

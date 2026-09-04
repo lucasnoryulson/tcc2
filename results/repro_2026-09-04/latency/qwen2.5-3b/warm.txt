@@ -1,0 +1,29 @@
+Calling Coordinator Agent...
+Model: qwen2.5:3b
+=================================
+TCC2 COORDINATOR AGENT v0.1
+=================================
+Model: qwen2.5:3b
+
+Decision: ACCEPT
+Recommended threads: 2
+Risk: LOW
+Next action: PROMOTE_CANDIDATE
+
+Reason:
+  The candidate is correct and provides a meaningful measured speedup of 1.257684823026716 with efficiency of 0.628842411513358, which is also the resource-aware recommendation.
+
+Evidence used:
+  - correctness_validation_passed
+  - measured_performance_improvement
+  - detected_dependences_not_removed
+  - strategy_planner_consistency
+  - resource_efficiency_preferred_over_speedup
+
+LLM metadata:
+  Prompt tokens: 1670
+  Output tokens: 164
+  Done reason: stop
+=================================
+
+Decision salva em: /home/liswsz220-01/Desktop/TCC2/tcc2/results/repro_2026-09-04/latency/qwen2.5-3b/warm.json

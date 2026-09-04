@@ -16,7 +16,8 @@
           "increment": "i++",
           "reads": [],
           "writes": [],
-          "operators": []
+          "operators": [],
+          "scalar_updates": []
         },
         {
           "id": 2,
@@ -49,7 +50,8 @@
           ],
           "operators": [
             "*="
-          ]
+          ],
+          "scalar_updates": []
         },
         {
           "id": 3,
@@ -62,7 +64,8 @@
           "increment": "k++",
           "reads": [],
           "writes": [],
-          "operators": []
+          "operators": [],
+          "scalar_updates": []
         },
         {
           "id": 4,
@@ -113,7 +116,8 @@
             "+=",
             "*",
             "*"
-          ]
+          ],
+          "scalar_updates": []
         }
       ]
     }

@@ -1,0 +1,22 @@
+result=10.17971996453824
+run_ms=37.250225999999998
+result=10.17971996453824
+run_ms=37.943820000000002
+result=10.17971996453824
+run_ms=37.165523999999998
+result=10.17971996453824
+run_ms=37.433967000000003
+result=10.17971996453824
+run_ms=37.304358999999998
+
+ Performance counter stats for './build/wavefront/wavefront_sequential 4000' (5 runs):
+
+       349,254,832      cycles                                                                  ( +-  0.24% )
+       244,912,431      instructions                                                            ( +-  0.42% )
+         2,535,832      cache-references                                                        ( +-  0.59% )
+         2,204,345      cache-misses                                                            ( +-  0.39% )
+        36,031,435      branches                                                                ( +-  0.58% )
+            72,288      branch-misses                                                           ( +-  1.06% )
+
+       0.103330701 +- 0.000708600 seconds time elapsed  ( +-  0.69% )
+

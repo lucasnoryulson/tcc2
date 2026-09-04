@@ -1,0 +1,17 @@
+12.128425
+12.101908
+12.066613
+12.090802
+12.081126
+
+ Performance counter stats for './build/covariance/covariance_sequential' (5 runs):
+
+    42,676,569,893      cycles                                                                  ( +-  0.07% )
+     5,736,812,087      instructions                                                            ( +-  0.01% )
+     1,330,314,348      cache-references                                                        ( +-  0.31% )
+        97,413,536      cache-misses                                                            ( +-  0.81% )
+       532,456,065      branches                                                                ( +-  0.02% )
+           944,490      branch-misses                                                           ( +-  0.46% )
+
+      12.117469355 +- 0.010904149 seconds time elapsed  ( +-  0.09% )
+

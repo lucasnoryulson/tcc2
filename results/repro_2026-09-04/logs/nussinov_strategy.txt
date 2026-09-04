@@ -1,0 +1,50 @@
+=================================
+TCC2 STRATEGY PLANNER v0.1
+=================================
+Static:   /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/nussinov_analysis.json
+Patterns: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/nussinov_patterns.json
+
+Kernel: kernel_nussinov
+Pattern: WAVEFRONT_CANDIDATE
+Family: WAVEFRONT / DOACROSS
+Classification confidence: high
+Strategy: WAVEFRONT
+
+{
+  "strategy": "WAVEFRONT",
+  "wavefronts": [
+    {
+      "loop_id": 2,
+      "original_iterators": [
+        "i",
+        "j"
+      ],
+      "dependence_offsets": [
+        [
+          0,
+          -1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "transformation": "wavefront_diagonalization",
+      "direct_parallel_for": false,
+      "restructure_iteration_space": true,
+      "parallelize_within_front": true,
+      "barrier_between_fronts": true,
+      "schedule": "static"
+    }
+  ],
+  "direct_code_transformation": false,
+  "reason": "Loop-carried dependences prevent a direct parallel-for transformation."
+}
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/nussinov_strategy.json
+=================================

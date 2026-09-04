@@ -1,0 +1,71 @@
+================================
+TCC2 HARNESS — wavefront
+================================
+
+[1/5] Compilando sequencial...
+Compilation: OK
+
+[2/5] Benchmark sequencial...
+
+SEQ Run=1 Time=0.041752s
+SEQ Run=2 Time=0.037257s
+SEQ Run=3 Time=0.041959s
+SEQ Run=4 Time=0.038789s
+SEQ Run=5 Time=0.039938s
+
+Sequential median: 0.039938s
+
+[3/5] Compilando OpenMP...
+Compilation: OK
+
+[4/5] Validando corretude...
+Validation mode: NUMERIC
+Reference source: sequential_output
+Expected: 10.17971996453824
+Candidate: 10.17971996453824
+Absolute error: 0
+Relative error: 0
+Relative tolerance: 1e-12
+Absolute tolerance: 1e-12
+CORRECT
+
+[5/5] Benchmark paralelo...
+
+--- 1 THREAD(S) ---
+1T Run=1 Time=0.191042s
+1T Run=2 Time=0.183379s
+1T Run=3 Time=0.186201s
+1T Run=4 Time=0.186765s
+1T Run=5 Time=0.184556s
+Median=0.186201s
+
+--- 2 THREAD(S) ---
+2T Run=1 Time=0.090487s
+2T Run=2 Time=0.092816s
+2T Run=3 Time=0.091594s
+2T Run=4 Time=0.091502s
+2T Run=5 Time=0.092351s
+Median=0.091594s
+
+--- 4 THREAD(S) ---
+4T Run=1 Time=0.117447s
+4T Run=2 Time=0.067360s
+4T Run=3 Time=0.073402s
+4T Run=4 Time=0.065459s
+4T Run=5 Time=0.045744s
+Median=0.067360s
+
+
+================================
+RESUMO
+================================
+Sequential: 0.039938s
+
+1 thread(s): 0.186201s | speedup=0.214x | efficiency=0.214
+2 thread(s): 0.091594s | speedup=0.436x | efficiency=0.218
+4 thread(s): 0.067360s | speedup=0.593x | efficiency=0.148
+
+BEST: 4 threads
+BEST SPEEDUP: 0.593x
+
+CSV: /home/liswsz220-01/Desktop/TCC2/tcc2/results/wavefront/experiment_results.csv

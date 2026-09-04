@@ -16,7 +16,8 @@
           "increment": "i--",
           "reads": [],
           "writes": [],
-          "operators": []
+          "operators": [],
+          "scalar_updates": []
         },
         {
           "id": 2,
@@ -123,7 +124,8 @@
             "-",
             "+",
             "-"
-          ]
+          ],
+          "scalar_updates": []
         },
         {
           "id": 3,
@@ -177,7 +179,8 @@
             "+",
             "+",
             "+"
-          ]
+          ],
+          "scalar_updates": []
         }
       ]
     }

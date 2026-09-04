@@ -1,0 +1,17 @@
+0.655277
+0.740470
+0.693532
+0.682254
+0.682570
+
+ Performance counter stats for './build/gemm/gemm_sequential' (5 runs):
+
+     2,486,808,529      cycles                                                                  ( +-  1.19% )
+     4,427,319,202      instructions                                                            ( +-  0.01% )
+        59,552,680      cache-references                                                        ( +-  3.74% )
+        26,513,765      cache-misses                                                            ( +-  3.57% )
+       347,638,234      branches                                                                ( +-  0.03% )
+         1,250,365      branch-misses                                                           ( +-  0.20% )
+
+       0.727791153 +- 0.013696382 seconds time elapsed  ( +-  1.88% )
+

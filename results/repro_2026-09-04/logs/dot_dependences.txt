@@ -1,0 +1,14 @@
+==================================
+TCC2 DEPENDENCE ANALYZER v0.3
+==================================
+Input: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/dot_analysis.json
+
+Kernel: kernel_dot
+
+  Loop #1
+    Iterator: i
+    Dependence candidates: (none)
+
+==================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/dot_dependences.json
+==================================

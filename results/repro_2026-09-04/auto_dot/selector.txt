@@ -1,0 +1,26 @@
+=================================
+TCC2 PERFORMANCE SELECTOR v0.1
+=================================
+
+Status: SELECTED
+
+Raw fastest configuration:
+  Threads:    2
+  Median:     0.008306301 s
+  Speedup:    1.258x
+  Efficiency: 0.629
+
+Near-tie candidates:
+  2 thread(s): 0.008306301 s | speedup 1.258x | efficiency 0.629 | slowdown vs fastest 0.000%
+
+Recommended configuration:
+  Threads:    2
+  Median:     0.008306301 s
+  Speedup:    1.258x
+  Efficiency: 0.629
+
+Decision: FASTEST_CONFIGURATION
+Reason: The fastest configuration is also the resource-aware recommendation.
+
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/results/repro_2026-09-04/auto_dot/selection.json
+=================================

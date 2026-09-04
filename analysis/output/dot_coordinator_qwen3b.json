@@ -1,0 +1,24 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.1",
+  "model": "qwen2.5:3b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 2,
+    "reason": "The candidate is correct and provides a meaningful measured speedup (1.2357), which is within the near-tie threshold of the fastest configuration using fewer threads.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "Correctness validation passed.",
+      "Multiple configurations are within a reasonable performance difference (2.0%) and resource efficiency is preferred over thread count."
+    ]
+  },
+  "llm_metadata": {
+    "model": "qwen2.5:3b",
+    "total_duration": 352557712456,
+    "load_duration": 1868834819,
+    "prompt_eval_count": 1842,
+    "eval_count": 126,
+    "done_reason": "stop"
+  }
+}

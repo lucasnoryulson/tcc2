@@ -1,0 +1,30 @@
+==================================
+TCC2 DEPENDENCE ANALYZER v0.3
+==================================
+Input: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/jacobi_2d_analysis.json
+
+Kernel: kernel_jacobi_2d
+
+  Loop #1
+    Iterator: t
+    Dependence candidates: (none)
+
+  Loop #2
+    Iterator: i
+    Dependence candidates: (none)
+
+  Loop #3
+    Iterator: j
+    Dependence candidates: (none)
+
+  Loop #4
+    Iterator: i
+    Dependence candidates: (none)
+
+  Loop #5
+    Iterator: j
+    Dependence candidates: (none)
+
+==================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/jacobi_2d_dependences.json
+==================================

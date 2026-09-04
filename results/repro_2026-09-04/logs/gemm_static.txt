@@ -1,0 +1,65 @@
+==============================
+TCC2 STATIC ANALYZER v0.2
+==============================
+Source: /home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c
+
+Kernel: kernel_gemm
+Loops encontrados: 4
+
+Loop #1
+  Depth: 0
+  Lines: 89 - 96
+  Iterator: i
+  Init: i = 0
+  Condition: i < _PB_NI
+  Increment: i++
+  READS:
+    (none)
+  WRITES:
+    (none)
+  Operators: (none)
+
+Loop #2
+  Depth: 1
+  Lines: 90 - 91
+  Iterator: j
+  Init: j = 0
+  Condition: j < _PB_NJ
+  Increment: j++
+  READS:
+    C[i][j]
+  WRITES:
+    C[i][j]
+  Operators: *=
+
+Loop #3
+  Depth: 1
+  Lines: 92 - 95
+  Iterator: k
+  Init: k = 0
+  Condition: k < _PB_NK
+  Increment: k++
+  READS:
+    (none)
+  WRITES:
+    (none)
+  Operators: (none)
+
+Loop #4
+  Depth: 2
+  Lines: 93 - 94
+  Iterator: j
+  Init: j = 0
+  Condition: j < _PB_NJ
+  Increment: j++
+  READS:
+    C[i][j]
+    A[i][k]
+    B[k][j]
+  WRITES:
+    C[i][j]
+  Operators: +=, *, *
+
+==============================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/gemm_analysis.json
+==============================

@@ -1,0 +1,15 @@
+=================================
+TCC2 CODE TRANSFORMER v0.1
+=================================
+Kernel: kernel_dot
+Source: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/fixtures/dot_product.c
+Output: /home/liswsz220-01/Desktop/TCC2/tcc2/generated/repro_2026-09-04/dot_product_openmp.c
+
+Transformations:
+  Loop #1
+    Original line: 9
+    Pragma: #pragma omp parallel for reduction(+:sum) schedule(static)
+
+=================================
+TRANSFORMATION_SUCCESS
+=================================

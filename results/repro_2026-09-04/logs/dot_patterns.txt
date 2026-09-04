@@ -1,0 +1,26 @@
+=================================
+TCC2 PATTERN CLASSIFIER v0.6
+=================================
+Static:     /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/dot_analysis.json
+Dependence: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/dot_dependences.json
+
+Kernel: kernel_dot
+Classification: REDUCTION_CANDIDATE
+Family: REDUCE / AGGREGATION
+Confidence: medium
+Reason: At least one loop contains a reduction update.
+
+Loop classifications:
+
+  Loop #1 (i)
+    Pattern: REDUCTION_CANDIDATE
+    Family: REDUCE / AGGREGATION
+    Confidence: medium
+    Reason: A scalar variable is updated with a reduction-compatible compound operator inside the loop.
+    Evidence:
+      reduction_type: scalar
+      scalar_updates: [{'variable': 'sum', 'operator': '+=', 'rhs': 'A[i]*B[i]', 'expression': 'sum += A[i]*B[i]'}]
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/dot_patterns.json
+=================================

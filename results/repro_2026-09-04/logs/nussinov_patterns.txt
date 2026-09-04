@@ -1,0 +1,41 @@
+=================================
+TCC2 PATTERN CLASSIFIER v0.6
+=================================
+Static:     /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/nussinov_analysis.json
+Dependence: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/nussinov_dependences.json
+
+Kernel: kernel_nussinov
+Classification: WAVEFRONT_CANDIDATE
+Family: WAVEFRONT / DOACROSS
+Confidence: high
+Reason: At least one loop contains resolved shifted dependences.
+
+Loop classifications:
+
+  Loop #1 (i)
+    Pattern: NO_DIRECT_EVIDENCE
+    Family: UNKNOWN
+    Confidence: low
+    Reason: No direct READ/WRITE dependence candidate was associated with this loop level.
+
+  Loop #2 (j)
+    Pattern: WAVEFRONT_CANDIDATE
+    Family: WAVEFRONT / DOACROSS
+    Confidence: high
+    Reason: Shifted accesses to the same written array were detected.
+    Evidence:
+      shifted_accesses: 3
+      offsets: [[0, -1], [1, 0], [1, -1]]
+      symbolic_relations: 0
+
+  Loop #3 (k)
+    Pattern: UNKNOWN_DEPENDENCE
+    Family: UNKNOWN
+    Confidence: low
+    Reason: The loop contains relationships that the current affine analyzer cannot resolve.
+    Evidence:
+      symbolic_relations: 2
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/nussinov_patterns.json
+=================================

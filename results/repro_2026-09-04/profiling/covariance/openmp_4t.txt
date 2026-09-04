@@ -1,0 +1,17 @@
+5.579893
+5.562075
+5.668671
+5.727734
+5.526234
+
+ Performance counter stats for './build/covariance/covariance_openmp' (5 runs):
+
+    44,841,432,141      cycles                                                                  ( +-  0.04% )
+     8,747,354,428      instructions                                                            ( +-  0.19% )
+     1,332,482,433      cache-references                                                        ( +-  0.27% )
+        83,808,509      cache-misses                                                            ( +-  1.93% )
+     1,266,633,462      branches                                                                ( +-  0.39% )
+         1,392,335      branch-misses                                                           ( +-  2.13% )
+
+       5.636077617 +- 0.037173986 seconds time elapsed  ( +-  0.66% )
+

@@ -1,0 +1,17 @@
+6.293945
+6.463574
+5.792839
+5.377354
+5.323473
+
+ Performance counter stats for './build/nussinov/nussinov_openmp' (5 runs):
+
+    71,413,571,839      cycles                                                                  ( +-  2.45% )
+    42,638,618,018      instructions                                                            ( +-  4.46% )
+       442,071,894      cache-references                                                        ( +-  1.95% )
+        94,772,446      cache-misses                                                            ( +-  4.54% )
+     6,660,213,811      branches                                                                ( +-  8.40% )
+         5,617,910      branch-misses                                                           ( +-  5.17% )
+
+       5.876985671 +- 0.232804368 seconds time elapsed  ( +-  3.96% )
+

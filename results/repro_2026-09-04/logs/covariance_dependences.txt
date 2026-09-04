@@ -1,0 +1,73 @@
+==================================
+TCC2 DEPENDENCE ANALYZER v0.3
+==================================
+Input: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/covariance_analysis.json
+
+Kernel: kernel_covariance
+
+  Loop #1
+    Iterator: j
+    Dependence candidates: 1
+
+      WRITE: mean[j]
+      READ:  mean[j]
+      Relation: same_location
+      Offset: [0]
+
+
+  Loop #2
+    Iterator: i
+    Dependence candidates: 1
+
+      WRITE: mean[j]
+      READ:  mean[j]
+      Relation: same_location
+      Offset: [0]
+
+
+  Loop #3
+    Iterator: i
+    Dependence candidates: (none)
+
+  Loop #4
+    Iterator: j
+    Dependence candidates: 1
+
+      WRITE: data[i][j]
+      READ:  data[i][j]
+      Relation: same_location
+      Offset: [0, 0]
+
+
+  Loop #5
+    Iterator: i
+    Dependence candidates: (none)
+
+  Loop #6
+    Iterator: j
+    Dependence candidates: 2
+
+      WRITE: cov[i][j]
+      READ:  cov[i][j]
+      Relation: same_location
+      Offset: [0, 0]
+
+      WRITE: cov[j][i]
+      READ:  cov[i][j]
+      Relation: symbolic_relation
+      Offset: [?, ?]
+
+
+  Loop #7
+    Iterator: k
+    Dependence candidates: 1
+
+      WRITE: cov[i][j]
+      READ:  cov[i][j]
+      Relation: same_location
+      Offset: [0, 0]
+
+
+==================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/covariance_dependences.json
+==================================

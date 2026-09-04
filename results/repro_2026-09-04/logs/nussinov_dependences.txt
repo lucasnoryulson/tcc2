@@ -1,0 +1,62 @@
+==================================
+TCC2 DEPENDENCE ANALYZER v0.3
+==================================
+Input: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/nussinov_analysis.json
+
+Kernel: kernel_nussinov
+
+  Loop #1
+    Iterator: i
+    Dependence candidates: (none)
+
+  Loop #2
+    Iterator: j
+    Dependence candidates: 4
+
+      WRITE: table[i][j]
+      READ:  table[i][j]
+      Relation: same_location
+      Offset: [0, 0]
+
+      WRITE: table[i][j]
+      READ:  table[i][j-1]
+      Relation: shifted_access
+      Offset: [0, -1]
+      Carried by: j
+
+      WRITE: table[i][j]
+      READ:  table[i+1][j]
+      Relation: shifted_access
+      Offset: [+1, 0]
+      Carried by: i
+
+      WRITE: table[i][j]
+      READ:  table[i+1][j-1]
+      Relation: shifted_access
+      Offset: [+1, -1]
+      Carried by: i, j
+
+
+  Loop #3
+    Iterator: k
+    Dependence candidates: 3
+
+      WRITE: table[i][j]
+      READ:  table[i][j]
+      Relation: same_location
+      Offset: [0, 0]
+
+      WRITE: table[i][j]
+      READ:  table[i][k]
+      Relation: symbolic_relation
+      Offset: [0, ?]
+
+      WRITE: table[i][j]
+      READ:  table[k+1][j]
+      Relation: symbolic_relation
+      Offset: [?, 0]
+
+
+==================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/nussinov_dependences.json
+==================================

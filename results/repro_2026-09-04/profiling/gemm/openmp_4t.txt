@@ -1,0 +1,17 @@
+0.291413
+0.224232
+0.252125
+0.315606
+0.273665
+
+ Performance counter stats for './build/gemm/gemm_openmp' (5 runs):
+
+     3,239,201,147      cycles                                                                  ( +-  3.26% )
+     4,830,613,353      instructions                                                            ( +-  1.63% )
+        75,718,575      cache-references                                                        ( +-  1.36% )
+        17,183,269      cache-misses                                                            ( +- 10.45% )
+       461,836,168      branches                                                                ( +-  5.00% )
+         1,378,178      branch-misses                                                           ( +-  0.95% )
+
+       0.305349059 +- 0.015166203 seconds time elapsed  ( +-  4.97% )
+

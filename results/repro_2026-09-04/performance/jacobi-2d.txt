@@ -1,0 +1,66 @@
+================================
+TCC2 HARNESS — jacobi-2d
+================================
+
+[1/5] Compilando sequencial...
+Compilation: OK
+
+[2/5] Benchmark sequencial...
+
+SEQ Run=1 Time=2.587624s
+SEQ Run=2 Time=2.535624s
+SEQ Run=3 Time=2.522456s
+SEQ Run=4 Time=2.518149s
+SEQ Run=5 Time=2.515883s
+
+Sequential median: 2.522456s
+
+[3/5] Compilando OpenMP...
+Compilation: OK
+
+[4/5] Validando corretude...
+Reference: cfa9d66199f1da7e1f73055d384557860390645aab47477d65ca7db8a96b0caf
+Candidate: cfa9d66199f1da7e1f73055d384557860390645aab47477d65ca7db8a96b0caf
+Validation mode: EXACT
+CORRECT
+
+[5/5] Benchmark paralelo...
+
+--- 1 THREAD(S) ---
+1T Run=1 Time=2.521653s
+1T Run=2 Time=2.535846s
+1T Run=3 Time=2.513879s
+1T Run=4 Time=2.523724s
+1T Run=5 Time=2.526772s
+Median=2.523724s
+
+--- 2 THREAD(S) ---
+2T Run=1 Time=2.184615s
+2T Run=2 Time=2.172275s
+2T Run=3 Time=2.115805s
+2T Run=4 Time=2.115619s
+2T Run=5 Time=2.120876s
+Median=2.120876s
+
+--- 4 THREAD(S) ---
+4T Run=1 Time=2.242932s
+4T Run=2 Time=2.168446s
+4T Run=3 Time=2.251729s
+4T Run=4 Time=2.150123s
+4T Run=5 Time=2.303202s
+Median=2.242932s
+
+
+================================
+RESUMO
+================================
+Sequential: 2.522456s
+
+1 thread(s): 2.523724s | speedup=0.999x | efficiency=0.999
+2 thread(s): 2.120876s | speedup=1.189x | efficiency=0.595
+4 thread(s): 2.242932s | speedup=1.125x | efficiency=0.281
+
+BEST: 2 threads
+BEST SPEEDUP: 1.189x
+
+CSV: /home/liswsz220-01/Desktop/TCC2/tcc2/results/jacobi-2d/experiment_results.csv

@@ -1,0 +1,27 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.1",
+  "model": "qwen2.5:3b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 2,
+    "reason": "The candidate is correct and provides a meaningful measured speedup of 1.257684823026716 with efficiency of 0.628842411513358, which is also the resource-aware recommendation.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "correctness_validation_passed",
+      "measured_performance_improvement",
+      "detected_dependences_not_removed",
+      "strategy_planner_consistency",
+      "resource_efficiency_preferred_over_speedup"
+    ]
+  },
+  "llm_metadata": {
+    "model": "qwen2.5:3b",
+    "total_duration": 61305108964,
+    "load_duration": 160215349,
+    "prompt_eval_count": 1670,
+    "eval_count": 164,
+    "done_reason": "stop"
+  }
+}

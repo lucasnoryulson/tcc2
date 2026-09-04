@@ -1,0 +1,84 @@
+==============================
+TCC2 STATIC ANALYZER v0.2
+==============================
+Source: /home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c
+
+Kernel: kernel_jacobi_2d
+Loops encontrados: 5
+
+Loop #1
+  Depth: 0
+  Lines: 73 - 81
+  Iterator: t
+  Init: t = 0
+  Condition: t < _PB_TSTEPS
+  Increment: t++
+  READS:
+    (none)
+  WRITES:
+    (none)
+  Operators: (none)
+
+Loop #2
+  Depth: 1
+  Lines: 75 - 77
+  Iterator: i
+  Init: i = 1
+  Condition: i < _PB_N - 1
+  Increment: i++
+  READS:
+    (none)
+  WRITES:
+    (none)
+  Operators: (none)
+
+Loop #3
+  Depth: 2
+  Lines: 76 - 77
+  Iterator: j
+  Init: j = 1
+  Condition: j < _PB_N - 1
+  Increment: j++
+  READS:
+    A[i][j]
+    A[i][j-1]
+    A[i][1+j]
+    A[1+i][j]
+    A[i-1][j]
+  WRITES:
+    B[i][j]
+  Operators: =, *, +, +, +, +, -, +, +, -
+
+Loop #4
+  Depth: 1
+  Lines: 78 - 80
+  Iterator: i
+  Init: i = 1
+  Condition: i < _PB_N - 1
+  Increment: i++
+  READS:
+    (none)
+  WRITES:
+    (none)
+  Operators: (none)
+
+Loop #5
+  Depth: 2
+  Lines: 79 - 80
+  Iterator: j
+  Init: j = 1
+  Condition: j < _PB_N - 1
+  Increment: j++
+  READS:
+    B[i][j]
+    B[i][j-1]
+    B[i][1+j]
+    B[1+i][j]
+    B[i-1][j]
+  WRITES:
+    A[i][j]
+  Operators: =, *, +, +, +, +, -, +, +, -
+
+==============================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/jacobi_2d_analysis.json
+==============================

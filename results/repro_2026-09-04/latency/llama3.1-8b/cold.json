@@ -1,0 +1,25 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.1",
+  "model": "llama3.1:8b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 2,
+    "reason": "The candidate passed correctness validation and provides a meaningful measured speedup.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "Correctness validation PASS",
+      "Measured performance improvement (1.257684823026716x)",
+      "Resource-aware recommendation matches fastest configuration"
+    ]
+  },
+  "llm_metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 588429137648,
+    "load_duration": 15293540069,
+    "prompt_eval_count": 1536,
+    "eval_count": 101,
+    "done_reason": "stop"
+  }
+}

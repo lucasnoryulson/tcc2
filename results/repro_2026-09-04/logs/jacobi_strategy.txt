@@ -1,0 +1,90 @@
+=================================
+TCC2 STRATEGY PLANNER v0.1
+=================================
+Static:   /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/jacobi_2d_analysis.json
+Patterns: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/jacobi_2d_patterns.json
+
+Kernel: kernel_jacobi_2d
+Pattern: STENCIL_CANDIDATE
+Family: STENCIL
+Classification confidence: high
+Strategy: STENCIL
+
+{
+  "strategy": "STENCIL",
+  "parallel_region": "persistent",
+  "spatial_construct": "omp for",
+  "schedule": "static",
+  "keep_temporal_loop_order": true,
+  "barrier_between_phases": true,
+  "phases": [
+    {
+      "stencil_loop_id": 3,
+      "stencil_iterator": "j",
+      "recommended_spatial_loop_id": 2,
+      "recommended_spatial_iterator": "i",
+      "temporal_loop_id": 1,
+      "temporal_iterator": "t",
+      "offsets": [
+        [
+          -1,
+          0
+        ],
+        [
+          0,
+          -1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "stencil_points": 5
+    },
+    {
+      "stencil_loop_id": 5,
+      "stencil_iterator": "j",
+      "recommended_spatial_loop_id": 4,
+      "recommended_spatial_iterator": "i",
+      "temporal_loop_id": 1,
+      "temporal_iterator": "t",
+      "offsets": [
+        [
+          -1,
+          0
+        ],
+        [
+          0,
+          -1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "stencil_points": 5
+    }
+  ],
+  "direct_code_transformation": false,
+  "reason": "Spatial iterations can be parallel, but temporal and phase ordering must be preserved."
+}
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/jacobi_2d_strategy.json
+=================================

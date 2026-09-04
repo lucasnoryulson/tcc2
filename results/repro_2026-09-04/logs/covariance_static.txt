@@ -1,0 +1,107 @@
+==============================
+TCC2 STATIC ANALYZER v0.2
+==============================
+Source: /home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/datamining/covariance/covariance.c
+
+Kernel: kernel_covariance
+Loops encontrados: 7
+
+Loop #1
+  Depth: 0
+  Lines: 73 - 79
+  Iterator: j
+  Init: j = 0
+  Condition: j < _PB_M
+  Increment: j++
+  READS:
+    mean[j]
+  WRITES:
+    mean[j]
+  Operators: =, /=
+
+Loop #2
+  Depth: 1
+  Lines: 76 - 77
+  Iterator: i
+  Init: i = 0
+  Condition: i < _PB_N
+  Increment: i++
+  READS:
+    mean[j]
+    data[i][j]
+  WRITES:
+    mean[j]
+  Operators: +=
+
+Loop #3
+  Depth: 0
+  Lines: 81 - 83
+  Iterator: i
+  Init: i = 0
+  Condition: i < _PB_N
+  Increment: i++
+  READS:
+    (none)
+  WRITES:
+    (none)
+  Operators: (none)
+
+Loop #4
+  Depth: 1
+  Lines: 82 - 83
+  Iterator: j
+  Init: j = 0
+  Condition: j < _PB_M
+  Increment: j++
+  READS:
+    data[i][j]
+    mean[j]
+  WRITES:
+    data[i][j]
+  Operators: -=
+
+Loop #5
+  Depth: 0
+  Lines: 85 - 93
+  Iterator: i
+  Init: i = 0
+  Condition: i < _PB_M
+  Increment: i++
+  READS:
+    (none)
+  WRITES:
+    (none)
+  Operators: (none)
+
+Loop #6
+  Depth: 1
+  Lines: 86 - 93
+  Iterator: j
+  Init: j = i
+  Condition: j < _PB_M
+  Increment: j++
+  READS:
+    cov[i][j]
+  WRITES:
+    cov[i][j]
+    cov[j][i]
+  Operators: =, /=, -, =
+
+Loop #7
+  Depth: 2
+  Lines: 89 - 90
+  Iterator: k
+  Init: k = 0
+  Condition: k < _PB_N
+  Increment: k++
+  READS:
+    cov[i][j]
+    data[k][i]
+    data[k][j]
+  WRITES:
+    cov[i][j]
+  Operators: +=, *
+
+==============================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/covariance_analysis.json
+==============================

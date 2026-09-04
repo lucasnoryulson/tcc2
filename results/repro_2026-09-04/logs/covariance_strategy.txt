@@ -1,0 +1,97 @@
+=================================
+TCC2 STRATEGY PLANNER v0.1
+=================================
+Static:   /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/covariance_analysis.json
+Patterns: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/covariance_patterns.json
+
+Kernel: kernel_covariance
+Pattern: MIXED_CANDIDATE
+Family: MIXED / MAP+REDUCE
+Classification confidence: medium
+Strategy: MIXED
+
+{
+  "strategy": "MIXED",
+  "components": {
+    "map_doall": {
+      "strategy": "DOALL",
+      "openmp_construct": "parallel for",
+      "schedule": "static",
+      "synchronization": "implicit_end_barrier",
+      "candidate_loops": [
+        {
+          "loop_id": 1,
+          "iterator": "j",
+          "depth": 0,
+          "confidence": "medium"
+        },
+        {
+          "loop_id": 4,
+          "iterator": "j",
+          "depth": 1,
+          "confidence": "medium"
+        }
+      ],
+      "loop_selection": "defer_to_loop_hierarchy_analysis",
+      "direct_code_transformation": false,
+      "reason": "DOALL evidence exists, but local loop analysis alone is not always sufficient to select the best nesting level."
+    },
+    "reductions": {
+      "strategy": "REDUCTION",
+      "reductions": [
+        {
+          "loop_id": 2,
+          "iterator": "i",
+          "reduction_type": "array_element",
+          "write": "mean[j]",
+          "operator": "+",
+          "parallelize_this_loop_directly": false,
+          "preferred_policy": "keep accumulation loop serial and search for an independent outer loop",
+          "ancestor_loops": [
+            {
+              "loop_id": 1,
+              "iterator": "j",
+              "depth": 0
+            }
+          ],
+          "direct_code_transformation": false
+        },
+        {
+          "loop_id": 7,
+          "iterator": "k",
+          "reduction_type": "array_element",
+          "write": "cov[i][j]",
+          "operator": "+",
+          "parallelize_this_loop_directly": false,
+          "preferred_policy": "keep accumulation loop serial and search for an independent outer loop",
+          "ancestor_loops": [
+            {
+              "loop_id": 6,
+              "iterator": "j",
+              "depth": 1
+            },
+            {
+              "loop_id": 5,
+              "iterator": "i",
+              "depth": 0
+            }
+          ],
+          "direct_code_transformation": false
+        }
+      ]
+    }
+  },
+  "unresolved_regions": [
+    {
+      "loop_id": 6,
+      "iterator": "j",
+      "reason": "The loop contains relationships that the current affine analyzer cannot resolve."
+    }
+  ],
+  "direct_code_transformation": false,
+  "reason": "The kernel contains multiple parallel patterns and requires a composed transformation plan."
+}
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/covariance_strategy.json
+=================================

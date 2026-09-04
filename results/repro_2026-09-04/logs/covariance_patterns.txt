@@ -1,0 +1,75 @@
+=================================
+TCC2 PATTERN CLASSIFIER v0.6
+=================================
+Static:     /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/covariance_analysis.json
+Dependence: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/covariance_dependences.json
+
+Kernel: kernel_covariance
+Classification: MIXED_CANDIDATE
+Family: MIXED / MAP+REDUCE
+Confidence: medium
+Reason: The kernel contains both MAP/DOALL and REDUCE/AGGREGATION regions.
+
+Loop classifications:
+
+  Loop #1 (j)
+    Pattern: DOALL_CANDIDATE
+    Family: MAP / DATA_PARALLEL
+    Confidence: medium
+    Reason: Only same-location updates were detected and the current iterator participates in the written array index.
+    Evidence:
+      same_location: 1
+      iterator_in_write: True
+      operators: ['=', '/=']
+
+  Loop #2 (i)
+    Pattern: REDUCTION_CANDIDATE
+    Family: REDUCE / AGGREGATION
+    Confidence: medium
+    Reason: The loop repeatedly updates the same array element while the current iterator does not participate in the written index.
+    Evidence:
+      reduction_type: array_element
+      updates: [{'type': 'array_element', 'write': 'mean[j]', 'iterator': 'i', 'iterator_in_write': False, 'operators': ['+=']}]
+
+  Loop #3 (i)
+    Pattern: NO_DIRECT_EVIDENCE
+    Family: UNKNOWN
+    Confidence: low
+    Reason: No direct READ/WRITE dependence candidate was associated with this loop level.
+
+  Loop #4 (j)
+    Pattern: DOALL_CANDIDATE
+    Family: MAP / DATA_PARALLEL
+    Confidence: medium
+    Reason: Only same-location updates were detected and the current iterator participates in the written array index.
+    Evidence:
+      same_location: 1
+      iterator_in_write: True
+      operators: ['-=']
+
+  Loop #5 (i)
+    Pattern: NO_DIRECT_EVIDENCE
+    Family: UNKNOWN
+    Confidence: low
+    Reason: No direct READ/WRITE dependence candidate was associated with this loop level.
+
+  Loop #6 (j)
+    Pattern: UNKNOWN_DEPENDENCE
+    Family: UNKNOWN
+    Confidence: low
+    Reason: The loop contains relationships that the current affine analyzer cannot resolve.
+    Evidence:
+      symbolic_relations: 1
+
+  Loop #7 (k)
+    Pattern: REDUCTION_CANDIDATE
+    Family: REDUCE / AGGREGATION
+    Confidence: medium
+    Reason: The loop repeatedly updates the same array element while the current iterator does not participate in the written index.
+    Evidence:
+      reduction_type: array_element
+      updates: [{'type': 'array_element', 'write': 'cov[i][j]', 'iterator': 'k', 'iterator_in_write': False, 'operators': ['+=']}]
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/covariance_patterns.json
+=================================

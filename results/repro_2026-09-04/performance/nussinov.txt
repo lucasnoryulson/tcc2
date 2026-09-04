@@ -1,0 +1,66 @@
+================================
+TCC2 HARNESS — nussinov
+================================
+
+[1/5] Compilando sequencial...
+Compilation: OK
+
+[2/5] Benchmark sequencial...
+
+SEQ Run=1 Time=17.180037s
+SEQ Run=2 Time=17.185158s
+SEQ Run=3 Time=17.287874s
+SEQ Run=4 Time=17.189053s
+SEQ Run=5 Time=17.177110s
+
+Sequential median: 17.185158s
+
+[3/5] Compilando OpenMP...
+Compilation: OK
+
+[4/5] Validando corretude...
+Reference: 0537e816e19ac5ce5261437d3db9f0aace4f14b6d4cc3b66651eb7e163cdd08b
+Candidate: 0537e816e19ac5ce5261437d3db9f0aace4f14b6d4cc3b66651eb7e163cdd08b
+Validation mode: EXACT
+CORRECT
+
+[5/5] Benchmark paralelo...
+
+--- 1 THREAD(S) ---
+1T Run=1 Time=17.162642s
+1T Run=2 Time=17.030129s
+1T Run=3 Time=17.110741s
+1T Run=4 Time=17.301711s
+1T Run=5 Time=16.980087s
+Median=17.110741s
+
+--- 2 THREAD(S) ---
+2T Run=1 Time=8.525825s
+2T Run=2 Time=8.596820s
+2T Run=3 Time=8.564001s
+2T Run=4 Time=8.583657s
+2T Run=5 Time=8.583497s
+Median=8.583497s
+
+--- 4 THREAD(S) ---
+4T Run=1 Time=4.818953s
+4T Run=2 Time=4.952937s
+4T Run=3 Time=4.744371s
+4T Run=4 Time=4.818446s
+4T Run=5 Time=5.090190s
+Median=4.818953s
+
+
+================================
+RESUMO
+================================
+Sequential: 17.185158s
+
+1 thread(s): 17.110741s | speedup=1.004x | efficiency=1.004
+2 thread(s): 8.583497s | speedup=2.002x | efficiency=1.001
+4 thread(s): 4.818953s | speedup=3.566x | efficiency=0.892
+
+BEST: 4 threads
+BEST SPEEDUP: 3.566x
+
+CSV: /home/liswsz220-01/Desktop/TCC2/tcc2/results/nussinov/experiment_results.csv

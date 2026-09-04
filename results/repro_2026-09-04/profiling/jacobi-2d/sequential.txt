@@ -1,0 +1,17 @@
+2.643326
+2.593191
+2.614932
+2.549605
+2.568505
+
+ Performance counter stats for './build/jacobi-2d/jacobi-2d_sequential' (5 runs):
+
+     9,101,008,687      cycles                                                                  ( +-  0.18% )
+    10,239,557,923      instructions                                                            ( +-  0.01% )
+       262,126,264      cache-references                                                        ( +-  0.14% )
+        55,780,697      cache-misses                                                            ( +-  0.63% )
+       440,953,270      branches                                                                ( +-  0.03% )
+         1,383,494      branch-misses                                                           ( +-  0.37% )
+
+       2.628141846 +- 0.017219222 seconds time elapsed  ( +-  0.66% )
+

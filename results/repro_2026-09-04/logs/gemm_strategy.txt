@@ -1,0 +1,39 @@
+=================================
+TCC2 STRATEGY PLANNER v0.1
+=================================
+Static:   /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/gemm_analysis.json
+Patterns: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/gemm_patterns.json
+
+Kernel: kernel_gemm
+Pattern: DOALL_CANDIDATE
+Family: MAP / DATA_PARALLEL
+Classification confidence: medium
+Strategy: DOALL
+
+{
+  "strategy": "DOALL",
+  "openmp_construct": "parallel for",
+  "schedule": "static",
+  "synchronization": "implicit_end_barrier",
+  "candidate_loops": [
+    {
+      "loop_id": 2,
+      "iterator": "j",
+      "depth": 1,
+      "confidence": "medium"
+    },
+    {
+      "loop_id": 4,
+      "iterator": "j",
+      "depth": 2,
+      "confidence": "medium"
+    }
+  ],
+  "loop_selection": "defer_to_loop_hierarchy_analysis",
+  "direct_code_transformation": false,
+  "reason": "DOALL evidence exists, but local loop analysis alone is not always sufficient to select the best nesting level."
+}
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/gemm_strategy.json
+=================================

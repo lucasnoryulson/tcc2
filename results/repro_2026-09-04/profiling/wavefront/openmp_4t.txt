@@ -1,0 +1,27 @@
+threads=4
+result=10.17971996453824
+run_ms=80.698531000000003
+threads=4
+result=10.17971996453824
+run_ms=47.743532000000002
+threads=4
+result=10.17971996453824
+run_ms=47.618661000000003
+threads=4
+result=10.17971996453824
+run_ms=46.913888999999998
+threads=4
+result=10.17971996453824
+run_ms=54.265650999999998
+
+ Performance counter stats for './build/wavefront/wavefront_openmp 4000' (5 runs):
+
+       998,473,399      cycles                                                                  ( +-  6.09% )
+       923,571,893      instructions                                                            ( +-  7.68% )
+         6,246,760      cache-references                                                        ( +-  0.73% )
+         4,383,019      cache-misses                                                            ( +-  0.51% )
+       166,830,790      branches                                                                ( +- 12.44% )
+           363,648      branch-misses                                                           ( +-  3.61% )
+
+       0.125171600 +- 0.006953461 seconds time elapsed  ( +-  5.56% )
+

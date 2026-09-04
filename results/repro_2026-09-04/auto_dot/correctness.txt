@@ -1,0 +1,36 @@
+=================================
+TCC2 COMPILE + CORRECTNESS GATE
+=================================
+Sequential: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/fixtures/dot_product.c
+Candidate:  /home/liswsz220-01/Desktop/TCC2/tcc2/generated/repro_2026-09-04/dot_product_openmp.c
+Driver:     /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/fixtures/dot_driver.c
+Compiler:   clang
+Threads:    4
+
+Sequential compilation:
+  Command:
+  clang -O3 /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/fixtures/dot_driver.c /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/fixtures/dot_product.c -lm -o /home/liswsz220-01/Desktop/TCC2/tcc2/build/gates/dot_gate_sequential
+  Status: COMPILE_SUCCESS
+
+OpenMP candidate compilation:
+  Command:
+  clang -O3 -fopenmp /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/fixtures/dot_driver.c /home/liswsz220-01/Desktop/TCC2/tcc2/generated/repro_2026-09-04/dot_product_openmp.c -lm -o /home/liswsz220-01/Desktop/TCC2/tcc2/build/gates/dot_gate_candidate
+  Status: COMPILE_SUCCESS
+
+Execution:
+  Sequential result: 261762.4999999812
+  OpenMP result:     261762.49999999182
+  Threads:           4
+
+Numeric validation:
+  Absolute error: 1.062289811671e-08
+  Relative error: 4.058219995877e-14
+  Relative tolerance: 1.000000000000e-09
+  Absolute tolerance: 1.000000000000e-12
+
+Correctness: CORRECT
+
+=================================
+GATE RESULT: PASS
+Candidate is allowed to proceed to performance evaluation.
+=================================

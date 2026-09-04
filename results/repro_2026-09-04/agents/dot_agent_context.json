@@ -1,0 +1,180 @@
+{
+  "schema": "tcc2-agent-context",
+  "version": "0.1",
+  "task": "Evaluate the automatically generated parallel candidate and decide the next optimization action.",
+  "source": {
+    "sequential_file": "/home/liswsz220-01/Desktop/TCC2/tcc2/analysis/fixtures/dot_product.c",
+    "candidate_file": "/home/liswsz220-01/Desktop/TCC2/tcc2/generated/repro_2026-09-04/dot_product_openmp.c",
+    "sequential_code": "double kernel_dot(\n    int n,\n    const double *A,\n    const double *B\n)\n{\n    double sum = 0.0;\n\n    for (int i = 0; i < n; i++)\n    {\n        sum += A[i] * B[i];\n    }\n\n    return sum;\n}\n",
+    "candidate_code": "double kernel_dot(\n    int n,\n    const double *A,\n    const double *B\n)\n{\n    double sum = 0.0;\n\n    /* TCC2 AUTO-GENERATED: REDUCTION */\n    #pragma omp parallel for reduction(+:sum) schedule(static)\n    for (int i = 0; i < n; i++)\n    {\n        sum += A[i] * B[i];\n    }\n\n    return sum;\n}\n"
+  },
+  "static_analysis": {
+    "kernel": {
+      "name": "kernel_dot",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 9,
+          "end_line": 12,
+          "iterator": "i",
+          "initialization": "int i = 0",
+          "condition": "i < n",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i"
+              ],
+              "expression": "A[i]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "i"
+              ],
+              "expression": "B[i]"
+            }
+          ],
+          "writes": [],
+          "operators": [
+            "+=",
+            "*"
+          ],
+          "scalar_updates": [
+            {
+              "variable": "sum",
+              "operator": "+=",
+              "rhs": "A[i]*B[i]",
+              "expression": "sum += A[i]*B[i]"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dependence_analysis": {
+    "kernel": {
+      "name": "kernel_dot",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        }
+      ]
+    }
+  },
+  "pattern": {
+    "classification": "REDUCTION_CANDIDATE",
+    "family": "REDUCE / AGGREGATION",
+    "confidence": "medium",
+    "reason": "At least one loop contains a reduction update.",
+    "loops": [
+      {
+        "classification": "REDUCTION_CANDIDATE",
+        "family": "REDUCE / AGGREGATION",
+        "confidence": "medium",
+        "reason": "A scalar variable is updated with a reduction-compatible compound operator inside the loop.",
+        "evidence": {
+          "reduction_type": "scalar",
+          "scalar_updates": [
+            {
+              "variable": "sum",
+              "operator": "+=",
+              "rhs": "A[i]*B[i]",
+              "expression": "sum += A[i]*B[i]"
+            }
+          ]
+        },
+        "loop_id": 1,
+        "iterator": "i"
+      }
+    ]
+  },
+  "strategy": {
+    "detected_pattern": "REDUCTION_CANDIDATE",
+    "family": "REDUCE / AGGREGATION",
+    "classification_confidence": "medium",
+    "plan": {
+      "strategy": "REDUCTION",
+      "reductions": [
+        {
+          "loop_id": 1,
+          "iterator": "i",
+          "reduction_type": "scalar",
+          "variable": "sum",
+          "operator": "+",
+          "openmp_construct": "parallel for",
+          "openmp_clause": "reduction(+:sum)",
+          "schedule": "static",
+          "direct_code_transformation": true
+        }
+      ]
+    }
+  },
+  "validation": {
+    "correctness_gate": "PASS",
+    "note": "This context is generated only after the candidate passed the compile and correctness gate."
+  },
+  "performance": {
+    "selection": {
+      "status": "SELECTED",
+      "decision": "FASTEST_CONFIGURATION",
+      "sequential": {
+        "mode": "sequential",
+        "threads": 1,
+        "median_seconds": 0.01044670859,
+        "mean_seconds": 0.010525735718,
+        "speedup": 1.0,
+        "efficiency": 1.0
+      },
+      "raw_fastest": {
+        "mode": "openmp",
+        "threads": 2,
+        "median_seconds": 0.00830630091,
+        "mean_seconds": 0.008237002042000001,
+        "speedup": 1.257684823026716,
+        "efficiency": 0.628842411513358
+      },
+      "near_tie_threshold": 0.02,
+      "near_tie_candidates": [
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 0.00830630091,
+          "mean_seconds": 0.008237002042000001,
+          "speedup": 1.257684823026716,
+          "efficiency": 0.628842411513358,
+          "slowdown_vs_fastest": 0.0
+        }
+      ],
+      "recommended": {
+        "mode": "openmp",
+        "threads": 2,
+        "median_seconds": 0.00830630091,
+        "mean_seconds": 0.008237002042000001,
+        "speedup": 1.257684823026716,
+        "efficiency": 0.628842411513358,
+        "slowdown_vs_fastest": 0.0
+      },
+      "reason": "The fastest configuration is also the resource-aware recommendation."
+    }
+  },
+  "agent_constraints": [
+    "Never accept a candidate that has not passed correctness validation.",
+    "Do not remove synchronization required by detected dependences.",
+    "Do not introduce OpenMP transformations that contradict the Strategy Planner.",
+    "Prefer evidence from static analysis, dependence analysis and measured performance over unsupported assumptions.",
+    "If performance differences are within the near-tie threshold, consider resource efficiency before choosing more threads.",
+    "Any proposed code modification must be recompiled and revalidated before being accepted."
+  ],
+  "expected_decision_schema": {
+    "decision": "ACCEPT | RETUNE | MODIFY | REJECT",
+    "recommended_threads": "integer or null",
+    "reason": "short explanation",
+    "next_action": "action for another agent",
+    "risk": "LOW | MEDIUM | HIGH"
+  }
+}

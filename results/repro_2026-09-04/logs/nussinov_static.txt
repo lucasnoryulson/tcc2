@@ -1,0 +1,57 @@
+==============================
+TCC2 STATIC ANALYZER v0.2
+==============================
+Source: /home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c
+
+Kernel: kernel_nussinov
+Loops encontrados: 3
+
+Loop #1
+  Depth: 0
+  Lines: 86 - 106
+  Iterator: i
+  Init: i = _PB_N-1
+  Condition: i >= 0
+  Increment: i--
+  READS:
+    (none)
+  WRITES:
+    (none)
+  Operators: (none)
+
+Loop #2
+  Depth: 1
+  Lines: 87 - 105
+  Iterator: j
+  Init: j=i+1
+  Condition: j<_PB_N
+  Increment: j++
+  READS:
+    table[i][j]
+    table[i][j-1]
+    table[i+1][j]
+    table[i+1][j-1]
+    seq[i]
+    seq[j]
+  WRITES:
+    table[i][j]
+  Operators: >=, -, =, >=, -, -, <, +, =, >=, +, +, &&, >=, -, <, +, <, -, =, >=, +, +, -, ==, +, +, +, -, ==, +, =, >=, +, -, +, -
+
+Loop #3
+  Depth: 2
+  Lines: 102 - 104
+  Iterator: k
+  Init: k=i+1
+  Condition: k<j
+  Increment: k++
+  READS:
+    table[i][j]
+    table[i][k]
+    table[k+1][j]
+  WRITES:
+    table[i][j]
+  Operators: =, >=, +, +, +, +
+
+==============================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/nussinov_analysis.json
+==============================

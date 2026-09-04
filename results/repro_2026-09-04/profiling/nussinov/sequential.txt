@@ -1,0 +1,17 @@
+17.086302
+17.229079
+17.300898
+17.432923
+17.463944
+
+ Performance counter stats for './build/nussinov/nussinov_sequential' (5 runs):
+
+    61,149,348,083      cycles                                                                  ( +-  0.40% )
+    18,542,901,888      instructions                                                            ( +-  0.00% )
+       318,161,251      cache-references                                                        ( +-  3.30% )
+       112,604,693      cache-misses                                                            ( +-  3.37% )
+     1,353,438,547      branches                                                                ( +-  0.01% )
+         3,328,458      branch-misses                                                           ( +-  0.08% )
+
+      17.329039951 +- 0.068282671 seconds time elapsed  ( +-  0.39% )
+

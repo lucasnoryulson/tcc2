@@ -1,0 +1,49 @@
+=================================
+TCC2 PATTERN CLASSIFIER v0.6
+=================================
+Static:     /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/gemm_analysis.json
+Dependence: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/gemm_dependences.json
+
+Kernel: kernel_gemm
+Classification: DOALL_CANDIDATE
+Family: MAP / DATA_PARALLEL
+Confidence: medium
+Reason: Independent-index candidates were detected and no shifted or symbolic dependences were found.
+
+Loop classifications:
+
+  Loop #1 (i)
+    Pattern: NO_DIRECT_EVIDENCE
+    Family: UNKNOWN
+    Confidence: low
+    Reason: No direct READ/WRITE dependence candidate was associated with this loop level.
+
+  Loop #2 (j)
+    Pattern: DOALL_CANDIDATE
+    Family: MAP / DATA_PARALLEL
+    Confidence: medium
+    Reason: Only same-location updates were detected and the current iterator participates in the written array index.
+    Evidence:
+      same_location: 1
+      iterator_in_write: True
+      operators: ['*=']
+
+  Loop #3 (k)
+    Pattern: NO_DIRECT_EVIDENCE
+    Family: UNKNOWN
+    Confidence: low
+    Reason: No direct READ/WRITE dependence candidate was associated with this loop level.
+
+  Loop #4 (j)
+    Pattern: DOALL_CANDIDATE
+    Family: MAP / DATA_PARALLEL
+    Confidence: medium
+    Reason: Only same-location updates were detected and the current iterator participates in the written array index.
+    Evidence:
+      same_location: 1
+      iterator_in_write: True
+      operators: ['+=', '*', '*']
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/analysis/output/gemm_patterns.json
+=================================

@@ -269,8 +269,7 @@ def build_user_prompt(context):
 
 def call_ollama(
     model,
-    context,
-    timeout_seconds,
+    context
 ):
 
     payload = {
@@ -328,7 +327,7 @@ def call_ollama(
 
         with urllib.request.urlopen(
             request,
-            timeout=timeout_seconds,
+            timeout=600,
         ) as response:
 
             raw_response = (
@@ -337,13 +336,6 @@ def call_ollama(
                     "utf-8"
                 )
             )
-
-    except TimeoutError:
-
-        raise RuntimeError(
-            "OLLAMA_TIMEOUT: model did not "
-            f"finish within {timeout_seconds} seconds."
-        )
 
     except urllib.error.URLError as error:
 
@@ -726,17 +718,7 @@ def main():
         help=(
             "JSON produzido pelo "
             "Agent Context Builder."
-        ),
-    )
-
-    parser.add_argument(
-        "--timeout",
-        type=int,
-        default=600,
-        help=(
-            "Maximum Ollama execution time "
-            "in seconds."
-        ),
+        )
     )
 
     parser.add_argument(
@@ -782,8 +764,7 @@ def main():
         decision, metadata = (
             call_ollama(
                 args.model,
-                context,
-                args.timeout,
+                context
             )
         )
 

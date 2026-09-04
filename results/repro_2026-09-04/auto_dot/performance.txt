@@ -1,0 +1,65 @@
+=================================
+TCC2 PERFORMANCE GATE v0.1
+=================================
+
+Compiling sequential...
+Sequential: COMPILE_SUCCESS
+
+Compiling OpenMP candidate...
+Candidate: COMPILE_SUCCESS
+
+Sequential benchmark:
+    Run 1: 0.011075962 s
+    Run 2: 0.010597784 s
+    Run 3: 0.010208958 s
+    Run 4: 0.010299266 s
+    Run 5: 0.010446709 s
+
+Sequential median: 0.010446709 s
+
+OpenMP benchmark (1 thread(s)):
+    Run 1: 0.011234431 s
+    Run 2: 0.011138455 s
+    Run 3: 0.011187146 s
+    Run 4: 0.011105397 s
+    Run 5: 0.011067213 s
+
+  Median:     0.011138455 s
+  Speedup:    0.938x
+  Efficiency: 0.938
+
+OpenMP benchmark (2 thread(s)):
+    Run 1: 0.008306301 s
+    Run 2: 0.008309160 s
+    Run 3: 0.007954015 s
+    Run 4: 0.008278001 s
+    Run 5: 0.008337533 s
+
+  Median:     0.008306301 s
+  Speedup:    1.258x
+  Efficiency: 0.629
+
+OpenMP benchmark (4 thread(s)):
+    Run 1: 0.012121169 s
+    Run 2: 0.008554234 s
+    Run 3: 0.008859777 s
+    Run 4: 0.008831777 s
+    Run 5: 0.008958760 s
+
+  Median:     0.008859777 s
+  Speedup:    1.179x
+  Efficiency: 0.295
+
+=================================
+PERFORMANCE SUMMARY
+=================================
+Sequential median: 0.010446709 s
+Best OpenMP median: 0.008306301 s
+Best threads: 2
+Best speedup: 1.258x
+
+PERFORMANCE GATE: PASS
+Generated candidate improves performance.
+
+CSV salvo em: /home/liswsz220-01/Desktop/TCC2/tcc2/results/repro_2026-09-04/auto_dot/performance.csv
+=================================
