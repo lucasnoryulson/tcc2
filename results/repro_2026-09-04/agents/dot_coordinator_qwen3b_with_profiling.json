@@ -1,0 +1,25 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.1",
+  "model": "qwen2.5:3b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 2,
+    "reason": "The candidate is correct and provides a meaningful measured speedup of 1.257684823026716x, which is within the near-tie threshold. The resource-aware recommendation also has a similar efficiency (0.628842411513358).",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "The candidate passed correctness validation.",
+      "Measured performance shows a speedup of 1.257684823026716x with 2 threads, which is within the near-tie threshold and resource-aware recommendation.",
+      "Hardware profiling indicates reasonable IPC (1.0417104893500526) and cache miss rate (23.4538333887925), suggesting no significant overhead."
+    ]
+  },
+  "llm_metadata": {
+    "model": "qwen2.5:3b",
+    "total_duration": 844278949158,
+    "load_duration": 7307336602,
+    "prompt_eval_count": 2879,
+    "eval_count": 239,
+    "done_reason": "stop"
+  }
+}

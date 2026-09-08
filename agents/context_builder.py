@@ -58,6 +58,7 @@ def build_context(
     patterns_file,
     strategy_file,
     selection_file,
+    profiling_file,
 ):
 
     static_data = load_json(
@@ -78,6 +79,10 @@ def build_context(
 
     selection_data = load_json(
         selection_file
+    )
+
+    profiling_data = load_json(
+        profiling_file
     )
 
     static_kernel = first_kernel(
@@ -248,6 +253,13 @@ def build_context(
         },
 
         # ----------------------------------------------------
+        # HARDWARE PROFILING
+        # ----------------------------------------------------
+
+        "profiling":
+            profiling_data,
+
+        # ----------------------------------------------------
         # AGENT RULES
         # ----------------------------------------------------
 
@@ -385,6 +397,44 @@ def print_summary(context):
             f"{recommended.get('efficiency'):.3f}"
         )
 
+    profiling = context.get(
+        "profiling",
+        {}
+    )
+
+    comparison = profiling.get(
+        "comparison",
+        {}
+    )
+
+    if comparison:
+
+        print()
+
+        print(
+            "Hardware profiling:"
+        )
+
+        print(
+            f"  Perf speedup: "
+            f"{comparison.get('speedup', 0.0):.3f}x"
+        )
+
+        print(
+            f"  IPC change: "
+            f"{comparison.get('ipc_change_percent', 0.0):+.2f}%"
+        )
+
+        print(
+            f"  Cache miss change: "
+            f"{comparison.get('cache_miss_rate_change_percent', 0.0):+.2f}%"
+        )
+
+        print(
+            f"  Branch miss change: "
+            f"{comparison.get('branch_miss_rate_change_percent', 0.0):+.2f}%"
+        )
+
     print(
         "================================="
     )
@@ -441,6 +491,12 @@ def main():
     )
 
     parser.add_argument(
+        "--profiling",
+        required=True,
+        type=Path,
+    )
+
+    parser.add_argument(
         "--output",
         required=True,
         type=Path,
@@ -456,6 +512,7 @@ def main():
         args.patterns,
         args.strategy,
         args.selection,
+        args.profiling,
     ]
 
     for path in paths:
@@ -479,6 +536,7 @@ def main():
             args.patterns.resolve(),
             args.strategy.resolve(),
             args.selection.resolve(),
+            args.profiling.resolve(),
         )
 
     except RuntimeError as error:

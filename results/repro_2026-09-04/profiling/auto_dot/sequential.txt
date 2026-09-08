@@ -1,0 +1,27 @@
+RESULT=2617625.0000020033
+TOTAL_SECONDS=1.055163972000
+AVERAGE_SECONDS=0.010551639720
+RESULT=2617625.0000020033
+TOTAL_SECONDS=1.064926529000
+AVERAGE_SECONDS=0.010649265290
+RESULT=2617625.0000020033
+TOTAL_SECONDS=1.062114123000
+AVERAGE_SECONDS=0.010621141230
+RESULT=2617625.0000020033
+TOTAL_SECONDS=1.023919728000
+AVERAGE_SECONDS=0.010239197280
+RESULT=2617625.0000020033
+TOTAL_SECONDS=1.073816310000
+AVERAGE_SECONDS=0.010738163100
+
+ Performance counter stats for './build/performance_gate/dot_sequential' (5 runs):
+
+     4,044,463,650      cycles                                                                  ( +-  0.69% )
+     4,213,160,208      instructions                                                            ( +-  0.01% )
+       150,068,368      cache-references                                                        ( +-  0.17% )
+        35,196,785      cache-misses                                                            ( +-  0.78% )
+       299,339,057      branches                                                                ( +-  0.01% )
+           108,709      branch-misses                                                           ( +-  0.88% )
+
+       1.168188064 +- 0.009082916 seconds time elapsed  ( +-  0.78% )
+

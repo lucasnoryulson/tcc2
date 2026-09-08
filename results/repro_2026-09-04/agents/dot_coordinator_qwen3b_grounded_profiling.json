@@ -1,0 +1,25 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.1",
+  "model": "qwen2.5:3b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 2,
+    "reason": "The candidate is correct and provides a meaningful measured speedup of 1.257684823026716x, which is within the near-tie threshold (near tie: 0.02). The resource-aware recommendation also has the same efficiency of 0.628842411513358 and no slowdown vs. fastest configuration. The candidate maintains static schedule for parallelism, as per Strategy Planner's plan.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "The candidate passed correctness validation.",
+      "The measured speedup is within the near-tie threshold (1.02 < speedup <= 1.98).",
+      "The resource-aware recommendation has equivalent efficiency and no slowdown vs. fastest configuration."
+    ]
+  },
+  "llm_metadata": {
+    "model": "qwen2.5:3b",
+    "total_duration": 845886993554,
+    "load_duration": 2671846144,
+    "prompt_eval_count": 3076,
+    "eval_count": 216,
+    "done_reason": "stop"
+  }
+}

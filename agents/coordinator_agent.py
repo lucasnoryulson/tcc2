@@ -134,6 +134,16 @@ def compact_context(context):
         {}
     )
 
+    profiling = context.get(
+        "profiling",
+        {}
+    )
+
+    deterministic_evidence = context.get(
+        "deterministic_evidence",
+        {}
+    )
+
     dependence = context.get(
         "dependence_analysis",
         {}
@@ -169,6 +179,12 @@ def compact_context(context):
 
         "performance":
             performance,
+
+        "profiling":
+            profiling,
+
+        "deterministic_evidence":
+            deterministic_evidence,
 
         "agent_constraints":
             context.get(
@@ -225,12 +241,69 @@ You must obey these rules:
 
 9. Do not invent benchmark results.
 
-10. recommended_threads must come from measured
+10. Treat the dedicated benchmark results in the
+    performance section as the primary evidence for
+    runtime speedup and thread selection.
+
+11. Treat hardware profiling as complementary
+    microarchitectural evidence. Profiling may help
+    explain IPC, cache, branch, or overhead behavior,
+    but it must not replace the dedicated benchmark
+    speedup used for the main performance decision.
+
+12. A profiling regression by itself does not require
+    rejection when the candidate is correct and the
+    dedicated benchmark shows a meaningful speedup.
+
+13. If profiling suggests substantial overhead or poor
+    hardware behavior, you may mention it as a reason
+    for RETUNE or additional investigation, especially
+    when the benchmark speedup is marginal.
+
+14. When discussing hardware profiling, explicitly
+    distinguish sequential measurements, OpenMP
+    measurements, and comparison/delta measurements.
+    Never describe a sequential metric as if it were
+    the OpenMP candidate metric.
+
+15. Prefer the profiling comparison fields when
+    interpreting whether IPC, cache miss rate, or
+    branch miss rate improved or regressed. A positive
+    cache-miss-rate or branch-miss-rate change means
+    the rate increased; a negative IPC change means
+    IPC decreased.
+
+16. Do not claim that profiling shows no overhead when
+    the supplied comparison metrics show substantial
+    regressions. Report such regressions accurately,
+    even if the final decision remains ACCEPT because
+    the dedicated benchmark shows useful speedup.
+
+17. The near-tie threshold applies only when comparing
+    measured candidate configurations with one another.
+    Do not describe an absolute speedup value as being
+    within the near-tie threshold.
+
+18. recommended_threads must come from measured
     configurations in the supplied context.
 
-11. Keep the reason concise and evidence-based.
+19. If deterministic_evidence is present, treat it as
+    the authoritative semantic interpretation of the
+    measured data. Do not contradict its derived facts,
+    near-tie meaning, or metric assessments.
 
-12. Return only an object matching the required JSON
+20. When deterministic_evidence is available, prefer
+    citing its derived facts and assessments instead of
+    independently reinterpreting raw numeric fields.
+
+21. If raw profiling or performance values appear to
+    conflict with deterministic_evidence, follow the
+    deterministic evidence and do not invent a new
+    interpretation.
+
+22. Keep the reason concise and evidence-based.
+
+23. Return only an object matching the required JSON
     schema.
 """.strip()
 

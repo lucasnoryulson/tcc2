@@ -1,0 +1,27 @@
+RESULT=2617624.999998102
+TOTAL_SECONDS=0.875427493000
+AVERAGE_SECONDS=0.008754274930
+RESULT=2617624.999998102
+TOTAL_SECONDS=0.802566228000
+AVERAGE_SECONDS=0.008025662280
+RESULT=2617624.999998102
+TOTAL_SECONDS=0.858874563000
+AVERAGE_SECONDS=0.008588745630
+RESULT=2617624.999998102
+TOTAL_SECONDS=0.929697581000
+AVERAGE_SECONDS=0.009296975810
+RESULT=2617624.999998102
+TOTAL_SECONDS=0.981700891000
+AVERAGE_SECONDS=0.009817008910
+
+ Performance counter stats for './build/performance_gate/dot_openmp' (5 runs):
+
+     6,403,172,188      cycles                                                                  ( +-  2.44% )
+     5,398,131,430      instructions                                                            ( +-  0.63% )
+       154,412,265      cache-references                                                        ( +-  0.25% )
+        51,328,805      cache-misses                                                            ( +-  0.89% )
+       352,758,738      branches                                                                ( +-  2.81% )
+           203,430      branch-misses                                                           ( +-  7.36% )
+
+       1.012324805 +- 0.033150514 seconds time elapsed  ( +-  3.27% )
+

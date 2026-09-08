@@ -1,0 +1,26 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.1",
+  "model": "qwen2.5:3b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 2,
+    "reason": "The candidate is correct and provides a meaningful measured speedup. The dedicated benchmark shows useful speedup, and the hardware profiling indicates regressions in IPC, cache miss rate, and branch miss rate. These regressions are within the near-tie threshold, allowing for resource efficiency consideration before choosing more threads.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "dedicated_benchmark_improved",
+      "profiling_regressions",
+      "profiling_regression_count",
+      "derived_facts"
+    ]
+  },
+  "llm_metadata": {
+    "model": "qwen2.5:3b",
+    "total_duration": 1256923692527,
+    "load_duration": 1847426008,
+    "prompt_eval_count": 3999,
+    "eval_count": 144,
+    "done_reason": "stop"
+  }
+}

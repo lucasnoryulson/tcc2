@@ -1,0 +1,324 @@
+{
+  "schema": "tcc2-agent-context",
+  "version": "0.1",
+  "task": "Evaluate the automatically generated parallel candidate and decide the next optimization action.",
+  "source": {
+    "sequential_file": "/home/liswsz220-01/Desktop/TCC2/tcc2/analysis/fixtures/dot_product.c",
+    "candidate_file": "/home/liswsz220-01/Desktop/TCC2/tcc2/generated/repro_2026-09-04/dot_product_openmp.c",
+    "sequential_code": "double kernel_dot(\n    int n,\n    const double *A,\n    const double *B\n)\n{\n    double sum = 0.0;\n\n    for (int i = 0; i < n; i++)\n    {\n        sum += A[i] * B[i];\n    }\n\n    return sum;\n}\n",
+    "candidate_code": "double kernel_dot(\n    int n,\n    const double *A,\n    const double *B\n)\n{\n    double sum = 0.0;\n\n    /* TCC2 AUTO-GENERATED: REDUCTION */\n    #pragma omp parallel for reduction(+:sum) schedule(static)\n    for (int i = 0; i < n; i++)\n    {\n        sum += A[i] * B[i];\n    }\n\n    return sum;\n}\n"
+  },
+  "static_analysis": {
+    "kernel": {
+      "name": "kernel_dot",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 9,
+          "end_line": 12,
+          "iterator": "i",
+          "initialization": "int i = 0",
+          "condition": "i < n",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i"
+              ],
+              "expression": "A[i]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "i"
+              ],
+              "expression": "B[i]"
+            }
+          ],
+          "writes": [],
+          "operators": [
+            "+=",
+            "*"
+          ],
+          "scalar_updates": [
+            {
+              "variable": "sum",
+              "operator": "+=",
+              "rhs": "A[i]*B[i]",
+              "expression": "sum += A[i]*B[i]"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dependence_analysis": {
+    "kernel": {
+      "name": "kernel_dot",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        }
+      ]
+    }
+  },
+  "pattern": {
+    "classification": "REDUCTION_CANDIDATE",
+    "family": "REDUCE / AGGREGATION",
+    "confidence": "medium",
+    "reason": "At least one loop contains a reduction update.",
+    "loops": [
+      {
+        "classification": "REDUCTION_CANDIDATE",
+        "family": "REDUCE / AGGREGATION",
+        "confidence": "medium",
+        "reason": "A scalar variable is updated with a reduction-compatible compound operator inside the loop.",
+        "evidence": {
+          "reduction_type": "scalar",
+          "scalar_updates": [
+            {
+              "variable": "sum",
+              "operator": "+=",
+              "rhs": "A[i]*B[i]",
+              "expression": "sum += A[i]*B[i]"
+            }
+          ]
+        },
+        "loop_id": 1,
+        "iterator": "i"
+      }
+    ]
+  },
+  "strategy": {
+    "detected_pattern": "REDUCTION_CANDIDATE",
+    "family": "REDUCE / AGGREGATION",
+    "classification_confidence": "medium",
+    "plan": {
+      "strategy": "REDUCTION",
+      "reductions": [
+        {
+          "loop_id": 1,
+          "iterator": "i",
+          "reduction_type": "scalar",
+          "variable": "sum",
+          "operator": "+",
+          "openmp_construct": "parallel for",
+          "openmp_clause": "reduction(+:sum)",
+          "schedule": "static",
+          "direct_code_transformation": true
+        }
+      ]
+    }
+  },
+  "validation": {
+    "correctness_gate": "PASS",
+    "note": "This context is generated only after the candidate passed the compile and correctness gate."
+  },
+  "performance": {
+    "selection": {
+      "status": "SELECTED",
+      "decision": "FASTEST_CONFIGURATION",
+      "sequential": {
+        "mode": "sequential",
+        "threads": 1,
+        "median_seconds": 0.01044670859,
+        "mean_seconds": 0.010525735718,
+        "speedup": 1.0,
+        "efficiency": 1.0
+      },
+      "raw_fastest": {
+        "mode": "openmp",
+        "threads": 2,
+        "median_seconds": 0.00830630091,
+        "mean_seconds": 0.008237002042000001,
+        "speedup": 1.257684823026716,
+        "efficiency": 0.628842411513358
+      },
+      "near_tie_threshold": 0.02,
+      "near_tie_candidates": [
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 0.00830630091,
+          "mean_seconds": 0.008237002042000001,
+          "speedup": 1.257684823026716,
+          "efficiency": 0.628842411513358,
+          "slowdown_vs_fastest": 0.0
+        }
+      ],
+      "recommended": {
+        "mode": "openmp",
+        "threads": 2,
+        "median_seconds": 0.00830630091,
+        "mean_seconds": 0.008237002042000001,
+        "speedup": 1.257684823026716,
+        "efficiency": 0.628842411513358,
+        "slowdown_vs_fastest": 0.0
+      },
+      "reason": "The fastest configuration is also the resource-aware recommendation."
+    }
+  },
+  "profiling": {
+    "schema": "tcc2-profiling-summary",
+    "version": "0.1",
+    "sequential": {
+      "file": "results/repro_2026-09-04/profiling/auto_dot/sequential.txt",
+      "metrics": {
+        "cycles": 4044463650.0,
+        "instructions": 4213160208.0,
+        "ipc": 1.0417104893500526,
+        "cache_references": 150068368.0,
+        "cache_misses": 35196785.0,
+        "cache_miss_rate_percent": 23.4538333887925,
+        "branches": 299339057.0,
+        "branch_misses": 108709.0,
+        "branch_miss_rate_percent": 0.03631634344328144,
+        "time_elapsed_seconds": 1.168188064
+      }
+    },
+    "openmp": {
+      "file": "results/repro_2026-09-04/profiling/auto_dot/openmp_2t.txt",
+      "threads": 2,
+      "metrics": {
+        "cycles": 6403172188.0,
+        "instructions": 5398131430.0,
+        "ipc": 0.8430401793842874,
+        "cache_references": 154412265.0,
+        "cache_misses": 51328805.0,
+        "cache_miss_rate_percent": 33.2414041073745,
+        "branches": 352758738.0,
+        "branch_misses": 203430.0,
+        "branch_miss_rate_percent": 0.05766830926807545,
+        "time_elapsed_seconds": 1.012324805
+      }
+    },
+    "comparison": {
+      "speedup": 1.1539656622362424,
+      "sequential": {
+        "cycles": 4044463650.0,
+        "instructions": 4213160208.0,
+        "ipc": 1.0417104893500526,
+        "cache_references": 150068368.0,
+        "cache_misses": 35196785.0,
+        "cache_miss_rate_percent": 23.4538333887925,
+        "branches": 299339057.0,
+        "branch_misses": 108709.0,
+        "branch_miss_rate_percent": 0.03631634344328144,
+        "time_elapsed_seconds": 1.168188064
+      },
+      "openmp": {
+        "cycles": 6403172188.0,
+        "instructions": 5398131430.0,
+        "ipc": 0.8430401793842874,
+        "cache_references": 154412265.0,
+        "cache_misses": 51328805.0,
+        "cache_miss_rate_percent": 33.2414041073745,
+        "branches": 352758738.0,
+        "branch_misses": 203430.0,
+        "branch_miss_rate_percent": 0.05766830926807545,
+        "time_elapsed_seconds": 1.012324805
+      },
+      "ipc_change_percent": -19.071547420984526,
+      "cache_miss_rate_change_percent": 41.73121961060329,
+      "branch_miss_rate_change_percent": 58.79437135002683
+    }
+  },
+  "agent_constraints": [
+    "Never accept a candidate that has not passed correctness validation.",
+    "Do not remove synchronization required by detected dependences.",
+    "Do not introduce OpenMP transformations that contradict the Strategy Planner.",
+    "Prefer evidence from static analysis, dependence analysis and measured performance over unsupported assumptions.",
+    "If performance differences are within the near-tie threshold, consider resource efficiency before choosing more threads.",
+    "Any proposed code modification must be recompiled and revalidated before being accepted."
+  ],
+  "expected_decision_schema": {
+    "decision": "ACCEPT | RETUNE | MODIFY | REJECT",
+    "recommended_threads": "integer or null",
+    "reason": "short explanation",
+    "next_action": "action for another agent",
+    "risk": "LOW | MEDIUM | HIGH"
+  },
+  "deterministic_evidence": {
+    "schema": "tcc2-deterministic-evidence",
+    "version": "0.1",
+    "correctness": {
+      "status": "PASS",
+      "passed": true
+    },
+    "performance": {
+      "source": "dedicated_benchmark",
+      "primary_runtime_evidence": true,
+      "sequential": {
+        "median_seconds": 0.01044670859
+      },
+      "fastest_configuration": {
+        "mode": "openmp",
+        "threads": 2,
+        "median_seconds": 0.00830630091,
+        "speedup": 1.257684823026716
+      },
+      "recommended_configuration": {
+        "mode": "openmp",
+        "threads": 2,
+        "median_seconds": 0.00830630091,
+        "speedup": 1.257684823026716,
+        "efficiency": 0.628842411513358,
+        "slowdown_vs_fastest": 0.0
+      },
+      "performance_improved": true,
+      "near_tie": {
+        "threshold_fraction": 0.02,
+        "threshold_percent": 2.0,
+        "meaning": "A candidate configuration is near-tied when its runtime is within the configured slowdown threshold relative to the fastest measured candidate configuration. This threshold does not define a range of acceptable absolute speedup values.",
+        "recommended_is_near_tie": true,
+        "candidate_count": 1
+      },
+      "selection_status": "SELECTED",
+      "selection_decision": "FASTEST_CONFIGURATION",
+      "selection_reason": "The fastest configuration is also the resource-aware recommendation."
+    },
+    "hardware_profiling": {
+      "source": "perf_stat",
+      "primary_runtime_evidence": false,
+      "role": "Complementary microarchitectural evidence. It may explain performance behavior but does not replace the dedicated benchmark for the main runtime decision.",
+      "perf_speedup": 1.1539656622362424,
+      "ipc": {
+        "change_percent": -19.071547420984526,
+        "assessment": "REGRESSED",
+        "meaning": "Higher IPC is treated as better."
+      },
+      "cache_miss_rate": {
+        "change_percent": 41.73121961060329,
+        "assessment": "REGRESSED",
+        "meaning": "Lower cache miss rate is treated as better."
+      },
+      "branch_miss_rate": {
+        "change_percent": 58.79437135002683,
+        "assessment": "REGRESSED",
+        "meaning": "Lower branch miss rate is treated as better."
+      }
+    },
+    "derived_facts": {
+      "candidate_correct": true,
+      "dedicated_benchmark_improved": true,
+      "recommended_threads": 2,
+      "profiling_regressions": [
+        "ipc",
+        "cache_miss_rate",
+        "branch_miss_rate"
+      ],
+      "profiling_regression_count": 3,
+      "profiling_has_regressions": true
+    },
+    "coordinator_guidance": [
+      "Use dedicated benchmark results as the primary runtime evidence.",
+      "Use hardware profiling only as complementary microarchitectural evidence.",
+      "Do not reinterpret near_tie_threshold as an absolute speedup interval.",
+      "Do not reverse the supplied IMPROVED, REGRESSED, or UNCHANGED assessments."
+    ]
+  }
+}

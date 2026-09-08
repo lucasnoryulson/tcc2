@@ -1,0 +1,79 @@
+{
+  "schema": "tcc2-deterministic-evidence",
+  "version": "0.1",
+  "correctness": {
+    "status": "PASS",
+    "passed": true
+  },
+  "performance": {
+    "source": "dedicated_benchmark",
+    "primary_runtime_evidence": true,
+    "sequential": {
+      "median_seconds": 0.01044670859
+    },
+    "fastest_configuration": {
+      "mode": "openmp",
+      "threads": 2,
+      "median_seconds": 0.00830630091,
+      "speedup": 1.257684823026716
+    },
+    "recommended_configuration": {
+      "mode": "openmp",
+      "threads": 2,
+      "median_seconds": 0.00830630091,
+      "speedup": 1.257684823026716,
+      "efficiency": 0.628842411513358,
+      "slowdown_vs_fastest": 0.0
+    },
+    "performance_improved": true,
+    "near_tie": {
+      "threshold_fraction": 0.02,
+      "threshold_percent": 2.0,
+      "meaning": "A candidate configuration is near-tied when its runtime is within the configured slowdown threshold relative to the fastest measured candidate configuration. This threshold does not define a range of acceptable absolute speedup values.",
+      "recommended_is_near_tie": true,
+      "candidate_count": 1
+    },
+    "selection_status": "SELECTED",
+    "selection_decision": "FASTEST_CONFIGURATION",
+    "selection_reason": "The fastest configuration is also the resource-aware recommendation."
+  },
+  "hardware_profiling": {
+    "source": "perf_stat",
+    "primary_runtime_evidence": false,
+    "role": "Complementary microarchitectural evidence. It may explain performance behavior but does not replace the dedicated benchmark for the main runtime decision.",
+    "perf_speedup": 1.1539656622362424,
+    "ipc": {
+      "change_percent": -19.071547420984526,
+      "assessment": "REGRESSED",
+      "meaning": "Higher IPC is treated as better."
+    },
+    "cache_miss_rate": {
+      "change_percent": 41.73121961060329,
+      "assessment": "REGRESSED",
+      "meaning": "Lower cache miss rate is treated as better."
+    },
+    "branch_miss_rate": {
+      "change_percent": 58.79437135002683,
+      "assessment": "REGRESSED",
+      "meaning": "Lower branch miss rate is treated as better."
+    }
+  },
+  "derived_facts": {
+    "candidate_correct": true,
+    "dedicated_benchmark_improved": true,
+    "recommended_threads": 2,
+    "profiling_regressions": [
+      "ipc",
+      "cache_miss_rate",
+      "branch_miss_rate"
+    ],
+    "profiling_regression_count": 3,
+    "profiling_has_regressions": true
+  },
+  "coordinator_guidance": [
+    "Use dedicated benchmark results as the primary runtime evidence.",
+    "Use hardware profiling only as complementary microarchitectural evidence.",
+    "Do not reinterpret near_tie_threshold as an absolute speedup interval.",
+    "Do not reverse the supplied IMPROVED, REGRESSED, or UNCHANGED assessments."
+  ]
+}

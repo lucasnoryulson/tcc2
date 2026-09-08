@@ -1,0 +1,65 @@
+{
+  "schema": "tcc2-profiling-summary",
+  "version": "0.1",
+  "sequential": {
+    "file": "results/repro_2026-09-04/profiling/wavefront/sequential.txt",
+    "metrics": {
+      "cycles": 349254832.0,
+      "instructions": 244912431.0,
+      "ipc": 0.7012427848099179,
+      "cache_references": 2535832.0,
+      "cache_misses": 2204345.0,
+      "cache_miss_rate_percent": 86.92788008038389,
+      "branches": 36031435.0,
+      "branch_misses": 72288.0,
+      "branch_miss_rate_percent": 0.2006248155256653,
+      "time_elapsed_seconds": 0.103330701
+    }
+  },
+  "openmp": {
+    "file": "results/repro_2026-09-04/profiling/wavefront/openmp_4t.txt",
+    "threads": 4,
+    "metrics": {
+      "cycles": 998473399.0,
+      "instructions": 923571893.0,
+      "ipc": 0.9249839744603953,
+      "cache_references": 6246760.0,
+      "cache_misses": 4383019.0,
+      "cache_miss_rate_percent": 70.16467736874796,
+      "branches": 166830790.0,
+      "branch_misses": 363648.0,
+      "branch_miss_rate_percent": 0.2179741521334281,
+      "time_elapsed_seconds": 0.1251716
+    }
+  },
+  "comparison": {
+    "speedup": 0.8255123446532601,
+    "sequential": {
+      "cycles": 349254832.0,
+      "instructions": 244912431.0,
+      "ipc": 0.7012427848099179,
+      "cache_references": 2535832.0,
+      "cache_misses": 2204345.0,
+      "cache_miss_rate_percent": 86.92788008038389,
+      "branches": 36031435.0,
+      "branch_misses": 72288.0,
+      "branch_miss_rate_percent": 0.2006248155256653,
+      "time_elapsed_seconds": 0.103330701
+    },
+    "openmp": {
+      "cycles": 998473399.0,
+      "instructions": 923571893.0,
+      "ipc": 0.9249839744603953,
+      "cache_references": 6246760.0,
+      "cache_misses": 4383019.0,
+      "cache_miss_rate_percent": 70.16467736874796,
+      "branches": 166830790.0,
+      "branch_misses": 363648.0,
+      "branch_miss_rate_percent": 0.2179741521334281,
+      "time_elapsed_seconds": 0.1251716
+    },
+    "ipc_change_percent": 31.90638028612669,
+    "cache_miss_rate_change_percent": -19.28403487596232,
+    "branch_miss_rate_change_percent": 8.647652366585401
+  }
+}
