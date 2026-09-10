@@ -1,0 +1,27 @@
+TCC2 MAC M5 EXPERIMENTAL ENVIRONMENT
+Date: 2026-09-09
+
+===== SYSTEM =====
+Darwin MacBook-Pro-de-Lucas-3.local 25.5.0 Darwin Kernel Version 25.5.0: Tue Jun  9 22:28:17 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8142 arm64
+
+===== CPU =====
+Chip: Apple M5
+Physical CPUs: 10
+Logical CPUs: 10
+Memory bytes: 17179869184
+
+===== COMPILER =====
+/opt/homebrew/opt/llvm/bin/clang
+Homebrew clang version 23.1.1
+Target: arm64-apple-darwin25.5.0
+Thread model: posix
+InstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin
+Configuration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg
+
+===== OPENMP =====
+#define _OPENMP 202011
+
+===== CMAKE =====
+cmake version 4.4.3
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).

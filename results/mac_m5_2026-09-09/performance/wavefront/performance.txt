@@ -1,0 +1,98 @@
+================================
+TCC2 HARNESS — wavefront
+================================
+
+[1/5] Compilando sequencial...
+Compilation: OK
+
+[2/5] Benchmark sequencial...
+
+SEQ Run=1 Time=0.033241s
+SEQ Run=2 Time=0.021676s
+SEQ Run=3 Time=0.018672s
+SEQ Run=4 Time=0.018126s
+SEQ Run=5 Time=0.018000s
+
+Sequential median: 0.018672s
+
+[3/5] Compilando OpenMP...
+Compilation: OK
+
+[4/5] Validando corretude...
+Validation mode: NUMERIC
+Reference source: sequential_output
+Expected: 10.17971996453824
+Candidate: 10.17971996453824
+Absolute error: 0
+Relative error: 0
+Relative tolerance: 1e-12
+Absolute tolerance: 1e-12
+CORRECT
+
+[5/5] Benchmark paralelo...
+
+--- 1 THREAD(S) ---
+1T Run=1 Time=0.013213s
+1T Run=2 Time=0.013397s
+1T Run=3 Time=0.013224s
+1T Run=4 Time=0.013100s
+1T Run=5 Time=0.013358s
+Median=0.013224s
+
+--- 2 THREAD(S) ---
+2T Run=1 Time=0.058024s
+2T Run=2 Time=0.058599s
+2T Run=3 Time=0.059725s
+2T Run=4 Time=0.058625s
+2T Run=5 Time=0.059038s
+Median=0.058625s
+
+--- 4 THREAD(S) ---
+4T Run=1 Time=0.078132s
+4T Run=2 Time=0.072779s
+4T Run=3 Time=0.082154s
+4T Run=4 Time=0.073449s
+4T Run=5 Time=0.072542s
+Median=0.073449s
+
+--- 6 THREAD(S) ---
+6T Run=1 Time=0.138908s
+6T Run=2 Time=0.136389s
+6T Run=3 Time=0.136236s
+6T Run=4 Time=0.136170s
+6T Run=5 Time=0.142026s
+Median=0.136389s
+
+--- 8 THREAD(S) ---
+8T Run=1 Time=0.179259s
+8T Run=2 Time=0.181603s
+8T Run=3 Time=0.180613s
+8T Run=4 Time=0.166914s
+8T Run=5 Time=0.171388s
+Median=0.179259s
+
+--- 10 THREAD(S) ---
+10T Run=1 Time=0.210861s
+10T Run=2 Time=0.225300s
+10T Run=3 Time=0.226686s
+10T Run=4 Time=0.227286s
+10T Run=5 Time=0.228423s
+Median=0.226686s
+
+
+================================
+RESUMO
+================================
+Sequential: 0.018672s
+
+1 thread(s): 0.013224s | speedup=1.412x | efficiency=1.412
+2 thread(s): 0.058625s | speedup=0.319x | efficiency=0.159
+4 thread(s): 0.073449s | speedup=0.254x | efficiency=0.064
+6 thread(s): 0.136389s | speedup=0.137x | efficiency=0.023
+8 thread(s): 0.179259s | speedup=0.104x | efficiency=0.013
+10 thread(s): 0.226686s | speedup=0.082x | efficiency=0.008
+
+BEST: 1 threads
+BEST SPEEDUP: 1.412x
+
+CSV: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/wavefront/experiment_results.csv

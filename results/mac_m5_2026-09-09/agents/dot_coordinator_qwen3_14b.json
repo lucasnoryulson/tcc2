@@ -1,0 +1,26 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.1",
+  "model": "qwen3:14b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 10,
+    "reason": "The candidate passed correctness validation and achieved a measured speedup of 3.75x with 10 threads. The performance benchmark confirms this is the fastest configuration, and there are no conflicting dependencies or profiling regressions.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "correctness_gate: PASS",
+      "performance.speedup: 3.753x",
+      "performance.recommended.threads: 10",
+      "dependence_analysis.dependencies: []"
+    ]
+  },
+  "llm_metadata": {
+    "model": "qwen3:14b",
+    "total_duration": 48001971250,
+    "load_duration": 3212947125,
+    "prompt_eval_count": 2102,
+    "eval_count": 471,
+    "done_reason": "stop"
+  }
+}

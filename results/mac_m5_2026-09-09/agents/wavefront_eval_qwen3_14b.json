@@ -1,0 +1,27 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.1",
+  "model": "qwen3:14b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 1,
+    "reason": "The candidate passes correctness validation and provides a meaningful speedup (1.41x) in the one-thread OpenMP configuration compared to the sequential baseline. While parallel scaling fails with two threads (0.318x speedup), the one-thread configuration is valid and beneficial. The deterministic analysis confirms the transformation is semantically correct, and the hardware profiling does not indicate critical overhead that would invalidate the candidate. The recommendation to use one thread aligns with the measured performance and resource-aware strategy.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "correctness_validation: PASSED",
+      "performance: sequential_mode_speedup=1.41",
+      "performance: parallel_mode_speedup=0.318",
+      "deterministic_evidence: transformation_valid=TRUE",
+      "profiling: no critical overhead regressions"
+    ]
+  },
+  "llm_metadata": {
+    "model": "qwen3:14b",
+    "total_duration": 151499231958,
+    "load_duration": 2917608875,
+    "prompt_eval_count": 2050,
+    "eval_count": 1741,
+    "done_reason": "stop"
+  }
+}

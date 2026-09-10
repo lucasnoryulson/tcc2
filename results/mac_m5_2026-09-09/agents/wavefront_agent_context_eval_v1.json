@@ -1,0 +1,314 @@
+{
+  "schema": "tcc2-agent-context",
+  "version": "0.1",
+  "task": "Evaluate the automatically generated parallel candidate and decide the next optimization action.",
+  "source": {
+    "sequential_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/wavefront_kernel.c",
+    "candidate_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/kernels/wavefront/manual_openmp.cpp",
+    "sequential_code": "void kernel_wavefront(\n    int N,\n    double A[N][N]\n)\n{\n    for (int i = 1; i < N; ++i) {\n\n        for (int j = 1; j < N; ++j) {\n\n            A[i][j] =\n                0.5 * (\n                    A[i - 1][j]\n                    +\n                    A[i][j - 1]\n                );\n        }\n    }\n}\n",
+    "candidate_code": "#include <algorithm>\n#include <chrono>\n#include <cmath>\n#include <iomanip>\n#include <iostream>\n#include <vector>\n\n#include <omp.h>\n\n\nint main(int argc, char** argv)\n{\n    int N = 4000;\n\n    if (argc > 1) {\n        N = std::stoi(argv[1]);\n    }\n\n\n    std::vector<double> A(\n        static_cast<size_t>(N) * N,\n        0.0\n    );\n\n\n    // Primeira linha.\n    for (int j = 0; j < N; ++j) {\n\n        A[j] =\n            1.0 +\n            0.001 * static_cast<double>(j);\n    }\n\n\n    // Primeira coluna.\n    for (int i = 0; i < N; ++i) {\n\n        A[\n            static_cast<size_t>(i) * N\n        ] =\n            1.0 +\n            0.002 * static_cast<double>(i);\n    }\n\n\n    auto start =\n        std::chrono::high_resolution_clock::now();\n\n\n#pragma omp parallel\n    {\n\n        /*\n         * d representa uma anti-diagonal.\n         *\n         * Para cada c\u00e9lula:\n         *\n         *     d = i + j\n         *\n         * A c\u00e9lula A[i][j] depende apenas\n         * da diagonal anterior.\n         */\n\n        for (\n            int d = 2;\n            d <= 2 * (N - 1);\n            ++d\n        ) {\n\n            int i_start =\n                std::max(\n                    1,\n                    d - (N - 1)\n                );\n\n            int i_end =\n                std::min(\n                    N - 1,\n                    d - 1\n                );\n\n\n#pragma omp for schedule(static)\n            for (\n                int i = i_start;\n                i <= i_end;\n                ++i\n            ) {\n\n                int j = d - i;\n\n                A[\n                    static_cast<size_t>(i) * N\n                    + j\n                ] =\n                    0.5 * (\n\n                        A[\n                            static_cast<size_t>(i - 1)\n                            * N + j\n                        ]\n\n                        +\n\n                        A[\n                            static_cast<size_t>(i)\n                            * N + j - 1\n                        ]\n                    );\n            }\n\n            /*\n             * omp for possui uma barreira\n             * impl\u00edcita aqui.\n             *\n             * Portanto, toda a diagonal d\n             * termina antes de d+1 come\u00e7ar.\n             */\n        }\n    }\n\n\n    auto stop =\n        std::chrono::high_resolution_clock::now();\n\n\n    double elapsed_ms =\n        std::chrono::duration<\n            double,\n            std::milli\n        >(stop - start).count();\n\n\n    double checksum = 0.0;\n\n    checksum +=\n        A[\n            static_cast<size_t>(N - 1)\n            * N + (N - 1)\n        ];\n\n    checksum +=\n        A[\n            static_cast<size_t>(N / 2)\n            * N + (N / 2)\n        ];\n\n    checksum +=\n        A[\n            static_cast<size_t>(N - 1)\n            * N + (N / 2)\n        ];\n\n    checksum +=\n        A[\n            static_cast<size_t>(N / 2)\n            * N + (N - 1)\n        ];\n\n\n    std::cout\n        << std::setprecision(17);\n\n\n    std::cout\n        << \"threads=\"\n        << omp_get_max_threads()\n        << \"\\n\";\n\n\n    std::cout\n        << \"result=\"\n        << checksum\n        << \"\\n\";\n\n\n    std::cout\n        << \"run_ms=\"\n        << elapsed_ms\n        << \"\\n\";\n\n\n    return 0;\n}\n"
+  },
+  "static_analysis": {
+    "kernel": {
+      "name": "kernel_wavefront",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 6,
+          "end_line": 17,
+          "iterator": "i",
+          "initialization": "int i = 1",
+          "condition": "i < N",
+          "increment": "++i",
+          "reads": [],
+          "writes": [],
+          "operators": [],
+          "scalar_updates": []
+        },
+        {
+          "id": 2,
+          "nesting_depth": 1,
+          "start_line": 8,
+          "end_line": 16,
+          "iterator": "j",
+          "initialization": "int j = 1",
+          "condition": "j < N",
+          "increment": "++j",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i-1",
+                "j"
+              ],
+              "expression": "A[i-1][j]"
+            },
+            {
+              "array": "A",
+              "indices": [
+                "i",
+                "j-1"
+              ],
+              "expression": "A[i][j-1]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "A",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "A[i][j]"
+            }
+          ],
+          "operators": [
+            "=",
+            "*",
+            "+",
+            "-",
+            "-"
+          ],
+          "scalar_updates": []
+        }
+      ]
+    }
+  },
+  "dependence_analysis": {
+    "kernel": {
+      "name": "kernel_wavefront",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        },
+        {
+          "id": 2,
+          "iterator": "j",
+          "dependencies": [
+            {
+              "array": "A",
+              "write": "A[i][j]",
+              "read": "A[i-1][j]",
+              "resolved": true,
+              "relation": "shifted_access",
+              "offsets": [
+                -1,
+                0
+              ],
+              "carried_by": [
+                "i"
+              ],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": -1,
+                  "write": "i",
+                  "read": "i-1"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            },
+            {
+              "array": "A",
+              "write": "A[i][j]",
+              "read": "A[i][j-1]",
+              "resolved": true,
+              "relation": "shifted_access",
+              "offsets": [
+                0,
+                -1
+              ],
+              "carried_by": [
+                "j"
+              ],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 0,
+                  "write": "i",
+                  "read": "i"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": -1,
+                  "write": "j",
+                  "read": "j-1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pattern": {
+    "classification": "WAVEFRONT_CANDIDATE",
+    "family": "WAVEFRONT / DOACROSS",
+    "confidence": "high",
+    "reason": "At least one loop contains resolved shifted dependences.",
+    "loops": [
+      {
+        "classification": "NO_DIRECT_EVIDENCE",
+        "family": "UNKNOWN",
+        "confidence": "low",
+        "reason": "No direct READ/WRITE dependence candidate was associated with this loop level.",
+        "evidence": {},
+        "loop_id": 1,
+        "iterator": "i"
+      },
+      {
+        "classification": "WAVEFRONT_CANDIDATE",
+        "family": "WAVEFRONT / DOACROSS",
+        "confidence": "high",
+        "reason": "Shifted accesses to the same written array were detected.",
+        "evidence": {
+          "shifted_accesses": 2,
+          "offsets": [
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              -1
+            ]
+          ],
+          "symbolic_relations": 0
+        },
+        "loop_id": 2,
+        "iterator": "j"
+      }
+    ]
+  },
+  "strategy": {
+    "detected_pattern": "WAVEFRONT_CANDIDATE",
+    "family": "WAVEFRONT / DOACROSS",
+    "classification_confidence": "high",
+    "plan": {
+      "strategy": "WAVEFRONT",
+      "wavefronts": [
+        {
+          "loop_id": 2,
+          "original_iterators": [
+            "i",
+            "j"
+          ],
+          "dependence_offsets": [
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              -1
+            ]
+          ],
+          "transformation": "wavefront_diagonalization",
+          "direct_parallel_for": false,
+          "restructure_iteration_space": true,
+          "parallelize_within_front": true,
+          "barrier_between_fronts": true,
+          "schedule": "static"
+        }
+      ],
+      "direct_code_transformation": false,
+      "reason": "Loop-carried dependences prevent a direct parallel-for transformation."
+    }
+  },
+  "validation": {
+    "correctness_gate": "PASS",
+    "note": "This context is generated only after the candidate passed the compile and correctness gate."
+  },
+  "performance": {
+    "selection": {
+      "status": "SELECTED",
+      "decision": "TRANSFORMATION_ONLY",
+      "parallel_status": "PARALLEL_SCALING_FAILURE",
+      "sequential": {
+        "mode": "sequential",
+        "threads": 1,
+        "median_seconds": 0.018672374999999998,
+        "mean_seconds": 0.021943225,
+        "speedup": 1.0,
+        "efficiency": 1.0
+      },
+      "one_thread": {
+        "mode": "openmp",
+        "threads": 1,
+        "median_seconds": 0.013224333,
+        "mean_seconds": 0.0132583666,
+        "speedup": 1.4119710234156988,
+        "efficiency": 1.4119710234156988
+      },
+      "best_parallel": {
+        "mode": "openmp",
+        "threads": 2,
+        "median_seconds": 0.058624917000000006,
+        "mean_seconds": 0.0588021918,
+        "speedup": 0.3185057814239634,
+        "efficiency": 0.1592528907119817
+      },
+      "transformation_benefit": true,
+      "parallel_benefit": false,
+      "raw_fastest": {
+        "mode": "openmp",
+        "threads": 1,
+        "median_seconds": 0.013224333,
+        "mean_seconds": 0.0132583666,
+        "speedup": 1.4119710234156988,
+        "efficiency": 1.4119710234156988
+      },
+      "near_tie_threshold": 0.02,
+      "near_tie_candidates": [
+        {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 0.013224333,
+          "mean_seconds": 0.0132583666,
+          "speedup": 1.4119710234156988,
+          "efficiency": 1.4119710234156988,
+          "slowdown_vs_fastest": 0.0
+        }
+      ],
+      "recommended": {
+        "mode": "openmp",
+        "threads": 1,
+        "median_seconds": 0.013224333,
+        "mean_seconds": 0.0132583666,
+        "speedup": 1.4119710234156988,
+        "efficiency": 1.4119710234156988,
+        "slowdown_vs_fastest": 0.0
+      },
+      "next_action": "MODIFY_PARALLEL_STRATEGY",
+      "reason": "The candidate improves runtime only in its one-thread OpenMP configuration. No configuration using two or more threads outperformed the sequential baseline. The observed benefit cannot be classified as successful parallel scaling."
+    }
+  },
+  "profiling": {},
+  "agent_constraints": [
+    "Never accept a candidate that has not passed correctness validation.",
+    "Do not remove synchronization required by detected dependences.",
+    "Do not introduce OpenMP transformations that contradict the Strategy Planner.",
+    "Prefer evidence from static analysis, dependence analysis and measured performance over unsupported assumptions.",
+    "If performance differences are within the near-tie threshold, consider resource efficiency before choosing more threads.",
+    "Any proposed code modification must be recompiled and revalidated before being accepted."
+  ],
+  "expected_decision_schema": {
+    "decision": "ACCEPT | RETUNE | MODIFY | REJECT",
+    "recommended_threads": "integer or null",
+    "reason": "short explanation",
+    "next_action": "action for another agent",
+    "risk": "LOW | MEDIUM | HIGH"
+  }
+}

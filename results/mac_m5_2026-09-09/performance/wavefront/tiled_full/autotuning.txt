@@ -1,0 +1,493 @@
+=====================================
+TCC2 — WAVEFRONT TILED AUTOTUNING
+=====================================
+N=4000
+Blocks=[16, 32, 64, 128, 256]
+Threads=[1, 2, 4, 6, 8, 10]
+Repetitions=5
+[1/4] Compilando sequencial...
+Sequential compilation: OK
+
+Compilando tiled OpenMP...
+Tiled compilation: OK
+
+[2/4] Medindo baseline sequencial...
+
+SEQ Run=1 Time=35.512959 ms Result=10.179719964538240
+SEQ Run=2 Time=21.913750 ms Result=10.179719964538240
+SEQ Run=3 Time=19.046458 ms Result=10.179719964538240
+SEQ Run=4 Time=18.026875 ms Result=10.179719964538240
+SEQ Run=5 Time=18.037083 ms Result=10.179719964538240
+
+Sequential median: 19.046458 ms
+Reference result: 10.17971996453824
+
+[3/4] Executando espaço de configurações...
+
+
+-------------------------------------
+Config 1/30
+BLOCK_SIZE=16 THREADS=1
+-------------------------------------
+Block=16  Threads=1 Run=1 Time=15.637875 ms
+Block=16  Threads=1 Run=2 Time=12.199084 ms
+Block=16  Threads=1 Run=3 Time=11.571500 ms
+Block=16  Threads=1 Run=4 Time=10.105083 ms
+Block=16  Threads=1 Run=5 Time=9.673625 ms
+
+Median=11.571500 ms
+Speedup vs sequential=1.646x
+Efficiency=1.646
+
+-------------------------------------
+Config 2/30
+BLOCK_SIZE=16 THREADS=2
+-------------------------------------
+Block=16  Threads=2 Run=1 Time=12.082167 ms
+Block=16  Threads=2 Run=2 Time=11.593875 ms
+Block=16  Threads=2 Run=3 Time=12.342083 ms
+Block=16  Threads=2 Run=4 Time=11.691833 ms
+Block=16  Threads=2 Run=5 Time=11.843541 ms
+
+Median=11.843541 ms
+Speedup vs sequential=1.608x
+Efficiency=0.804
+
+-------------------------------------
+Config 3/30
+BLOCK_SIZE=16 THREADS=4
+-------------------------------------
+Block=16  Threads=4 Run=1 Time=9.102208 ms
+Block=16  Threads=4 Run=2 Time=8.295625 ms
+Block=16  Threads=4 Run=3 Time=8.365042 ms
+Block=16  Threads=4 Run=4 Time=8.239250 ms
+Block=16  Threads=4 Run=5 Time=8.293625 ms
+
+Median=8.295625 ms
+Speedup vs sequential=2.296x
+Efficiency=0.574
+
+-------------------------------------
+Config 4/30
+BLOCK_SIZE=16 THREADS=6
+-------------------------------------
+Block=16  Threads=6 Run=1 Time=12.951917 ms
+Block=16  Threads=6 Run=2 Time=12.567875 ms
+Block=16  Threads=6 Run=3 Time=13.450667 ms
+Block=16  Threads=6 Run=4 Time=12.697667 ms
+Block=16  Threads=6 Run=5 Time=12.931000 ms
+
+Median=12.931000 ms
+Speedup vs sequential=1.473x
+Efficiency=0.245
+
+-------------------------------------
+Config 5/30
+BLOCK_SIZE=16 THREADS=8
+-------------------------------------
+Block=16  Threads=8 Run=1 Time=14.714792 ms
+Block=16  Threads=8 Run=2 Time=13.372208 ms
+Block=16  Threads=8 Run=3 Time=13.041750 ms
+Block=16  Threads=8 Run=4 Time=13.276750 ms
+Block=16  Threads=8 Run=5 Time=13.305625 ms
+
+Median=13.305625 ms
+Speedup vs sequential=1.431x
+Efficiency=0.179
+
+-------------------------------------
+Config 6/30
+BLOCK_SIZE=16 THREADS=10
+-------------------------------------
+Block=16  Threads=10 Run=1 Time=16.468333 ms
+Block=16  Threads=10 Run=2 Time=16.210292 ms
+Block=16  Threads=10 Run=3 Time=16.615125 ms
+Block=16  Threads=10 Run=4 Time=16.449959 ms
+Block=16  Threads=10 Run=5 Time=16.361667 ms
+
+Median=16.449959 ms
+Speedup vs sequential=1.158x
+Efficiency=0.116
+
+-------------------------------------
+Config 7/30
+BLOCK_SIZE=32 THREADS=1
+-------------------------------------
+Block=32  Threads=1 Run=1 Time=20.757000 ms
+Block=32  Threads=1 Run=2 Time=22.331000 ms
+Block=32  Threads=1 Run=3 Time=21.868958 ms
+Block=32  Threads=1 Run=4 Time=20.366750 ms
+Block=32  Threads=1 Run=5 Time=20.252666 ms
+
+Median=20.757000 ms
+Speedup vs sequential=0.918x
+Efficiency=0.918
+
+-------------------------------------
+Config 8/30
+BLOCK_SIZE=32 THREADS=2
+-------------------------------------
+Block=32  Threads=2 Run=1 Time=13.695333 ms
+Block=32  Threads=2 Run=2 Time=13.730042 ms
+Block=32  Threads=2 Run=3 Time=13.626000 ms
+Block=32  Threads=2 Run=4 Time=13.624167 ms
+Block=32  Threads=2 Run=5 Time=13.613958 ms
+
+Median=13.626000 ms
+Speedup vs sequential=1.398x
+Efficiency=0.699
+
+-------------------------------------
+Config 9/30
+BLOCK_SIZE=32 THREADS=4
+-------------------------------------
+Block=32  Threads=4 Run=1 Time=8.478417 ms
+Block=32  Threads=4 Run=2 Time=7.957333 ms
+Block=32  Threads=4 Run=3 Time=8.081333 ms
+Block=32  Threads=4 Run=4 Time=10.074500 ms
+Block=32  Threads=4 Run=5 Time=8.334834 ms
+
+Median=8.334834 ms
+Speedup vs sequential=2.285x
+Efficiency=0.571
+
+-------------------------------------
+Config 10/30
+BLOCK_SIZE=32 THREADS=6
+-------------------------------------
+Block=32  Threads=6 Run=1 Time=11.386167 ms
+Block=32  Threads=6 Run=2 Time=11.520709 ms
+Block=32  Threads=6 Run=3 Time=11.296416 ms
+Block=32  Threads=6 Run=4 Time=11.057833 ms
+Block=32  Threads=6 Run=5 Time=11.329459 ms
+
+Median=11.329459 ms
+Speedup vs sequential=1.681x
+Efficiency=0.280
+
+-------------------------------------
+Config 11/30
+BLOCK_SIZE=32 THREADS=8
+-------------------------------------
+Block=32  Threads=8 Run=1 Time=9.916417 ms
+Block=32  Threads=8 Run=2 Time=9.860125 ms
+Block=32  Threads=8 Run=3 Time=10.721625 ms
+Block=32  Threads=8 Run=4 Time=9.845333 ms
+Block=32  Threads=8 Run=5 Time=9.855250 ms
+
+Median=9.860125 ms
+Speedup vs sequential=1.932x
+Efficiency=0.241
+
+-------------------------------------
+Config 12/30
+BLOCK_SIZE=32 THREADS=10
+-------------------------------------
+Block=32  Threads=10 Run=1 Time=12.797959 ms
+Block=32  Threads=10 Run=2 Time=12.602708 ms
+Block=32  Threads=10 Run=3 Time=12.855375 ms
+Block=32  Threads=10 Run=4 Time=12.732708 ms
+Block=32  Threads=10 Run=5 Time=12.651125 ms
+
+Median=12.732708 ms
+Speedup vs sequential=1.496x
+Efficiency=0.150
+
+-------------------------------------
+Config 13/30
+BLOCK_SIZE=64 THREADS=1
+-------------------------------------
+Block=64  Threads=1 Run=1 Time=13.277333 ms
+Block=64  Threads=1 Run=2 Time=13.285500 ms
+Block=64  Threads=1 Run=3 Time=13.798875 ms
+Block=64  Threads=1 Run=4 Time=13.403125 ms
+Block=64  Threads=1 Run=5 Time=13.319208 ms
+
+Median=13.319208 ms
+Speedup vs sequential=1.430x
+Efficiency=1.430
+
+-------------------------------------
+Config 14/30
+BLOCK_SIZE=64 THREADS=2
+-------------------------------------
+Block=64  Threads=2 Run=1 Time=8.590500 ms
+Block=64  Threads=2 Run=2 Time=8.826458 ms
+Block=64  Threads=2 Run=3 Time=8.726750 ms
+Block=64  Threads=2 Run=4 Time=8.802625 ms
+Block=64  Threads=2 Run=5 Time=8.739125 ms
+
+Median=8.739125 ms
+Speedup vs sequential=2.179x
+Efficiency=1.090
+
+-------------------------------------
+Config 15/30
+BLOCK_SIZE=64 THREADS=4
+-------------------------------------
+Block=64  Threads=4 Run=1 Time=5.602625 ms
+Block=64  Threads=4 Run=2 Time=5.626792 ms
+Block=64  Threads=4 Run=3 Time=5.591750 ms
+Block=64  Threads=4 Run=4 Time=5.721084 ms
+Block=64  Threads=4 Run=5 Time=5.582083 ms
+
+Median=5.602625 ms
+Speedup vs sequential=3.400x
+Efficiency=0.850
+
+-------------------------------------
+Config 16/30
+BLOCK_SIZE=64 THREADS=6
+-------------------------------------
+Block=64  Threads=6 Run=1 Time=7.139250 ms
+Block=64  Threads=6 Run=2 Time=8.008750 ms
+Block=64  Threads=6 Run=3 Time=7.215542 ms
+Block=64  Threads=6 Run=4 Time=7.174042 ms
+Block=64  Threads=6 Run=5 Time=7.224292 ms
+
+Median=7.215542 ms
+Speedup vs sequential=2.640x
+Efficiency=0.440
+
+-------------------------------------
+Config 17/30
+BLOCK_SIZE=64 THREADS=8
+-------------------------------------
+Block=64  Threads=8 Run=1 Time=6.303708 ms
+Block=64  Threads=8 Run=2 Time=6.562167 ms
+Block=64  Threads=8 Run=3 Time=6.625333 ms
+Block=64  Threads=8 Run=4 Time=6.495334 ms
+Block=64  Threads=8 Run=5 Time=6.337334 ms
+
+Median=6.495334 ms
+Speedup vs sequential=2.932x
+Efficiency=0.367
+
+-------------------------------------
+Config 18/30
+BLOCK_SIZE=64 THREADS=10
+-------------------------------------
+Block=64  Threads=10 Run=1 Time=7.483583 ms
+Block=64  Threads=10 Run=2 Time=7.524875 ms
+Block=64  Threads=10 Run=3 Time=7.400958 ms
+Block=64  Threads=10 Run=4 Time=7.475166 ms
+Block=64  Threads=10 Run=5 Time=7.365500 ms
+
+Median=7.475166 ms
+Speedup vs sequential=2.548x
+Efficiency=0.255
+
+-------------------------------------
+Config 19/30
+BLOCK_SIZE=128 THREADS=1
+-------------------------------------
+Block=128 Threads=1 Run=1 Time=14.708875 ms
+Block=128 Threads=1 Run=2 Time=15.413000 ms
+Block=128 Threads=1 Run=3 Time=14.586458 ms
+Block=128 Threads=1 Run=4 Time=14.673792 ms
+Block=128 Threads=1 Run=5 Time=14.538750 ms
+
+Median=14.673792 ms
+Speedup vs sequential=1.298x
+Efficiency=1.298
+
+-------------------------------------
+Config 20/30
+BLOCK_SIZE=128 THREADS=2
+-------------------------------------
+Block=128 Threads=2 Run=1 Time=8.755792 ms
+Block=128 Threads=2 Run=2 Time=8.718000 ms
+Block=128 Threads=2 Run=3 Time=8.660375 ms
+Block=128 Threads=2 Run=4 Time=8.691791 ms
+Block=128 Threads=2 Run=5 Time=8.706667 ms
+
+Median=8.706667 ms
+Speedup vs sequential=2.188x
+Efficiency=1.094
+
+-------------------------------------
+Config 21/30
+BLOCK_SIZE=128 THREADS=4
+-------------------------------------
+Block=128 Threads=4 Run=1 Time=5.882458 ms
+Block=128 Threads=4 Run=2 Time=5.908958 ms
+Block=128 Threads=4 Run=3 Time=6.417291 ms
+Block=128 Threads=4 Run=4 Time=5.785750 ms
+Block=128 Threads=4 Run=5 Time=5.832208 ms
+
+Median=5.882458 ms
+Speedup vs sequential=3.238x
+Efficiency=0.809
+
+-------------------------------------
+Config 22/30
+BLOCK_SIZE=128 THREADS=6
+-------------------------------------
+Block=128 Threads=6 Run=1 Time=6.388375 ms
+Block=128 Threads=6 Run=2 Time=6.517541 ms
+Block=128 Threads=6 Run=3 Time=6.395458 ms
+Block=128 Threads=6 Run=4 Time=6.457041 ms
+Block=128 Threads=6 Run=5 Time=6.391375 ms
+
+Median=6.395458 ms
+Speedup vs sequential=2.978x
+Efficiency=0.496
+
+-------------------------------------
+Config 23/30
+BLOCK_SIZE=128 THREADS=8
+-------------------------------------
+Block=128 Threads=8 Run=1 Time=5.931750 ms
+Block=128 Threads=8 Run=2 Time=5.979250 ms
+Block=128 Threads=8 Run=3 Time=5.967083 ms
+Block=128 Threads=8 Run=4 Time=5.439750 ms
+Block=128 Threads=8 Run=5 Time=5.225167 ms
+
+Median=5.931750 ms
+Speedup vs sequential=3.211x
+Efficiency=0.401
+
+-------------------------------------
+Config 24/30
+BLOCK_SIZE=128 THREADS=10
+-------------------------------------
+Block=128 Threads=10 Run=1 Time=6.196000 ms
+Block=128 Threads=10 Run=2 Time=6.096584 ms
+Block=128 Threads=10 Run=3 Time=6.120917 ms
+Block=128 Threads=10 Run=4 Time=5.926750 ms
+Block=128 Threads=10 Run=5 Time=6.103250 ms
+
+Median=6.103250 ms
+Speedup vs sequential=3.121x
+Efficiency=0.312
+
+-------------------------------------
+Config 25/30
+BLOCK_SIZE=256 THREADS=1
+-------------------------------------
+Block=256 Threads=1 Run=1 Time=16.909000 ms
+Block=256 Threads=1 Run=2 Time=16.968166 ms
+Block=256 Threads=1 Run=3 Time=16.963334 ms
+Block=256 Threads=1 Run=4 Time=16.910709 ms
+Block=256 Threads=1 Run=5 Time=16.969375 ms
+
+Median=16.963334 ms
+Speedup vs sequential=1.123x
+Efficiency=1.123
+
+-------------------------------------
+Config 26/30
+BLOCK_SIZE=256 THREADS=2
+-------------------------------------
+Block=256 Threads=2 Run=1 Time=9.591250 ms
+Block=256 Threads=2 Run=2 Time=9.553584 ms
+Block=256 Threads=2 Run=3 Time=9.572583 ms
+Block=256 Threads=2 Run=4 Time=9.495791 ms
+Block=256 Threads=2 Run=5 Time=9.630208 ms
+
+Median=9.572583 ms
+Speedup vs sequential=1.990x
+Efficiency=0.995
+
+-------------------------------------
+Config 27/30
+BLOCK_SIZE=256 THREADS=4
+-------------------------------------
+Block=256 Threads=4 Run=1 Time=6.496583 ms
+Block=256 Threads=4 Run=2 Time=6.410917 ms
+Block=256 Threads=4 Run=3 Time=6.451958 ms
+Block=256 Threads=4 Run=4 Time=6.502291 ms
+Block=256 Threads=4 Run=5 Time=6.383125 ms
+
+Median=6.451958 ms
+Speedup vs sequential=2.952x
+Efficiency=0.738
+
+-------------------------------------
+Config 28/30
+BLOCK_SIZE=256 THREADS=6
+-------------------------------------
+Block=256 Threads=6 Run=1 Time=5.878459 ms
+Block=256 Threads=6 Run=2 Time=6.121875 ms
+Block=256 Threads=6 Run=3 Time=6.189333 ms
+Block=256 Threads=6 Run=4 Time=6.331459 ms
+Block=256 Threads=6 Run=5 Time=5.980792 ms
+
+Median=6.121875 ms
+Speedup vs sequential=3.111x
+Efficiency=0.519
+
+-------------------------------------
+Config 29/30
+BLOCK_SIZE=256 THREADS=8
+-------------------------------------
+Block=256 Threads=8 Run=1 Time=5.925834 ms
+Block=256 Threads=8 Run=2 Time=6.080042 ms
+Block=256 Threads=8 Run=3 Time=5.903917 ms
+Block=256 Threads=8 Run=4 Time=5.443791 ms
+Block=256 Threads=8 Run=5 Time=5.363125 ms
+
+Median=5.903917 ms
+Speedup vs sequential=3.226x
+Efficiency=0.403
+
+-------------------------------------
+Config 30/30
+BLOCK_SIZE=256 THREADS=10
+-------------------------------------
+Block=256 Threads=10 Run=1 Time=5.187250 ms
+Block=256 Threads=10 Run=2 Time=5.906333 ms
+Block=256 Threads=10 Run=3 Time=5.844750 ms
+Block=256 Threads=10 Run=4 Time=5.771958 ms
+Block=256 Threads=10 Run=5 Time=5.914708 ms
+
+Median=5.844750 ms
+Speedup vs sequential=3.259x
+Efficiency=0.326
+
+[4/4] Salvando resultados...
+
+=====================================
+RANKING
+=====================================
+ 1. block=64  threads=4 median=5.602625 ms speedup=3.400x
+ 2. block=256 threads=10 median=5.844750 ms speedup=3.259x
+ 3. block=128 threads=4 median=5.882458 ms speedup=3.238x
+ 4. block=256 threads=8 median=5.903917 ms speedup=3.226x
+ 5. block=128 threads=8 median=5.931750 ms speedup=3.211x
+ 6. block=128 threads=10 median=6.103250 ms speedup=3.121x
+ 7. block=256 threads=6 median=6.121875 ms speedup=3.111x
+ 8. block=128 threads=6 median=6.395458 ms speedup=2.978x
+ 9. block=256 threads=4 median=6.451958 ms speedup=2.952x
+10. block=64  threads=8 median=6.495334 ms speedup=2.932x
+11. block=64  threads=6 median=7.215542 ms speedup=2.640x
+12. block=64  threads=10 median=7.475166 ms speedup=2.548x
+13. block=16  threads=4 median=8.295625 ms speedup=2.296x
+14. block=32  threads=4 median=8.334834 ms speedup=2.285x
+15. block=128 threads=2 median=8.706667 ms speedup=2.188x
+16. block=64  threads=2 median=8.739125 ms speedup=2.179x
+17. block=256 threads=2 median=9.572583 ms speedup=1.990x
+18. block=32  threads=8 median=9.860125 ms speedup=1.932x
+19. block=32  threads=6 median=11.329459 ms speedup=1.681x
+20. block=16  threads=1 median=11.571500 ms speedup=1.646x
+21. block=16  threads=2 median=11.843541 ms speedup=1.608x
+22. block=32  threads=10 median=12.732708 ms speedup=1.496x
+23. block=16  threads=6 median=12.931000 ms speedup=1.473x
+24. block=16  threads=8 median=13.305625 ms speedup=1.431x
+25. block=64  threads=1 median=13.319208 ms speedup=1.430x
+26. block=32  threads=2 median=13.626000 ms speedup=1.398x
+27. block=128 threads=1 median=14.673792 ms speedup=1.298x
+28. block=16  threads=10 median=16.449959 ms speedup=1.158x
+29. block=256 threads=1 median=16.963334 ms speedup=1.123x
+30. block=32  threads=1 median=20.757000 ms speedup=0.918x
+
+=====================================
+BEST CONFIGURATION
+=====================================
+BLOCK_SIZE: 64
+THREADS: 4
+MEDIAN: 5.602625 ms
+SPEEDUP: 3.400x
+EFFICIENCY: 0.850
+
+CSV: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/wavefront/tiled_autotuning.csv

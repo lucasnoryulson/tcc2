@@ -1,0 +1,25 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.1",
+  "model": "gemma3:12b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 10,
+    "reason": "The candidate passed correctness validation and demonstrates a significant speedup (3.75x) with good efficiency. The deterministic evidence supports the resource-aware recommendation of 10 threads.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "Correctness validation PASS",
+      "Significant speedup",
+      "Deterministic evidence supports recommendation"
+    ]
+  },
+  "llm_metadata": {
+    "model": "gemma3:12b",
+    "total_duration": 19229571125,
+    "load_duration": 4311330083,
+    "prompt_eval_count": 2315,
+    "eval_count": 124,
+    "done_reason": "stop"
+  }
+}

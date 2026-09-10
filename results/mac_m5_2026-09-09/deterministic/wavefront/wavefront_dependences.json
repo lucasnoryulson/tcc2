@@ -1,0 +1,82 @@
+{
+  "version": "0.3",
+  "source": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/wavefront_kernel.c",
+  "kernels": [
+    {
+      "name": "kernel_wavefront",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        },
+        {
+          "id": 2,
+          "iterator": "j",
+          "dependencies": [
+            {
+              "array": "A",
+              "write": "A[i][j]",
+              "read": "A[i-1][j]",
+              "resolved": true,
+              "relation": "shifted_access",
+              "offsets": [
+                -1,
+                0
+              ],
+              "carried_by": [
+                "i"
+              ],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": -1,
+                  "write": "i",
+                  "read": "i-1"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            },
+            {
+              "array": "A",
+              "write": "A[i][j]",
+              "read": "A[i][j-1]",
+              "resolved": true,
+              "relation": "shifted_access",
+              "offsets": [
+                0,
+                -1
+              ],
+              "carried_by": [
+                "j"
+              ],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 0,
+                  "write": "i",
+                  "read": "i"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": -1,
+                  "write": "j",
+                  "read": "j-1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

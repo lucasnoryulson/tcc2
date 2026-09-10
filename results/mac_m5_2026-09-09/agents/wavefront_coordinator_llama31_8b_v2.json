@@ -1,0 +1,23 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.1",
+  "model": "llama3.1:8b",
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "reason": "The candidate improves runtime only in its one-thread OpenMP configuration. No configuration using two or more threads outperformed the sequential baseline. The observed benefit cannot be classified as successful parallel scaling.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance"
+    ]
+  },
+  "llm_metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 10882209875,
+    "load_duration": 6542584,
+    "prompt_eval_count": 3906,
+    "eval_count": 94,
+    "done_reason": "stop"
+  }
+}

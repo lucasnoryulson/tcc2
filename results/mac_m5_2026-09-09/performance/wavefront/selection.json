@@ -1,0 +1,62 @@
+{
+  "status": "SELECTED",
+  "decision": "TRANSFORMATION_ONLY",
+  "parallel_status": "PARALLEL_SCALING_FAILURE",
+  "sequential": {
+    "mode": "sequential",
+    "threads": 1,
+    "median_seconds": 0.018672374999999998,
+    "mean_seconds": 0.021943225,
+    "speedup": 1.0,
+    "efficiency": 1.0
+  },
+  "one_thread": {
+    "mode": "openmp",
+    "threads": 1,
+    "median_seconds": 0.013224333,
+    "mean_seconds": 0.0132583666,
+    "speedup": 1.4119710234156988,
+    "efficiency": 1.4119710234156988
+  },
+  "best_parallel": {
+    "mode": "openmp",
+    "threads": 2,
+    "median_seconds": 0.058624917000000006,
+    "mean_seconds": 0.0588021918,
+    "speedup": 0.3185057814239634,
+    "efficiency": 0.1592528907119817
+  },
+  "transformation_benefit": true,
+  "parallel_benefit": false,
+  "raw_fastest": {
+    "mode": "openmp",
+    "threads": 1,
+    "median_seconds": 0.013224333,
+    "mean_seconds": 0.0132583666,
+    "speedup": 1.4119710234156988,
+    "efficiency": 1.4119710234156988
+  },
+  "near_tie_threshold": 0.02,
+  "near_tie_candidates": [
+    {
+      "mode": "openmp",
+      "threads": 1,
+      "median_seconds": 0.013224333,
+      "mean_seconds": 0.0132583666,
+      "speedup": 1.4119710234156988,
+      "efficiency": 1.4119710234156988,
+      "slowdown_vs_fastest": 0.0
+    }
+  ],
+  "recommended": {
+    "mode": "openmp",
+    "threads": 1,
+    "median_seconds": 0.013224333,
+    "mean_seconds": 0.0132583666,
+    "speedup": 1.4119710234156988,
+    "efficiency": 1.4119710234156988,
+    "slowdown_vs_fastest": 0.0
+  },
+  "next_action": "MODIFY_PARALLEL_STRATEGY",
+  "reason": "The candidate improves runtime only in its one-thread OpenMP configuration. No configuration using two or more threads outperformed the sequential baseline. The observed benefit cannot be classified as successful parallel scaling."
+}

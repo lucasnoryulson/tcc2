@@ -1,0 +1,27 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.1",
+  "model": "phi4:14b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 10,
+    "reason": "The candidate passed the correctness validation, indicating it is correct. The performance analysis shows a significant speedup of 3.753 with 10 threads, which is the fastest configuration. The efficiency of 0.375 is reasonable given the speedup achieved. There are no dependency constraints violated, and the profiling data does not suggest any substantial overhead or poor hardware behavior. The deterministic evidence supports the resource-aware recommendation of using 10 threads. Therefore, the candidate is accepted with the recommended configuration of 10 threads.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "Correctness validation passed.",
+      "Performance analysis shows the fastest configuration with 10 threads.",
+      "No dependency constraints violated.",
+      "Profiling data does not indicate substantial overhead.",
+      "Deterministic evidence supports the recommendation of 10 threads."
+    ]
+  },
+  "llm_metadata": {
+    "model": "phi4:14b",
+    "total_duration": 28443091292,
+    "load_duration": 4324719875,
+    "prompt_eval_count": 1987,
+    "eval_count": 207,
+    "done_reason": "stop"
+  }
+}

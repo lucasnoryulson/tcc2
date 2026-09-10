@@ -1,0 +1,105 @@
+{
+  "status": "SELECTED",
+  "decision": "FASTEST_CONFIGURATION",
+  "parallel_status": "PARALLEL_SUCCESS",
+  "configuration_dimensions": [
+    "block_size",
+    "threads"
+  ],
+  "search_space": {
+    "n": 4000,
+    "block_sizes": [
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "thread_counts": [
+      1,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "configurations": 30
+  },
+  "sequential": {
+    "mode": "sequential",
+    "threads": 1,
+    "block_size": null,
+    "median_seconds": 0.019046458000000002,
+    "speedup": 1.0,
+    "efficiency": 1.0
+  },
+  "best_one_thread": {
+    "block_size": 16,
+    "threads": 1,
+    "mean_seconds": 0.0118374334,
+    "median_seconds": 0.0115715,
+    "std_dev_seconds": 0.0021131953428406565,
+    "min_seconds": 0.009673625,
+    "max_seconds": 0.015637875,
+    "speedup": 1.6459800371602644,
+    "efficiency": 1.6459800371602644,
+    "max_absolute_error": 0.0
+  },
+  "best_parallel": {
+    "block_size": 64,
+    "threads": 4,
+    "mean_seconds": 0.0056248668,
+    "median_seconds": 0.005602625,
+    "std_dev_seconds": 5.036532462478537e-05,
+    "min_seconds": 0.005582083,
+    "max_seconds": 0.005721084,
+    "speedup": 3.3995596706900786,
+    "efficiency": 0.8498899176725196,
+    "max_absolute_error": 0.0
+  },
+  "transformation_benefit": true,
+  "parallel_benefit": true,
+  "raw_fastest": {
+    "block_size": 64,
+    "threads": 4,
+    "mean_seconds": 0.0056248668,
+    "median_seconds": 0.005602625,
+    "std_dev_seconds": 5.036532462478537e-05,
+    "min_seconds": 0.005582083,
+    "max_seconds": 0.005721084,
+    "speedup": 3.3995596706900786,
+    "efficiency": 0.8498899176725196,
+    "max_absolute_error": 0.0
+  },
+  "near_tie_threshold": 0.02,
+  "near_tie_candidates": [
+    {
+      "block_size": 64,
+      "threads": 4,
+      "mean_seconds": 0.0056248668,
+      "median_seconds": 0.005602625,
+      "std_dev_seconds": 5.036532462478537e-05,
+      "min_seconds": 0.005582083,
+      "max_seconds": 0.005721084,
+      "speedup": 3.3995596706900786,
+      "efficiency": 0.8498899176725196,
+      "max_absolute_error": 0.0,
+      "slowdown_vs_fastest": 0.0
+    }
+  ],
+  "recommended": {
+    "block_size": 64,
+    "threads": 4,
+    "mean_seconds": 0.0056248668,
+    "median_seconds": 0.005602625,
+    "std_dev_seconds": 5.036532462478537e-05,
+    "min_seconds": 0.005582083,
+    "max_seconds": 0.005721084,
+    "speedup": 3.3995596706900786,
+    "efficiency": 0.8498899176725196,
+    "max_absolute_error": 0.0,
+    "slowdown_vs_fastest": 0.0
+  },
+  "next_action": "PROMOTE_CANDIDATE",
+  "reason": "The fastest complete autotuning configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the sequential baseline."
+}

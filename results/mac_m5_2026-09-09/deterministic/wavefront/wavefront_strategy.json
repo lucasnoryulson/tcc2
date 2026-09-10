@@ -1,0 +1,42 @@
+{
+  "version": "0.1",
+  "source": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/wavefront_kernel.c",
+  "plans": [
+    {
+      "kernel": "kernel_wavefront",
+      "detected_pattern": "WAVEFRONT_CANDIDATE",
+      "family": "WAVEFRONT / DOACROSS",
+      "classification_confidence": "high",
+      "strategy": {
+        "strategy": "WAVEFRONT",
+        "wavefronts": [
+          {
+            "loop_id": 2,
+            "original_iterators": [
+              "i",
+              "j"
+            ],
+            "dependence_offsets": [
+              [
+                -1,
+                0
+              ],
+              [
+                0,
+                -1
+              ]
+            ],
+            "transformation": "wavefront_diagonalization",
+            "direct_parallel_for": false,
+            "restructure_iteration_space": true,
+            "parallelize_within_front": true,
+            "barrier_between_fronts": true,
+            "schedule": "static"
+          }
+        ],
+        "direct_code_transformation": false,
+        "reason": "Loop-carried dependences prevent a direct parallel-for transformation."
+      }
+    }
+  ]
+}

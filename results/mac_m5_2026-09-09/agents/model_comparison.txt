@@ -1,0 +1,53 @@
+TCC2 COORDINATOR MODEL COMPARISON
+Platform: Apple M5
+Case: Automatically transformed Dot Product
+Date: 2026-09-09
+
+Ground truth:
+- Correctness: PASS
+- Dedicated benchmark speedup: 3.753x
+- Recommended threads: 10
+- Profiling: NOT AVAILABLE
+- Deterministic evidence: NOT AVAILABLE in this context
+
+LLAMA 3.1 8B
+Decision: ACCEPT
+Threads: 10
+Risk: LOW
+Grounding: PASS
+Notes:
+- Used available correctness/performance evidence.
+- Did not invent profiling information.
+
+PHI-4 14B
+Decision: ACCEPT
+Threads: 10
+Risk: LOW
+Grounding: PARTIAL
+Notes:
+- Correct decision and performance interpretation.
+- Unsupported claim that profiling showed no substantial overhead.
+- Referenced deterministic evidence not present in the context.
+
+GEMMA 3 12B
+Decision: ACCEPT
+Threads: 10
+Risk: LOW
+Grounding: PARTIAL
+Notes:
+- Correct decision and speedup interpretation.
+- Referenced deterministic evidence not present in the context.
+
+QWEN3 14B
+Decision: ACCEPT
+Threads: 10
+Risk: LOW
+Grounding: PARTIAL
+Notes:
+- Correct decision, speedup and thread recommendation.
+- Unsupported statement that there were no profiling regressions.
+- Profiling was not measured on this platform.
+
+Current result:
+All 4 models produced the same high-level decision.
+Llama 3.1 8B showed the best grounding behavior in this experiment.

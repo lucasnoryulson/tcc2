@@ -1,0 +1,16 @@
+{
+  "status": "AGENT_RESPONSE_REJECTED",
+  "validation_error": "MODIFY cannot use RUN_MORE_BENCHMARKS",
+  "raw_decision": {
+    "decision": "MODIFY",
+    "recommended_threads": 1,
+    "reason": "The candidate improves runtime only in its one-thread OpenMP configuration. No configuration using two or more threads outperformed the sequential baseline. The observed benefit cannot be classified as successful parallel scaling. The next action is MODIFY_PARALLEL_STRATEGY.",
+    "next_action": "RUN_MORE_BENCHMARKS",
+    "risk": "LOW",
+    "evidence_used": [
+      "parallel_status",
+      "speedup",
+      "efficiency"
+    ]
+  }
+}

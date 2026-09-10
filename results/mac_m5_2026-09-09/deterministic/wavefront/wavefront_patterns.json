@@ -1,0 +1,46 @@
+{
+  "version": "0.6",
+  "source": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/wavefront_kernel.c",
+  "kernels": [
+    {
+      "name": "kernel_wavefront",
+      "classification": "WAVEFRONT_CANDIDATE",
+      "family": "WAVEFRONT / DOACROSS",
+      "confidence": "high",
+      "reason": "At least one loop contains resolved shifted dependences.",
+      "loops": [
+        {
+          "classification": "NO_DIRECT_EVIDENCE",
+          "family": "UNKNOWN",
+          "confidence": "low",
+          "reason": "No direct READ/WRITE dependence candidate was associated with this loop level.",
+          "evidence": {},
+          "loop_id": 1,
+          "iterator": "i"
+        },
+        {
+          "classification": "WAVEFRONT_CANDIDATE",
+          "family": "WAVEFRONT / DOACROSS",
+          "confidence": "high",
+          "reason": "Shifted accesses to the same written array were detected.",
+          "evidence": {
+            "shifted_accesses": 2,
+            "offsets": [
+              [
+                -1,
+                0
+              ],
+              [
+                0,
+                -1
+              ]
+            ],
+            "symbolic_relations": 0
+          },
+          "loop_id": 2,
+          "iterator": "j"
+        }
+      ]
+    }
+  ]
+}

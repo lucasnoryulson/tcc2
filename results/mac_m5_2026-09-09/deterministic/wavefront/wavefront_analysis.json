@@ -1,0 +1,71 @@
+{
+  "version": "0.2",
+  "source": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/wavefront_kernel.c",
+  "kernels": [
+    {
+      "name": "kernel_wavefront",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 6,
+          "end_line": 17,
+          "iterator": "i",
+          "initialization": "int i = 1",
+          "condition": "i < N",
+          "increment": "++i",
+          "reads": [],
+          "writes": [],
+          "operators": [],
+          "scalar_updates": []
+        },
+        {
+          "id": 2,
+          "nesting_depth": 1,
+          "start_line": 8,
+          "end_line": 16,
+          "iterator": "j",
+          "initialization": "int j = 1",
+          "condition": "j < N",
+          "increment": "++j",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i-1",
+                "j"
+              ],
+              "expression": "A[i-1][j]"
+            },
+            {
+              "array": "A",
+              "indices": [
+                "i",
+                "j-1"
+              ],
+              "expression": "A[i][j-1]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "A",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "A[i][j]"
+            }
+          ],
+          "operators": [
+            "=",
+            "*",
+            "+",
+            "-",
+            "-"
+          ],
+          "scalar_updates": []
+        }
+      ]
+    }
+  ]
+}

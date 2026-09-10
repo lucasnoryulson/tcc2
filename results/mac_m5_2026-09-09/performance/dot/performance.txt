@@ -1,0 +1,98 @@
+=================================
+TCC2 PERFORMANCE GATE v0.1
+=================================
+
+Compiling sequential...
+Sequential: COMPILE_SUCCESS
+
+Compiling OpenMP candidate...
+Candidate: COMPILE_SUCCESS
+
+Sequential benchmark:
+    Run 1: 0.004975480 s
+    Run 2: 0.004795810 s
+    Run 3: 0.004804980 s
+    Run 4: 0.004790370 s
+    Run 5: 0.004876300 s
+
+Sequential median: 0.004804980 s
+
+OpenMP benchmark (1 thread(s)):
+    Run 1: 0.004965770 s
+    Run 2: 0.004822460 s
+    Run 3: 0.004811670 s
+    Run 4: 0.004806510 s
+    Run 5: 0.004810310 s
+
+  Median:     0.004811670 s
+  Speedup:    0.999x
+  Efficiency: 0.999
+
+OpenMP benchmark (2 thread(s)):
+    Run 1: 0.002497440 s
+    Run 2: 0.002474920 s
+    Run 3: 0.002472360 s
+    Run 4: 0.002470500 s
+    Run 5: 0.002472730 s
+
+  Median:     0.002472730 s
+  Speedup:    1.943x
+  Efficiency: 0.972
+
+OpenMP benchmark (4 thread(s)):
+    Run 1: 0.002058760 s
+    Run 2: 0.001963310 s
+    Run 3: 0.001973960 s
+    Run 4: 0.001958540 s
+    Run 5: 0.001960900 s
+
+  Median:     0.001963310 s
+  Speedup:    2.447x
+  Efficiency: 0.612
+
+OpenMP benchmark (6 thread(s)):
+    Run 1: 0.001381110 s
+    Run 2: 0.001379490 s
+    Run 3: 0.001364300 s
+    Run 4: 0.001367770 s
+    Run 5: 0.001369930 s
+
+  Median:     0.001369930 s
+  Speedup:    3.507x
+  Efficiency: 0.585
+
+OpenMP benchmark (8 thread(s)):
+    Run 1: 0.001345600 s
+    Run 2: 0.001344110 s
+    Run 3: 0.001339370 s
+    Run 4: 0.001351860 s
+    Run 5: 0.001351390 s
+
+  Median:     0.001345600 s
+  Speedup:    3.571x
+  Efficiency: 0.446
+
+OpenMP benchmark (10 thread(s)):
+    Run 1: 0.001282950 s
+    Run 2: 0.001279110 s
+    Run 3: 0.001279960 s
+    Run 4: 0.001280240 s
+    Run 5: 0.001284290 s
+
+  Median:     0.001280240 s
+  Speedup:    3.753x
+  Efficiency: 0.375
+
+=================================
+PERFORMANCE SUMMARY
+=================================
+Sequential median: 0.004804980 s
+Best OpenMP median: 0.001280240 s
+Best threads: 10
+Best speedup: 3.753x
+
+PERFORMANCE GATE: PASS
+Generated candidate improves performance.
+
+CSV salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/mac_m5_2026-09-09/performance/dot/performance.csv
+=================================
