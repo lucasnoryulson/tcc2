@@ -77,35 +77,72 @@ def select_configuration(
 ):
 
     sequential = None
-
     openmp = []
 
     for result in results:
 
         if result["mode"] == "sequential":
-
             sequential = result
 
         elif result["mode"] == "openmp":
-
-            openmp.append(
-                result
-            )
+            openmp.append(result)
 
     if sequential is None:
-
         raise RuntimeError(
             "Sequential baseline not found."
         )
 
     if not openmp:
-
         raise RuntimeError(
             "No OpenMP configurations found."
         )
 
     # --------------------------------------------------------
-    # Only candidates that actually improve runtime.
+    # Separate transformation benefit from true parallel gain.
+    # --------------------------------------------------------
+
+    one_thread = next(
+        (
+            result
+            for result in openmp
+            if result["threads"] == 1
+        ),
+        None,
+    )
+
+    parallel_configs = [
+        result
+        for result in openmp
+        if result["threads"] >= 2
+    ]
+
+    transformation_benefit = (
+        one_thread is not None
+        and one_thread["speedup"] > MIN_SPEEDUP
+    )
+
+    improving_parallel = [
+        result
+        for result in parallel_configs
+        if result["speedup"] > MIN_SPEEDUP
+    ]
+
+    parallel_benefit = bool(
+        improving_parallel
+    )
+
+    best_parallel = None
+
+    if parallel_configs:
+
+        best_parallel = min(
+            parallel_configs,
+            key=lambda result:
+                result["median_seconds"],
+        )
+
+    # --------------------------------------------------------
+    # Overall beneficial configurations.
     # --------------------------------------------------------
 
     improving = [
@@ -120,8 +157,32 @@ def select_configuration(
             "status":
                 "NO_BENEFICIAL_CONFIGURATION",
 
+            "decision":
+                "NO_BENEFIT",
+
+            "parallel_status":
+                "NO_BENEFIT",
+
+            "sequential":
+                sequential,
+
+            "one_thread":
+                one_thread,
+
+            "best_parallel":
+                best_parallel,
+
+            "transformation_benefit":
+                False,
+
+            "parallel_benefit":
+                False,
+
             "recommended":
                 None,
+
+            "next_action":
+                "MODIFY_OR_REJECT_CANDIDATE",
 
             "reason":
                 (
@@ -132,26 +193,21 @@ def select_configuration(
         }
 
     # --------------------------------------------------------
-    # Raw fastest configuration
+    # Raw fastest beneficial configuration.
     # --------------------------------------------------------
 
     raw_best = min(
         improving,
         key=lambda result:
-            result["median_seconds"]
+            result["median_seconds"],
     )
 
     best_time = (
-        raw_best[
-            "median_seconds"
-        ]
+        raw_best["median_seconds"]
     )
 
     # --------------------------------------------------------
-    # Near-tie detection
-    #
-    # A configuration belongs to the near-tie group when
-    # its median is at most 2% slower than the fastest.
+    # Near-tie detection.
     # --------------------------------------------------------
 
     near_ties = []
@@ -166,9 +222,7 @@ def select_configuration(
 
         if slowdown <= NEAR_TIE_THRESHOLD:
 
-            candidate = dict(
-                result
-            )
+            candidate = dict(result)
 
             candidate[
                 "slowdown_vs_fastest"
@@ -179,9 +233,7 @@ def select_configuration(
             )
 
     # --------------------------------------------------------
-    # Resource-aware selection
-    #
-    # If runtimes are effectively tied, prefer fewer threads.
+    # Resource-aware recommendation.
     # --------------------------------------------------------
 
     recommended = min(
@@ -189,34 +241,79 @@ def select_configuration(
         key=lambda result: (
             result["threads"],
             result["median_seconds"],
-        )
+        ),
     )
 
-    if (
-        recommended["threads"]
-        == raw_best["threads"]
-    ):
+    # --------------------------------------------------------
+    # True parallel scaling classification.
+    # --------------------------------------------------------
 
-        decision = (
-            "FASTEST_CONFIGURATION"
+    if parallel_benefit:
+
+        parallel_status = (
+            "PARALLEL_SUCCESS"
         )
 
-        reason = (
-            "The fastest configuration is also "
-            "the resource-aware recommendation."
+        next_action = (
+            "PROMOTE_CANDIDATE"
         )
+
+        if (
+            recommended["threads"]
+            == raw_best["threads"]
+        ):
+
+            decision = (
+                "FASTEST_CONFIGURATION"
+            )
+
+            reason = (
+                "The fastest configuration is also "
+                "the resource-aware recommendation. "
+                "At least one configuration using "
+                "two or more threads outperformed "
+                "the sequential baseline."
+            )
+
+        else:
+
+            decision = (
+                "RESOURCE_AWARE_NEAR_TIE"
+            )
+
+            reason = (
+                "Multiple configurations are within "
+                f"{NEAR_TIE_THRESHOLD * 100:.1f}% "
+                "of the fastest median. The "
+                "configuration using fewer threads "
+                "was preferred. At least one "
+                "configuration using two or more "
+                "threads outperformed the sequential "
+                "baseline."
+            )
 
     else:
 
+        parallel_status = (
+            "PARALLEL_SCALING_FAILURE"
+        )
+
         decision = (
-            "RESOURCE_AWARE_NEAR_TIE"
+            "TRANSFORMATION_ONLY"
+        )
+
+        next_action = (
+            "MODIFY_PARALLEL_STRATEGY"
         )
 
         reason = (
-            "Multiple configurations are within "
-            f"{NEAR_TIE_THRESHOLD * 100:.1f}% "
-            "of the fastest median. The configuration "
-            "using fewer threads was preferred."
+            "The candidate improves runtime only "
+            "in its one-thread OpenMP configuration. "
+            "No configuration using two or more "
+            "threads outperformed the sequential "
+            "baseline. The observed benefit cannot "
+            "be classified as successful parallel "
+            "scaling."
         )
 
     return {
@@ -226,8 +323,23 @@ def select_configuration(
         "decision":
             decision,
 
+        "parallel_status":
+            parallel_status,
+
         "sequential":
             sequential,
+
+        "one_thread":
+            one_thread,
+
+        "best_parallel":
+            best_parallel,
+
+        "transformation_benefit":
+            transformation_benefit,
+
+        "parallel_benefit":
+            parallel_benefit,
 
         "raw_fastest":
             raw_best,
@@ -240,6 +352,9 @@ def select_configuration(
 
         "recommended":
             recommended,
+
+        "next_action":
+            next_action,
 
         "reason":
             reason,
@@ -259,7 +374,7 @@ def print_result(
     )
 
     print(
-        "TCC2 PERFORMANCE SELECTOR v0.1"
+        "TCC2 PERFORMANCE SELECTOR v0.2"
     )
 
     print(

@@ -10,9 +10,11 @@ from pathlib import Path
 DEFAULT_COMPILER = "clang"
 
 THREAD_COUNTS = [
-    1,
-    2,
-    4,
+    int(value)
+    for value in os.environ.get(
+        "TCC2_THREAD_COUNTS",
+        "1,2,4"
+    ).split(",")
 ]
 
 EXTERNAL_REPEATS = 5

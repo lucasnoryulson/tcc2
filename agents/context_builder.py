@@ -58,7 +58,7 @@ def build_context(
     patterns_file,
     strategy_file,
     selection_file,
-    profiling_file,
+    profiling_file=None,
 ):
 
     static_data = load_json(
@@ -81,8 +81,10 @@ def build_context(
         selection_file
     )
 
-    profiling_data = load_json(
-        profiling_file
+    profiling_data = (
+        load_json(profiling_file)
+        if profiling_file is not None
+        else {}
     )
 
     static_kernel = first_kernel(
@@ -492,8 +494,9 @@ def main():
 
     parser.add_argument(
         "--profiling",
-        required=True,
+        required=False,
         type=Path,
+        default=None,
     )
 
     parser.add_argument(
@@ -512,8 +515,10 @@ def main():
         args.patterns,
         args.strategy,
         args.selection,
-        args.profiling,
     ]
+
+    if args.profiling is not None:
+        paths.append(args.profiling)
 
     for path in paths:
 
@@ -536,7 +541,11 @@ def main():
             args.patterns.resolve(),
             args.strategy.resolve(),
             args.selection.resolve(),
-            args.profiling.resolve(),
+            (
+                args.profiling.resolve()
+                if args.profiling is not None
+                else None
+            ),
         )
 
     except RuntimeError as error:

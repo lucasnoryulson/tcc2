@@ -79,6 +79,7 @@ DECISION_SCHEMA = {
     "required": [
         "decision",
         "recommended_threads",
+        "recommended_configuration",
         "reason",
         "next_action",
         "risk",
@@ -287,6 +288,19 @@ You must obey these rules:
 18. recommended_threads must come from measured
     configurations in the supplied context.
 
+18a. If performance.selection.configuration_dimensions
+    contains more than one dimension and a recommended
+    configuration exists, return recommended_configuration
+    with the exact measured values. For the current
+    multidimensional autotuning schema, preserve both
+    threads and block_size. Do not invent or combine
+    parameter values from different configurations.
+
+18b. recommended_configuration.threads must agree with
+    recommended_threads. For a one-dimensional thread-only
+    selection, recommended_configuration may be omitted or
+    null.
+
 19. If deterministic_evidence is present, treat it as
     the authoritative semantic interpretation of the
     measured data. Do not contradict its derived facts,
@@ -300,6 +314,42 @@ You must obey these rules:
     conflict with deterministic_evidence, follow the
     deterministic evidence and do not invent a new
     interpretation.
+
+22. Distinguish transformation_benefit from
+    parallel_benefit. A speedup obtained only with one
+    OpenMP thread is not evidence of successful parallel
+    scaling.
+
+23. If parallel_status is PARALLEL_SCALING_FAILURE,
+    explicitly consider that evidence when deciding
+    whether the current parallel strategy should be
+    accepted, retuned, modified, or rejected.
+
+24. If profiling is empty or unavailable, do not claim
+    that profiling showed good behavior, low overhead,
+    or absence of regressions.
+
+25. Keep decision and next_action semantically
+    consistent:
+    ACCEPT -> PROMOTE_CANDIDATE.
+    RETUNE -> RETUNE_CONFIGURATION or
+    RUN_MORE_BENCHMARKS.
+    MODIFY -> SEND_TO_CODER when the implementation or
+    parallel strategy must change.
+    REJECT -> REJECT_CANDIDATE.
+
+26. SEND_TO_DEBUGGER is reserved for compilation,
+    correctness, or validation failures that require
+    repair. Do not send a correct candidate to the
+    Debugger merely because its performance is poor.
+
+27. When correctness passes but the current parallel
+    strategy fails to scale, distinguish between an
+    irrecoverable candidate and a strategy that can be
+    modified or retuned. Do not reject a candidate solely
+    because its first parallel strategy performs poorly
+    when the supplied evidence indicates that the
+    strategy should be modified.
 
 22. Keep the reason concise and evidence-based.
 
@@ -494,6 +544,77 @@ def call_ollama(
 
 
 # ============================================================
+# DETERMINISTIC OUTPUT ENRICHMENT
+# ============================================================
+
+def enrich_deterministic_configuration(
+    decision,
+    context,
+):
+    """
+    Preserve measured configuration parameters without
+    relying on the LLM to copy deterministic values.
+    """
+
+    selection = (
+        context.get(
+            "performance",
+            {}
+        )
+        .get(
+            "selection",
+            {}
+        )
+    )
+
+    configuration_dimensions = (
+        selection.get(
+            "configuration_dimensions",
+            [
+                "threads",
+            ],
+        )
+    )
+
+    recommended = (
+        selection.get(
+            "recommended"
+        )
+    )
+
+    recommended_threads = (
+        decision.get(
+            "recommended_threads"
+        )
+    )
+
+    if (
+        len(configuration_dimensions) > 1
+        and recommended
+        and recommended_threads is not None
+    ):
+
+        decision[
+            "recommended_configuration"
+        ] = {
+            dimension:
+                recommended.get(
+                    dimension
+                )
+            for dimension
+            in configuration_dimensions
+        }
+
+    else:
+
+        decision[
+            "recommended_configuration"
+        ] = None
+
+    return decision
+
+
+# ============================================================
 # RESPONSE VALIDATION
 # ============================================================
 
@@ -654,6 +775,20 @@ def validate_decision(
                 )
             )
 
+        best_parallel = (
+            selection.get(
+                "best_parallel"
+            )
+        )
+
+        if best_parallel:
+
+            measured_threads.add(
+                best_parallel.get(
+                    "threads"
+                )
+            )
+
         if (
             recommended_threads
             not in measured_threads
@@ -665,22 +800,222 @@ def validate_decision(
             )
 
     # --------------------------------------------------------
-    # ACCEPT should promote.
+    # Complete multidimensional configuration validation.
     # --------------------------------------------------------
 
-    if (
+    recommended_configuration = (
         decision.get(
-            "decision"
-        ) == "ACCEPT"
-        and decision.get(
-            "next_action"
+            "recommended_configuration"
         )
-        != "PROMOTE_CANDIDATE"
+    )
+
+    selection = (
+        context.get(
+            "performance",
+            {}
+        )
+        .get(
+            "selection",
+            {}
+        )
+    )
+
+    configuration_dimensions = (
+        selection.get(
+            "configuration_dimensions",
+            [
+                "threads",
+            ],
+        )
+    )
+
+    multidimensional = (
+        len(
+            configuration_dimensions
+        )
+        > 1
+    )
+
+    selection_recommended = (
+        selection.get(
+            "recommended"
+        )
+    )
+
+    if (
+        multidimensional
+        and selection_recommended
+        and recommended_threads is not None
+        and recommended_configuration
+        is None
     ):
 
         errors.append(
-            "ACCEPT must use "
-            "PROMOTE_CANDIDATE"
+            "multidimensional selection with a thread "
+            "recommendation requires "
+            "recommended_configuration"
+        )
+
+    if (
+        recommended_configuration
+        is not None
+    ):
+
+        configuration_threads = (
+            recommended_configuration.get(
+                "threads"
+            )
+        )
+
+        if (
+            recommended_threads
+            is None
+        ):
+
+            errors.append(
+                "recommended_configuration requires "
+                "recommended_threads"
+            )
+
+        elif (
+            configuration_threads
+            != recommended_threads
+        ):
+
+            errors.append(
+                "recommended_configuration.threads "
+                "must match recommended_threads"
+            )
+
+        missing_dimensions = [
+            dimension
+            for dimension
+            in configuration_dimensions
+            if dimension
+            not in recommended_configuration
+        ]
+
+        if missing_dimensions:
+
+            errors.append(
+                "recommended_configuration is missing "
+                "configuration dimensions: "
+                + ", ".join(
+                    missing_dimensions
+                )
+            )
+
+        else:
+
+            measured_configurations = []
+
+            near_tie_candidates = (
+                selection.get(
+                    "near_tie_candidates",
+                    [],
+                )
+            )
+
+            measured_configurations.extend(
+                near_tie_candidates
+            )
+
+            for key in [
+                "raw_fastest",
+                "recommended",
+                "best_parallel",
+                "best_one_thread",
+            ]:
+
+                candidate = (
+                    selection.get(
+                        key
+                    )
+                )
+
+                if candidate:
+
+                    measured_configurations.append(
+                        candidate
+                    )
+
+            measured_tuples = {
+                tuple(
+                    candidate.get(
+                        dimension
+                    )
+                    for dimension
+                    in configuration_dimensions
+                )
+                for candidate
+                in measured_configurations
+            }
+
+            requested_tuple = tuple(
+                recommended_configuration.get(
+                    dimension
+                )
+                for dimension
+                in configuration_dimensions
+            )
+
+            if (
+                requested_tuple
+                not in measured_tuples
+            ):
+
+                errors.append(
+                    "recommended_configuration was not "
+                    "present in measured configurations"
+                )
+
+    # --------------------------------------------------------
+    # Decision / next_action consistency.
+    # --------------------------------------------------------
+
+    decision_name = decision.get(
+        "decision"
+    )
+
+    next_action = decision.get(
+        "next_action"
+    )
+
+    allowed_actions_by_decision = {
+        "ACCEPT": {
+            "PROMOTE_CANDIDATE",
+        },
+
+        "RETUNE": {
+            "RETUNE_CONFIGURATION",
+            "RUN_MORE_BENCHMARKS",
+        },
+
+        "MODIFY": {
+            "SEND_TO_CODER",
+            "SEND_TO_DEBUGGER",
+        },
+
+        "REJECT": {
+            "REJECT_CANDIDATE",
+        },
+    }
+
+    valid_actions = (
+        allowed_actions_by_decision.get(
+            decision_name,
+            set(),
+        )
+    )
+
+    if (
+        valid_actions
+        and next_action not in valid_actions
+    ):
+
+        errors.append(
+            f"{decision_name} cannot use "
+            f"{next_action}"
         )
 
     return errors
@@ -700,7 +1035,7 @@ def print_decision(
     )
 
     print(
-        "TCC2 COORDINATOR AGENT v0.1"
+        "TCC2 COORDINATOR AGENT v0.2"
     )
 
     print(
@@ -868,6 +1203,13 @@ def main():
 
         sys.exit(1)
 
+    decision = (
+        enrich_deterministic_configuration(
+            decision,
+            context
+        )
+    )
+
     errors = validate_decision(
         decision,
         context
@@ -918,7 +1260,7 @@ def main():
             "tcc2-coordinator-decision",
 
         "version":
-            "0.1",
+            "0.2",
 
         "model":
             args.model,
