@@ -475,15 +475,24 @@ def validate_exact(
     build_dir
 ):
 
-    binary = (
+    candidate_binary = (
         build_dir
         / f"{benchmark}_candidate_dump"
     )
 
+    sequential_binary = (
+        build_dir
+        / f"{benchmark}_sequential_dump"
+    )
+
+    # --------------------------------------------------------
+    # Compile candidate with OpenMP.
+    # --------------------------------------------------------
+
     success = compile_program(
         config,
         config["candidate"],
-        binary,
+        candidate_binary,
         openmp=True,
         dump=True
     )
@@ -491,48 +500,102 @@ def validate_exact(
     if not success:
         return False
 
-    result = subprocess.run(
-        [str(binary)],
+    # --------------------------------------------------------
+    # Compile local sequential reference using the same
+    # compiler, optimization flags and environment.
+    # --------------------------------------------------------
+
+    success = compile_program(
+        config,
+        config["original"],
+        sequential_binary,
+        openmp=False,
+        dump=True
+    )
+
+    if not success:
+        return False
+
+    # --------------------------------------------------------
+    # Execute local sequential reference.
+    # --------------------------------------------------------
+
+    sequential_result = subprocess.run(
+        [str(sequential_binary)],
+        capture_output=True
+    )
+
+    if sequential_result.returncode != 0:
+
+        print(
+            "SEQUENTIAL_RUNTIME_ERROR"
+        )
+
+        return False
+
+    # --------------------------------------------------------
+    # Execute OpenMP candidate.
+    # --------------------------------------------------------
+
+    candidate_result = subprocess.run(
+        [str(candidate_binary)],
         capture_output=True,
         env=openmp_environment(4)
     )
 
-    if result.returncode != 0:
+    if candidate_result.returncode != 0:
 
-        print("RUNTIME_ERROR")
+        print(
+            "CANDIDATE_RUNTIME_ERROR"
+        )
 
         return False
 
-    candidate_hash = (
+    # PolyBench dumps arrays to stderr.
+    sequential_hash = (
         calculate_hash(
-            result.stderr
+            sequential_result.stderr
         )
     )
 
-    reference_hash = (
+    candidate_hash = (
         calculate_hash(
-            config["reference"]
-            .read_bytes()
+            candidate_result.stderr
         )
     )
 
     print(
-        f"Reference: {reference_hash}"
+        "Reference source: "
+        "local sequential / same toolchain"
+    )
+
+    print(
+        f"Reference: {sequential_hash}"
     )
 
     print(
         f"Candidate: {candidate_hash}"
     )
 
-    if candidate_hash == reference_hash:
+    if candidate_hash == sequential_hash:
 
-        print("Validation mode: EXACT")
-        print("CORRECT")
+        print(
+            "Validation mode: EXACT"
+        )
+
+        print(
+            "CORRECT"
+        )
 
         return True
 
-    print("Validation mode: EXACT")
-    print("INCORRECT")
+    print(
+        "Validation mode: EXACT"
+    )
+
+    print(
+        "INCORRECT"
+    )
 
     return False
 
