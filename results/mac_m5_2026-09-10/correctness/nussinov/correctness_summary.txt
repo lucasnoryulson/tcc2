@@ -1,0 +1,8 @@
+NUSSINOV — optimization correctness
+
+0537e816e19ac5ce5261437d3db9f0aace4f14b6d4cc3b66651eb7e163cdd08b  results/mac_m5_2026-09-10/correctness/nussinov/sequential_m5.txt
+0537e816e19ac5ce5261437d3db9f0aace4f14b6d4cc3b66651eb7e163cdd08b  results/mac_m5_2026-09-10/correctness/nussinov/accumulator_4t.txt
+0537e816e19ac5ce5261437d3db9f0aace4f14b6d4cc3b66651eb7e163cdd08b  results/mac_m5_2026-09-10/correctness/nussinov/simd_4t.txt
+
+SEQ_M5 == ACCUMULATOR_4T
+SEQ_M5 == SIMD_4T

@@ -1,0 +1,80 @@
+{
+  "status": "SELECTED",
+  "decision": "RESOURCE_AWARE_NEAR_TIE",
+  "parallel_status": "PARALLEL_SUCCESS",
+  "sequential": {
+    "mode": "sequential",
+    "threads": 1,
+    "median_seconds": 0.415285,
+    "mean_seconds": 0.43699360000000004,
+    "speedup": 1.0,
+    "efficiency": 1.0
+  },
+  "one_thread": {
+    "mode": "openmp",
+    "threads": 1,
+    "median_seconds": 0.328171,
+    "mean_seconds": 0.3323512,
+    "speedup": 1.265453071721755,
+    "efficiency": 1.265453071721755
+  },
+  "best_parallel": {
+    "mode": "openmp",
+    "threads": 10,
+    "median_seconds": 0.161318,
+    "mean_seconds": 0.1616646,
+    "speedup": 2.574325245787823,
+    "efficiency": 0.2574325245787823
+  },
+  "transformation_benefit": true,
+  "parallel_benefit": true,
+  "raw_fastest": {
+    "mode": "openmp",
+    "threads": 10,
+    "median_seconds": 0.161318,
+    "mean_seconds": 0.1616646,
+    "speedup": 2.574325245787823,
+    "efficiency": 0.2574325245787823
+  },
+  "near_tie_threshold": 0.02,
+  "near_tie_candidates": [
+    {
+      "mode": "openmp",
+      "threads": 7,
+      "median_seconds": 0.163942,
+      "mean_seconds": 0.163758,
+      "speedup": 2.533121469788096,
+      "efficiency": 0.3618744956840137,
+      "slowdown_vs_fastest": 0.016266008752898076
+    },
+    {
+      "mode": "openmp",
+      "threads": 9,
+      "median_seconds": 0.162623,
+      "mean_seconds": 0.1640086,
+      "speedup": 2.5536670704635878,
+      "efficiency": 0.2837407856070653,
+      "slowdown_vs_fastest": 0.008089611822611253
+    },
+    {
+      "mode": "openmp",
+      "threads": 10,
+      "median_seconds": 0.161318,
+      "mean_seconds": 0.1616646,
+      "speedup": 2.574325245787823,
+      "efficiency": 0.2574325245787823,
+      "slowdown_vs_fastest": 0.0
+    }
+  ],
+  "recommended": {
+    "mode": "openmp",
+    "threads": 7,
+    "median_seconds": 0.163942,
+    "mean_seconds": 0.163758,
+    "speedup": 2.533121469788096,
+    "efficiency": 0.3618744956840137,
+    "slowdown_vs_fastest": 0.016266008752898076
+  },
+  "next_action": "PROMOTE_CANDIDATE",
+  "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline."
+}

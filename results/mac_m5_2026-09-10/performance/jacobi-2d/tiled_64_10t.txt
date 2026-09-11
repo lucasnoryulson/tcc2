@@ -1,0 +1,5 @@
+Run=1 Time=0.244315s
+Run=2 Time=0.244056s
+Run=3 Time=0.244277s
+Run=4 Time=0.243380s
+Run=5 Time=0.257421s

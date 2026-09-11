@@ -1,0 +1,11 @@
+GEMM — same-toolchain exact validation
+
+def89518449953ba02f9f8be46621924b35200a94b89c460ed842ddf03ac60d5  results/gemm/reference_output.txt
+ae2974b62ed90cb79ce9048d0670d8af9b9f344f50f16fe0c08da4244d0165fd  results/mac_m5_2026-09-10/correctness/gemm/sequential_m5.txt
+ae2974b62ed90cb79ce9048d0670d8af9b9f344f50f16fe0c08da4244d0165fd  results/mac_m5_2026-09-10/correctness/gemm/candidate_1t.txt
+ae2974b62ed90cb79ce9048d0670d8af9b9f344f50f16fe0c08da4244d0165fd  results/mac_m5_2026-09-10/correctness/gemm/candidate_4t.txt
+ae2974b62ed90cb79ce9048d0670d8af9b9f344f50f16fe0c08da4244d0165fd  results/mac_m5_2026-09-10/correctness/gemm/candidate_10t.txt
+
+SEQ_M5 == OPENMP_1T
+OPENMP_1T == OPENMP_4T
+OPENMP_1T == OPENMP_10T

@@ -1,0 +1,5 @@
+Run=1 Manual=0.345374s Accumulator=0.279257s
+Run=2 Manual=0.427199s Accumulator=0.374936s
+Run=3 Manual=0.478517s Accumulator=0.372674s
+Run=4 Manual=0.486774s Accumulator=0.384251s
+Run=5 Manual=0.539082s Accumulator=0.410752s

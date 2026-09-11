@@ -1,0 +1,27 @@
+================================
+TCC2 HARNESS — gemm
+================================
+
+[1/5] Compilando sequencial...
+Compilation: OK
+
+[2/5] Benchmark sequencial...
+
+SEQ Run=1 Time=0.154132s
+SEQ Run=2 Time=0.141341s
+SEQ Run=3 Time=0.145608s
+SEQ Run=4 Time=0.144065s
+SEQ Run=5 Time=0.141292s
+
+Sequential median: 0.144065s
+
+[3/5] Compilando OpenMP...
+Compilation: OK
+
+[4/5] Validando corretude...
+Reference: def89518449953ba02f9f8be46621924b35200a94b89c460ed842ddf03ac60d5
+Candidate: ae2974b62ed90cb79ce9048d0670d8af9b9f344f50f16fe0c08da4244d0165fd
+Validation mode: EXACT
+INCORRECT
+
+Candidato rejeitado.

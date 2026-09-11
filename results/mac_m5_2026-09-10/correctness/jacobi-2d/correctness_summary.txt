@@ -1,0 +1,6 @@
+JACOBI-2D — tiled 64 exact validation
+
+cfa9d66199f1da7e1f73055d384557860390645aab47477d65ca7db8a96b0caf  results/jacobi-2d/reference_output.txt
+cfa9d66199f1da7e1f73055d384557860390645aab47477d65ca7db8a96b0caf  results/mac_m5_2026-09-10/correctness/jacobi-2d/tiled_64_dump.txt
+
+REFERENCE == TILED_64

@@ -1,0 +1,129 @@
+================================
+TCC2 HARNESS — jacobi-2d
+================================
+
+[1/5] Compilando sequencial...
+Compilation: OK
+
+[2/5] Benchmark sequencial...
+
+SEQ Run=1 Time=0.503322s
+SEQ Run=2 Time=0.450401s
+SEQ Run=3 Time=0.415285s
+SEQ Run=4 Time=0.407468s
+SEQ Run=5 Time=0.408492s
+
+Sequential median: 0.415285s
+
+[3/5] Compilando OpenMP...
+Compilation: OK
+
+[4/5] Validando corretude...
+Reference: cfa9d66199f1da7e1f73055d384557860390645aab47477d65ca7db8a96b0caf
+Candidate: cfa9d66199f1da7e1f73055d384557860390645aab47477d65ca7db8a96b0caf
+Validation mode: EXACT
+CORRECT
+
+[5/5] Benchmark paralelo...
+
+--- 1 THREAD(S) ---
+1T Run=1 Time=0.348744s
+1T Run=2 Time=0.326902s
+1T Run=3 Time=0.327578s
+1T Run=4 Time=0.328171s
+1T Run=5 Time=0.330361s
+Median=0.328171s
+
+--- 2 THREAD(S) ---
+2T Run=1 Time=0.200609s
+2T Run=2 Time=0.191859s
+2T Run=3 Time=0.198410s
+2T Run=4 Time=0.200011s
+2T Run=5 Time=0.199453s
+Median=0.199453s
+
+--- 3 THREAD(S) ---
+3T Run=1 Time=0.186923s
+3T Run=2 Time=0.186752s
+3T Run=3 Time=0.183528s
+3T Run=4 Time=0.183680s
+3T Run=5 Time=0.186643s
+Median=0.186643s
+
+--- 4 THREAD(S) ---
+4T Run=1 Time=0.180885s
+4T Run=2 Time=0.180782s
+4T Run=3 Time=0.184365s
+4T Run=4 Time=0.182244s
+4T Run=5 Time=0.183744s
+Median=0.182244s
+
+--- 5 THREAD(S) ---
+5T Run=1 Time=0.173003s
+5T Run=2 Time=0.172680s
+5T Run=3 Time=0.174588s
+5T Run=4 Time=0.172497s
+5T Run=5 Time=0.170453s
+Median=0.172680s
+
+--- 6 THREAD(S) ---
+6T Run=1 Time=0.168083s
+6T Run=2 Time=0.189088s
+6T Run=3 Time=0.211581s
+6T Run=4 Time=0.172486s
+6T Run=5 Time=0.169499s
+Median=0.172486s
+
+--- 7 THREAD(S) ---
+7T Run=1 Time=0.163449s
+7T Run=2 Time=0.163942s
+7T Run=3 Time=0.164124s
+7T Run=4 Time=0.164424s
+7T Run=5 Time=0.162851s
+Median=0.163942s
+
+--- 8 THREAD(S) ---
+8T Run=1 Time=0.166351s
+8T Run=2 Time=0.168957s
+8T Run=3 Time=0.166734s
+8T Run=4 Time=0.164415s
+8T Run=5 Time=0.167377s
+Median=0.166734s
+
+--- 9 THREAD(S) ---
+9T Run=1 Time=0.161684s
+9T Run=2 Time=0.170040s
+9T Run=3 Time=0.162540s
+9T Run=4 Time=0.162623s
+9T Run=5 Time=0.163156s
+Median=0.162623s
+
+--- 10 THREAD(S) ---
+10T Run=1 Time=0.162312s
+10T Run=2 Time=0.163107s
+10T Run=3 Time=0.161318s
+10T Run=4 Time=0.160729s
+10T Run=5 Time=0.160857s
+Median=0.161318s
+
+
+================================
+RESUMO
+================================
+Sequential: 0.415285s
+
+1 thread(s): 0.328171s | speedup=1.265x | efficiency=1.265
+2 thread(s): 0.199453s | speedup=2.082x | efficiency=1.041
+3 thread(s): 0.186643s | speedup=2.225x | efficiency=0.742
+4 thread(s): 0.182244s | speedup=2.279x | efficiency=0.570
+5 thread(s): 0.172680s | speedup=2.405x | efficiency=0.481
+6 thread(s): 0.172486s | speedup=2.408x | efficiency=0.401
+7 thread(s): 0.163942s | speedup=2.533x | efficiency=0.362
+8 thread(s): 0.166734s | speedup=2.491x | efficiency=0.311
+9 thread(s): 0.162623s | speedup=2.554x | efficiency=0.284
+10 thread(s): 0.161318s | speedup=2.574x | efficiency=0.257
+
+BEST: 10 threads
+BEST SPEEDUP: 2.574x
+
+CSV: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/jacobi-2d/experiment_results.csv

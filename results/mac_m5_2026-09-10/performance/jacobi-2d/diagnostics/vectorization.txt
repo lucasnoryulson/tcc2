@@ -1,0 +1,15 @@
+kernels/jacobi-2d/manual_openmp.c:33:5: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+   33 |     for (j = 0; j < n; j++)
+      |     ^
+kernels/jacobi-2d/manual_openmp.c:53:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+   53 |     for (j = 0; j < n; j++) {
+      |     ^
+kernels/jacobi-2d/manual_openmp.c:87:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+   87 |         for (j = 1; j < _PB_N - 1; j++)
+      |         ^
+kernels/jacobi-2d/manual_openmp.c:80:9: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+   80 |         for (j = 1; j < _PB_N - 1; j++)
+      |         ^
+benchmarks/PolyBenchC-4.2.1/utilities/polybench.c:119:1: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  119 | #pragma omp parallel for reduction(+:tmp) private(i)
+      | ^
