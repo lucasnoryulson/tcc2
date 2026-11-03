@@ -1,0 +1,48 @@
+{
+  "version": "0.2",
+  "source_log": "analysis/output/generated/diagnostics/nussinov_accumulator_auto_vectorization.txt",
+  "filter_mode": "function",
+  "function_filter": {
+    "name": "kernel_nussinov",
+    "source_ranges": [
+      {
+        "diagnostic_source": "analysis/output/generated/nussinov_accumulator_auto.c",
+        "resolved_source": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/output/generated/nussinov_accumulator_auto.c",
+        "start": 106,
+        "end": 227
+      }
+    ]
+  },
+  "line_filter": {
+    "start": null,
+    "end": null
+  },
+  "dominant_event": "VECTORIZATION_REJECTED_BY_COST_MODEL",
+  "event_counts": {
+    "VECTORIZATION_REJECTED_BY_COST_MODEL": 1,
+    "INTERLEAVING_APPLIED": 1
+  },
+  "candidate_strategy_queue": [
+    "EXPLICIT_SIMD_TRIAL"
+  ],
+  "events": [
+    {
+      "source": "analysis/output/generated/nussinov_accumulator_auto.c",
+      "line": 200,
+      "column": 17,
+      "event": "VECTORIZATION_REJECTED_BY_COST_MODEL",
+      "message": "the cost-model indicates that vectorization is not beneficial [-Rpass-analysis=loop-vectorize]",
+      "candidate_strategies": [
+        "EXPLICIT_SIMD_TRIAL"
+      ]
+    },
+    {
+      "source": "analysis/output/generated/nussinov_accumulator_auto.c",
+      "line": 200,
+      "column": 17,
+      "event": "INTERLEAVING_APPLIED",
+      "message": "interleaved loop (interleaved count: 2) [-Rpass=loop-vectorize]",
+      "candidate_strategies": []
+    }
+  ]
+}

@@ -29,11 +29,54 @@ def load_results(path):
             file
         )
 
+        fieldnames = set(
+            reader.fieldnames or []
+        )
+
+        # Support both the legacy experiment CSV schema
+        # and the current benchmark.py schema.
+        mode_column = (
+            "mode"
+            if "mode" in fieldnames
+            else "version"
+        )
+
+        speedup_column = (
+            "speedup"
+            if "speedup" in fieldnames
+            else "speedup_vs_sequential"
+        )
+
+        efficiency_column = (
+            "efficiency"
+            if "efficiency" in fieldnames
+            else "efficiency_vs_sequential"
+        )
+
+        required = {
+            mode_column,
+            "threads",
+            "median_seconds",
+            "mean_seconds",
+            speedup_column,
+            efficiency_column,
+        }
+
+        missing = required - fieldnames
+
+        if missing:
+            raise ValueError(
+                "CSV is missing required columns: "
+                + ", ".join(
+                    sorted(missing)
+                )
+            )
+
         for row in reader:
 
             rows.append({
                 "mode":
-                    row["mode"],
+                    row[mode_column],
 
                 "threads":
                     int(
@@ -56,12 +99,16 @@ def load_results(path):
 
                 "speedup":
                     float(
-                        row["speedup"]
+                        row[
+                            speedup_column
+                        ]
                     ),
 
                 "efficiency":
                     float(
-                        row["efficiency"]
+                        row[
+                            efficiency_column
+                        ]
                     ),
             })
 
@@ -116,15 +163,54 @@ def select_configuration(
         if result["threads"] >= 2
     ]
 
+    transformation_speedup = None
+
+    if one_thread is not None:
+        transformation_speedup = (
+            sequential["median_seconds"]
+            / one_thread["median_seconds"]
+        )
+
     transformation_benefit = (
-        one_thread is not None
-        and one_thread["speedup"] > MIN_SPEEDUP
+        transformation_speedup is not None
+        and transformation_speedup > MIN_SPEEDUP
     )
+
+    parallel_scaling_candidates = []
+
+    if one_thread is not None:
+
+        for result in parallel_configs:
+
+            candidate = dict(result)
+
+            parallel_scaling_speedup = (
+                one_thread["median_seconds"]
+                / result["median_seconds"]
+            )
+
+            candidate[
+                "parallel_scaling_speedup"
+            ] = parallel_scaling_speedup
+
+            candidate[
+                "parallel_scaling_efficiency"
+            ] = (
+                parallel_scaling_speedup
+                / result["threads"]
+            )
+
+            parallel_scaling_candidates.append(
+                candidate
+            )
 
     improving_parallel = [
         result
-        for result in parallel_configs
-        if result["speedup"] > MIN_SPEEDUP
+        for result in parallel_scaling_candidates
+        if (
+            result["parallel_scaling_speedup"]
+            > MIN_SPEEDUP
+        )
     ]
 
     parallel_benefit = bool(
@@ -245,6 +331,38 @@ def select_configuration(
     )
 
     # --------------------------------------------------------
+    # Scientifically separated performance metrics.
+    # --------------------------------------------------------
+
+    end_to_end_speedup = (
+        sequential["median_seconds"]
+        / recommended["median_seconds"]
+    )
+
+    runtime_reduction = (
+        1.0
+        - (
+            recommended["median_seconds"]
+            / sequential["median_seconds"]
+        )
+    )
+
+    parallel_scaling_speedup = None
+    parallel_scaling_efficiency = None
+
+    if one_thread is not None:
+
+        parallel_scaling_speedup = (
+            one_thread["median_seconds"]
+            / recommended["median_seconds"]
+        )
+
+        parallel_scaling_efficiency = (
+            parallel_scaling_speedup
+            / recommended["threads"]
+        )
+
+    # --------------------------------------------------------
     # True parallel scaling classification.
     # --------------------------------------------------------
 
@@ -272,7 +390,7 @@ def select_configuration(
                 "the resource-aware recommendation. "
                 "At least one configuration using "
                 "two or more threads outperformed "
-                "the sequential baseline."
+                "the transformed one-thread baseline."
             )
 
         else:
@@ -310,8 +428,9 @@ def select_configuration(
             "The candidate improves runtime only "
             "in its one-thread OpenMP configuration. "
             "No configuration using two or more "
-            "threads outperformed the sequential "
-            "baseline. The observed benefit cannot "
+            "threads outperformed the transformed "
+            "one-thread baseline. The observed "
+            "benefit cannot "
             "be classified as successful parallel "
             "scaling."
         )
@@ -340,6 +459,21 @@ def select_configuration(
 
         "parallel_benefit":
             parallel_benefit,
+
+        "transformation_speedup":
+            transformation_speedup,
+
+        "parallel_scaling_speedup":
+            parallel_scaling_speedup,
+
+        "parallel_scaling_efficiency":
+            parallel_scaling_efficiency,
+
+        "end_to_end_speedup":
+            end_to_end_speedup,
+
+        "runtime_reduction":
+            runtime_reduction,
 
         "raw_fastest":
             raw_best,
@@ -474,13 +608,36 @@ def print_result(
     )
 
     print(
-        f"  Speedup:    "
-        f"{recommended['speedup']:.3f}x"
+        f"  End-to-end speedup: "
+        f"{result['end_to_end_speedup']:.3f}x"
     )
 
+    print()
     print(
-        f"  Efficiency: "
-        f"{recommended['efficiency']:.3f}"
+        "Performance decomposition:"
+    )
+
+    if result["transformation_speedup"] is not None:
+        print(
+            f"  Transformation speedup:      "
+            f"{result['transformation_speedup']:.3f}x"
+        )
+
+    if result["parallel_scaling_speedup"] is not None:
+        print(
+            f"  Parallel scaling speedup:    "
+            f"{result['parallel_scaling_speedup']:.3f}x"
+        )
+
+    if result["parallel_scaling_efficiency"] is not None:
+        print(
+            f"  Parallel scaling efficiency: "
+            f"{result['parallel_scaling_efficiency'] * 100:.2f}%"
+        )
+
+    print(
+        f"  Runtime reduction:           "
+        f"{result['runtime_reduction'] * 100:.2f}%"
     )
 
     print()

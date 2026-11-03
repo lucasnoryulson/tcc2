@@ -756,29 +756,127 @@ def collect_array_writes(
     return results
 
 
+def contains_decl_reference(
+    node,
+    variable
+):
+    """
+    Return True when an AST subtree references
+    the requested scalar variable.
+    """
+
+    if not isinstance(
+        node,
+        dict
+    ):
+        return False
+
+    if node.get("kind") == "DeclRefExpr":
+
+        referenced = node.get(
+            "referencedDecl",
+            {}
+        )
+
+        if referenced.get("name") == variable:
+            return True
+
+    for child in node.get(
+        "inner",
+        []
+    ):
+
+        if contains_decl_reference(
+            child,
+            variable
+        ):
+            return True
+
+    return False
+
+
+def contains_ast_kind(
+    node,
+    expected_kind
+):
+    """
+    Search recursively for an AST node kind.
+    """
+
+    if not isinstance(
+        node,
+        dict
+    ):
+        return False
+
+    if node.get("kind") == expected_kind:
+        return True
+
+    return any(
+        contains_ast_kind(
+            child,
+            expected_kind
+        )
+        for child in node.get(
+            "inner",
+            []
+        )
+    )
+
+
+def contains_binary_opcode(
+    node,
+    expected_opcode
+):
+    """
+    Search recursively for a BinaryOperator
+    with the requested opcode.
+    """
+
+    if not isinstance(
+        node,
+        dict
+    ):
+        return False
+
+    if (
+        node.get("kind")
+        == "BinaryOperator"
+        and node.get("opcode")
+        == expected_opcode
+    ):
+        return True
+
+    return any(
+        contains_binary_opcode(
+            child,
+            expected_opcode
+        )
+        for child in node.get(
+            "inner",
+            []
+        )
+    )
+
+
 def collect_scalar_updates(
     node,
     source_code,
     results=None
 ):
     """
-    Detect compound assignments to scalar variables.
+    Detect scalar reduction-like updates.
 
-    Example:
+    Supported forms include:
 
-        sum += A[i] * B[i]
+        sum += value
 
-    becomes:
+    and conservative self-referential max
+    assignments such as:
 
-        {
-            "variable": "sum",
-            "operator": "+=",
-            "rhs": "A[i]*B[i]"
-        }
+        best = max_score(best, candidate)
 
-    Array updates such as C[i][j] += ...
-    are intentionally ignored here because they are
-    handled by the array READ/WRITE analysis.
+    Array updates are intentionally ignored.
     """
 
     if results is None:
@@ -792,6 +890,11 @@ def collect_scalar_updates(
     if kind == "ForStmt":
         return results
 
+    #
+    # Existing compound-assignment support:
+    #
+    #     sum += expression
+    #
     if kind == "CompoundAssignOperator":
 
         children = node.get(
@@ -849,7 +952,125 @@ def collect_scalar_updates(
                                 f"{operator} "
                                 f"{rhs_text}"
                             ),
+
+                        "update_kind":
+                            "compound_assignment",
                     })
+
+    #
+    # Adaptive max-reduction support:
+    #
+    #     best = max_score(best, candidate)
+    #
+    # Clang may expose max_score either directly
+    # or through the macro-expanded conditional
+    # expression. Therefore we use both source
+    # text and AST structure as evidence.
+    #
+    elif (
+        kind == "BinaryOperator"
+        and node.get("opcode") == "="
+    ):
+
+        children = node.get(
+            "inner",
+            []
+        )
+
+        if len(children) >= 2:
+
+            lhs = unwrap_expression(
+                children[0]
+            )
+
+            rhs = children[1]
+
+            if (
+                lhs
+                and lhs.get("kind")
+                == "DeclRefExpr"
+            ):
+
+                referenced = lhs.get(
+                    "referencedDecl",
+                    {}
+                )
+
+                variable = referenced.get(
+                    "name"
+                )
+
+                if variable:
+
+                    self_reference = (
+                        contains_decl_reference(
+                            rhs,
+                            variable
+                        )
+                    )
+
+                    rhs_text = expression_to_text(
+                        rhs,
+                        source_code
+                    )
+
+                    source_max = (
+                        "max_score"
+                        in rhs_text
+                    )
+
+                    ast_max = (
+                        contains_ast_kind(
+                            rhs,
+                            "ConditionalOperator"
+                        )
+                        and contains_binary_opcode(
+                            rhs,
+                            ">="
+                        )
+                    )
+
+                    if (
+                        self_reference
+                        and (
+                            source_max
+                            or ast_max
+                        )
+                    ):
+
+                        results.append({
+                            "variable":
+                                variable,
+
+                            "operator":
+                                "=",
+
+                            "rhs":
+                                rhs_text,
+
+                            "expression":
+                                (
+                                    f"{variable} = "
+                                    f"{rhs_text}"
+                                ),
+
+                            "update_kind":
+                                "reduction",
+
+                            "reduction_operator":
+                                "max",
+
+                            "self_reference":
+                                True,
+
+                            "evidence":
+                                (
+                                    "source_max_score"
+                                    if source_max
+                                    else
+                                    "ast_conditional_max"
+                                ),
+                        })
 
     for child in node.get(
         "inner",
@@ -863,6 +1084,8 @@ def collect_scalar_updates(
         )
 
     return results
+
+
 # ============================================================
 # OPERATORS
 # ============================================================
@@ -1351,7 +1574,9 @@ def analyze(
     )
 
     #
-    # Use kernel name instead of source filename.
+    # Preserve the canonical benchmark name when
+    # source stem == kernel name, while keeping
+    # derived source variants isolated.
     #
     if len(kernels) == 1:
 
@@ -1369,9 +1594,28 @@ def analyze(
                 ]
             )
 
-        output_name = (
-            f"{kernel_name}_analysis.json"
-        )
+        source_stem = source.stem
+
+        if source_stem == kernel_name:
+
+            output_name = (
+                f"{kernel_name}_analysis.json"
+            )
+
+        elif source_stem.startswith(
+            f"{kernel_name}_"
+        ):
+
+            output_name = (
+                f"{source_stem}_analysis.json"
+            )
+
+        else:
+
+            output_name = (
+                f"{kernel_name}_"
+                f"{source_stem}_analysis.json"
+            )
 
     else:
 

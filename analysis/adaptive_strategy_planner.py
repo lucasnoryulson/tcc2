@@ -1,0 +1,240 @@
+#!/usr/bin/env python3
+
+import argparse
+import json
+from pathlib import Path
+
+
+VERSION = "0.1"
+
+
+STRATEGY_ACTIONS = {
+    "SCALAR_ACCUMULATOR": {
+        "action": "APPLY_SCALAR_ACCUMULATOR",
+        "next_stage": "CODE_TRANSFORMER",
+    },
+
+    "LOOP_RESTRUCTURE": {
+        "action": "APPLY_LOOP_RESTRUCTURE",
+        "next_stage": "CODE_TRANSFORMER",
+    },
+
+    "EXPLICIT_SIMD_TRIAL": {
+        "action": "APPLY_EXPLICIT_SIMD_REDUCTION",
+        "next_stage": "CODE_TRANSFORMER",
+    },
+
+    "IF_CONVERSION": {
+        "action": "APPLY_IF_CONVERSION",
+        "next_stage": "CODE_TRANSFORMER",
+    },
+
+    "INLINE_OR_REWRITE_CALL": {
+        "action": "INLINE_OR_REWRITE_CALL",
+        "next_stage": "CODE_TRANSFORMER",
+    },
+}
+
+
+def get_target(feedback):
+    function_filter = feedback.get(
+        "function_filter"
+    )
+
+    function_name = None
+
+    if function_filter:
+        function_name = (
+            function_filter.get("name")
+        )
+
+    events = feedback.get(
+        "events",
+        [],
+    )
+
+    first_event = (
+        events[0]
+        if events
+        else {}
+    )
+
+    return {
+        "function": function_name,
+        "source":
+            first_event.get("source"),
+        "line":
+            first_event.get("line"),
+    }
+
+
+def build_plan(feedback):
+    event = feedback.get(
+        "dominant_event"
+    )
+
+    queue = list(
+        feedback.get(
+            "candidate_strategy_queue",
+            [],
+        )
+    )
+
+    target = get_target(
+        feedback
+    )
+
+    # Important:
+    # Successful vectorization does NOT mean
+    # the candidate should be promoted.
+    # It must still pass correctness/performance.
+    if event == "VECTORIZATION_APPLIED":
+        return {
+            "version": VERSION,
+            "status": "PLANNED",
+            "input_event": event,
+            "target": target,
+            "selected_strategy": None,
+            "fallback_strategies": [],
+            "action":
+                "MEASURE_EXISTING_CANDIDATE",
+            "next_stage":
+                "CORRECTNESS_AND_PERFORMANCE",
+            "requires_correctness_gate": True,
+            "requires_performance_gate": True,
+            "reason": (
+                "Vectorization was applied. "
+                "Compiler success alone is not "
+                "evidence of performance benefit; "
+                "the candidate must be validated "
+                "and benchmarked."
+            ),
+        }
+
+    if not queue:
+        return {
+            "version": VERSION,
+            "status": "NO_SUPPORTED_STRATEGY",
+            "input_event": event,
+            "target": target,
+            "selected_strategy": None,
+            "fallback_strategies": [],
+            "action":
+                "REQUEST_HIGHER_LEVEL_REPLANNING",
+            "next_stage":
+                "COORDINATOR",
+            "requires_correctness_gate": False,
+            "requires_performance_gate": False,
+            "reason": (
+                "Compiler feedback did not produce "
+                "a supported deterministic strategy."
+            ),
+        }
+
+    selected = queue[0]
+
+    mapping = STRATEGY_ACTIONS.get(
+        selected
+    )
+
+    if mapping is None:
+        return {
+            "version": VERSION,
+            "status": "UNSUPPORTED_STRATEGY",
+            "input_event": event,
+            "target": target,
+            "selected_strategy": selected,
+            "fallback_strategies":
+                queue[1:],
+            "action":
+                "REQUEST_HIGHER_LEVEL_REPLANNING",
+            "next_stage":
+                "COORDINATOR",
+            "requires_correctness_gate": False,
+            "requires_performance_gate": False,
+            "reason": (
+                f"Strategy '{selected}' is known "
+                "to the feedback analyzer but has "
+                "no executable mapping yet."
+            ),
+        }
+
+    return {
+        "version": VERSION,
+        "status": "PLANNED",
+        "input_event": event,
+        "target": target,
+        "selected_strategy": selected,
+        "fallback_strategies":
+            queue[1:],
+        "action":
+            mapping["action"],
+        "next_stage":
+            mapping["next_stage"],
+        "requires_correctness_gate": True,
+        "requires_performance_gate": True,
+        "reason": (
+            f"Compiler event '{event}' produced "
+            f"strategy '{selected}', selected as "
+            "the highest-priority deterministic "
+            "refinement."
+        ),
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description=(
+            "Convert structured compiler feedback "
+            "into the next adaptive optimization "
+            "action."
+        )
+    )
+
+    parser.add_argument(
+        "feedback",
+        help=(
+            "JSON generated by "
+            "compiler_feedback_analyzer.py"
+        ),
+    )
+
+    parser.add_argument(
+        "--output",
+        default=None,
+    )
+
+    args = parser.parse_args()
+
+    feedback = json.loads(
+        Path(args.feedback).read_text()
+    )
+
+    plan = build_plan(
+        feedback
+    )
+
+    rendered = json.dumps(
+        plan,
+        indent=2,
+    )
+
+    print(rendered)
+
+    if args.output:
+        output = Path(
+            args.output
+        )
+
+        output.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+        output.write_text(
+            rendered + "\n"
+        )
+
+
+if __name__ == "__main__":
+    main()

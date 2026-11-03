@@ -1,0 +1,23 @@
+{
+  "version": "0.1",
+  "source_log": "results/mac_m5_2026-09-10/performance/nussinov/diagnostics/simd_vectorization.txt",
+  "line_filter": {
+    "start": 180,
+    "end": 230
+  },
+  "dominant_event": "VECTORIZATION_APPLIED",
+  "event_counts": {
+    "VECTORIZATION_APPLIED": 1
+  },
+  "candidate_strategy_queue": [],
+  "events": [
+    {
+      "source": "kernels/nussinov/simd_openmp.c",
+      "line": 200,
+      "column": 1,
+      "event": "VECTORIZATION_APPLIED",
+      "message": "vectorized loop (vectorization width: 4, interleaved count: 4) [-Rpass=loop-vectorize]",
+      "candidate_strategies": []
+    }
+  ]
+}

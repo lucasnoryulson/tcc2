@@ -1,0 +1,17 @@
+{
+  "version": "0.1",
+  "status": "PLANNED",
+  "input_event": "VECTORIZATION_REJECTED_BY_COST_MODEL",
+  "target": {
+    "function": "kernel_nussinov",
+    "source": "analysis/output/generated/nussinov_accumulator_auto.c",
+    "line": 200
+  },
+  "selected_strategy": "EXPLICIT_SIMD_TRIAL",
+  "fallback_strategies": [],
+  "action": "APPLY_EXPLICIT_SIMD_REDUCTION",
+  "next_stage": "CODE_TRANSFORMER",
+  "requires_correctness_gate": true,
+  "requires_performance_gate": true,
+  "reason": "Compiler event 'VECTORIZATION_REJECTED_BY_COST_MODEL' produced strategy 'EXPLICIT_SIMD_TRIAL', selected as the highest-priority deterministic refinement."
+}

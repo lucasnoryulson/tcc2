@@ -1,0 +1,190 @@
+{
+  "version": "0.2",
+  "source": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/kernels/nussinov/manual_openmp.c",
+  "kernels": [
+    {
+      "name": "kernel_nussinov",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 125,
+          "end_line": 218,
+          "iterator": "d",
+          "initialization": "d = 1",
+          "condition": "d < _PB_N",
+          "increment": "d++",
+          "reads": [],
+          "writes": [],
+          "operators": [],
+          "scalar_updates": []
+        },
+        {
+          "id": 2,
+          "nesting_depth": 1,
+          "start_line": 128,
+          "end_line": 206,
+          "iterator": "i",
+          "initialization": "i = 0",
+          "condition": "i < _PB_N - d",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "table",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "table[i][j]"
+            },
+            {
+              "array": "table",
+              "indices": [
+                "i",
+                "j-1"
+              ],
+              "expression": "table[i][j-1]"
+            },
+            {
+              "array": "table",
+              "indices": [
+                "i+1",
+                "j"
+              ],
+              "expression": "table[i+1][j]"
+            },
+            {
+              "array": "table",
+              "indices": [
+                "i+1",
+                "j-1"
+              ],
+              "expression": "table[i+1][j-1]"
+            },
+            {
+              "array": "seq",
+              "indices": [
+                "i"
+              ],
+              "expression": "seq[i]"
+            },
+            {
+              "array": "seq",
+              "indices": [
+                "j"
+              ],
+              "expression": "seq[j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "table",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "table[i][j]"
+            }
+          ],
+          "operators": [
+            "=",
+            "+",
+            ">=",
+            "-",
+            "=",
+            ">=",
+            "-",
+            "-",
+            "<",
+            "+",
+            "=",
+            ">=",
+            "+",
+            "+",
+            "&&",
+            ">=",
+            "-",
+            "<",
+            "+",
+            "<",
+            "-",
+            "=",
+            ">=",
+            "+",
+            "+",
+            "-",
+            "==",
+            "+",
+            "+",
+            "+",
+            "-",
+            "==",
+            "+",
+            "=",
+            ">=",
+            "+",
+            "-",
+            "+",
+            "-"
+          ],
+          "scalar_updates": []
+        },
+        {
+          "id": 3,
+          "nesting_depth": 2,
+          "start_line": 197,
+          "end_line": 205,
+          "iterator": "k",
+          "initialization": "k = i + 1",
+          "condition": "k < j",
+          "increment": "k++",
+          "reads": [
+            {
+              "array": "table",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "table[i][j]"
+            },
+            {
+              "array": "table",
+              "indices": [
+                "i",
+                "k"
+              ],
+              "expression": "table[i][k]"
+            },
+            {
+              "array": "table",
+              "indices": [
+                "k+1",
+                "j"
+              ],
+              "expression": "table[k+1][j]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "table",
+              "indices": [
+                "i",
+                "j"
+              ],
+              "expression": "table[i][j]"
+            }
+          ],
+          "operators": [
+            "=",
+            ">=",
+            "+",
+            "+",
+            "+",
+            "+"
+          ],
+          "scalar_updates": []
+        }
+      ]
+    }
+  ]
+}

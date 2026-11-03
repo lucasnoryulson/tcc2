@@ -1,0 +1,19 @@
+{
+  "version": "0.1",
+  "status": "PLANNED",
+  "input_event": "VECTORIZATION_BLOCKED_MEMORY_DEPENDENCE",
+  "target": {
+    "function": "kernel_nussinov",
+    "source": "kernels/nussinov/manual_openmp.c",
+    "line": 199
+  },
+  "selected_strategy": "SCALAR_ACCUMULATOR",
+  "fallback_strategies": [
+    "LOOP_RESTRUCTURE"
+  ],
+  "action": "APPLY_SCALAR_ACCUMULATOR",
+  "next_stage": "CODE_TRANSFORMER",
+  "requires_correctness_gate": true,
+  "requires_performance_gate": true,
+  "reason": "Compiler event 'VECTORIZATION_BLOCKED_MEMORY_DEPENDENCE' produced strategy 'SCALAR_ACCUMULATOR', selected as the highest-priority deterministic refinement."
+}

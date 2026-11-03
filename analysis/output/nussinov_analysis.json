@@ -1,6 +1,6 @@
 {
   "version": "0.2",
-  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c",
+  "source": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/output/generated/nussinov_accumulator_auto.c",
   "kernels": [
     {
       "name": "kernel_nussinov",
@@ -8,12 +8,12 @@
         {
           "id": 1,
           "nesting_depth": 0,
-          "start_line": 86,
-          "end_line": 106,
-          "iterator": "i",
-          "initialization": "i = _PB_N-1",
-          "condition": "i >= 0",
-          "increment": "i--",
+          "start_line": 125,
+          "end_line": 223,
+          "iterator": "d",
+          "initialization": "d = 1",
+          "condition": "d < _PB_N",
+          "increment": "d++",
           "reads": [],
           "writes": [],
           "operators": [],
@@ -22,12 +22,12 @@
         {
           "id": 2,
           "nesting_depth": 1,
-          "start_line": 87,
-          "end_line": 105,
-          "iterator": "j",
-          "initialization": "j=i+1",
-          "condition": "j<_PB_N",
-          "increment": "j++",
+          "start_line": 128,
+          "end_line": 211,
+          "iterator": "i",
+          "initialization": "i = 0",
+          "condition": "i < _PB_N - d",
+          "increment": "i++",
           "reads": [
             {
               "array": "table",
@@ -87,6 +87,8 @@
             }
           ],
           "operators": [
+            "=",
+            "+",
             ">=",
             "-",
             "=",
@@ -123,28 +125,21 @@
             "+",
             "-",
             "+",
-            "-"
+            "-",
+            "="
           ],
           "scalar_updates": []
         },
         {
           "id": 3,
           "nesting_depth": 2,
-          "start_line": 102,
-          "end_line": 104,
+          "start_line": 200,
+          "end_line": 208,
           "iterator": "k",
-          "initialization": "k=i+1",
-          "condition": "k<j",
+          "initialization": "k = i + 1",
+          "condition": "k < j",
           "increment": "k++",
           "reads": [
-            {
-              "array": "table",
-              "indices": [
-                "i",
-                "j"
-              ],
-              "expression": "table[i][j]"
-            },
             {
               "array": "table",
               "indices": [
@@ -162,23 +157,12 @@
               "expression": "table[k+1][j]"
             }
           ],
-          "writes": [
-            {
-              "array": "table",
-              "indices": [
-                "i",
-                "j"
-              ],
-              "expression": "table[i][j]"
-            }
-          ],
+          "writes": [],
           "operators": [
+            "+",
+            "+",
             "=",
-            ">=",
-            "+",
-            "+",
-            "+",
-            "+"
+            ">="
           ],
           "scalar_updates": []
         }

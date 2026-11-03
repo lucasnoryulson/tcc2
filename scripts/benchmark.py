@@ -197,6 +197,36 @@ BENCHMARKS = {
 
     "validation": "exact",
 },
+
+  "nussinov-auto": {
+    "type": "polybench",
+
+    "original":
+        POLYBENCH_ROOT
+        / "medley"
+        / "nussinov"
+        / "nussinov.c",
+
+    "candidate":
+        PROJECT_ROOT
+        / "analysis"
+        / "output"
+        / "generated"
+        / "nussinov_simd_auto.c",
+
+    "include_dir":
+        POLYBENCH_ROOT
+        / "medley"
+        / "nussinov",
+
+    "reference":
+        PROJECT_ROOT
+        / "results"
+        / "nussinov-auto"
+        / "reference_output.txt",
+
+    "validation": "exact",
+},
 }
 
 

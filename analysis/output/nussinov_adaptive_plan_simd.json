@@ -1,0 +1,17 @@
+{
+  "version": "0.1",
+  "status": "PLANNED",
+  "input_event": "VECTORIZATION_APPLIED",
+  "target": {
+    "function": "kernel_nussinov",
+    "source": "kernels/nussinov/simd_openmp.c",
+    "line": 200
+  },
+  "selected_strategy": null,
+  "fallback_strategies": [],
+  "action": "MEASURE_EXISTING_CANDIDATE",
+  "next_stage": "CORRECTNESS_AND_PERFORMANCE",
+  "requires_correctness_gate": true,
+  "requires_performance_gate": true,
+  "reason": "Vectorization was applied. Compiler success alone is not evidence of performance benefit; the candidate must be validated and benchmarked."
+}
