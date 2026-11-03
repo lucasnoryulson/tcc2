@@ -17,12 +17,13 @@ from agents import coordinator_agent
 from analysis.artifact_provenance import file_record, load_correctness_report, sha256
 from scripts import promote_candidate as executor
 from scripts import test_gate_contracts as fixtures
+from scripts.test_toolchain import find_openmp_compiler
 
 
 class CandidatePromotion(unittest.TestCase):
     def setUp(self):
-        if shutil.which("gcc") is None:
-            self.skipTest("GCC/OpenMP is required for promotion revalidation.")
+        if find_openmp_compiler() is None:
+            self.skipTest("An OpenMP compiler is required for promotion revalidation.")
         self.fixture = fixtures.GateContracts()
         self.fixture.setUp()
         self.addCleanup(self.fixture.doCleanups)

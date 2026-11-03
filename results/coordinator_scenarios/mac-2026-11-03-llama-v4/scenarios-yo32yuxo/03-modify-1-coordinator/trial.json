@@ -1,0 +1,47 @@
+{
+  "scenario": "modify",
+  "mode": "coordinator",
+  "expected_decision": "MODIFY",
+  "expected_actions": [
+    "SEND_TO_DEBUGGER"
+  ],
+  "prompt_sha256": "ad89a0bfee3dbd9e1abe8c74ac4f510f2dd6ca496340ed274d398440c3774e0c",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Correctness failed due to output mismatch, and the deterministic evidence indicates that the failure requires debugging.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "HIGH",
+    "evidence_used": [
+      "validation.correctness_gate",
+      "validation.failure_kind",
+      "deterministic_evidence.assessment"
+    ]
+  },
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Correctness failed due to output mismatch, and the deterministic evidence indicates that the failure requires debugging.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "HIGH",
+    "evidence_used": [
+      "validation.correctness_gate",
+      "validation.failure_kind",
+      "deterministic_evidence.assessment"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 5026692209,
+    "load_duration": 696459,
+    "prompt_eval_count": 1735,
+    "eval_count": 101,
+    "done_reason": "stop"
+  },
+  "oracle_match": false,
+  "wall_seconds": 5.028605041967239
+}

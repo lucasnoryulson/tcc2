@@ -1,0 +1,48 @@
+{
+  "scenario": "retune",
+  "mode": "coordinator",
+  "expected_decision": "RETUNE",
+  "expected_actions": [
+    "RETUNE_CONFIGURATION",
+    "RUN_MORE_BENCHMARKS"
+  ],
+  "prompt_sha256": "b0b85c5f91ca0aff8b906ef4ddcd07a63540167fd7a6c39a316ff67ca51fe073",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 1,
+    "recommended_configuration": {
+      "threads": 1
+    },
+    "reason": "Correctness is mandatory and passed, and the deterministic evidence indicates that the transformation appears valid, but no configuration above one thread was measured. The dedicated benchmark shows a meaningful speedup with one thread, and there is no strong evidence against it.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "deterministic_evidence",
+      "performance"
+    ]
+  },
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 1,
+    "recommended_configuration": null,
+    "reason": "Correctness is mandatory and passed, and the deterministic evidence indicates that the transformation appears valid, but no configuration above one thread was measured. The dedicated benchmark shows a meaningful speedup with one thread, and there is no strong evidence against it.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "deterministic_evidence",
+      "performance"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 5903518500,
+    "load_duration": 740417,
+    "prompt_eval_count": 1608,
+    "eval_count": 129,
+    "done_reason": "stop"
+  },
+  "oracle_match": false,
+  "wall_seconds": 5.9052422500099055
+}

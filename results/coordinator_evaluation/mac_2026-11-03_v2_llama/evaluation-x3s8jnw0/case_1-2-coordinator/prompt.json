@@ -1,0 +1,140 @@
+{
+  "system": "You are the Coordinator Agent in a research system for\nautomatic OpenMP parallelization.\n\nYou do NOT generate code in this step.\n\nYour responsibility is to decide what should happen to\nthe current generated parallel candidate using only the\nevidence supplied to you.\n\nYou must obey these rules:\n\n1. Correctness is mandatory.\n   If correctness validation did not PASS, never ACCEPT.\n\n2. Measured evidence is more important than speculation.\n\n3. Never contradict dependency constraints reported by\n   the deterministic analysis.\n\n4. If a candidate is correct and provides a meaningful\n   measured speedup, ACCEPT is allowed.\n\n5. When several thread configurations have practically\n   equivalent performance, prefer the deterministic\n   resource-aware recommendation unless there is strong\n   evidence against it.\n\n6. RETUNE means:\n   the transformation itself appears valid, but further\n   performance configuration should be explored.\n\n7. MODIFY means:\n   the code transformation should be changed by the\n   Coder Agent.\n\n8. REJECT means:\n   the candidate is unsafe, incorrect, or provides no\n   useful path forward.\n\n9. Do not invent benchmark results.\n\n10. Treat the dedicated benchmark results in the\n    performance section as the primary evidence for\n    runtime speedup and thread selection.\n\n11. Treat hardware profiling as complementary\n    microarchitectural evidence. Profiling may help\n    explain IPC, cache, branch, or overhead behavior,\n    but it must not replace the dedicated benchmark\n    speedup used for the main performance decision.\n\n12. A profiling regression by itself does not require\n    rejection when the candidate is correct and the\n    dedicated benchmark shows a meaningful speedup.\n\n13. If profiling suggests substantial overhead or poor\n    hardware behavior, you may mention it as a reason\n    for RETUNE or additional investigation, especially\n    when the benchmark speedup is marginal.\n\n14. When discussing hardware profiling, explicitly\n    distinguish sequential measurements, OpenMP\n    measurements, and comparison/delta measurements.\n    Never describe a sequential metric as if it were\n    the OpenMP candidate metric.\n\n15. Prefer the profiling comparison fields when\n    interpreting whether IPC, cache miss rate, or\n    branch miss rate improved or regressed. A positive\n    cache-miss-rate or branch-miss-rate change means\n    the rate increased; a negative IPC change means\n    IPC decreased.\n\n16. Do not claim that profiling shows no overhead when\n    the supplied comparison metrics show substantial\n    regressions. Report such regressions accurately,\n    even if the final decision remains ACCEPT because\n    the dedicated benchmark shows useful speedup.\n\n17. The near-tie threshold applies only when comparing\n    measured candidate configurations with one another.\n    Do not describe an absolute speedup value as being\n    within the near-tie threshold.\n\n18. recommended_threads must come from measured\n    configurations in the supplied context.\n\n18a. If performance.selection.configuration_dimensions\n    contains more than one dimension and a recommended\n    configuration exists, return recommended_configuration\n    with the exact measured values. For the current\n    multidimensional autotuning schema, preserve both\n    threads and block_size. Do not invent or combine\n    parameter values from different configurations.\n\n18b. recommended_configuration.threads must agree with\n    recommended_threads. For a one-dimensional thread-only\n    selection, recommended_configuration may be omitted or\n    null.\n\n19. If deterministic_evidence is present, treat it as\n    the authoritative semantic interpretation of the\n    measured data. Do not contradict its derived facts,\n    near-tie meaning, or metric assessments.\n\n20. When deterministic_evidence is available, prefer\n    citing its derived facts and assessments instead of\n    independently reinterpreting raw numeric fields.\n\n21. If raw profiling or performance values appear to\n    conflict with deterministic_evidence, follow the\n    deterministic evidence and do not invent a new\n    interpretation.\n\n22. Distinguish transformation_benefit from\n    parallel_benefit. A speedup obtained only with one\n    OpenMP thread is not evidence of successful parallel\n    scaling.\n\n23. If parallel_status is PARALLEL_SCALING_FAILURE,\n    explicitly consider that evidence when deciding\n    whether the current parallel strategy should be\n    accepted, retuned, modified, or rejected.\n\n24. If profiling is empty or unavailable, do not claim\n    that profiling showed good behavior, low overhead,\n    or absence of regressions.\n\n25. Keep decision and next_action semantically\n    consistent:\n    ACCEPT -> PROMOTE_CANDIDATE.\n    RETUNE -> RETUNE_CONFIGURATION or\n    RUN_MORE_BENCHMARKS.\n    MODIFY -> SEND_TO_CODER when the implementation or\n    parallel strategy must change.\n    REJECT -> REJECT_CANDIDATE.\n\n25a. Only ACCEPT carries an operational configuration.\n    For RETUNE, MODIFY, and REJECT, return both\n    recommended_threads and recommended_configuration\n    as null. In particular, REJECT must use exactly\n    REJECT_CANDIDATE and null configuration fields.\n\n26. SEND_TO_DEBUGGER is reserved for compilation,\n    correctness, or validation failures that require\n    repair. Do not send a correct candidate to the\n    Debugger merely because its performance is poor.\n\n27. When correctness passes but the current parallel\n    strategy fails to scale, distinguish between an\n    irrecoverable candidate and a strategy that can be\n    modified or retuned. Do not reject a candidate solely\n    because its first parallel strategy performs poorly\n    when the supplied evidence indicates that the\n    strategy should be modified.\n\n22. Keep the reason concise and evidence-based.\n\n23. Return only an object matching the required JSON\n    schema.",
+  "user": "Evaluate the following automatic OpenMP parallelization candidate.\n\nRESEARCH CONTEXT:\n{\n  \"task\": \"Evaluate the automatically generated parallel candidate and decide the next optimization action.\",\n  \"sequential_code\": \"double kernel_dot(\\n    int n,\\n    const double *A,\\n    const double *B\\n)\\n{\\n    double sum = 0.0;\\n\\n    for (int i = 0; i < n; i++)\\n    {\\n        sum += A[i] * B[i];\\n    }\\n\\n    return sum;\\n}\\n\",\n  \"candidate_code\": \"double kernel_dot(\\n    int n,\\n    const double *A,\\n    const double *B\\n)\\n{\\n    double sum = 0.0;\\n\\n    /* TCC2 AUTO-GENERATED: REDUCTION */\\n    #pragma omp parallel for reduction(+:sum) schedule(static)\\n    for (int i = 0; i < n; i++)\\n    {\\n        sum += A[i] * B[i];\\n    }\\n\\n    return sum;\\n}\\n\",\n  \"pattern\": {\n    \"classification\": \"REDUCTION_CANDIDATE\",\n    \"family\": \"REDUCE / AGGREGATION\",\n    \"confidence\": \"medium\",\n    \"reason\": \"At least one loop contains a reduction update.\",\n    \"loops\": [\n      {\n        \"classification\": \"REDUCTION_CANDIDATE\",\n        \"family\": \"REDUCE / AGGREGATION\",\n        \"confidence\": \"medium\",\n        \"reason\": \"A scalar variable is updated with a reduction-compatible compound operator inside the loop.\",\n        \"evidence\": {\n          \"reduction_type\": \"scalar\",\n          \"scalar_updates\": [\n            {\n              \"variable\": \"sum\",\n              \"operator\": \"+=\",\n              \"rhs\": \"A[i]*B[i]\",\n              \"expression\": \"sum += A[i]*B[i]\",\n              \"update_kind\": \"compound_assignment\"\n            }\n          ]\n        },\n        \"loop_id\": 1,\n        \"iterator\": \"i\"\n      }\n    ]\n  },\n  \"strategy\": {\n    \"detected_pattern\": \"REDUCTION_CANDIDATE\",\n    \"family\": \"REDUCE / AGGREGATION\",\n    \"classification_confidence\": \"medium\",\n    \"plan\": {\n      \"strategy\": \"REDUCTION\",\n      \"reductions\": [\n        {\n          \"loop_id\": 1,\n          \"iterator\": \"i\",\n          \"reduction_type\": \"scalar\",\n          \"variable\": \"sum\",\n          \"operator\": \"+\",\n          \"openmp_construct\": \"parallel for\",\n          \"openmp_clause\": \"reduction(+:sum)\",\n          \"schedule\": \"static\",\n          \"direct_code_transformation\": true\n        }\n      ]\n    }\n  },\n  \"dependence_analysis\": {\n    \"kernel\": {\n      \"name\": \"kernel_dot\",\n      \"loops\": [\n        {\n          \"id\": 1,\n          \"iterator\": \"i\",\n          \"dependencies\": []\n        }\n      ]\n    }\n  },\n  \"validation\": {\n    \"correctness_gate\": \"PASS\",\n    \"correctness_report_file\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness.json\",\n    \"correctness_report_sha256\": \"60631c879d68a2cb0245e029cfbdba0d2a07d0a212924ff5c5a62e51716d6b59\",\n    \"correctness_report\": {\n      \"schema\": \"tcc2-correctness-gate\",\n      \"version\": \"0.2\",\n      \"status\": \"PASS\",\n      \"inputs\": {\n        \"sequential\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c\",\n        \"candidate\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c\",\n        \"driver\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_driver.c\"\n      },\n      \"compiler\": \"/opt/homebrew/opt/llvm/bin/clang\",\n      \"threads\": [\n        1,\n        2,\n        4\n      ],\n      \"validated_threads\": [\n        1,\n        2,\n        4\n      ],\n      \"tolerances\": {\n        \"relative\": 1e-09,\n        \"absolute\": 1e-12\n      },\n      \"provenance\": {\n        \"campaign_id\": \"df8d662d2f4e416f932a6779797ea70a\",\n        \"run_id\": \"43b1ce40a4dc405c84fe0b2a678dbabd\",\n        \"run_dir\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd\",\n        \"candidate_id\": \"sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b\",\n        \"recorded_at\": \"2026-11-03T20:12:43.291079+00:00\",\n        \"platform\": \"macOS-26.6.2-arm64-arm-64bit-Mach-O\",\n        \"cpu_count\": 10,\n        \"runtime_environment\": {},\n        \"inputs\": {\n          \"sequential\": {\n            \"path\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c\",\n            \"sha256\": \"2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb\",\n            \"snapshot\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/sequential/dot_product.c\"\n          },\n          \"candidate\": {\n            \"path\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c\",\n            \"sha256\": \"5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b\",\n            \"snapshot\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/candidate/candidate.c\"\n          },\n          \"driver\": {\n            \"path\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_driver.c\",\n            \"sha256\": \"fe30a4bcb70e195a67b0b2c8704f953055cc5df501a69ac5e34022df2719a237\",\n            \"snapshot\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/driver/dot_driver.c\"\n          }\n        },\n        \"toolchain\": {\n          \"path\": \"/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23\",\n          \"sha256\": \"570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888\",\n          \"version\": \"Homebrew clang version 23.1.1\\nTarget: arm64-apple-darwin25.6.0\\nThread model: posix\\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg\"\n        },\n        \"compile_flags\": {\n          \"sequential\": [\n            \"-O3\"\n          ],\n          \"candidate\": [\n            \"-O3\",\n            \"-fopenmp\"\n          ]\n        },\n        \"link_flags\": [\n          \"-lm\"\n        ],\n        \"openmp_environment\": {\n          \"OMP_DYNAMIC\": \"FALSE\",\n          \"OMP_PROC_BIND\": \"TRUE\",\n          \"OMP_PLACES\": \"cores\"\n        }\n      },\n      \"compilation\": {\n        \"sequential\": {\n          \"command\": [\n            \"/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23\",\n            \"-O3\",\n            \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/driver/dot_driver.c\",\n            \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/sequential/dot_product.c\",\n            \"-lm\",\n            \"-o\",\n            \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/dot_gate_sequential\"\n          ],\n          \"returncode\": 0,\n          \"stdout\": \"\",\n          \"stderr\": \"\"\n        },\n        \"candidate\": {\n          \"command\": [\n            \"/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23\",\n            \"-O3\",\n            \"-fopenmp\",\n            \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/driver/dot_driver.c\",\n            \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/candidate/candidate.c\",\n            \"-lm\",\n            \"-o\",\n            \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/dot_gate_candidate\"\n          ],\n          \"returncode\": 0,\n          \"stdout\": \"\",\n          \"stderr\": \"\"\n        }\n      },\n      \"binaries\": {\n        \"sequential\": {\n          \"path\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/dot_gate_sequential\",\n          \"sha256\": \"03fb2722ccc8e005c0354972ae763d00f90a6b71a94fe2376158319ea52e6a76\"\n        },\n        \"candidate\": {\n          \"path\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/dot_gate_candidate\",\n          \"sha256\": \"32a71b0cef9fbaae7740be7d865718bc46b2632d89393d847d6738c7963005cd\"\n        }\n      },\n      \"execution\": {\n        \"sequential\": {\n          \"returncode\": 0,\n          \"stdout\": \"261762.4999999812\",\n          \"stderr\": \"\"\n        },\n        \"candidate\": {\n          \"returncode\": 0,\n          \"stdout\": \"261762.49999999182\",\n          \"stderr\": \"\"\n        }\n      },\n      \"thread_results\": [\n        {\n          \"threads\": 1,\n          \"execution\": {\n            \"returncode\": 0,\n            \"stdout\": \"261762.4999999812\",\n            \"stderr\": \"\"\n          },\n          \"validation\": {\n            \"reference\": 261762.4999999812,\n            \"candidate\": 261762.4999999812,\n            \"absolute_error\": 0.0,\n            \"relative_error\": 0.0,\n            \"correct\": true\n          }\n        },\n        {\n          \"threads\": 2,\n          \"execution\": {\n            \"returncode\": 0,\n            \"stdout\": \"261762.49999998021\",\n            \"stderr\": \"\"\n          },\n          \"validation\": {\n            \"reference\": 261762.4999999812,\n            \"candidate\": 261762.4999999802,\n            \"absolute_error\": 9.89530235528946e-10,\n            \"relative_error\": 3.780259722187162e-15,\n            \"correct\": true\n          }\n        },\n        {\n          \"threads\": 4,\n          \"execution\": {\n            \"returncode\": 0,\n            \"stdout\": \"261762.49999999182\",\n            \"stderr\": \"\"\n          },\n          \"validation\": {\n            \"reference\": 261762.4999999812,\n            \"candidate\": 261762.49999999182,\n            \"absolute_error\": 1.0622898116707802e-08,\n            \"relative_error\": 4.0582199958773944e-14,\n            \"correct\": true\n          }\n        }\n      ],\n      \"validation\": {\n        \"reference\": 261762.4999999812,\n        \"candidate\": 261762.49999999182,\n        \"absolute_error\": 1.0622898116707802e-08,\n        \"relative_error\": 4.0582199958773944e-14,\n        \"correct\": true\n      }\n    }\n  },\n  \"performance\": {\n    \"report\": {\n      \"path\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.json\",\n      \"sha256\": \"505eae4da3410008d6ed6de85c06b787aa29f470d82ee3a0e30d744d9c51a0e7\"\n    },\n    \"selection_file\": {\n      \"path\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/selection.json\",\n      \"sha256\": \"cfea44f760665da07addf8eeef1f40b92b7b715dc0cb93f113304a59db556cde\"\n    },\n    \"selection\": {\n      \"status\": \"SELECTED\",\n      \"decision\": \"FASTEST_CONFIGURATION\",\n      \"parallel_status\": \"PARALLEL_SUCCESS\",\n      \"sequential\": {\n        \"mode\": \"sequential\",\n        \"threads\": 1,\n        \"median_seconds\": 0.00722003,\n        \"mean_seconds\": 0.006794366,\n        \"speedup\": 1.0,\n        \"efficiency\": 1.0\n      },\n      \"one_thread\": {\n        \"mode\": \"openmp\",\n        \"threads\": 1,\n        \"median_seconds\": 0.00721977,\n        \"mean_seconds\": 0.006982898,\n        \"speedup\": 1.0000360122275362,\n        \"efficiency\": 1.0000360122275362\n      },\n      \"best_parallel\": {\n        \"mode\": \"openmp\",\n        \"threads\": 4,\n        \"median_seconds\": 0.00431633,\n        \"mean_seconds\": 0.004195492,\n        \"speedup\": 1.6727242819710262,\n        \"efficiency\": 0.41818107049275655\n      },\n      \"transformation_benefit\": true,\n      \"parallel_benefit\": true,\n      \"transformation_speedup\": 1.0000360122275362,\n      \"parallel_scaling_speedup\": 1.672664045612824,\n      \"parallel_scaling_efficiency\": 0.418166011403206,\n      \"end_to_end_speedup\": 1.6727242819710262,\n      \"runtime_reduction\": 0.40217284415715715,\n      \"raw_fastest\": {\n        \"mode\": \"openmp\",\n        \"threads\": 4,\n        \"median_seconds\": 0.00431633,\n        \"mean_seconds\": 0.004195492,\n        \"speedup\": 1.6727242819710262,\n        \"efficiency\": 0.41818107049275655\n      },\n      \"near_tie_threshold\": 0.02,\n      \"near_tie_candidates\": [\n        {\n          \"mode\": \"openmp\",\n          \"threads\": 4,\n          \"median_seconds\": 0.00431633,\n          \"mean_seconds\": 0.004195492,\n          \"speedup\": 1.6727242819710262,\n          \"efficiency\": 0.41818107049275655,\n          \"slowdown_vs_fastest\": 0.0\n        }\n      ],\n      \"recommended\": {\n        \"mode\": \"openmp\",\n        \"threads\": 4,\n        \"median_seconds\": 0.00431633,\n        \"mean_seconds\": 0.004195492,\n        \"speedup\": 1.6727242819710262,\n        \"efficiency\": 0.41818107049275655,\n        \"slowdown_vs_fastest\": 0.0\n      },\n      \"next_action\": \"PROMOTE_CANDIDATE\",\n      \"reason\": \"The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.\",\n      \"evidence\": {\n        \"performance_report\": {\n          \"path\": \"/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.json\",\n          \"sha256\": \"505eae4da3410008d6ed6de85c06b787aa29f470d82ee3a0e30d744d9c51a0e7\"\n        },\n        \"campaign_id\": \"df8d662d2f4e416f932a6779797ea70a\",\n        \"candidate_id\": \"sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b\"\n      }\n    }\n  },\n  \"profiling\": {},\n  \"deterministic_evidence\": {},\n  \"agent_constraints\": [\n    \"Never accept a candidate that has not passed correctness validation.\",\n    \"Do not remove synchronization required by detected dependences.\",\n    \"Do not introduce OpenMP transformations that contradict the Strategy Planner.\",\n    \"Prefer evidence from static analysis, dependence analysis and measured performance over unsupported assumptions.\",\n    \"If performance differences are within the near-tie threshold, consider resource efficiency before choosing more threads.\",\n    \"Any proposed code modification must be recompiled and revalidated before being accepted.\"\n  ]\n}\n\nChoose exactly one decision:\nACCEPT, RETUNE, MODIFY, or REJECT.\n\nReturn fields according to this exact contract:\nACCEPT -> PROMOTE_CANDIDATE; use the measured recommended_threads and measured configuration.\nRETUNE -> RETUNE_CONFIGURATION or RUN_MORE_BENCHMARKS; both configuration fields must be null.\nMODIFY -> SEND_TO_CODER, or SEND_TO_DEBUGGER only for compilation/correctness repair; both configuration fields must be null.\nREJECT -> REJECT_CANDIDATE; recommended_threads and recommended_configuration must both be null.\n",
+  "format": {
+    "type": "object",
+    "properties": {
+      "decision": {
+        "type": "string",
+        "enum": [
+          "ACCEPT",
+          "RETUNE",
+          "MODIFY",
+          "REJECT"
+        ]
+      },
+      "recommended_threads": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "recommended_configuration": {
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "reason": {
+        "type": "string"
+      },
+      "next_action": {
+        "type": "string",
+        "enum": [
+          "PROMOTE_CANDIDATE",
+          "RUN_MORE_BENCHMARKS",
+          "RETUNE_CONFIGURATION",
+          "SEND_TO_CODER",
+          "SEND_TO_DEBUGGER",
+          "REJECT_CANDIDATE"
+        ]
+      },
+      "risk": {
+        "type": "string",
+        "enum": [
+          "LOW",
+          "MEDIUM",
+          "HIGH"
+        ]
+      },
+      "evidence_used": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "decision",
+      "recommended_threads",
+      "recommended_configuration",
+      "reason",
+      "next_action",
+      "risk",
+      "evidence_used"
+    ],
+    "additionalProperties": false,
+    "oneOf": [
+      {
+        "properties": {
+          "decision": {
+            "const": "ACCEPT"
+          },
+          "next_action": {
+            "const": "PROMOTE_CANDIDATE"
+          },
+          "recommended_threads": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      },
+      {
+        "properties": {
+          "decision": {
+            "const": "RETUNE"
+          },
+          "next_action": {
+            "enum": [
+              "RETUNE_CONFIGURATION",
+              "RUN_MORE_BENCHMARKS"
+            ]
+          },
+          "recommended_threads": {
+            "type": "null"
+          },
+          "recommended_configuration": {
+            "type": "null"
+          }
+        }
+      },
+      {
+        "properties": {
+          "decision": {
+            "const": "MODIFY"
+          },
+          "next_action": {
+            "enum": [
+              "SEND_TO_CODER",
+              "SEND_TO_DEBUGGER"
+            ]
+          },
+          "recommended_threads": {
+            "type": "null"
+          },
+          "recommended_configuration": {
+            "type": "null"
+          }
+        }
+      },
+      {
+        "properties": {
+          "decision": {
+            "const": "REJECT"
+          },
+          "next_action": {
+            "const": "REJECT_CANDIDATE"
+          },
+          "recommended_threads": {
+            "type": "null"
+          },
+          "recommended_configuration": {
+            "type": "null"
+          }
+        }
+      }
+    ]
+  },
+  "temperature": 0,
+  "model": "llama3.1:8b"
+}

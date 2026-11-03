@@ -1,0 +1,32 @@
+=================================
+TCC2 STRATEGY PLANNER v0.1
+=================================
+Static:   /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/analysis/dot_product_analysis.json
+Patterns: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/analysis/dot_product_patterns.json
+
+Kernel: kernel_dot
+Pattern: REDUCTION_CANDIDATE
+Family: REDUCE / AGGREGATION
+Classification confidence: medium
+Strategy: REDUCTION
+
+{
+  "strategy": "REDUCTION",
+  "reductions": [
+    {
+      "loop_id": 1,
+      "iterator": "i",
+      "reduction_type": "scalar",
+      "variable": "sum",
+      "operator": "+",
+      "openmp_construct": "parallel for",
+      "openmp_clause": "reduction(+:sum)",
+      "schedule": "static",
+      "direct_code_transformation": true
+    }
+  ]
+}
+
+=================================
+JSON salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/analysis/dot_product_strategy.json
+=================================

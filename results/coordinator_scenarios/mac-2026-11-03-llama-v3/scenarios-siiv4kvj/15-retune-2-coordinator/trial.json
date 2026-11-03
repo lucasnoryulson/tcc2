@@ -1,0 +1,46 @@
+{
+  "scenario": "retune",
+  "mode": "coordinator",
+  "expected_decision": "RETUNE",
+  "expected_actions": [
+    "RETUNE_CONFIGURATION",
+    "RUN_MORE_BENCHMARKS"
+  ],
+  "prompt_sha256": "5cd0423bcd24e4f740c3ad9dbb935959d719577b9914282ba6b52e1768acbc0d",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "RETUNE",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Insufficient configurations measured; transformation appears valid, but no configuration above one thread was measured.",
+    "next_action": "RUN_MORE_BENCHMARKS",
+    "risk": "LOW",
+    "evidence_used": [
+      "deterministic_evidence",
+      "performance"
+    ]
+  },
+  "decision": {
+    "decision": "RETUNE",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Insufficient configurations measured; transformation appears valid, but no configuration above one thread was measured.",
+    "next_action": "RUN_MORE_BENCHMARKS",
+    "risk": "LOW",
+    "evidence_used": [
+      "deterministic_evidence",
+      "performance"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 4503133792,
+    "load_duration": 999000,
+    "prompt_eval_count": 1760,
+    "eval_count": 88,
+    "done_reason": "stop"
+  },
+  "oracle_match": true,
+  "wall_seconds": 4.506060999992769
+}

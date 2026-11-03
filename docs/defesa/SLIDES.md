@@ -6,8 +6,8 @@ Versão de trabalho · 3 de novembro de 2026
 
 <!-- fala:
 A apresentação corresponde ao protótipo implementado e às evidências disponíveis.
-A avaliação final da LLM está pendente. Não apresentar esta versão como uma
-defesa de resultados LLM já concluídos. Roteiro sugerido de aproximadamente
+A campanha original da LLM terminou `INCOMPLETE` e foi preservada; após a
+correção do contrato, a replicação terminou `COMPLETE`. Apresentar ambos. Roteiro de
 15 minutos, ajustável à duração exigida; demonstração técnica é opcional.
 -->
 
@@ -39,8 +39,8 @@ ambos os baselines antes de publicar uma variante paralela.
 <!-- fala:
 A proposta inicial previa comparação ampla com geração monolítica. O experimento
 atual estuda decisão sobre candidato já gerado, portanto o objetivo foi
-delimitado. R1 e R2 têm evidências técnicas e empíricas disponíveis; R3 ainda
-depende das inferências reais. Não são perguntas equivalentes sobre geração.
+delimitado. R1 e R2 têm evidências técnicas e empíricas; R3 foi avaliada no Mac
+com resultado negativo/limitado. Não são perguntas equivalentes sobre geração.
 -->
 
 ---
@@ -94,8 +94,8 @@ não arquiva toda biblioteca ou header de projeto e não é prova formal de corr
 
 # Metodologia: unidades e evidências separadas
 
-- 19 campanhas, 161 configurações e 515 tempos individuais recuperados.
-- 17 campanhas históricas sem o contrato atual completo; duas com gates locais.
+- 22 campanhas, 173 configurações e 545 tempos individuais recuperados.
+- 17 históricas sem contrato completo; duas arquivadas; três Mac com gates atuais.
 - Dot Product: dois tamanhos, cinco medições externas por configuração.
 - Driver de corretude separado do benchmark; sem race detector integrado.
 
@@ -160,19 +160,19 @@ hardware não registrado nem ganho da transformação ao Coordinator.
 
 ---
 
-# Estudo do Coordinator: comparação pronta, resultado pendente
+# Estudo do Coordinator: campanha Mac
 
 - Três modos: determinístico, Coordinator completo e sem análises estruturadas.
 - Mesmo candidato, mesmas medições e mesmos gates nos três modos.
-- Registrar concordância, aceitação, falhas, latência, tokens e chamadas.
-- Rodada local: quatro inferências expiradas em 30 s; campanha INCOMPLETE.
+- Replicação final: 18 tentativas; 12 chamadas LLM válidas; nenhum timeout.
+- Caso grande: completo e ablação válidos 3/3, mesma aceitação e speedup 1,673×.
+- Caso pequeno: completo e ablação rejeitaram corretamente 3/3; fallback sequencial.
+- Cenários controlados: ACCEPT, REJECT e RETUNE 6/6; MODIFY 0/6.
 
 <!-- fala:
-O limite de trinta segundos foi diagnóstico e não fundamenta uma comparação de
-qualidade. Timeout é ausência de resposta, não uma resposta semanticamente errada.
-Repetições da LLM não são novas medições do kernel. O resultado final pode ser
-concordância sem benefício de speedup e com custo de inferência, ou um veto que
-altere a aceitação. Não há resultado preenchido antecipadamente para R3.
+Na campanha original, o caso pequeno revelou um schema contraditório; a correção
+foi medida sobre as mesmas evidências, sem apagar a falha. Repetições da LLM não são novas medições do kernel. O ganho
+do caso grande pertence ao código medido; a LLM apenas repetiu a admissão.
 -->
 
 ---
@@ -197,14 +197,15 @@ interpretação, em vez de serem escondidas por uma tabela única de melhores ga
 
 - Caminho suportado integrado, com seleção e executor de promoção auditável.
 - Métricas e evidências distinguem ganho, escalabilidade e origem da variante.
-- O benefício adicional do Coordinator ainda não foi demonstrado.
-- Fechamento: concluir R3 e atualizar texto, resumo, gráficos e conclusão juntos.
+- Não houve benefício adicional observado do Coordinator ou das análises na amostra.
+- Os gates bloquearam as respostas inválidas originais; a replicação teve 12/12 válidas.
+- O llama continuou sem reproduzir MODIFY no ensaio controlado.
+- Resultado limitado a dois tamanhos de Dot Product e um modelo.
 
 <!-- fala:
-O resultado mais sólido hoje é a integração técnica e a organização das
-evidências. Não afirmamos superioridade de múltiplos LLMs sobre um monolítico.
-Após a campanha final, esta conclusão deve ser revisada com os números e falhas
-obtidos. A discussão continua válida mesmo se a LLM só reproduzir a política.
+O resultado mais sólido é a integração técnica e a organização das evidências.
+Não afirmamos superioridade de múltiplos LLMs sobre um monolítico. A campanha
+mostrou custo adicional no caso elegível e fragilidade estrutural na rejeição.
 -->
 
 ---
@@ -246,7 +247,7 @@ numérica entre os respectivos resultados e os deste TCC.
 
 # Perguntas da banca — apoio
 
-- Por que LLM se a política já decide? É a hipótese avaliada em R3; ganho ainda aberto.
+- Por que LLM se a política já decide? R3 não observou benefício adicional nesta amostra.
 - É um sistema de vários LLMs? Não; são papéis funcionais e um Coordinator LLM.
 - O código está correto para toda entrada? Os testes não estabelecem essa garantia.
 - O que significam 4,106×? Ganho total; escalabilidade e eficiência usam OpenMP 1T.

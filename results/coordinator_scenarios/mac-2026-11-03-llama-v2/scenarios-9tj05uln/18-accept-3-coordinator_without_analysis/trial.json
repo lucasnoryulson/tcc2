@@ -1,0 +1,50 @@
+{
+  "scenario": "accept",
+  "mode": "coordinator_without_analysis",
+  "expected_decision": "ACCEPT",
+  "expected_actions": [
+    "PROMOTE_CANDIDATE"
+  ],
+  "prompt_sha256": "65b24946896c7bb8e4354a82c4989aa2d7f056a88853cfbc57382109ce3bae30",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 2,
+    "recommended_configuration": {
+      "threads": 2,
+      "median_seconds": 0.5
+    },
+    "reason": "Correctness passed and the candidate provides a meaningful measured speedup.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance.selection.recommended.threads",
+      "performance.selection.recommended.median_seconds"
+    ]
+  },
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 2,
+    "recommended_configuration": {
+      "threads": 2
+    },
+    "reason": "Correctness passed and the candidate provides a meaningful measured speedup.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance.selection.recommended.threads",
+      "performance.selection.recommended.median_seconds"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 5077772041,
+    "load_duration": 1253958,
+    "prompt_eval_count": 1601,
+    "eval_count": 109,
+    "done_reason": "stop"
+  },
+  "oracle_match": true,
+  "wall_seconds": 5.0795489579904824
+}

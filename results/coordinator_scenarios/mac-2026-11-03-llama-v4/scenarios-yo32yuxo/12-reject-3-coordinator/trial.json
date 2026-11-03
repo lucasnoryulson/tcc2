@@ -1,0 +1,47 @@
+{
+  "scenario": "reject",
+  "mode": "coordinator",
+  "expected_decision": "REJECT",
+  "expected_actions": [
+    "REJECT_CANDIDATE"
+  ],
+  "prompt_sha256": "be36b0a9c1af0f25683ad8d98a83d9ebdf68bf4acee955306cf146bc19be25f3",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Deterministic evidence indicates no useful measured performance path remains, and correctness passed but measured performance is not beneficial.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "deterministic_evidence",
+      "performance.selection.status",
+      "performance.selection.configuration_dimensions"
+    ]
+  },
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Deterministic evidence indicates no useful measured performance path remains, and correctness passed but measured performance is not beneficial.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "deterministic_evidence",
+      "performance.selection.status",
+      "performance.selection.configuration_dimensions"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 5089399125,
+    "load_duration": 7317042,
+    "prompt_eval_count": 1840,
+    "eval_count": 101,
+    "done_reason": "stop"
+  },
+  "oracle_match": true,
+  "wall_seconds": 5.094344667042606
+}

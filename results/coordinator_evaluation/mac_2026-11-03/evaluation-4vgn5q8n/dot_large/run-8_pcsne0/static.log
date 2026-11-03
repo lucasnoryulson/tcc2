@@ -1,0 +1,25 @@
+==============================
+TCC2 STATIC ANALYZER v0.2
+==============================
+Source: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c
+
+Kernel: kernel_dot
+Loops encontrados: 1
+
+Loop #1
+  Depth: 0
+  Lines: 9 - 12
+  Iterator: i
+  Init: int i = 0
+  Condition: i < n
+  Increment: i++
+  READS:
+    A[i]
+    B[i]
+  WRITES:
+    (none)
+  Operators: +=, *
+
+==============================
+JSON salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis/dot_product_analysis.json
+==============================

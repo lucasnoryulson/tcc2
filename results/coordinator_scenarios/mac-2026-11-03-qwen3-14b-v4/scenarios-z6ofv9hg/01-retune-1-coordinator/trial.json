@@ -1,0 +1,48 @@
+{
+  "scenario": "retune",
+  "mode": "coordinator",
+  "expected_decision": "RETUNE",
+  "expected_actions": [
+    "RETUNE_CONFIGURATION",
+    "RUN_MORE_BENCHMARKS"
+  ],
+  "prompt_sha256": "ed90bcc96611578fb33b4acd66c109d2cbb8c50ca940128040a49e2c667d7ce1",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "RETUNE",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Performance selection status indicates insufficient configurations were measured (only one thread tested). Deterministic evidence confirms the transformation is valid but no parallel configurations were evaluated. This requires additional benchmarking to explore thread configurations.",
+    "next_action": "RUN_MORE_BENCHMARKS",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance.selection.status: INSUFFICIENT_CONFIGURATIONS",
+      "deterministic_evidence.parallel_status: INSUFFICIENT_CONFIGURATIONS",
+      "performance.selection.configuration_dimensions: [threads]"
+    ]
+  },
+  "decision": {
+    "decision": "RETUNE",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Performance selection status indicates insufficient configurations were measured (only one thread tested). Deterministic evidence confirms the transformation is valid but no parallel configurations were evaluated. This requires additional benchmarking to explore thread configurations.",
+    "next_action": "RUN_MORE_BENCHMARKS",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance.selection.status: INSUFFICIENT_CONFIGURATIONS",
+      "deterministic_evidence.parallel_status: INSUFFICIENT_CONFIGURATIONS",
+      "performance.selection.configuration_dimensions: [threads]"
+    ]
+  },
+  "metadata": {
+    "model": "qwen3:14b",
+    "total_duration": 50945392041,
+    "load_duration": 5173166166,
+    "prompt_eval_count": 1840,
+    "eval_count": 478,
+    "done_reason": "stop"
+  },
+  "oracle_match": true,
+  "wall_seconds": 50.993816333008
+}

@@ -1,0 +1,52 @@
+{
+  "scenario": "accept",
+  "mode": "coordinator",
+  "expected_decision": "ACCEPT",
+  "expected_actions": [
+    "PROMOTE_CANDIDATE"
+  ],
+  "prompt_sha256": "ea92a704b9d5ee5beac843965d23b41806c68b05294e114534dd6d2c7958f530",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 2,
+    "recommended_configuration": {
+      "threads": 2,
+      "median_seconds": 0.5
+    },
+    "reason": "Correctness passed, parallel strategy succeeded, and measured speedup is 2.0x.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "Deterministic evidence: parallel_status=PARALLEL_SUCCESS, measured_parallel_speedup=2.0",
+      "Correctness validation: PASS",
+      "Performance selection: SELECTED, recommended configuration: threads=2, median_seconds=0.5"
+    ]
+  },
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 2,
+    "recommended_configuration": {
+      "threads": 2
+    },
+    "reason": "Correctness passed, parallel strategy succeeded, and measured speedup is 2.0x.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "Deterministic evidence: parallel_status=PARALLEL_SUCCESS, measured_parallel_speedup=2.0",
+      "Correctness validation: PASS",
+      "Performance selection: SELECTED, recommended configuration: threads=2, median_seconds=0.5"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 7551045833,
+    "load_duration": 860541,
+    "prompt_eval_count": 1807,
+    "eval_count": 150,
+    "done_reason": "stop"
+  },
+  "oracle_match": true,
+  "wall_seconds": 7.554431667027529
+}

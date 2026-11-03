@@ -1,0 +1,49 @@
+{
+  "scenario": "modify",
+  "mode": "coordinator",
+  "expected_decision": "MODIFY",
+  "expected_actions": [
+    "SEND_TO_DEBUGGER"
+  ],
+  "prompt_sha256": "386cafbc74a5aeb5f92b63d0ecaa15b4d734cf3b0a8c257dbaa5b49346be6049",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Correctness failed due to output mismatch, requiring repair or debugging. No useful performance path remains unexplored.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "HIGH",
+    "evidence_used": [
+      "validation.correctness_gate",
+      "validation.failure_kind",
+      "validation.assessment",
+      "deterministic_evidence.assessment"
+    ]
+  },
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Correctness failed due to output mismatch, requiring repair or debugging. No useful performance path remains unexplored.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "HIGH",
+    "evidence_used": [
+      "validation.correctness_gate",
+      "validation.failure_kind",
+      "validation.assessment",
+      "deterministic_evidence.assessment"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 5738607459,
+    "load_duration": 980584,
+    "prompt_eval_count": 1682,
+    "eval_count": 110,
+    "done_reason": "stop"
+  },
+  "oracle_match": false,
+  "wall_seconds": 5.741777250019368
+}

@@ -1,0 +1,1372 @@
+{
+  "schema": "tcc2-coordinator-evaluation",
+  "version": "0.1",
+  "status": "COMPLETE",
+  "created_at": "2026-11-03T22:58:22.626770+00:00",
+  "settings": {
+    "model": "llama3.1:8b",
+    "timeout_seconds": 600,
+    "seed": 2026,
+    "repetitions": 3,
+    "baseline_only": false,
+    "temperature": 0,
+    "order": "seeded_shuffle_per_case_and_repetition"
+  },
+  "implementation": [
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/scripts/evaluate_coordinator.py",
+      "sha256": "8503eadd39a5b59582ab32f057c6263f0ccc9a53e1ac0ede973d3252ad789cc2"
+    },
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/agents/coordinator_agent.py",
+      "sha256": "a798d4ef5e888d0b12a4c3cc8f02dc126e0e00688c0ab8834c6e7226630de0f0"
+    },
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/artifact_provenance.py",
+      "sha256": "0f79e8d6a4debe8bd00392e5ed86288c2bc9081559c9663bac4b9bdb50c4b565"
+    },
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/performance_selector.py",
+      "sha256": "e3a68cd114d0e67b522d3a7ae51538de66e0963e00e8a643abf4554942723061"
+    },
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/scripts/run_pipeline.py",
+      "sha256": "5bd7c742c09432410c17347b48971591e8104a054b82fb52b7d2399a8f17bbed"
+    }
+  ],
+  "cases": [
+    {
+      "case": "case_1",
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/context.json",
+        "sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa"
+      },
+      "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+      "campaign_id": "df8d662d2f4e416f932a6779797ea70a",
+      "shared_prefix_seconds": null,
+      "evidence": {
+        "correctness": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness.json",
+          "sha256": "60631c879d68a2cb0245e029cfbdba0d2a07d0a212924ff5c5a62e51716d6b59"
+        },
+        "performance": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.json",
+          "sha256": "505eae4da3410008d6ed6de85c06b787aa29f470d82ee3a0e30d744d9c51a0e7"
+        },
+        "selection": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/selection.json",
+          "sha256": "cfea44f760665da07addf8eeef1f40b92b7b715dc0cb93f113304a59db556cde"
+        }
+      },
+      "measurements": [
+        {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 0.00722003,
+          "mean_seconds": 0.006794366,
+          "speedup": 1.0,
+          "efficiency": 1.0
+        },
+        {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 0.00721977,
+          "mean_seconds": 0.006982898,
+          "speedup": 1.0000360122275362,
+          "efficiency": 1.0000360122275362
+        },
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 0.00561337,
+          "mean_seconds": 0.005439006,
+          "speedup": 1.2862202206517652,
+          "efficiency": 0.6431101103258826
+        },
+        {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00431633,
+          "mean_seconds": 0.004195492,
+          "speedup": 1.6727242819710262,
+          "efficiency": 0.41818107049275655
+        }
+      ]
+    },
+    {
+      "case": "case_2",
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/context.json",
+        "sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a"
+      },
+      "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+      "campaign_id": "46698a16dd704a75bc70aace9c6d5578",
+      "shared_prefix_seconds": null,
+      "evidence": {
+        "correctness": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness.json",
+          "sha256": "7b90fa8688843250fd7f260b2fa25dd36177b303b32a36524c2ddb964dd11cec"
+        },
+        "performance": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance.json",
+          "sha256": "20473767149b82f728d7931196cf0e553509dd0f60fb03a1a78d416fce2045d0"
+        },
+        "selection": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/selection.json",
+          "sha256": "959fc1d84364c15d62953940b29e086f80aee2f5568aceab33bbaf45027ce3d9"
+        }
+      },
+      "measurements": [
+        {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 7.993e-07,
+          "mean_seconds": 8.0286e-07,
+          "speedup": 1.0,
+          "efficiency": 1.0
+        },
+        {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 8.518e-07,
+          "mean_seconds": 9.505799999999999e-07,
+          "speedup": 0.9383658135712608,
+          "efficiency": 0.9383658135712608
+        },
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 5.7097e-06,
+          "mean_seconds": 5.71514e-06,
+          "speedup": 0.1399898418480831,
+          "efficiency": 0.06999492092404155
+        },
+        {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 8.9416e-06,
+          "mean_seconds": 9.19e-06,
+          "speedup": 0.08939116041871702,
+          "efficiency": 0.022347790104679254
+        }
+      ]
+    }
+  ],
+  "trials": [
+    {
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 11066351791,
+        "load_duration": 1904795583,
+        "prompt_eval_count": 2050,
+        "eval_count": 120,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "mode": "openmp",
+          "threads": 4
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "fefb163354c45366fca1c9654bf1e7350cb709aae411958a9582d16151c9c2f6",
+      "ablation_effective": true,
+      "call_wall_seconds": 11.100074957998004,
+      "decision_wall_seconds": 11.100443915987853,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00431633,
+      "speedup_vs_sequential": 1.6727242819710262,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "validation_wall_seconds": 0.00010666594607755542,
+      "trial_wall_seconds": 11.100551832991187,
+      "case": "case_1",
+      "repetition": 1,
+      "order_position": 0,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4982464167,
+        "load_duration": 1561083,
+        "prompt_eval_count": 2050,
+        "eval_count": 120,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "mode": "openmp",
+          "threads": 4
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "a141e05c5fae3bff11fa41f3d119ecc6531a70b3988d0b82817cfef86549b605",
+      "ablation_effective": null,
+      "call_wall_seconds": 4.984380457957741,
+      "decision_wall_seconds": 4.985423125035595,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00431633,
+      "speedup_vs_sequential": 1.6727242819710262,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "validation_wall_seconds": 5.3750001825392246e-05,
+      "trial_wall_seconds": 4.985478000016883,
+      "case": "case_1",
+      "repetition": 1,
+      "order_position": 1,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 1.8042046576738358e-05,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00431633,
+      "speedup_vs_sequential": 1.6727242819710262,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "validation_wall_seconds": 2.5915971491485834e-05,
+      "trial_wall_seconds": 4.5584049075841904e-05,
+      "case": "case_1",
+      "repetition": 1,
+      "order_position": 2,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4948526375,
+        "load_duration": 1033834,
+        "prompt_eval_count": 2050,
+        "eval_count": 120,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "mode": "openmp",
+          "threads": 4
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "a141e05c5fae3bff11fa41f3d119ecc6531a70b3988d0b82817cfef86549b605",
+      "ablation_effective": null,
+      "call_wall_seconds": 4.950047083024401,
+      "decision_wall_seconds": 4.9509937089751475,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00431633,
+      "speedup_vs_sequential": 1.6727242819710262,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "validation_wall_seconds": 3.9000005926936865e-05,
+      "trial_wall_seconds": 4.951033500023186,
+      "case": "case_1",
+      "repetition": 2,
+      "order_position": 0,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 1.2999982573091984e-05,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00431633,
+      "speedup_vs_sequential": 1.6727242819710262,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "validation_wall_seconds": 2.341700019314885e-05,
+      "trial_wall_seconds": 3.724999260157347e-05,
+      "case": "case_1",
+      "repetition": 2,
+      "order_position": 1,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 5079746416,
+        "load_duration": 1673666,
+        "prompt_eval_count": 2050,
+        "eval_count": 120,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "mode": "openmp",
+          "threads": 4
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "fefb163354c45366fca1c9654bf1e7350cb709aae411958a9582d16151c9c2f6",
+      "ablation_effective": true,
+      "call_wall_seconds": 5.0814377090428025,
+      "decision_wall_seconds": 5.0829388329875655,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00431633,
+      "speedup_vs_sequential": 1.6727242819710262,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "validation_wall_seconds": 4.695798270404339e-05,
+      "trial_wall_seconds": 5.082986666006036,
+      "case": "case_1",
+      "repetition": 2,
+      "order_position": 2,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 5136317417,
+        "load_duration": 713875,
+        "prompt_eval_count": 2050,
+        "eval_count": 120,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "mode": "openmp",
+          "threads": 4
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "fefb163354c45366fca1c9654bf1e7350cb709aae411958a9582d16151c9c2f6",
+      "ablation_effective": true,
+      "call_wall_seconds": 5.137591874983627,
+      "decision_wall_seconds": 5.138635332987178,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00431633,
+      "speedup_vs_sequential": 1.6727242819710262,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "validation_wall_seconds": 2.5292043574154377e-05,
+      "trial_wall_seconds": 5.138661000004504,
+      "case": "case_1",
+      "repetition": 3,
+      "order_position": 0,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 5198119708,
+        "load_duration": 888417,
+        "prompt_eval_count": 2050,
+        "eval_count": 120,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "mode": "openmp",
+          "threads": 4
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "a141e05c5fae3bff11fa41f3d119ecc6531a70b3988d0b82817cfef86549b605",
+      "ablation_effective": null,
+      "call_wall_seconds": 5.19953941705171,
+      "decision_wall_seconds": 5.2001567499828525,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00431633,
+      "speedup_vs_sequential": 1.6727242819710262,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "validation_wall_seconds": 4.770804662257433e-05,
+      "trial_wall_seconds": 5.200205124972854,
+      "case": "case_1",
+      "repetition": 3,
+      "order_position": 1,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 1.5042023733258247e-05,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00431633,
+      "speedup_vs_sequential": 1.6727242819710262,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "validation_wall_seconds": 2.2083986550569534e-05,
+      "trial_wall_seconds": 3.791699418798089e-05,
+      "case": "case_1",
+      "repetition": 3,
+      "order_position": 2,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 7.499998901039362e-06,
+      "decision": {
+        "decision": "REJECT",
+        "next_action": "REJECT_CANDIDATE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "risk": "LOW"
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 6.791029591113329e-06,
+      "trial_wall_seconds": 1.4624965842813253e-05,
+      "case": "case_2",
+      "repetition": 1,
+      "order_position": 0,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 7427486625,
+        "load_duration": 960917,
+        "prompt_eval_count": 2050,
+        "eval_count": 85,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No OpenMP configuration improved over the sequential baseline.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "7387eccd6812e9294c221f3cb0ed6dbf379308443b55b528ef8f8644aded0095",
+      "ablation_effective": null,
+      "call_wall_seconds": 7.428907249995973,
+      "decision_wall_seconds": 7.42958166700555,
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No OpenMP configuration improved over the sequential baseline.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 2.9624963644891977e-05,
+      "trial_wall_seconds": 7.429612041974906,
+      "case": "case_2",
+      "repetition": 1,
+      "order_position": 1,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 3634398792,
+        "load_duration": 1396042,
+        "prompt_eval_count": 2050,
+        "eval_count": 85,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No OpenMP configuration improved over the sequential baseline.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "63aa553f3a554803930e0dd669ddde81b807f1f72140a18c3ca357b1dd36a7f7",
+      "ablation_effective": true,
+      "call_wall_seconds": 3.63593337504426,
+      "decision_wall_seconds": 3.6374482919927686,
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No OpenMP configuration improved over the sequential baseline.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 1.0499963536858559e-05,
+      "trial_wall_seconds": 3.6374591669882648,
+      "case": "case_2",
+      "repetition": 1,
+      "order_position": 2,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 6.749993190169334e-06,
+      "decision": {
+        "decision": "REJECT",
+        "next_action": "REJECT_CANDIDATE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "risk": "LOW"
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 1.0749965440481901e-05,
+      "trial_wall_seconds": 1.8000020645558834e-05,
+      "case": "case_2",
+      "repetition": 2,
+      "order_position": 0,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 3533678792,
+        "load_duration": 1082833,
+        "prompt_eval_count": 2050,
+        "eval_count": 85,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No OpenMP configuration improved over the sequential baseline.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "7387eccd6812e9294c221f3cb0ed6dbf379308443b55b528ef8f8644aded0095",
+      "ablation_effective": null,
+      "call_wall_seconds": 3.534921291982755,
+      "decision_wall_seconds": 3.535415542020928,
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No OpenMP configuration improved over the sequential baseline.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 1.6665959265083075e-05,
+      "trial_wall_seconds": 3.535432791977655,
+      "case": "case_2",
+      "repetition": 2,
+      "order_position": 1,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 3556857875,
+        "load_duration": 743375,
+        "prompt_eval_count": 2050,
+        "eval_count": 85,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No OpenMP configuration improved over the sequential baseline.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "63aa553f3a554803930e0dd669ddde81b807f1f72140a18c3ca357b1dd36a7f7",
+      "ablation_effective": true,
+      "call_wall_seconds": 3.558382957999129,
+      "decision_wall_seconds": 3.5595864999922924,
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No OpenMP configuration improved over the sequential baseline.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 2.037500962615013e-05,
+      "trial_wall_seconds": 3.5596074580098502,
+      "case": "case_2",
+      "repetition": 2,
+      "order_position": 2,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 3542852292,
+        "load_duration": 886792,
+        "prompt_eval_count": 2050,
+        "eval_count": 85,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No OpenMP configuration improved over the sequential baseline.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "7387eccd6812e9294c221f3cb0ed6dbf379308443b55b528ef8f8644aded0095",
+      "ablation_effective": null,
+      "call_wall_seconds": 3.5445439590257592,
+      "decision_wall_seconds": 3.5454732500365935,
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No OpenMP configuration improved over the sequential baseline.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 2.2875028662383556e-05,
+      "trial_wall_seconds": 3.545496875012759,
+      "case": "case_2",
+      "repetition": 3,
+      "order_position": 0,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 3486393292,
+        "load_duration": 853208,
+        "prompt_eval_count": 2050,
+        "eval_count": 85,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No OpenMP configuration improved over the sequential baseline.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "63aa553f3a554803930e0dd669ddde81b807f1f72140a18c3ca357b1dd36a7f7",
+      "ablation_effective": true,
+      "call_wall_seconds": 3.4879748329985887,
+      "decision_wall_seconds": 3.4891501670354046,
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No OpenMP configuration improved over the sequential baseline.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 2.2457970771938562e-05,
+      "trial_wall_seconds": 3.4891734170378186,
+      "case": "case_2",
+      "repetition": 3,
+      "order_position": 1,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 1.025001984089613e-05,
+      "decision": {
+        "decision": "REJECT",
+        "next_action": "REJECT_CANDIDATE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "risk": "LOW"
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 1.3125012628734112e-05,
+      "trial_wall_seconds": 2.4457986000925303e-05,
+      "case": "case_2",
+      "repetition": 3,
+      "order_position": 2,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    }
+  ],
+  "groups": [
+    {
+      "case": "case_1",
+      "mode": "coordinator",
+      "trials": 3,
+      "valid_responses": 3,
+      "failures": 0,
+      "timeouts": 0,
+      "policy_agreement_rate": 1.0,
+      "effective_accept_rate": 1.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 0,
+      "llm_calls": 3,
+      "observed_prompt_tokens": 6150,
+      "observed_generated_tokens": 360,
+      "median_decision_seconds": 4.985423125035595,
+      "min_decision_seconds": 4.9509937089751475,
+      "max_decision_seconds": 5.2001567499828525,
+      "median_accounted_pipeline_seconds": null,
+      "median_speedup_vs_sequential": 1.6727242819710262
+    },
+    {
+      "case": "case_1",
+      "mode": "coordinator_without_analysis",
+      "trials": 3,
+      "valid_responses": 3,
+      "failures": 0,
+      "timeouts": 0,
+      "policy_agreement_rate": 1.0,
+      "effective_accept_rate": 1.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 0,
+      "llm_calls": 3,
+      "observed_prompt_tokens": 6150,
+      "observed_generated_tokens": 360,
+      "median_decision_seconds": 5.138635332987178,
+      "min_decision_seconds": 5.0829388329875655,
+      "max_decision_seconds": 11.100443915987853,
+      "median_accounted_pipeline_seconds": null,
+      "median_speedup_vs_sequential": 1.6727242819710262
+    },
+    {
+      "case": "case_1",
+      "mode": "deterministic",
+      "trials": 3,
+      "valid_responses": 3,
+      "failures": 0,
+      "timeouts": 0,
+      "policy_agreement_rate": 1.0,
+      "effective_accept_rate": 1.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 0,
+      "llm_calls": 0,
+      "observed_prompt_tokens": null,
+      "observed_generated_tokens": null,
+      "median_decision_seconds": 1.5042023733258247e-05,
+      "min_decision_seconds": 1.2999982573091984e-05,
+      "max_decision_seconds": 1.8042046576738358e-05,
+      "median_accounted_pipeline_seconds": null,
+      "median_speedup_vs_sequential": 1.6727242819710262
+    },
+    {
+      "case": "case_2",
+      "mode": "coordinator",
+      "trials": 3,
+      "valid_responses": 3,
+      "failures": 0,
+      "timeouts": 0,
+      "policy_agreement_rate": 1.0,
+      "effective_accept_rate": 0.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 0,
+      "llm_calls": 3,
+      "observed_prompt_tokens": 6150,
+      "observed_generated_tokens": 255,
+      "median_decision_seconds": 3.5454732500365935,
+      "min_decision_seconds": 3.535415542020928,
+      "max_decision_seconds": 7.42958166700555,
+      "median_accounted_pipeline_seconds": null,
+      "median_speedup_vs_sequential": 1.0
+    },
+    {
+      "case": "case_2",
+      "mode": "coordinator_without_analysis",
+      "trials": 3,
+      "valid_responses": 3,
+      "failures": 0,
+      "timeouts": 0,
+      "policy_agreement_rate": 1.0,
+      "effective_accept_rate": 0.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 0,
+      "llm_calls": 3,
+      "observed_prompt_tokens": 6150,
+      "observed_generated_tokens": 255,
+      "median_decision_seconds": 3.5595864999922924,
+      "min_decision_seconds": 3.4891501670354046,
+      "max_decision_seconds": 3.6374482919927686,
+      "median_accounted_pipeline_seconds": null,
+      "median_speedup_vs_sequential": 1.0
+    },
+    {
+      "case": "case_2",
+      "mode": "deterministic",
+      "trials": 3,
+      "valid_responses": 3,
+      "failures": 0,
+      "timeouts": 0,
+      "policy_agreement_rate": 1.0,
+      "effective_accept_rate": 0.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 0,
+      "llm_calls": 0,
+      "observed_prompt_tokens": null,
+      "observed_generated_tokens": null,
+      "median_decision_seconds": 7.499998901039362e-06,
+      "min_decision_seconds": 6.749993190169334e-06,
+      "max_decision_seconds": 1.025001984089613e-05,
+      "median_accounted_pipeline_seconds": null,
+      "median_speedup_vs_sequential": 1.0
+    }
+  ],
+  "experiment_wall_seconds": 61.73843604099238
+}

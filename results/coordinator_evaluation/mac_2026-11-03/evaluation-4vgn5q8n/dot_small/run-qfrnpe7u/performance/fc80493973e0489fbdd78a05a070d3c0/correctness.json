@@ -1,0 +1,181 @@
+{
+  "schema": "tcc2-correctness-gate",
+  "version": "0.2",
+  "status": "PASS",
+  "inputs": {
+    "sequential": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+    "candidate": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/candidate.c",
+    "driver": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_driver.c"
+  },
+  "compiler": "/opt/homebrew/opt/llvm/bin/clang",
+  "threads": [
+    1,
+    2,
+    4
+  ],
+  "validated_threads": [
+    1,
+    2,
+    4
+  ],
+  "tolerances": {
+    "relative": 1e-09,
+    "absolute": 1e-12
+  },
+  "provenance": {
+    "campaign_id": "46698a16dd704a75bc70aace9c6d5578",
+    "run_id": "70f5598d27924b6bacd6718604bdba86",
+    "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness/70f5598d27924b6bacd6718604bdba86",
+    "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+    "recorded_at": "2026-11-03T20:12:59.293210+00:00",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "cpu_count": 10,
+    "runtime_environment": {},
+    "inputs": {
+      "sequential": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+        "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness/70f5598d27924b6bacd6718604bdba86/sequential/dot_product.c"
+      },
+      "candidate": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/candidate.c",
+        "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness/70f5598d27924b6bacd6718604bdba86/candidate/candidate.c"
+      },
+      "driver": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_driver.c",
+        "sha256": "fe30a4bcb70e195a67b0b2c8704f953055cc5df501a69ac5e34022df2719a237",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness/70f5598d27924b6bacd6718604bdba86/driver/dot_driver.c"
+      }
+    },
+    "toolchain": {
+      "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+      "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+      "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+    },
+    "compile_flags": {
+      "sequential": [
+        "-O3"
+      ],
+      "candidate": [
+        "-O3",
+        "-fopenmp"
+      ]
+    },
+    "link_flags": [
+      "-lm"
+    ],
+    "openmp_environment": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "TRUE",
+      "OMP_PLACES": "cores"
+    }
+  },
+  "compilation": {
+    "sequential": {
+      "command": [
+        "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "-O3",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness/70f5598d27924b6bacd6718604bdba86/driver/dot_driver.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness/70f5598d27924b6bacd6718604bdba86/sequential/dot_product.c",
+        "-lm",
+        "-o",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness/70f5598d27924b6bacd6718604bdba86/dot_gate_sequential"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "candidate": {
+      "command": [
+        "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "-O3",
+        "-fopenmp",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness/70f5598d27924b6bacd6718604bdba86/driver/dot_driver.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness/70f5598d27924b6bacd6718604bdba86/candidate/candidate.c",
+        "-lm",
+        "-o",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness/70f5598d27924b6bacd6718604bdba86/dot_gate_candidate"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "binaries": {
+    "sequential": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness/70f5598d27924b6bacd6718604bdba86/dot_gate_sequential",
+      "sha256": "03fb2722ccc8e005c0354972ae763d00f90a6b71a94fe2376158319ea52e6a76"
+    },
+    "candidate": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness/70f5598d27924b6bacd6718604bdba86/dot_gate_candidate",
+      "sha256": "32a71b0cef9fbaae7740be7d865718bc46b2632d89393d847d6738c7963005cd"
+    }
+  },
+  "execution": {
+    "sequential": {
+      "returncode": 0,
+      "stdout": "261762.4999999812",
+      "stderr": ""
+    },
+    "candidate": {
+      "returncode": 0,
+      "stdout": "261762.49999999182",
+      "stderr": ""
+    }
+  },
+  "thread_results": [
+    {
+      "threads": 1,
+      "execution": {
+        "returncode": 0,
+        "stdout": "261762.4999999812",
+        "stderr": ""
+      },
+      "validation": {
+        "reference": 261762.4999999812,
+        "candidate": 261762.4999999812,
+        "absolute_error": 0.0,
+        "relative_error": 0.0,
+        "correct": true
+      }
+    },
+    {
+      "threads": 2,
+      "execution": {
+        "returncode": 0,
+        "stdout": "261762.49999998021",
+        "stderr": ""
+      },
+      "validation": {
+        "reference": 261762.4999999812,
+        "candidate": 261762.4999999802,
+        "absolute_error": 9.89530235528946e-10,
+        "relative_error": 3.780259722187162e-15,
+        "correct": true
+      }
+    },
+    {
+      "threads": 4,
+      "execution": {
+        "returncode": 0,
+        "stdout": "261762.49999999182",
+        "stderr": ""
+      },
+      "validation": {
+        "reference": 261762.4999999812,
+        "candidate": 261762.49999999182,
+        "absolute_error": 1.0622898116707802e-08,
+        "relative_error": 4.0582199958773944e-14,
+        "correct": true
+      }
+    }
+  ],
+  "validation": {
+    "reference": 261762.4999999812,
+    "candidate": 261762.49999999182,
+    "absolute_error": 1.0622898116707802e-08,
+    "relative_error": 4.0582199958773944e-14,
+    "correct": true
+  }
+}

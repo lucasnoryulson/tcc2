@@ -4,9 +4,11 @@
 
 Lucas Nory Ulson — Ciência da Computação, PUCRS
 
-Versão de trabalho de 3 de novembro de 2026. Texto alinhado à implementação
-inspecionada e aos documentos recebidos. A avaliação do Coordinator está
-incompleta; esta versão não deve ser apresentada como monografia final aprovada.
+Versão de trabalho de 3 de novembro de 2026. Texto alinhado à implementação,
+à campanha final do Mac e aos documentos recebidos. A campanha original do
+Coordinator terminou `INCOMPLETE`; o contrato foi corrigido e a replicação com
+as mesmas evidências terminou `COMPLETE`, mantendo ambos os resultados;
+esta versão ainda não constitui monografia final aprovada.
 
 ## Resumo
 
@@ -19,14 +21,16 @@ verifica sua saída numérica, mede configurações de threads e condiciona a
 publicação a evidências vinculadas ao artefato. Um executor determinístico
 revalida o candidato antes de publicar código e manifesto. A avaliação distingue
 o ganho contra o sequencial da escalabilidade em relação à mesma variante
-OpenMP com uma thread. A consolidação experimental organiza 19 campanhas,
+OpenMP com uma thread. A consolidação experimental organiza 22 campanhas,
 incluindo variantes manuais, transformações automáticas específicas e resultados
 sem ganho. Em uma coleta local de Dot Product, a entrada grande apresentou
 ganho de aproximadamente 1,191× com duas threads; a entrada pequena não satisfez
 a política de admissão paralela. Foi implementado um estudo pareado entre a
 política determinística, o Coordinator completo e uma ablação das análises
-estruturadas. As quatro inferências da rodada diagnóstica local expiraram,
-impedindo concluir sobre o benefício adicional da LLM. As contribuições
+estruturadas. Na replicação final no Mac, as 12 inferências foram válidas e os
+dois braços LLM concordaram 3/3 com a política em cada caso. Um ensaio controlado
+reproduziu ACCEPT, REJECT e RETUNE, mas não MODIFY. Não foi demonstrado benefício
+adicional da LLM ou das análises estruturadas nesta amostra. As contribuições
 demonstradas concentram-se na integração auditável do caminho suportado, na
 separação das métricas e na organização das evidências, com limitações explícitas
 de cobertura, corretude empírica e generalização.
@@ -48,9 +52,11 @@ with manual variants, specific automatic transformations and negative results.
 In a local Dot Product campaign, the large input achieved approximately 1.191×
 speedup using two threads, while the small input did not satisfy the parallel
 admission policy. A paired decision study compares the deterministic policy,
-the full Coordinator and an ablation of structured analyses. Four diagnostic
-inference calls timed out, so the additional benefit of the language model
-remains undetermined. Demonstrated contributions concern workflow integration,
+the full Coordinator and an ablation of structured analyses. In the final Mac
+replication, all 12 inference calls were valid and both LLM arms agreed 3/3 with
+policy in each case. A controlled study reproduced ACCEPT, REJECT and RETUNE,
+but not MODIFY. No additional benefit from the LLM or structured analyses was shown
+in this sample. Demonstrated contributions concern workflow integration,
 artifact traceability, metric separation and experimental organization, with
 explicit limits on transformation coverage and empirical correctness.
 
@@ -198,7 +204,7 @@ fontes independentes execute automaticamente todo o projeto PolyBench.
 
 | Caso | O que foi automatizado / avaliado |
 |---|---|
-| Dot Product C | Caminho integrado de redução escalar, gates, seleção, decisão e executor; inferência real concluída pendente na validação local |
+| Dot Product C | Caminho integrado de redução escalar, gates, seleção, decisão e executor; inferência real e promoção concluídas no Mac em 03/11/2026 |
 | GEMM | Análises e campanhas de variante OpenMP manual |
 | Jacobi-2D | Análises, variante OpenMP manual e experiências específicas com tiling |
 | Covariance | Análises e campanha de variante OpenMP manual |
@@ -234,13 +240,16 @@ evidências. Uma tentativa duplicada é recusada.
 
 ### 4.1. Unidades experimentais e proveniência
 
-São separados dois conjuntos de evidências. O primeiro contém 17 campanhas
+São separados três conjuntos de evidências. O primeiro contém 17 campanhas
 históricas recuperadas de CSVs, logs e dumps, sem o contrato atual completo de
-vínculo ao código medido. O segundo contém duas campanhas locais de Dot Product
-verificáveis pelos novos gates neste checkout. A consolidação totaliza 19
-campanhas e 161 configurações, com 515 tempos individuais recuperados.
+vínculo ao código medido. O segundo contém duas coletas Linux cujo resumo foi
+preservado, mas cujos contextos originais não estão neste checkout. O terceiro
+contém três campanhas finais de Dot Product no Mac verificáveis pelos gates
+atuais. A consolidação totaliza 22 campanhas e 173 configurações, com 545 tempos
+individuais recuperados.
 
-Os 35 CSVs históricos foram inventariados sem alteração. Oito apresentam linhas
+Os 35 CSVs históricos foram inventariados sem alteração, junto a nove CSVs das
+campanhas finais. Oito históricos apresentam linhas
 incompatíveis com o cabeçalho; vários acumulam mais de uma execução. A matriz
 usa fontes selecionadas explicitamente, conferindo resumos com amostras quando
 disponíveis. Não se unem amostras de máquinas ou campanhas diferentes para
@@ -321,7 +330,7 @@ representar nova execução independente do pipeline e sem incluir publicação.
 
 ### 5.1. Verificação técnica
 
-A bateria registrada contém 75 testes unittest e 14 casos de regressão dos
+A bateria final registrada contém 81 testes unittest e 14 casos de regressão dos
 seletores e Coordinator, cobrindo integração, configuração, alterações de
 artefatos, falhas de gates e promoção. Esses testes verificam comportamento
 de software. Respostas simuladas da LLM usadas em integração não são resultados
@@ -376,18 +385,37 @@ As demais campanhas, incluindo GEMM, Jacobi e Covariance, constam da matriz e
 dos gráficos completos. Não se extrapola sua cobertura para transformação
 automática integral desses padrões.
 
-### 5.4. Estado da avaliação LLM
+### 5.4. Avaliação pareada do Coordinator no Mac
 
-A rodada diagnóstica local utilizou qwen2.5:3b, ID curto 357c53fb659c, com uma
-repetição por caso e dois modos LLM. As quatro chamadas expiraram no limite de
-30 segundos. Esse limite foi diagnóstico, sem justificativa para uma conclusão
-comparativa sobre desempenho da LLM. Chamadas anteriores também excederam
-120 e 300 segundos.
+A campanha utilizou `llama3.1:8b`, ID local `46e0c10c039e`, LLVM 23.1.1,
+threads 1, 2 e 4, três repetições e timeout de 600 segundos. As 12 chamadas LLM
+terminaram sem timeout. O Ollama informou contexto máximo de 131.072 tokens; os
+prompts observados consumiram 2.050 tokens.
 
-Os resultados foram conservados como INCOMPLETE. A ausência de resposta não é
-um erro semântico observado nem evidência de que o modelo sempre discorda da
-política. R3 permanece em aberto. Resultados históricos com outros modelos não
-substituem essa comparação pareada sobre as evidências atuais.
+| Caso | Modo | Válidas | Concordância | Aceitação | Mediana da decisão |
+|---|---|---:|---:|---:|---:|
+| Grande | Determinístico | 3/3 | 100% | 100% | 0,000015 s |
+| Grande | Coordinator | 3/3 | 100% | 100% | 4,985 s |
+| Grande | Sem análises | 3/3 | 100% | 100% | 5,139 s |
+| Pequeno | Determinístico | 3/3 | 100% | 0% | 0,000007 s |
+| Pequeno | Coordinator | 3/3 | 100% | 0% | 3,545 s |
+| Pequeno | Sem análises | 3/3 | 100% | 0% | 3,560 s |
+
+No caso grande, 4 threads obtiveram ganho de 1,673x contra o sequencial e os
+dois braços LLM reproduziram a admissão determinística. No caso pequeno, os dois
+braços rejeitaram corretamente em 3/3 e o fallback permaneceu sequencial.
+
+Cada braço LLM processou 12.300 tokens de prompt. As medianas por caso ficaram
+entre 3,545 s e 5,139 s, contra microssegundos na política. Com três repetições e
+efeitos de ordem/carregamento, a diferença de latência entre braços não admite
+interpretação causal.
+
+A campanha original `INCOMPLETE` foi preservada. Ela revelou um schema que exigia
+uma propriedade não declarada; após correção e reforço determinístico, a
+replicação com os mesmos contextos terminou `COMPLETE`, com 12/12 respostas LLM
+válidas. Na amostra, as análises estruturadas não alteraram aceitação ou resultado
+final. Em 24 cenários controlados, ACCEPT, REJECT e RETUNE acertaram 6/6, enquanto
+MODIFY foi convertido em REJECT em 6/6, preservando segurança mas não recuperação.
 
 ## 6. Discussão e ameaças à validade
 
@@ -401,12 +429,13 @@ que o paralelismo não supera o sequencial. A contribuição observada pertence
 à transformação, à implementação da variante e à seleção empírica. O fato de
 essas etapas produzirem ganho não atribui esse ganho à LLM.
 
-R3 requer inferências concluídas. Se a LLM admitir exatamente a configuração
-que a política já admite, o speedup será igual por construção do experimento,
-e sua contribuição deverá ser discutida em termos de decisão e custo. Se vetar
-uma configuração elegível, o resultado pode reduzir o ganho alcançado no
-fallback. Nenhum desses desfechos comprova, isoladamente, que um sistema LLM
-mais amplo seja útil ou inútil para geração de código.
+Para R3, o Coordinator reproduziu a política e acrescentou latência sem alterar
+o speedup, que é igual por construção quando a configuração aceita é a mesma.
+A campanha original expôs uma falha estrutural posteriormente corrigida; a
+replicação final teve respostas válidas. A ablação apresentou os mesmos
+resultados do contexto completo. Portanto, não foi observado benefício adicional
+da LLM ou das análises estruturadas nesta amostra. Isso não demonstra inutilidade
+geral de LLMs para geração de código, tarefa que este experimento não executa.
 
 As principais ameaças à validade são:
 
@@ -436,14 +465,14 @@ experimentos tornou explícitas as diferenças entre ganho de transformação,
 escalabilidade e configuração selecionada.
 
 As campanhas locais e históricas sustentam a necessidade de medir configurações
-e registrar resultados negativos. Não sustentam, no estado atual, superioridade
-de uma arquitetura com vários LLMs sobre geração monolítica nem benefício
-adicional do Coordinator. Essa questão depende da conclusão do estudo pareado
-e deve ser respondida com os desfechos obtidos, inclusive se houver apenas
-custo adicional ou nenhuma alteração de decisão.
+e registrar resultados negativos. Não sustentam superioridade de uma arquitetura
+com vários LLMs sobre geração monolítica. No estudo pareado, o Coordinator não
+melhorou a decisão admitida: repetiu a política nos dois casos e acrescentou
+latência. Os gates mantiveram a segurança na campanha original, e o ensaio
+controlado ainda não demonstrou a decisão MODIFY.
 
-O fechamento prioritário é concluir essa avaliação no ambiente alvo, manter o
-recorte implementado na redação e conservar as evidências selecionadas. Ampliação
+O fechamento restante é consolidar as evidências selecionadas, manter o recorte
+implementado na redação e finalizar o material de entrega. Ampliação
 de padrões transformados, recuperação automática de candidatos e suporte a
 dependências de projetos são extensões, sem promessa de implementação neste TCC.
 
@@ -467,13 +496,12 @@ projeto. [Fonte primária](https://www.cs.colostate.edu/~pouchet/software/polybe
 Fontes internas: [catálogo](../experiment_catalog.json),
 [matriz completa](../../results/consolidated/REPORT.md),
 [protocolo dos agentes](../COORDINATOR_EVALUATION.md),
-[execução local](../COORDINATOR_EVALUATION_LOCAL.md) e
+[execução Linux](../COORDINATOR_EVALUATION_LOCAL.md),
+[campanha Mac](../COORDINATOR_EVALUATION_MAC.md) e
 [reprodução](../EXPERIMENT_REPRODUCTION.md). A conferência dos documentos Word
 está em [LEITURA_DOS_DOCUMENTOS.md](LEITURA_DOS_DOCUMENTOS.md).
 
-Após a campanha final, atualizar conjuntamente o resumo/abstract, §4.4, §5.4,
-§6 e §7. Registrar modelo/ID, hardware, timeout, repetições planejadas/concluídas,
-validade, falhas, concordância, aceitação efetiva, latência e evidências. Não
-substituir tempos do kernel por latência de inferência. Manter a ausência de
-benefício como conclusão possível. Nome de orientador, template, paginação e
-exigências formais de entrega não foram inferidos dos arquivos recebidos.
+A campanha final foi incorporada ao resumo/abstract, §5.4, discussão e conclusão.
+Não substituir tempos do kernel por latência de inferência. Nome de orientador,
+template, paginação e exigências formais de entrega não foram inferidos dos
+arquivos recebidos.

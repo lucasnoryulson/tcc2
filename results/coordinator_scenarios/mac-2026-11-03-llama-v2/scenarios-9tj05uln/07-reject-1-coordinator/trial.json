@@ -1,0 +1,45 @@
+{
+  "scenario": "reject",
+  "mode": "coordinator",
+  "expected_decision": "REJECT",
+  "expected_actions": [
+    "REJECT_CANDIDATE"
+  ],
+  "prompt_sha256": "0d4242f237004a97c1a512d90a449fdde534508b62c1b6e3a53c5de3187a626e",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Deterministic evidence indicates no useful measured performance path remains, and the parallel strategy failed to scale.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "deterministic_evidence",
+      "performance"
+    ]
+  },
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Deterministic evidence indicates no useful measured performance path remains, and the parallel strategy failed to scale.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "deterministic_evidence",
+      "performance"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 4493626083,
+    "load_duration": 1164083,
+    "prompt_eval_count": 1635,
+    "eval_count": 90,
+    "done_reason": "stop"
+  },
+  "oracle_match": true,
+  "wall_seconds": 4.5000045410124585
+}

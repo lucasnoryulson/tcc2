@@ -1,0 +1,36 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.2",
+  "model": "llama3.1:8b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 4,
+    "reason": "The candidate has passed correctness validation and has been selected as the fastest configuration.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ],
+    "recommended_configuration": {
+      "threads": 4
+    }
+  },
+  "evidence": {
+    "context": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/context.json",
+      "sha256": "011bb66348bbcc1a23bc8fe7cc237c462a11981b58d3bb6e04d9e6c1bbc68c4e"
+    },
+    "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+    "campaign_id": "51f9c5d5d5ce448c82609bbcb84bad0a"
+  },
+  "llm_metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 9591915458,
+    "load_duration": 2386892625,
+    "prompt_eval_count": 2050,
+    "eval_count": 73,
+    "done_reason": "stop"
+  }
+}

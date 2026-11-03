@@ -1,0 +1,45 @@
+{
+  "scenario": "reject",
+  "mode": "coordinator",
+  "expected_decision": "REJECT",
+  "expected_actions": [
+    "REJECT_CANDIDATE"
+  ],
+  "prompt_sha256": "ff1d4d3685ca5515dc6366670c0102f3ed59a28bd4fc3b0539e42f4be55e5520",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "RETUNE",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Too few configurations were measured, and the candidate appears valid, but no admissible configuration was selected.",
+    "next_action": "RUN_MORE_BENCHMARKS",
+    "risk": "LOW",
+    "evidence_used": [
+      "deterministic_evidence",
+      "performance"
+    ]
+  },
+  "decision": {
+    "decision": "RETUNE",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Too few configurations were measured, and the candidate appears valid, but no admissible configuration was selected.",
+    "next_action": "RUN_MORE_BENCHMARKS",
+    "risk": "LOW",
+    "evidence_used": [
+      "deterministic_evidence",
+      "performance"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 4447172666,
+    "load_duration": 717500,
+    "prompt_eval_count": 1787,
+    "eval_count": 90,
+    "done_reason": "stop"
+  },
+  "oracle_match": false,
+  "wall_seconds": 4.44860670901835
+}

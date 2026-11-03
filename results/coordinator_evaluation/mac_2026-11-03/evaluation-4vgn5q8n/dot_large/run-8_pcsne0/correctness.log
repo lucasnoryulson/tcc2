@@ -1,0 +1,29 @@
+=================================
+TCC2 COMPILE + CORRECTNESS GATE
+=================================
+Sequential: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c
+Candidate:  /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c
+Driver:     /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_driver.c
+Compiler:   /opt/homebrew/opt/llvm/bin/clang
+Threads:    [1, 2, 4]
+
+sequential compilation:
+  Command:
+  /opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23 -O3 /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/driver/dot_driver.c /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/sequential/dot_product.c -lm -o /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/dot_gate_sequential
+  Status: COMPILE_SUCCESS
+
+candidate compilation:
+  Command:
+  /opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23 -O3 -fopenmp /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/driver/dot_driver.c /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/candidate/candidate.c -lm -o /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/dot_gate_candidate
+  Status: COMPILE_SUCCESS
+Threads: 1; sequential: 261762.4999999812; candidate: 261762.4999999812
+Absolute error: 0.000000000000e+00; relative error: 0.000000000000e+00
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 2; sequential: 261762.4999999812; candidate: 261762.49999998021
+Absolute error: 9.895302355289e-10; relative error: 3.780259722187e-15
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 4; sequential: 261762.4999999812; candidate: 261762.49999999182
+Absolute error: 1.062289811671e-08; relative error: 4.058219995877e-14
+Tolerances: relative=1e-09; absolute=1e-12
+Correctness: CORRECT
+GATE RESULT: PASS

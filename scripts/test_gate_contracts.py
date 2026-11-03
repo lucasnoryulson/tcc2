@@ -22,6 +22,7 @@ from analysis import artifact_provenance as provenance
 from analysis import performance_selector as selector
 from scripts import compile_correctness_gate as correctness
 from scripts import performance_gate as performance
+from scripts.test_toolchain import find_openmp_compiler
 
 
 class GateContracts(unittest.TestCase):
@@ -44,12 +45,13 @@ class GateContracts(unittest.TestCase):
         self.performance_path = self.work / 'performance.json'
         self.csv_path = self.work / 'performance.csv'
         self.selection_path = self.work / 'selection.json'
+        self.compiler = find_openmp_compiler() or 'gcc'
 
     def run_cli(self, *extra):
         return subprocess.run(
             [sys.executable, '-B', str(ROOT / 'scripts/compile_correctness_gate.py'),
              '--sequential', str(self.source), '--candidate', str(self.candidate),
-             '--driver', str(self.driver), '--compiler', 'gcc', '--threads', '1', '2',
+             '--driver', str(self.driver), '--compiler', self.compiler, '--threads', '1', '2',
              '--build-dir', str(self.work / 'build'), '--output', str(self.report_path), *extra],
             capture_output=True, text=True, timeout=30,
         )
@@ -73,7 +75,7 @@ class GateContracts(unittest.TestCase):
                 patch.object(correctness, 'execute_program', side_effect=executions), \
                 contextlib.redirect_stdout(io.StringIO()):
             return correctness.run_gate(
-                self.source, self.candidate, self.driver, self.work / 'build', 'gcc', [1, 2],
+                self.source, self.candidate, self.driver, self.work / 'build', self.compiler, [1, 2],
             )
 
     def bind_performance(self, report=None, candidate_time=0.5, one_thread_time=1.0):
@@ -92,7 +94,7 @@ class GateContracts(unittest.TestCase):
                 ]), contextlib.redirect_stdout(io.StringIO()):
             measured = performance.run_gate(
                 self.source, self.candidate, self.benchmark_driver, self.work / 'performance',
-                'gcc', [1, 2], self.report_path, self.csv_path,
+                self.compiler, [1, 2], self.report_path, self.csv_path,
             )
         self.performance_path.write_text(json.dumps(measured))
         _, rows, reference = provenance.load_performance_report(self.performance_path, self.csv_path)
@@ -106,17 +108,17 @@ class GateContracts(unittest.TestCase):
         return report, measured, selection
 
     def build_context(self):
-        output = ROOT / 'analysis/output'
+        output = (ROOT / 'analysis/output').resolve()
         return context_builder.build_context(
-            self.source, self.candidate, output / 'dot_analysis.json',
+            self.source.resolve(), self.candidate.resolve(), output / 'dot_analysis.json',
             output / 'dot_dependences.json', output / 'dot_patterns.json',
-            output / 'dot_strategy.json', self.selection_path,
-            correctness_file=self.report_path,
+            output / 'dot_strategy.json', self.selection_path.resolve(),
+            correctness_file=self.report_path.resolve(),
         )
 
     def test_real_dot_gate_and_context(self):
-        if shutil.which('gcc') is None:
-            self.skipTest('GCC is required for the real OpenMP integration test.')
+        if find_openmp_compiler() is None:
+            self.skipTest('An OpenMP compiler is required for the real integration test.')
         result = self.run_cli()
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         report = json.loads(self.report_path.read_text())
@@ -143,8 +145,8 @@ class GateContracts(unittest.TestCase):
         self.assertEqual(json.loads(context_path.read_text()), context)
 
     def test_real_incorrect_candidate(self):
-        if shutil.which('gcc') is None:
-            self.skipTest('GCC is required for the real OpenMP integration test.')
+        if find_openmp_compiler() is None:
+            self.skipTest('An OpenMP compiler is required for the real integration test.')
         self.candidate.write_text('double kernel_dot(int n, const double *a, const double *b) { return 0; }\n')
         result = self.run_cli()
         self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
@@ -152,7 +154,7 @@ class GateContracts(unittest.TestCase):
         self.assertEqual(report['status'], 'FAIL')
         with self.assertRaises(ValueError):
             performance.run_gate(self.source, self.candidate, self.benchmark_driver,
-                                 self.work / 'performance', 'gcc', [1], self.report_path, self.csv_path)
+                                 self.work / 'performance', self.compiler, [1], self.report_path, self.csv_path)
 
     def test_compile_and_runtime_failures_do_not_pass(self):
         for failed_stage in range(4):
@@ -274,7 +276,7 @@ class GateContracts(unittest.TestCase):
         self.report_path.write_text(json.dumps(self.gate_report()))
         with patch.object(performance, 'benchmark') as benchmark, self.assertRaisesRegex(ValueError, 'every benchmark thread'):
             performance.run_gate(self.source, self.candidate, self.benchmark_driver,
-                                 self.work / 'performance', 'gcc', [1, 4], self.report_path, self.csv_path)
+                                 self.work / 'performance', self.compiler, [1, 4], self.report_path, self.csv_path)
         benchmark.assert_not_called()
 
     def test_changed_toolchain_flags_are_rejected(self):
@@ -332,11 +334,11 @@ class GateContracts(unittest.TestCase):
 
         with patch.object(correctness, 'execute_program', side_effect=execute):
             # Exercise the in-process gate so the injected mutation reaches its final check.
-            if shutil.which('gcc') is None:
-                self.skipTest('GCC is required.')
+            if find_openmp_compiler() is None:
+                self.skipTest('An OpenMP compiler is required.')
             with contextlib.redirect_stdout(io.StringIO()), self.assertRaisesRegex(ValueError, 'SHA-256'):
                 correctness.run_gate(self.source, self.candidate, self.driver,
-                                     self.work / 'mutation', 'gcc', [1, 2])
+                                     self.work / 'mutation', self.compiler, [1, 2])
 
     def test_nonfinite_correctness_output_is_rejected(self):
         for value in ('nan', 'inf', '-inf', '', 'not-a-number'):
@@ -352,7 +354,7 @@ class GateContracts(unittest.TestCase):
         for threads in (0, -1, True, [], [1, 1], [1, -1]):
             with self.subTest(threads=threads), self.assertRaises(ValueError):
                 correctness.run_gate(self.source, self.candidate, self.driver,
-                                     self.work / 'build', 'gcc', threads)
+                                     self.work / 'build', self.compiler, threads)
 
     def test_performance_status_and_csv(self):
         for candidate_time, expected_status in ((0.5, 'PASS'), (1.0, 'FAIL'), (2.0, 'FAIL')):
@@ -365,8 +367,8 @@ class GateContracts(unittest.TestCase):
                 self.assertEqual(float(rows[-1]['speedup']), 1.0 / candidate_time)
 
     def test_real_performance_cli_selector_and_provenance(self):
-        if shutil.which('gcc') is None:
-            self.skipTest('GCC is required for the CLI integration test.')
+        if find_openmp_compiler() is None:
+            self.skipTest('An OpenMP compiler is required for the CLI integration test.')
         result = self.run_cli()
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         for candidate_time, expected_exit in ((0.5, 0), (2.0, 1)):
@@ -379,7 +381,7 @@ class GateContracts(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, '-B', str(ROOT / 'scripts/performance_gate.py'),
                  '--sequential', str(self.source), '--candidate', str(self.candidate),
-                 '--driver', str(self.benchmark_driver), '--compiler', 'gcc',
+                 '--driver', str(self.benchmark_driver), '--compiler', self.compiler,
                  '--correctness', str(self.report_path), '--build-dir', str(self.work / 'performance'),
                  '--csv', str(self.csv_path), '--output', str(self.performance_path)],
                 env={**os.environ, 'TCC2_THREAD_COUNTS': '1,2'},

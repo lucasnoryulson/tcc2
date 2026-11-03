@@ -1,0 +1,45 @@
+{
+  "scenario": "modify",
+  "mode": "coordinator",
+  "expected_decision": "MODIFY",
+  "expected_actions": [
+    "SEND_TO_DEBUGGER"
+  ],
+  "prompt_sha256": "d0b5b32c7d818aebc26a1e31d131e49fe9c9feac44ca44ff0af904f500a62e54",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "MODIFY",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Correctness validation failed with OUTPUT_MISMATCH, indicating the candidate produces incorrect results compared to the sequential reference. This requires debugging to identify and repair the implementation error.",
+    "next_action": "SEND_TO_DEBUGGER",
+    "risk": "HIGH",
+    "evidence_used": [
+      "validation.correctness_gate.FAIL",
+      "validation.failure_kind.OUTPUT_MISMATCH"
+    ]
+  },
+  "decision": {
+    "decision": "MODIFY",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Correctness validation failed with OUTPUT_MISMATCH, indicating the candidate produces incorrect results compared to the sequential reference. This requires debugging to identify and repair the implementation error.",
+    "next_action": "SEND_TO_DEBUGGER",
+    "risk": "HIGH",
+    "evidence_used": [
+      "validation.correctness_gate.FAIL",
+      "validation.failure_kind.OUTPUT_MISMATCH"
+    ]
+  },
+  "metadata": {
+    "model": "qwen3:14b",
+    "total_duration": 32706355541,
+    "load_duration": 10946250,
+    "prompt_eval_count": 1762,
+    "eval_count": 384,
+    "done_reason": "stop"
+  },
+  "oracle_match": true,
+  "wall_seconds": 32.715287458035164
+}

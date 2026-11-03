@@ -20,6 +20,10 @@
       "hardware": "Xeon E3-1225 V2 / Linux (03/11)",
       "compiler": "GCC 13.3.0 / caminho e hash nos gates",
       "source": "docs/COORDINATOR_EVALUATION_LOCAL.md"
+    },
+    "m5_verified_2026_11_03": {
+      "hardware": "Apple M5 / 10 cores / 16 GB / macOS 26.6.2 (03/11)",
+      "compiler": "Homebrew Clang 23.1.1 / caminho, versão e hash vinculados pelos gates"
     }
   },
   "recipes": {
@@ -370,6 +374,61 @@
       ],
       "original": "analysis/fixtures/dot_product.c",
       "benchmark_driver": "analysis/fixtures/dot_small_benchmark_driver.c"
+    },
+    {
+      "id": "m5_final_promoted_dot",
+      "kernel": "dot",
+      "pattern": "REDUCTION",
+      "source": "build/final-pipeline-mac-2026-11-03/run-4whpshpr/context.json",
+      "format": "context_evidence",
+      "candidate": "build/final-pipeline-mac-2026-11-03/run-4whpshpr/candidate.c",
+      "origin": "transformação automática de redução + promoção revalidada",
+      "environment": "m5_verified_2026_11_03",
+      "recipe": "dot_gate",
+      "input": "N=10000000, 100 chamadas internas; cinco amostras por configuração",
+      "correctness": "gates v0.2 vinculados para 1, 2 e 4 threads; bundle promovido e revalidado",
+      "original": "analysis/fixtures/dot_product.c",
+      "benchmark_driver": "analysis/fixtures/dot_benchmark_driver.c",
+      "promotion_manifest": "results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/manifest.json",
+      "limitations": [
+        "uma única campanha local de promoção; não representa outros padrões ou plataformas"
+      ]
+    },
+    {
+      "id": "m5_coordinator_dot_large",
+      "kernel": "dot",
+      "pattern": "REDUCTION",
+      "source": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/context.json",
+      "format": "context_evidence",
+      "candidate": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c",
+      "origin": "transformação automática de redução",
+      "environment": "m5_verified_2026_11_03",
+      "recipe": "dot_gate",
+      "input": "N=10000000, 100 chamadas internas; cinco amostras por configuração",
+      "correctness": "gates v0.2 vinculados para 1, 2 e 4 threads",
+      "original": "analysis/fixtures/dot_product.c",
+      "benchmark_driver": "analysis/fixtures/dot_benchmark_driver.c",
+      "limitations": [
+        "repetições da decisão LLM reutilizam estas medições e não são novas amostras do kernel"
+      ]
+    },
+    {
+      "id": "m5_coordinator_dot_small",
+      "kernel": "dot",
+      "pattern": "REDUCTION",
+      "source": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/context.json",
+      "format": "context_evidence",
+      "candidate": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/candidate.c",
+      "origin": "transformação automática de redução",
+      "environment": "m5_verified_2026_11_03",
+      "recipe": "dot_gate",
+      "input": "N=1024, 10000 chamadas internas; cinco amostras por configuração",
+      "correctness": "gates v0.2 vinculados para 1, 2 e 4 threads; resultado negativo preservado",
+      "original": "analysis/fixtures/dot_product.c",
+      "benchmark_driver": "analysis/fixtures/dot_small_benchmark_driver.c",
+      "limitations": [
+        "nenhuma configuração paralela satisfez a política de admissão"
+      ]
     }
   ]
 }

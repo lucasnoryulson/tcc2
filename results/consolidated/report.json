@@ -1,8 +1,8 @@
 {
   "schema": "tcc2-experiment-consolidation",
   "version": "0.1",
-  "generator_sha256": "fc3978313ba4808b44b1fc769178580ff3554b21ca9a6a24d1384f9b6870093b",
-  "catalog_sha256": "bc2661f8d333ba9226bcbb224461c2faeaf0ab5162e3c8d91ff055761ed21f66",
+  "generator_sha256": "9ce67ed59c71b74bb2acc1d594c064230eb3b6f7b8d39536fd6c507193b22f62",
+  "catalog_sha256": "5f40dcfc780f4cd32a8d5f16d235007983f5bfe36d9425e3d1b7b23d86e82372",
   "campaigns": [
     {
       "id": "xeon_gemm_0904",
@@ -23,14 +23,13 @@
       "evidence_status": "HISTORICAL_UNBOUND",
       "missing": [
         "sem v\u00ednculo hist\u00f3rico entre hashes de fontes, corretude e medi\u00e7\u00f5es",
-        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica",
-        "refer\u00eancia indispon\u00edvel: benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c"
+        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica"
       ],
       "recorded_provenance": null,
       "references": [
         {
           "path": "benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c",
-          "sha256_now": null
+          "sha256_now": "1568eec3636bbca13d576643eb9d44b280fb37409679a747ae89123e5f310acc"
         },
         {
           "path": "kernels/gemm/manual_openmp.c",
@@ -321,14 +320,13 @@
       "evidence_status": "HISTORICAL_UNBOUND",
       "missing": [
         "sem v\u00ednculo hist\u00f3rico entre hashes de fontes, corretude e medi\u00e7\u00f5es",
-        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica",
-        "refer\u00eancia indispon\u00edvel: benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c"
+        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica"
       ],
       "recorded_provenance": null,
       "references": [
         {
           "path": "benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c",
-          "sha256_now": null
+          "sha256_now": "5bd884a7ef7ccc3e009bb5988c919ca4aa09a0c4fb14d229d52109423a215255"
         },
         {
           "path": "kernels/jacobi-2d/manual_openmp.c",
@@ -619,14 +617,13 @@
       "evidence_status": "HISTORICAL_UNBOUND",
       "missing": [
         "sem v\u00ednculo hist\u00f3rico entre hashes de fontes, corretude e medi\u00e7\u00f5es",
-        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica",
-        "refer\u00eancia indispon\u00edvel: benchmarks/PolyBenchC-4.2.1/datamining/covariance/covariance.c"
+        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica"
       ],
       "recorded_provenance": null,
       "references": [
         {
           "path": "benchmarks/PolyBenchC-4.2.1/datamining/covariance/covariance.c",
-          "sha256_now": null
+          "sha256_now": "a386edb7635c8d991413f38417b6c7cde8a2db75d95c3cf93f28440165cf710d"
         },
         {
           "path": "kernels/covariance/manual_openmp.c",
@@ -917,14 +914,13 @@
       "evidence_status": "HISTORICAL_UNBOUND",
       "missing": [
         "sem v\u00ednculo hist\u00f3rico entre hashes de fontes, corretude e medi\u00e7\u00f5es",
-        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica",
-        "refer\u00eancia indispon\u00edvel: benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c"
+        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica"
       ],
       "recorded_provenance": null,
       "references": [
         {
           "path": "benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c",
-          "sha256_now": null
+          "sha256_now": "d38571c8430e8ea4c6f0eea343dbd9403f376ca5bcd59d90419e8d7cb5722989"
         },
         {
           "path": "kernels/nussinov/manual_openmp.c",
@@ -3924,14 +3920,13 @@
       "missing": [
         "ambiente de 09/09 reutilizado como contexto; falta captura espec\u00edfica da execu\u00e7\u00e3o",
         "sem v\u00ednculo hist\u00f3rico entre hashes de fontes, corretude e medi\u00e7\u00f5es",
-        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica",
-        "refer\u00eancia indispon\u00edvel: benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c"
+        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica"
       ],
       "recorded_provenance": null,
       "references": [
         {
           "path": "benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c",
-          "sha256_now": null
+          "sha256_now": "1568eec3636bbca13d576643eb9d44b280fb37409679a747ae89123e5f310acc"
         },
         {
           "path": "kernels/gemm/manual_openmp.c",
@@ -4378,14 +4373,13 @@
       "missing": [
         "ambiente de 09/09 reutilizado como contexto; falta captura espec\u00edfica da execu\u00e7\u00e3o",
         "sem v\u00ednculo hist\u00f3rico entre hashes de fontes, corretude e medi\u00e7\u00f5es",
-        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica",
-        "refer\u00eancia indispon\u00edvel: benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c"
+        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica"
       ],
       "recorded_provenance": null,
       "references": [
         {
           "path": "benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c",
-          "sha256_now": null
+          "sha256_now": "5bd884a7ef7ccc3e009bb5988c919ca4aa09a0c4fb14d229d52109423a215255"
         },
         {
           "path": "kernels/jacobi-2d/manual_openmp.c",
@@ -4876,14 +4870,13 @@
       "missing": [
         "ambiente de 09/09 reutilizado como contexto; falta captura espec\u00edfica da execu\u00e7\u00e3o",
         "sem v\u00ednculo hist\u00f3rico entre hashes de fontes, corretude e medi\u00e7\u00f5es",
-        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica",
-        "refer\u00eancia indispon\u00edvel: benchmarks/PolyBenchC-4.2.1/datamining/covariance/covariance.c"
+        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica"
       ],
       "recorded_provenance": null,
       "references": [
         {
           "path": "benchmarks/PolyBenchC-4.2.1/datamining/covariance/covariance.c",
-          "sha256_now": null
+          "sha256_now": "a386edb7635c8d991413f38417b6c7cde8a2db75d95c3cf93f28440165cf710d"
         },
         {
           "path": "kernels/covariance/manual_openmp.c",
@@ -5330,14 +5323,13 @@
       "missing": [
         "ambiente de 09/09 reutilizado como contexto; falta captura espec\u00edfica da execu\u00e7\u00e3o",
         "sem v\u00ednculo hist\u00f3rico entre hashes de fontes, corretude e medi\u00e7\u00f5es",
-        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica",
-        "refer\u00eancia indispon\u00edvel: benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c"
+        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica"
       ],
       "recorded_provenance": null,
       "references": [
         {
           "path": "benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c",
-          "sha256_now": null
+          "sha256_now": "d38571c8430e8ea4c6f0eea343dbd9403f376ca5bcd59d90419e8d7cb5722989"
         },
         {
           "path": "kernels/nussinov/manual_openmp.c",
@@ -5785,14 +5777,13 @@
       "missing": [
         "corretude e ambiente dispon\u00edveis pertencem a outra data; confirmar v\u00ednculo",
         "sem v\u00ednculo hist\u00f3rico entre hashes de fontes, corretude e medi\u00e7\u00f5es",
-        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica",
-        "refer\u00eancia indispon\u00edvel: benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c"
+        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica"
       ],
       "recorded_provenance": null,
       "references": [
         {
           "path": "benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c",
-          "sha256_now": null
+          "sha256_now": "d38571c8430e8ea4c6f0eea343dbd9403f376ca5bcd59d90419e8d7cb5722989"
         },
         {
           "path": "kernels/nussinov/simd_openmp.c",
@@ -6245,8 +6236,7 @@
         "repeti\u00e7\u00f5es=5 na receita; CSV n\u00e3o cont\u00e9m amostras nem contagem",
         "sem v\u00ednculo hist\u00f3rico entre hashes de fontes, corretude e medi\u00e7\u00f5es",
         "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica",
-        "amostras individuais indispon\u00edveis para parte das configura\u00e7\u00f5es",
-        "refer\u00eancia indispon\u00edvel: benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c"
+        "amostras individuais indispon\u00edveis para parte das configura\u00e7\u00f5es"
       ],
       "recorded_provenance": null,
       "references": [
@@ -6256,7 +6246,7 @@
         },
         {
           "path": "benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c",
-          "sha256_now": null
+          "sha256_now": "d38571c8430e8ea4c6f0eea343dbd9403f376ca5bcd59d90419e8d7cb5722989"
         },
         {
           "path": "results/nussinov-auto/experiment_results.csv",
@@ -6507,59 +6497,14 @@
       "benchmark_driver": "analysis/fixtures/dot_benchmark_driver.c",
       "hardware": "Xeon E3-1225 V2 / Linux (03/11)",
       "compiler": "GCC 13.3.0 / caminho e hash nos gates",
-      "evidence_status": "VERIFIED_LOCAL_GATES",
+      "evidence_status": "ARCHIVED_SUMMARY_ONLY",
       "missing": [
-        "campanha local piloto; avalia\u00e7\u00e3o LLM ainda incompleta"
+        "campanha local piloto; avalia\u00e7\u00e3o LLM ainda incompleta",
+        "sem v\u00ednculo hist\u00f3rico entre hashes de fontes, corretude e medi\u00e7\u00f5es",
+        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica",
+        "amostras individuais indispon\u00edveis para parte das configura\u00e7\u00f5es"
       ],
-      "recorded_provenance": {
-        "campaign_id": "94f1d9c6a64f4f68920c58389ba4ab87",
-        "run_id": "81d2a460adde4950b4532585e53cbba4",
-        "run_dir": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_large/run-yr0bov70/performance/81d2a460adde4950b4532585e53cbba4",
-        "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
-        "recorded_at": "2026-11-03T18:02:04.402862+00:00",
-        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
-        "cpu_count": 4,
-        "runtime_environment": {},
-        "inputs": {
-          "sequential": {
-            "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c",
-            "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
-            "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_large/run-yr0bov70/performance/81d2a460adde4950b4532585e53cbba4/sequential/dot_product.c"
-          },
-          "candidate": {
-            "path": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_large/run-yr0bov70/candidate.c",
-            "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
-            "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_large/run-yr0bov70/performance/81d2a460adde4950b4532585e53cbba4/candidate/candidate.c"
-          },
-          "driver": {
-            "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_benchmark_driver.c",
-            "sha256": "414bdff989503693fda942a3a79dc29dfa311532fbb62b8fec4681f15a52db6f",
-            "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_large/run-yr0bov70/performance/81d2a460adde4950b4532585e53cbba4/driver/dot_benchmark_driver.c"
-          }
-        },
-        "toolchain": {
-          "path": "/usr/bin/x86_64-linux-gnu-gcc-13",
-          "sha256": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26",
-          "version": "x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
-        },
-        "compile_flags": {
-          "sequential": [
-            "-O3"
-          ],
-          "candidate": [
-            "-O3",
-            "-fopenmp"
-          ]
-        },
-        "link_flags": [
-          "-lm"
-        ],
-        "openmp_environment": {
-          "OMP_DYNAMIC": "FALSE",
-          "OMP_PROC_BIND": "TRUE",
-          "OMP_PLACES": "cores"
-        }
-      },
+      "recorded_provenance": null,
       "references": [
         {
           "path": "analysis/fixtures/dot_benchmark_driver.c",
@@ -6594,17 +6539,7 @@
           "mean_seconds": 0.010630817924,
           "speedup": 1.0,
           "efficiency": 1.0,
-          "samples": [
-            0.01107698561,
-            0.01046341563,
-            0.01024500894,
-            0.0107613385,
-            0.01060734094
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 0.00028054393372136104,
-          "min_seconds": 0.01024500894,
-          "max_seconds": 0.01107698561,
+          "sample_count": null,
           "parallel_scaling_speedup": null,
           "parallel_scaling_efficiency": null
         },
@@ -6615,17 +6550,7 @@
           "mean_seconds": 0.010854175308,
           "speedup": 0.966188616150118,
           "efficiency": 0.966188616150118,
-          "samples": [
-            0.01038299585,
-            0.01097854059,
-            0.01099537635,
-            0.01089540363,
-            0.01101856012
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 0.0002392223569072131,
-          "min_seconds": 0.01038299585,
-          "max_seconds": 0.01101856012,
+          "sample_count": null,
           "parallel_scaling_speedup": 1.0,
           "parallel_scaling_efficiency": 1.0
         },
@@ -6636,17 +6561,7 @@
           "mean_seconds": 0.008979666944,
           "speedup": 1.191182264896388,
           "efficiency": 0.595591132448194,
-          "samples": [
-            0.00924856029,
-            0.00880226647,
-            0.00873636787,
-            0.00890488488,
-            0.00920625521
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 0.00020971580698304334,
-          "min_seconds": 0.00873636787,
-          "max_seconds": 0.00924856029,
+          "sample_count": null,
           "parallel_scaling_speedup": 1.2328672114175607,
           "parallel_scaling_efficiency": 0.6164336057087804
         }
@@ -6662,17 +6577,7 @@
           "mean_seconds": 0.010630817924,
           "speedup": 1.0,
           "efficiency": 1.0,
-          "samples": [
-            0.01107698561,
-            0.01046341563,
-            0.01024500894,
-            0.0107613385,
-            0.01060734094
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 0.00028054393372136104,
-          "min_seconds": 0.01024500894,
-          "max_seconds": 0.01107698561,
+          "sample_count": null,
           "parallel_scaling_speedup": null,
           "parallel_scaling_efficiency": null
         },
@@ -6683,17 +6588,7 @@
           "mean_seconds": 0.010854175308,
           "speedup": 0.966188616150118,
           "efficiency": 0.966188616150118,
-          "samples": [
-            0.01038299585,
-            0.01097854059,
-            0.01099537635,
-            0.01089540363,
-            0.01101856012
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 0.0002392223569072131,
-          "min_seconds": 0.01038299585,
-          "max_seconds": 0.01101856012,
+          "sample_count": null,
           "parallel_scaling_speedup": 1.0,
           "parallel_scaling_efficiency": 1.0
         },
@@ -6704,17 +6599,7 @@
           "mean_seconds": 0.008979666944,
           "speedup": 1.191182264896388,
           "efficiency": 0.595591132448194,
-          "samples": [
-            0.00924856029,
-            0.00880226647,
-            0.00873636787,
-            0.00890488488,
-            0.00920625521
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 0.00020971580698304334,
-          "min_seconds": 0.00873636787,
-          "max_seconds": 0.00924856029,
+          "sample_count": null,
           "parallel_scaling_speedup": 1.2328672114175607,
           "parallel_scaling_efficiency": 0.6164336057087804
         },
@@ -6732,17 +6617,7 @@
           "mean_seconds": 0.008979666944,
           "speedup": 1.191182264896388,
           "efficiency": 0.595591132448194,
-          "samples": [
-            0.00924856029,
-            0.00880226647,
-            0.00873636787,
-            0.00890488488,
-            0.00920625521
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 0.00020971580698304334,
-          "min_seconds": 0.00873636787,
-          "max_seconds": 0.00924856029,
+          "sample_count": null,
           "parallel_scaling_speedup": 1.2328672114175607,
           "parallel_scaling_efficiency": 0.6164336057087804
         },
@@ -6755,17 +6630,7 @@
             "mean_seconds": 0.008979666944,
             "speedup": 1.191182264896388,
             "efficiency": 0.595591132448194,
-            "samples": [
-              0.00924856029,
-              0.00880226647,
-              0.00873636787,
-              0.00890488488,
-              0.00920625521
-            ],
-            "sample_count": 5,
-            "std_dev_seconds": 0.00020971580698304334,
-            "min_seconds": 0.00873636787,
-            "max_seconds": 0.00924856029,
+            "sample_count": null,
             "parallel_scaling_speedup": 1.2328672114175607,
             "parallel_scaling_efficiency": 0.6164336057087804,
             "slowdown_vs_fastest": 0.0
@@ -6778,17 +6643,7 @@
           "mean_seconds": 0.008979666944,
           "speedup": 1.191182264896388,
           "efficiency": 0.595591132448194,
-          "samples": [
-            0.00924856029,
-            0.00880226647,
-            0.00873636787,
-            0.00890488488,
-            0.00920625521
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 0.00020971580698304334,
-          "min_seconds": 0.00873636787,
-          "max_seconds": 0.00924856029,
+          "sample_count": null,
           "parallel_scaling_speedup": 1.2328672114175607,
           "parallel_scaling_efficiency": 0.6164336057087804,
           "slowdown_vs_fastest": 0.0
@@ -6803,17 +6658,7 @@
         "mean_seconds": 0.008979666944,
         "speedup": 1.191182264896388,
         "efficiency": 0.595591132448194,
-        "samples": [
-          0.00924856029,
-          0.00880226647,
-          0.00873636787,
-          0.00890488488,
-          0.00920625521
-        ],
-        "sample_count": 5,
-        "std_dev_seconds": 0.00020971580698304334,
-        "min_seconds": 0.00873636787,
-        "max_seconds": 0.00924856029,
+        "sample_count": null,
         "parallel_scaling_speedup": 1.2328672114175607,
         "parallel_scaling_efficiency": 0.6164336057087804
       }
@@ -6838,59 +6683,14 @@
       "benchmark_driver": "analysis/fixtures/dot_small_benchmark_driver.c",
       "hardware": "Xeon E3-1225 V2 / Linux (03/11)",
       "compiler": "GCC 13.3.0 / caminho e hash nos gates",
-      "evidence_status": "VERIFIED_LOCAL_GATES",
+      "evidence_status": "ARCHIVED_SUMMARY_ONLY",
       "missing": [
-        "campanha local piloto; avalia\u00e7\u00e3o LLM ainda incompleta"
+        "campanha local piloto; avalia\u00e7\u00e3o LLM ainda incompleta",
+        "sem v\u00ednculo hist\u00f3rico entre hashes de fontes, corretude e medi\u00e7\u00f5es",
+        "flags/entrada da receita atual n\u00e3o atestam a compila\u00e7\u00e3o hist\u00f3rica",
+        "amostras individuais indispon\u00edveis para parte das configura\u00e7\u00f5es"
       ],
-      "recorded_provenance": {
-        "campaign_id": "cf52e08e03d44acd9db707b293eefb0d",
-        "run_id": "f8693c26fa344af9bb51481fd76a1195",
-        "run_dir": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_small/run-otv94_3m/performance/f8693c26fa344af9bb51481fd76a1195",
-        "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
-        "recorded_at": "2026-11-03T18:02:22.402254+00:00",
-        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
-        "cpu_count": 4,
-        "runtime_environment": {},
-        "inputs": {
-          "sequential": {
-            "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c",
-            "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
-            "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_small/run-otv94_3m/performance/f8693c26fa344af9bb51481fd76a1195/sequential/dot_product.c"
-          },
-          "candidate": {
-            "path": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_small/run-otv94_3m/candidate.c",
-            "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
-            "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_small/run-otv94_3m/performance/f8693c26fa344af9bb51481fd76a1195/candidate/candidate.c"
-          },
-          "driver": {
-            "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_small_benchmark_driver.c",
-            "sha256": "c92d9af24e16f50817010f2100848970222129c3b0e7e9b646c53b918b5de3ee",
-            "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_small/run-otv94_3m/performance/f8693c26fa344af9bb51481fd76a1195/driver/dot_small_benchmark_driver.c"
-          }
-        },
-        "toolchain": {
-          "path": "/usr/bin/x86_64-linux-gnu-gcc-13",
-          "sha256": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26",
-          "version": "x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
-        },
-        "compile_flags": {
-          "sequential": [
-            "-O3"
-          ],
-          "candidate": [
-            "-O3",
-            "-fopenmp"
-          ]
-        },
-        "link_flags": [
-          "-lm"
-        ],
-        "openmp_environment": {
-          "OMP_DYNAMIC": "FALSE",
-          "OMP_PROC_BIND": "TRUE",
-          "OMP_PLACES": "cores"
-        }
-      },
+      "recorded_provenance": null,
       "references": [
         {
           "path": "analysis/fixtures/dot_product.c",
@@ -6925,17 +6725,7 @@
           "mean_seconds": 1.0655672e-06,
           "speedup": 1.0,
           "efficiency": 1.0,
-          "samples": [
-            8.78291e-07,
-            8.89303e-07,
-            1.193084e-06,
-            1.183799e-06,
-            1.183359e-06
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 1.48496225035386e-07,
-          "min_seconds": 8.78291e-07,
-          "max_seconds": 1.193084e-06,
+          "sample_count": null,
           "parallel_scaling_speedup": null,
           "parallel_scaling_efficiency": null
         },
@@ -6946,17 +6736,7 @@
           "mean_seconds": 1.6405222e-06,
           "speedup": 0.7394103632259004,
           "efficiency": 0.7394103632259004,
-          "samples": [
-            1.75228e-06,
-            1.703911e-06,
-            1.59271e-06,
-            1.600409e-06,
-            1.553301e-06
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 7.484725624737353e-08,
-          "min_seconds": 1.553301e-06,
-          "max_seconds": 1.75228e-06,
+          "sample_count": null,
           "parallel_scaling_speedup": 1.0,
           "parallel_scaling_efficiency": 1.0
         },
@@ -6967,17 +6747,7 @@
           "mean_seconds": 1.6391808e-06,
           "speedup": 0.7432594633196848,
           "efficiency": 0.3716297316598424,
-          "samples": [
-            1.844347e-06,
-            1.592121e-06,
-            1.554301e-06,
-            1.572003e-06,
-            1.633132e-06
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 1.0588845040022076e-07,
-          "min_seconds": 1.554301e-06,
-          "max_seconds": 1.844347e-06,
+          "sample_count": null,
           "parallel_scaling_speedup": 1.0052056344963731,
           "parallel_scaling_efficiency": 0.5026028172481866
         }
@@ -6993,17 +6763,7 @@
           "mean_seconds": 1.0655672e-06,
           "speedup": 1.0,
           "efficiency": 1.0,
-          "samples": [
-            8.78291e-07,
-            8.89303e-07,
-            1.193084e-06,
-            1.183799e-06,
-            1.183359e-06
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 1.48496225035386e-07,
-          "min_seconds": 8.78291e-07,
-          "max_seconds": 1.193084e-06,
+          "sample_count": null,
           "parallel_scaling_speedup": null,
           "parallel_scaling_efficiency": null
         },
@@ -7014,17 +6774,7 @@
           "mean_seconds": 1.6405222e-06,
           "speedup": 0.7394103632259004,
           "efficiency": 0.7394103632259004,
-          "samples": [
-            1.75228e-06,
-            1.703911e-06,
-            1.59271e-06,
-            1.600409e-06,
-            1.553301e-06
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 7.484725624737353e-08,
-          "min_seconds": 1.553301e-06,
-          "max_seconds": 1.75228e-06,
+          "sample_count": null,
           "parallel_scaling_speedup": 1.0,
           "parallel_scaling_efficiency": 1.0
         },
@@ -7035,19 +6785,963 @@
           "mean_seconds": 1.6391808e-06,
           "speedup": 0.7432594633196848,
           "efficiency": 0.3716297316598424,
-          "samples": [
-            1.844347e-06,
-            1.592121e-06,
-            1.554301e-06,
-            1.572003e-06,
-            1.633132e-06
-          ],
-          "sample_count": 5,
-          "std_dev_seconds": 1.0588845040022076e-07,
-          "min_seconds": 1.554301e-06,
-          "max_seconds": 1.844347e-06,
+          "sample_count": null,
           "parallel_scaling_speedup": 1.0052056344963731,
           "parallel_scaling_efficiency": 0.5026028172481866
+        },
+        "transformation_benefit": false,
+        "parallel_benefit": false,
+        "recommended": null,
+        "next_action": "MODIFY_OR_REJECT_CANDIDATE",
+        "reason": "No OpenMP configuration improved over the sequential baseline."
+      },
+      "selected": null
+    },
+    {
+      "id": "m5_final_promoted_dot",
+      "kernel": "dot",
+      "pattern": "REDUCTION",
+      "source": "build/final-pipeline-mac-2026-11-03/run-4whpshpr/context.json",
+      "format": "context_evidence",
+      "candidate": "build/final-pipeline-mac-2026-11-03/run-4whpshpr/candidate.c",
+      "origin": "transforma\u00e7\u00e3o autom\u00e1tica de redu\u00e7\u00e3o + promo\u00e7\u00e3o revalidada",
+      "environment": "m5_verified_2026_11_03",
+      "recipe": "dot_gate",
+      "input": "N=10000000, 100 chamadas internas; cinco amostras por configura\u00e7\u00e3o",
+      "correctness": "gates v0.2 vinculados para 1, 2 e 4 threads; bundle promovido e revalidado",
+      "original": "analysis/fixtures/dot_product.c",
+      "benchmark_driver": "analysis/fixtures/dot_benchmark_driver.c",
+      "promotion_manifest": "results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/manifest.json",
+      "limitations": [
+        "uma \u00fanica campanha local de promo\u00e7\u00e3o; n\u00e3o representa outros padr\u00f5es ou plataformas"
+      ],
+      "hardware": "Apple M5 / 10 cores / 16 GB / macOS 26.6.2 (03/11)",
+      "compiler": "Homebrew Clang 23.1.1 / caminho, vers\u00e3o e hash vinculados pelos gates",
+      "evidence_status": "VERIFIED_LOCAL_GATES",
+      "missing": [
+        "uma \u00fanica campanha local de promo\u00e7\u00e3o; n\u00e3o representa outros padr\u00f5es ou plataformas"
+      ],
+      "recorded_provenance": {
+        "campaign_id": "51f9c5d5d5ce448c82609bbcb84bad0a",
+        "run_id": "fc10fbda0129420dbadf3386362ad151",
+        "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/performance/fc10fbda0129420dbadf3386362ad151",
+        "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+        "recorded_at": "2026-11-03T19:24:43.875660+00:00",
+        "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+        "cpu_count": 10,
+        "runtime_environment": {},
+        "inputs": {
+          "sequential": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+            "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/performance/fc10fbda0129420dbadf3386362ad151/sequential/dot_product.c"
+          },
+          "candidate": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/candidate.c",
+            "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/performance/fc10fbda0129420dbadf3386362ad151/candidate/candidate.c"
+          },
+          "driver": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_benchmark_driver.c",
+            "sha256": "414bdff989503693fda942a3a79dc29dfa311532fbb62b8fec4681f15a52db6f",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/performance/fc10fbda0129420dbadf3386362ad151/driver/dot_benchmark_driver.c"
+          }
+        },
+        "toolchain": {
+          "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+          "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+          "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+        },
+        "compile_flags": {
+          "sequential": [
+            "-O3"
+          ],
+          "candidate": [
+            "-O3",
+            "-fopenmp"
+          ]
+        },
+        "link_flags": [
+          "-lm"
+        ],
+        "openmp_environment": {
+          "OMP_DYNAMIC": "FALSE",
+          "OMP_PROC_BIND": "TRUE",
+          "OMP_PLACES": "cores"
+        }
+      },
+      "references": [
+        {
+          "path": "analysis/fixtures/dot_benchmark_driver.c",
+          "sha256_now": "414bdff989503693fda942a3a79dc29dfa311532fbb62b8fec4681f15a52db6f"
+        },
+        {
+          "path": "analysis/fixtures/dot_product.c",
+          "sha256_now": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb"
+        },
+        {
+          "path": "build/final-pipeline-mac-2026-11-03/run-4whpshpr/candidate.c",
+          "sha256_now": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b"
+        },
+        {
+          "path": "build/final-pipeline-mac-2026-11-03/run-4whpshpr/context.json",
+          "sha256_now": "011bb66348bbcc1a23bc8fe7cc237c462a11981b58d3bb6e04d9e6c1bbc68c4e"
+        },
+        {
+          "path": "results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/manifest.json",
+          "sha256_now": "df25a26a3444000623c203a483c67815203d6f69233f36ce2a1f8f825fc5e406"
+        },
+        {
+          "path": "scripts/performance_gate.py",
+          "sha256_now": "880d2a7e8a18e4425c6c0df3c14bd7a968a13ca5f4428c78baae58295953314e"
+        }
+      ],
+      "measurements": [
+        {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 0.00484218,
+          "mean_seconds": 0.0048649259999999995,
+          "speedup": 1.0,
+          "efficiency": 1.0,
+          "samples": [
+            0.0049527,
+            0.00487534,
+            0.00484218,
+            0.00482176,
+            0.00483265
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 4.7402849534600854e-05,
+          "min_seconds": 0.00482176,
+          "max_seconds": 0.0049527,
+          "parallel_scaling_speedup": null,
+          "parallel_scaling_efficiency": null
+        },
+        {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 0.00484061,
+          "mean_seconds": 0.004861344,
+          "speedup": 1.000324339287817,
+          "efficiency": 1.000324339287817,
+          "samples": [
+            0.00495745,
+            0.00482876,
+            0.00485628,
+            0.00482362,
+            0.00484061
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 4.934921138174367e-05,
+          "min_seconds": 0.00482362,
+          "max_seconds": 0.00495745,
+          "parallel_scaling_speedup": 1.0,
+          "parallel_scaling_efficiency": 1.0
+        },
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 0.00248964,
+          "mean_seconds": 0.002493764,
+          "speedup": 1.944931797368294,
+          "efficiency": 0.972465898684147,
+          "samples": [
+            0.00251686,
+            0.00249272,
+            0.00248964,
+            0.00248582,
+            0.00248378
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 1.1952488611163794e-05,
+          "min_seconds": 0.00248378,
+          "max_seconds": 0.00251686,
+          "parallel_scaling_speedup": 1.9443011841069393,
+          "parallel_scaling_efficiency": 0.9721505920534697
+        },
+        {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00196401,
+          "mean_seconds": 0.001964282,
+          "speedup": 2.465455878534223,
+          "efficiency": 0.6163639696335558,
+          "samples": [
+            0.00196754,
+            0.0019691,
+            0.00196079,
+            0.00196401,
+            0.00195997
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 3.5969175692528397e-06,
+          "min_seconds": 0.00195997,
+          "max_seconds": 0.0019691,
+          "parallel_scaling_speedup": 2.464656493602375,
+          "parallel_scaling_efficiency": 0.6161641234005938
+        }
+      ],
+      "selection": {
+        "status": "SELECTED",
+        "decision": "FASTEST_CONFIGURATION",
+        "parallel_status": "PARALLEL_SUCCESS",
+        "sequential": {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 0.00484218,
+          "mean_seconds": 0.0048649259999999995,
+          "speedup": 1.0,
+          "efficiency": 1.0,
+          "samples": [
+            0.0049527,
+            0.00487534,
+            0.00484218,
+            0.00482176,
+            0.00483265
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 4.7402849534600854e-05,
+          "min_seconds": 0.00482176,
+          "max_seconds": 0.0049527,
+          "parallel_scaling_speedup": null,
+          "parallel_scaling_efficiency": null
+        },
+        "one_thread": {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 0.00484061,
+          "mean_seconds": 0.004861344,
+          "speedup": 1.000324339287817,
+          "efficiency": 1.000324339287817,
+          "samples": [
+            0.00495745,
+            0.00482876,
+            0.00485628,
+            0.00482362,
+            0.00484061
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 4.934921138174367e-05,
+          "min_seconds": 0.00482362,
+          "max_seconds": 0.00495745,
+          "parallel_scaling_speedup": 1.0,
+          "parallel_scaling_efficiency": 1.0
+        },
+        "best_parallel": {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00196401,
+          "mean_seconds": 0.001964282,
+          "speedup": 2.465455878534223,
+          "efficiency": 0.6163639696335558,
+          "samples": [
+            0.00196754,
+            0.0019691,
+            0.00196079,
+            0.00196401,
+            0.00195997
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 3.5969175692528397e-06,
+          "min_seconds": 0.00195997,
+          "max_seconds": 0.0019691,
+          "parallel_scaling_speedup": 2.464656493602375,
+          "parallel_scaling_efficiency": 0.6161641234005938
+        },
+        "transformation_benefit": true,
+        "parallel_benefit": true,
+        "transformation_speedup": 1.000324339287817,
+        "parallel_scaling_speedup": 2.464656493602375,
+        "parallel_scaling_efficiency": 0.6161641234005938,
+        "end_to_end_speedup": 2.465455878534223,
+        "runtime_reduction": 0.5943954995477243,
+        "raw_fastest": {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00196401,
+          "mean_seconds": 0.001964282,
+          "speedup": 2.465455878534223,
+          "efficiency": 0.6163639696335558,
+          "samples": [
+            0.00196754,
+            0.0019691,
+            0.00196079,
+            0.00196401,
+            0.00195997
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 3.5969175692528397e-06,
+          "min_seconds": 0.00195997,
+          "max_seconds": 0.0019691,
+          "parallel_scaling_speedup": 2.464656493602375,
+          "parallel_scaling_efficiency": 0.6161641234005938
+        },
+        "near_tie_threshold": 0.02,
+        "near_tie_candidates": [
+          {
+            "mode": "openmp",
+            "threads": 4,
+            "median_seconds": 0.00196401,
+            "mean_seconds": 0.001964282,
+            "speedup": 2.465455878534223,
+            "efficiency": 0.6163639696335558,
+            "samples": [
+              0.00196754,
+              0.0019691,
+              0.00196079,
+              0.00196401,
+              0.00195997
+            ],
+            "sample_count": 5,
+            "std_dev_seconds": 3.5969175692528397e-06,
+            "min_seconds": 0.00195997,
+            "max_seconds": 0.0019691,
+            "parallel_scaling_speedup": 2.464656493602375,
+            "parallel_scaling_efficiency": 0.6161641234005938,
+            "slowdown_vs_fastest": 0.0
+          }
+        ],
+        "recommended": {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00196401,
+          "mean_seconds": 0.001964282,
+          "speedup": 2.465455878534223,
+          "efficiency": 0.6163639696335558,
+          "samples": [
+            0.00196754,
+            0.0019691,
+            0.00196079,
+            0.00196401,
+            0.00195997
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 3.5969175692528397e-06,
+          "min_seconds": 0.00195997,
+          "max_seconds": 0.0019691,
+          "parallel_scaling_speedup": 2.464656493602375,
+          "parallel_scaling_efficiency": 0.6161641234005938,
+          "slowdown_vs_fastest": 0.0
+        },
+        "next_action": "PROMOTE_CANDIDATE",
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline."
+      },
+      "selected": {
+        "mode": "openmp",
+        "threads": 4,
+        "median_seconds": 0.00196401,
+        "mean_seconds": 0.001964282,
+        "speedup": 2.465455878534223,
+        "efficiency": 0.6163639696335558,
+        "samples": [
+          0.00196754,
+          0.0019691,
+          0.00196079,
+          0.00196401,
+          0.00195997
+        ],
+        "sample_count": 5,
+        "std_dev_seconds": 3.5969175692528397e-06,
+        "min_seconds": 0.00195997,
+        "max_seconds": 0.0019691,
+        "parallel_scaling_speedup": 2.464656493602375,
+        "parallel_scaling_efficiency": 0.6161641234005938
+      }
+    },
+    {
+      "id": "m5_coordinator_dot_large",
+      "kernel": "dot",
+      "pattern": "REDUCTION",
+      "source": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/context.json",
+      "format": "context_evidence",
+      "candidate": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c",
+      "origin": "transforma\u00e7\u00e3o autom\u00e1tica de redu\u00e7\u00e3o",
+      "environment": "m5_verified_2026_11_03",
+      "recipe": "dot_gate",
+      "input": "N=10000000, 100 chamadas internas; cinco amostras por configura\u00e7\u00e3o",
+      "correctness": "gates v0.2 vinculados para 1, 2 e 4 threads",
+      "original": "analysis/fixtures/dot_product.c",
+      "benchmark_driver": "analysis/fixtures/dot_benchmark_driver.c",
+      "limitations": [
+        "repeti\u00e7\u00f5es da decis\u00e3o LLM reutilizam estas medi\u00e7\u00f5es e n\u00e3o s\u00e3o novas amostras do kernel"
+      ],
+      "hardware": "Apple M5 / 10 cores / 16 GB / macOS 26.6.2 (03/11)",
+      "compiler": "Homebrew Clang 23.1.1 / caminho, vers\u00e3o e hash vinculados pelos gates",
+      "evidence_status": "VERIFIED_LOCAL_GATES",
+      "missing": [
+        "repeti\u00e7\u00f5es da decis\u00e3o LLM reutilizam estas medi\u00e7\u00f5es e n\u00e3o s\u00e3o novas amostras do kernel"
+      ],
+      "recorded_provenance": {
+        "campaign_id": "df8d662d2f4e416f932a6779797ea70a",
+        "run_id": "922b7d9a60c94e0a8c93d54df7b7cfe4",
+        "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance/922b7d9a60c94e0a8c93d54df7b7cfe4",
+        "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+        "recorded_at": "2026-11-03T20:12:44.823464+00:00",
+        "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+        "cpu_count": 10,
+        "runtime_environment": {},
+        "inputs": {
+          "sequential": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+            "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance/922b7d9a60c94e0a8c93d54df7b7cfe4/sequential/dot_product.c"
+          },
+          "candidate": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c",
+            "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance/922b7d9a60c94e0a8c93d54df7b7cfe4/candidate/candidate.c"
+          },
+          "driver": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_benchmark_driver.c",
+            "sha256": "414bdff989503693fda942a3a79dc29dfa311532fbb62b8fec4681f15a52db6f",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance/922b7d9a60c94e0a8c93d54df7b7cfe4/driver/dot_benchmark_driver.c"
+          }
+        },
+        "toolchain": {
+          "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+          "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+          "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+        },
+        "compile_flags": {
+          "sequential": [
+            "-O3"
+          ],
+          "candidate": [
+            "-O3",
+            "-fopenmp"
+          ]
+        },
+        "link_flags": [
+          "-lm"
+        ],
+        "openmp_environment": {
+          "OMP_DYNAMIC": "FALSE",
+          "OMP_PROC_BIND": "TRUE",
+          "OMP_PLACES": "cores"
+        }
+      },
+      "references": [
+        {
+          "path": "analysis/fixtures/dot_benchmark_driver.c",
+          "sha256_now": "414bdff989503693fda942a3a79dc29dfa311532fbb62b8fec4681f15a52db6f"
+        },
+        {
+          "path": "analysis/fixtures/dot_product.c",
+          "sha256_now": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb"
+        },
+        {
+          "path": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c",
+          "sha256_now": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b"
+        },
+        {
+          "path": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/context.json",
+          "sha256_now": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa"
+        },
+        {
+          "path": "scripts/performance_gate.py",
+          "sha256_now": "880d2a7e8a18e4425c6c0df3c14bd7a968a13ca5f4428c78baae58295953314e"
+        }
+      ],
+      "measurements": [
+        {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 0.00722003,
+          "mean_seconds": 0.006794366,
+          "speedup": 1.0,
+          "efficiency": 1.0,
+          "samples": [
+            0.00528717,
+            0.00633896,
+            0.00790407,
+            0.0072216,
+            0.00722003
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 0.0009026844527873512,
+          "min_seconds": 0.00528717,
+          "max_seconds": 0.00790407,
+          "parallel_scaling_speedup": null,
+          "parallel_scaling_efficiency": null
+        },
+        {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 0.00721977,
+          "mean_seconds": 0.006982898,
+          "speedup": 1.0000360122275362,
+          "efficiency": 1.0000360122275362,
+          "samples": [
+            0.00607249,
+            0.0069896,
+            0.0073764,
+            0.00725623,
+            0.00721977
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 0.00047213349677395277,
+          "min_seconds": 0.00607249,
+          "max_seconds": 0.0073764,
+          "parallel_scaling_speedup": 1.0,
+          "parallel_scaling_efficiency": 1.0
+        },
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 0.00561337,
+          "mean_seconds": 0.005439006,
+          "speedup": 1.2862202206517652,
+          "efficiency": 0.6431101103258826,
+          "samples": [
+            0.0043957,
+            0.00560415,
+            0.00579694,
+            0.00578487,
+            0.00561337
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 0.0005279964791018972,
+          "min_seconds": 0.0043957,
+          "max_seconds": 0.00579694,
+          "parallel_scaling_speedup": 1.2861739026645314,
+          "parallel_scaling_efficiency": 0.6430869513322657
+        },
+        {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00431633,
+          "mean_seconds": 0.004195492,
+          "speedup": 1.6727242819710262,
+          "efficiency": 0.41818107049275655,
+          "samples": [
+            0.00357913,
+            0.00440814,
+            0.00431633,
+            0.00429732,
+            0.00437654
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 0.00031076371380198175,
+          "min_seconds": 0.00357913,
+          "max_seconds": 0.00440814,
+          "parallel_scaling_speedup": 1.672664045612824,
+          "parallel_scaling_efficiency": 0.418166011403206
+        }
+      ],
+      "selection": {
+        "status": "SELECTED",
+        "decision": "FASTEST_CONFIGURATION",
+        "parallel_status": "PARALLEL_SUCCESS",
+        "sequential": {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 0.00722003,
+          "mean_seconds": 0.006794366,
+          "speedup": 1.0,
+          "efficiency": 1.0,
+          "samples": [
+            0.00528717,
+            0.00633896,
+            0.00790407,
+            0.0072216,
+            0.00722003
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 0.0009026844527873512,
+          "min_seconds": 0.00528717,
+          "max_seconds": 0.00790407,
+          "parallel_scaling_speedup": null,
+          "parallel_scaling_efficiency": null
+        },
+        "one_thread": {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 0.00721977,
+          "mean_seconds": 0.006982898,
+          "speedup": 1.0000360122275362,
+          "efficiency": 1.0000360122275362,
+          "samples": [
+            0.00607249,
+            0.0069896,
+            0.0073764,
+            0.00725623,
+            0.00721977
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 0.00047213349677395277,
+          "min_seconds": 0.00607249,
+          "max_seconds": 0.0073764,
+          "parallel_scaling_speedup": 1.0,
+          "parallel_scaling_efficiency": 1.0
+        },
+        "best_parallel": {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00431633,
+          "mean_seconds": 0.004195492,
+          "speedup": 1.6727242819710262,
+          "efficiency": 0.41818107049275655,
+          "samples": [
+            0.00357913,
+            0.00440814,
+            0.00431633,
+            0.00429732,
+            0.00437654
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 0.00031076371380198175,
+          "min_seconds": 0.00357913,
+          "max_seconds": 0.00440814,
+          "parallel_scaling_speedup": 1.672664045612824,
+          "parallel_scaling_efficiency": 0.418166011403206
+        },
+        "transformation_benefit": true,
+        "parallel_benefit": true,
+        "transformation_speedup": 1.0000360122275362,
+        "parallel_scaling_speedup": 1.672664045612824,
+        "parallel_scaling_efficiency": 0.418166011403206,
+        "end_to_end_speedup": 1.6727242819710262,
+        "runtime_reduction": 0.40217284415715715,
+        "raw_fastest": {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00431633,
+          "mean_seconds": 0.004195492,
+          "speedup": 1.6727242819710262,
+          "efficiency": 0.41818107049275655,
+          "samples": [
+            0.00357913,
+            0.00440814,
+            0.00431633,
+            0.00429732,
+            0.00437654
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 0.00031076371380198175,
+          "min_seconds": 0.00357913,
+          "max_seconds": 0.00440814,
+          "parallel_scaling_speedup": 1.672664045612824,
+          "parallel_scaling_efficiency": 0.418166011403206
+        },
+        "near_tie_threshold": 0.02,
+        "near_tie_candidates": [
+          {
+            "mode": "openmp",
+            "threads": 4,
+            "median_seconds": 0.00431633,
+            "mean_seconds": 0.004195492,
+            "speedup": 1.6727242819710262,
+            "efficiency": 0.41818107049275655,
+            "samples": [
+              0.00357913,
+              0.00440814,
+              0.00431633,
+              0.00429732,
+              0.00437654
+            ],
+            "sample_count": 5,
+            "std_dev_seconds": 0.00031076371380198175,
+            "min_seconds": 0.00357913,
+            "max_seconds": 0.00440814,
+            "parallel_scaling_speedup": 1.672664045612824,
+            "parallel_scaling_efficiency": 0.418166011403206,
+            "slowdown_vs_fastest": 0.0
+          }
+        ],
+        "recommended": {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00431633,
+          "mean_seconds": 0.004195492,
+          "speedup": 1.6727242819710262,
+          "efficiency": 0.41818107049275655,
+          "samples": [
+            0.00357913,
+            0.00440814,
+            0.00431633,
+            0.00429732,
+            0.00437654
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 0.00031076371380198175,
+          "min_seconds": 0.00357913,
+          "max_seconds": 0.00440814,
+          "parallel_scaling_speedup": 1.672664045612824,
+          "parallel_scaling_efficiency": 0.418166011403206,
+          "slowdown_vs_fastest": 0.0
+        },
+        "next_action": "PROMOTE_CANDIDATE",
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline."
+      },
+      "selected": {
+        "mode": "openmp",
+        "threads": 4,
+        "median_seconds": 0.00431633,
+        "mean_seconds": 0.004195492,
+        "speedup": 1.6727242819710262,
+        "efficiency": 0.41818107049275655,
+        "samples": [
+          0.00357913,
+          0.00440814,
+          0.00431633,
+          0.00429732,
+          0.00437654
+        ],
+        "sample_count": 5,
+        "std_dev_seconds": 0.00031076371380198175,
+        "min_seconds": 0.00357913,
+        "max_seconds": 0.00440814,
+        "parallel_scaling_speedup": 1.672664045612824,
+        "parallel_scaling_efficiency": 0.418166011403206
+      }
+    },
+    {
+      "id": "m5_coordinator_dot_small",
+      "kernel": "dot",
+      "pattern": "REDUCTION",
+      "source": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/context.json",
+      "format": "context_evidence",
+      "candidate": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/candidate.c",
+      "origin": "transforma\u00e7\u00e3o autom\u00e1tica de redu\u00e7\u00e3o",
+      "environment": "m5_verified_2026_11_03",
+      "recipe": "dot_gate",
+      "input": "N=1024, 10000 chamadas internas; cinco amostras por configura\u00e7\u00e3o",
+      "correctness": "gates v0.2 vinculados para 1, 2 e 4 threads; resultado negativo preservado",
+      "original": "analysis/fixtures/dot_product.c",
+      "benchmark_driver": "analysis/fixtures/dot_small_benchmark_driver.c",
+      "limitations": [
+        "nenhuma configura\u00e7\u00e3o paralela satisfez a pol\u00edtica de admiss\u00e3o"
+      ],
+      "hardware": "Apple M5 / 10 cores / 16 GB / macOS 26.6.2 (03/11)",
+      "compiler": "Homebrew Clang 23.1.1 / caminho, vers\u00e3o e hash vinculados pelos gates",
+      "evidence_status": "VERIFIED_LOCAL_GATES",
+      "missing": [
+        "nenhuma configura\u00e7\u00e3o paralela satisfez a pol\u00edtica de admiss\u00e3o"
+      ],
+      "recorded_provenance": {
+        "campaign_id": "46698a16dd704a75bc70aace9c6d5578",
+        "run_id": "fc80493973e0489fbdd78a05a070d3c0",
+        "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance/fc80493973e0489fbdd78a05a070d3c0",
+        "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+        "recorded_at": "2026-11-03T20:13:00.391955+00:00",
+        "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+        "cpu_count": 10,
+        "runtime_environment": {},
+        "inputs": {
+          "sequential": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+            "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance/fc80493973e0489fbdd78a05a070d3c0/sequential/dot_product.c"
+          },
+          "candidate": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/candidate.c",
+            "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance/fc80493973e0489fbdd78a05a070d3c0/candidate/candidate.c"
+          },
+          "driver": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_small_benchmark_driver.c",
+            "sha256": "c92d9af24e16f50817010f2100848970222129c3b0e7e9b646c53b918b5de3ee",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance/fc80493973e0489fbdd78a05a070d3c0/driver/dot_small_benchmark_driver.c"
+          }
+        },
+        "toolchain": {
+          "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+          "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+          "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+        },
+        "compile_flags": {
+          "sequential": [
+            "-O3"
+          ],
+          "candidate": [
+            "-O3",
+            "-fopenmp"
+          ]
+        },
+        "link_flags": [
+          "-lm"
+        ],
+        "openmp_environment": {
+          "OMP_DYNAMIC": "FALSE",
+          "OMP_PROC_BIND": "TRUE",
+          "OMP_PLACES": "cores"
+        }
+      },
+      "references": [
+        {
+          "path": "analysis/fixtures/dot_product.c",
+          "sha256_now": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb"
+        },
+        {
+          "path": "analysis/fixtures/dot_small_benchmark_driver.c",
+          "sha256_now": "c92d9af24e16f50817010f2100848970222129c3b0e7e9b646c53b918b5de3ee"
+        },
+        {
+          "path": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/candidate.c",
+          "sha256_now": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b"
+        },
+        {
+          "path": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/context.json",
+          "sha256_now": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a"
+        },
+        {
+          "path": "scripts/performance_gate.py",
+          "sha256_now": "880d2a7e8a18e4425c6c0df3c14bd7a968a13ca5f4428c78baae58295953314e"
+        }
+      ],
+      "measurements": [
+        {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 7.993e-07,
+          "mean_seconds": 8.0286e-07,
+          "speedup": 1.0,
+          "efficiency": 1.0,
+          "samples": [
+            9.705e-07,
+            1.0068e-06,
+            7.993e-07,
+            6.401e-07,
+            5.976e-07
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 1.6633090632831893e-07,
+          "min_seconds": 5.976e-07,
+          "max_seconds": 1.0068e-06,
+          "parallel_scaling_speedup": null,
+          "parallel_scaling_efficiency": null
+        },
+        {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 8.518e-07,
+          "mean_seconds": 9.505799999999999e-07,
+          "speedup": 0.9383658135712608,
+          "efficiency": 0.9383658135712608,
+          "samples": [
+            1.2022e-06,
+            1.1347e-06,
+            8.518e-07,
+            8.218e-07,
+            7.424e-07
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 1.826983787558061e-07,
+          "min_seconds": 7.424e-07,
+          "max_seconds": 1.2022e-06,
+          "parallel_scaling_speedup": 1.0,
+          "parallel_scaling_efficiency": 1.0
+        },
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 5.7097e-06,
+          "mean_seconds": 5.71514e-06,
+          "speedup": 0.1399898418480831,
+          "efficiency": 0.06999492092404155,
+          "samples": [
+            5.7536e-06,
+            5.6668e-06,
+            5.8978e-06,
+            5.5478e-06,
+            5.7097e-06
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 1.1420409099502526e-07,
+          "min_seconds": 5.5478e-06,
+          "max_seconds": 5.8978e-06,
+          "parallel_scaling_speedup": 0.14918472073839256,
+          "parallel_scaling_efficiency": 0.07459236036919628
+        },
+        {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 8.9416e-06,
+          "mean_seconds": 9.19e-06,
+          "speedup": 0.08939116041871702,
+          "efficiency": 0.022347790104679254,
+          "samples": [
+            7.899e-06,
+            8.6145e-06,
+            8.9416e-06,
+            9.7331e-06,
+            1.07618e-05
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 9.823539748990683e-07,
+          "min_seconds": 7.899e-06,
+          "max_seconds": 1.07618e-05,
+          "parallel_scaling_speedup": 0.09526259282455043,
+          "parallel_scaling_efficiency": 0.02381564820613761
+        }
+      ],
+      "selection": {
+        "status": "NO_BENEFICIAL_CONFIGURATION",
+        "decision": "NO_BENEFIT",
+        "parallel_status": "NO_BENEFIT",
+        "sequential": {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 7.993e-07,
+          "mean_seconds": 8.0286e-07,
+          "speedup": 1.0,
+          "efficiency": 1.0,
+          "samples": [
+            9.705e-07,
+            1.0068e-06,
+            7.993e-07,
+            6.401e-07,
+            5.976e-07
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 1.6633090632831893e-07,
+          "min_seconds": 5.976e-07,
+          "max_seconds": 1.0068e-06,
+          "parallel_scaling_speedup": null,
+          "parallel_scaling_efficiency": null
+        },
+        "one_thread": {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 8.518e-07,
+          "mean_seconds": 9.505799999999999e-07,
+          "speedup": 0.9383658135712608,
+          "efficiency": 0.9383658135712608,
+          "samples": [
+            1.2022e-06,
+            1.1347e-06,
+            8.518e-07,
+            8.218e-07,
+            7.424e-07
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 1.826983787558061e-07,
+          "min_seconds": 7.424e-07,
+          "max_seconds": 1.2022e-06,
+          "parallel_scaling_speedup": 1.0,
+          "parallel_scaling_efficiency": 1.0
+        },
+        "best_parallel": {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 5.7097e-06,
+          "mean_seconds": 5.71514e-06,
+          "speedup": 0.1399898418480831,
+          "efficiency": 0.06999492092404155,
+          "samples": [
+            5.7536e-06,
+            5.6668e-06,
+            5.8978e-06,
+            5.5478e-06,
+            5.7097e-06
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 1.1420409099502526e-07,
+          "min_seconds": 5.5478e-06,
+          "max_seconds": 5.8978e-06,
+          "parallel_scaling_speedup": 0.14918472073839256,
+          "parallel_scaling_efficiency": 0.07459236036919628
         },
         "transformation_benefit": false,
         "parallel_benefit": false,
@@ -7059,6 +7753,170 @@
     }
   ],
   "inventory": [
+    {
+      "path": "results/coordinator_evaluation/mac-2026-11-03-final-v4-llama/evaluation-sl8k2oaz/trials.csv",
+      "sha256": "1604216c2a0d19ef4c17d706d62bcc9f3a930db61c938c4c81b0dbebef4f5f6d",
+      "rows": 18,
+      "columns": [
+        "case",
+        "repetition",
+        "mode",
+        "status",
+        "eligible",
+        "effective_accept",
+        "policy_agreement",
+        "nonadmissible_accept_proposal",
+        "missed_eligible_opportunity",
+        "candidate_attempts",
+        "llm_calls",
+        "decision_wall_seconds",
+        "validation_wall_seconds",
+        "shared_prefix_seconds",
+        "accounted_pipeline_seconds",
+        "speedup_vs_sequential",
+        "parallel_scaling_speedup"
+      ],
+      "duplicate_of": null,
+      "issues": []
+    },
+    {
+      "path": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance/922b7d9a60c94e0a8c93d54df7b7cfe4/performance.csv",
+      "sha256": "24980a8ac29b8a22308d01fd975814cbfcbdacbfc8f5d122ed7d6bb9947a3d49",
+      "rows": 4,
+      "columns": [
+        "mode",
+        "threads",
+        "median_seconds",
+        "mean_seconds",
+        "speedup",
+        "efficiency"
+      ],
+      "duplicate_of": null,
+      "issues": []
+    },
+    {
+      "path": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.csv",
+      "sha256": "24980a8ac29b8a22308d01fd975814cbfcbdacbfc8f5d122ed7d6bb9947a3d49",
+      "rows": 4,
+      "columns": [
+        "mode",
+        "threads",
+        "median_seconds",
+        "mean_seconds",
+        "speedup",
+        "efficiency"
+      ],
+      "duplicate_of": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance/922b7d9a60c94e0a8c93d54df7b7cfe4/performance.csv",
+      "issues": []
+    },
+    {
+      "path": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance/fc80493973e0489fbdd78a05a070d3c0/performance.csv",
+      "sha256": "a6bbcaec976c156b8f2432e7ea966febcbb96e77459b3fd16a4c09eb2e56a5eb",
+      "rows": 4,
+      "columns": [
+        "mode",
+        "threads",
+        "median_seconds",
+        "mean_seconds",
+        "speedup",
+        "efficiency"
+      ],
+      "duplicate_of": null,
+      "issues": []
+    },
+    {
+      "path": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance.csv",
+      "sha256": "a6bbcaec976c156b8f2432e7ea966febcbb96e77459b3fd16a4c09eb2e56a5eb",
+      "rows": 4,
+      "columns": [
+        "mode",
+        "threads",
+        "median_seconds",
+        "mean_seconds",
+        "speedup",
+        "efficiency"
+      ],
+      "duplicate_of": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance/fc80493973e0489fbdd78a05a070d3c0/performance.csv",
+      "issues": []
+    },
+    {
+      "path": "results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/trials.csv",
+      "sha256": "3f018669bc4ea4ee7b1613f49615568709b91c127ae0181074bf9f3ce87ab8de",
+      "rows": 18,
+      "columns": [
+        "case",
+        "repetition",
+        "mode",
+        "status",
+        "eligible",
+        "effective_accept",
+        "policy_agreement",
+        "nonadmissible_accept_proposal",
+        "missed_eligible_opportunity",
+        "candidate_attempts",
+        "llm_calls",
+        "decision_wall_seconds",
+        "validation_wall_seconds",
+        "shared_prefix_seconds",
+        "accounted_pipeline_seconds",
+        "speedup_vs_sequential",
+        "parallel_scaling_speedup"
+      ],
+      "duplicate_of": null,
+      "issues": []
+    },
+    {
+      "path": "results/coordinator_evaluation/mac_2026-11-03_v2_llama/evaluation-x3s8jnw0/trials.csv",
+      "sha256": "a9e1f99584e1b8832384793ae686c3cc0eab4826dd2b5abf40de31f34f850bf1",
+      "rows": 18,
+      "columns": [
+        "case",
+        "repetition",
+        "mode",
+        "status",
+        "eligible",
+        "effective_accept",
+        "policy_agreement",
+        "nonadmissible_accept_proposal",
+        "missed_eligible_opportunity",
+        "candidate_attempts",
+        "llm_calls",
+        "decision_wall_seconds",
+        "validation_wall_seconds",
+        "shared_prefix_seconds",
+        "accounted_pipeline_seconds",
+        "speedup_vs_sequential",
+        "parallel_scaling_speedup"
+      ],
+      "duplicate_of": null,
+      "issues": []
+    },
+    {
+      "path": "results/coordinator_evaluation/mac_2026-11-03_v2b_llama/evaluation-08pyj_e9/trials.csv",
+      "sha256": "bbcc0b6985f38f46cf9ed7fe162bc2f9e064a86366b61ed07b42986deeaf4d7a",
+      "rows": 18,
+      "columns": [
+        "case",
+        "repetition",
+        "mode",
+        "status",
+        "eligible",
+        "effective_accept",
+        "policy_agreement",
+        "nonadmissible_accept_proposal",
+        "missed_eligible_opportunity",
+        "candidate_attempts",
+        "llm_calls",
+        "decision_wall_seconds",
+        "validation_wall_seconds",
+        "shared_prefix_seconds",
+        "accounted_pipeline_seconds",
+        "speedup_vs_sequential",
+        "parallel_scaling_speedup"
+      ],
+      "duplicate_of": null,
+      "issues": []
+    },
     {
       "path": "results/covariance/experiment_results.csv",
       "sha256": "57be26bab4a5daff9acb3b9a4fd795ebc4c1410222cdf63126deebce66524d63",
@@ -7176,6 +8034,21 @@
         "efficiency",
         "sustained_gbps",
         "absolute_error"
+      ],
+      "duplicate_of": null,
+      "issues": []
+    },
+    {
+      "path": "results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/evidence/performance.csv",
+      "sha256": "1e9211cd0314482dd80ce935bfa5e87f57822a0534003c21e68b73f94f9d040d",
+      "rows": 4,
+      "columns": [
+        "mode",
+        "threads",
+        "median_seconds",
+        "mean_seconds",
+        "speedup",
+        "efficiency"
       ],
       "duplicate_of": null,
       "issues": []
@@ -7777,6 +8650,9 @@
       "scaling_m5_historical.svg",
       "scaling_m5_historical.pdf",
       "scaling_m5_historical.png",
+      "scaling_m5_verified_2026_11_03.svg",
+      "scaling_m5_verified_2026_11_03.pdf",
+      "scaling_m5_verified_2026_11_03.png",
       "scaling_unknown_hardware.svg",
       "scaling_unknown_hardware.pdf",
       "scaling_unknown_hardware.png",

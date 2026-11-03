@@ -1,0 +1,51 @@
+{
+  "scenario": "reject",
+  "mode": "coordinator_without_analysis",
+  "expected_decision": "REJECT",
+  "expected_actions": [
+    "REJECT_CANDIDATE"
+  ],
+  "prompt_sha256": "0f6fcf13c89cd6215c13178a57f7caa8981cf917e2a9e1090358f83ae3e258db",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "No beneficial configuration found; parallel strategy failed to scale.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance.selection.status",
+      "performance.selection.configuration_dimensions",
+      "performance.selection.raw_fastest",
+      "performance.selection.best_one_thread",
+      "performance.selection.best_parallel"
+    ]
+  },
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "No beneficial configuration found; parallel strategy failed to scale.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance.selection.status",
+      "performance.selection.configuration_dimensions",
+      "performance.selection.raw_fastest",
+      "performance.selection.best_one_thread",
+      "performance.selection.best_parallel"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 5109475208,
+    "load_duration": 772666,
+    "prompt_eval_count": 1716,
+    "eval_count": 106,
+    "done_reason": "stop"
+  },
+  "oracle_match": true,
+  "wall_seconds": 5.111129832977895
+}

@@ -29,11 +29,11 @@ está explicitamente em aberto; toda a apresentação é identificada como rascu
 
 | Item | Situação após a revisão |
 |---|---|
-| **1. Pipeline até o resultado final** | Implementado e testado no caminho suportado. Falta confirmar promoção a partir de uma inferência real concluída no ambiente alvo |
-| **2. Validação e configuração** | Correções implementadas e testadas; manter os mesmos contratos nas novas campanhas |
-| **3. Delimitação da automação** | Incorporada à base revisada e aos slides; precisa permanecer no documento adotado para entrega |
-| **4. Avaliação dos agentes** | Infraestrutura pronta, rodada diagnóstica com timeouts; concluir inferências e discutir decisão/custo sem atribuir à LLM o ganho da transformação |
-| **5. Experimentos e reprodução** | Dados existentes organizados; confirmar ou declarar lacunas históricas, conservar e registrar campanhas finais |
+| **1. Pipeline até o resultado final** | Concluído no caminho suportado no Mac: inferência real, `ACCEPT`, promoção, revalidação e auditoria do manifesto |
+| **2. Validação e configuração** | Concluído e verificado no Mac: 81 testes unittest e 14 regressões aprovados, sem skips |
+| **3. Delimitação da automação** | Concluída e auditada em código, monografia, slides e `AUTOMATION_SCOPE.md`; preservar na entrega |
+| **4. Avaliação dos agentes** | Campanha original `INCOMPLETE` preservada; contrato corrigido e replicação final `COMPLETE`, sem benefício adicional demonstrado; MODIFY não reproduzido no ensaio controlado |
+| **5. Experimentos e reprodução** | Concluído no acervo disponível: 22 campanhas consolidadas, lacunas históricas declaradas e três campanhas Mac verificadas pelos gates atuais |
 | **6. Monografia e defesa** | Base Word, PowerPoint com falas, bibliografia e demonstração preparados; falta concluir resultados, integrar ao modelo de entrega e ensaiar a versão final |
 
 ## 1 e 2 — confirmação final do pipeline no ambiente alvo
@@ -54,6 +54,14 @@ python3 -B scripts/run_pipeline.py \
 PROMOTED exige decisão e gates compatíveis. Não editar uma decisão para forçar
 esse estado. Conservar a pasta do runner e o bundle final. Se ocorrer recusa,
 ausência de ganho ou timeout, conservar o desfecho e sua causa.
+
+Execução efetiva de 03/11/2026: `llama3.1:8b` (ID local `46e0c10c039e`),
+LLVM 23.1.1, `PROMOTED` com 4 threads, speedup end-to-end 2,46546x e
+escalabilidade contra OpenMP 1T 2,46466x. Evidências em
+`build/final-pipeline-mac-2026-11-03/run-4whpshpr/` e bundle em
+`results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/`.
+Isso fecha o item 1 no recorte Dot Product/redução; não substitui a campanha
+pareada e a discussão científica do item 4.
 
 ## 3 — recorte que deve permanecer no texto
 
@@ -78,6 +86,15 @@ falhas, latência e tokens. O arquivo de resultados pode estar completo sem
 demonstrar benefício. Uma campanha com falhas continua tendo resultados a
 discutir; ausência total de respostas não permite responder à qualidade semântica.
 
+A campanha original do Mac está em
+`results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/`; suas seis
+respostas inválidas foram preservadas. Após corrigir o contrato, a replicação
+com as mesmas evidências terminou `COMPLETE` em
+`results/coordinator_evaluation/mac-2026-11-03-final-v4-llama/evaluation-sl8k2oaz/`,
+com 12/12 respostas LLM válidas. O ensaio controlado acertou ACCEPT, REJECT e
+RETUNE em 6/6, mas não MODIFY. Ver
+[COORDINATOR_EVALUATION_MAC.md](COORDINATOR_EVALUATION_MAC.md).
+
 Atualizar conjuntamente resumo, abstract, metodologia, §5.4 de resultados,
 discussão, conclusão e slide do Coordinator. Não manter na versão final uma
 promessa de superioridade sobre geração monolítica se esse contraste não foi
@@ -85,9 +102,10 @@ executado. O estudo atual avalia decisão, sem gerar novos candidatos pela LLM.
 
 ## 5 — seleção de evidências e atualização dos gráficos
 
-Conferir metadados das campanhas que entrarão no texto: hardware, compilador,
+Os metadados das campanhas que entram no texto foram separados entre vinculados,
+arquivados e históricos: hardware, compilador,
 flags, entrada, origem da variante, corretude, configurações e tempos. Nem todas
-as 19 campanhas precisam ser repetidas; escolher o recorte que sustenta as
+as 22 campanhas precisam ser repetidas; escolher o recorte que sustenta as
 questões de pesquisa e declarar os limites das demais.
 
 Para incluir campanhas novas, registrar suas fontes e ambiente no

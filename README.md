@@ -21,7 +21,9 @@ O exemplo usa Dot Product e seus drivers existentes. O comando executa análise,
 transformação, gates, Selector, Context Builder, Coordinator e promoção. Cada
 tentativa conserva comandos, logs, evidências e `summary.json` em uma pasta
 exclusiva sob `build/pipeline/`. `--source`, `--driver` e `--benchmark-driver`
-permitem fornecer outro caso dentro do mesmo contrato de fontes C independentes.
+permitem fornecer outro caso dentro do mesmo contrato de fontes C independentes,
+mas o transformador genérico atual só publica redução escalar direta autorizada
+pelo Planner; estratégias não suportadas são recusadas.
 O compilador precisa aceitar `-O3 -fopenmp`; selecione a toolchain adequada ao
 ambiente, especialmente no Mac.
 
@@ -67,6 +69,9 @@ python3 scripts/promote_candidate.py build/dot/decision.json \
 Um artefato produzido em teste com resposta simulada da LLM verifica a integração,
 mas não demonstra autonomia da LLM ou sua contribuição científica. Essa distinção
 é mantida nos relatórios de validação.
+
+O [escopo comprovado da automação](docs/AUTOMATION_SCOPE.md) separa classificação,
+transformação, variantes históricas e execução integrada por kernel.
 
 ## Evidências de corretude e desempenho
 
@@ -240,8 +245,8 @@ executadas no hardware alvo com os drivers de benchmark originais.
 ## Matriz experimental e reprodução — item 5
 
 Os resultados disponíveis foram consolidados em
-[results/consolidated/REPORT.md](results/consolidated/REPORT.md): 19 campanhas,
-seis kernels, matriz CSV, amostras recuperadas e gráficos SVG/PDF/PNG. O relatório
+[results/consolidated/REPORT.md](results/consolidated/REPORT.md): 22 campanhas,
+seis kernels, 173 configurações, 545 tempos recuperados e gráficos SVG/PDF/PNG. O relatório
 separa ganho contra o sequencial de escalabilidade OpenMP e distingue medições
 históricas de evidências verificadas pelos gates atuais.
 

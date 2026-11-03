@@ -1,0 +1,47 @@
+{
+  "scenario": "reject",
+  "mode": "coordinator_without_analysis",
+  "expected_decision": "REJECT",
+  "expected_actions": [
+    "REJECT_CANDIDATE"
+  ],
+  "prompt_sha256": "f0081f9c01ae36fb73720c6bdc661163bcbeff8966e8e6b440be68261df52a6b",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Correctness passed, but performance shows no beneficial configuration. The best parallel configuration (threads=2) is slower than the single-threaded version (1.05s vs 1.2s). No meaningful speedup exists, and no further configurations appear viable.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "validation.correctness_gate=PASS",
+      "performance.selection.status=NO_BENEFICIAL_CONFIGURATION",
+      "performance.best_parallel.median_seconds=1.2 (worse than best_one_thread=1.05)"
+    ]
+  },
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Correctness passed, but performance shows no beneficial configuration. The best parallel configuration (threads=2) is slower than the single-threaded version (1.05s vs 1.2s). No meaningful speedup exists, and no further configurations appear viable.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "validation.correctness_gate=PASS",
+      "performance.selection.status=NO_BENEFICIAL_CONFIGURATION",
+      "performance.best_parallel.median_seconds=1.2 (worse than best_one_thread=1.05)"
+    ]
+  },
+  "metadata": {
+    "model": "qwen3:14b",
+    "total_duration": 53160248375,
+    "load_duration": 15962291,
+    "prompt_eval_count": 1798,
+    "eval_count": 640,
+    "done_reason": "stop"
+  },
+  "oracle_match": true,
+  "wall_seconds": 53.20330183301121
+}

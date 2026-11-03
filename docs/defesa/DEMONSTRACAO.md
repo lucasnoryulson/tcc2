@@ -89,10 +89,12 @@ LLM se o modelo concluir a inferência e o runner terminar em PROMOTED. Conferir
 o manifesto, os hashes, a configuração e a revalidação. RETUNE/MODIFY/REJECT,
 ausência de ganho ou timeout são desfechos que devem ser apresentados como tais.
 
-Já existe um bundle de integração em `build/validation/final/promoted/`, com
-compilação/benchmark reais e Coordinator **simulado**, documentado em
-`build/validation/final/validation_mode.json`. Pode ilustrar o formato do
-manifesto, com essa identificação explícita; não comprova inferência real.
+O bundle real do Mac está em
+`results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/`.
+Ele registra `llama3.1:8b`, decisão `ACCEPT`, 4 threads, revalidação `PASS` e
+os hashes das evidências. O bundle antigo em `build/validation/final/promoted/`
+continua sendo integração com Coordinator simulado e não deve ser apresentado
+como inferência real.
 
 ## Plano de apresentação sem execução ao vivo
 
