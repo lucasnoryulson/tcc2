@@ -2,6 +2,12 @@
 
 Sistema híbrido de análise estática, transformação OpenMP e coordenação por LLM.
 
+Para continuar este trabalho em outra sessão ou no Mac, leia o
+[contexto atualizado do Codex](tcc2_contexto_para_codex/docs/TCC2_CONTEXT.md), o
+[histórico da conversa](tcc2_contexto_para_codex/docs/CONVERSA_E_DECISOES.md) e o
+[roteiro de retomada](tcc2_contexto_para_codex/RETOMAR_NO_MAC.md).
+O `AGENTS.md` da raiz aponta para essas instruções automaticamente.
+
 ## Pipeline completo e promoção
 
 Com Clang, um compilador com OpenMP e o Ollama/modelo disponíveis, execute:

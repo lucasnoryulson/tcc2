@@ -4,7 +4,11 @@ Este repositório contém o TCC2 de Ciência da Computação (PUCRS): sistema h�
 
 ## Contexto obrigatório
 
-Antes de propor alterações, leia `docs/TCC2_CONTEXT.md`. Este arquivo registra o contexto transferido de uma conversa anterior com ChatGPT, as decisões já tomadas, a arquitetura conhecida, os resultados, as pendências e os critérios de aceite. Considere-o um ponto de partida, não um substituto para inspecionar a versão atual do código.
+Antes de propor alterações, leia `tcc2_contexto_para_codex/docs/TCC2_CONTEXT.md`
+(caminho relativo à raiz do repositório), depois `docs/CONVERSA_E_DECISOES.md`
+relativo a esta pasta e `RETOMAR_NO_MAC.md`. O contexto foi atualizado após as
+implementações de 03/11/2026. `CONTEXTO_INICIAL_CHATGPT.md` é histórico e contém
+pendências já resolvidas. Confirme o estado atual no código e no Git.
 
 ## Regras de trabalho
 
@@ -15,3 +19,7 @@ Antes de propor alterações, leia `docs/TCC2_CONTEXT.md`. Este arquivo registra
 - Nunca confunda speedup end-to-end com escalabilidade paralela real. Preserve as métricas e os baselines usados.
 - Acrescente testes que cubram rejeições, configurações inconsistentes, troca de artefato, falha de gate e promoção válida. Execute os testes relevantes e reporte exatamente o que foi executado.
 - Evite expansão arquitetural (CUDA, novos agentes ou padrões) sem necessidade para fechar o TCC.
+- Mantenha a numeração consolidada dos seis itens: pipeline, validação,
+  recorte, avaliação dos agentes, experimentos/reprodução, monografia/defesa.
+- Não trate LLM simulada como inferência real, nem testes aprovados como
+  conclusão científica. Os materiais de redação e defesa ainda são rascunhos.
