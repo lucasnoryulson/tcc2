@@ -1,10 +1,13 @@
 import argparse
 import json
+import subprocess
 import sys
 import urllib.error
 import urllib.request
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from analysis.artifact_provenance import read_report, verify_file
 
 # ============================================================
 # CONFIGURATION
@@ -88,16 +91,6 @@ DECISION_SCHEMA = {
 
     "additionalProperties": False,
 }
-
-
-# ============================================================
-# FILE HELPERS
-# ============================================================
-
-def load_json(path):
-    return json.loads(
-        path.read_text()
-    )
 
 
 # ============================================================
@@ -589,8 +582,7 @@ def enrich_deterministic_configuration(
     )
 
     if (
-        len(configuration_dimensions) > 1
-        and recommended
+        recommended
         and recommended_threads is not None
     ):
 
@@ -1158,6 +1150,11 @@ def main():
         default=None,
     )
 
+    parser.add_argument(
+        "--promote-to", type=Path,
+        help="After validation, promote ACCEPT through the deterministic executor.",
+    )
+
     args = parser.parse_args()
 
     context_file = (
@@ -1173,9 +1170,7 @@ def main():
 
         sys.exit(1)
 
-    context = load_json(
-        context_file
-    )
+    context, context_reference = read_report(context_file)
 
     print(
         "Calling Coordinator Agent..."
@@ -1268,9 +1263,19 @@ def main():
         "decision":
             decision,
 
+        "evidence": {
+            "context": context_reference,
+            "candidate_id": context.get("source", {}).get("candidate_id"),
+            "campaign_id": context.get("source", {}).get("campaign_id"),
+        },
+
         "llm_metadata":
             metadata,
     }
+
+    if output_file == context_file:
+        parser.error("Decision output must not overwrite its context.")
+    verify_file(context_reference)
 
     output_file.write_text(
         json.dumps(
@@ -1290,6 +1295,15 @@ def main():
         f"Decision salva em: "
         f"{output_file}"
     )
+
+    if args.promote_to is not None:
+        from scripts.promote_candidate import promote_candidate
+        try:
+            promoted = promote_candidate(output_file, args.promote_to)
+        except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
+            print(f"PROMOTION_BLOCKED: {error}")
+            sys.exit(1)
+        print(f"PROMOTED: {promoted}")
 
 
 if __name__ == "__main__":

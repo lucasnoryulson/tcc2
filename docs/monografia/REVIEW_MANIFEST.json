@@ -1,0 +1,62 @@
+{
+  "status": "DRAFT_LLM_EVALUATION_PENDING",
+  "author": "Lucas Nory Ulson",
+  "originals_referenced": [
+    {
+      "path": "tcc_proposta(1).docx",
+      "sha256": "48aacf0f0ca2071cb090010fade1b45fdb5c9bfa187797fecdee008e2b891644"
+    },
+    {
+      "path": "Guia_TCC2_Paralelizacao_Automatica_atualizado_2026-09-02(1).docx",
+      "sha256": "ec25938514987ba5cfa1c351800e05d7ff4d00029022e803583a6dc4bab0ac0a"
+    },
+    {
+      "path": "Resumo_Executivo_TCC2_Lucas_Ulson_Atualizado_2026-10-08.docx",
+      "sha256": "f788ccb7174f872d9b931f2085adee013326afee38db336b309ccc0d0ed12bf8"
+    }
+  ],
+  "sources": [
+    {
+      "path": "docs/monografia/BASE_MONOGRAFIA.md",
+      "sha256": "efd61617c946c9658295551f5aaf400da0ac1e528e02c5fc041a201b85dd90c0"
+    },
+    {
+      "path": "docs/monografia/LEITURA_DOS_DOCUMENTOS.md",
+      "sha256": "7d19af3d8a4e23b1731058083526b331275248a2efe212fb4699806f54b0f4c3"
+    },
+    {
+      "path": "docs/monografia/referencias.bib",
+      "sha256": "dfb25fee3e8af0af887cb443a7536a7c1094653692f2f293f157332fd688cf99"
+    },
+    {
+      "path": "docs/defesa/SLIDES.md",
+      "sha256": "9d2decea6aa1c02d0ab629e3cb5aabd6023ac8ee1b10689354bb5225265ac916"
+    },
+    {
+      "path": "docs/defesa/DEMONSTRACAO.md",
+      "sha256": "c4fb0a22fa101a382a38e4e3a58f98164b86b11cc20bf5d71b383814d71168f6"
+    },
+    {
+      "path": "scripts/build_academic_material.py",
+      "sha256": "b0ae36a5e4eff134d1a81ba58628067ce6bfbee45fc319754e27fc54fca494c3"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "docs/monografia/BASE_MONOGRAFIA.docx",
+      "sha256": "aba5e013f8d36c89e25ecaddca2840c9c419699f8d14df9f6e52205e4f8ad681"
+    },
+    {
+      "path": "docs/monografia/ARQUITETURA.png",
+      "sha256": "3e8bade7dcb3bb2e0114d648e71325a9fd9c89fd1f8af65d6f238dd838562eb7"
+    },
+    {
+      "path": "docs/monografia/ARQUITETURA.svg",
+      "sha256": "92662a25518765fc1a7d086f0b8af783d99129331225826c1fdcd6ac905f61c3"
+    },
+    {
+      "path": "docs/defesa/DEFESA_RASCUNHO.pptx",
+      "sha256": "a06456858d2e55a349136d03b6bab469613b221973cdec06fe319bba5d9abf82"
+    }
+  ]
+}

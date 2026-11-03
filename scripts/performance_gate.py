@@ -1,11 +1,18 @@
 import argparse
 import csv
+import json
+import math
 import os
 import statistics
 import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from analysis.artifact_provenance import (
+    COMPILE_FLAGS, OPENMP_ENVIRONMENT, capture_run, file_record,
+    load_correctness_report, measured_rows, verify_file, verify_provenance,
+)
 
 DEFAULT_COMPILER = "clang"
 
@@ -30,6 +37,7 @@ def run_command(
         stderr=subprocess.PIPE,
         text=True,
         env=environment,
+        timeout=120,
     )
 
 
@@ -40,15 +48,7 @@ def compile_program(
     output,
     openmp
 ):
-    command = [
-        compiler,
-        "-O3",
-    ]
-
-    if openmp:
-        command.append(
-            "-fopenmp"
-        )
+    command = [compiler, *COMPILE_FLAGS["candidate" if openmp else "sequential"]]
 
     command.extend([
         str(driver),
@@ -75,9 +75,10 @@ def parse_average_time(output):
                 1
             )[1]
 
-            return float(
-                value
-            )
+            seconds = float(value)
+            if not math.isfinite(seconds) or seconds <= 0:
+                raise ValueError("AVERAGE_SECONDS must be finite and positive.")
+            return seconds
 
     raise ValueError(
         "AVERAGE_SECONDS not found."
@@ -91,22 +92,7 @@ def execute(
     environment = os.environ.copy()
 
     if threads is not None:
-
-        environment[
-            "OMP_NUM_THREADS"
-        ] = str(threads)
-
-        environment[
-            "OMP_DYNAMIC"
-        ] = "FALSE"
-
-        environment[
-            "OMP_PROC_BIND"
-        ] = "TRUE"
-
-        environment[
-            "OMP_PLACES"
-        ] = "cores"
+        environment.update(OPENMP_ENVIRONMENT, OMP_NUM_THREADS=str(threads))
 
     result = run_command(
         [
@@ -177,391 +163,112 @@ def benchmark(
     }
 
 
-def main():
-
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--sequential",
-        required=True,
-        type=Path,
+def run_gate(sequential_source, candidate_source, driver, build_dir, compiler,
+             counts, correctness_file, csv_file):
+    if not counts or any(type(count) is not int or count < 1 for count in counts) or len(set(counts)) != len(counts):
+        raise ValueError("Thread counts must be distinct positive integers.")
+    correctness, correctness_ref = load_correctness_report(
+        correctness_file, sequential_source, candidate_source,
     )
-
-    parser.add_argument(
-        "--candidate",
-        required=True,
-        type=Path,
+    if correctness["status"] != "PASS":
+        raise ValueError("Performance requires correctness PASS.")
+    if not set(counts).issubset(correctness["validated_threads"]):
+        raise ValueError("Validate correctness for every benchmark thread count first.")
+    provenance = capture_run(
+        {"sequential": sequential_source, "candidate": candidate_source, "driver": driver},
+        build_dir, compiler, correctness["provenance"]["campaign_id"],
     )
-
-    parser.add_argument(
-        "--driver",
-        required=True,
-        type=Path,
-    )
-
-    parser.add_argument(
-        "--compiler",
-        default=DEFAULT_COMPILER,
-    )
-
-    parser.add_argument(
-        "--build-dir",
-        type=Path,
-        default=Path(
-            "build/performance_gate"
-        ),
-    )
-
-    parser.add_argument(
-        "--csv",
-        type=Path,
-        default=Path(
-            "results/dot/auto_generated_performance.csv"
-        ),
-    )
-
-    args = parser.parse_args()
-
-    sequential_source = (
-        args.sequential.resolve()
-    )
-
-    candidate_source = (
-        args.candidate.resolve()
-    )
-
-    driver = (
-        args.driver.resolve()
-    )
-
-    build_dir = (
-        args.build_dir.resolve()
-    )
-
-    csv_file = (
-        args.csv.resolve()
-    )
-
-    for path in [
-        sequential_source,
-        candidate_source,
-        driver,
-    ]:
-
-        if not path.exists():
-
-            print(
-                f"Arquivo não encontrado: "
-                f"{path}"
-            )
-
-            sys.exit(1)
-
-    build_dir.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
-    csv_file.parent.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
-    sequential_binary = (
-        build_dir
-        / "dot_sequential"
-    )
-
-    candidate_binary = (
-        build_dir
-        / "dot_openmp"
-    )
-
-    print(
-        "================================="
-    )
-
-    print(
-        "TCC2 PERFORMANCE GATE v0.1"
-    )
-
-    print(
-        "================================="
-    )
-
-    print()
-    print(
-        "Compiling sequential..."
-    )
-
-    result = compile_program(
-        args.compiler,
-        driver,
-        sequential_source,
-        sequential_binary,
-        False,
-    )
-
-    if result.returncode != 0:
-
-        print(
-            "SEQUENTIAL COMPILE ERROR"
+    if provenance["toolchain"] != correctness["provenance"]["toolchain"]:
+        raise ValueError("Correctness and performance must use the same toolchain.")
+    run_dir = Path(provenance["run_dir"])
+    frozen_correctness = run_dir / "correctness.json"
+    frozen_correctness.write_bytes(verify_file(correctness_ref))
+    report = {
+        "schema": "tcc2-performance-gate", "version": "0.1", "status": "FAIL",
+        "provenance": provenance, "correctness_report": file_record(frozen_correctness),
+        "thread_counts": counts, "repetitions": EXTERNAL_REPEATS,
+        "configuration_dimensions": ["threads"],
+        "compilation": {}, "binaries": {}, "measurements": [],
+    }
+    snapshots = {name: Path(item["snapshot"]) for name, item in provenance["inputs"].items()}
+    for name in ("sequential", "candidate"):
+        binary = run_dir / ("dot_" + name)
+        result = compile_program(
+            provenance["toolchain"]["path"], snapshots["driver"], snapshots[name],
+            binary, name == "candidate",
         )
+        report["compilation"][name] = {
+            "command": result.args, "returncode": result.returncode,
+            "stdout": result.stdout, "stderr": result.stderr,
+        }
+        if result.returncode != 0:
+            report["reason"] = f"{name} compile error."
+            print(result.stderr)
+            return report
+        report["binaries"][name] = file_record(binary)
 
-        print(
-            result.stderr
-        )
+    print("Sequential benchmark:")
+    result = benchmark(Path(report["binaries"]["sequential"]["path"]))
+    report["measurements"].append({"mode": "sequential", "threads": 1, "times": result["times"]})
+    for count in counts:
+        print(f"OpenMP benchmark ({count} thread(s)):")
+        result = benchmark(Path(report["binaries"]["candidate"]["path"]), count)
+        report["measurements"].append({"mode": "openmp", "threads": count, "times": result["times"]})
 
-        sys.exit(1)
-
-    print(
-        "Sequential: COMPILE_SUCCESS"
-    )
-
-    print()
-    print(
-        "Compiling OpenMP candidate..."
-    )
-
-    result = compile_program(
-        args.compiler,
-        driver,
-        candidate_source,
-        candidate_binary,
-        True,
-    )
-
-    if result.returncode != 0:
-
-        print(
-            "CANDIDATE COMPILE ERROR"
-        )
-
-        print(
-            result.stderr
-        )
-
-        sys.exit(1)
-
-    print(
-        "Candidate: COMPILE_SUCCESS"
-    )
-
-    print()
-    print(
-        "Sequential benchmark:"
-    )
-
-    sequential = benchmark(
-        sequential_binary
-    )
-
-    sequential_median = (
-        sequential[
-            "median"
-        ]
-    )
-
-    print()
-    print(
-        f"Sequential median: "
-        f"{sequential_median:.9f} s"
-    )
-
-    rows = []
-
-    rows.append({
-        "mode":
-            "sequential",
-
-        "threads":
-            1,
-
-        "median_seconds":
-            sequential_median,
-
-        "mean_seconds":
-            sequential["mean"],
-
-        "speedup":
-            1.0,
-
-        "efficiency":
-            1.0,
-    })
-
-    best_threads = None
-    best_speedup = 0.0
-    best_median = None
-
-    for threads in THREAD_COUNTS:
-
-        print()
-        print(
-            f"OpenMP benchmark "
-            f"({threads} thread(s)):"
-        )
-
-        result = benchmark(
-            candidate_binary,
-            threads,
-        )
-
-        median = result[
-            "median"
-        ]
-
-        speedup = (
-            sequential_median
-            / median
-        )
-
-        efficiency = (
-            speedup
-            / threads
-        )
-
-        print()
-        print(
-            f"  Median:     "
-            f"{median:.9f} s"
-        )
-
-        print(
-            f"  Speedup:    "
-            f"{speedup:.3f}x"
-        )
-
-        print(
-            f"  Efficiency: "
-            f"{efficiency:.3f}"
-        )
-
-        rows.append({
-            "mode":
-                "openmp",
-
-            "threads":
-                threads,
-
-            "median_seconds":
-                median,
-
-            "mean_seconds":
-                result["mean"],
-
-            "speedup":
-                speedup,
-
-            "efficiency":
-                efficiency,
-        })
-
-        if speedup > best_speedup:
-
-            best_speedup = (
-                speedup
-            )
-
-            best_threads = (
-                threads
-            )
-
-            best_median = (
-                median
-            )
-
-    with csv_file.open(
-        "w",
-        newline=""
-    ) as file:
-
-        writer = csv.DictWriter(
-            file,
-            fieldnames=[
-                "mode",
-                "threads",
-                "median_seconds",
-                "mean_seconds",
-                "speedup",
-                "efficiency",
-            ],
-        )
-
+    verify_provenance(provenance)
+    verify_provenance(correctness["provenance"])
+    for binary in report["binaries"].values():
+        verify_file(binary)
+    rows = measured_rows(report["measurements"])
+    frozen_csv = run_dir / "performance.csv"
+    with frozen_csv.open("w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=list(rows[0]))
         writer.writeheader()
+        writer.writerows(rows)
+    report["csv"] = file_record(frozen_csv)
+    report["csv_file"] = str(csv_file.resolve())
+    csv_file.parent.mkdir(parents=True, exist_ok=True)
+    csv_file.write_bytes(frozen_csv.read_bytes())
+    report["status"] = "PASS" if any(row["speedup"] > 1 for row in rows[1:]) else "FAIL"
+    print(f"PERFORMANCE GATE: {report['status']}")
+    print(f"CSV salvo em: {csv_file}")
+    return report
 
-        writer.writerows(
-            rows
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--sequential", required=True, type=Path)
+    parser.add_argument("--candidate", required=True, type=Path)
+    parser.add_argument("--driver", required=True, type=Path)
+    parser.add_argument("--correctness", required=True, type=Path,
+                        help="Passing correctness report covering all benchmark threads.")
+    parser.add_argument("--compiler", default=DEFAULT_COMPILER)
+    parser.add_argument("--build-dir", type=Path, default=Path("build/performance_gate"))
+    parser.add_argument("--csv", type=Path, default=Path("results/dot/auto_generated_performance.csv"))
+    parser.add_argument("--output", type=Path,
+                        help="JSON evidence; defaults to the CSV name with .report.json suffix.")
+    args = parser.parse_args()
+    args.csv = args.csv.resolve()
+    output = args.output.resolve() if args.output else args.csv.with_suffix(".report.json")
+    inputs = {args.sequential.resolve(), args.candidate.resolve(), args.driver.resolve(), args.correctness.resolve()}
+    if args.csv in inputs or output in inputs or output == args.csv:
+        parser.error("Evidence outputs must not overwrite inputs or each other.")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    report = {"schema": "tcc2-performance-gate", "version": "0.1",
+              "status": "FAIL", "reason": "Gate did not complete."}
+    output.write_text(json.dumps(report, indent=2) + "\n")
+    try:
+        report = run_gate(
+            args.sequential.resolve(), args.candidate.resolve(), args.driver.resolve(),
+            args.build_dir.resolve(), args.compiler, THREAD_COUNTS,
+            args.correctness.resolve(), args.csv,
         )
-
-    print()
-    print(
-        "================================="
-    )
-
-    print(
-        "PERFORMANCE SUMMARY"
-    )
-
-    print(
-        "================================="
-    )
-
-    print(
-        f"Sequential median: "
-        f"{sequential_median:.9f} s"
-    )
-
-    print(
-        f"Best OpenMP median: "
-        f"{best_median:.9f} s"
-    )
-
-    print(
-        f"Best threads: "
-        f"{best_threads}"
-    )
-
-    print(
-        f"Best speedup: "
-        f"{best_speedup:.3f}x"
-    )
-
-    print()
-
-    if best_speedup > 1.0:
-
-        print(
-            "PERFORMANCE GATE: PASS"
-        )
-
-        print(
-            "Generated candidate improves "
-            "performance."
-        )
-
-    else:
-
-        print(
-            "PERFORMANCE GATE: FAIL"
-        )
-
-        print(
-            "Generated candidate does not "
-            "improve performance."
-        )
-
-    print()
-
-    print(
-        f"CSV salvo em: "
-        f"{csv_file}"
-    )
-
-    print(
-        "================================="
-    )
+    except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
+        report["reason"] = str(error)
+        print(f"PERFORMANCE ERROR: {error}")
+    output.write_text(json.dumps(report, indent=2) + "\n")
+    return 0 if report["status"] == "PASS" else 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

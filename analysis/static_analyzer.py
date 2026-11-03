@@ -1428,7 +1428,8 @@ def print_accesses(
 
 def analyze(
     source,
-    include_dirs
+    include_dirs,
+    output_dir=None,
 ):
 
     print(
@@ -1563,10 +1564,8 @@ def analyze(
             "loops": loops
         })
 
-    output_dir = (
-        Path(__file__).resolve().parent
-        / "output"
-    )
+    if output_dir is None:
+        output_dir = Path(__file__).resolve().parent / "output"
 
     output_dir.mkdir(
         parents=True,
@@ -1669,6 +1668,8 @@ def main():
         default=[]
     )
 
+    parser.add_argument("--output-dir", type=Path)
+
     args = parser.parse_args()
 
     analyze(
@@ -1676,7 +1677,8 @@ def main():
         [
             Path(path).resolve()
             for path in args.include
-        ]
+        ],
+        output_dir=args.output_dir.resolve() if args.output_dir else None,
     )
 
 

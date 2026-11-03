@@ -4,6 +4,8 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from analysis.artifact_provenance import load_performance_report
 
 # ============================================================
 # CONFIGURATION
@@ -676,6 +678,11 @@ def main():
         default=None,
     )
 
+    parser.add_argument(
+        "--performance-report", type=Path,
+        help="Verify gate provenance and attach it to the selection.",
+    )
+
     args = parser.parse_args()
 
     input_file = (
@@ -691,15 +698,26 @@ def main():
 
         sys.exit(1)
 
-    results = load_results(
-        input_file
-    )
+    evidence = None
+    if args.performance_report is not None:
+        report, results, reference = load_performance_report(
+            args.performance_report.resolve(), input_file,
+        )
+        evidence = {
+            "performance_report": reference,
+            "campaign_id": report["provenance"]["campaign_id"],
+            "candidate_id": report["provenance"]["candidate_id"],
+        }
+    else:
+        results = load_results(input_file)
 
     selection = (
         select_configuration(
             results
         )
     )
+    if evidence is not None:
+        selection["evidence"] = evidence
 
     print_result(
         selection

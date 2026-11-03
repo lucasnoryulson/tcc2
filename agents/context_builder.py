@@ -3,6 +3,10 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from analysis.artifact_provenance import (
+    load_selection_evidence, verify_file,
+)
 
 # ============================================================
 # FILE HELPERS
@@ -12,10 +16,6 @@ def load_json(path):
     return json.loads(
         path.read_text()
     )
-
-
-def load_text(path):
-    return path.read_text()
 
 
 # ============================================================
@@ -59,7 +59,17 @@ def build_context(
     strategy_file,
     selection_file,
     profiling_file=None,
+    *,
+    correctness_file,
 ):
+
+    bundle = load_selection_evidence(selection_file, correctness_file, source_file, candidate_file)
+    correctness = bundle["correctness"]
+    correctness_ref = bundle["references"]["correctness"]
+    selection_data = bundle["selection"]
+    selection_ref = bundle["references"]["selection"]
+    performance_ref = bundle["references"]["performance"]
+    provenance = bundle["performance"]["provenance"]
 
     static_data = load_json(
         static_file
@@ -77,9 +87,10 @@ def build_context(
         strategy_file
     )
 
-    selection_data = load_json(
-        selection_file
-    )
+    source_code = {}
+    for name in ("sequential", "candidate"):
+        item = correctness["provenance"]["inputs"][name]
+        source_code[name] = verify_file({"path": item["snapshot"], "sha256": item["sha256"]}).decode()
 
     profiling_data = (
         load_json(profiling_file)
@@ -122,7 +133,7 @@ def build_context(
             "tcc2-agent-context",
 
         "version":
-            "0.1",
+            "0.3",
 
         "task":
             (
@@ -136,6 +147,10 @@ def build_context(
         # ----------------------------------------------------
 
         "source": {
+            "campaign_id": provenance["campaign_id"],
+            "candidate_id": provenance["candidate_id"],
+            "candidate_sha256": provenance["inputs"]["candidate"]["sha256"],
+            "sequential_sha256": provenance["inputs"]["sequential"]["sha256"],
             "sequential_file":
                 str(source_file),
 
@@ -143,14 +158,10 @@ def build_context(
                 str(candidate_file),
 
             "sequential_code":
-                load_text(
-                    source_file
-                ),
+                source_code["sequential"],
 
             "candidate_code":
-                load_text(
-                    candidate_file
-                ),
+                source_code["candidate"],
         },
 
         # ----------------------------------------------------
@@ -235,14 +246,10 @@ def build_context(
 
         "validation": {
             "correctness_gate":
-                "PASS",
-
-            "note":
-                (
-                    "This context is generated only "
-                    "after the candidate passed the "
-                    "compile and correctness gate."
-                ),
+                correctness["status"],
+            "correctness_report_file": str(correctness_file.resolve()),
+            "correctness_report_sha256": correctness_ref["sha256"],
+            "correctness_report": correctness,
         },
 
         # ----------------------------------------------------
@@ -250,6 +257,8 @@ def build_context(
         # ----------------------------------------------------
 
         "performance": {
+            "report": performance_ref,
+            "selection_file": selection_ref,
             "selection":
                 selection_data,
         },
@@ -324,6 +333,8 @@ def build_context(
         },
     }
 
+    for reference in (correctness_ref, performance_ref, selection_ref):
+        verify_file(reference)
     return context
 
 
@@ -338,7 +349,7 @@ def print_summary(context):
     )
 
     print(
-        "TCC2 AGENT CONTEXT BUILDER v0.1"
+        "TCC2 AGENT CONTEXT BUILDER v0.3"
     )
 
     print(
@@ -375,7 +386,7 @@ def print_summary(context):
     )
 
     print(
-        "Correctness gate: PASS"
+        f"Correctness gate: {context['validation']['correctness_gate']}"
     )
 
     recommended = selection.get(
@@ -493,6 +504,13 @@ def main():
     )
 
     parser.add_argument(
+        "--correctness",
+        required=True,
+        type=Path,
+        help="JSON report produced by compile_correctness_gate.py --output.",
+    )
+
+    parser.add_argument(
         "--profiling",
         required=False,
         type=Path,
@@ -515,6 +533,7 @@ def main():
         args.patterns,
         args.strategy,
         args.selection,
+        args.correctness,
     ]
 
     if args.profiling is not None:
@@ -546,9 +565,10 @@ def main():
                 if args.profiling is not None
                 else None
             ),
+            correctness_file=args.correctness.resolve(),
         )
 
-    except RuntimeError as error:
+    except (RuntimeError, ValueError, OSError) as error:
 
         print(
             f"CONTEXT_ERROR: {error}"
