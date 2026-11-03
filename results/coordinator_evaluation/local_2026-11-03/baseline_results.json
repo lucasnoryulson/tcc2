@@ -1,0 +1,430 @@
+{
+  "schema": "tcc2-coordinator-evaluation",
+  "version": "0.1",
+  "status": "BASELINE_ONLY",
+  "created_at": "2026-11-03T18:02:03.712800+00:00",
+  "settings": {
+    "model": "qwen2.5:3b",
+    "timeout_seconds": 600,
+    "seed": 2026,
+    "repetitions": 3,
+    "baseline_only": true,
+    "temperature": 0,
+    "order": "seeded_shuffle_per_case_and_repetition"
+  },
+  "implementation": [
+    {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/scripts/evaluate_coordinator.py",
+      "sha256": "8503eadd39a5b59582ab32f057c6263f0ccc9a53e1ac0ede973d3252ad789cc2"
+    },
+    {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/agents/coordinator_agent.py",
+      "sha256": "2edf7e4cd54dab70a001f6f9deedd436a6588e9b6f18659c43bb09244996e7c6"
+    },
+    {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/artifact_provenance.py",
+      "sha256": "0f79e8d6a4debe8bd00392e5ed86288c2bc9081559c9663bac4b9bdb50c4b565"
+    },
+    {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/performance_selector.py",
+      "sha256": "e3a68cd114d0e67b522d3a7ae51538de66e0963e00e8a643abf4554942723061"
+    },
+    {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/scripts/run_pipeline.py",
+      "sha256": "5bd7c742c09432410c17347b48971591e8104a054b82fb52b7d2399a8f17bbed"
+    }
+  ],
+  "cases": [
+    {
+      "case": "dot_large",
+      "context": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_large/run-yr0bov70/context.json",
+        "sha256": "04b60f19463cc8910fb7e196ca642641612eda255c7de6c275ec3ca2c9f2350a"
+      },
+      "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+      "campaign_id": "94f1d9c6a64f4f68920c58389ba4ab87",
+      "shared_prefix_seconds": 17.99446056099987,
+      "evidence": {
+        "correctness": {
+          "path": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_large/run-yr0bov70/correctness.json",
+          "sha256": "b5fdec7a079e883dfef355a3f46233540e0f1e2a9ff1017e3a846b0b2f3b87d2"
+        },
+        "performance": {
+          "path": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_large/run-yr0bov70/performance.json",
+          "sha256": "833c1c7803263bc5a37d0d5af45e56fb83857b304c07d21ee3bda885e12ee379"
+        },
+        "selection": {
+          "path": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_large/run-yr0bov70/selection.json",
+          "sha256": "fa9848fbb8b5c3e5a955ee84b6217c2f38b02453ccd50d1d380a916303e9492b"
+        }
+      },
+      "measurements": [
+        {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 0.01060734094,
+          "mean_seconds": 0.010630817924,
+          "speedup": 1.0,
+          "efficiency": 1.0
+        },
+        {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 0.01097854059,
+          "mean_seconds": 0.010854175308,
+          "speedup": 0.966188616150118,
+          "efficiency": 0.966188616150118
+        },
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 0.00890488488,
+          "mean_seconds": 0.008979666944,
+          "speedup": 1.191182264896388,
+          "efficiency": 0.595591132448194
+        }
+      ]
+    },
+    {
+      "case": "dot_small",
+      "context": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_small/run-otv94_3m/context.json",
+        "sha256": "6c513bfe09ac99f80626cc1bb03e6b1b5276d98c92d49db0754bb705ee2a6072"
+      },
+      "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+      "campaign_id": "cf52e08e03d44acd9db707b293eefb0d",
+      "shared_prefix_seconds": 1.346000051998999,
+      "evidence": {
+        "correctness": {
+          "path": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_small/run-otv94_3m/correctness.json",
+          "sha256": "3923e0a1b85c46fd48da17fd70910b560bad373ccdafc00e7484bcac780140cb"
+        },
+        "performance": {
+          "path": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_small/run-otv94_3m/performance.json",
+          "sha256": "d3a7bb4c0180ec7f5c36a2d5f62165bf5e00b302fcd978c5659787ee5f196443"
+        },
+        "selection": {
+          "path": "/home/liswsz220-01/Desktop/tcc/tcc2/build/validation/step4/final/evaluation-k3nql7bl/dot_small/run-otv94_3m/selection.json",
+          "sha256": "e5c6e72024bd27f1b7297b91efa62ea4fd1210602ffaa62411eb818d1d5f1d06"
+        }
+      },
+      "measurements": [
+        {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 1.183359e-06,
+          "mean_seconds": 1.0655672e-06,
+          "speedup": 1.0,
+          "efficiency": 1.0
+        },
+        {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 1.600409e-06,
+          "mean_seconds": 1.6405222e-06,
+          "speedup": 0.7394103632259004,
+          "efficiency": 0.7394103632259004
+        },
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 1.592121e-06,
+          "mean_seconds": 1.6391808e-06,
+          "speedup": 0.7432594633196848,
+          "efficiency": 0.3716297316598424
+        }
+      ]
+    }
+  ],
+  "trials": [
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 2.4343000404769555e-05,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 2
+      },
+      "measured_final_seconds": 0.00890488488,
+      "speedup_vs_sequential": 1.191182264896388,
+      "parallel_scaling_speedup": 1.2328672114175607,
+      "validation_wall_seconds": 4.330999945523217e-05,
+      "trial_wall_seconds": 6.93950005370425e-05,
+      "case": "dot_large",
+      "repetition": 1,
+      "order_position": 0,
+      "context_sha256": "04b60f19463cc8910fb7e196ca642641612eda255c7de6c275ec3ca2c9f2350a",
+      "shared_prefix_seconds": 17.99446056099987,
+      "accounted_pipeline_seconds": 17.994529956000406
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 2.1796999135403894e-05,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 2
+      },
+      "measured_final_seconds": 0.00890488488,
+      "speedup_vs_sequential": 1.191182264896388,
+      "parallel_scaling_speedup": 1.2328672114175607,
+      "validation_wall_seconds": 3.993399877799675e-05,
+      "trial_wall_seconds": 6.328500057861675e-05,
+      "case": "dot_large",
+      "repetition": 2,
+      "order_position": 0,
+      "context_sha256": "04b60f19463cc8910fb7e196ca642641612eda255c7de6c275ec3ca2c9f2350a",
+      "shared_prefix_seconds": 17.99446056099987,
+      "accounted_pipeline_seconds": 17.994523846000448
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 1.7284000932704657e-05,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 2
+      },
+      "measured_final_seconds": 0.00890488488,
+      "speedup_vs_sequential": 1.191182264896388,
+      "parallel_scaling_speedup": 1.2328672114175607,
+      "validation_wall_seconds": 3.1068999305716716e-05,
+      "trial_wall_seconds": 4.928000089421403e-05,
+      "case": "dot_large",
+      "repetition": 3,
+      "order_position": 0,
+      "context_sha256": "04b60f19463cc8910fb7e196ca642641612eda255c7de6c275ec3ca2c9f2350a",
+      "shared_prefix_seconds": 17.99446056099987,
+      "accounted_pipeline_seconds": 17.994509841000763
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 8.893000995158218e-06,
+      "decision": {
+        "decision": "REJECT",
+        "next_action": "REJECT_CANDIDATE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "risk": "LOW"
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 1.183359e-06,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 1.0884999937843531e-05,
+      "trial_wall_seconds": 2.039399987552315e-05,
+      "case": "dot_small",
+      "repetition": 1,
+      "order_position": 0,
+      "context_sha256": "6c513bfe09ac99f80626cc1bb03e6b1b5276d98c92d49db0754bb705ee2a6072",
+      "shared_prefix_seconds": 1.346000051998999,
+      "accounted_pipeline_seconds": 1.3460204459988745
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 8.924000212573446e-06,
+      "decision": {
+        "decision": "REJECT",
+        "next_action": "REJECT_CANDIDATE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "risk": "LOW"
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 1.183359e-06,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 9.12100040295627e-06,
+      "trial_wall_seconds": 1.8662000002223067e-05,
+      "case": "dot_small",
+      "repetition": 2,
+      "order_position": 0,
+      "context_sha256": "6c513bfe09ac99f80626cc1bb03e6b1b5276d98c92d49db0754bb705ee2a6072",
+      "shared_prefix_seconds": 1.346000051998999,
+      "accounted_pipeline_seconds": 1.3460187139990012
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 6.779999239370227e-06,
+      "decision": {
+        "decision": "REJECT",
+        "next_action": "REJECT_CANDIDATE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "risk": "LOW"
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 1.183359e-06,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 9.542998668621294e-06,
+      "trial_wall_seconds": 1.6963000234682113e-05,
+      "case": "dot_small",
+      "repetition": 3,
+      "order_position": 0,
+      "context_sha256": "6c513bfe09ac99f80626cc1bb03e6b1b5276d98c92d49db0754bb705ee2a6072",
+      "shared_prefix_seconds": 1.346000051998999,
+      "accounted_pipeline_seconds": 1.3460170149992337
+    }
+  ],
+  "groups": [
+    {
+      "case": "dot_large",
+      "mode": "deterministic",
+      "trials": 3,
+      "valid_responses": 3,
+      "failures": 0,
+      "timeouts": 0,
+      "policy_agreement_rate": 1.0,
+      "effective_accept_rate": 1.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 0,
+      "llm_calls": 0,
+      "observed_prompt_tokens": null,
+      "observed_generated_tokens": null,
+      "median_decision_seconds": 2.1796999135403894e-05,
+      "min_decision_seconds": 1.7284000932704657e-05,
+      "max_decision_seconds": 2.4343000404769555e-05,
+      "median_accounted_pipeline_seconds": 17.994523846000448,
+      "median_speedup_vs_sequential": 1.191182264896388
+    },
+    {
+      "case": "dot_small",
+      "mode": "deterministic",
+      "trials": 3,
+      "valid_responses": 3,
+      "failures": 0,
+      "timeouts": 0,
+      "policy_agreement_rate": 1.0,
+      "effective_accept_rate": 0.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 0,
+      "llm_calls": 0,
+      "observed_prompt_tokens": null,
+      "observed_generated_tokens": null,
+      "median_decision_seconds": 8.893000995158218e-06,
+      "min_decision_seconds": 6.779999239370227e-06,
+      "max_decision_seconds": 8.924000212573446e-06,
+      "median_accounted_pipeline_seconds": 1.3460187139990012,
+      "median_speedup_vs_sequential": 1.0
+    }
+  ],
+  "experiment_wall_seconds": 19.47306563100028
+}

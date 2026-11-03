@@ -1,4 +1,5 @@
 from pathlib import Path
+import argparse
 import subprocess
 import statistics
 import csv
@@ -27,6 +28,11 @@ THREAD_COUNTS = [
     ).split(",")
 ]
 REPETITIONS = 5
+CSV_COLUMNS = [
+    "timestamp", "benchmark", "validation_mode", "version", "threads",
+    "mean_seconds", "median_seconds", "std_dev", "min_seconds", "max_seconds",
+    "scaling_speedup", "speedup_vs_sequential", "efficiency_vs_sequential",
+]
 
 
 BENCHMARKS = {
@@ -853,36 +859,13 @@ def validate_candidate(
 
 
 def main():
-
-    if len(sys.argv) != 2:
-
-        print(
-            "Uso: "
-            "python3 scripts/benchmark.py "
-            "<benchmark>"
-        )
-
-        print(
-            "\nBenchmarks disponíveis:"
-        )
-
-        for name in BENCHMARKS:
-            print(
-                f"  - {name}"
-            )
-
-        sys.exit(1)
-
-    benchmark = sys.argv[1]
-
-    if benchmark not in BENCHMARKS:
-
-        print(
-            f"Benchmark desconhecido: "
-            f"{benchmark}"
-        )
-
-        sys.exit(1)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("benchmark", choices=BENCHMARKS)
+    parser.add_argument("--results-dir", type=Path, help="Fresh campaign directory, separate from historical results.")
+    args = parser.parse_args()
+    benchmark = args.benchmark
+    if len(set(THREAD_COUNTS)) != len(THREAD_COUNTS) or 1 not in THREAD_COUNTS or any(count < 1 for count in THREAD_COUNTS):
+        parser.error("Use distinct positive TCC2_THREAD_COUNTS including 1.")
 
     config = BENCHMARKS[
         benchmark
@@ -894,11 +877,19 @@ def main():
         / benchmark
     )
 
-    results_dir = (
+    results_dir = args.results_dir or (
         PROJECT_ROOT
         / "results"
         / benchmark
     )
+    csv_file = results_dir / "experiment_results.csv"
+    if csv_file.is_symlink() or (args.results_dir is not None and csv_file.exists()):
+        parser.error("Campaign CSV already exists; select a fresh --results-dir.")
+    if csv_file.exists():
+        with csv_file.open(newline="") as stream:
+            reader = csv.reader(stream)
+            if next(reader, None) != CSV_COLUMNS or any(len(row) != len(CSV_COLUMNS) for row in reader):
+                parser.error("Existing CSV has an incompatible schema; use --results-dir with a fresh directory.")
 
     build_dir.mkdir(
         parents=True,
@@ -1019,9 +1010,7 @@ def main():
             f"{result['median']:.6f}s\n"
         )
 
-    one_thread = (
-        parallel_results[0]["median"]
-    )
+    one_thread = next(result["median"] for result in parallel_results if result["threads"] == 1)
 
     csv_file = (
         results_dir
@@ -1043,21 +1032,7 @@ def main():
 
         if new_file:
 
-            writer.writerow([
-                "timestamp",
-                "benchmark",
-                "validation_mode",
-                "version",
-                "threads",
-                "mean_seconds",
-                "median_seconds",
-                "std_dev",
-                "min_seconds",
-                "max_seconds",
-                "scaling_speedup",
-                "speedup_vs_sequential",
-                "efficiency_vs_sequential",
-            ])
+            writer.writerow(CSV_COLUMNS)
 
         writer.writerow([
             timestamp,

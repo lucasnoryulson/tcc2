@@ -1,0 +1,375 @@
+{
+  "schema": "tcc2-experiment-catalog",
+  "version": "0.1",
+  "environments": {
+    "xeon_historical": {
+      "hardware": "Xeon E3-1225 V2 / Linux (captura 04/09)",
+      "compiler": "Clang 18.1.3 (ambiente; comando clang/clang++ da receita)",
+      "source": "results/repro_2026-09-04/environment/system.txt"
+    },
+    "m5_historical": {
+      "hardware": "Apple M5 / 10 cores (captura 09/09)",
+      "compiler": "Homebrew Clang 23.1.1 (ambiente 09/09; confirmar por campanha)",
+      "source": "results/mac_m5_2026-09-09/environment/environment.txt"
+    },
+    "unknown_hardware": {
+      "hardware": "Não registrado nesta campanha",
+      "compiler": "clang na receita; versão da execução não registrada"
+    },
+    "linux_local": {
+      "hardware": "Xeon E3-1225 V2 / Linux (03/11)",
+      "compiler": "GCC 13.3.0 / caminho e hash nos gates",
+      "source": "docs/COORDINATOR_EVALUATION_LOCAL.md"
+    }
+  },
+  "recipes": {
+    "polybench": {
+      "source": "scripts/benchmark.py",
+      "flags": "-O3 -DLARGE_DATASET -DPOLYBENCH_TIME [-fopenmp] -I<utilities> -I<kernel> -lm; corretude: POLYBENCH_DUMP_ARRAYS"
+    },
+    "cpp": {
+      "source": "scripts/benchmark.py",
+      "flags": "-O3 -std=c++14 [-fopenmp]"
+    },
+    "dot_gate": {
+      "source": "scripts/performance_gate.py",
+      "flags": "-O3 [-fopenmp] -lm; receita atual, capturas históricas não vinculadas"
+    },
+    "tiled": {
+      "source": "scripts/autotune_wavefront.py",
+      "flags": "-O3 -std=c++14 [-fopenmp]"
+    }
+  },
+  "campaigns": [
+    {
+      "id": "xeon_gemm_0904",
+      "kernel": "gemm",
+      "pattern": "DOALL",
+      "source": "results/repro_2026-09-04/performance/gemm.txt",
+      "format": "harness_log",
+      "candidate": "kernels/gemm/manual_openmp.c",
+      "origin": "manual",
+      "environment": "xeon_historical",
+      "recipe": "polybench",
+      "input": "LARGE_DATASET (receita; dimensões no submódulo)",
+      "correctness": "CORRECT no log; teste histórico sem vínculo a hashes de fontes",
+      "correctness_source": "results/repro_2026-09-04/performance/gemm.txt",
+      "original": "benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c"
+    },
+    {
+      "id": "xeon_jacobi-2d_0904",
+      "kernel": "jacobi-2d",
+      "pattern": "STENCIL",
+      "source": "results/repro_2026-09-04/performance/jacobi-2d.txt",
+      "format": "harness_log",
+      "candidate": "kernels/jacobi-2d/manual_openmp.c",
+      "origin": "manual",
+      "environment": "xeon_historical",
+      "recipe": "polybench",
+      "input": "LARGE_DATASET (receita; dimensões no submódulo)",
+      "correctness": "CORRECT no log; teste histórico sem vínculo a hashes de fontes",
+      "correctness_source": "results/repro_2026-09-04/performance/jacobi-2d.txt",
+      "original": "benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c"
+    },
+    {
+      "id": "xeon_covariance_0904",
+      "kernel": "covariance",
+      "pattern": "MIXED",
+      "source": "results/repro_2026-09-04/performance/covariance.txt",
+      "format": "harness_log",
+      "candidate": "kernels/covariance/manual_openmp.c",
+      "origin": "manual",
+      "environment": "xeon_historical",
+      "recipe": "polybench",
+      "input": "LARGE_DATASET (receita; dimensões no submódulo)",
+      "correctness": "CORRECT no log; teste histórico sem vínculo a hashes de fontes",
+      "correctness_source": "results/repro_2026-09-04/performance/covariance.txt",
+      "original": "benchmarks/PolyBenchC-4.2.1/datamining/covariance/covariance.c"
+    },
+    {
+      "id": "xeon_nussinov_0904",
+      "kernel": "nussinov",
+      "pattern": "WAVEFRONT",
+      "source": "results/repro_2026-09-04/performance/nussinov.txt",
+      "format": "harness_log",
+      "candidate": "kernels/nussinov/manual_openmp.c",
+      "origin": "manual",
+      "environment": "xeon_historical",
+      "recipe": "polybench",
+      "input": "LARGE_DATASET (receita; dimensões no submódulo)",
+      "correctness": "CORRECT no log; teste histórico sem vínculo a hashes de fontes",
+      "correctness_source": "results/repro_2026-09-04/performance/nussinov.txt",
+      "original": "benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c"
+    },
+    {
+      "id": "xeon_dot_0904",
+      "kernel": "dot",
+      "pattern": "REDUCTION",
+      "source": "results/repro_2026-09-04/performance/dot.txt",
+      "format": "harness_log",
+      "candidate": "kernels/dot/manual_openmp.cpp",
+      "origin": "manual",
+      "environment": "xeon_historical",
+      "recipe": "cpp",
+      "input": "N=10000000 (receita)",
+      "correctness": "CORRECT no log; teste histórico sem vínculo a hashes de fontes",
+      "correctness_source": "results/repro_2026-09-04/performance/dot.txt",
+      "original": "kernels/dot/sequential.cpp"
+    },
+    {
+      "id": "xeon_wavefront_0904",
+      "kernel": "wavefront",
+      "pattern": "WAVEFRONT",
+      "source": "results/repro_2026-09-04/performance/wavefront.txt",
+      "format": "harness_log",
+      "candidate": "kernels/wavefront/manual_openmp.cpp",
+      "origin": "manual",
+      "environment": "xeon_historical",
+      "recipe": "cpp",
+      "input": "N=4000 (receita)",
+      "correctness": "CORRECT no log; teste histórico sem vínculo a hashes de fontes",
+      "correctness_source": "results/repro_2026-09-04/performance/wavefront.txt",
+      "original": "kernels/wavefront/sequential.cpp"
+    },
+    {
+      "id": "xeon_dot_auto_0904",
+      "kernel": "dot",
+      "pattern": "REDUCTION",
+      "source": "results/repro_2026-09-04/auto_dot/performance.csv",
+      "format": "normalized_csv",
+      "candidate": "generated/repro_2026-09-04/dot_product_openmp.c",
+      "origin": "transformação automática de redução",
+      "environment": "xeon_historical",
+      "recipe": "dot_gate",
+      "input": "N=10000000; 100 chamadas internas (receita)",
+      "correctness": "PASS numérico no log, 4T; não atesta todas as configurações",
+      "raw_source": "results/repro_2026-09-04/auto_dot/performance.txt",
+      "raw_format": "gate_log",
+      "correctness_source": "results/repro_2026-09-04/auto_dot/correctness.txt",
+      "original": "analysis/fixtures/dot_product.c",
+      "benchmark_driver": "analysis/fixtures/dot_benchmark_driver.c"
+    },
+    {
+      "id": "xeon_wavefront_tiled_0902",
+      "kernel": "wavefront",
+      "pattern": "WAVEFRONT",
+      "source": "results/wavefront/tiled_autotuning.csv",
+      "format": "autotuning_csv",
+      "candidate": "kernels/wavefront/tiled_openmp.cpp",
+      "origin": "manual tiled + autotuning",
+      "environment": "xeon_historical",
+      "recipe": "tiled",
+      "input": "N=4000 no CSV; blocos 16,32,64,128,256",
+      "correctness": "max_absolute_error no CSV; sem vínculo histórico às fontes",
+      "limitations": [
+        "hardware atribuído pelo contexto Linux e captura de 04/09, sem captura específica de 02/09"
+      ],
+      "original": "kernels/wavefront/sequential.cpp"
+    },
+    {
+      "id": "m5_dot_auto_0909",
+      "kernel": "dot",
+      "pattern": "REDUCTION",
+      "source": "results/mac_m5_2026-09-09/performance/dot/performance.csv",
+      "format": "normalized_csv",
+      "candidate": "results/mac_m5_2026-09-09/correctness/dot/dot_product_openmp.c",
+      "origin": "transformação automática de redução",
+      "environment": "m5_historical",
+      "recipe": "dot_gate",
+      "input": "N=10000000; 100 chamadas internas (receita)",
+      "correctness": "PASS numérico no log, 4T; não atesta todas as configurações",
+      "raw_source": "results/mac_m5_2026-09-09/performance/dot/performance.txt",
+      "raw_format": "gate_log",
+      "correctness_source": "results/mac_m5_2026-09-09/correctness/dot/correctness_4t.txt",
+      "original": "analysis/fixtures/dot_product.c",
+      "benchmark_driver": "analysis/fixtures/dot_benchmark_driver.c"
+    },
+    {
+      "id": "m5_wavefront_manual_0909",
+      "kernel": "wavefront",
+      "pattern": "WAVEFRONT",
+      "source": "results/mac_m5_2026-09-09/performance/wavefront/performance.csv",
+      "format": "normalized_csv",
+      "candidate": "kernels/wavefront/manual_openmp.cpp",
+      "origin": "manual",
+      "environment": "m5_historical",
+      "recipe": "cpp",
+      "input": "N=4000 (receita)",
+      "correctness": "CORRECT numérico no log; validação histórica do harness",
+      "raw_source": "results/mac_m5_2026-09-09/performance/wavefront/performance.txt",
+      "correctness_source": "results/mac_m5_2026-09-09/performance/wavefront/performance.txt",
+      "original": "kernels/wavefront/sequential.cpp"
+    },
+    {
+      "id": "m5_wavefront_tiled_0909",
+      "kernel": "wavefront",
+      "pattern": "WAVEFRONT",
+      "source": "results/mac_m5_2026-09-09/performance/wavefront/tiled_full/tiled_autotuning_1_2_4_6_8_10.csv",
+      "format": "autotuning_csv",
+      "candidate": "kernels/wavefront/tiled_openmp.cpp",
+      "origin": "manual tiled + autotuning",
+      "environment": "m5_historical",
+      "recipe": "tiled",
+      "input": "N=4000 no CSV; blocos 16,32,64,128,256",
+      "correctness": "max_absolute_error no CSV; sem vínculo histórico às fontes",
+      "correctness_source": "results/mac_m5_2026-09-09/performance/wavefront/tiled_full/autotuning.txt",
+      "limitations": [
+        "usar campanha full; preliminary é outra execução, sem agrupar amostras"
+      ],
+      "original": "kernels/wavefront/sequential.cpp"
+    },
+    {
+      "id": "m5_gemm_0910",
+      "kernel": "gemm",
+      "pattern": "DOALL",
+      "source": "results/mac_m5_2026-09-10/performance/gemm/performance_normalized_dense_threads.csv",
+      "format": "normalized_csv",
+      "candidate": "kernels/gemm/manual_openmp.c",
+      "origin": "manual",
+      "environment": "m5_historical",
+      "recipe": "polybench",
+      "input": "LARGE_DATASET (receita; dimensões no submódulo)",
+      "correctness": "CORRECT exato no log; validação histórica do harness",
+      "raw_source": "results/mac_m5_2026-09-10/performance/gemm/dense_threads_output_v2.txt",
+      "correctness_source": "results/mac_m5_2026-09-10/performance/gemm/dense_threads_output_v2.txt",
+      "limitations": [
+        "ambiente de 09/09 reutilizado como contexto; falta captura específica da execução"
+      ],
+      "original": "benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c"
+    },
+    {
+      "id": "m5_jacobi-2d_0910",
+      "kernel": "jacobi-2d",
+      "pattern": "STENCIL",
+      "source": "results/mac_m5_2026-09-10/performance/jacobi-2d/performance_normalized_dense_threads.csv",
+      "format": "normalized_csv",
+      "candidate": "kernels/jacobi-2d/manual_openmp.c",
+      "origin": "manual",
+      "environment": "m5_historical",
+      "recipe": "polybench",
+      "input": "LARGE_DATASET (receita; dimensões no submódulo)",
+      "correctness": "CORRECT exato no log; validação histórica do harness",
+      "raw_source": "results/mac_m5_2026-09-10/performance/jacobi-2d/dense_threads_output.txt",
+      "correctness_source": "results/mac_m5_2026-09-10/performance/jacobi-2d/dense_threads_output.txt",
+      "limitations": [
+        "ambiente de 09/09 reutilizado como contexto; falta captura específica da execução"
+      ],
+      "original": "benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c"
+    },
+    {
+      "id": "m5_covariance_0910",
+      "kernel": "covariance",
+      "pattern": "MIXED",
+      "source": "results/mac_m5_2026-09-10/performance/covariance/performance_normalized_dense_threads.csv",
+      "format": "normalized_csv",
+      "candidate": "kernels/covariance/manual_openmp.c",
+      "origin": "manual",
+      "environment": "m5_historical",
+      "recipe": "polybench",
+      "input": "LARGE_DATASET (receita; dimensões no submódulo)",
+      "correctness": "CORRECT exato no log; validação histórica do harness",
+      "raw_source": "results/mac_m5_2026-09-10/performance/covariance/dense_threads_output.txt",
+      "correctness_source": "results/mac_m5_2026-09-10/performance/covariance/dense_threads_output.txt",
+      "limitations": [
+        "ambiente de 09/09 reutilizado como contexto; falta captura específica da execução"
+      ],
+      "original": "benchmarks/PolyBenchC-4.2.1/datamining/covariance/covariance.c"
+    },
+    {
+      "id": "m5_nussinov_0910",
+      "kernel": "nussinov",
+      "pattern": "WAVEFRONT",
+      "source": "results/mac_m5_2026-09-10/performance/nussinov/performance_normalized_dense_threads.csv",
+      "format": "normalized_csv",
+      "candidate": "kernels/nussinov/manual_openmp.c",
+      "origin": "manual",
+      "environment": "m5_historical",
+      "recipe": "polybench",
+      "input": "LARGE_DATASET (receita; dimensões no submódulo)",
+      "correctness": "CORRECT exato no log; validação histórica do harness",
+      "raw_source": "results/mac_m5_2026-09-10/performance/nussinov/dense_threads_output.txt",
+      "correctness_source": "results/mac_m5_2026-09-10/performance/nussinov/dense_threads_output.txt",
+      "limitations": [
+        "ambiente de 09/09 reutilizado como contexto; falta captura específica da execução"
+      ],
+      "original": "benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c"
+    },
+    {
+      "id": "m5_nussinov_simd_0911",
+      "kernel": "nussinov",
+      "pattern": "WAVEFRONT",
+      "source": "results/mac_m5_2026-09-11/performance/nussinov-simd/performance_normalized_dense_threads.csv",
+      "format": "normalized_csv",
+      "candidate": "kernels/nussinov/simd_openmp.c",
+      "origin": "manual com acumulador + SIMD",
+      "environment": "m5_historical",
+      "recipe": "polybench",
+      "input": "LARGE_DATASET (receita; dimensões no submódulo)",
+      "correctness": "dumps SIMD 4T de 10/09 disponíveis; sem atestado da campanha de 11/09",
+      "raw_source": "results/mac_m5_2026-09-11/performance/nussinov-simd/raw_dense_threads.csv",
+      "raw_format": "raw_csv",
+      "correctness_source": "results/mac_m5_2026-09-10/correctness/nussinov/correctness_summary.txt",
+      "limitations": [
+        "corretude e ambiente disponíveis pertencem a outra data; confirmar vínculo"
+      ],
+      "original": "benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c"
+    },
+    {
+      "id": "nussinov_auto_0911",
+      "kernel": "nussinov",
+      "pattern": "WAVEFRONT",
+      "source": "results/nussinov-auto/experiment_results.csv",
+      "format": "normalized_csv",
+      "candidate": "analysis/output/generated/nussinov_simd_auto.c",
+      "origin": "transformação adaptativa específica sobre base OpenMP manual",
+      "environment": "unknown_hardware",
+      "recipe": "polybench",
+      "input": "LARGE_DATASET (receita; dimensões no submódulo)",
+      "correctness": "validation_mode=exact declarado no CSV; sem atestado vinculado",
+      "timestamp": "2026-09-11T15:40:00.429718",
+      "limitations": [
+        "hardware e versão do compilador não registrados na campanha",
+        "repetições=5 na receita; CSV não contém amostras nem contagem"
+      ],
+      "original": "benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c"
+    },
+    {
+      "id": "linux_local_dot_large",
+      "kernel": "dot",
+      "pattern": "REDUCTION",
+      "source": "results/coordinator_evaluation/local_2026-11-03/baseline_results.json",
+      "format": "evaluation_case",
+      "candidate": "generated/dot_product_openmp.c",
+      "origin": "transformação automática de redução",
+      "environment": "linux_local",
+      "recipe": "dot_gate",
+      "input": "N=10000000, 100 chamadas internas",
+      "correctness": "gates v0.2 vinculados: threads 1 e 2; driver escalar separado do benchmark",
+      "case": "dot_large",
+      "limitations": [
+        "campanha local piloto; avaliação LLM ainda incompleta"
+      ],
+      "original": "analysis/fixtures/dot_product.c",
+      "benchmark_driver": "analysis/fixtures/dot_benchmark_driver.c"
+    },
+    {
+      "id": "linux_local_dot_small",
+      "kernel": "dot",
+      "pattern": "REDUCTION",
+      "source": "results/coordinator_evaluation/local_2026-11-03/baseline_results.json",
+      "format": "evaluation_case",
+      "candidate": "generated/dot_product_openmp.c",
+      "origin": "transformação automática de redução",
+      "environment": "linux_local",
+      "recipe": "dot_gate",
+      "input": "N=1024, 10000 chamadas internas",
+      "correctness": "gates v0.2 vinculados: threads 1 e 2; driver escalar separado do benchmark",
+      "case": "dot_small",
+      "limitations": [
+        "campanha local piloto; avaliação LLM ainda incompleta"
+      ],
+      "original": "analysis/fixtures/dot_product.c",
+      "benchmark_driver": "analysis/fixtures/dot_small_benchmark_driver.c"
+    }
+  ]
+}

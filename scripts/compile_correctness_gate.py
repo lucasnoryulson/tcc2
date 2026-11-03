@@ -1,17 +1,20 @@
 import argparse
+import json
 import math
 import os
 import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from analysis.artifact_provenance import (
+    ABS_TOL, COMPILE_FLAGS, OPENMP_ENVIRONMENT, REL_TOL,
+    capture_run, file_record, verify_file, verify_provenance,
+)
 
 # ============================================================
 # CONFIGURATION
 # ============================================================
-
-REL_TOL = 1e-9
-ABS_TOL = 1e-12
 
 DEFAULT_COMPILER = "clang"
 
@@ -34,6 +37,7 @@ def run_command(
         stderr=subprocess.PIPE,
         text=True,
         env=environment,
+        timeout=120,
     )
 
 
@@ -52,16 +56,7 @@ def compile_program(
     Compile one version of the program.
     """
 
-    command = [
-        compiler,
-        "-O3",
-    ]
-
-    if openmp:
-
-        command.append(
-            "-fopenmp"
-        )
+    command = [compiler, *COMPILE_FLAGS["candidate" if openmp else "sequential"]]
 
     command.extend([
         str(driver),
@@ -107,22 +102,7 @@ def execute_program(
     environment = os.environ.copy()
 
     if threads is not None:
-
-        environment[
-            "OMP_NUM_THREADS"
-        ] = str(threads)
-
-        environment[
-            "OMP_DYNAMIC"
-        ] = "FALSE"
-
-        environment[
-            "OMP_PROC_BIND"
-        ] = "TRUE"
-
-        environment[
-            "OMP_PLACES"
-        ] = "cores"
+        environment.update(OPENMP_ENVIRONMENT, OMP_NUM_THREADS=str(threads))
 
     result = run_command(
         [str(executable)],
@@ -162,9 +142,10 @@ def parse_numeric_output(text):
         text.splitlines()[0]
     )
 
-    return float(
-        first_line
-    )
+    value = float(first_line)
+    if not math.isfinite(value):
+        raise ValueError("Program produced non-finite output.")
+    return value
 
 
 def validate_numeric(
@@ -262,359 +243,94 @@ def print_compilation(
 # GATE
 # ============================================================
 
-def run_gate(
-    sequential_source,
-    candidate_source,
-    driver,
-    build_dir,
-    compiler,
-    threads
-):
-    build_dir.mkdir(
-        parents=True,
-        exist_ok=True
+def run_gate(sequential_source, candidate_source, driver, build_dir, compiler, threads):
+    counts = [threads] if type(threads) is int else threads
+    if not isinstance(counts, list) or not counts or any(
+        type(count) is not int or count < 1 for count in counts
+    ) or len(set(counts)) != len(counts):
+        raise ValueError("Threads must be distinct positive integers.")
+
+    provenance = capture_run(
+        {"sequential": sequential_source, "candidate": candidate_source, "driver": driver},
+        build_dir, compiler,
     )
-
-    sequential_binary = (
-        build_dir
-        / "dot_gate_sequential"
-    )
-
-    candidate_binary = (
-        build_dir
-        / "dot_gate_candidate"
-    )
-
-    # --------------------------------------------------------
-    # Compile sequential
-    # --------------------------------------------------------
-
-    sequential_compile = (
-        compile_program(
-            compiler,
-            driver,
-            sequential_source,
-            sequential_binary,
-            openmp=False,
+    run_dir = Path(provenance["run_dir"])
+    snapshots = {name: Path(item["snapshot"]) for name, item in provenance["inputs"].items()}
+    report = {
+        "schema": "tcc2-correctness-gate", "version": "0.2", "status": "FAIL",
+        "inputs": {name: item["path"] for name, item in provenance["inputs"].items()},
+        "compiler": compiler, "threads": threads, "validated_threads": [],
+        "tolerances": {"relative": REL_TOL, "absolute": ABS_TOL},
+        "provenance": provenance, "compilation": {}, "binaries": {},
+        "execution": {}, "thread_results": [],
+    }
+    for name in ("sequential", "candidate"):
+        binary = run_dir / ("dot_gate_" + name)
+        compiled = compile_program(
+            provenance["toolchain"]["path"], snapshots["driver"], snapshots[name],
+            binary, openmp=name == "candidate",
         )
-    )
+        report["compilation"][name] = compiled
+        print_compilation(name, compiled)
+        if compiled["returncode"] != 0:
+            report["reason"] = f"{name} compile error."
+            print("GATE RESULT: FAIL")
+            return report
+        report["binaries"][name] = file_record(binary)
 
-    print_compilation(
-        "Sequential",
-        sequential_compile
-    )
-
-    if (
-        sequential_compile[
-            "returncode"
-        ]
-        != 0
-    ):
-
-        print()
-        print(
-            "================================="
-        )
-        print(
-            "GATE RESULT: FAIL"
-        )
-        print(
-            "Reason: sequential compile error"
-        )
-        print(
-            "================================="
-        )
-
-        return 1
-
-    # --------------------------------------------------------
-    # Compile candidate
-    # --------------------------------------------------------
-
-    candidate_compile = (
-        compile_program(
-            compiler,
-            driver,
-            candidate_source,
-            candidate_binary,
-            openmp=True,
-        )
-    )
-
-    print_compilation(
-        "OpenMP candidate",
-        candidate_compile
-    )
-
-    if (
-        candidate_compile[
-            "returncode"
-        ]
-        != 0
-    ):
-
-        print()
-        print(
-            "================================="
-        )
-        print(
-            "GATE RESULT: FAIL"
-        )
-        print(
-            "Reason: candidate compile error"
-        )
-        print(
-            "================================="
-        )
-
-        return 1
-
-    # --------------------------------------------------------
-    # Execute sequential
-    # --------------------------------------------------------
-
-    sequential_run = (
-        execute_program(
-            sequential_binary
-        )
-    )
-
-    if (
-        sequential_run[
-            "returncode"
-        ]
-        != 0
-    ):
-
-        print()
-        print(
-            "Sequential execution:"
-        )
-
-        print(
-            "  Status: RUNTIME_ERROR"
-        )
-
-        print(
-            sequential_run[
-                "stderr"
-            ]
-        )
-
-        print()
-        print(
-            "================================="
-        )
-        print(
-            "GATE RESULT: FAIL"
-        )
-        print(
-            "================================="
-        )
-
-        return 1
-
-    # --------------------------------------------------------
-    # Execute candidate
-    # --------------------------------------------------------
-
-    candidate_run = (
-        execute_program(
-            candidate_binary,
-            threads=threads,
-        )
-    )
-
-    if (
-        candidate_run[
-            "returncode"
-        ]
-        != 0
-    ):
-
-        print()
-        print(
-            "OpenMP execution:"
-        )
-
-        print(
-            "  Status: RUNTIME_ERROR"
-        )
-
-        print(
-            candidate_run[
-                "stderr"
-            ]
-        )
-
-        print()
-        print(
-            "================================="
-        )
-        print(
-            "GATE RESULT: FAIL"
-        )
-        print(
-            "================================="
-        )
-
-        return 1
-
-    # --------------------------------------------------------
-    # Parse output
-    # --------------------------------------------------------
-
+    sequential_run = execute_program(Path(report["binaries"]["sequential"]["path"]))
+    report["execution"]["sequential"] = sequential_run
+    if sequential_run["returncode"] != 0:
+        report["reason"] = "Sequential runtime error."
+        print(sequential_run["stderr"])
+        print("GATE RESULT: FAIL")
+        return report
     try:
-
-        reference = (
-            parse_numeric_output(
-                sequential_run[
-                    "stdout"
-                ]
-            )
-        )
-
-        candidate = (
-            parse_numeric_output(
-                candidate_run[
-                    "stdout"
-                ]
-            )
-        )
-
+        reference = parse_numeric_output(sequential_run["stdout"])
     except ValueError as error:
+        report["reason"] = str(error)
+        print(f"OUTPUT_ERROR: {error}")
+        print("GATE RESULT: FAIL")
+        return report
 
-        print()
+    for count in counts:
+        candidate_run = execute_program(Path(report["binaries"]["candidate"]["path"]), count)
+        report["execution"]["candidate"] = candidate_run
+        run = {"threads": count, "execution": candidate_run}
+        report["thread_results"].append(run)
+        if candidate_run["returncode"] != 0:
+            report["reason"] = f"Candidate runtime error with {count} threads."
+            print(candidate_run["stderr"])
+            print("GATE RESULT: FAIL")
+            return report
+        try:
+            candidate = parse_numeric_output(candidate_run["stdout"])
+        except ValueError as error:
+            report["reason"] = str(error)
+            print(f"OUTPUT_ERROR: {error}")
+            print("GATE RESULT: FAIL")
+            return report
+        validation = validate_numeric(reference, candidate)
+        run["validation"] = validation
+        report["validation"] = validation
+        print(f"Threads: {count}; sequential: {reference:.17g}; candidate: {candidate:.17g}")
+        print(f"Absolute error: {validation['absolute_error']:.12e}; "
+              f"relative error: {validation['relative_error']:.12e}")
+        print(f"Tolerances: relative={REL_TOL}; absolute={ABS_TOL}")
+        if not validation["correct"]:
+            report["reason"] = f"Numeric validation failed with {count} threads."
+            print("Correctness: INCORRECT")
+            print("GATE RESULT: FAIL")
+            return report
+        report["validated_threads"].append(count)
 
-        print(
-            f"OUTPUT_ERROR: {error}"
-        )
-
-        print()
-
-        print(
-            "================================="
-        )
-        print(
-            "GATE RESULT: FAIL"
-        )
-        print(
-            "================================="
-        )
-
-        return 1
-
-    # --------------------------------------------------------
-    # Correctness validation
-    # --------------------------------------------------------
-
-    validation = (
-        validate_numeric(
-            reference,
-            candidate
-        )
-    )
-
-    print()
-
-    print(
-        "Execution:"
-    )
-
-    print(
-        f"  Sequential result: "
-        f"{reference:.17g}"
-    )
-
-    print(
-        f"  OpenMP result:     "
-        f"{candidate:.17g}"
-    )
-
-    print(
-        f"  Threads:           "
-        f"{threads}"
-    )
-
-    print()
-
-    print(
-        "Numeric validation:"
-    )
-
-    print(
-        f"  Absolute error: "
-        f"{validation['absolute_error']:.12e}"
-    )
-
-    print(
-        f"  Relative error: "
-        f"{validation['relative_error']:.12e}"
-    )
-
-    print(
-        f"  Relative tolerance: "
-        f"{REL_TOL:.12e}"
-    )
-
-    print(
-        f"  Absolute tolerance: "
-        f"{ABS_TOL:.12e}"
-    )
-
-    print()
-
-    if validation["correct"]:
-
-        print(
-            "Correctness: CORRECT"
-        )
-
-        print()
-
-        print(
-            "================================="
-        )
-
-        print(
-            "GATE RESULT: PASS"
-        )
-
-        print(
-            "Candidate is allowed to proceed "
-            "to performance evaluation."
-        )
-
-        print(
-            "================================="
-        )
-
-        return 0
-
-    print(
-        "Correctness: INCORRECT"
-    )
-
-    print()
-
-    print(
-        "================================="
-    )
-
-    print(
-        "GATE RESULT: FAIL"
-    )
-
-    print(
-        "Candidate must NOT proceed "
-        "to performance evaluation."
-    )
-
-    print(
-        "================================="
-    )
-
-    return 1
+    verify_provenance(provenance)
+    for binary in report["binaries"].values():
+        verify_file(binary)
+    report["status"] = "PASS"
+    print("Correctness: CORRECT")
+    print("GATE RESULT: PASS")
+    return report
 
 
 # ============================================================
@@ -659,7 +375,14 @@ def main():
     parser.add_argument(
         "--threads",
         type=int,
-        default=4,
+        nargs="+",
+        default=[4],
+    )
+
+    parser.add_argument(
+        "--output",
+        type=Path,
+        help="Write the correctness result as JSON for the Context Builder.",
     )
 
     args = parser.parse_args()
@@ -679,6 +402,22 @@ def main():
     build_dir = (
         args.build_dir.resolve()
     )
+
+    report = {
+        "schema": "tcc2-correctness-gate",
+        "version": "0.2",
+        "status": "FAIL",
+        "reason": "Gate did not complete.",
+    }
+    if args.output is not None:
+        args.output = args.output.resolve()
+        if args.output in {
+            sequential_source, candidate_source, driver,
+            build_dir / "dot_gate_sequential", build_dir / "dot_gate_candidate",
+        }:
+            parser.error("The report must not overwrite a source or executable.")
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(report, indent=2) + "\n")
 
     for path in [
         sequential_source,
@@ -732,17 +471,24 @@ def main():
         f"{args.threads}"
     )
 
-    result = run_gate(
-        sequential_source,
-        candidate_source,
-        driver,
-        build_dir,
-        args.compiler,
-        args.threads,
-    )
+    try:
+        report = run_gate(
+            sequential_source,
+            candidate_source,
+            driver,
+            build_dir,
+            args.compiler,
+            args.threads,
+        )
+    except (OSError, ValueError, subprocess.SubprocessError) as error:
+        report["reason"] = str(error)
+        print(f"GATE ERROR: {error}")
+
+    if args.output is not None:
+        args.output.write_text(json.dumps(report, indent=2) + "\n")
 
     sys.exit(
-        result
+        0 if report["status"] == "PASS" else 1
     )
 
 

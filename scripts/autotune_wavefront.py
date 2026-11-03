@@ -1,4 +1,5 @@
 from pathlib import Path
+import argparse
 import subprocess
 import statistics
 import math
@@ -400,6 +401,15 @@ def run_configuration(
 
 
 def main():
+    global RESULTS_DIR, CSV_FILE
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--results-dir", type=Path, help="Fresh campaign directory; existing CSVs are preserved.")
+    args = parser.parse_args()
+    if args.results_dir is not None:
+        RESULTS_DIR = args.results_dir
+        CSV_FILE = RESULTS_DIR / "tiled_autotuning.csv"
+    if CSV_FILE.exists() or CSV_FILE.is_symlink():
+        parser.error("Campaign CSV already exists; select a fresh --results-dir.")
 
     print(
         "====================================="

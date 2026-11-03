@@ -171,6 +171,40 @@ assert (
 )
 
 
+# Thread-only selection must preserve its measured configuration, too.
+context = copy.deepcopy(context)
+context["performance"]["selection"]["configuration_dimensions"] = ["threads"]
+
+decision, errors = run_case({
+    "decision": "ACCEPT",
+    "recommended_threads": 4,
+    "recommended_configuration": None,
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+})
+assert errors == [], errors
+assert decision["recommended_configuration"] == {"threads": 4}
+
+decision, errors = run_case({
+    "decision": "ACCEPT",
+    "recommended_threads": 10,
+    "recommended_configuration": None,
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+})
+assert "recommended_configuration.threads must match recommended_threads" in errors
+
+context["validation"]["correctness_gate"] = "FAIL"
+decision, errors = run_case({
+    "decision": "ACCEPT",
+    "recommended_threads": 4,
+    "recommended_configuration": None,
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+})
+assert "ACCEPT forbidden because correctness did not PASS" in errors
+
+
 print(
     "================================="
 )
@@ -178,7 +212,7 @@ print(
     "Coordinator v0.2 regression: PASS"
 )
 print(
-    "4/4 cases behaved as expected."
+    "7/7 cases behaved as expected."
 )
 print(
     "================================="
