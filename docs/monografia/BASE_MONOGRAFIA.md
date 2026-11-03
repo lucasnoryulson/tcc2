@@ -23,8 +23,8 @@ revalida o candidato antes de publicar código e manifesto. A avaliação distin
 o ganho contra o sequencial da escalabilidade em relação à mesma variante
 OpenMP com uma thread. A consolidação experimental organiza 22 campanhas,
 incluindo variantes manuais, transformações automáticas específicas e resultados
-sem ganho. Em uma coleta local de Dot Product, a entrada grande apresentou
-ganho de aproximadamente 1,191× com duas threads; a entrada pequena não satisfez
+sem ganho. Na campanha final verificável do Mac, o Dot Product promovido apresentou
+ganho de aproximadamente 2,465× com quatro threads; a entrada pequena não satisfez
 a política de admissão paralela. Foi implementado um estudo pareado entre a
 política determinística, o Coordinator completo e uma ablação das análises
 estruturadas. Na replicação final no Mac, as 12 inferências foram válidas e os
@@ -47,11 +47,11 @@ language-model Coordinator. The integrated workflow supports a standalone C
 scalar-reduction case, binds validation and timing evidence to the candidate,
 and performs fresh correctness validation before publication. Evaluation
 separates speedup over the sequential program from scaling over the same
-OpenMP variant with one thread. Experimental consolidation covers 19 campaigns
+OpenMP variant with one thread. Experimental consolidation covers 22 campaigns
 with manual variants, specific automatic transformations and negative results.
-In a local Dot Product campaign, the large input achieved approximately 1.191×
-speedup using two threads, while the small input did not satisfy the parallel
-admission policy. A paired decision study compares the deterministic policy,
+In the final provenance-verified Mac campaign, the promoted Dot Product achieved
+approximately 2.465× speedup using four threads, while the small input did not
+satisfy the parallel admission policy. A paired decision study compares the deterministic policy,
 the full Coordinator and an ablation of structured analyses. In the final Mac
 replication, all 12 inference calls were valid and both LLM arms agreed 3/3 with
 policy in each case. A controlled study reproduced ACCEPT, REJECT and RETUNE,
@@ -330,7 +330,7 @@ representar nova execução independente do pipeline e sem incluir publicação.
 
 ### 5.1. Verificação técnica
 
-A bateria final registrada contém 81 testes unittest e 14 casos de regressão dos
+A bateria final registrada contém 82 testes unittest e 14 casos de regressão dos
 seletores e Coordinator, cobrindo integração, configuração, alterações de
 artefatos, falhas de gates e promoção. Esses testes verificam comportamento
 de software. Respostas simuladas da LLM usadas em integração não são resultados
@@ -341,23 +341,26 @@ real publicou um bundle após resposta explicitamente simulada do Coordinator.
 O teste demonstra o mecanismo de publicação e revalidação, sem demonstrar que
 uma LLM real realizou a decisão dessa execução.
 
-### 5.2. Dot Product local
+### 5.2. Dot Product verificável no Mac
 
-| Caso | Sequencial (s) | OpenMP 1T (s) | OpenMP 2T (s) | Resultado da política |
+| Campanha | Sequencial (s) | OpenMP 1T (s) | Configuração selecionada | Resultado |
 |---|---:|---:|---:|---|
-| N=10.000.000 | 0,010607341 | 0,010978541 | 0,008904885 | Admite 2T |
-| N=1.024 | 0,000001183 | 0,000001600 | 0,000001592 | Não admite paralelo |
+| Promoção final, N=10.000.000 | 0,004842180 | 0,004840610 | 4T: 0,001964010 | Promovido |
+| Estudo do Coordinator, N=10.000.000 | 0,007220030 | 0,007219770 | 4T: 0,004316330 | Admite 4T |
+| Estudo do Coordinator, N=1.024 | 0,000000799 | 0,000000852 | — | Não admite paralelo |
 
-Na entrada grande, o ganho contra o sequencial foi 1,191×; a escalabilidade
-contra OpenMP 1T foi 1,233×, com eficiência paralela de aproximadamente 0,616.
-Na entrada pequena, o tempo paralelo permaneceu maior que o sequencial. O
+Na promoção final, o ganho contra o sequencial foi 2,465×; a escalabilidade
+contra OpenMP 1T também foi 2,465×, com eficiência paralela de aproximadamente
+0,616. No estudo pareado, a entrada grande obteve 1,673× em 4T e a entrada
+pequena apresentou forte overhead paralelo. O
 resultado demonstra que o pipeline preserva uma recusa motivada pelas medições;
 não demonstra um ganho causado pelo Coordinator.
 
-![Curvas locais de Dot Product com baselines distintos](../../results/consolidated/scaling_linux_local.png)
+![Curvas verificáveis do Mac com baselines distintos](../../results/consolidated/scaling_m5_verified_2026_11_03.png)
 
-Fonte: campanhas `linux_local_dot_large` e `linux_local_dot_small` na matriz
-consolidada. As medidas são por chamada; não são tempos totais de otimização.
+Fonte: campanhas `m5_final_promoted_dot`, `m5_coordinator_dot_large` e
+`m5_coordinator_dot_small` na matriz consolidada. As medidas são por chamada;
+não são tempos totais de otimização nem repetições da decisão LLM.
 
 ### 5.3. Casos históricos: Wavefront e Nussinov
 

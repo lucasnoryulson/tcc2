@@ -5,11 +5,11 @@ Esta numeração corresponde à lista original de conclusão do trabalho.
 | Item | Estado | Evidência / pendência |
 |---|---|---|
 | **1. Fechar o pipeline até a geração do resultado final** | Concluído no caminho suportado | No Mac, o pipeline completo executou com LLVM 23.1.1 e inferência real do `llama3.1:8b`: Coordinator `ACCEPT`, promoção, manifesto, evidências e revalidação íntegros. O resultado comprova o caminho Dot Product/redução, não generaliza a automação para os demais padrões. |
-| **2. Resolver as lacunas de validação e configuração** | Concluído e verificado no Mac | PASS fixo removido; configuração unidimensional preservada; códigos de saída dos gates corrigidos; hashes, campanhas e configurações conferidos. No Mac, a suíte final de 81 testes unittest e 14 casos de regressão passou sem skips. |
+| **2. Resolver as lacunas de validação e configuração** | Concluído e verificado no Mac | PASS fixo removido; configuração unidimensional preservada; códigos de saída dos gates corrigidos; hashes, campanhas e configurações conferidos. No Mac, a suíte final de 82 testes unittest e 14 casos de regressão passou sem skips. |
 | **3. Delimitar exatamente o que o sistema automatiza** | Concluído e auditado | Contrato consolidado em `docs/AUTOMATION_SCOPE.md`: caminho integrado para Dot Product/redução escalar; demais padrões separados entre análise, variantes manuais e transformações específicas. Uma LLM apenas no Coordinator; GPU, geração universal e reparo autônomo fora do recorte. |
 | **4. Fechar a avaliação científica dos agentes** | Concluído no recorte e limitações preservadas | A campanha original `INCOMPLETE` revelou um defeito de schema. Após correção, a replicação com as mesmas evidências terminou `COMPLETE`: 12/12 respostas LLM válidas e concordância total nos dois casos. Ensaio controlado: ACCEPT, REJECT e RETUNE 6/6; MODIFY 0/6 no `llama3.1:8b`. Não foi demonstrado benefício adicional da LLM ou das análises nesta amostra. Ver `COORDINATOR_EVALUATION_MAC.md`. |
 | **5. Consolidar os experimentos e a reprodução** | Concluído dentro do acervo disponível | Matriz de 22 campanhas, 173 configurações, 545 tempos, inventário de 44 CSVs e 15 gráficos. As 17 campanhas históricas permanecem `HISTORICAL_UNBOUND`, duas coletas Linux sem o contexto original são `ARCHIVED_SUMMARY_ONLY` e três campanhas finais do Mac são `VERIFIED_LOCAL_GATES`. Lacunas declaradas sem inventar metadados. |
-| **6. Fechar monografia e defesa** | Três Word revisados; base e defesa preparadas | Recebidos proposta, guia e resumo executivo. Produzidos base Word/Markdown com método, resultados disponíveis e conclusão delimitada; 16 slides PowerPoint com notas, bibliografia e roteiro de demonstração. Faltam resultados finais, integração ao modelo institucional, conferência no Office e ensaio. |
+| **6. Fechar monografia e defesa** | Conteúdo concluído; acabamento institucional externo pendente | Monografia e apresentação sincronizadas com os passos 1–5; DOCX revisado, PPTX de 16 slides com notas, bibliografia, demonstração e manifesto regenerados. Estrutura Office validada e DOCX inspecionado visualmente. Faltam modelo institucional, orientador/banca, exportação oficial para PDF e ensaio. |
 
 ## Escopo de automação
 
@@ -67,7 +67,7 @@ científica do item 4 nem o TCC como um todo.
 
 ## Verificação final do item 2 no Mac
 
-Em 3 de novembro de 2026, a suíte final registrada executou **81 testes unittest** e
+Em 3 de novembro de 2026, a suíte final registrada executou **82 testes unittest** e
 os **14 casos de regressão** (Coordinator 7, Performance Selector 3 e
 Autotuning Selector 4), todos aprovados e sem skips. A primeira execução expôs
 que `gcc` no macOS era o Apple Clang sem `-fopenmp`; a infraestrutura de testes

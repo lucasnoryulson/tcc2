@@ -8,33 +8,33 @@ resumo executivo; a revisão das divergências está em
 
 | Material | Arquivo editável | Fonte para revisão |
 |---|---|---|
-| Base da monografia | [BASE_MONOGRAFIA.docx](monografia/BASE_MONOGRAFIA.docx) | [Texto Markdown](monografia/BASE_MONOGRAFIA.md) |
-| Apresentação, 16 slides com notas | [DEFESA_RASCUNHO.pptx](defesa/DEFESA_RASCUNHO.pptx) | [Slides e falas](defesa/SLIDES.md) |
+| Monografia revisada | [MONOGRAFIA_REVISAO_FINAL.docx](monografia/MONOGRAFIA_REVISAO_FINAL.docx) | [Texto Markdown](monografia/BASE_MONOGRAFIA.md) |
+| Apresentação revisada, 16 slides com notas | [DEFESA_REVISAO_FINAL.pptx](defesa/DEFESA_REVISAO_FINAL.pptx) | [Slides e falas](defesa/SLIDES.md) |
 | Demonstração | [Roteiro executável](defesa/DEMONSTRACAO.md) | Preparo real e recusa por integridade |
 | Referências conferidas | [referencias.bib](monografia/referencias.bib) | Quatro fontes primárias usadas na nova base |
 
-Há PDFs de leitura em `monografia/BASE_MONOGRAFIA_PREVIA.pdf` e
-`defesa/DEFESA_PREVIA.pdf`. São prévias de conteúdo produzidas com ReportLab,
-sem renderização nativa do Word/PowerPoint: conferir o layout final nesses
-aplicativos. Neste Linux, o LibreOffice instalado só tem o módulo Calc e não
-carregou os filtros Writer/Impress. Os arquivos editáveis foram reabertos e
-verificados com suas bibliotecas de formato, incluindo tabelas, imagens e notas.
+Os PDFs `monografia/BASE_MONOGRAFIA_PREVIA.pdf` e `defesa/DEFESA_PREVIA.pdf`
+são prévias antigas e não devem ser entregues como versão atual. Os editáveis
+revisados foram reabertos e verificados com suas bibliotecas de formato,
+incluindo tabelas, imagens e notas. O DOCX também foi renderizado pelo Quick Look;
+o PPTX requer conferência final no PowerPoint ou Keynote antes da entrega.
 
 A base inclui resumo, abstract, introdução, questões de pesquisa, arquitetura,
 metodologia, resultados disponíveis, discussão, limitações e conclusão
-compatível com as evidências. Não contém resultados LLM inventados. A seção R3
-está explicitamente em aberto; toda a apresentação é identificada como rascunho.
+compatível com as evidências. Não contém resultados LLM inventados. R3 foi
+respondida com resultado negativo/limitado, e os materiais são identificados
+como versão revisada com adequação institucional ainda pendente.
 
 ## Onde estamos, pela numeração original
 
 | Item | Situação após a revisão |
 |---|---|
 | **1. Pipeline até o resultado final** | Concluído no caminho suportado no Mac: inferência real, `ACCEPT`, promoção, revalidação e auditoria do manifesto |
-| **2. Validação e configuração** | Concluído e verificado no Mac: 81 testes unittest e 14 regressões aprovados, sem skips |
+| **2. Validação e configuração** | Concluído e verificado no Mac: 82 testes unittest e 14 regressões aprovados, sem skips |
 | **3. Delimitação da automação** | Concluída e auditada em código, monografia, slides e `AUTOMATION_SCOPE.md`; preservar na entrega |
 | **4. Avaliação dos agentes** | Campanha original `INCOMPLETE` preservada; contrato corrigido e replicação final `COMPLETE`, sem benefício adicional demonstrado; MODIFY não reproduzido no ensaio controlado |
 | **5. Experimentos e reprodução** | Concluído no acervo disponível: 22 campanhas consolidadas, lacunas históricas declaradas e três campanhas Mac verificadas pelos gates atuais |
-| **6. Monografia e defesa** | Base Word, PowerPoint com falas, bibliografia e demonstração preparados; falta concluir resultados, integrar ao modelo de entrega e ensaiar a versão final |
+| **6. Monografia e defesa** | Conteúdo revisado e sincronizado com os resultados finais; DOCX e PPTX regenerados e validados. Restam adequação ao modelo institucional, dados de orientação/banca, exportação oficial para PDF e ensaio, que dependem de informações externas. |
 
 ## 1 e 2 — confirmação final do pipeline no ambiente alvo
 
@@ -156,7 +156,8 @@ build/writing-venv/bin/python -m pip install -r requirements-writing.txt
 build/writing-venv/bin/python -B scripts/build_academic_material.py
 ```
 
-O script gera Word, PowerPoint com notas, diagrama e manifesto de revisão.
+O script gera `MONOGRAFIA_REVISAO_FINAL.docx`, `DEFESA_REVISAO_FINAL.pptx`,
+diagrama e manifesto de revisão.
 Não regenera as prévias PDF. Exportá-las novamente após mudar o conteúdo. O
-manifesto identifica os documentos de origem e as fontes do rascunho, sem
-significar aprovação acadêmica ou conclusão das campanhas experimentais.
+manifesto identifica os documentos de origem e as fontes da revisão, sem
+significar aprovação acadêmica ou conformidade automática com o modelo da banca.

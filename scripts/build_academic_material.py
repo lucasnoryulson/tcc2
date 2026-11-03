@@ -60,11 +60,11 @@ def word_export(source, target):
     normal.paragraph_format.space_after = Pt(7)
     for name in ("Title", "Heading 1", "Heading 2", "Heading 3"):
         doc.styles[name].font.name = "Arial"
-    section.footer.paragraphs[0].text = "Rascunho revisado — 03/11/2026 — avaliação LLM pendente; integrar ao modelo institucional."
+    section.footer.paragraphs[0].text = "Versão revisada — 03/11/2026 — conteúdo e evidências consolidados; adequação institucional pendente."
     section.footer.paragraphs[0].runs[0].font.size = Pt(8)
     doc.core_properties.author = "Lucas Nory Ulson"
-    doc.core_properties.title = "TCC2 — base de redação revisada"
-    doc.core_properties.subject = "Rascunho; resultados LLM ainda incompletos"
+    doc.core_properties.title = "TCC2 — monografia revisada"
+    doc.core_properties.subject = "Conteúdo e evidências consolidados; adequação ao modelo institucional pendente"
     lines = source.read_text().splitlines()
     index = 0
     while index < len(lines):
@@ -116,7 +116,9 @@ def word_export(source, target):
     doc.save(target)
     reopened = Document(target)
     assert reopened.tables and len(reopened.inline_shapes) == 2
-    assert "R3 permanece em aberto" in " ".join(paragraph.text for paragraph in reopened.paragraphs)
+    exported_text = " ".join(paragraph.text for paragraph in reopened.paragraphs)
+    assert "Não foi demonstrado benefício adicional" in exported_text
+    assert "22 campanhas" in exported_text
 
 
 def slide_sources(path):
@@ -143,7 +145,7 @@ def powerpoint_export(source, target):
     deck = Presentation()
     deck.slide_width, deck.slide_height = Inches(13.333), Inches(7.5)
     deck.core_properties.author = "Lucas Nory Ulson"
-    deck.core_properties.title = "TCC2 — defesa em preparação"
+    deck.core_properties.title = "TCC2 — defesa revisada"
     ink = RGBColor.from_string("173447")
     for number, item in enumerate(slides, 1):
         slide = deck.slides.add_slide(deck.slide_layouts[6])
@@ -184,7 +186,7 @@ def powerpoint_export(source, target):
             sources = [line for line in item["body"] if line.startswith("Fonte:")]
             if sources:
                 text_box("\n".join(sources), 0.75, 6.35, 11.9, 0.45, 11)
-        text_box("RASCUNHO · avaliação LLM pendente", 0.72, 7.02, 10.5, 0.32, 10)
+        text_box("VERSÃO REVISADA · evidências consolidadas", 0.72, 7.02, 10.5, 0.32, 10)
         text_box(f"{number:02d}/{len(slides)}", 12.05, 7.02, 0.6, 0.32, 10)
         slide.notes_slide.notes_text_frame.text = item["notes"]
     deck.save(target)
@@ -195,21 +197,22 @@ def powerpoint_export(source, target):
 
 def main():
     architecture()
-    word_export(WRITING / "BASE_MONOGRAFIA.md", WRITING / "BASE_MONOGRAFIA.docx")
-    powerpoint_export(DEFENSE / "SLIDES.md", DEFENSE / "DEFESA_RASCUNHO.pptx")
+    word_export(WRITING / "BASE_MONOGRAFIA.md", WRITING / "MONOGRAFIA_REVISAO_FINAL.docx")
+    powerpoint_export(DEFENSE / "SLIDES.md", DEFENSE / "DEFESA_REVISAO_FINAL.pptx")
     sources = [WRITING / "BASE_MONOGRAFIA.md", WRITING / "LEITURA_DOS_DOCUMENTOS.md", WRITING / "referencias.bib",
                DEFENSE / "SLIDES.md", DEFENSE / "DEMONSTRACAO.md", Path(__file__)]
-    outputs = [WRITING / "BASE_MONOGRAFIA.docx", WRITING / "ARQUITETURA.png", WRITING / "ARQUITETURA.svg", DEFENSE / "DEFESA_RASCUNHO.pptx"]
+    outputs = [WRITING / "MONOGRAFIA_REVISAO_FINAL.docx", WRITING / "ARQUITETURA.png",
+               WRITING / "ARQUITETURA.svg", DEFENSE / "DEFESA_REVISAO_FINAL.pptx"]
     originals = [ROOT.parent / name for name in (
         "tcc_proposta(1).docx", "Guia_TCC2_Paralelizacao_Automatica_atualizado_2026-09-02(1).docx",
         "Resumo_Executivo_TCC2_Lucas_Ulson_Atualizado_2026-10-08.docx",
     ) if (ROOT.parent / name).is_file()]
-    manifest = {"status": "DRAFT_LLM_EVALUATION_PENDING", "author": "Lucas Nory Ulson",
+    manifest = {"status": "CONTENT_REVIEW_COMPLETE_EXTERNAL_FORMATTING_PENDING", "author": "Lucas Nory Ulson",
                 "originals_referenced": [{"path": str(path.relative_to(ROOT.parent)), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()} for path in originals],
                 "sources": [{"path": str(path.relative_to(ROOT)), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()} for path in sources],
                 "outputs": [{"path": str(path.relative_to(ROOT)), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()} for path in outputs]}
     (WRITING / "REVIEW_MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n")
-    print("DRAFTS_EXPORTED: Word manuscript, PowerPoint with notes, architecture and review manifest.")
+    print("REVISED_MATERIAL_EXPORTED: Word manuscript, PowerPoint with notes, architecture and review manifest.")
 
 
 if __name__ == "__main__":

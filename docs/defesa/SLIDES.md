@@ -125,17 +125,17 @@ não é, por si só, eficiência paralela acima de cem por cento.
 
 ---
 
-# Resultado local: admitir e recusar por medição
+# Resultado verificável no Mac
 
-![Dot Product grande e pequeno no Linux](../../results/consolidated/scaling_linux_local.png)
+![Dot Product promovido, grande e pequeno no Mac](../../results/consolidated/scaling_m5_verified_2026_11_03.png)
 
-Entrada grande: ganho 1,191× em 2T; entrada pequena: paralelo não admitido.
-Fonte: campanhas linux_local_dot_large e linux_local_dot_small.
+Promoção final: 2,465× em 4T; estudo grande: 1,673×; pequeno: paralelo não admitido.
+Fonte: três campanhas VERIFIED_LOCAL_GATES do Mac.
 
 <!-- fala:
 As curvas azuis comparam com o sequencial; as laranjas comparam com OpenMP 1T.
-Na entrada pequena, as threads quase não mudam o tempo da variante e ela continua
-mais lenta que o sequencial. O fallback da avaliação é o sequencial. Estes são
+Na entrada pequena, o overhead cresce fortemente com mais threads. O fallback
+da avaliação é o sequencial. Estes são
 resultados dos componentes determinísticos, sem contribuição demonstrada da LLM.
 -->
 

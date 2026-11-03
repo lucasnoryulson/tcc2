@@ -29,7 +29,7 @@ integração, não uma revisão de um documento final que não foi recebido.
 | Resumo executivo §6.2 | Eficiência tiled de aproximadamente 0,850 | É `(T_seq/T_4)/4`. Para o mesmo bloco 64, a eficiência paralela é `(T_1/T_4)/4 ≈ 0,594`; ganho contra sequencial continua 3,400× |
 | Resumo executivo §6.2 e §9 | Ciclo Wavefront atribuído à recuperação autônoma do sistema | Histórico de diagnóstico, alteração manual e autotuning; não demonstra que a LLM executou sozinha o ciclo |
 | Resumo executivo §6.3 | Hardware Mac atribuído ao CSV Nussinov automático | O documento afirma Mac; a campanha canônica não contém captura própria. A matriz mantém o hardware como não registrado, até comprovar o vínculo |
-| Resumo executivo §8 | Contagem antiga de regressões | Última bateria registrada: 81 testes unittest e 14 casos dos seletores/Coordinator. São verificação técnica, não amostras científicas |
+| Resumo executivo §8 | Contagem antiga de regressões | Última bateria registrada: 82 testes unittest e 14 casos dos seletores/Coordinator. São verificação técnica, não amostras científicas |
 | Guia §3 e §10–15 | Múltiplas suítes, one-shot, agente com reparo, Polly e várias ablações propostos | Backlog de pesquisa, sem declaração de execução. O estudo atual tem um kernel em dois tamanhos para avaliar a decisão da LLM |
 
 ## Questões de pesquisa reconciliadas com o recorte

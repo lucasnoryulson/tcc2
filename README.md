@@ -276,14 +276,14 @@ Os três documentos Word recebidos foram comparados ao código e às evidências
 O [guia de fechamento](docs/FECHAMENTO_TCC.md) reúne os arquivos preparados e
 as pendências pelos seis itens originais:
 
-- [Base Word da monografia](docs/monografia/BASE_MONOGRAFIA.docx) e
+- [Monografia Word revisada](docs/monografia/MONOGRAFIA_REVISAO_FINAL.docx) e
   [fonte Markdown](docs/monografia/BASE_MONOGRAFIA.md).
-- [PowerPoint com 16 slides e notas](docs/defesa/DEFESA_RASCUNHO.pptx) e
+- [PowerPoint revisado com 16 slides e notas](docs/defesa/DEFESA_REVISAO_FINAL.pptx) e
   [roteiro de fala](docs/defesa/SLIDES.md).
 - [Demonstração reproduzível](docs/defesa/DEMONSTRACAO.md).
 - [Revisão dos documentos recebidos](docs/monografia/LEITURA_DOS_DOCUMENTOS.md).
 
 O gerador `scripts/build_academic_material.py` usa as dependências opcionais de
-`requirements-writing.txt`. Ele exporta os rascunhos a partir dos Markdown e
-preserva os Word originais. A avaliação LLM permanece pendente, inclusive na
-redação e nos slides; conferir o formato de entrega e o layout nos aplicativos.
+`requirements-writing.txt`. Ele exporta os materiais revisados a partir dos
+Markdown e preserva os Word originais. A avaliação LLM e a consolidação já estão
+incorporadas; ainda é necessário conferir o modelo institucional e o layout nos aplicativos.
