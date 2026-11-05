@@ -4,7 +4,7 @@
 
 Lucas Nory Ulson — Ciência da Computação, PUCRS
 
-Versão de trabalho de 3 de novembro de 2026. Texto alinhado à implementação,
+Versão de trabalho de 5 de novembro de 2026. Texto alinhado à implementação,
 à campanha final do Mac e aos documentos recebidos. A campanha original do
 Coordinator terminou `INCOMPLETE`; o contrato foi corrigido e a replicação com
 as mesmas evidências terminou `COMPLETE`, mantendo ambos os resultados;
@@ -33,7 +33,11 @@ reproduziu ACCEPT, REJECT e RETUNE, mas não MODIFY. Não foi demonstrado benef�
 adicional da LLM ou das análises estruturadas nesta amostra. As contribuições
 demonstradas concentram-se na integração auditável do caminho suportado, na
 separação das métricas e na organização das evidências, com limitações explícitas
-de cobertura, corretude empírica e generalização.
+de cobertura, corretude empírica e generalização. Uma coleta complementar Linux
+reuniu 322 amostras em Dot Product, GEMM e Nussinov, mais 50 amostras de Dot C
+pelo pipeline. Nussinov grande manual alcançou ganho total de 3,673× em 4T;
+GEMM grande apresentou 2,263× em 3T. Esses resultados pertencem às variantes
+e ao protocolo medido, sem ganho atribuível à LLM.
 
 Palavras-chave: OpenMP; análise de dependências; reestruturação de código;
 modelos de linguagem; reprodutibilidade experimental.
@@ -58,7 +62,11 @@ policy in each case. A controlled study reproduced ACCEPT, REJECT and RETUNE,
 but not MODIFY. No additional benefit from the LLM or structured analyses was shown
 in this sample. Demonstrated contributions concern workflow integration,
 artifact traceability, metric separation and experimental organization, with
-explicit limits on transformation coverage and empirical correctness.
+explicit limits on transformation coverage and empirical correctness. A complementary
+Linux campaign collected 322 samples across Dot Product, GEMM and Nussinov,
+plus 50 pipeline Dot C samples. Large manual Nussinov achieved 3.673× total
+speedup at four threads; large GEMM achieved 2.263× at three threads. These
+measurements do not establish any LLM-attributable speedup.
 
 Keywords: OpenMP; dependence analysis; code restructuring; language models;
 experimental reproducibility.
@@ -244,8 +252,8 @@ São separados três conjuntos de evidências. O primeiro contém 17 campanhas
 históricas recuperadas de CSVs, logs e dumps, sem o contrato atual completo de
 vínculo ao código medido. O segundo contém duas coletas Linux cujo resumo foi
 preservado, mas cujos contextos originais não estão neste checkout. O terceiro
-contém três campanhas finais de Dot Product no Mac verificáveis pelos gates
-atuais. A consolidação totaliza 22 campanhas e 173 configurações, com 545 tempos
+contém três campanhas finais de Dot Product verificadas pelos gates no Mac
+em 03/11. A consolidação totaliza 22 campanhas e 173 configurações, com 545 tempos
 individuais recuperados.
 
 Os 35 CSVs históricos foram inventariados sem alteração, junto a nove CSVs das
@@ -325,6 +333,51 @@ O resultado admitido usa a configuração paralela elegível; recusa ou falha us
 o sequencial como fallback definido para a avaliação. O tempo contabilizado soma
 o prefixo determinístico compartilhado ao custo de decisão/validação, sem
 representar nova execução independente do pipeline e sem incluir publicação.
+
+### 4.5. Coleta complementar Linux e comparação multiplataforma
+
+Em 05/11/2026 foi iniciada uma coleta complementar de escalabilidade no Xeon
+E3-1225 V2, com quatro núcleos físicos, Linux x86_64, Clang 18.1.3 e runtime
+OpenMP identificado nas saídas de vinculação. O governor observado foi
+`schedutil`; não houve fixação de frequência, isolamento exclusivo da máquina
+ou controle térmico. Não se executaram testes nem inferências junto à campanha.
+Usaram-se 1, 2, 3 e 4 threads, `-O3`, sem `-march=native` ou `-ffast-math`.
+
+Foram selecionados Dot Product C++ com N=1.000.000 e 10.000.000, GEMM double
+com dimensões 200×220×240 e 1000×1100×1200, e Nussinov int com N=500 e 2500.
+As variantes preexistentes são manual no Dot/GEMM e manual, SIMD manual e
+SIMD automaticamente adaptada no Nussinov. Não houve inferência nem nova
+otimização manual dos kernels nessa campanha.
+
+Cada configuração utiliza sete processos de medição e um processo prévio de
+aquecimento. A ordem é embaralhada em blocos completos, com semente 2026,
+preservando amostras individuais. O Dot C++ temporiza uma única chamada:
+a inicialização do runtime OpenMP pode estar incluída. Aquecimento em outro
+processo não conserva a equipe de workers. Portanto, esse Dot não substitui
+o experimento C do pipeline com 100 chamadas internas. PolyBench conserva
+seu flush de cache padrão antes de iniciar o timer. Os tempos excluem alocação,
+inicialização dos arrays, compilação e inferência.
+O flush OpenMP do utilitário PolyBench já cria a equipe antes do cronômetro de
+GEMM/Nussinov, diferentemente do Dot C++. O timer PolyBench usa `gettimeofday`
+com saída de seis casas decimais; manteve-se essa instrumentação preexistente.
+
+A validação cobre cada combinação de entrada, variante e threads. Dot compara
+o escalar com a fórmula esperada; GEMM compara todos os elementos impressos
+com 17 dígitos significativos, em vez das duas casas decimais históricas;
+Nussinov compara o dump inteiro exato. Os executáveis de dump e tempo são
+separados e compilados com a mesma otimização. Os arquivos originais são
+preservados; a mudança de precisão ocorre no header copiado da campanha.
+Fontes, headers, utilitário PolyBench, comandos, bibliotecas, executáveis e
+saídas são arquivados com SHA-256. Essa coleta possui protocolo próprio e não
+autoriza promoção pelo contrato de fontes independentes do pipeline.
+
+As figuras exibem mediana e amplitude mínimo–máximo, sem intervalos de
+confiança ou alegação de significância. Os CSVs novos também registram desvio
+padrão amostral; a consolidação histórica usa desvio padrão populacional.
+A campanha nova equivalente no M5
+está preparada, mas não foi medida nesta máquina Linux. Dados históricos são
+contexto, sem permitir atribuir causalmente diferenças à arquitetura.
+Esta coleta amplia a avaliação de R2, sem ampliar a amostra de decisões LLM de R3.
 
 ## 5. Resultados disponíveis
 
@@ -420,6 +473,116 @@ válidas. Na amostra, as análises estruturadas não alteraram aceitação ou re
 final. Em 24 cenários controlados, ACCEPT, REJECT e RETUNE acertaram 6/6, enquanto
 MODIFY foi convertido em REJECT em 6/6, preservando segurança mas não recuperação.
 
+### 5.5. Escalabilidade complementar no Linux em 05/11/2026
+
+A campanha principal concluiu 46 configurações, 322 amostras externas e 46
+validações de entrada/variante/threads. Foram avaliadas seis combinações de
+kernel e entrada, com dez curvas de variantes OpenMP. Os baselines sequenciais
+de Nussinov são compartilhados entre suas três variantes, sem criar novas
+amostras independentes. A tabela usa sempre quatro threads para tornar o ponto
+de comparação explícito; a menor mediana pode pertencer a outra configuração.
+
+| Kernel / entrada | Variante | Tseq (s) | T1 (s) | T4 (s) | S total | S paralelo | E paralela |
+|---|---|---:|---:|---:|---:|---:|---:|
+| dot / 1000000 | manual | 0.001473456 | 0.003553676 | 0.003692308 | 0.399 | 0.962 | 0.241 |
+| dot / 10000000 | manual | 0.010942113 | 0.012910733 | 0.010611985 | 1.031 | 1.217 | 0.304 |
+| gemm / LARGE | manual | 0.644089000 | 0.639590000 | 0.284841000 | 2.261 | 2.245 | 0.561 |
+| gemm / MEDIUM | manual | 0.004129000 | 0.004192000 | 0.001245000 | 3.316 | 3.367 | 0.842 |
+| nussinov / LARGE | manual | 16.885718000 | 16.624249000 | 4.596830000 | 3.673 | 3.616 | 0.904 |
+| nussinov / LARGE | simd_auto | 16.885718000 | 17.560246000 | 4.820323000 | 3.503 | 3.643 | 0.911 |
+| nussinov / LARGE | simd_manual | 16.885718000 | 17.560393000 | 4.898844000 | 3.447 | 3.585 | 0.896 |
+| nussinov / MEDIUM | manual | 0.021994000 | 0.028491000 | 0.052671000 | 0.418 | 0.541 | 0.135 |
+| nussinov / MEDIUM | simd_auto | 0.021994000 | 0.019298000 | 0.016583000 | 1.326 | 1.164 | 0.291 |
+| nussinov / MEDIUM | simd_manual | 0.021994000 | 0.019309000 | 0.030927000 | 0.711 | 0.624 | 0.156 |
+
+Dot C++ grande teve menor mediana em 3T (0,010432664 s; ganho total 1,049×).
+Para N=1 milhão, todas as configurações OpenMP foram mais lentas que o sequencial.
+GEMM grande apresentou 0,284560 s em 3T e 0,284841 s em 4T: diferença de cerca
+de 0,10%, compatível com quase empate descritivo, sem prova de significância.
+Nussinov grande manual alcançou 3,673× contra o sequencial e 3,616× contra
+OpenMP 1T, com eficiência de 0,904 em 4T. Em N=500, a versão manual em 4T
+perdeu para o sequencial; 2T obteve ganho total de 1,432×. Mais threads não
+foram sistematicamente melhores em entradas médias.
+
+No GEMM médio, T1/Tp excede p em 2T e 3T. Essas razões de medianas não
+comprovam superlinearidade causal: cache, frequência e variabilidade do baseline
+podem contribuir. As amostras permanecem disponíveis, sem descartar outliers.
+
+![Tempos reais e amplitude mínimo–máximo da coleta Linux](../../results/scaling/analysis_linux_xeon_2026-11-05/median_seconds.png)
+
+![Escalabilidade da mesma variante e entrada no Linux](../../results/scaling/analysis_linux_xeon_2026-11-05/speedup_parallel.png)
+
+![Eficiência paralela da coleta Linux](../../results/scaling/analysis_linux_xeon_2026-11-05/efficiency_parallel.png)
+
+### 5.6. Dot C automático e efeito do regime de medição
+
+O pipeline foi executado em modo `--prepare-only`, sem inferência nem promoção,
+com Clang 18.1.3 e 1T–4T. Os dois casos terminaram PREPARED e passaram pelos
+gates de corretude. Cada configuração tem cinco medições externas. O caso
+grande usa 100 chamadas internas de N=10 milhões; o pequeno usa 10.000 chamadas
+de N=1024. Esses drivers e a distribuição dos valores diferem do Dot C++ manual.
+A validação do pipeline usa seu driver de N=1 milhão e não constitui um teste
+de todas as entradas temporizadas.
+
+| Caso | Tseq (s) | T1 (s) | T4 (s) | S total 4T | S paralelo 4T | Seleção |
+|---|---:|---:|---:|---:|---:|---|
+| large | 0.010385878850 | 0.010864713850 | 0.008063438350 | 1.288 | 1.347 | 3T; S total 1.264× |
+| small | 0.000000889980 | 0.000001850426 | 0.000004171944 | 0.213 | 0.444 | Sem paralelo admissível |
+
+No caso grande, 4T teve a menor mediana (0,00806343835 s), mas 3T ficou
+1,908% acima dela; a política de quase empate de 2% recomendou 3T, com
+ganho total de 1,264×, escalabilidade de 1,322× e eficiência de 0,441.
+O caso pequeno não admitiu paralelo. Essa diferença frente ao Dot C++
+mostra que primeira chamada, driver e amortização precisam ser informados.
+Os resultados não isolam o efeito de um único fator e não são ganhos da LLM.
+
+Os diagnósticos novos do Clang confirmaram o bloqueio por dependência de memória
+no laço k da versão manual de Nussinov e a vetorização de largura 4 e fator
+de intercalação 2 nas versões SIMD. Apesar disso, em N=2500, SIMD 1T levou
+cerca de 17,560 s, contra 16,624 s da versão manual sem a diretiva: a aplicação
+de SIMD não garante benefício. A seção `.text` dos executáveis SIMD manual e
+automático é idêntica nesta compilação LARGE (SHA-256 registrado nos
+diagnósticos). Diferenças de tempo entre eles não evidenciam uma melhoria
+do código computacional automático. Os executáveis de diagnóstico são
+separados daqueles efetivamente medidos.
+
+Fonte: `results/scaling/`, relatório de verificação, CSVs e diagnósticos de
+05/11. As 22 campanhas da matriz anterior permanecem separadas desta coleta.
+
+### 5.7. Comparação contextual com os registros do M5
+
+A tabela conserva o ponto comum de 4T e usa cada variante com seu próprio
+baseline OpenMP 1T. Ela compara registros de campanhas distintas, não uma
+nova campanha pareada entre máquinas. O Dot C possui o mesmo SHA-256 de
+candidato e driver de benchmark arquivado da promoção M5; GEMM/Nussinov
+históricos não têm esse vínculo completo. O compilador Linux é Clang 18.1.3,
+enquanto o acervo M5 registra LLVM Homebrew 23.1.1.
+
+| Caso | Linux novo T4 (s) | Linux T1/T4 | M5 arquivado T4 (s) | M5 T1/T4 | Registro M5 |
+|---|---:|---:|---:|---:|---|
+| dot automatic_C | 0.008063438 | 1.347 | 0.001964010 | 2.465 | 03/11; gates verificados no Mac |
+| gemm manual | 0.284841000 | 2.245 | 0.043192000 | 3.282 | setembro; HISTORICAL_UNBOUND |
+| nussinov manual | 4.596830000 | 3.616 | 0.319542000 | 2.957 | setembro; HISTORICAL_UNBOUND |
+| nussinov simd_manual | 4.898844000 | 3.585 | 0.209503000 | 3.015 | setembro; HISTORICAL_UNBOUND |
+
+Nussinov manual tem maior escalabilidade normalizada no Linux novo, mas menor
+latência absoluta no registro M5. Logo, escalabilidade relativa e desempenho
+absoluto respondem a perguntas distintas. O Dot C do estudo pareado M5 de
+03/11 obteve 1,673× contra o sequencial, abaixo dos 2,465× da promoção do
+mesmo dia, reforçando o cuidado com condições e variabilidade de campanha.
+
+No Linux, os contextos originais dos gates Mac contêm caminhos absolutos do
+outro ambiente, e um contexto em build não foi transferido. A consolidação
+usa um resumo arquivado explícito, fixado por hash, quando os artefatos locais
+estão indisponíveis, com rótulo ARCHIVED_SUMMARY_ONLY. Divergências de hash ou
+contexto inválido continuam sendo erros. Não se reescreveram caminhos nem
+relatórios históricos para simular uma validação Linux desses gates.
+
+O Nussinov automático histórico continua com hardware desconhecido e não
+foi incluído como medição M5. As novas curvas M5 nas mesmas entradas, fontes,
+repetições e política de medição ainda são necessárias para fortalecer esta
+comparação. Os números acima não isolam ISA, memória ou contribuição da LLM.
+
 ## 6. Discussão e ameaças à validade
 
 Os resultados disponíveis respondem operacionalmente a R1: o protótipo tem
@@ -458,6 +621,53 @@ As principais ameaças à validade são:
 - **Reprodução:** caminhos absolutos exigem novas evidências ao mudar de máquina;
   headers/bibliotecas completos não são capturados pelo contrato atual.
 
+### 6.1. Interpretação técnica da escalabilidade
+
+Os três kernels exercitam limites diferentes. Dot Product double realiza
+aproximadamente duas operações aritméticas para cada par de entradas de
+16 bytes, ou 0,125 operação por byte do acesso lógico. O modelo Roofline
+relaciona intensidade operacional, banda de memória e desempenho computacional
+atingível. Essa conta é uma hipótese explicativa, não uma medição de tráfego
+DRAM: cache, prefetch e primeira chamada alteram o custo observado.
+Sem contadores ou um ensaio de banda, uma curva achatada não comprova
+saturação da memória. [Williams, Waterman e Patterson, 2009](https://escholarship.org/uc/item/5tz795vq).
+
+No GEMM avaliado, a distribuição por linhas evita escrita concorrente no mesmo
+elemento e conserva o laço interno j contíguo. Existe reuso de B entre linhas,
+mas o código não incorpora uma biblioteca BLAS otimizada ou uma nova versão
+blocada. A relação entre conjunto de trabalho, caches e compartilhamento de
+recursos pode mudar entre as duas entradas. Uma boa razão T1/Tp não demonstra
+proximidade do pico da máquina ou superioridade frente a BLAS.
+Os três arrays úteis do GEMM médio ocupam aproximadamente 1,16 MB, enquanto os
+do grande ocupam 28,96 MB; a tabela Nussinov ocupa 1 MB com N=500 e 25 MB com
+N=2500. São tamanhos calculados das dimensões e tipos, sem overhead de alocação,
+e não medições de tráfego. O LLC registrado no Xeon tem 8 MiB, tornando plausível
+uma mudança de localidade entre entradas; isso exige contadores para confirmação.
+
+Nussinov organiza a computação por d=j−i. A diagonal d possui N−d células;
+cada célula consulta intervalos menores e executa a redução de máximo no
+laço k. As diagonais precisam terminar em ordem, mesmo quando as células de
+uma diagonal são independentes. A região paralela persistente evita recriar
+workers a cada diagonal, mas conserva N−1 barreiras de final de `omp for`.
+Remover a barreira com `nowait` violaria as dependências. A redução e as
+barreiras implícitas seguem a
+[especificação OpenMP](https://www.openmp.org/spec-html/5.2/openmp.html).
+
+A variante com acumulador/SIMD separa a redução local da atualização do
+destino. Ela pode melhorar o código de uma thread, efeito capturado em
+Tseq/T1, antes do ganho multicore T1/Tp. A presença da diretiva não comprova
+que o compilador realizou uma vetorização eficiente. Comparações entre
+SIMD manual e automaticamente adaptado precisam considerar equivalência do
+código gerado e dispersão; seus tempos não avaliam uma LLM geradora de código.
+
+No M5, o acervo registra quatro núcleos de desempenho e seis de eficiência.
+Uma curva com até dez threads não representa dez núcleos homogêneos. Mesmo
+com `OMP_PROC_BIND` e `OMP_PLACES`, o protocolo não comprova quais classes de
+núcleo executaram cada worker no macOS. A comparação principal deve conservar
+os pontos comuns de 1T a 4T e analisar 5T a 10T separadamente. Bibliotecas
+OpenMP, compiladores, cache, memória e energia variam junto com o hardware;
+os dados não permitem isolar a contribuição individual de cada fator.
+
 ## 7. Conclusão compatível com as evidências atuais
 
 Foi implementado um caminho de reestruturação OpenMP para redução escalar que
@@ -479,7 +689,20 @@ implementado na redação e finalizar o material de entrega. Ampliação
 de padrões transformados, recuperação automática de candidatos e suporte a
 dependências de projetos são extensões, sem promessa de implementação neste TCC.
 
+A coleta complementar de 05/11 mostrou respostas distintas à mesma faixa de
+threads: Dot com ganho limitado, GEMM grande com quase empate entre 3T e 4T,
+e Nussinov grande manual com ganho total de 3,673× em 4T. Entradas médias
+também expuseram perdas e grande dispersão. SIMD foi aplicado pelo compilador,
+mas não melhorou Nussinov grande nesta toolchain. A comparação contextual com
+o M5 distingue tempo absoluto e escalabilidade; a nova coleta M5 com protocolo
+comum continua necessária. Nenhum desses ganhos é atribuído à LLM.
+
 ## Referências verificadas para esta base
+
+Williams, Samuel; Waterman, Andrew; Patterson, David. Roofline: An Insightful
+Visual Performance Model for Multicore Architectures. Communications of the ACM,
+52(4), 65–76, 2009. DOI 10.1145/1498765.1498785.
+[Repositório institucional dos autores](https://escholarship.org/uc/item/5tz795vq).
 
 OpenMP Architecture Review Board. OpenMP Application Programming Interface,
 Version 5.2. 2021. [Especificação oficial](https://www.openmp.org/spec-html/5.2/openmp.html).
@@ -508,3 +731,9 @@ A campanha final foi incorporada ao resumo/abstract, §5.4, discussão e conclus
 Não substituir tempos do kernel por latência de inferência. Nome de orientador,
 template, paginação e exigências formais de entrega não foram inferidos dos
 arquivos recebidos.
+
+A revisão de 05/11 acrescenta metodologia §4.5, resultados §5.5–§5.7 e discussão
+técnica §6.1. Fontes adicionais:
+[protocolo multiplataforma](../ESCALABILIDADE_MULTIPLATAFORMA_2026-11-05.md),
+[tabelas, amostras e gráficos novos](../../results/scaling/analysis_linux_xeon_2026-11-05/REPORT.md)
+e [documento de revisão](../revisao_experimentos_2026-11-05/REVISAO.md).

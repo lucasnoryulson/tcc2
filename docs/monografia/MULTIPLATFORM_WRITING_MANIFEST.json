@@ -1,0 +1,42 @@
+{
+  "generated_utc": "2026-11-05T16:40:16.185385+00:00",
+  "word_checks": {
+    "tables": 13,
+    "images": 15,
+    "paragraphs": 261
+  },
+  "pdf_renderer": "ReportLab review PDF; not a native Office rendering",
+  "files": {
+    "docs/monografia/REVISAO_MULTIPLATAFORMA.md": "972abc21a87f4465ee96ecc999e6696ea5b1b9c3ba97b88486df350ba9ddb2a2",
+    "docs/monografia/REVISAO_MULTIPLATAFORMA.docx": "8a254e16c6f0bfa8ee352079a8bc43cbf88f50bb2b1317a79edc4365ec7561b5",
+    "docs/monografia/REVISAO_MULTIPLATAFORMA.pdf": "af2b56721dae3530ddaab54e985b88faef7b17dfbb0a04b543b1c9ebb35ccd78",
+    "docs/monografia/CAPA_PUCRS_MULTIPLATAFORMA.docx": "6789463a79540de9295d587eb094d72442ddca7acbd247bcfd029b39e6a42e17",
+    "docs/monografia/figures_multiplatform/nussinov_diagonais.pdf": "b262049a105f17896d8af10c44907ac7e1cc00bbeca79c75eca21c80d07f5fb1",
+    "docs/monografia/figures_multiplatform/fluxo_decisao.pdf": "83a4aa177a70300d8ea6be818bea6486a46578f393c61bc7376ffcec77905b8a",
+    "docs/monografia/figures_multiplatform/scaling_jacobi-2d.pdf": "fc0a0b95fa3a84fa61ff17c0bbf9c57ac62cc058f226b5aab636c453828da842",
+    "docs/monografia/figures_multiplatform/scaling_gemm.png": "60880a599bda4a28b320a4cf3e7c0666f85d395124f205c98013979bedd24e2c",
+    "docs/monografia/figures_multiplatform/scaling_dot.png": "5f82c592f57bc6fe4dc8bf0f9db19f5517aee2da4543abdfb6c7b43aedb7a828",
+    "docs/monografia/figures_multiplatform/scaling_nussinov.svg": "dcb0adbca176cbe52e2808581cdc3e67ca8e408e1af515425bb010ac43ef42a8",
+    "docs/monografia/figures_multiplatform/arquitetura_componentes.svg": "813df04cf6f58eb5957ece8f5807455e10e0f4dd88cb732f2f295517d45fc87c",
+    "docs/monografia/figures_multiplatform/scaling_covariance.svg": "f1f3436ec7dd9fc30a9fcf8e726066a7ad4c40ba6762695e37bca8a19a8fc31d",
+    "docs/monografia/figures_multiplatform/scaling_covariance.pdf": "798b1353a0fd78724599064d22734f6e2e8f2a881c17ca65615d1d6c262827bd",
+    "docs/monografia/figures_multiplatform/arquitetura_componentes.pdf": "ba62b03fbdf837bd4a640d741b259338b2d6dbade0811f2e9e9dc02a41dafda9",
+    "docs/monografia/figures_multiplatform/scaling_covariance.png": "40e58433b7511431908b376ce5d8bee8cede234a821e699878ee099eb343b739",
+    "docs/monografia/figures_multiplatform/fluxo_decisao.svg": "1fa1d64932088adb38eb5ddf3acfe99572c5e7233c7b47fa6d4cab2c4cc248a4",
+    "docs/monografia/figures_multiplatform/scaling_jacobi-2d.svg": "6e86cd100365bc221f9622a6d347fa64028719f4fe1a516e12a8b9a52d73f196",
+    "docs/monografia/figures_multiplatform/scaling_dot.svg": "3dedea2d41f4b64456bd88ebb6e69b2f4dabfb917e1728edf35716d890c572a9",
+    "docs/monografia/figures_multiplatform/scaling_dot-auto.svg": "71274bf12baca637ce0fd326bad5414e59571a7c9be1a27b33abde2731930170",
+    "docs/monografia/figures_multiplatform/scaling_dot-auto.pdf": "e7b67c70b7fe01933e6d14218d7287b75cf6cb7ed11aa65216d40059e37cc4a1",
+    "docs/monografia/figures_multiplatform/nussinov_diagonais.png": "86a9fe803e37a806b27906a64cf65fe83323a0e28e82568ec8090440da16de62",
+    "docs/monografia/figures_multiplatform/scaling_dot.pdf": "fa2d942d5b79cc50dc1188805a86c3fbba56e3d76d235f6b00cadc5fbf8d1e7a",
+    "docs/monografia/figures_multiplatform/scaling_gemm.svg": "49854b3eb8c874d9bcd8b9ed07b596defb42cf28b4c7f69e21a83b6202cd3a72",
+    "docs/monografia/figures_multiplatform/scaling_gemm.pdf": "de974c2e229342b16af6ba00fec643946b3db447750da9bdf3a38b3750877276",
+    "docs/monografia/figures_multiplatform/nussinov_diagonais.svg": "6c5c50066ab21c3712a0bcf263608584ab2085ccb3f6e1ceb20bdef0e94d1e77",
+    "docs/monografia/figures_multiplatform/scaling_dot-auto.png": "4c51643634c197cfa9c52648138936683f775fad623e0b002e5d1773043a4a71",
+    "docs/monografia/figures_multiplatform/fluxo_decisao.png": "728bf11de004154feadf6da4dd122d95c7c61d67aae05334001fc09852c6e90c",
+    "docs/monografia/figures_multiplatform/scaling_jacobi-2d.png": "b335e9f83838975b26f4f757884e313a6d1de738aa477b49d54ab1c3d441f1ef",
+    "docs/monografia/figures_multiplatform/scaling_nussinov.pdf": "65db25be7daf61dd93ffa4619fa06e69c1acac509ec7adc112024443bf706c58",
+    "docs/monografia/figures_multiplatform/scaling_nussinov.png": "9b06f36ca02dd4f9c768455c886258e4c36c78e0c9ab8511357d5d609a203d35",
+    "docs/monografia/figures_multiplatform/arquitetura_componentes.png": "3160f8045fd3a78e4f3b3a375a1bc9b1ffcf5ebc6fac15033eed3295548b8a58"
+  }
+}

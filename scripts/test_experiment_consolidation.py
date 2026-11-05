@@ -167,7 +167,8 @@ class ExperimentConsolidation(unittest.TestCase):
 
     def test_repository_catalog_has_expected_coverage_and_keeps_sources_unchanged(self):
         catalog = json.loads((ROOT / "docs/experiment_catalog.json").read_text())
-        paths = {ROOT / case["source"] for case in catalog["campaigns"]}
+        paths = {ROOT / case[field] for case in catalog["campaigns"] for field in ("source", "archived_summary")
+                 if case.get(field) and (ROOT / case[field]).is_file()}
         before = {path: path.read_bytes() for path in paths}
         campaigns = consolidation.consolidate(catalog, ROOT)
         self.assertEqual(len(campaigns), 22)
@@ -177,6 +178,26 @@ class ExperimentConsolidation(unittest.TestCase):
         nussinov = next(case for case in campaigns if case["id"] == "nussinov_auto_0911")
         self.assertAlmostEqual(nussinov["selected"]["parallel_scaling_efficiency"], 0.7513, places=4)
         self.assertEqual({path: path.read_bytes() for path in paths}, before)
+
+    def test_explicit_archived_context_is_not_relabelled_as_verified(self):
+        from analysis.artifact_provenance import sha256
+        archived = self.work / 'archived.json'
+        archived.write_text(json.dumps({'campaigns': [{'id': 'fixture', 'measurements': self.rows()}]}))
+        spec = dict(id='fixture', source='missing.json', format='context_evidence',
+                    archived_summary='archived.json', archived_summary_sha256=sha256(archived.read_bytes()))
+        rows, _, _, status, provenance = consolidation.load_campaign(spec, self.work)
+        self.assertEqual(status, 'ARCHIVED_SUMMARY_ONLY')
+        self.assertIsNone(provenance)
+        self.assertEqual(rows[0]['median_seconds'], 12)
+        archived.write_text(archived.read_text() + ' ')
+        with self.assertRaisesRegex(ValueError, 'hash mismatch'):
+            consolidation.load_campaign(spec, self.work)
+
+    def test_invalid_present_context_does_not_fall_back_to_archived_summary(self):
+        (self.work / 'context.json').write_text('{}')
+        spec = dict(id='fixture', source='context.json', format='context_evidence', archived_summary='absent.json')
+        with self.assertRaises(ValueError):
+            consolidation.load_campaign(spec, self.work)
 
     def test_harness_rejects_incompatible_historical_header_before_compiling(self):
         result = self.work / "results/gemm/experiment_results.csv"

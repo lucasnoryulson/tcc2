@@ -1,0 +1,198 @@
+{
+  "schema": "tcc2-correctness-gate",
+  "version": "0.2",
+  "status": "PASS",
+  "inputs": {
+    "sequential": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c",
+    "candidate": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/candidate.c",
+    "driver": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_driver.c"
+  },
+  "compiler": "clang",
+  "threads": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "validated_threads": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "tolerances": {
+    "relative": 1e-09,
+    "absolute": 1e-12
+  },
+  "provenance": {
+    "campaign_id": "d9dabf5eff7b4176869da83c89c60e85",
+    "run_id": "cb67cf351f9a46b5b390202e3230fb5d",
+    "run_dir": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness/cb67cf351f9a46b5b390202e3230fb5d",
+    "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+    "recorded_at": "2026-11-05T14:40:56.911073+00:00",
+    "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "runtime_environment": {},
+    "inputs": {
+      "sequential": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c",
+        "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+        "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness/cb67cf351f9a46b5b390202e3230fb5d/sequential/dot_product.c"
+      },
+      "candidate": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/candidate.c",
+        "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+        "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness/cb67cf351f9a46b5b390202e3230fb5d/candidate/candidate.c"
+      },
+      "driver": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_driver.c",
+        "sha256": "fe30a4bcb70e195a67b0b2c8704f953055cc5df501a69ac5e34022df2719a237",
+        "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness/cb67cf351f9a46b5b390202e3230fb5d/driver/dot_driver.c"
+      }
+    },
+    "toolchain": {
+      "path": "/usr/lib/llvm-18/bin/clang",
+      "sha256": "8ef402d453d1ba4902e4ee0f0f847f6cfa01400c95aa43c24e97818b9c0e3f45",
+      "version": "Ubuntu clang version 18.1.3 (1ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-18/bin"
+    },
+    "compile_flags": {
+      "sequential": [
+        "-O3"
+      ],
+      "candidate": [
+        "-O3",
+        "-fopenmp"
+      ]
+    },
+    "link_flags": [
+      "-lm"
+    ],
+    "openmp_environment": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "TRUE",
+      "OMP_PLACES": "cores"
+    }
+  },
+  "compilation": {
+    "sequential": {
+      "command": [
+        "/usr/lib/llvm-18/bin/clang",
+        "-O3",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness/cb67cf351f9a46b5b390202e3230fb5d/driver/dot_driver.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness/cb67cf351f9a46b5b390202e3230fb5d/sequential/dot_product.c",
+        "-lm",
+        "-o",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness/cb67cf351f9a46b5b390202e3230fb5d/dot_gate_sequential"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "candidate": {
+      "command": [
+        "/usr/lib/llvm-18/bin/clang",
+        "-O3",
+        "-fopenmp",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness/cb67cf351f9a46b5b390202e3230fb5d/driver/dot_driver.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness/cb67cf351f9a46b5b390202e3230fb5d/candidate/candidate.c",
+        "-lm",
+        "-o",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness/cb67cf351f9a46b5b390202e3230fb5d/dot_gate_candidate"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "binaries": {
+    "sequential": {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness/cb67cf351f9a46b5b390202e3230fb5d/dot_gate_sequential",
+      "sha256": "678238191187cb589c1258015de147d7d15fdc297bd15e1ab16e71438895d916"
+    },
+    "candidate": {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness/cb67cf351f9a46b5b390202e3230fb5d/dot_gate_candidate",
+      "sha256": "6b8e536459a7318372c716f099b78dbf77c676971c6f5a548b34d251d68f0e40"
+    }
+  },
+  "execution": {
+    "sequential": {
+      "returncode": 0,
+      "stdout": "261762.4999999812",
+      "stderr": ""
+    },
+    "candidate": {
+      "returncode": 0,
+      "stdout": "261762.49999999182",
+      "stderr": ""
+    }
+  },
+  "thread_results": [
+    {
+      "threads": 1,
+      "execution": {
+        "returncode": 0,
+        "stdout": "261762.4999999812",
+        "stderr": ""
+      },
+      "validation": {
+        "reference": 261762.4999999812,
+        "candidate": 261762.4999999812,
+        "absolute_error": 0.0,
+        "relative_error": 0.0,
+        "correct": true
+      }
+    },
+    {
+      "threads": 2,
+      "execution": {
+        "returncode": 0,
+        "stdout": "261762.49999998021",
+        "stderr": ""
+      },
+      "validation": {
+        "reference": 261762.4999999812,
+        "candidate": 261762.4999999802,
+        "absolute_error": 9.89530235528946e-10,
+        "relative_error": 3.780259722187162e-15,
+        "correct": true
+      }
+    },
+    {
+      "threads": 3,
+      "execution": {
+        "returncode": 0,
+        "stdout": "261762.49999998603",
+        "stderr": ""
+      },
+      "validation": {
+        "reference": 261762.4999999812,
+        "candidate": 261762.49999998603,
+        "absolute_error": 4.831235855817795e-09,
+        "relative_error": 1.8456562173031438e-14,
+        "correct": true
+      }
+    },
+    {
+      "threads": 4,
+      "execution": {
+        "returncode": 0,
+        "stdout": "261762.49999999182",
+        "stderr": ""
+      },
+      "validation": {
+        "reference": 261762.4999999812,
+        "candidate": 261762.49999999182,
+        "absolute_error": 1.0622898116707802e-08,
+        "relative_error": 4.0582199958773944e-14,
+        "correct": true
+      }
+    }
+  ],
+  "validation": {
+    "reference": 261762.4999999812,
+    "candidate": 261762.49999999182,
+    "absolute_error": 1.0622898116707802e-08,
+    "relative_error": 4.0582199958773944e-14,
+    "correct": true
+  }
+}

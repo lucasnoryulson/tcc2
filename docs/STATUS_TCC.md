@@ -1,6 +1,16 @@
-# Estado do TCC — 3 de novembro de 2026
+# Estado do TCC — atualização experimental em 5 de novembro de 2026
 
 Esta numeração corresponde à lista original de conclusão do trabalho.
+
+Os itens 1 a 4 preservam o fechamento de 03/11 no Mac. Foi aberta uma etapa
+complementar dos itens **5 e 6** para comparar escalabilidade de Dot Product,
+GEMM e Nussinov, incluindo Jacobi-2D e Covariance. O pedido detalhado recebido
+em 05/11 está preservado em [REQUISITOS_2026-11-05.md](experiments/REQUISITOS_2026-11-05.md).
+A campanha Linux de quinze amostras terminou; o
+[protocolo](experiments/MULTIPLATFORM_METHODOLOGY.md) e o
+[relatório numérico](experiments/MULTIPLATFORM_REPORT.md) são as referências
+atuais. A campanha equivalente no M5 permanece pendente. A revisão usou a
+base disponível, conforme autorizado, sem esperar o manuscrito externo.
 
 | Item | Estado | Evidência / pendência |
 |---|---|---|
@@ -8,8 +18,8 @@ Esta numeração corresponde à lista original de conclusão do trabalho.
 | **2. Resolver as lacunas de validação e configuração** | Concluído e verificado no Mac | PASS fixo removido; configuração unidimensional preservada; códigos de saída dos gates corrigidos; hashes, campanhas e configurações conferidos. No Mac, a suíte final de 82 testes unittest e 14 casos de regressão passou sem skips. |
 | **3. Delimitar exatamente o que o sistema automatiza** | Concluído e auditado | Contrato consolidado em `docs/AUTOMATION_SCOPE.md`: caminho integrado para Dot Product/redução escalar; demais padrões separados entre análise, variantes manuais e transformações específicas. Uma LLM apenas no Coordinator; GPU, geração universal e reparo autônomo fora do recorte. |
 | **4. Fechar a avaliação científica dos agentes** | Concluído no recorte e limitações preservadas | A campanha original `INCOMPLETE` revelou um defeito de schema. Após correção, a replicação com as mesmas evidências terminou `COMPLETE`: 12/12 respostas LLM válidas e concordância total nos dois casos. Ensaio controlado: ACCEPT, REJECT e RETUNE 6/6; MODIFY 0/6 no `llama3.1:8b`. Não foi demonstrado benefício adicional da LLM ou das análises nesta amostra. Ver `COORDINATOR_EVALUATION_MAC.md`. |
-| **5. Consolidar os experimentos e a reprodução** | Concluído dentro do acervo disponível | Matriz de 22 campanhas, 173 configurações, 545 tempos, inventário de 44 CSVs e 15 gráficos. As 17 campanhas históricas permanecem `HISTORICAL_UNBOUND`, duas coletas Linux sem o contexto original são `ARCHIVED_SUMMARY_ONLY` e três campanhas finais do Mac são `VERIFIED_LOCAL_GATES`. Lacunas declaradas sem inventar metadados. |
-| **6. Fechar monografia e defesa** | Conteúdo concluído; acabamento institucional externo pendente | Monografia e apresentação sincronizadas com os passos 1–5; DOCX revisado, PPTX de 16 slides com notas, bibliografia, demonstração e manifesto regenerados. Estrutura Office validada e DOCX inspecionado visualmente. Faltam modelo institucional, orientador/banca, exportação oficial para PDF e ensaio. |
+| **5. Consolidar os experimentos e a reprodução** | Nova campanha Linux validada; coleta equivalente M5 pendente | Matriz anterior de 22 campanhas, campanha exploratória de sete amostras e Dot C nativo anteriores preservados. Protocolo novo: 60 configurações, 900 medições externas, 180 aquecimentos e 60 validações de corretude; fontes, compiladores, executáveis, comandos e saídas arquivados. Estatística, bootstrap e cinco gráficos em SVG/PNG/PDF recalculados. No Linux: 91 testes unittest, 23 casos de regressão e isolamento de análise estática aprovados. |
+| **6. Fechar monografia e defesa** | Nova revisão de conteúdo exportada; fechamento institucional e Mac pendentes | `REVISAO_MULTIPLATAFORMA.md`, Word e PDF separados incluem arquitetura, contratos, pseudocódigos, exemplos C, ambientes, resultados e ameaças à validade. Exportação Word reaberta: 13 tabelas e 15 imagens. Base original de HEAD e materiais anteriores preservados. Capa oficial pública preenchida em arquivo separado. PDF de revisão via ReportLab; modelo institucional completo autenticado, conferência no Word, banca e incorporação da coleta M5 ainda pendentes. |
 
 ## Escopo de automação
 

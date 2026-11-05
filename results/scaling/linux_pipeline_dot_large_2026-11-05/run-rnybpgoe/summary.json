@@ -1,0 +1,180 @@
+{
+  "schema": "tcc2-pipeline-run",
+  "version": "0.1",
+  "status": "PREPARED",
+  "steps": [
+    {
+      "name": "static",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/static_analyzer.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c",
+        "--output-dir",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/analysis"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/static.log",
+      "wall_seconds": 0.08161307799946371
+    },
+    {
+      "name": "dependences",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/dependence_analyzer.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/analysis/dot_product_analysis.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/dependences.log",
+      "wall_seconds": 0.041483250000055705
+    },
+    {
+      "name": "patterns",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/pattern_classifier.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/analysis/dot_product_analysis.json",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/analysis/dot_product_dependences.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/patterns.log",
+      "wall_seconds": 0.045054573999550485
+    },
+    {
+      "name": "strategy",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/strategy_planner.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/analysis/dot_product_analysis.json",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/analysis/dot_product_patterns.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/strategy.log",
+      "wall_seconds": 0.04116234599950985
+    },
+    {
+      "name": "transform",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/code_transformer.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/analysis/dot_product_analysis.json",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/analysis/dot_product_strategy.json",
+        "--output",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/candidate.c"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/transform.log",
+      "wall_seconds": 0.0409493269999075
+    },
+    {
+      "name": "correctness",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/scripts/compile_correctness_gate.py",
+        "--sequential",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c",
+        "--candidate",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/candidate.c",
+        "--driver",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_driver.c",
+        "--compiler",
+        "clang",
+        "--threads",
+        "1",
+        "2",
+        "3",
+        "4",
+        "--build-dir",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness",
+        "--output",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness.log",
+      "wall_seconds": 0.4827089079999496
+    },
+    {
+      "name": "performance",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/scripts/performance_gate.py",
+        "--sequential",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c",
+        "--candidate",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/candidate.c",
+        "--driver",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_benchmark_driver.c",
+        "--compiler",
+        "clang",
+        "--correctness",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness.json",
+        "--build-dir",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance",
+        "--csv",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance.csv",
+        "--output",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance.log",
+      "wall_seconds": 26.593637314999796
+    },
+    {
+      "name": "selection",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/performance_selector.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance.csv",
+        "--performance-report",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance.json",
+        "--output",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/selection.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/selection.log",
+      "wall_seconds": 0.05845242200030043
+    },
+    {
+      "name": "context",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/agents/context_builder.py",
+        "--source",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c",
+        "--candidate",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/candidate.c",
+        "--static",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/analysis/dot_product_analysis.json",
+        "--dependences",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/analysis/dot_product_dependences.json",
+        "--patterns",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/analysis/dot_product_patterns.json",
+        "--strategy",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/analysis/dot_product_strategy.json",
+        "--selection",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/selection.json",
+        "--correctness",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/correctness.json",
+        "--output",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/context.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/context.log",
+      "wall_seconds": 0.06239213199933147
+    }
+  ],
+  "elapsed_seconds": 27.453583247000097,
+  "context": {
+    "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/context.json",
+    "sha256": "f448e05796c040dd5bc71fbfddaee011e767e04d17893963ffebd4366114f9be"
+  }
+}

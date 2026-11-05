@@ -1,0 +1,5 @@
+PASS: current CSV schema
+PASS: separated performance metrics
+PASS: transformation-only classification
+
+Performance Selector v0.2 regression: PASS

@@ -1,0 +1,11 @@
+{
+  "status": "MATCHED_PROTOCOL",
+  "mismatches": [],
+  "common_threads": [
+    1,
+    2
+  ],
+  "left": "/tmp/tcc2-multiplatform-smoke-02",
+  "right": "/tmp/tcc2-multiplatform-smoke-02",
+  "scope": "Whole platforms including compiler/runtime; no isolated architectural causality"
+}

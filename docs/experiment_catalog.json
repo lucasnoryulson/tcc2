@@ -392,7 +392,9 @@
       "promotion_manifest": "results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/manifest.json",
       "limitations": [
         "uma única campanha local de promoção; não representa outros padrões ou plataformas"
-      ]
+      ],
+      "archived_summary": "results/scaling/reference_consolidated_2026-11-03.json",
+      "archived_summary_sha256": "d632a44afdbaa0de7208641d98278c84d5fbb8bb3d906ae937976b95fc7ea721"
     },
     {
       "id": "m5_coordinator_dot_large",
@@ -410,7 +412,9 @@
       "benchmark_driver": "analysis/fixtures/dot_benchmark_driver.c",
       "limitations": [
         "repetições da decisão LLM reutilizam estas medições e não são novas amostras do kernel"
-      ]
+      ],
+      "archived_summary": "results/scaling/reference_consolidated_2026-11-03.json",
+      "archived_summary_sha256": "d632a44afdbaa0de7208641d98278c84d5fbb8bb3d906ae937976b95fc7ea721"
     },
     {
       "id": "m5_coordinator_dot_small",
@@ -428,7 +432,9 @@
       "benchmark_driver": "analysis/fixtures/dot_small_benchmark_driver.c",
       "limitations": [
         "nenhuma configuração paralela satisfez a política de admissão"
-      ]
+      ],
+      "archived_summary": "results/scaling/reference_consolidated_2026-11-03.json",
+      "archived_summary_sha256": "d632a44afdbaa0de7208641d98278c84d5fbb8bb3d906ae937976b95fc7ea721"
     }
   ]
 }

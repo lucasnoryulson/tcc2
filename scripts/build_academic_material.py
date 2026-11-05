@@ -60,7 +60,7 @@ def word_export(source, target):
     normal.paragraph_format.space_after = Pt(7)
     for name in ("Title", "Heading 1", "Heading 2", "Heading 3"):
         doc.styles[name].font.name = "Arial"
-    section.footer.paragraphs[0].text = "Versão revisada — 03/11/2026 — conteúdo e evidências consolidados; adequação institucional pendente."
+    section.footer.paragraphs[0].text = "Versão revisada — conteúdo e evidências consolidados; adequação institucional pendente."
     section.footer.paragraphs[0].runs[0].font.size = Pt(8)
     doc.core_properties.author = "Lucas Nory Ulson"
     doc.core_properties.title = "TCC2 — monografia revisada"
@@ -74,7 +74,19 @@ def word_export(source, target):
             continue
         heading = re.match(r"^(#{1,4})\s+(.+)", line)
         image = re.fullmatch(r"!\[([^]]*)\]\(([^)]+)\)", line)
-        if heading:
+        if line.startswith('```'):
+            code = []
+            index += 1
+            while index < len(lines) and not lines[index].strip().startswith('```'):
+                code.append(lines[index])
+                index += 1
+            if index == len(lines):
+                raise ValueError('Unclosed code block')
+            paragraph = doc.add_paragraph('\n'.join(code))
+            paragraph.paragraph_format.line_spacing = 1
+            for run in paragraph.runs:
+                run.font.name, run.font.size = 'Courier New', Pt(9)
+        elif heading:
             doc.add_heading(plain(heading[2]), level=len(heading[1]) - 1)
         elif image:
             doc.add_picture(str((source.parent / image[2]).resolve(strict=True)), width=Inches(6.2))
@@ -108,14 +120,15 @@ def word_export(source, target):
             doc.add_paragraph(plain(re.sub(r"^(- |\d+\. )", "", " ".join(text))), style="List Number" if numbered else "List Bullet")
         else:
             text = [line]
-            while index + 1 < len(lines) and lines[index + 1].strip() and not re.match(r"^(#|\||!\[|- |\d+\. )", lines[index + 1]):
+            while index + 1 < len(lines) and lines[index + 1].strip() and not re.match(r"^(#|\||!\[|```|- |\d+\. )", lines[index + 1]):
                 index += 1
                 text.append(lines[index].strip())
             doc.add_paragraph(plain(" ".join(text)))
         index += 1
     doc.save(target)
     reopened = Document(target)
-    assert reopened.tables and len(reopened.inline_shapes) == 2
+    expected_images = sum(bool(re.fullmatch(r"!\[[^]]*\]\([^)]+\)", line.strip())) for line in lines)
+    assert reopened.tables and len(reopened.inline_shapes) == expected_images
     exported_text = " ".join(paragraph.text for paragraph in reopened.paragraphs)
     assert "Não foi demonstrado benefício adicional" in exported_text
     assert "22 campanhas" in exported_text

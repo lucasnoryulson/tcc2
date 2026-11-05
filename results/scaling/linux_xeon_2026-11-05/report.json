@@ -1,0 +1,557 @@
+{
+  "status": "COMPLETE",
+  "protocol": "scaling-v1",
+  "started_utc": "2026-11-05T14:18:59.916557+00:00",
+  "attribution": "Existing manual variants; nussinov-auto is a previously generated deterministic adaptation, not LLM code.",
+  "repetitions": 7,
+  "warmups": 1,
+  "seed": 2026,
+  "threads": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "correctness": [
+    {
+      "kernel": "dot",
+      "size": 1000000,
+      "variant": "sequential",
+      "threads": 1,
+      "status": "PASS",
+      "command": 20,
+      "mode": "numeric_1e-9_1e-12"
+    },
+    {
+      "kernel": "dot",
+      "size": 1000000,
+      "variant": "manual",
+      "threads": 1,
+      "status": "PASS",
+      "command": 21,
+      "mode": "numeric_1e-9_1e-12"
+    },
+    {
+      "kernel": "dot",
+      "size": 1000000,
+      "variant": "manual",
+      "threads": 2,
+      "status": "PASS",
+      "command": 22,
+      "mode": "numeric_1e-9_1e-12"
+    },
+    {
+      "kernel": "dot",
+      "size": 1000000,
+      "variant": "manual",
+      "threads": 3,
+      "status": "PASS",
+      "command": 23,
+      "mode": "numeric_1e-9_1e-12"
+    },
+    {
+      "kernel": "dot",
+      "size": 1000000,
+      "variant": "manual",
+      "threads": 4,
+      "status": "PASS",
+      "command": 24,
+      "mode": "numeric_1e-9_1e-12"
+    },
+    {
+      "kernel": "dot",
+      "size": 10000000,
+      "variant": "sequential",
+      "threads": 1,
+      "status": "PASS",
+      "command": 69,
+      "mode": "numeric_1e-9_1e-12"
+    },
+    {
+      "kernel": "dot",
+      "size": 10000000,
+      "variant": "manual",
+      "threads": 1,
+      "status": "PASS",
+      "command": 70,
+      "mode": "numeric_1e-9_1e-12"
+    },
+    {
+      "kernel": "dot",
+      "size": 10000000,
+      "variant": "manual",
+      "threads": 2,
+      "status": "PASS",
+      "command": 71,
+      "mode": "numeric_1e-9_1e-12"
+    },
+    {
+      "kernel": "dot",
+      "size": 10000000,
+      "variant": "manual",
+      "threads": 3,
+      "status": "PASS",
+      "command": 72,
+      "mode": "numeric_1e-9_1e-12"
+    },
+    {
+      "kernel": "dot",
+      "size": 10000000,
+      "variant": "manual",
+      "threads": 4,
+      "status": "PASS",
+      "command": 73,
+      "mode": "numeric_1e-9_1e-12"
+    },
+    {
+      "kernel": "gemm",
+      "size": "MEDIUM",
+      "variant": "sequential",
+      "threads": 1,
+      "status": "PASS",
+      "command": 120,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "gemm",
+      "size": "MEDIUM",
+      "variant": "manual",
+      "threads": 1,
+      "status": "PASS",
+      "command": 121,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "gemm",
+      "size": "MEDIUM",
+      "variant": "manual",
+      "threads": 2,
+      "status": "PASS",
+      "command": 122,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "gemm",
+      "size": "MEDIUM",
+      "variant": "manual",
+      "threads": 3,
+      "status": "PASS",
+      "command": 123,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "gemm",
+      "size": "MEDIUM",
+      "variant": "manual",
+      "threads": 4,
+      "status": "PASS",
+      "command": 124,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "gemm",
+      "size": "LARGE",
+      "variant": "sequential",
+      "threads": 1,
+      "status": "PASS",
+      "command": 171,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "gemm",
+      "size": "LARGE",
+      "variant": "manual",
+      "threads": 1,
+      "status": "PASS",
+      "command": 172,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "gemm",
+      "size": "LARGE",
+      "variant": "manual",
+      "threads": 2,
+      "status": "PASS",
+      "command": 173,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "gemm",
+      "size": "LARGE",
+      "variant": "manual",
+      "threads": 3,
+      "status": "PASS",
+      "command": 174,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "gemm",
+      "size": "LARGE",
+      "variant": "manual",
+      "threads": 4,
+      "status": "PASS",
+      "command": 175,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "sequential",
+      "threads": 1,
+      "status": "PASS",
+      "command": 228,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "manual",
+      "threads": 1,
+      "status": "PASS",
+      "command": 229,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "manual",
+      "threads": 2,
+      "status": "PASS",
+      "command": 230,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "manual",
+      "threads": 3,
+      "status": "PASS",
+      "command": 231,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "manual",
+      "threads": 4,
+      "status": "PASS",
+      "command": 232,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "simd_manual",
+      "threads": 1,
+      "status": "PASS",
+      "command": 233,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "simd_manual",
+      "threads": 2,
+      "status": "PASS",
+      "command": 234,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "simd_manual",
+      "threads": 3,
+      "status": "PASS",
+      "command": 235,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "simd_manual",
+      "threads": 4,
+      "status": "PASS",
+      "command": 236,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "simd_auto",
+      "threads": 1,
+      "status": "PASS",
+      "command": 237,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "simd_auto",
+      "threads": 2,
+      "status": "PASS",
+      "command": 238,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "simd_auto",
+      "threads": 3,
+      "status": "PASS",
+      "command": 239,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "variant": "simd_auto",
+      "threads": 4,
+      "status": "PASS",
+      "command": 240,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "sequential",
+      "threads": 1,
+      "status": "PASS",
+      "command": 357,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "manual",
+      "threads": 1,
+      "status": "PASS",
+      "command": 358,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "manual",
+      "threads": 2,
+      "status": "PASS",
+      "command": 359,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "manual",
+      "threads": 3,
+      "status": "PASS",
+      "command": 360,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "manual",
+      "threads": 4,
+      "status": "PASS",
+      "command": 361,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "simd_manual",
+      "threads": 1,
+      "status": "PASS",
+      "command": 362,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "simd_manual",
+      "threads": 2,
+      "status": "PASS",
+      "command": 363,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "simd_manual",
+      "threads": 3,
+      "status": "PASS",
+      "command": 364,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "simd_manual",
+      "threads": 4,
+      "status": "PASS",
+      "command": 365,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "simd_auto",
+      "threads": 1,
+      "status": "PASS",
+      "command": 366,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "simd_auto",
+      "threads": 2,
+      "status": "PASS",
+      "command": 367,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "simd_auto",
+      "threads": 3,
+      "status": "PASS",
+      "command": 368,
+      "mode": "full_precision_dump_exact"
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "variant": "simd_auto",
+      "threads": 4,
+      "status": "PASS",
+      "command": 369,
+      "mode": "full_precision_dump_exact"
+    }
+  ],
+  "sources": [
+    {
+      "original": "scripts/benchmark_scaling.py",
+      "snapshot": "sources/scripts/benchmark_scaling.py",
+      "sha256": "c7ab6c9ed2c970740869d2a9bcf383490c2cf4278928985bd26c0c492059f146",
+      "snapshot_sha256": "c7ab6c9ed2c970740869d2a9bcf383490c2cf4278928985bd26c0c492059f146"
+    },
+    {
+      "original": "scripts/benchmark.py",
+      "snapshot": "sources/scripts/benchmark.py",
+      "sha256": "f478f5b77c1c584f01ddee15745f7990a2dd3f65d20b5c5b41873b025846f658",
+      "snapshot_sha256": "f478f5b77c1c584f01ddee15745f7990a2dd3f65d20b5c5b41873b025846f658"
+    },
+    {
+      "original": "kernels/dot/sequential.cpp",
+      "snapshot": "sources/kernels/dot/sequential.cpp",
+      "sha256": "92a8a7c53d7d1500b7ec3d2698af83e1d9cdb85ca17ed47f1c0bfdef96771625",
+      "snapshot_sha256": "92a8a7c53d7d1500b7ec3d2698af83e1d9cdb85ca17ed47f1c0bfdef96771625"
+    },
+    {
+      "original": "kernels/dot/manual_openmp.cpp",
+      "snapshot": "sources/kernels/dot/manual_openmp.cpp",
+      "sha256": "3c2292cd1180e41b8fdcf463a1bfcfc48df35decf6d45d554c26cc0da7415598",
+      "snapshot_sha256": "3c2292cd1180e41b8fdcf463a1bfcfc48df35decf6d45d554c26cc0da7415598"
+    },
+    {
+      "original": "benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c",
+      "snapshot": "sources/benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c",
+      "sha256": "1568eec3636bbca13d576643eb9d44b280fb37409679a747ae89123e5f310acc",
+      "snapshot_sha256": "1568eec3636bbca13d576643eb9d44b280fb37409679a747ae89123e5f310acc"
+    },
+    {
+      "original": "benchmarks/PolyBenchC-4.2.1/utilities/polybench.h",
+      "snapshot": "sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.h",
+      "sha256": "a709a71b20ae86e46215c2645c604ea0296771bc3e8efbce63bcd9676f58b521",
+      "snapshot_sha256": "a709a71b20ae86e46215c2645c604ea0296771bc3e8efbce63bcd9676f58b521"
+    },
+    {
+      "original": "benchmarks/PolyBenchC-4.2.1/utilities/polybench.c",
+      "snapshot": "sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c",
+      "sha256": "5de1de319495831bdb589a1ae8c2bfaf336f55c5549ab428c83d9d5905177f58",
+      "snapshot_sha256": "5de1de319495831bdb589a1ae8c2bfaf336f55c5549ab428c83d9d5905177f58"
+    },
+    {
+      "original": "benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.h",
+      "snapshot": "sources/benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.h",
+      "sha256": "69147d88e4d87e4e5e0be1fdfa0e766863072bc23aa73739a9d3fc378304ba52",
+      "snapshot_sha256": "62b3f196cc22b02ef69217fb3a8b550e0543cfaf14f9c0d1ab6c914a32e5d11e"
+    },
+    {
+      "original": "kernels/gemm/manual_openmp.c",
+      "snapshot": "sources/kernels/gemm/manual_openmp.c",
+      "sha256": "f5346fbd8f7bbc5d0eb12deb4e61103d32ad38a5052cb6c0d4718409cdbb9fcf",
+      "snapshot_sha256": "f5346fbd8f7bbc5d0eb12deb4e61103d32ad38a5052cb6c0d4718409cdbb9fcf"
+    },
+    {
+      "original": "benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c",
+      "snapshot": "sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c",
+      "sha256": "d38571c8430e8ea4c6f0eea343dbd9403f376ca5bcd59d90419e8d7cb5722989",
+      "snapshot_sha256": "d38571c8430e8ea4c6f0eea343dbd9403f376ca5bcd59d90419e8d7cb5722989"
+    },
+    {
+      "original": "benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.h",
+      "snapshot": "sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.h",
+      "sha256": "50a7e9304987abe020311c31676f3f00d9adf8dd4c11bb44b2388a7d215cd297",
+      "snapshot_sha256": "50a7e9304987abe020311c31676f3f00d9adf8dd4c11bb44b2388a7d215cd297"
+    },
+    {
+      "original": "kernels/nussinov/manual_openmp.c",
+      "snapshot": "sources/kernels/nussinov/manual_openmp.c",
+      "sha256": "6fffb08701042e8d10cbe87c2aa933ad7612576e5b1c0175bf9c000ae398420d",
+      "snapshot_sha256": "6fffb08701042e8d10cbe87c2aa933ad7612576e5b1c0175bf9c000ae398420d"
+    },
+    {
+      "original": "kernels/nussinov/simd_openmp.c",
+      "snapshot": "sources/kernels/nussinov/simd_openmp.c",
+      "sha256": "6dae3e76ae4dccface0ee3b5b2618de04d5f12742b6c87057b79852138eae76a",
+      "snapshot_sha256": "6dae3e76ae4dccface0ee3b5b2618de04d5f12742b6c87057b79852138eae76a"
+    },
+    {
+      "original": "analysis/output/generated/nussinov_simd_auto.c",
+      "snapshot": "sources/analysis/output/generated/nussinov_simd_auto.c",
+      "sha256": "d4c7255d07d94a6686a7cd7af1ef2fe6809ca0c838fe88f83c05e46bdaa9d7ce",
+      "snapshot_sha256": "d4c7255d07d94a6686a7cd7af1ef2fe6809ca0c838fe88f83c05e46bdaa9d7ce"
+    }
+  ],
+  "actual_team_sizes_probe": {
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4
+  },
+  "binaries": {
+    "bin/gemm-LARGE-sequential-dump": "082e087d5107df29489328a93511a5a98988281b6d5b6f39336e10516ebd756f",
+    "bin/nussinov-MEDIUM-simd_auto-dump": "a403d670f3096fc5019487245fc55b993d8710dd28e7641f50ca4ed32f11410f",
+    "bin/gemm-LARGE-manual": "71757239624f13b60949fa56cd7e04118216d680541add71ef1a1b2fda2badcf",
+    "bin/gemm-MEDIUM-sequential-dump": "d83fe820c002dd11af5f7fc12b0d4455b2e6759f17ba4243b4b017795f6ba1f5",
+    "bin/nussinov-MEDIUM-simd_manual-dump": "244a2eacafb3fac33dc157cfbf4fc9b4e4b887c241d4302429bbcf9f221e452d",
+    "bin/dot-1000000-manual": "c55d9626b5e443a3632e5badb460a542c8697d8d69a3e8c3c422e54f132ab3e9",
+    "bin/gemm-MEDIUM-manual": "6614a5718efe9d6e5cec976c74ae7db9e680bdcbead5020756a99f7194f1e083",
+    "bin/nussinov-LARGE-simd_manual": "48eb3ddb8c7c2a47a81f021f8cb77311cf2a398ece3bcce37dabaac4eb0c3d76",
+    "bin/dot-10000000-sequential": "711b7db5ac990540c3d5b0d517d22c5678d96faaa7a79ad626cdadc84712144f",
+    "bin/gemm-LARGE-manual-dump": "76c97ad5c7b1d98bedfc0ba6c8c1d903c4bebf3b45900c88b65a576d83a24915",
+    "bin/nussinov-LARGE-sequential": "aa18d00fd0b3d6ad3c35df0a9fe4596200e4850fafc8435c1f9da1f0907a6f1e",
+    "bin/nussinov-MEDIUM-manual-dump": "a503ce00eb066334b09be9ee27a3f88ed42472f8df21bf337bc8ed3f22b8a624",
+    "bin/nussinov-LARGE-manual": "4830301ad646be6861f45e6d620c70eba170920ab23025428636ec089893a7ab",
+    "bin/nussinov-LARGE-sequential-dump": "2aac1e2dba052dc4fd3bddfa09f31b34c923d557fa2a169efbc0be2d51994e08",
+    "bin/nussinov-MEDIUM-simd_manual": "25922436159aec7dd43bd744a8a305a2f3ba72e8e9236e8b3d6ef0bd593b096d",
+    "bin/gemm-MEDIUM-sequential": "c01c642fc089a09cd747de7c56b6c24a452412f6bad39f1fcaff49cbaf684c9c",
+    "bin/openmp_probe": "363c3522b61e359281cde05c378b5295f15d63e93957613156afd46bad845ea2",
+    "bin/dot-1000000-sequential": "711b7db5ac990540c3d5b0d517d22c5678d96faaa7a79ad626cdadc84712144f",
+    "bin/gemm-MEDIUM-manual-dump": "89ceff28fc614cca1f375f2a7aff954670fd7d9dc314b4d68f8c0aa1852be2d5",
+    "bin/nussinov-LARGE-simd_manual-dump": "272b8413958d2324b48d2823b696f8aabf1cddbe3700316f8d91ee1544215b09",
+    "bin/nussinov-LARGE-manual-dump": "572521d0152801b72c1618bd1799bf82d622f6b919948046507ac8a70f546f77",
+    "bin/gemm-LARGE-sequential": "2630a35a9a933fec15c7c0d29cd07027fb406a65ab58c8458a3685262583e692",
+    "bin/nussinov-MEDIUM-sequential": "cae638a462cc2690f48173844f3a230395d24b99e2d5e88326005ed12ec4531b",
+    "bin/nussinov-LARGE-simd_auto": "835ddd0af0ef67c80512cf36e640bae971e6fabfc34294ff9b06d0ed6ba9663f",
+    "bin/nussinov-LARGE-simd_auto-dump": "41766f91097acb3d01b6eea90577640ce4632fd9a8e3bbba6d6877d50a4ff92e",
+    "bin/dot-10000000-manual": "c55d9626b5e443a3632e5badb460a542c8697d8d69a3e8c3c422e54f132ab3e9",
+    "bin/nussinov-MEDIUM-manual": "9a8f83bcd5f53f91aa7603b06cba5bb71b5932804aff80aa03d68e9099f9c155",
+    "bin/nussinov-MEDIUM-simd_auto": "effc91cebfb24d066f7f561d3b89d0f801fe7825d3a8807135503747bcdd479a",
+    "bin/nussinov-MEDIUM-sequential-dump": "3d9ca108987a82a9cbeeb5424a2d689137cd08c9275580e605ea801e183c59da"
+  },
+  "measurements": 322,
+  "configurations": 46,
+  "finished_utc": "2026-11-05T14:40:21.654260+00:00"
+}

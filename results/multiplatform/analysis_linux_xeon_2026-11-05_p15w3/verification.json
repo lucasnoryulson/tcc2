@@ -1,0 +1,30 @@
+{
+  "status": "VERIFIED_ARCHIVE",
+  "campaign": "/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3",
+  "analyzer_sha256": "e9a3b05e9e4497a9c45b0048f98f094d3f57d27d25f92d5936ef1d640781247c",
+  "report_sha256": "bbd1bcc02fce0701420b112ca3f6fc3506b0aafc5a6a5451edc293ca955fef8b",
+  "commands_sha256": "73db5fbd37af57f7e5d57291d3a9b9cb2d82c509e46d8f892b05af291203c5fb",
+  "raw_samples_sha256": "9980e5237c465d56061314e06bf01a424184ca6e755eda7359de1ceda2c3bac2",
+  "configurations": 60,
+  "measurements": 900,
+  "plots": {
+    "matplotlib": "3.11.2",
+    "files": [
+      "median_seconds.png",
+      "median_seconds.svg",
+      "median_seconds.pdf",
+      "speedup_total.png",
+      "speedup_total.svg",
+      "speedup_total.pdf",
+      "speedup_parallel.png",
+      "speedup_parallel.svg",
+      "speedup_parallel.pdf",
+      "efficiency_parallel.png",
+      "efficiency_parallel.svg",
+      "efficiency_parallel.pdf",
+      "recommended_configuration.png",
+      "recommended_configuration.svg",
+      "recommended_configuration.pdf"
+    ]
+  }
+}

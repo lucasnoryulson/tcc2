@@ -1,0 +1,3 @@
+# Optional, observed versions for the separate Word/PDF review exporter.
+-r requirements-writing.txt
+reportlab==5.1.0

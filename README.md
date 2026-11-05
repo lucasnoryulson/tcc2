@@ -8,6 +8,16 @@ Para continuar este trabalho em outra sessão ou no Mac, leia o
 [roteiro de retomada](tcc2_contexto_para_codex/RETOMAR_NO_MAC.md).
 O `AGENTS.md` da raiz aponta para essas instruções automaticamente.
 
+A atualização experimental de 05/11 está no
+[relatório multiplataforma](docs/experiments/MULTIPLATFORM_REPORT.md), com
+60 configurações Linux, 900 medições externas, três aquecimentos e quinze
+amostras por configuração. O [protocolo e os comandos Mac](docs/experiments/MULTIPLATFORM_METHODOLOGY.md)
+acompanham a [nova monografia](docs/monografia/REVISAO_MULTIPLATAFORMA.md),
+o [Word](docs/monografia/REVISAO_MULTIPLATAFORMA.docx) e o
+[PDF de revisão](docs/monografia/REVISAO_MULTIPLATAFORMA.pdf).
+A coleta equivalente no M5 ainda não foi executada. As campanhas históricas e
+a coleta exploratória anterior permanecem separadas.
+
 ## Pipeline completo e promoção
 
 Com Clang, um compilador com OpenMP e o Ollama/modelo disponíveis, execute:

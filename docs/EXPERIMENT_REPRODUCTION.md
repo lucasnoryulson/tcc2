@@ -1,5 +1,10 @@
 # Item 5 — experimentos e reprodução
 
+A coleta complementar Linux de **05/11/2026** tem protocolo próprio, arquivos
+novos em `results/scaling/` e comandos para a execução equivalente no M5 em
+[ESCALABILIDADE_MULTIPLATAFORMA_2026-11-05.md](ESCALABILIDADE_MULTIPLATAFORMA_2026-11-05.md).
+Ela não sobrescreve os resultados ou a matriz histórica descritos abaixo.
+
 A consolidação disponível em [results/consolidated/REPORT.md](../results/consolidated/REPORT.md)
 reúne **22 campanhas**, seis kernels, variantes manuais/automáticas e resultados
 positivos/negativos. O inventário cobre os 35 CSVs históricos disponíveis no

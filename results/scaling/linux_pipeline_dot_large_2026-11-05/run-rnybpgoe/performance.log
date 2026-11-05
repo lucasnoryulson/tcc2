@@ -1,0 +1,32 @@
+Sequential benchmark:
+    Run 1: 0.010464796 s
+    Run 2: 0.010367051 s
+    Run 3: 0.010385879 s
+    Run 4: 0.010335627 s
+    Run 5: 0.010406511 s
+OpenMP benchmark (1 thread(s)):
+    Run 1: 0.010603224 s
+    Run 2: 0.010655389 s
+    Run 3: 0.010864714 s
+    Run 4: 0.011108725 s
+    Run 5: 0.011052263 s
+OpenMP benchmark (2 thread(s)):
+    Run 1: 0.008480482 s
+    Run 2: 0.008432461 s
+    Run 3: 0.008393039 s
+    Run 4: 0.008655143 s
+    Run 5: 0.008515307 s
+OpenMP benchmark (3 thread(s)):
+    Run 1: 0.008217304 s
+    Run 2: 0.008285611 s
+    Run 3: 0.008487008 s
+    Run 4: 0.008177590 s
+    Run 5: 0.007834624 s
+OpenMP benchmark (4 thread(s)):
+    Run 1: 0.008047755 s
+    Run 2: 0.011538581 s
+    Run 3: 0.007936923 s
+    Run 4: 0.008602551 s
+    Run 5: 0.008063438 s
+PERFORMANCE GATE: PASS
+CSV salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance.csv

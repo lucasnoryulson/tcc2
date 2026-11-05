@@ -1,0 +1,32 @@
+[
+  {
+    "script": "test_coordinator_v02_regression.py",
+    "returncode": 0
+  },
+  {
+    "script": "test_performance_selector_v02_regression.py",
+    "returncode": 0
+  },
+  {
+    "script": "test_autotuning_selector_v01_regression.py",
+    "returncode": 0
+  },
+  {
+    "script": "test_adaptive_strategy_planner_v01_regression.py",
+    "returncode": 0
+  },
+  {
+    "script": "test_compiler_feedback_analyzer_v01_regression.py",
+    "returncode": 0
+  },
+  {
+    "script": "test_compiler_feedback_analyzer_v02_regression.py",
+    "returncode": 0
+  },
+  {
+    "script": "test_static_analysis_variant_isolation.py",
+    "returncode": 0,
+    "initial_returncode": 1,
+    "final_log": "static_isolation_fresh.log"
+  }
+]

@@ -1,0 +1,5 @@
+	linux-vdso.so.1 (0x000076f1a372a000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000076f1a3623000)
+	libomp.so.5 => /lib/x86_64-linux-gnu/libomp.so.5 (0x000076f1a34f6000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000076f1a3200000)
+	/lib64/ld-linux-x86-64.so.2 (0x000076f1a372c000)

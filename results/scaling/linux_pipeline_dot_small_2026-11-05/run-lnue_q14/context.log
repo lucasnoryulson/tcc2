@@ -1,0 +1,9 @@
+=================================
+TCC2 AGENT CONTEXT BUILDER v0.3
+=================================
+Pattern: REDUCTION_CANDIDATE
+Family: REDUCE / AGGREGATION
+Strategy: REDUCTION
+Correctness gate: PASS
+=================================
+Context salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_small_2026-11-05/run-lnue_q14/context.json

@@ -1,0 +1,32 @@
+=================================
+TCC2 PERFORMANCE SELECTOR v0.2
+=================================
+
+Status: SELECTED
+
+Raw fastest configuration:
+  Threads:    4
+  Median:     0.008063438 s
+  Speedup:    1.288x
+  Efficiency: 0.322
+
+Near-tie candidates:
+  3 thread(s): 0.008217304 s | speedup 1.264x | efficiency 0.421 | slowdown vs fastest 1.908%
+  4 thread(s): 0.008063438 s | speedup 1.288x | efficiency 0.322 | slowdown vs fastest 0.000%
+
+Recommended configuration:
+  Threads:    3
+  Median:     0.008217304 s
+  End-to-end speedup: 1.264x
+
+Performance decomposition:
+  Transformation speedup:      0.956x
+  Parallel scaling speedup:    1.322x
+  Parallel scaling efficiency: 44.07%
+  Runtime reduction:           20.88%
+
+Decision: RESOURCE_AWARE_NEAR_TIE
+Reason: Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.
+
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/selection.json
+=================================

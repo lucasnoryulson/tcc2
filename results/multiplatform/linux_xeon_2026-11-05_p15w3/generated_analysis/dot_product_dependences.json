@@ -1,0 +1,16 @@
+{
+  "version": "0.3",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/analysis/fixtures/dot_product.c",
+  "kernels": [
+    {
+      "name": "kernel_dot",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c:38:3: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+   38 |   for (i=0; i <n; i++) {
+      |   ^
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c:38:3: remark: vectorized loop (vectorization width: 16, interleaved count: 1) [-Rpass=loop-vectorize]
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c:103:19: remark: loop not vectorized: unsafe dependent memory operations in loop. Use #pragma clang loop distribute(enable) to allow loop distribution to attempt to isolate the offending operations into a separate loop
+Unknown data dependence. Memory location is the same as accessed at results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c:103:21 [-Rpass-analysis=loop-vectorize]
+  103 |       table[i][j] = max_score(table[i][j], table[i][k] + table[k+1][j]);
+      |                   ^
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c:102:4: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  102 |    for (k=i+1; k<j; k++) {
+      |    ^
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c:62:24: remark: loop not vectorized: control flow cannot be substituted for a select [-Rpass-analysis=loop-vectorize]
+   62 |       if (t % 20 == 0) fprintf (POLYBENCH_DUMP_TARGET, "\n");
+      |                        ^
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c:62:24: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c:61:5: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+   61 |     for (j = i; j < n; j++) {
+      |     ^
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c:61:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c:122:9: remark: loop not vectorized: cannot prove it is safe to reorder floating-point operations; allow reordering by specifying '#pragma clang loop vectorize(enable)' before the loop or by providing the compiler option '-ffast-math'. [-Rpass-analysis=loop-vectorize]
+  122 |     tmp += flush[i];
+      |         ^
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c:121:3: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  121 |   for (i = 0; i < cs; i++)
+      |   ^
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c:122:9: remark: loop not vectorized: cannot prove it is safe to reorder floating-point operations; allow reordering by specifying '#pragma clang loop vectorize(enable)' before the loop or by providing the compiler option '-ffast-math'. [-Rpass-analysis=loop-vectorize]
+  122 |     tmp += flush[i];
+      |         ^
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c:121:3: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  121 |   for (i = 0; i < cs; i++)
+      |   ^
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c:122:9: remark: loop not vectorized: cannot prove it is safe to reorder floating-point operations; allow reordering by specifying '#pragma clang loop vectorize(enable)' before the loop or by providing the compiler option '-ffast-math'. [-Rpass-analysis=loop-vectorize]
+  122 |     tmp += flush[i];
+      |         ^
+/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c:121:3: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  121 |   for (i = 0; i < cs; i++)
+      |   ^

@@ -1,0 +1,171 @@
+{
+  "schema": "tcc2-performance-gate",
+  "version": "0.1",
+  "status": "PASS",
+  "provenance": {
+    "campaign_id": "d9dabf5eff7b4176869da83c89c60e85",
+    "run_id": "d38d9c531e274b6cbba2a33f5e3d8768",
+    "run_dir": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768",
+    "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+    "recorded_at": "2026-11-05T14:40:57.402524+00:00",
+    "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "runtime_environment": {},
+    "inputs": {
+      "sequential": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c",
+        "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+        "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/sequential/dot_product.c"
+      },
+      "candidate": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/candidate.c",
+        "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+        "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/candidate/candidate.c"
+      },
+      "driver": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_benchmark_driver.c",
+        "sha256": "414bdff989503693fda942a3a79dc29dfa311532fbb62b8fec4681f15a52db6f",
+        "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/driver/dot_benchmark_driver.c"
+      }
+    },
+    "toolchain": {
+      "path": "/usr/lib/llvm-18/bin/clang",
+      "sha256": "8ef402d453d1ba4902e4ee0f0f847f6cfa01400c95aa43c24e97818b9c0e3f45",
+      "version": "Ubuntu clang version 18.1.3 (1ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-18/bin"
+    },
+    "compile_flags": {
+      "sequential": [
+        "-O3"
+      ],
+      "candidate": [
+        "-O3",
+        "-fopenmp"
+      ]
+    },
+    "link_flags": [
+      "-lm"
+    ],
+    "openmp_environment": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "TRUE",
+      "OMP_PLACES": "cores"
+    }
+  },
+  "correctness_report": {
+    "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/correctness.json",
+    "sha256": "bbae10f39b0c0d869e690949d8bdeb3eb9eaf063ff8458ff4e894621c754ad89"
+  },
+  "thread_counts": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "repetitions": 5,
+  "configuration_dimensions": [
+    "threads"
+  ],
+  "compilation": {
+    "sequential": {
+      "command": [
+        "/usr/lib/llvm-18/bin/clang",
+        "-O3",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/driver/dot_benchmark_driver.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/sequential/dot_product.c",
+        "-lm",
+        "-o",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/dot_sequential"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "candidate": {
+      "command": [
+        "/usr/lib/llvm-18/bin/clang",
+        "-O3",
+        "-fopenmp",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/driver/dot_benchmark_driver.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/candidate/candidate.c",
+        "-lm",
+        "-o",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/dot_candidate"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "binaries": {
+    "sequential": {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/dot_sequential",
+      "sha256": "2b797227210cf31db5715ee1709df32693fa596fc53ebb00742fd74b0ef92baf"
+    },
+    "candidate": {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/dot_candidate",
+      "sha256": "4dfac811d083fca6487a4e7ab4748830d3a0de9b06bddc86dced4cd2a0573ea6"
+    }
+  },
+  "measurements": [
+    {
+      "mode": "sequential",
+      "threads": 1,
+      "times": [
+        0.0104647958,
+        0.01036705095,
+        0.01038587885,
+        0.01033562721,
+        0.01040651133
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 1,
+      "times": [
+        0.01060322362,
+        0.01065538856,
+        0.01086471385,
+        0.01110872545,
+        0.01105226288
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 2,
+      "times": [
+        0.0084804816,
+        0.00843246128,
+        0.00839303927,
+        0.00865514341,
+        0.00851530659
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 3,
+      "times": [
+        0.00821730442,
+        0.00828561139,
+        0.00848700761,
+        0.00817758994,
+        0.00783462375
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 4,
+      "times": [
+        0.00804775525,
+        0.01153858126,
+        0.00793692268,
+        0.00860255128,
+        0.00806343835
+      ]
+    }
+  ],
+  "csv": {
+    "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance/d38d9c531e274b6cbba2a33f5e3d8768/performance.csv",
+    "sha256": "39390d1bf94e7464f6efb18cdfe34db8295320e293050b66053f52a8ad046bd0"
+  },
+  "csv_file": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_large_2026-11-05/run-rnybpgoe/performance.csv"
+}
