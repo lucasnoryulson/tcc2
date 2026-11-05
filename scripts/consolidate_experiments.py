@@ -12,7 +12,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from analysis import autotuning_selector, performance_selector
-from analysis.artifact_provenance import load_context_evidence, sha256
+from analysis.artifact_provenance import MissingArtifactError, load_context_evidence, sha256
 
 
 def positive(value):
@@ -107,6 +107,35 @@ def load_campaign(spec, root):
     evidence_status, recorded_provenance = "HISTORICAL_UNBOUND", None
     if kind in ("harness_log", "gate_log", "raw_csv"):
         rows = raw_measurements(path, kind)
+    elif kind == "context_evidence":
+        try:
+            _, bundle, _ = load_context_evidence(path)
+        except (FileNotFoundError, MissingArtifactError):
+            if not spec.get("archived_summary"):
+                raise
+            archived = (root / spec["archived_summary"]).read_bytes()
+            if sha256(archived) != spec["archived_summary_sha256"]:
+                raise ValueError("Archived summary hash mismatch.")
+            case = next(case for case in json.loads(archived)["campaigns"] if case["id"] == spec["id"])
+            rows = case["measurements"]
+            evidence_status = "ARCHIVED_SUMMARY_ONLY"
+        else:
+            raw_by_configuration = {
+                (measurement["mode"], measurement["threads"], measurement.get("block_size")):
+                    measurement["times"]
+                for measurement in bundle["performance"]["measurements"]
+            }
+            rows = [
+                dict(
+                    measurement,
+                    samples=raw_by_configuration[
+                        (measurement["mode"], measurement["threads"], measurement.get("block_size"))
+                    ],
+                )
+                for measurement in bundle["measurements"]
+            ]
+            evidence_status = "VERIFIED_LOCAL_GATES"
+            recorded_provenance = bundle["performance"]["provenance"]
     elif kind == "evaluation_case":
         archived = json.loads(path.read_text())
         case = next(case for case in archived["cases"] if case["case"] == spec["case"])
@@ -201,7 +230,7 @@ def inventory(root, excluded):
                 keys.add(key)
             if repeated:
                 issues.append("REPEATED_CONFIGURATIONS lines " + ",".join(map(str, repeated)))
-        if modes:
+        if modes and ("median_seconds" in header or "median_ms" in header):
             bad_modes = [index for index, row in enumerate(data, 2) if len(row) == len(header)
                          and row[header.index(modes)] not in ("sequential", "openmp")]
             if bad_modes:
@@ -214,7 +243,12 @@ def inventory(root, excluded):
 
 def write_csv(path, rows, columns):
     with path.open("w", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=columns, extrasaction="ignore")
+        writer = csv.DictWriter(
+            stream,
+            fieldnames=columns,
+            extrasaction="ignore",
+            lineterminator="\n",
+        )
         writer.writeheader()
         writer.writerows(rows)
 
@@ -233,7 +267,8 @@ def consolidate(catalog, root):
             missing.append("sem OpenMP 1T da mesma variante para calcular escalabilidade")
         references = []
         paths = {spec["source"], spec["candidate"], catalog["recipes"][spec["recipe"]]["source"]}
-        for field in ("original", "benchmark_driver", "raw_source", "correctness_source"):
+        for field in ("original", "benchmark_driver", "raw_source", "correctness_source", "archived_summary",
+                      "promotion_manifest"):
             if spec.get(field):
                 paths.add(spec[field])
         environment = catalog["environments"][spec["environment"]]

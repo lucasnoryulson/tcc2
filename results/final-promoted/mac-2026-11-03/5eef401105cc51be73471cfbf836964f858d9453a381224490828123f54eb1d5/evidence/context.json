@@ -1,0 +1,410 @@
+{
+  "schema": "tcc2-agent-context",
+  "version": "0.3",
+  "task": "Evaluate the automatically generated parallel candidate and decide the next optimization action.",
+  "source": {
+    "campaign_id": "51f9c5d5d5ce448c82609bbcb84bad0a",
+    "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+    "candidate_sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+    "sequential_sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+    "sequential_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+    "candidate_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/candidate.c",
+    "sequential_code": "double kernel_dot(\n    int n,\n    const double *A,\n    const double *B\n)\n{\n    double sum = 0.0;\n\n    for (int i = 0; i < n; i++)\n    {\n        sum += A[i] * B[i];\n    }\n\n    return sum;\n}\n",
+    "candidate_code": "double kernel_dot(\n    int n,\n    const double *A,\n    const double *B\n)\n{\n    double sum = 0.0;\n\n    /* TCC2 AUTO-GENERATED: REDUCTION */\n    #pragma omp parallel for reduction(+:sum) schedule(static)\n    for (int i = 0; i < n; i++)\n    {\n        sum += A[i] * B[i];\n    }\n\n    return sum;\n}\n"
+  },
+  "static_analysis": {
+    "kernel": {
+      "name": "kernel_dot",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 9,
+          "end_line": 12,
+          "iterator": "i",
+          "initialization": "int i = 0",
+          "condition": "i < n",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i"
+              ],
+              "expression": "A[i]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "i"
+              ],
+              "expression": "B[i]"
+            }
+          ],
+          "writes": [],
+          "operators": [
+            "+=",
+            "*"
+          ],
+          "scalar_updates": [
+            {
+              "variable": "sum",
+              "operator": "+=",
+              "rhs": "A[i]*B[i]",
+              "expression": "sum += A[i]*B[i]",
+              "update_kind": "compound_assignment"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dependence_analysis": {
+    "kernel": {
+      "name": "kernel_dot",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        }
+      ]
+    }
+  },
+  "pattern": {
+    "classification": "REDUCTION_CANDIDATE",
+    "family": "REDUCE / AGGREGATION",
+    "confidence": "medium",
+    "reason": "At least one loop contains a reduction update.",
+    "loops": [
+      {
+        "classification": "REDUCTION_CANDIDATE",
+        "family": "REDUCE / AGGREGATION",
+        "confidence": "medium",
+        "reason": "A scalar variable is updated with a reduction-compatible compound operator inside the loop.",
+        "evidence": {
+          "reduction_type": "scalar",
+          "scalar_updates": [
+            {
+              "variable": "sum",
+              "operator": "+=",
+              "rhs": "A[i]*B[i]",
+              "expression": "sum += A[i]*B[i]",
+              "update_kind": "compound_assignment"
+            }
+          ]
+        },
+        "loop_id": 1,
+        "iterator": "i"
+      }
+    ]
+  },
+  "strategy": {
+    "detected_pattern": "REDUCTION_CANDIDATE",
+    "family": "REDUCE / AGGREGATION",
+    "classification_confidence": "medium",
+    "plan": {
+      "strategy": "REDUCTION",
+      "reductions": [
+        {
+          "loop_id": 1,
+          "iterator": "i",
+          "reduction_type": "scalar",
+          "variable": "sum",
+          "operator": "+",
+          "openmp_construct": "parallel for",
+          "openmp_clause": "reduction(+:sum)",
+          "schedule": "static",
+          "direct_code_transformation": true
+        }
+      ]
+    }
+  },
+  "validation": {
+    "correctness_gate": "PASS",
+    "correctness_report_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness.json",
+    "correctness_report_sha256": "3683508b988b5fdb6904034b70dc2255af0f337c1d5b3231cecd673740b08a25",
+    "correctness_report": {
+      "schema": "tcc2-correctness-gate",
+      "version": "0.2",
+      "status": "PASS",
+      "inputs": {
+        "sequential": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+        "candidate": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/candidate.c",
+        "driver": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_driver.c"
+      },
+      "compiler": "/opt/homebrew/opt/llvm/bin/clang",
+      "threads": [
+        1,
+        2,
+        4
+      ],
+      "validated_threads": [
+        1,
+        2,
+        4
+      ],
+      "tolerances": {
+        "relative": 1e-09,
+        "absolute": 1e-12
+      },
+      "provenance": {
+        "campaign_id": "51f9c5d5d5ce448c82609bbcb84bad0a",
+        "run_id": "520ff063a63f48079e804b599063984f",
+        "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness/520ff063a63f48079e804b599063984f",
+        "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+        "recorded_at": "2026-11-03T19:24:42.673122+00:00",
+        "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+        "cpu_count": 10,
+        "runtime_environment": {},
+        "inputs": {
+          "sequential": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+            "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness/520ff063a63f48079e804b599063984f/sequential/dot_product.c"
+          },
+          "candidate": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/candidate.c",
+            "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness/520ff063a63f48079e804b599063984f/candidate/candidate.c"
+          },
+          "driver": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_driver.c",
+            "sha256": "fe30a4bcb70e195a67b0b2c8704f953055cc5df501a69ac5e34022df2719a237",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness/520ff063a63f48079e804b599063984f/driver/dot_driver.c"
+          }
+        },
+        "toolchain": {
+          "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+          "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+          "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+        },
+        "compile_flags": {
+          "sequential": [
+            "-O3"
+          ],
+          "candidate": [
+            "-O3",
+            "-fopenmp"
+          ]
+        },
+        "link_flags": [
+          "-lm"
+        ],
+        "openmp_environment": {
+          "OMP_DYNAMIC": "FALSE",
+          "OMP_PROC_BIND": "TRUE",
+          "OMP_PLACES": "cores"
+        }
+      },
+      "compilation": {
+        "sequential": {
+          "command": [
+            "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+            "-O3",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness/520ff063a63f48079e804b599063984f/driver/dot_driver.c",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness/520ff063a63f48079e804b599063984f/sequential/dot_product.c",
+            "-lm",
+            "-o",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness/520ff063a63f48079e804b599063984f/dot_gate_sequential"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        "candidate": {
+          "command": [
+            "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+            "-O3",
+            "-fopenmp",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness/520ff063a63f48079e804b599063984f/driver/dot_driver.c",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness/520ff063a63f48079e804b599063984f/candidate/candidate.c",
+            "-lm",
+            "-o",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness/520ff063a63f48079e804b599063984f/dot_gate_candidate"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "binaries": {
+        "sequential": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness/520ff063a63f48079e804b599063984f/dot_gate_sequential",
+          "sha256": "03fb2722ccc8e005c0354972ae763d00f90a6b71a94fe2376158319ea52e6a76"
+        },
+        "candidate": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness/520ff063a63f48079e804b599063984f/dot_gate_candidate",
+          "sha256": "32a71b0cef9fbaae7740be7d865718bc46b2632d89393d847d6738c7963005cd"
+        }
+      },
+      "execution": {
+        "sequential": {
+          "returncode": 0,
+          "stdout": "261762.4999999812",
+          "stderr": ""
+        },
+        "candidate": {
+          "returncode": 0,
+          "stdout": "261762.49999999182",
+          "stderr": ""
+        }
+      },
+      "thread_results": [
+        {
+          "threads": 1,
+          "execution": {
+            "returncode": 0,
+            "stdout": "261762.4999999812",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": 261762.4999999812,
+            "candidate": 261762.4999999812,
+            "absolute_error": 0.0,
+            "relative_error": 0.0,
+            "correct": true
+          }
+        },
+        {
+          "threads": 2,
+          "execution": {
+            "returncode": 0,
+            "stdout": "261762.49999998021",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": 261762.4999999812,
+            "candidate": 261762.4999999802,
+            "absolute_error": 9.89530235528946e-10,
+            "relative_error": 3.780259722187162e-15,
+            "correct": true
+          }
+        },
+        {
+          "threads": 4,
+          "execution": {
+            "returncode": 0,
+            "stdout": "261762.49999999182",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": 261762.4999999812,
+            "candidate": 261762.49999999182,
+            "absolute_error": 1.0622898116707802e-08,
+            "relative_error": 4.0582199958773944e-14,
+            "correct": true
+          }
+        }
+      ],
+      "validation": {
+        "reference": 261762.4999999812,
+        "candidate": 261762.49999999182,
+        "absolute_error": 1.0622898116707802e-08,
+        "relative_error": 4.0582199958773944e-14,
+        "correct": true
+      }
+    }
+  },
+  "performance": {
+    "report": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/performance.json",
+      "sha256": "d1093268342b9e240c777806af9ae05c133c2d12ee768fe50d8fd4a97bb6970f"
+    },
+    "selection_file": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/selection.json",
+      "sha256": "fafa129d9764f8a37f7b7b0d3ebf3886ad38fb1891002bf36dd4426ef7910969"
+    },
+    "selection": {
+      "status": "SELECTED",
+      "decision": "FASTEST_CONFIGURATION",
+      "parallel_status": "PARALLEL_SUCCESS",
+      "sequential": {
+        "mode": "sequential",
+        "threads": 1,
+        "median_seconds": 0.00484218,
+        "mean_seconds": 0.0048649259999999995,
+        "speedup": 1.0,
+        "efficiency": 1.0
+      },
+      "one_thread": {
+        "mode": "openmp",
+        "threads": 1,
+        "median_seconds": 0.00484061,
+        "mean_seconds": 0.004861344,
+        "speedup": 1.000324339287817,
+        "efficiency": 1.000324339287817
+      },
+      "best_parallel": {
+        "mode": "openmp",
+        "threads": 4,
+        "median_seconds": 0.00196401,
+        "mean_seconds": 0.001964282,
+        "speedup": 2.465455878534223,
+        "efficiency": 0.6163639696335558
+      },
+      "transformation_benefit": true,
+      "parallel_benefit": true,
+      "transformation_speedup": 1.000324339287817,
+      "parallel_scaling_speedup": 2.464656493602375,
+      "parallel_scaling_efficiency": 0.6161641234005938,
+      "end_to_end_speedup": 2.465455878534223,
+      "runtime_reduction": 0.5943954995477243,
+      "raw_fastest": {
+        "mode": "openmp",
+        "threads": 4,
+        "median_seconds": 0.00196401,
+        "mean_seconds": 0.001964282,
+        "speedup": 2.465455878534223,
+        "efficiency": 0.6163639696335558
+      },
+      "near_tie_threshold": 0.02,
+      "near_tie_candidates": [
+        {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00196401,
+          "mean_seconds": 0.001964282,
+          "speedup": 2.465455878534223,
+          "efficiency": 0.6163639696335558,
+          "slowdown_vs_fastest": 0.0
+        }
+      ],
+      "recommended": {
+        "mode": "openmp",
+        "threads": 4,
+        "median_seconds": 0.00196401,
+        "mean_seconds": 0.001964282,
+        "speedup": 2.465455878534223,
+        "efficiency": 0.6163639696335558,
+        "slowdown_vs_fastest": 0.0
+      },
+      "next_action": "PROMOTE_CANDIDATE",
+      "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+      "evidence": {
+        "performance_report": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/performance.json",
+          "sha256": "d1093268342b9e240c777806af9ae05c133c2d12ee768fe50d8fd4a97bb6970f"
+        },
+        "campaign_id": "51f9c5d5d5ce448c82609bbcb84bad0a",
+        "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b"
+      }
+    }
+  },
+  "profiling": {},
+  "agent_constraints": [
+    "Never accept a candidate that has not passed correctness validation.",
+    "Do not remove synchronization required by detected dependences.",
+    "Do not introduce OpenMP transformations that contradict the Strategy Planner.",
+    "Prefer evidence from static analysis, dependence analysis and measured performance over unsupported assumptions.",
+    "If performance differences are within the near-tie threshold, consider resource efficiency before choosing more threads.",
+    "Any proposed code modification must be recompiled and revalidated before being accepted."
+  ],
+  "expected_decision_schema": {
+    "decision": "ACCEPT | RETUNE | MODIFY | REJECT",
+    "recommended_threads": "integer or null",
+    "reason": "short explanation",
+    "next_action": "action for another agent",
+    "risk": "LOW | MEDIUM | HIGH"
+  }
+}

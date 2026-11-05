@@ -1,0 +1,23 @@
+{
+  "status": "VERIFIED_ARCHIVE",
+  "campaign": "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05",
+  "report_sha256": "de9c248a272a3853cd9acbb4bdeee0ed391f121187b310b24d22335a4cb84c79",
+  "commands_sha256": "23496870d1634a3beb5664791b5d726802b2cce88c5e88480271241343afb6ac",
+  "raw_samples_sha256": "26740092e7152252ae703fcc94961e957ccbbe331745854cfa8146e740140e29",
+  "configurations": 46,
+  "measurements": 322,
+  "plots": {
+    "matplotlib": "3.11.2",
+    "files": [
+      "median_seconds.png",
+      "median_seconds.svg",
+      "median_seconds.pdf",
+      "speedup_parallel.png",
+      "speedup_parallel.svg",
+      "speedup_parallel.pdf",
+      "efficiency_parallel.png",
+      "efficiency_parallel.svg",
+      "efficiency_parallel.pdf"
+    ]
+  }
+}

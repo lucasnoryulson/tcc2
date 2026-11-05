@@ -1,0 +1,45 @@
+{
+  "scenario": "modify",
+  "mode": "coordinator_without_analysis",
+  "expected_decision": "MODIFY",
+  "expected_actions": [
+    "SEND_TO_DEBUGGER"
+  ],
+  "prompt_sha256": "6a85dbd32ea1fbd794d77be1623dc1af80463ee4cfda7e7a0efcba306ca9f0a6",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Correctness validation failed due to output mismatch, indicating an incorrect candidate.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "HIGH",
+    "evidence_used": [
+      "validation.correctness_gate = FAIL",
+      "validation.failure_kind = OUTPUT_MISMATCH"
+    ]
+  },
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Correctness validation failed due to output mismatch, indicating an incorrect candidate.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "HIGH",
+    "evidence_used": [
+      "validation.correctness_gate = FAIL",
+      "validation.failure_kind = OUTPUT_MISMATCH"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 3916338208,
+    "load_duration": 765375,
+    "prompt_eval_count": 1678,
+    "eval_count": 92,
+    "done_reason": "stop"
+  },
+  "oracle_match": false,
+  "wall_seconds": 3.9187915829825215
+}

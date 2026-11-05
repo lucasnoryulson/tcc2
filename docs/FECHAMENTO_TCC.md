@@ -8,33 +8,33 @@ resumo executivo; a revisão das divergências está em
 
 | Material | Arquivo editável | Fonte para revisão |
 |---|---|---|
-| Base da monografia | [BASE_MONOGRAFIA.docx](monografia/BASE_MONOGRAFIA.docx) | [Texto Markdown](monografia/BASE_MONOGRAFIA.md) |
-| Apresentação, 16 slides com notas | [DEFESA_RASCUNHO.pptx](defesa/DEFESA_RASCUNHO.pptx) | [Slides e falas](defesa/SLIDES.md) |
+| Monografia revisada | [MONOGRAFIA_REVISAO_FINAL.docx](monografia/MONOGRAFIA_REVISAO_FINAL.docx) | [Texto Markdown](monografia/BASE_MONOGRAFIA.md) |
+| Apresentação revisada, 16 slides com notas | [DEFESA_REVISAO_FINAL.pptx](defesa/DEFESA_REVISAO_FINAL.pptx) | [Slides e falas](defesa/SLIDES.md) |
 | Demonstração | [Roteiro executável](defesa/DEMONSTRACAO.md) | Preparo real e recusa por integridade |
 | Referências conferidas | [referencias.bib](monografia/referencias.bib) | Quatro fontes primárias usadas na nova base |
 
-Há PDFs de leitura em `monografia/BASE_MONOGRAFIA_PREVIA.pdf` e
-`defesa/DEFESA_PREVIA.pdf`. São prévias de conteúdo produzidas com ReportLab,
-sem renderização nativa do Word/PowerPoint: conferir o layout final nesses
-aplicativos. Neste Linux, o LibreOffice instalado só tem o módulo Calc e não
-carregou os filtros Writer/Impress. Os arquivos editáveis foram reabertos e
-verificados com suas bibliotecas de formato, incluindo tabelas, imagens e notas.
+Os PDFs `monografia/BASE_MONOGRAFIA_PREVIA.pdf` e `defesa/DEFESA_PREVIA.pdf`
+são prévias antigas e não devem ser entregues como versão atual. Os editáveis
+revisados foram reabertos e verificados com suas bibliotecas de formato,
+incluindo tabelas, imagens e notas. O DOCX também foi renderizado pelo Quick Look;
+o PPTX requer conferência final no PowerPoint ou Keynote antes da entrega.
 
 A base inclui resumo, abstract, introdução, questões de pesquisa, arquitetura,
 metodologia, resultados disponíveis, discussão, limitações e conclusão
-compatível com as evidências. Não contém resultados LLM inventados. A seção R3
-está explicitamente em aberto; toda a apresentação é identificada como rascunho.
+compatível com as evidências. Não contém resultados LLM inventados. R3 foi
+respondida com resultado negativo/limitado, e os materiais são identificados
+como versão revisada com adequação institucional ainda pendente.
 
 ## Onde estamos, pela numeração original
 
 | Item | Situação após a revisão |
 |---|---|
-| **1. Pipeline até o resultado final** | Implementado e testado no caminho suportado. Falta confirmar promoção a partir de uma inferência real concluída no ambiente alvo |
-| **2. Validação e configuração** | Correções implementadas e testadas; manter os mesmos contratos nas novas campanhas |
-| **3. Delimitação da automação** | Incorporada à base revisada e aos slides; precisa permanecer no documento adotado para entrega |
-| **4. Avaliação dos agentes** | Infraestrutura pronta, rodada diagnóstica com timeouts; concluir inferências e discutir decisão/custo sem atribuir à LLM o ganho da transformação |
-| **5. Experimentos e reprodução** | Dados existentes organizados; confirmar ou declarar lacunas históricas, conservar e registrar campanhas finais |
-| **6. Monografia e defesa** | Base Word, PowerPoint com falas, bibliografia e demonstração preparados; falta concluir resultados, integrar ao modelo de entrega e ensaiar a versão final |
+| **1. Pipeline até o resultado final** | Concluído no caminho suportado no Mac: inferência real, `ACCEPT`, promoção, revalidação e auditoria do manifesto |
+| **2. Validação e configuração** | Concluído e verificado no Mac: 82 testes unittest e 14 regressões aprovados, sem skips |
+| **3. Delimitação da automação** | Concluída e auditada em código, monografia, slides e `AUTOMATION_SCOPE.md`; preservar na entrega |
+| **4. Avaliação dos agentes** | Campanha original `INCOMPLETE` preservada; contrato corrigido e replicação final `COMPLETE`, sem benefício adicional demonstrado; MODIFY não reproduzido no ensaio controlado |
+| **5. Experimentos e reprodução** | Concluído no acervo disponível: 22 campanhas consolidadas, lacunas históricas declaradas e três campanhas Mac verificadas pelos gates atuais |
+| **6. Monografia e defesa** | Conteúdo revisado e sincronizado com os resultados finais; DOCX e PPTX regenerados e validados. Restam adequação ao modelo institucional, dados de orientação/banca, exportação oficial para PDF e ensaio, que dependem de informações externas. |
 
 ## 1 e 2 — confirmação final do pipeline no ambiente alvo
 
@@ -54,6 +54,14 @@ python3 -B scripts/run_pipeline.py \
 PROMOTED exige decisão e gates compatíveis. Não editar uma decisão para forçar
 esse estado. Conservar a pasta do runner e o bundle final. Se ocorrer recusa,
 ausência de ganho ou timeout, conservar o desfecho e sua causa.
+
+Execução efetiva de 03/11/2026: `llama3.1:8b` (ID local `46e0c10c039e`),
+LLVM 23.1.1, `PROMOTED` com 4 threads, speedup end-to-end 2,46546x e
+escalabilidade contra OpenMP 1T 2,46466x. Evidências em
+`build/final-pipeline-mac-2026-11-03/run-4whpshpr/` e bundle em
+`results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/`.
+Isso fecha o item 1 no recorte Dot Product/redução; não substitui a campanha
+pareada e a discussão científica do item 4.
 
 ## 3 — recorte que deve permanecer no texto
 
@@ -78,6 +86,15 @@ falhas, latência e tokens. O arquivo de resultados pode estar completo sem
 demonstrar benefício. Uma campanha com falhas continua tendo resultados a
 discutir; ausência total de respostas não permite responder à qualidade semântica.
 
+A campanha original do Mac está em
+`results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/`; suas seis
+respostas inválidas foram preservadas. Após corrigir o contrato, a replicação
+com as mesmas evidências terminou `COMPLETE` em
+`results/coordinator_evaluation/mac-2026-11-03-final-v4-llama/evaluation-sl8k2oaz/`,
+com 12/12 respostas LLM válidas. O ensaio controlado acertou ACCEPT, REJECT e
+RETUNE em 6/6, mas não MODIFY. Ver
+[COORDINATOR_EVALUATION_MAC.md](COORDINATOR_EVALUATION_MAC.md).
+
 Atualizar conjuntamente resumo, abstract, metodologia, §5.4 de resultados,
 discussão, conclusão e slide do Coordinator. Não manter na versão final uma
 promessa de superioridade sobre geração monolítica se esse contraste não foi
@@ -85,9 +102,10 @@ executado. O estudo atual avalia decisão, sem gerar novos candidatos pela LLM.
 
 ## 5 — seleção de evidências e atualização dos gráficos
 
-Conferir metadados das campanhas que entrarão no texto: hardware, compilador,
+Os metadados das campanhas que entram no texto foram separados entre vinculados,
+arquivados e históricos: hardware, compilador,
 flags, entrada, origem da variante, corretude, configurações e tempos. Nem todas
-as 19 campanhas precisam ser repetidas; escolher o recorte que sustenta as
+as 22 campanhas precisam ser repetidas; escolher o recorte que sustenta as
 questões de pesquisa e declarar os limites das demais.
 
 Para incluir campanhas novas, registrar suas fontes e ambiente no
@@ -138,7 +156,8 @@ build/writing-venv/bin/python -m pip install -r requirements-writing.txt
 build/writing-venv/bin/python -B scripts/build_academic_material.py
 ```
 
-O script gera Word, PowerPoint com notas, diagrama e manifesto de revisão.
+O script gera `MONOGRAFIA_REVISAO_FINAL.docx`, `DEFESA_REVISAO_FINAL.pptx`,
+diagrama e manifesto de revisão.
 Não regenera as prévias PDF. Exportá-las novamente após mudar o conteúdo. O
-manifesto identifica os documentos de origem e as fontes do rascunho, sem
-significar aprovação acadêmica ou conclusão das campanhas experimentais.
+manifesto identifica os documentos de origem e as fontes da revisão, sem
+significar aprovação acadêmica ou conformidade automática com o modelo da banca.

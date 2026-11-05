@@ -1,0 +1,31 @@
+...F..........E...................................................................dot 1024: block 1/2
+dot 1024: block 2/2
+...
+======================================================================
+ERROR: test_repository_catalog_has_expected_coverage_and_keeps_sources_unchanged (scripts.test_experiment_consolidation.ExperimentConsolidation.test_repository_catalog_has_expected_coverage_and_keeps_sources_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liswsz220-01/Desktop/tcc/tcc2/scripts/test_experiment_consolidation.py", line 171, in test_repository_catalog_has_expected_coverage_and_keeps_sources_unchanged
+    before = {path: path.read_bytes() for path in paths}
+                    ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1021, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/liswsz220-01/Desktop/tcc/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/context.json'
+
+======================================================================
+FAIL: test_cli_generates_complete_tables_and_samples_without_plotting_dependency (scripts.test_experiment_consolidation.ExperimentConsolidation.test_cli_generates_complete_tables_and_samples_without_plotting_dependency)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liswsz220-01/Desktop/tcc/tcc2/scripts/test_experiment_consolidation.py", line 226, in test_cli_generates_complete_tables_and_samples_without_plotting_dependency
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : CONSOLIDATION_FAILED: [Errno 2] No such file or directory: '/home/liswsz220-01/Desktop/tcc/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/context.json'
+
+
+----------------------------------------------------------------------
+Ran 85 tests in 18.595s
+
+FAILED (failures=1, errors=1)

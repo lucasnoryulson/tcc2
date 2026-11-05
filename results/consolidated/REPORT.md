@@ -22,15 +22,18 @@ Flags e tamanhos rotulados como receita precisam de confirmação nas campanhas 
 | m5_nussinov_0910 | Apple M5 / 10 cores (captura 09/09) | manual | 4T | 0.3195 | 2.592 | 2.957 | 0.7391 | HISTORICAL_UNBOUND |
 | m5_nussinov_simd_0911 | Apple M5 / 10 cores (captura 09/09) | manual com acumulador + SIMD | 4T | 0.2095 | 4.037 | 3.015 | 0.7537 | HISTORICAL_UNBOUND |
 | nussinov_auto_0911 | Não registrado nesta campanha | transformação adaptativa específica sobre base OpenMP manual | 4T | 0.2091 | 4.106 | 3.005 | 0.7513 | HISTORICAL_UNBOUND |
-| linux_local_dot_large | Xeon E3-1225 V2 / Linux (03/11) | transformação automática de redução | 2T | 0.008905 | 1.191 | 1.233 | 0.6164 | VERIFIED_LOCAL_GATES |
-| linux_local_dot_small | Xeon E3-1225 V2 / Linux (03/11) | transformação automática de redução | sem recomendação | — | — | — | — | VERIFIED_LOCAL_GATES |
+| linux_local_dot_large | Xeon E3-1225 V2 / Linux (03/11) | transformação automática de redução | 2T | 0.008905 | 1.191 | 1.233 | 0.6164 | ARCHIVED_SUMMARY_ONLY |
+| linux_local_dot_small | Xeon E3-1225 V2 / Linux (03/11) | transformação automática de redução | sem recomendação | — | — | — | — | ARCHIVED_SUMMARY_ONLY |
+| m5_final_promoted_dot | Apple M5 / 10 cores / 16 GB / macOS 26.6.2 (03/11) | transformação automática de redução + promoção revalidada | 4T | 0.001964 | 2.465 | 2.465 | 0.6162 | VERIFIED_LOCAL_GATES |
+| m5_coordinator_dot_large | Apple M5 / 10 cores / 16 GB / macOS 26.6.2 (03/11) | transformação automática de redução | 4T | 0.004316 | 1.673 | 1.673 | 0.4182 | VERIFIED_LOCAL_GATES |
+| m5_coordinator_dot_small | Apple M5 / 10 cores / 16 GB / macOS 26.6.2 (03/11) | transformação automática de redução | sem recomendação | — | — | — | — | VERIFIED_LOCAL_GATES |
 
 ## Lacunas por campanha
 
-- **xeon_gemm_0904**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; referência indisponível: benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c.
-- **xeon_jacobi-2d_0904**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; referência indisponível: benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c.
-- **xeon_covariance_0904**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; referência indisponível: benchmarks/PolyBenchC-4.2.1/datamining/covariance/covariance.c.
-- **xeon_nussinov_0904**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; referência indisponível: benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c.
+- **xeon_gemm_0904**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
+- **xeon_jacobi-2d_0904**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
+- **xeon_covariance_0904**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
+- **xeon_nussinov_0904**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
 - **xeon_dot_0904**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
 - **xeon_wavefront_0904**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
 - **xeon_dot_auto_0904**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
@@ -38,25 +41,37 @@ Flags e tamanhos rotulados como receita precisam de confirmação nas campanhas 
 - **m5_dot_auto_0909**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
 - **m5_wavefront_manual_0909**: sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
 - **m5_wavefront_tiled_0909**: usar campanha full; preliminary é outra execução, sem agrupar amostras; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; amostras individuais indisponíveis para parte das configurações.
-- **m5_gemm_0910**: ambiente de 09/09 reutilizado como contexto; falta captura específica da execução; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; referência indisponível: benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c.
-- **m5_jacobi-2d_0910**: ambiente de 09/09 reutilizado como contexto; falta captura específica da execução; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; referência indisponível: benchmarks/PolyBenchC-4.2.1/stencils/jacobi-2d/jacobi-2d.c.
-- **m5_covariance_0910**: ambiente de 09/09 reutilizado como contexto; falta captura específica da execução; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; referência indisponível: benchmarks/PolyBenchC-4.2.1/datamining/covariance/covariance.c.
-- **m5_nussinov_0910**: ambiente de 09/09 reutilizado como contexto; falta captura específica da execução; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; referência indisponível: benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c.
-- **m5_nussinov_simd_0911**: corretude e ambiente disponíveis pertencem a outra data; confirmar vínculo; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; referência indisponível: benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c.
-- **nussinov_auto_0911**: hardware e versão do compilador não registrados na campanha; repetições=5 na receita; CSV não contém amostras nem contagem; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; amostras individuais indisponíveis para parte das configurações; referência indisponível: benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c.
-- **linux_local_dot_large**: campanha local piloto; avaliação LLM ainda incompleta.
-- **linux_local_dot_small**: campanha local piloto; avaliação LLM ainda incompleta.
+- **m5_gemm_0910**: ambiente de 09/09 reutilizado como contexto; falta captura específica da execução; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
+- **m5_jacobi-2d_0910**: ambiente de 09/09 reutilizado como contexto; falta captura específica da execução; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
+- **m5_covariance_0910**: ambiente de 09/09 reutilizado como contexto; falta captura específica da execução; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
+- **m5_nussinov_0910**: ambiente de 09/09 reutilizado como contexto; falta captura específica da execução; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
+- **m5_nussinov_simd_0911**: corretude e ambiente disponíveis pertencem a outra data; confirmar vínculo; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica.
+- **nussinov_auto_0911**: hardware e versão do compilador não registrados na campanha; repetições=5 na receita; CSV não contém amostras nem contagem; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; amostras individuais indisponíveis para parte das configurações.
+- **linux_local_dot_large**: campanha local piloto; avaliação LLM ainda incompleta; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; amostras individuais indisponíveis para parte das configurações.
+- **linux_local_dot_small**: campanha local piloto; avaliação LLM ainda incompleta; sem vínculo histórico entre hashes de fontes, corretude e medições; flags/entrada da receita atual não atestam a compilação histórica; amostras individuais indisponíveis para parte das configurações.
+- **m5_final_promoted_dot**: uma única campanha local de promoção; não representa outros padrões ou plataformas.
+- **m5_coordinator_dot_large**: repetições da decisão LLM reutilizam estas medições e não são novas amostras do kernel.
+- **m5_coordinator_dot_small**: nenhuma configuração paralela satisfez a política de admissão.
 
 ## Inventário dos CSVs
 
 | Arquivo | Linhas | Duplicado de | Inconsistências |
 |---|---:|---|---|
+| results/coordinator_evaluation/mac-2026-11-03-final-v4-llama/evaluation-sl8k2oaz/trials.csv | 18 | — | — |
+| results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance/922b7d9a60c94e0a8c93d54df7b7cfe4/performance.csv | 4 | — | — |
+| results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.csv | 4 | results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance/922b7d9a60c94e0a8c93d54df7b7cfe4/performance.csv | — |
+| results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance/fc80493973e0489fbdd78a05a070d3c0/performance.csv | 4 | — | — |
+| results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance.csv | 4 | results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance/fc80493973e0489fbdd78a05a070d3c0/performance.csv | — |
+| results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/trials.csv | 18 | — | — |
+| results/coordinator_evaluation/mac_2026-11-03_v2_llama/evaluation-x3s8jnw0/trials.csv | 18 | — | — |
+| results/coordinator_evaluation/mac_2026-11-03_v2b_llama/evaluation-08pyj_e9/trials.csv | 18 | — | — |
 | results/covariance/experiment_results.csv | 8 | — | HEADER_MISMATCH lines 6,7,8,9 |
 | results/covariance/openmp_scaling.csv | 3 | — | — |
 | results/covariance/openmp_scaling_generic.csv | 3 | — | — |
 | results/dot/auto_generated_performance.csv | 4 | — | — |
 | results/dot/experiment_results.csv | 16 | — | MULTIPLE_BASELINES lines 2,6,10,14; REPEATED_CONFIGURATIONS lines 6,7,8,9,10,11,12,13,14,15,16,17 |
 | results/dot/reduction_results.csv | 6 | — | — |
+| results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/evidence/performance.csv | 4 | — | — |
 | results/gemm/baseline.csv | 1 | — | — |
 | results/gemm/experiment_results.csv | 12 | — | HEADER_MISMATCH lines 10,11,12,13; MULTIPLE_BASELINES lines 2,6; REPEATED_CONFIGURATIONS lines 6,7,8,9 |
 | results/gemm/openmp_scaling.csv | 3 | — | — |
@@ -91,6 +106,7 @@ Flags e tamanhos rotulados como receita precisam de confirmação nas campanhas 
 
 ![scaling_linux_local.svg](scaling_linux_local.svg)
 ![scaling_m5_historical.svg](scaling_m5_historical.svg)
+![scaling_m5_verified_2026_11_03.svg](scaling_m5_verified_2026_11_03.svg)
 ![scaling_unknown_hardware.svg](scaling_unknown_hardware.svg)
 ![scaling_xeon_historical.svg](scaling_xeon_historical.svg)
 

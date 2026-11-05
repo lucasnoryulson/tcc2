@@ -1,0 +1,410 @@
+{
+  "schema": "tcc2-agent-context",
+  "version": "0.3",
+  "task": "Evaluate the automatically generated parallel candidate and decide the next optimization action.",
+  "source": {
+    "campaign_id": "df8d662d2f4e416f932a6779797ea70a",
+    "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+    "candidate_sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+    "sequential_sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+    "sequential_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+    "candidate_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c",
+    "sequential_code": "double kernel_dot(\n    int n,\n    const double *A,\n    const double *B\n)\n{\n    double sum = 0.0;\n\n    for (int i = 0; i < n; i++)\n    {\n        sum += A[i] * B[i];\n    }\n\n    return sum;\n}\n",
+    "candidate_code": "double kernel_dot(\n    int n,\n    const double *A,\n    const double *B\n)\n{\n    double sum = 0.0;\n\n    /* TCC2 AUTO-GENERATED: REDUCTION */\n    #pragma omp parallel for reduction(+:sum) schedule(static)\n    for (int i = 0; i < n; i++)\n    {\n        sum += A[i] * B[i];\n    }\n\n    return sum;\n}\n"
+  },
+  "static_analysis": {
+    "kernel": {
+      "name": "kernel_dot",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 9,
+          "end_line": 12,
+          "iterator": "i",
+          "initialization": "int i = 0",
+          "condition": "i < n",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i"
+              ],
+              "expression": "A[i]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "i"
+              ],
+              "expression": "B[i]"
+            }
+          ],
+          "writes": [],
+          "operators": [
+            "+=",
+            "*"
+          ],
+          "scalar_updates": [
+            {
+              "variable": "sum",
+              "operator": "+=",
+              "rhs": "A[i]*B[i]",
+              "expression": "sum += A[i]*B[i]",
+              "update_kind": "compound_assignment"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dependence_analysis": {
+    "kernel": {
+      "name": "kernel_dot",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        }
+      ]
+    }
+  },
+  "pattern": {
+    "classification": "REDUCTION_CANDIDATE",
+    "family": "REDUCE / AGGREGATION",
+    "confidence": "medium",
+    "reason": "At least one loop contains a reduction update.",
+    "loops": [
+      {
+        "classification": "REDUCTION_CANDIDATE",
+        "family": "REDUCE / AGGREGATION",
+        "confidence": "medium",
+        "reason": "A scalar variable is updated with a reduction-compatible compound operator inside the loop.",
+        "evidence": {
+          "reduction_type": "scalar",
+          "scalar_updates": [
+            {
+              "variable": "sum",
+              "operator": "+=",
+              "rhs": "A[i]*B[i]",
+              "expression": "sum += A[i]*B[i]",
+              "update_kind": "compound_assignment"
+            }
+          ]
+        },
+        "loop_id": 1,
+        "iterator": "i"
+      }
+    ]
+  },
+  "strategy": {
+    "detected_pattern": "REDUCTION_CANDIDATE",
+    "family": "REDUCE / AGGREGATION",
+    "classification_confidence": "medium",
+    "plan": {
+      "strategy": "REDUCTION",
+      "reductions": [
+        {
+          "loop_id": 1,
+          "iterator": "i",
+          "reduction_type": "scalar",
+          "variable": "sum",
+          "operator": "+",
+          "openmp_construct": "parallel for",
+          "openmp_clause": "reduction(+:sum)",
+          "schedule": "static",
+          "direct_code_transformation": true
+        }
+      ]
+    }
+  },
+  "validation": {
+    "correctness_gate": "PASS",
+    "correctness_report_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness.json",
+    "correctness_report_sha256": "60631c879d68a2cb0245e029cfbdba0d2a07d0a212924ff5c5a62e51716d6b59",
+    "correctness_report": {
+      "schema": "tcc2-correctness-gate",
+      "version": "0.2",
+      "status": "PASS",
+      "inputs": {
+        "sequential": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+        "candidate": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c",
+        "driver": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_driver.c"
+      },
+      "compiler": "/opt/homebrew/opt/llvm/bin/clang",
+      "threads": [
+        1,
+        2,
+        4
+      ],
+      "validated_threads": [
+        1,
+        2,
+        4
+      ],
+      "tolerances": {
+        "relative": 1e-09,
+        "absolute": 1e-12
+      },
+      "provenance": {
+        "campaign_id": "df8d662d2f4e416f932a6779797ea70a",
+        "run_id": "43b1ce40a4dc405c84fe0b2a678dbabd",
+        "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd",
+        "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+        "recorded_at": "2026-11-03T20:12:43.291079+00:00",
+        "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+        "cpu_count": 10,
+        "runtime_environment": {},
+        "inputs": {
+          "sequential": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+            "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/sequential/dot_product.c"
+          },
+          "candidate": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c",
+            "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/candidate/candidate.c"
+          },
+          "driver": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_driver.c",
+            "sha256": "fe30a4bcb70e195a67b0b2c8704f953055cc5df501a69ac5e34022df2719a237",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/driver/dot_driver.c"
+          }
+        },
+        "toolchain": {
+          "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+          "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+          "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+        },
+        "compile_flags": {
+          "sequential": [
+            "-O3"
+          ],
+          "candidate": [
+            "-O3",
+            "-fopenmp"
+          ]
+        },
+        "link_flags": [
+          "-lm"
+        ],
+        "openmp_environment": {
+          "OMP_DYNAMIC": "FALSE",
+          "OMP_PROC_BIND": "TRUE",
+          "OMP_PLACES": "cores"
+        }
+      },
+      "compilation": {
+        "sequential": {
+          "command": [
+            "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+            "-O3",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/driver/dot_driver.c",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/sequential/dot_product.c",
+            "-lm",
+            "-o",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/dot_gate_sequential"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        "candidate": {
+          "command": [
+            "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+            "-O3",
+            "-fopenmp",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/driver/dot_driver.c",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/candidate/candidate.c",
+            "-lm",
+            "-o",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/dot_gate_candidate"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "binaries": {
+        "sequential": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/dot_gate_sequential",
+          "sha256": "03fb2722ccc8e005c0354972ae763d00f90a6b71a94fe2376158319ea52e6a76"
+        },
+        "candidate": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness/43b1ce40a4dc405c84fe0b2a678dbabd/dot_gate_candidate",
+          "sha256": "32a71b0cef9fbaae7740be7d865718bc46b2632d89393d847d6738c7963005cd"
+        }
+      },
+      "execution": {
+        "sequential": {
+          "returncode": 0,
+          "stdout": "261762.4999999812",
+          "stderr": ""
+        },
+        "candidate": {
+          "returncode": 0,
+          "stdout": "261762.49999999182",
+          "stderr": ""
+        }
+      },
+      "thread_results": [
+        {
+          "threads": 1,
+          "execution": {
+            "returncode": 0,
+            "stdout": "261762.4999999812",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": 261762.4999999812,
+            "candidate": 261762.4999999812,
+            "absolute_error": 0.0,
+            "relative_error": 0.0,
+            "correct": true
+          }
+        },
+        {
+          "threads": 2,
+          "execution": {
+            "returncode": 0,
+            "stdout": "261762.49999998021",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": 261762.4999999812,
+            "candidate": 261762.4999999802,
+            "absolute_error": 9.89530235528946e-10,
+            "relative_error": 3.780259722187162e-15,
+            "correct": true
+          }
+        },
+        {
+          "threads": 4,
+          "execution": {
+            "returncode": 0,
+            "stdout": "261762.49999999182",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": 261762.4999999812,
+            "candidate": 261762.49999999182,
+            "absolute_error": 1.0622898116707802e-08,
+            "relative_error": 4.0582199958773944e-14,
+            "correct": true
+          }
+        }
+      ],
+      "validation": {
+        "reference": 261762.4999999812,
+        "candidate": 261762.49999999182,
+        "absolute_error": 1.0622898116707802e-08,
+        "relative_error": 4.0582199958773944e-14,
+        "correct": true
+      }
+    }
+  },
+  "performance": {
+    "report": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.json",
+      "sha256": "505eae4da3410008d6ed6de85c06b787aa29f470d82ee3a0e30d744d9c51a0e7"
+    },
+    "selection_file": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/selection.json",
+      "sha256": "cfea44f760665da07addf8eeef1f40b92b7b715dc0cb93f113304a59db556cde"
+    },
+    "selection": {
+      "status": "SELECTED",
+      "decision": "FASTEST_CONFIGURATION",
+      "parallel_status": "PARALLEL_SUCCESS",
+      "sequential": {
+        "mode": "sequential",
+        "threads": 1,
+        "median_seconds": 0.00722003,
+        "mean_seconds": 0.006794366,
+        "speedup": 1.0,
+        "efficiency": 1.0
+      },
+      "one_thread": {
+        "mode": "openmp",
+        "threads": 1,
+        "median_seconds": 0.00721977,
+        "mean_seconds": 0.006982898,
+        "speedup": 1.0000360122275362,
+        "efficiency": 1.0000360122275362
+      },
+      "best_parallel": {
+        "mode": "openmp",
+        "threads": 4,
+        "median_seconds": 0.00431633,
+        "mean_seconds": 0.004195492,
+        "speedup": 1.6727242819710262,
+        "efficiency": 0.41818107049275655
+      },
+      "transformation_benefit": true,
+      "parallel_benefit": true,
+      "transformation_speedup": 1.0000360122275362,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "parallel_scaling_efficiency": 0.418166011403206,
+      "end_to_end_speedup": 1.6727242819710262,
+      "runtime_reduction": 0.40217284415715715,
+      "raw_fastest": {
+        "mode": "openmp",
+        "threads": 4,
+        "median_seconds": 0.00431633,
+        "mean_seconds": 0.004195492,
+        "speedup": 1.6727242819710262,
+        "efficiency": 0.41818107049275655
+      },
+      "near_tie_threshold": 0.02,
+      "near_tie_candidates": [
+        {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00431633,
+          "mean_seconds": 0.004195492,
+          "speedup": 1.6727242819710262,
+          "efficiency": 0.41818107049275655,
+          "slowdown_vs_fastest": 0.0
+        }
+      ],
+      "recommended": {
+        "mode": "openmp",
+        "threads": 4,
+        "median_seconds": 0.00431633,
+        "mean_seconds": 0.004195492,
+        "speedup": 1.6727242819710262,
+        "efficiency": 0.41818107049275655,
+        "slowdown_vs_fastest": 0.0
+      },
+      "next_action": "PROMOTE_CANDIDATE",
+      "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+      "evidence": {
+        "performance_report": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.json",
+          "sha256": "505eae4da3410008d6ed6de85c06b787aa29f470d82ee3a0e30d744d9c51a0e7"
+        },
+        "campaign_id": "df8d662d2f4e416f932a6779797ea70a",
+        "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b"
+      }
+    }
+  },
+  "profiling": {},
+  "agent_constraints": [
+    "Never accept a candidate that has not passed correctness validation.",
+    "Do not remove synchronization required by detected dependences.",
+    "Do not introduce OpenMP transformations that contradict the Strategy Planner.",
+    "Prefer evidence from static analysis, dependence analysis and measured performance over unsupported assumptions.",
+    "If performance differences are within the near-tie threshold, consider resource efficiency before choosing more threads.",
+    "Any proposed code modification must be recompiled and revalidated before being accepted."
+  ],
+  "expected_decision_schema": {
+    "decision": "ACCEPT | RETUNE | MODIFY | REJECT",
+    "recommended_threads": "integer or null",
+    "reason": "short explanation",
+    "next_action": "action for another agent",
+    "risk": "LOW | MEDIUM | HIGH"
+  }
+}

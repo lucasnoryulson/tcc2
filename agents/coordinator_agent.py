@@ -31,6 +31,12 @@ DECISION_SCHEMA = {
 
         "decision": {
             "type": "string",
+            "description": (
+                "ACCEPT only for a correct candidate with a measured SELECTED configuration; "
+                "RETUNE when a valid transformation still needs more configurations; MODIFY "
+                "when implementation, strategy, or a repairable correctness failure must be "
+                "changed; REJECT only when no useful measured or repair path remains."
+            ),
             "enum": [
                 "ACCEPT",
                 "RETUNE",
@@ -44,6 +50,15 @@ DECISION_SCHEMA = {
                 "integer",
                 "null",
             ],
+            "description": "Measured thread count for ACCEPT; null for RETUNE, MODIFY, or REJECT.",
+        },
+
+        "recommended_configuration": {
+            "type": [
+                "object",
+                "null",
+            ],
+            "description": "Measured configuration for ACCEPT; null for RETUNE, MODIFY, or REJECT.",
         },
 
         "reason": {
@@ -52,6 +67,11 @@ DECISION_SCHEMA = {
 
         "next_action": {
             "type": "string",
+            "description": (
+                "Must match decision: ACCEPT/PROMOTE_CANDIDATE; RETUNE/RETUNE_CONFIGURATION "
+                "or RUN_MORE_BENCHMARKS; MODIFY/SEND_TO_CODER or SEND_TO_DEBUGGER; "
+                "REJECT/REJECT_CANDIDATE."
+            ),
             "enum": [
                 "PROMOTE_CANDIDATE",
                 "RUN_MORE_BENCHMARKS",
@@ -90,6 +110,7 @@ DECISION_SCHEMA = {
     ],
 
     "additionalProperties": False,
+
 }
 
 
@@ -331,6 +352,12 @@ You must obey these rules:
     parallel strategy must change.
     REJECT -> REJECT_CANDIDATE.
 
+25a. Only ACCEPT carries an operational configuration.
+    For RETUNE, MODIFY, and REJECT, return both
+    recommended_threads and recommended_configuration
+    as null. In particular, REJECT must use exactly
+    REJECT_CANDIDATE and null configuration fields.
+
 26. SEND_TO_DEBUGGER is reserved for compilation,
     correctness, or validation failures that require
     repair. Do not send a correct candidate to the
@@ -343,6 +370,29 @@ You must obey these rules:
     because its first parallel strategy performs poorly
     when the supplied evidence indicates that the
     strategy should be modified.
+
+28. ACCEPT requires an actual measured selection. If
+    performance.selection.status is not SELECTED or its
+    recommended configuration is absent, never ACCEPT.
+
+29. If correctness passed, the transformation appears
+    valid, and the evidence explicitly says that too few
+    configurations were measured, choose RETUNE with
+    RUN_MORE_BENCHMARKS. This is not ACCEPT because no
+    admissible configuration was selected, and not REJECT
+    because a useful performance path remains unexplored.
+
+30. If correctness failed and the supplied evidence says
+    the failure requires repair or debugging, choose MODIFY
+    with SEND_TO_DEBUGGER. Reserve REJECT for an unsafe or
+    incorrect candidate for which the evidence provides no
+    useful repair path.
+
+31. If correctness passed but measured performance is not
+    beneficial and the evidence explicitly says no useful
+    performance path remains, choose REJECT. RETUNE is only
+    appropriate when the evidence leaves configurations or
+    tuning work meaningfully unexplored.
 
 22. Keep the reason concise and evidence-based.
 
@@ -368,14 +418,17 @@ def build_user_prompt(context):
         + "\n\n"
         "Choose exactly one decision:\n"
         "ACCEPT, RETUNE, MODIFY, or REJECT.\n\n"
-        "If the candidate is accepted, use "
-        "PROMOTE_CANDIDATE as next_action.\n"
-        "If more performance configurations should be "
-        "tested, use RETUNE_CONFIGURATION or "
-        "RUN_MORE_BENCHMARKS.\n"
-        "If code must change, use SEND_TO_CODER.\n"
-        "If a correctness/compilation problem requires "
-        "repair, use SEND_TO_DEBUGGER.\n"
+        "Return fields according to this exact contract:\n"
+        "ACCEPT -> PROMOTE_CANDIDATE; use the measured "
+        "recommended_threads and measured configuration.\n"
+        "RETUNE -> RETUNE_CONFIGURATION or "
+        "RUN_MORE_BENCHMARKS; both configuration fields "
+        "must be null.\n"
+        "MODIFY -> SEND_TO_CODER, or SEND_TO_DEBUGGER only "
+        "for compilation/correctness repair; both "
+        "configuration fields must be null.\n"
+        "REJECT -> REJECT_CANDIDATE; recommended_threads "
+        "and recommended_configuration must both be null.\n"
     )
 
 
@@ -835,6 +888,19 @@ def validate_decision(
     )
 
     if (
+        decision.get("decision") == "ACCEPT"
+        and (
+            selection.get("status") != "SELECTED"
+            or not selection_recommended
+        )
+    ):
+
+        errors.append(
+            "ACCEPT requires performance selection "
+            "status SELECTED with a recommended configuration"
+        )
+
+    if (
         multidimensional
         and selection_recommended
         and recommended_threads is not None
@@ -972,6 +1038,26 @@ def validate_decision(
     next_action = decision.get(
         "next_action"
     )
+
+    if (
+        decision_name in {"RETUNE", "MODIFY", "REJECT"}
+        and recommended_threads is not None
+    ):
+
+        errors.append(
+            f"{decision_name} requires "
+            "recommended_threads to be null"
+        )
+
+    if (
+        decision_name in {"RETUNE", "MODIFY", "REJECT"}
+        and recommended_configuration is not None
+    ):
+
+        errors.append(
+            f"{decision_name} requires "
+            "recommended_configuration to be null"
+        )
 
     allowed_actions_by_decision = {
         "ACCEPT": {

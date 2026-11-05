@@ -1,0 +1,43 @@
+{
+  "mode": "deterministic",
+  "status": "OK",
+  "eligible": true,
+  "policy_reason": "Measured parallel selection is admissible.",
+  "candidate_attempts": 1,
+  "llm_calls": 0,
+  "recovery_supported": false,
+  "metadata": {},
+  "raw_decision": null,
+  "validation_errors": [],
+  "monetary_cost": null,
+  "decision_wall_seconds": 2.5707995519042015e-05,
+  "decision": {
+    "decision": "ACCEPT",
+    "next_action": "PROMOTE_CANDIDATE",
+    "recommended_threads": 4,
+    "recommended_configuration": {
+      "threads": 4
+    },
+    "risk": "LOW"
+  },
+  "effective_accept": true,
+  "nonadmissible_accept_proposal": false,
+  "missed_eligible_opportunity": false,
+  "policy_agreement": true,
+  "attempts_to_acceptable_candidate": 1,
+  "final_mode": "openmp",
+  "selected_configuration": {
+    "threads": 4
+  },
+  "measured_final_seconds": 0.00431633,
+  "speedup_vs_sequential": 1.6727242819710262,
+  "parallel_scaling_speedup": 1.672664045612824,
+  "validation_wall_seconds": 3.875000402331352e-05,
+  "trial_wall_seconds": 6.687501445412636e-05,
+  "case": "dot_large",
+  "repetition": 1,
+  "order_position": 2,
+  "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+  "shared_prefix_seconds": 15.90644070802955,
+  "accounted_pipeline_seconds": 15.906507583044004
+}

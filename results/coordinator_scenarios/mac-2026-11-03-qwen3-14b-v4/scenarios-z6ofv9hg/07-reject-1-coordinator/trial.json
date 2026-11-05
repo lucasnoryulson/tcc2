@@ -1,0 +1,49 @@
+{
+  "scenario": "reject",
+  "mode": "coordinator",
+  "expected_decision": "REJECT",
+  "expected_actions": [
+    "REJECT_CANDIDATE"
+  ],
+  "prompt_sha256": "2d2b8b07bff82cb5e32001725c7fdac8c8a12539c41e149ad670ea96ddb9f4ad",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Correctness passed, but deterministic_evidence explicitly states 'no useful measured performance path remains' with a measured_parallel_speedup of 0.875 (parallel slower than sequential). Performance.selection.status='NO_BENEFICIAL_CONFIGURATION' confirms no configuration provides meaningful speedup.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "validation.correctness_gate=PASS",
+      "deterministic_evidence.parallel_status=NO_USEFUL_PATH",
+      "performance.selection.status=NO_BENEFICIAL_CONFIGURATION",
+      "measured_parallel_speedup=0.875"
+    ]
+  },
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Correctness passed, but deterministic_evidence explicitly states 'no useful measured performance path remains' with a measured_parallel_speedup of 0.875 (parallel slower than sequential). Performance.selection.status='NO_BENEFICIAL_CONFIGURATION' confirms no configuration provides meaningful speedup.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "validation.correctness_gate=PASS",
+      "deterministic_evidence.parallel_status=NO_USEFUL_PATH",
+      "performance.selection.status=NO_BENEFICIAL_CONFIGURATION",
+      "measured_parallel_speedup=0.875"
+    ]
+  },
+  "metadata": {
+    "model": "qwen3:14b",
+    "total_duration": 41539260542,
+    "load_duration": 3743250,
+    "prompt_eval_count": 1871,
+    "eval_count": 503,
+    "done_reason": "stop"
+  },
+  "oracle_match": true,
+  "wall_seconds": 41.563678332953714
+}

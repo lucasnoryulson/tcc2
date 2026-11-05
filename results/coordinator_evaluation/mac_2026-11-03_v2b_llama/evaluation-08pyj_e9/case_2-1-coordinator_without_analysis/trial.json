@@ -1,0 +1,67 @@
+{
+  "mode": "coordinator_without_analysis",
+  "status": "OK",
+  "eligible": false,
+  "policy_reason": "Selection does not establish a successful parallel candidate.",
+  "candidate_attempts": 1,
+  "llm_calls": 1,
+  "recovery_supported": false,
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 3744698625,
+    "load_duration": 875500,
+    "prompt_eval_count": 2050,
+    "eval_count": 85,
+    "done_reason": "stop"
+  },
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "No OpenMP configuration improved over the sequential baseline.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ]
+  },
+  "validation_errors": [],
+  "monetary_cost": null,
+  "prompt_sha256": "f8715e1caf5f5e58feadb414c61e0f2712a37b6a300f0d109c64bf79707ef54a",
+  "ablation_effective": true,
+  "call_wall_seconds": 3.7465188750065863,
+  "decision_wall_seconds": 3.7473840410239063,
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "No OpenMP configuration improved over the sequential baseline.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ]
+  },
+  "effective_accept": false,
+  "nonadmissible_accept_proposal": false,
+  "missed_eligible_opportunity": false,
+  "policy_agreement": true,
+  "attempts_to_acceptable_candidate": null,
+  "final_mode": "sequential_fallback",
+  "selected_configuration": null,
+  "measured_final_seconds": 7.993e-07,
+  "speedup_vs_sequential": 1.0,
+  "parallel_scaling_speedup": null,
+  "validation_wall_seconds": 1.0333023965358734e-05,
+  "trial_wall_seconds": 3.7473947500111535,
+  "case": "case_2",
+  "repetition": 1,
+  "order_position": 2,
+  "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+  "shared_prefix_seconds": null,
+  "accounted_pipeline_seconds": null
+}

@@ -1,0 +1,50 @@
+{
+  "scenario": "retune",
+  "mode": "coordinator_without_analysis",
+  "expected_decision": "RETUNE",
+  "expected_actions": [
+    "RETUNE_CONFIGURATION",
+    "RUN_MORE_BENCHMARKS"
+  ],
+  "prompt_sha256": "fc02588c578a9062e946fc5b0de96975f07abd1293a6317c965205328d15c0b6",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "The candidate code is identical to the sequential version, indicating no actual parallelization was applied. While correctness validation passed, the performance section shows no parallel configurations were tested (best_parallel is null) and the status indicates insufficient configurations. This candidate provides no meaningful parallel benefit or path forward.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "validation.correctness_gate: PASS",
+      "performance.selection.status: INSUFFICIENT_CONFIGURATIONS",
+      "performance.selection.best_parallel: null",
+      "candidate_code == sequential_code"
+    ]
+  },
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "The candidate code is identical to the sequential version, indicating no actual parallelization was applied. While correctness validation passed, the performance section shows no parallel configurations were tested (best_parallel is null) and the status indicates insufficient configurations. This candidate provides no meaningful parallel benefit or path forward.",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "validation.correctness_gate: PASS",
+      "performance.selection.status: INSUFFICIENT_CONFIGURATIONS",
+      "performance.selection.best_parallel: null",
+      "candidate_code == sequential_code"
+    ]
+  },
+  "metadata": {
+    "model": "qwen3:14b",
+    "total_duration": 82883342791,
+    "load_duration": 6481833,
+    "prompt_eval_count": 1778,
+    "eval_count": 984,
+    "done_reason": "stop"
+  },
+  "oracle_match": false,
+  "wall_seconds": 82.91289858298842
+}

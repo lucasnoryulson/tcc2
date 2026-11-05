@@ -1,0 +1,19 @@
+{
+  "unit_tests": 91,
+  "unit_skips": 0,
+  "regression_cases": 23,
+  "static_analysis_isolation": "PASS",
+  "shell_checks": "PASS",
+  "comparison_check": "Self-comparison of real MINI smoke archive, not a Mac measurement",
+  "historical_files_unchanged": 1737,
+  "archive": "VERIFIED_ARCHIVE",
+  "writing": {
+    "tables": 13,
+    "images": 15,
+    "pdf_pages": 47,
+    "pdf_replacement_characters": 0,
+    "word_toc": "Field; update in editor",
+    "native_office_layout_checked": false
+  },
+  "git_diff_check": "PASS"
+}

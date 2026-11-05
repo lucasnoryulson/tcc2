@@ -1,0 +1,31 @@
+=================================
+TCC2 PERFORMANCE SELECTOR v0.2
+=================================
+
+Status: SELECTED
+
+Raw fastest configuration:
+  Threads:    4
+  Median:     0.004316330 s
+  Speedup:    1.673x
+  Efficiency: 0.418
+
+Near-tie candidates:
+  4 thread(s): 0.004316330 s | speedup 1.673x | efficiency 0.418 | slowdown vs fastest 0.000%
+
+Recommended configuration:
+  Threads:    4
+  Median:     0.004316330 s
+  End-to-end speedup: 1.673x
+
+Performance decomposition:
+  Transformation speedup:      1.000x
+  Parallel scaling speedup:    1.673x
+  Parallel scaling efficiency: 41.82%
+  Runtime reduction:           40.22%
+
+Decision: FASTEST_CONFIGURATION
+Reason: The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.
+
+JSON salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/selection.json
+=================================

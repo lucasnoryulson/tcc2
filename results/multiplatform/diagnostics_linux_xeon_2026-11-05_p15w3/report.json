@@ -1,0 +1,109 @@
+{
+  "diagnostics": [
+    {
+      "name": "nussinov-LARGE-sequential",
+      "command": [
+        "clang",
+        "-O3",
+        "-DLARGE_DATASET",
+        "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities",
+        "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov",
+        "-DPOLYBENCH_TIME",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c",
+        "-lm",
+        "-o",
+        "results/multiplatform/diagnostics_linux_xeon_2026-11-05_p15w3/nussinov-LARGE-sequential",
+        "-Rpass=loop-vectorize",
+        "-Rpass-missed=loop-vectorize",
+        "-Rpass-analysis=loop-vectorize"
+      ],
+      "returncode": 0,
+      "text_sha256": {
+        "measured": "6b98466d4afc76d414026ca6db6836c05bc3e4945b3b960fa5c70e480a069270",
+        "diagnostic": "6b98466d4afc76d414026ca6db6836c05bc3e4945b3b960fa5c70e480a069270"
+      },
+      "text_matches": true
+    },
+    {
+      "name": "nussinov-LARGE-manual",
+      "command": [
+        "clang",
+        "-O3",
+        "-DLARGE_DATASET",
+        "-fopenmp",
+        "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities",
+        "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov",
+        "-DPOLYBENCH_TIME",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/kernels/nussinov/manual_openmp.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c",
+        "-lm",
+        "-o",
+        "results/multiplatform/diagnostics_linux_xeon_2026-11-05_p15w3/nussinov-LARGE-manual",
+        "-Rpass=loop-vectorize",
+        "-Rpass-missed=loop-vectorize",
+        "-Rpass-analysis=loop-vectorize"
+      ],
+      "returncode": 0,
+      "text_sha256": {
+        "measured": "5426fcc0e0647d2eb4d19f3bc1ddc3b4e26ab932bc1e71bdd3a8218aac92d472",
+        "diagnostic": "2fa3f3268d410fbb2a124511bb39a224af2c1a5367166b7167b9b6a0bd6ba3f5"
+      },
+      "text_matches": false
+    },
+    {
+      "name": "nussinov-LARGE-simd_manual",
+      "command": [
+        "clang",
+        "-O3",
+        "-DLARGE_DATASET",
+        "-fopenmp",
+        "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities",
+        "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov",
+        "-DPOLYBENCH_TIME",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/kernels/nussinov/simd_openmp.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c",
+        "-lm",
+        "-o",
+        "results/multiplatform/diagnostics_linux_xeon_2026-11-05_p15w3/nussinov-LARGE-simd_manual",
+        "-Rpass=loop-vectorize",
+        "-Rpass-missed=loop-vectorize",
+        "-Rpass-analysis=loop-vectorize"
+      ],
+      "returncode": 0,
+      "text_sha256": {
+        "measured": "a76a92aae5bc91a1a7ad8c9b31bac9a4e38ef84e30fbb3845030ccc390ad2887",
+        "diagnostic": "c8392cb22022b2386581df6b347ce043131e0e9183f48228b638cdfe85343fcd"
+      },
+      "text_matches": false
+    },
+    {
+      "name": "nussinov-LARGE-simd_auto",
+      "command": [
+        "clang",
+        "-O3",
+        "-DLARGE_DATASET",
+        "-fopenmp",
+        "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities",
+        "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov",
+        "-DPOLYBENCH_TIME",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/analysis/output/generated/nussinov_simd_auto.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c",
+        "-lm",
+        "-o",
+        "results/multiplatform/diagnostics_linux_xeon_2026-11-05_p15w3/nussinov-LARGE-simd_auto",
+        "-Rpass=loop-vectorize",
+        "-Rpass-missed=loop-vectorize",
+        "-Rpass-analysis=loop-vectorize"
+      ],
+      "returncode": 0,
+      "text_sha256": {
+        "measured": "a76a92aae5bc91a1a7ad8c9b31bac9a4e38ef84e30fbb3845030ccc390ad2887",
+        "diagnostic": "20beb1ed6027b6f6d9f616bc332701c6f2ab3aa24b1be1d33a4d73df7ad4d5ea"
+      },
+      "text_matches": false
+    }
+  ],
+  "simd_measured_text_identical": true,
+  "executed_diagnostic_binaries": false
+}

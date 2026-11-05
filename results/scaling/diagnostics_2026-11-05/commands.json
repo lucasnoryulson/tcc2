@@ -1,0 +1,92 @@
+[
+  {
+    "variant": "manual",
+    "command": [
+      "clang",
+      "-O3",
+      "-DLARGE_DATASET",
+      "-fopenmp",
+      "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/sources/benchmarks/PolyBenchC-4.2.1/utilities",
+      "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov",
+      "-DPOLYBENCH_TIME",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/sources/kernels/nussinov/manual_openmp.c",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c",
+      "-lm",
+      "-o",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/diagnostics_2026-11-05/manual.bin",
+      "-Rpass=loop-vectorize",
+      "-Rpass-missed=loop-vectorize",
+      "-Rpass-analysis=loop-vectorize"
+    ],
+    "returncode": 0,
+    "text_command": [
+      "objcopy",
+      "--only-section=.text",
+      "-O",
+      "binary",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/bin/nussinov-LARGE-manual",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/diagnostics_2026-11-05/manual.text"
+    ],
+    "text_sha256": "3766d19934cd5a6e44f91bc2da9cfc0cedaa4f3e6ddee3028f0de8b61bee82a3"
+  },
+  {
+    "variant": "simd_manual",
+    "command": [
+      "clang",
+      "-O3",
+      "-DLARGE_DATASET",
+      "-fopenmp",
+      "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/sources/benchmarks/PolyBenchC-4.2.1/utilities",
+      "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov",
+      "-DPOLYBENCH_TIME",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/sources/kernels/nussinov/simd_openmp.c",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c",
+      "-lm",
+      "-o",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/diagnostics_2026-11-05/simd_manual.bin",
+      "-Rpass=loop-vectorize",
+      "-Rpass-missed=loop-vectorize",
+      "-Rpass-analysis=loop-vectorize"
+    ],
+    "returncode": 0,
+    "text_command": [
+      "objcopy",
+      "--only-section=.text",
+      "-O",
+      "binary",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/bin/nussinov-LARGE-simd_manual",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/diagnostics_2026-11-05/simd_manual.text"
+    ],
+    "text_sha256": "0fd76d20837083583f782fbe35cf71b884c6724b7d024653d6881964abe283de"
+  },
+  {
+    "variant": "simd_auto",
+    "command": [
+      "clang",
+      "-O3",
+      "-DLARGE_DATASET",
+      "-fopenmp",
+      "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/sources/benchmarks/PolyBenchC-4.2.1/utilities",
+      "-I/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/sources/benchmarks/PolyBenchC-4.2.1/medley/nussinov",
+      "-DPOLYBENCH_TIME",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/sources/analysis/output/generated/nussinov_simd_auto.c",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/sources/benchmarks/PolyBenchC-4.2.1/utilities/polybench.c",
+      "-lm",
+      "-o",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/diagnostics_2026-11-05/simd_auto.bin",
+      "-Rpass=loop-vectorize",
+      "-Rpass-missed=loop-vectorize",
+      "-Rpass-analysis=loop-vectorize"
+    ],
+    "returncode": 0,
+    "text_command": [
+      "objcopy",
+      "--only-section=.text",
+      "-O",
+      "binary",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_xeon_2026-11-05/bin/nussinov-LARGE-simd_auto",
+      "/home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/diagnostics_2026-11-05/simd_auto.text"
+    ],
+    "text_sha256": "0fd76d20837083583f782fbe35cf71b884c6724b7d024653d6881964abe283de"
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "scenario": "accept",
+  "mode": "coordinator",
+  "expected_decision": "ACCEPT",
+  "expected_actions": [
+    "PROMOTE_CANDIDATE"
+  ],
+  "prompt_sha256": "7b3d874568a22fcff11884e909d39026faf07287fc62493733102af171d7cbde",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 2,
+    "recommended_configuration": {
+      "threads": 2,
+      "median_seconds": 0.5
+    },
+    "reason": "Correctness passed, parallel strategy is successful, and measured performance shows a beneficial speedup of 2.0x with 2 threads.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "Deterministic evidence indicates parallel success",
+      "Measured performance shows a beneficial speedup"
+    ]
+  },
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 2,
+    "recommended_configuration": {
+      "threads": 2
+    },
+    "reason": "Correctness passed, parallel strategy is successful, and measured performance shows a beneficial speedup of 2.0x with 2 threads.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "Deterministic evidence indicates parallel success",
+      "Measured performance shows a beneficial speedup"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 6291272625,
+    "load_duration": 1364667,
+    "prompt_eval_count": 1860,
+    "eval_count": 125,
+    "done_reason": "stop"
+  },
+  "oracle_match": true,
+  "wall_seconds": 6.292670666996855
+}

@@ -1,0 +1,26 @@
+Sequential benchmark:
+    Run 1: 0.000000971 s
+    Run 2: 0.000001007 s
+    Run 3: 0.000000799 s
+    Run 4: 0.000000640 s
+    Run 5: 0.000000598 s
+OpenMP benchmark (1 thread(s)):
+    Run 1: 0.000001202 s
+    Run 2: 0.000001135 s
+    Run 3: 0.000000852 s
+    Run 4: 0.000000822 s
+    Run 5: 0.000000742 s
+OpenMP benchmark (2 thread(s)):
+    Run 1: 0.000005754 s
+    Run 2: 0.000005667 s
+    Run 3: 0.000005898 s
+    Run 4: 0.000005548 s
+    Run 5: 0.000005710 s
+OpenMP benchmark (4 thread(s)):
+    Run 1: 0.000007899 s
+    Run 2: 0.000008615 s
+    Run 3: 0.000008942 s
+    Run 4: 0.000009733 s
+    Run 5: 0.000010762 s
+PERFORMANCE GATE: FAIL
+CSV salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance.csv

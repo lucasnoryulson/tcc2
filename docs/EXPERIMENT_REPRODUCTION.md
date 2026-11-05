@@ -1,11 +1,17 @@
 # Item 5 — experimentos e reprodução
 
+A coleta complementar Linux de **05/11/2026** tem protocolo próprio, arquivos
+novos em `results/scaling/` e comandos para a execução equivalente no M5 em
+[ESCALABILIDADE_MULTIPLATAFORMA_2026-11-05.md](ESCALABILIDADE_MULTIPLATAFORMA_2026-11-05.md).
+Ela não sobrescreve os resultados ou a matriz histórica descritos abaixo.
+
 A consolidação disponível em [results/consolidated/REPORT.md](../results/consolidated/REPORT.md)
-reúne **19 campanhas**, seis kernels, variantes manuais/automáticas e resultados
+reúne **22 campanhas**, seis kernels, variantes manuais/automáticas e resultados
 positivos/negativos. O inventário cobre os 35 CSVs históricos disponíveis no
-checkout inicial. Não foram executados novos benchmarks para produzir essa
-consolidação: as medições vieram dos arquivos já existentes.
-Foram organizadas 161 configurações e recuperados 515 tempos individuais.
+checkout inicial e nove CSVs gerados pelas campanhas finais. Não foram executados
+novos benchmarks apenas para produzir a consolidação: as medições vieram das
+campanhas já preservadas. Foram organizadas 173 configurações e recuperados 545
+tempos individuais.
 
 ## Regerar a matriz sem Mac, Ollama ou submódulos
 
@@ -179,10 +185,10 @@ enquanto o benchmark usa `POLYBENCH_TIME`; o teste não cobre todas as entradas.
 
 ## Estado de fechamento
 
-Verificação executada nesta etapa: **75 testes unittest aprovados**, incluindo
-18 testes da consolidação e dos comandos legados alterados, mais 14 casos de
-regressão dos seletores e Coordinator. `git diff --check` passou. As 12 figuras
-(quatro conjuntos em SVG/PDF/PNG) foram geradas; PNGs de Mac, Xeon e coleta local
+Verificação final executada nesta etapa: **82 testes unittest aprovados**, incluindo
+19 testes da consolidação e dos comandos legados alterados, mais 14 casos de
+regressão dos seletores e Coordinator. `git diff --check` passou. As 15 figuras
+(cinco conjuntos em SVG/PDF/PNG) foram geradas; o novo PNG do Mac verificável
 foram inspecionados visualmente. Os hashes dos 35 CSVs originais permaneceram
 iguais antes/depois da geração.
 
@@ -196,6 +202,8 @@ python3 -B scripts/test_coordinator_v02_regression.py
 ```
 
 A organização, o recálculo das métricas, os gráficos e os comandos estão prontos
-para os dados disponíveis. O item 5 ainda exige resolver ou declarar na monografia
-as lacunas históricas e conservar a campanha final no hardware alvo. Não alterar
-timestamps, caminhos históricos ou nomes de hardware para simular essa conclusão.
+para os dados disponíveis. As lacunas das 17 campanhas históricas foram declaradas,
+as duas coletas Linux sem seus contextos originais foram reclassificadas como
+`ARCHIVED_SUMMARY_ONLY` e três campanhas finais do Mac foram verificadas pelos
+gates atuais. Isso conclui o item 5 dentro do acervo disponível, sem transformar
+resultados históricos em evidência vinculada.

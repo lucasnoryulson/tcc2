@@ -138,4 +138,6 @@ Teste da infraestrutura: `python3 -B scripts/test_coordinator_evaluation.py`.
 Respostas simuladas nesses testes não constituem resultados científicos da LLM.
 
 A execução local e seus limites estão em
-[COORDINATOR_EVALUATION_LOCAL.md](COORDINATOR_EVALUATION_LOCAL.md).
+[COORDINATOR_EVALUATION_LOCAL.md](COORDINATOR_EVALUATION_LOCAL.md). A campanha
+final no Mac e sua discussão estão em
+[COORDINATOR_EVALUATION_MAC.md](COORDINATOR_EVALUATION_MAC.md).

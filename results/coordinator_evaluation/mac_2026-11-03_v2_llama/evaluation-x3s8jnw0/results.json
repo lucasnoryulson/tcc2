@@ -1,0 +1,1192 @@
+{
+  "schema": "tcc2-coordinator-evaluation",
+  "version": "0.1",
+  "status": "INCOMPLETE",
+  "created_at": "2026-11-03T22:38:48.773506+00:00",
+  "settings": {
+    "model": "llama3.1:8b",
+    "timeout_seconds": 600,
+    "seed": 2026,
+    "repetitions": 3,
+    "baseline_only": false,
+    "temperature": 0,
+    "order": "seeded_shuffle_per_case_and_repetition"
+  },
+  "implementation": [
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/scripts/evaluate_coordinator.py",
+      "sha256": "8503eadd39a5b59582ab32f057c6263f0ccc9a53e1ac0ede973d3252ad789cc2"
+    },
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/agents/coordinator_agent.py",
+      "sha256": "6519a2e72fb48b0c33e9feac0c5b383113ccbdc20e0a329e1c24d3fe673e2326"
+    },
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/artifact_provenance.py",
+      "sha256": "0f79e8d6a4debe8bd00392e5ed86288c2bc9081559c9663bac4b9bdb50c4b565"
+    },
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/performance_selector.py",
+      "sha256": "e3a68cd114d0e67b522d3a7ae51538de66e0963e00e8a643abf4554942723061"
+    },
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/scripts/run_pipeline.py",
+      "sha256": "5bd7c742c09432410c17347b48971591e8104a054b82fb52b7d2399a8f17bbed"
+    }
+  ],
+  "cases": [
+    {
+      "case": "case_1",
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/context.json",
+        "sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa"
+      },
+      "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+      "campaign_id": "df8d662d2f4e416f932a6779797ea70a",
+      "shared_prefix_seconds": null,
+      "evidence": {
+        "correctness": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness.json",
+          "sha256": "60631c879d68a2cb0245e029cfbdba0d2a07d0a212924ff5c5a62e51716d6b59"
+        },
+        "performance": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.json",
+          "sha256": "505eae4da3410008d6ed6de85c06b787aa29f470d82ee3a0e30d744d9c51a0e7"
+        },
+        "selection": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/selection.json",
+          "sha256": "cfea44f760665da07addf8eeef1f40b92b7b715dc0cb93f113304a59db556cde"
+        }
+      },
+      "measurements": [
+        {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 0.00722003,
+          "mean_seconds": 0.006794366,
+          "speedup": 1.0,
+          "efficiency": 1.0
+        },
+        {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 0.00721977,
+          "mean_seconds": 0.006982898,
+          "speedup": 1.0000360122275362,
+          "efficiency": 1.0000360122275362
+        },
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 0.00561337,
+          "mean_seconds": 0.005439006,
+          "speedup": 1.2862202206517652,
+          "efficiency": 0.6431101103258826
+        },
+        {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00431633,
+          "mean_seconds": 0.004195492,
+          "speedup": 1.6727242819710262,
+          "efficiency": 0.41818107049275655
+        }
+      ]
+    },
+    {
+      "case": "case_2",
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/context.json",
+        "sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a"
+      },
+      "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+      "campaign_id": "46698a16dd704a75bc70aace9c6d5578",
+      "shared_prefix_seconds": null,
+      "evidence": {
+        "correctness": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/correctness.json",
+          "sha256": "7b90fa8688843250fd7f260b2fa25dd36177b303b32a36524c2ddb964dd11cec"
+        },
+        "performance": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance.json",
+          "sha256": "20473767149b82f728d7931196cf0e553509dd0f60fb03a1a78d416fce2045d0"
+        },
+        "selection": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/selection.json",
+          "sha256": "959fc1d84364c15d62953940b29e086f80aee2f5568aceab33bbaf45027ce3d9"
+        }
+      },
+      "measurements": [
+        {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 7.993e-07,
+          "mean_seconds": 8.0286e-07,
+          "speedup": 1.0,
+          "efficiency": 1.0
+        },
+        {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 8.518e-07,
+          "mean_seconds": 9.505799999999999e-07,
+          "speedup": 0.9383658135712608,
+          "efficiency": 0.9383658135712608
+        },
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 5.7097e-06,
+          "mean_seconds": 5.71514e-06,
+          "speedup": 0.1399898418480831,
+          "efficiency": 0.06999492092404155
+        },
+        {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 8.9416e-06,
+          "mean_seconds": 9.19e-06,
+          "speedup": 0.08939116041871702,
+          "efficiency": 0.022347790104679254
+        }
+      ]
+    }
+  ],
+  "trials": [
+    {
+      "mode": "coordinator_without_analysis",
+      "status": "INVALID",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 7477383333,
+        "load_duration": 2846703458,
+        "prompt_eval_count": 2050,
+        "eval_count": 18,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4
+      },
+      "validation_errors": [
+        "invalid next_action",
+        "invalid risk",
+        "ACCEPT cannot use None"
+      ],
+      "monetary_cost": null,
+      "prompt_sha256": "e12fdf4c222747f32d1ddd06618ff18f2b643947c318155dca75e1198bd33dbb",
+      "ablation_effective": true,
+      "call_wall_seconds": 7.511591290996876,
+      "decision_wall_seconds": 7.51190741697792,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        }
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": true,
+      "policy_agreement": false,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 0.00722003,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 8.995900861918926e-05,
+      "trial_wall_seconds": 7.511999209003989,
+      "case": "case_1",
+      "repetition": 1,
+      "order_position": 0,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator",
+      "status": "INVALID",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 813492041,
+        "load_duration": 3646166,
+        "prompt_eval_count": 2050,
+        "eval_count": 18,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4
+      },
+      "validation_errors": [
+        "invalid next_action",
+        "invalid risk",
+        "ACCEPT cannot use None"
+      ],
+      "monetary_cost": null,
+      "prompt_sha256": "94f396d60a850cf3b00726588c6ea9893d813f887155b5c4f5c8e8dfefee3033",
+      "ablation_effective": null,
+      "call_wall_seconds": 0.8156598750501871,
+      "decision_wall_seconds": 0.8181855410221033,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        }
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": true,
+      "policy_agreement": false,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 0.00722003,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 5.0332979299128056e-05,
+      "trial_wall_seconds": 0.8182369580026716,
+      "case": "case_1",
+      "repetition": 1,
+      "order_position": 1,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 2.483394928276539e-05,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00431633,
+      "speedup_vs_sequential": 1.6727242819710262,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "validation_wall_seconds": 3.4958007745444775e-05,
+      "trial_wall_seconds": 6.17919722571969e-05,
+      "case": "case_1",
+      "repetition": 1,
+      "order_position": 2,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator",
+      "status": "INVALID",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 814934250,
+        "load_duration": 856333,
+        "prompt_eval_count": 2050,
+        "eval_count": 18,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4
+      },
+      "validation_errors": [
+        "invalid next_action",
+        "invalid risk",
+        "ACCEPT cannot use None"
+      ],
+      "monetary_cost": null,
+      "prompt_sha256": "94f396d60a850cf3b00726588c6ea9893d813f887155b5c4f5c8e8dfefee3033",
+      "ablation_effective": null,
+      "call_wall_seconds": 0.8164218330057338,
+      "decision_wall_seconds": 0.8175612919731066,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        }
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": true,
+      "policy_agreement": false,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 0.00722003,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 2.2209016606211662e-05,
+      "trial_wall_seconds": 0.8175840839976445,
+      "case": "case_1",
+      "repetition": 2,
+      "order_position": 0,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 2.1707965061068535e-05,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00431633,
+      "speedup_vs_sequential": 1.6727242819710262,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "validation_wall_seconds": 4.0207989513874054e-05,
+      "trial_wall_seconds": 6.320799002423882e-05,
+      "case": "case_1",
+      "repetition": 2,
+      "order_position": 1,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator_without_analysis",
+      "status": "INVALID",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 798100667,
+        "load_duration": 1155167,
+        "prompt_eval_count": 2050,
+        "eval_count": 18,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4
+      },
+      "validation_errors": [
+        "invalid next_action",
+        "invalid risk",
+        "ACCEPT cannot use None"
+      ],
+      "monetary_cost": null,
+      "prompt_sha256": "e12fdf4c222747f32d1ddd06618ff18f2b643947c318155dca75e1198bd33dbb",
+      "ablation_effective": true,
+      "call_wall_seconds": 0.7996513329562731,
+      "decision_wall_seconds": 0.8008582910406403,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        }
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": true,
+      "policy_agreement": false,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 0.00722003,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 2.575002145022154e-05,
+      "trial_wall_seconds": 0.8008847080054693,
+      "case": "case_1",
+      "repetition": 2,
+      "order_position": 2,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator_without_analysis",
+      "status": "INVALID",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 792542750,
+        "load_duration": 769292,
+        "prompt_eval_count": 2050,
+        "eval_count": 18,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4
+      },
+      "validation_errors": [
+        "invalid next_action",
+        "invalid risk",
+        "ACCEPT cannot use None"
+      ],
+      "monetary_cost": null,
+      "prompt_sha256": "e12fdf4c222747f32d1ddd06618ff18f2b643947c318155dca75e1198bd33dbb",
+      "ablation_effective": true,
+      "call_wall_seconds": 0.7942772079841234,
+      "decision_wall_seconds": 0.7952120419940911,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        }
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": true,
+      "policy_agreement": false,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 0.00722003,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 4.220899427309632e-05,
+      "trial_wall_seconds": 0.7952549580368213,
+      "case": "case_1",
+      "repetition": 3,
+      "order_position": 0,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator",
+      "status": "INVALID",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 792981208,
+        "load_duration": 718000,
+        "prompt_eval_count": 2050,
+        "eval_count": 18,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4
+      },
+      "validation_errors": [
+        "invalid next_action",
+        "invalid risk",
+        "ACCEPT cannot use None"
+      ],
+      "monetary_cost": null,
+      "prompt_sha256": "94f396d60a850cf3b00726588c6ea9893d813f887155b5c4f5c8e8dfefee3033",
+      "ablation_effective": null,
+      "call_wall_seconds": 0.7950813339557499,
+      "decision_wall_seconds": 0.796193125017453,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        }
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": true,
+      "policy_agreement": false,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 0.00722003,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 4.6874978579580784e-05,
+      "trial_wall_seconds": 0.7962408339953981,
+      "case": "case_1",
+      "repetition": 3,
+      "order_position": 1,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 1.454097218811512e-05,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00431633,
+      "speedup_vs_sequential": 1.6727242819710262,
+      "parallel_scaling_speedup": 1.672664045612824,
+      "validation_wall_seconds": 2.600002335384488e-05,
+      "trial_wall_seconds": 4.133296897634864e-05,
+      "case": "case_1",
+      "repetition": 3,
+      "order_position": 2,
+      "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 8.04202863946557e-06,
+      "decision": {
+        "decision": "REJECT",
+        "next_action": "REJECT_CANDIDATE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "risk": "LOW"
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 1.1665979400277138e-05,
+      "trial_wall_seconds": 2.0332983694970608e-05,
+      "case": "case_2",
+      "repetition": 1,
+      "order_position": 0,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator",
+      "status": "INVALID",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4931316292,
+        "load_duration": 779708,
+        "prompt_eval_count": 2050,
+        "eval_count": 25,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null
+      },
+      "validation_errors": [
+        "invalid next_action",
+        "invalid risk",
+        "REJECT cannot use None"
+      ],
+      "monetary_cost": null,
+      "prompt_sha256": "4b997b412e3de83243bb343ba9c04fdfec22504bfe886a2c8e29dc485be4a545",
+      "ablation_effective": null,
+      "call_wall_seconds": 4.932361916988157,
+      "decision_wall_seconds": 4.933048792008776,
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": false,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 6.374961230903864e-06,
+      "trial_wall_seconds": 4.933055542001966,
+      "case": "case_2",
+      "repetition": 1,
+      "order_position": 1,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator_without_analysis",
+      "status": "INVALID",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 1131261709,
+        "load_duration": 988625,
+        "prompt_eval_count": 2050,
+        "eval_count": 25,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null
+      },
+      "validation_errors": [
+        "invalid next_action",
+        "invalid risk",
+        "REJECT cannot use None"
+      ],
+      "monetary_cost": null,
+      "prompt_sha256": "e03ff4b727932e53a9cd78b0e92565b20ec73224fa538f33e49858fecccf0f2b",
+      "ablation_effective": true,
+      "call_wall_seconds": 1.1327384589822032,
+      "decision_wall_seconds": 1.1333232909673825,
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": false,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 2.500001573935151e-05,
+      "trial_wall_seconds": 1.1333489999524318,
+      "case": "case_2",
+      "repetition": 1,
+      "order_position": 2,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 5.999987479299307e-06,
+      "decision": {
+        "decision": "REJECT",
+        "next_action": "REJECT_CANDIDATE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "risk": "LOW"
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 8.62503657117486e-06,
+      "trial_wall_seconds": 1.4999997802078724e-05,
+      "case": "case_2",
+      "repetition": 2,
+      "order_position": 0,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator",
+      "status": "INVALID",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 1111590291,
+        "load_duration": 946708,
+        "prompt_eval_count": 2050,
+        "eval_count": 25,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null
+      },
+      "validation_errors": [
+        "invalid next_action",
+        "invalid risk",
+        "REJECT cannot use None"
+      ],
+      "monetary_cost": null,
+      "prompt_sha256": "4b997b412e3de83243bb343ba9c04fdfec22504bfe886a2c8e29dc485be4a545",
+      "ablation_effective": null,
+      "call_wall_seconds": 1.1130622919881716,
+      "decision_wall_seconds": 1.1138358330354095,
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": false,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 2.4165958166122437e-05,
+      "trial_wall_seconds": 1.1138608329929411,
+      "case": "case_2",
+      "repetition": 2,
+      "order_position": 1,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator_without_analysis",
+      "status": "INVALID",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 1093706625,
+        "load_duration": 711125,
+        "prompt_eval_count": 2050,
+        "eval_count": 25,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null
+      },
+      "validation_errors": [
+        "invalid next_action",
+        "invalid risk",
+        "REJECT cannot use None"
+      ],
+      "monetary_cost": null,
+      "prompt_sha256": "e03ff4b727932e53a9cd78b0e92565b20ec73224fa538f33e49858fecccf0f2b",
+      "ablation_effective": true,
+      "call_wall_seconds": 1.0952621250180528,
+      "decision_wall_seconds": 1.0960273750242777,
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": false,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 1.637497916817665e-05,
+      "trial_wall_seconds": 1.096044416015502,
+      "case": "case_2",
+      "repetition": 2,
+      "order_position": 2,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator",
+      "status": "INVALID",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 1096764708,
+        "load_duration": 757208,
+        "prompt_eval_count": 2050,
+        "eval_count": 25,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null
+      },
+      "validation_errors": [
+        "invalid next_action",
+        "invalid risk",
+        "REJECT cannot use None"
+      ],
+      "monetary_cost": null,
+      "prompt_sha256": "4b997b412e3de83243bb343ba9c04fdfec22504bfe886a2c8e29dc485be4a545",
+      "ablation_effective": null,
+      "call_wall_seconds": 1.0982937919907272,
+      "decision_wall_seconds": 1.0991459169890732,
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": false,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 1.083302777260542e-05,
+      "trial_wall_seconds": 1.0991571670165285,
+      "case": "case_2",
+      "repetition": 3,
+      "order_position": 0,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "coordinator_without_analysis",
+      "status": "INVALID",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 1103432208,
+        "load_duration": 694291,
+        "prompt_eval_count": 2050,
+        "eval_count": 25,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null
+      },
+      "validation_errors": [
+        "invalid next_action",
+        "invalid risk",
+        "REJECT cannot use None"
+      ],
+      "monetary_cost": null,
+      "prompt_sha256": "e03ff4b727932e53a9cd78b0e92565b20ec73224fa538f33e49858fecccf0f2b",
+      "ablation_effective": true,
+      "call_wall_seconds": 1.104791582969483,
+      "decision_wall_seconds": 1.105765916989185,
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": false,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 2.141698496416211e-05,
+      "trial_wall_seconds": 1.1057878750143573,
+      "case": "case_2",
+      "repetition": 3,
+      "order_position": 1,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": false,
+      "policy_reason": "Selection does not establish a successful parallel candidate.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 1.0333023965358734e-05,
+      "decision": {
+        "decision": "REJECT",
+        "next_action": "REJECT_CANDIDATE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "risk": "LOW"
+      },
+      "effective_accept": false,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": null,
+      "final_mode": "sequential_fallback",
+      "selected_configuration": null,
+      "measured_final_seconds": 7.993e-07,
+      "speedup_vs_sequential": 1.0,
+      "parallel_scaling_speedup": null,
+      "validation_wall_seconds": 1.712498487904668e-05,
+      "trial_wall_seconds": 2.8665992431342602e-05,
+      "case": "case_2",
+      "repetition": 3,
+      "order_position": 2,
+      "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+      "shared_prefix_seconds": null,
+      "accounted_pipeline_seconds": null
+    }
+  ],
+  "groups": [
+    {
+      "case": "case_1",
+      "mode": "coordinator",
+      "trials": 3,
+      "valid_responses": 0,
+      "failures": 3,
+      "timeouts": 0,
+      "policy_agreement_rate": 0.0,
+      "effective_accept_rate": 0.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 3,
+      "llm_calls": 3,
+      "observed_prompt_tokens": 6150,
+      "observed_generated_tokens": 54,
+      "median_decision_seconds": 0.8175612919731066,
+      "min_decision_seconds": 0.796193125017453,
+      "max_decision_seconds": 0.8181855410221033,
+      "median_accounted_pipeline_seconds": null,
+      "median_speedup_vs_sequential": 1.0
+    },
+    {
+      "case": "case_1",
+      "mode": "coordinator_without_analysis",
+      "trials": 3,
+      "valid_responses": 0,
+      "failures": 3,
+      "timeouts": 0,
+      "policy_agreement_rate": 0.0,
+      "effective_accept_rate": 0.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 3,
+      "llm_calls": 3,
+      "observed_prompt_tokens": 6150,
+      "observed_generated_tokens": 54,
+      "median_decision_seconds": 0.8008582910406403,
+      "min_decision_seconds": 0.7952120419940911,
+      "max_decision_seconds": 7.51190741697792,
+      "median_accounted_pipeline_seconds": null,
+      "median_speedup_vs_sequential": 1.0
+    },
+    {
+      "case": "case_1",
+      "mode": "deterministic",
+      "trials": 3,
+      "valid_responses": 3,
+      "failures": 0,
+      "timeouts": 0,
+      "policy_agreement_rate": 1.0,
+      "effective_accept_rate": 1.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 0,
+      "llm_calls": 0,
+      "observed_prompt_tokens": null,
+      "observed_generated_tokens": null,
+      "median_decision_seconds": 2.1707965061068535e-05,
+      "min_decision_seconds": 1.454097218811512e-05,
+      "max_decision_seconds": 2.483394928276539e-05,
+      "median_accounted_pipeline_seconds": null,
+      "median_speedup_vs_sequential": 1.6727242819710262
+    },
+    {
+      "case": "case_2",
+      "mode": "coordinator",
+      "trials": 3,
+      "valid_responses": 0,
+      "failures": 3,
+      "timeouts": 0,
+      "policy_agreement_rate": 0.0,
+      "effective_accept_rate": 0.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 0,
+      "llm_calls": 3,
+      "observed_prompt_tokens": 6150,
+      "observed_generated_tokens": 75,
+      "median_decision_seconds": 1.1138358330354095,
+      "min_decision_seconds": 1.0991459169890732,
+      "max_decision_seconds": 4.933048792008776,
+      "median_accounted_pipeline_seconds": null,
+      "median_speedup_vs_sequential": 1.0
+    },
+    {
+      "case": "case_2",
+      "mode": "coordinator_without_analysis",
+      "trials": 3,
+      "valid_responses": 0,
+      "failures": 3,
+      "timeouts": 0,
+      "policy_agreement_rate": 0.0,
+      "effective_accept_rate": 0.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 0,
+      "llm_calls": 3,
+      "observed_prompt_tokens": 6150,
+      "observed_generated_tokens": 75,
+      "median_decision_seconds": 1.105765916989185,
+      "min_decision_seconds": 1.0960273750242777,
+      "max_decision_seconds": 1.1333232909673825,
+      "median_accounted_pipeline_seconds": null,
+      "median_speedup_vs_sequential": 1.0
+    },
+    {
+      "case": "case_2",
+      "mode": "deterministic",
+      "trials": 3,
+      "valid_responses": 3,
+      "failures": 0,
+      "timeouts": 0,
+      "policy_agreement_rate": 1.0,
+      "effective_accept_rate": 0.0,
+      "nonadmissible_accept_proposals": 0,
+      "missed_eligible_opportunities": 0,
+      "llm_calls": 0,
+      "observed_prompt_tokens": null,
+      "observed_generated_tokens": null,
+      "median_decision_seconds": 8.04202863946557e-06,
+      "min_decision_seconds": 5.999987479299307e-06,
+      "max_decision_seconds": 1.0333023965358734e-05,
+      "median_accounted_pipeline_seconds": null,
+      "median_speedup_vs_sequential": 1.0
+    }
+  ],
+  "experiment_wall_seconds": 22.092593375011347
+}

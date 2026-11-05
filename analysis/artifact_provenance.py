@@ -32,12 +32,18 @@ def file_record(path):
     return {"path": str(path), "sha256": sha256(path.read_bytes())}
 
 
+class MissingArtifactError(ValueError):
+    """A well-identified local artifact is unavailable on this machine."""
+
+
 def verify_file(record):
     if not isinstance(record, dict) or not isinstance(record.get("path"), str):
         raise ValueError("Missing artifact identity.")
     path = Path(record["path"])
-    if not path.is_absolute() or not path.is_file():
+    if not path.is_absolute():
         raise ValueError(f"Missing artifact: {path}")
+    if not path.is_file():
+        raise MissingArtifactError(f"Missing artifact: {path}")
     data = path.read_bytes()
     if sha256(data) != record.get("sha256"):
         raise ValueError(f"SHA-256 mismatch: {path}")

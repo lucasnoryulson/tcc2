@@ -1,0 +1,9 @@
+=================================
+TCC2 PERFORMANCE SELECTOR v0.2
+=================================
+
+Status: NO_BENEFICIAL_CONFIGURATION
+Reason: No OpenMP configuration improved over the sequential baseline.
+
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_small_2026-11-05/run-lnue_q14/selection.json
+=================================

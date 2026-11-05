@@ -16,12 +16,14 @@ sys.path.insert(0, str(ROOT))
 from agents import coordinator_agent
 from scripts import run_pipeline as pipeline
 from scripts import test_gate_contracts as fixtures
+from scripts.test_toolchain import find_openmp_compiler
 
 
 class PipelineIntegration(unittest.TestCase):
     def setUp(self):
-        if shutil.which("gcc") is None or shutil.which("clang") is None:
-            self.skipTest("Clang and GCC/OpenMP are required for pipeline integration.")
+        compiler = find_openmp_compiler()
+        if compiler is None or shutil.which("clang") is None:
+            self.skipTest("Clang and an OpenMP compiler are required for pipeline integration.")
         self.fixture = fixtures.GateContracts()
         self.fixture.setUp()
         self.addCleanup(self.fixture.doCleanups)
@@ -36,7 +38,7 @@ class PipelineIntegration(unittest.TestCase):
         self.args = argparse.Namespace(
             source=self.fixture.source, driver=self.fixture.driver,
             benchmark_driver=self.fixture.benchmark_driver,
-            compiler="gcc", threads=[1, 2], model="test-stub", timeout=30,
+            compiler=compiler, threads=[1, 2], model="test-stub", timeout=30,
             work_dir=self.work / "runs", output_dir=self.work / "promoted",
         )
 

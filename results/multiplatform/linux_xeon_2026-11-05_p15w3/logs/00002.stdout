@@ -1,0 +1,22 @@
+ M analysis/artifact_provenance.py
+ M docs/EXPERIMENT_REPRODUCTION.md
+ M docs/STATUS_TCC.md
+ M docs/experiment_catalog.json
+ M docs/monografia/BASE_MONOGRAFIA.md
+ M docs/monografia/referencias.bib
+ M scripts/build_academic_material.py
+ M scripts/consolidate_experiments.py
+ M scripts/test_experiment_consolidation.py
+ M scripts/test_static_analysis_variant_isolation.py
+?? docs/ESCALABILIDADE_MULTIPLATAFORMA_2026-11-05.md
+?? docs/experiments/
+?? docs/monografia/MONOGRAFIA_ESCALABILIDADE_2026-11-05.docx
+?? docs/revisao_experimentos_2026-11-05/
+?? results/multiplatform/
+?? results/scaling/
+?? scripts/analyze_scaling.py
+?? scripts/benchmark_multiplatform.py
+?? scripts/benchmark_scaling.py
+?? scripts/run_multiplatform_linux.sh
+?? scripts/run_multiplatform_mac.sh
+?? scripts/test_benchmark_scaling.py

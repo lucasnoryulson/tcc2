@@ -1,0 +1,42 @@
+{
+  "status": "NO_BENEFICIAL_CONFIGURATION",
+  "decision": "NO_BENEFIT",
+  "parallel_status": "NO_BENEFIT",
+  "sequential": {
+    "mode": "sequential",
+    "threads": 1,
+    "median_seconds": 7.993e-07,
+    "mean_seconds": 8.0286e-07,
+    "speedup": 1.0,
+    "efficiency": 1.0
+  },
+  "one_thread": {
+    "mode": "openmp",
+    "threads": 1,
+    "median_seconds": 8.518e-07,
+    "mean_seconds": 9.505799999999999e-07,
+    "speedup": 0.9383658135712608,
+    "efficiency": 0.9383658135712608
+  },
+  "best_parallel": {
+    "mode": "openmp",
+    "threads": 2,
+    "median_seconds": 5.7097e-06,
+    "mean_seconds": 5.71514e-06,
+    "speedup": 0.1399898418480831,
+    "efficiency": 0.06999492092404155
+  },
+  "transformation_benefit": false,
+  "parallel_benefit": false,
+  "recommended": null,
+  "next_action": "MODIFY_OR_REJECT_CANDIDATE",
+  "reason": "No OpenMP configuration improved over the sequential baseline.",
+  "evidence": {
+    "performance_report": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_small/run-qfrnpe7u/performance.json",
+      "sha256": "20473767149b82f728d7931196cf0e553509dd0f60fb03a1a78d416fce2045d0"
+    },
+    "campaign_id": "46698a16dd704a75bc70aace9c6d5578",
+    "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b"
+  }
+}

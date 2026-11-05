@@ -16,6 +16,7 @@ sys.path.insert(0, str(ROOT))
 from scripts import consolidate_experiments as consolidation
 from scripts import test_gate_contracts as fixtures
 from scripts import benchmark, autotune_wavefront
+from scripts.test_toolchain import find_openmp_compiler
 
 
 class ExperimentConsolidation(unittest.TestCase):
@@ -122,8 +123,8 @@ class ExperimentConsolidation(unittest.TestCase):
         self.assertIsNone(provenance)
 
     def test_tampered_local_evidence_aborts_instead_of_becoming_historical(self):
-        if shutil.which("gcc") is None:
-            self.skipTest("GCC identity required for fixture.")
+        if find_openmp_compiler() is None:
+            self.skipTest("An OpenMP compiler is required for the fixture.")
         fixture = fixtures.GateContracts()
         fixture.setUp()
         self.addCleanup(fixture.doCleanups)
@@ -137,6 +138,23 @@ class ExperimentConsolidation(unittest.TestCase):
         with self.assertRaises(ValueError):
             consolidation.load_campaign({"source": "summary.json", "format": "evaluation_case", "case": "dot"}, self.work)
 
+    def test_direct_context_evidence_is_verified_and_keeps_samples(self):
+        if find_openmp_compiler() is None:
+            self.skipTest("An OpenMP compiler is required for the fixture.")
+        fixture = fixtures.GateContracts()
+        fixture.setUp()
+        self.addCleanup(fixture.doCleanups)
+        fixture.bind_performance()
+        context = fixture.work / "context.json"
+        context.write_text(json.dumps(fixture.build_context()))
+        rows, _, _, status, provenance = consolidation.load_campaign(
+            {"source": str(context.relative_to(context.anchor)), "format": "context_evidence"},
+            Path(context.anchor),
+        )
+        self.assertEqual(status, "VERIFIED_LOCAL_GATES")
+        self.assertIsNotNone(provenance)
+        self.assertTrue(all(row["sample_count"] for row in rows))
+
     def test_output_cannot_overwrite_source_or_follow_output_symlink(self):
         source = self.work / "source.csv"
         source.write_text("preserve me")
@@ -149,15 +167,37 @@ class ExperimentConsolidation(unittest.TestCase):
 
     def test_repository_catalog_has_expected_coverage_and_keeps_sources_unchanged(self):
         catalog = json.loads((ROOT / "docs/experiment_catalog.json").read_text())
-        paths = {ROOT / case["source"] for case in catalog["campaigns"]}
+        paths = {ROOT / case[field] for case in catalog["campaigns"] for field in ("source", "archived_summary")
+                 if case.get(field) and (ROOT / case[field]).is_file()}
         before = {path: path.read_bytes() for path in paths}
         campaigns = consolidation.consolidate(catalog, ROOT)
-        self.assertEqual(len(campaigns), 19)
+        self.assertEqual(len(campaigns), 22)
         self.assertTrue({"gemm", "dot", "jacobi-2d", "covariance", "nussinov", "wavefront"}.issubset({case["kernel"] for case in campaigns}))
-        self.assertTrue(all(case["evidence_status"] == "HISTORICAL_UNBOUND" for case in campaigns if case["format"] != "evaluation_case"))
+        self.assertTrue(all(case["evidence_status"] == "HISTORICAL_UNBOUND" for case in campaigns
+                            if case["format"] not in ("evaluation_case", "context_evidence")))
         nussinov = next(case for case in campaigns if case["id"] == "nussinov_auto_0911")
         self.assertAlmostEqual(nussinov["selected"]["parallel_scaling_efficiency"], 0.7513, places=4)
         self.assertEqual({path: path.read_bytes() for path in paths}, before)
+
+    def test_explicit_archived_context_is_not_relabelled_as_verified(self):
+        from analysis.artifact_provenance import sha256
+        archived = self.work / 'archived.json'
+        archived.write_text(json.dumps({'campaigns': [{'id': 'fixture', 'measurements': self.rows()}]}))
+        spec = dict(id='fixture', source='missing.json', format='context_evidence',
+                    archived_summary='archived.json', archived_summary_sha256=sha256(archived.read_bytes()))
+        rows, _, _, status, provenance = consolidation.load_campaign(spec, self.work)
+        self.assertEqual(status, 'ARCHIVED_SUMMARY_ONLY')
+        self.assertIsNone(provenance)
+        self.assertEqual(rows[0]['median_seconds'], 12)
+        archived.write_text(archived.read_text() + ' ')
+        with self.assertRaisesRegex(ValueError, 'hash mismatch'):
+            consolidation.load_campaign(spec, self.work)
+
+    def test_invalid_present_context_does_not_fall_back_to_archived_summary(self):
+        (self.work / 'context.json').write_text('{}')
+        spec = dict(id='fixture', source='context.json', format='context_evidence', archived_summary='absent.json')
+        with self.assertRaises(ValueError):
+            consolidation.load_campaign(spec, self.work)
 
     def test_harness_rejects_incompatible_historical_header_before_compiling(self):
         result = self.work / "results/gemm/experiment_results.csv"
@@ -206,8 +246,8 @@ class ExperimentConsolidation(unittest.TestCase):
                                  "--no-plots", "--output-dir", str(output)], capture_output=True, text=True, timeout=30)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         report = json.loads((output / "report.json").read_text())
-        self.assertEqual(len(report["campaigns"]), 19)
-        self.assertEqual(len(consolidation.csv_rows(output / "matrix.csv")), 19)
+        self.assertEqual(len(report["campaigns"]), 22)
+        self.assertEqual(len(consolidation.csv_rows(output / "matrix.csv")), 22)
         self.assertGreater(len(consolidation.csv_rows(output / "samples.csv")), 100)
         self.assertFalse(report["plots"]["files"])
         self.assertTrue((output / "REPORT.md").is_file())

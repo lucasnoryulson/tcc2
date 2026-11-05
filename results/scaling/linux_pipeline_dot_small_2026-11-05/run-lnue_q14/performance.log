@@ -1,0 +1,32 @@
+Sequential benchmark:
+    Run 1: 0.000000934 s
+    Run 2: 0.000000888 s
+    Run 3: 0.000000904 s
+    Run 4: 0.000000890 s
+    Run 5: 0.000000890 s
+OpenMP benchmark (1 thread(s)):
+    Run 1: 0.000001816 s
+    Run 2: 0.000001850 s
+    Run 3: 0.000002051 s
+    Run 4: 0.000001736 s
+    Run 5: 0.000001860 s
+OpenMP benchmark (2 thread(s)):
+    Run 1: 0.000002283 s
+    Run 2: 0.000001946 s
+    Run 3: 0.000002060 s
+    Run 4: 0.000001999 s
+    Run 5: 0.000002009 s
+OpenMP benchmark (3 thread(s)):
+    Run 1: 0.000002163 s
+    Run 2: 0.000002033 s
+    Run 3: 0.000002061 s
+    Run 4: 0.000001932 s
+    Run 5: 0.000001910 s
+OpenMP benchmark (4 thread(s)):
+    Run 1: 0.000004141 s
+    Run 2: 0.000004172 s
+    Run 3: 0.000004239 s
+    Run 4: 0.000003608 s
+    Run 5: 0.000004186 s
+PERFORMANCE GATE: FAIL
+CSV salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/scaling/linux_pipeline_dot_small_2026-11-05/run-lnue_q14/performance.csv

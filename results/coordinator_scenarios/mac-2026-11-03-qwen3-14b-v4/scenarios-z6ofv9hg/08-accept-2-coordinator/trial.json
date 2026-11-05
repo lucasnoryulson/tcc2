@@ -1,0 +1,49 @@
+{
+  "scenario": "accept",
+  "mode": "coordinator",
+  "expected_decision": "ACCEPT",
+  "expected_actions": [
+    "PROMOTE_CANDIDATE"
+  ],
+  "prompt_sha256": "f557c3fafae8e8fa5a3ec28c53bade2e0a67323d4db377f2dfdbcd490c62e51a",
+  "status": "INVALID",
+  "validation_errors": [
+    "REJECT cannot use RETUNE_CONFIGURATION"
+  ],
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "The candidate code is identical to the sequential version, indicating no actual parallelization was implemented. Despite the deterministic evidence suggesting a speedup, the absence of OpenMP directives in the candidate code renders the parallelization invalid. Correctness validation passed, but the transformation failed to introduce parallelism, making the candidate incorrect as a parallelization attempt.",
+    "next_action": "RETUNE_CONFIGURATION",
+    "risk": "HIGH",
+    "evidence_used": [
+      "candidate_code_matches_sequential_version",
+      "deterministic_evidence_speedup_discrepancy",
+      "absence_of_openmp_directives"
+    ]
+  },
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "The candidate code is identical to the sequential version, indicating no actual parallelization was implemented. Despite the deterministic evidence suggesting a speedup, the absence of OpenMP directives in the candidate code renders the parallelization invalid. Correctness validation passed, but the transformation failed to introduce parallelism, making the candidate incorrect as a parallelization attempt.",
+    "next_action": "RETUNE_CONFIGURATION",
+    "risk": "HIGH",
+    "evidence_used": [
+      "candidate_code_matches_sequential_version",
+      "deterministic_evidence_speedup_discrepancy",
+      "absence_of_openmp_directives"
+    ]
+  },
+  "metadata": {
+    "model": "qwen3:14b",
+    "total_duration": 195726621084,
+    "load_duration": 12340750,
+    "prompt_eval_count": 1887,
+    "eval_count": 2335,
+    "done_reason": "stop"
+  },
+  "oracle_match": false,
+  "wall_seconds": 195.76588466600515
+}

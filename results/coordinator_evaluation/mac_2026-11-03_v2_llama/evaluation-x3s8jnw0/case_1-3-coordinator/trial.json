@@ -1,0 +1,56 @@
+{
+  "mode": "coordinator",
+  "status": "INVALID",
+  "eligible": true,
+  "policy_reason": "Measured parallel selection is admissible.",
+  "candidate_attempts": 1,
+  "llm_calls": 1,
+  "recovery_supported": false,
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 792981208,
+    "load_duration": 718000,
+    "prompt_eval_count": 2050,
+    "eval_count": 18,
+    "done_reason": "stop"
+  },
+  "raw_decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 4
+  },
+  "validation_errors": [
+    "invalid next_action",
+    "invalid risk",
+    "ACCEPT cannot use None"
+  ],
+  "monetary_cost": null,
+  "prompt_sha256": "94f396d60a850cf3b00726588c6ea9893d813f887155b5c4f5c8e8dfefee3033",
+  "ablation_effective": null,
+  "call_wall_seconds": 0.7950813339557499,
+  "decision_wall_seconds": 0.796193125017453,
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 4,
+    "recommended_configuration": {
+      "threads": 4
+    }
+  },
+  "effective_accept": false,
+  "nonadmissible_accept_proposal": false,
+  "missed_eligible_opportunity": true,
+  "policy_agreement": false,
+  "attempts_to_acceptable_candidate": null,
+  "final_mode": "sequential_fallback",
+  "selected_configuration": null,
+  "measured_final_seconds": 0.00722003,
+  "speedup_vs_sequential": 1.0,
+  "parallel_scaling_speedup": null,
+  "validation_wall_seconds": 4.6874978579580784e-05,
+  "trial_wall_seconds": 0.7962408339953981,
+  "case": "case_1",
+  "repetition": 3,
+  "order_position": 1,
+  "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+  "shared_prefix_seconds": null,
+  "accounted_pipeline_seconds": null
+}

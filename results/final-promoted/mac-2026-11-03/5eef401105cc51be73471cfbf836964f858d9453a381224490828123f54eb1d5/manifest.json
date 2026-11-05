@@ -1,0 +1,158 @@
+{
+  "schema": "tcc2-promoted-candidate",
+  "version": "0.1",
+  "status": "PROMOTED",
+  "promoted_at": "2026-11-03T19:25:02.698845+00:00",
+  "promotion_id": "5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5",
+  "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+  "campaign_id": "51f9c5d5d5ce448c82609bbcb84bad0a",
+  "configuration": {
+    "threads": 4
+  },
+  "coordinator_model": "llama3.1:8b",
+  "candidate_sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+  "origins": {
+    "decision": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/decision.json",
+      "sha256": "25615c668fc86d23d80e3faf5eb2b183044122f7a9d867235613befc52390921"
+    },
+    "context": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/context.json",
+      "sha256": "011bb66348bbcc1a23bc8fe7cc237c462a11981b58d3bb6e04d9e6c1bbc68c4e"
+    },
+    "correctness": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/correctness.json",
+      "sha256": "3683508b988b5fdb6904034b70dc2255af0f337c1d5b3231cecd673740b08a25"
+    },
+    "performance": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/performance.json",
+      "sha256": "d1093268342b9e240c777806af9ae05c133c2d12ee768fe50d8fd4a97bb6970f"
+    },
+    "selection": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-pipeline-mac-2026-11-03/run-4whpshpr/selection.json",
+      "sha256": "fafa129d9764f8a37f7b7b0d3ebf3886ad38fb1891002bf36dd4426ef7910969"
+    }
+  },
+  "toolchain": {
+    "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+    "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+    "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+  },
+  "compile_flags": {
+    "sequential": [
+      "-O3"
+    ],
+    "candidate": [
+      "-O3",
+      "-fopenmp"
+    ]
+  },
+  "link_flags": [
+    "-lm"
+  ],
+  "openmp_environment": {
+    "OMP_DYNAMIC": "FALSE",
+    "OMP_PROC_BIND": "TRUE",
+    "OMP_PLACES": "cores"
+  },
+  "measured_configuration": {
+    "mode": "openmp",
+    "threads": 4,
+    "median_seconds": 0.00196401,
+    "mean_seconds": 0.001964282,
+    "speedup": 2.465455878534223,
+    "efficiency": 0.6163639696335558
+  },
+  "metrics": {
+    "end_to_end_speedup": 2.465455878534223,
+    "transformation_speedup": 1.000324339287817,
+    "parallel_scaling_speedup": 2.464656493602375,
+    "parallel_scaling_efficiency": 0.6161641234005938
+  },
+  "revalidation": {
+    "status": "PASS",
+    "report": "revalidation.json",
+    "threads": 4
+  },
+  "reproduce_correctness": [
+    "/opt/homebrew/opt/python@3.15/bin/python3.15",
+    "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/scripts/compile_correctness_gate.py",
+    "--sequential",
+    "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/evidence/sequential.c",
+    "--candidate",
+    "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/parallel.c",
+    "--driver",
+    "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/evidence/correctness_driver.c",
+    "--compiler",
+    "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+    "--threads",
+    "4",
+    "--build-dir",
+    "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/final-promoted/promotion_checks/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5"
+  ],
+  "files": {
+    "evidence/benchmark_driver.c": {
+      "sha256": "414bdff989503693fda942a3a79dc29dfa311532fbb62b8fec4681f15a52db6f"
+    },
+    "evidence/context.json": {
+      "sha256": "011bb66348bbcc1a23bc8fe7cc237c462a11981b58d3bb6e04d9e6c1bbc68c4e"
+    },
+    "evidence/correctness.json": {
+      "sha256": "3683508b988b5fdb6904034b70dc2255af0f337c1d5b3231cecd673740b08a25"
+    },
+    "evidence/correctness_candidate.bin": {
+      "sha256": "32a71b0cef9fbaae7740be7d865718bc46b2632d89393d847d6738c7963005cd"
+    },
+    "evidence/correctness_driver.c": {
+      "sha256": "fe30a4bcb70e195a67b0b2c8704f953055cc5df501a69ac5e34022df2719a237"
+    },
+    "evidence/correctness_sequential.bin": {
+      "sha256": "03fb2722ccc8e005c0354972ae763d00f90a6b71a94fe2376158319ea52e6a76"
+    },
+    "evidence/decision.json": {
+      "sha256": "25615c668fc86d23d80e3faf5eb2b183044122f7a9d867235613befc52390921"
+    },
+    "evidence/performance.csv": {
+      "sha256": "1e9211cd0314482dd80ce935bfa5e87f57822a0534003c21e68b73f94f9d040d"
+    },
+    "evidence/performance.json": {
+      "sha256": "d1093268342b9e240c777806af9ae05c133c2d12ee768fe50d8fd4a97bb6970f"
+    },
+    "evidence/performance_candidate.bin": {
+      "sha256": "6ded9dab3b99c4df3a511ec976b603dbf1f87a6fb22b3afeb9684df257d53868"
+    },
+    "evidence/performance_sequential.bin": {
+      "sha256": "a36d50d82a18d8eea3a4122aa6cd3ade2db874ef431f7e32facaabce0cfe8382"
+    },
+    "evidence/selection.json": {
+      "sha256": "fafa129d9764f8a37f7b7b0d3ebf3886ad38fb1891002bf36dd4426ef7910969"
+    },
+    "evidence/sequential.c": {
+      "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb"
+    },
+    "parallel.c": {
+      "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b"
+    },
+    "revalidation/3d7e68b573704597a93fe284962def20/candidate/parallel.c": {
+      "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b"
+    },
+    "revalidation/3d7e68b573704597a93fe284962def20/dot_gate_candidate": {
+      "sha256": "32a71b0cef9fbaae7740be7d865718bc46b2632d89393d847d6738c7963005cd"
+    },
+    "revalidation/3d7e68b573704597a93fe284962def20/dot_gate_sequential": {
+      "sha256": "03fb2722ccc8e005c0354972ae763d00f90a6b71a94fe2376158319ea52e6a76"
+    },
+    "revalidation/3d7e68b573704597a93fe284962def20/driver/correctness_driver.c": {
+      "sha256": "fe30a4bcb70e195a67b0b2c8704f953055cc5df501a69ac5e34022df2719a237"
+    },
+    "revalidation/3d7e68b573704597a93fe284962def20/sequential/sequential.c": {
+      "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb"
+    },
+    "revalidation.json": {
+      "sha256": "1cb837ae2340f1ed4ae2e7a6d7b121f16e685e85df88d235985e22997a20a6c1"
+    },
+    "revalidation.log": {
+      "sha256": "fa77a5f23f5f99eb13e9d9aebd5c1513b8c2187dabc4516b10d77e23a7d4fb89"
+    }
+  }
+}

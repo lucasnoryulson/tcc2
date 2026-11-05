@@ -1,0 +1,17 @@
+kernel,size,variant,status,recommended_threads,recommended_seconds
+covariance,LARGE,manual,SELECTED,4,5.601431
+covariance,MEDIUM,manual,SELECTED,4,0.004922
+dot,1000000,manual,NO_BENEFICIAL_CONFIGURATION,,
+dot,10000000,manual,SELECTED,2,0.010711598000000001
+dot-auto,1024,automatic,NO_BENEFICIAL_CONFIGURATION,,
+dot-auto,10000000,automatic,SELECTED,2,0.00864162184
+gemm,LARGE,manual,SELECTED,4,0.221314
+gemm,MEDIUM,manual,SELECTED,4,0.000967
+jacobi-2d,LARGE,manual,SELECTED,2,2.190225
+jacobi-2d,MEDIUM,manual,SELECTED,4,0.00283
+nussinov,LARGE,manual,SELECTED,4,5.449333
+nussinov,LARGE,simd_auto,SELECTED,4,5.88327
+nussinov,LARGE,simd_manual,SELECTED,4,5.853742
+nussinov,MEDIUM,manual,SELECTED,4,0.007798
+nussinov,MEDIUM,simd_auto,SELECTED,4,0.005443
+nussinov,MEDIUM,simd_manual,SELECTED,4,0.005448

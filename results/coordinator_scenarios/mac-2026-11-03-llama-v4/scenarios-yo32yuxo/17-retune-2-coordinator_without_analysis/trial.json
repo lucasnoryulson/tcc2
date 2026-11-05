@@ -1,0 +1,46 @@
+{
+  "scenario": "retune",
+  "mode": "coordinator_without_analysis",
+  "expected_decision": "RETUNE",
+  "expected_actions": [
+    "RETUNE_CONFIGURATION",
+    "RUN_MORE_BENCHMARKS"
+  ],
+  "prompt_sha256": "1e222812130610fe2c11c261efd61010db15169feb6be971b6c862135aa175fb",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "RETUNE",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Insufficient configurations measured; further exploration is needed.",
+    "next_action": "RUN_MORE_BENCHMARKS",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance.selection.status",
+      "performance.selection.configuration_dimensions"
+    ]
+  },
+  "decision": {
+    "decision": "RETUNE",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Insufficient configurations measured; further exploration is needed.",
+    "next_action": "RUN_MORE_BENCHMARKS",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance.selection.status",
+      "performance.selection.configuration_dimensions"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 4169858833,
+    "load_duration": 1327791,
+    "prompt_eval_count": 1751,
+    "eval_count": 82,
+    "done_reason": "stop"
+  },
+  "oracle_match": true,
+  "wall_seconds": 4.171932834025938
+}

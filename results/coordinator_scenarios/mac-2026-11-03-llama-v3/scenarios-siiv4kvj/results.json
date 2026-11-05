@@ -1,0 +1,1220 @@
+{
+  "schema": "tcc2-coordinator-controlled-scenarios",
+  "version": "0.1",
+  "status": "INCOMPLETE",
+  "created_at": "2026-11-03T22:44:02.610201+00:00",
+  "settings": {
+    "model": "llama3.1:8b",
+    "timeout_seconds": 600,
+    "repetitions": 3,
+    "seed": 2026,
+    "temperature": 0
+  },
+  "implementation": [
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/scripts/evaluate_coordinator_scenarios.py",
+      "sha256": "56e66da754ae80bd6d476780146fe7cff54a7bbb84420968c3085ac2b0806654"
+    },
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/agents/coordinator_agent.py",
+      "sha256": "b474989f265983d89662ed9b8c5e0e42ffce3c2f6ac17b0e73a3940429a33c8f"
+    }
+  ],
+  "trials": [
+    {
+      "scenario": "retune",
+      "mode": "coordinator",
+      "expected_decision": "RETUNE",
+      "expected_actions": [
+        "RETUNE_CONFIGURATION",
+        "RUN_MORE_BENCHMARKS"
+      ],
+      "prompt_sha256": "5cd0423bcd24e4f740c3ad9dbb935959d719577b9914282ba6b52e1768acbc0d",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Insufficient configurations measured; transformation appears valid, but no configuration above one thread was measured.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "deterministic_evidence",
+          "performance"
+        ]
+      },
+      "decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Insufficient configurations measured; transformation appears valid, but no configuration above one thread was measured.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "deterministic_evidence",
+          "performance"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4866659959,
+        "load_duration": 6441542,
+        "prompt_eval_count": 1760,
+        "eval_count": 88,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 4.883755458984524,
+      "repetition": 1
+    },
+    {
+      "scenario": "reject",
+      "mode": "coordinator_without_analysis",
+      "expected_decision": "REJECT",
+      "expected_actions": [
+        "REJECT_CANDIDATE"
+      ],
+      "prompt_sha256": "0f6fcf13c89cd6215c13178a57f7caa8981cf917e2a9e1090358f83ae3e258db",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No beneficial configuration found; parallel strategy failed to scale.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance.selection.status",
+          "performance.selection.configuration_dimensions",
+          "performance.selection.raw_fastest",
+          "performance.selection.best_one_thread",
+          "performance.selection.best_parallel"
+        ]
+      },
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No beneficial configuration found; parallel strategy failed to scale.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance.selection.status",
+          "performance.selection.configuration_dimensions",
+          "performance.selection.raw_fastest",
+          "performance.selection.best_one_thread",
+          "performance.selection.best_parallel"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 5087456959,
+        "load_duration": 681375,
+        "prompt_eval_count": 1716,
+        "eval_count": 106,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 5.0890002499800175,
+      "repetition": 2
+    },
+    {
+      "scenario": "modify",
+      "mode": "coordinator",
+      "expected_decision": "MODIFY",
+      "expected_actions": [
+        "SEND_TO_DEBUGGER"
+      ],
+      "prompt_sha256": "386cafbc74a5aeb5f92b63d0ecaa15b4d734cf3b0a8c257dbaa5b49346be6049",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Correctness failed due to output mismatch, requiring repair or debugging. No useful performance path remains unexplored.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "HIGH",
+        "evidence_used": [
+          "validation.correctness_gate",
+          "validation.failure_kind",
+          "validation.assessment",
+          "deterministic_evidence.assessment"
+        ]
+      },
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Correctness failed due to output mismatch, requiring repair or debugging. No useful performance path remains unexplored.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "HIGH",
+        "evidence_used": [
+          "validation.correctness_gate",
+          "validation.failure_kind",
+          "validation.assessment",
+          "deterministic_evidence.assessment"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 5364182458,
+        "load_duration": 707291,
+        "prompt_eval_count": 1682,
+        "eval_count": 110,
+        "done_reason": "stop"
+      },
+      "oracle_match": false,
+      "wall_seconds": 5.366171332949307,
+      "repetition": 1
+    },
+    {
+      "scenario": "retune",
+      "mode": "coordinator_without_analysis",
+      "expected_decision": "RETUNE",
+      "expected_actions": [
+        "RETUNE_CONFIGURATION",
+        "RUN_MORE_BENCHMARKS"
+      ],
+      "prompt_sha256": "9613a91db612f258913feb537fc1c807322d3b2a4fafb62ddb9a57cec69e261e",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Insufficient configurations measured; further exploration is needed.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance.selection.status",
+          "performance.selection.configuration_dimensions"
+        ]
+      },
+      "decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Insufficient configurations measured; further exploration is needed.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance.selection.status",
+          "performance.selection.configuration_dimensions"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4228037500,
+        "load_duration": 2103292,
+        "prompt_eval_count": 1698,
+        "eval_count": 82,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 4.230377457977738,
+      "repetition": 1
+    },
+    {
+      "scenario": "modify",
+      "mode": "coordinator",
+      "expected_decision": "MODIFY",
+      "expected_actions": [
+        "SEND_TO_DEBUGGER"
+      ],
+      "prompt_sha256": "386cafbc74a5aeb5f92b63d0ecaa15b4d734cf3b0a8c257dbaa5b49346be6049",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Correctness failed due to output mismatch, requiring repair or debugging. No useful performance path remains unexplored.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "HIGH",
+        "evidence_used": [
+          "validation.correctness_gate",
+          "validation.failure_kind",
+          "validation.assessment",
+          "deterministic_evidence.assessment"
+        ]
+      },
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Correctness failed due to output mismatch, requiring repair or debugging. No useful performance path remains unexplored.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "HIGH",
+        "evidence_used": [
+          "validation.correctness_gate",
+          "validation.failure_kind",
+          "validation.assessment",
+          "deterministic_evidence.assessment"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 5196970625,
+        "load_duration": 737000,
+        "prompt_eval_count": 1682,
+        "eval_count": 110,
+        "done_reason": "stop"
+      },
+      "oracle_match": false,
+      "wall_seconds": 5.19859354197979,
+      "repetition": 3
+    },
+    {
+      "scenario": "retune",
+      "mode": "coordinator",
+      "expected_decision": "RETUNE",
+      "expected_actions": [
+        "RETUNE_CONFIGURATION",
+        "RUN_MORE_BENCHMARKS"
+      ],
+      "prompt_sha256": "5cd0423bcd24e4f740c3ad9dbb935959d719577b9914282ba6b52e1768acbc0d",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Insufficient configurations measured; transformation appears valid, but no configuration above one thread was measured.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "deterministic_evidence",
+          "performance"
+        ]
+      },
+      "decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Insufficient configurations measured; transformation appears valid, but no configuration above one thread was measured.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "deterministic_evidence",
+          "performance"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4367026625,
+        "load_duration": 745958,
+        "prompt_eval_count": 1760,
+        "eval_count": 88,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 4.369094791007228,
+      "repetition": 3
+    },
+    {
+      "scenario": "reject",
+      "mode": "coordinator",
+      "expected_decision": "REJECT",
+      "expected_actions": [
+        "REJECT_CANDIDATE"
+      ],
+      "prompt_sha256": "ff1d4d3685ca5515dc6366670c0102f3ed59a28bd4fc3b0539e42f4be55e5520",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Too few configurations were measured, and the candidate appears valid, but no admissible configuration was selected.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "deterministic_evidence",
+          "performance"
+        ]
+      },
+      "decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Too few configurations were measured, and the candidate appears valid, but no admissible configuration was selected.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "deterministic_evidence",
+          "performance"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4647374375,
+        "load_duration": 715500,
+        "prompt_eval_count": 1787,
+        "eval_count": 90,
+        "done_reason": "stop"
+      },
+      "oracle_match": false,
+      "wall_seconds": 4.649388749967329,
+      "repetition": 1
+    },
+    {
+      "scenario": "accept",
+      "mode": "coordinator",
+      "expected_decision": "ACCEPT",
+      "expected_actions": [
+        "PROMOTE_CANDIDATE"
+      ],
+      "prompt_sha256": "ea92a704b9d5ee5beac843965d23b41806c68b05294e114534dd6d2c7958f530",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2,
+          "median_seconds": 0.5
+        },
+        "reason": "Correctness passed, parallel strategy succeeded, and measured speedup is 2.0x.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "Deterministic evidence: parallel_status=PARALLEL_SUCCESS, measured_parallel_speedup=2.0",
+          "Correctness validation: PASS",
+          "Performance selection: SELECTED, recommended configuration: threads=2, median_seconds=0.5"
+        ]
+      },
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2
+        },
+        "reason": "Correctness passed, parallel strategy succeeded, and measured speedup is 2.0x.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "Deterministic evidence: parallel_status=PARALLEL_SUCCESS, measured_parallel_speedup=2.0",
+          "Correctness validation: PASS",
+          "Performance selection: SELECTED, recommended configuration: threads=2, median_seconds=0.5"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 7247863000,
+        "load_duration": 628542,
+        "prompt_eval_count": 1807,
+        "eval_count": 150,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 7.249720207997598,
+      "repetition": 2
+    },
+    {
+      "scenario": "accept",
+      "mode": "coordinator_without_analysis",
+      "expected_decision": "ACCEPT",
+      "expected_actions": [
+        "PROMOTE_CANDIDATE"
+      ],
+      "prompt_sha256": "e144103b5eb32dfde108972bdb4bcf0b76636d1b6f7b7df90e6bafab7e6af57c",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2,
+          "median_seconds": 0.5
+        },
+        "reason": "Correctness passed, and the candidate provides a meaningful measured speedup.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "correctness_gate",
+          "performance.selection.status",
+          "performance.selection.recommended.threads",
+          "performance.selection.recommended.median_seconds"
+        ]
+      },
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2
+        },
+        "reason": "Correctness passed, and the candidate provides a meaningful measured speedup.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "correctness_gate",
+          "performance.selection.status",
+          "performance.selection.recommended.threads",
+          "performance.selection.recommended.median_seconds"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 5913704750,
+        "load_duration": 1054709,
+        "prompt_eval_count": 1753,
+        "eval_count": 123,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 5.916118624969386,
+      "repetition": 1
+    },
+    {
+      "scenario": "accept",
+      "mode": "coordinator",
+      "expected_decision": "ACCEPT",
+      "expected_actions": [
+        "PROMOTE_CANDIDATE"
+      ],
+      "prompt_sha256": "ea92a704b9d5ee5beac843965d23b41806c68b05294e114534dd6d2c7958f530",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2,
+          "median_seconds": 0.5
+        },
+        "reason": "Correctness passed, parallel strategy succeeded, and measured speedup is 2.0x.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "Deterministic evidence: parallel_status=PARALLEL_SUCCESS, measured_parallel_speedup=2.0",
+          "Correctness validation: PASS",
+          "Performance selection: SELECTED, recommended configuration: threads=2, median_seconds=0.5"
+        ]
+      },
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2
+        },
+        "reason": "Correctness passed, parallel strategy succeeded, and measured speedup is 2.0x.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "Deterministic evidence: parallel_status=PARALLEL_SUCCESS, measured_parallel_speedup=2.0",
+          "Correctness validation: PASS",
+          "Performance selection: SELECTED, recommended configuration: threads=2, median_seconds=0.5"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 7173432250,
+        "load_duration": 1465000,
+        "prompt_eval_count": 1807,
+        "eval_count": 150,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 7.175299707974773,
+      "repetition": 1
+    },
+    {
+      "scenario": "reject",
+      "mode": "coordinator_without_analysis",
+      "expected_decision": "REJECT",
+      "expected_actions": [
+        "REJECT_CANDIDATE"
+      ],
+      "prompt_sha256": "0f6fcf13c89cd6215c13178a57f7caa8981cf917e2a9e1090358f83ae3e258db",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No beneficial configuration found; parallel strategy failed to scale.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance.selection.status",
+          "performance.selection.configuration_dimensions",
+          "performance.selection.raw_fastest",
+          "performance.selection.best_one_thread",
+          "performance.selection.best_parallel"
+        ]
+      },
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No beneficial configuration found; parallel strategy failed to scale.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance.selection.status",
+          "performance.selection.configuration_dimensions",
+          "performance.selection.raw_fastest",
+          "performance.selection.best_one_thread",
+          "performance.selection.best_parallel"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 5109475208,
+        "load_duration": 772666,
+        "prompt_eval_count": 1716,
+        "eval_count": 106,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 5.111129832977895,
+      "repetition": 3
+    },
+    {
+      "scenario": "reject",
+      "mode": "coordinator",
+      "expected_decision": "REJECT",
+      "expected_actions": [
+        "REJECT_CANDIDATE"
+      ],
+      "prompt_sha256": "ff1d4d3685ca5515dc6366670c0102f3ed59a28bd4fc3b0539e42f4be55e5520",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Too few configurations were measured, and the candidate appears valid, but no admissible configuration was selected.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "deterministic_evidence",
+          "performance"
+        ]
+      },
+      "decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Too few configurations were measured, and the candidate appears valid, but no admissible configuration was selected.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "deterministic_evidence",
+          "performance"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4447172666,
+        "load_duration": 717500,
+        "prompt_eval_count": 1787,
+        "eval_count": 90,
+        "done_reason": "stop"
+      },
+      "oracle_match": false,
+      "wall_seconds": 4.44860670901835,
+      "repetition": 3
+    },
+    {
+      "scenario": "accept",
+      "mode": "coordinator_without_analysis",
+      "expected_decision": "ACCEPT",
+      "expected_actions": [
+        "PROMOTE_CANDIDATE"
+      ],
+      "prompt_sha256": "e144103b5eb32dfde108972bdb4bcf0b76636d1b6f7b7df90e6bafab7e6af57c",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2,
+          "median_seconds": 0.5
+        },
+        "reason": "Correctness passed, and the candidate provides a meaningful measured speedup.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "correctness_gate",
+          "performance.selection.status",
+          "performance.selection.recommended.threads",
+          "performance.selection.recommended.median_seconds"
+        ]
+      },
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2
+        },
+        "reason": "Correctness passed, and the candidate provides a meaningful measured speedup.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "correctness_gate",
+          "performance.selection.status",
+          "performance.selection.recommended.threads",
+          "performance.selection.recommended.median_seconds"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 5942494250,
+        "load_duration": 6699042,
+        "prompt_eval_count": 1753,
+        "eval_count": 123,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 5.944258790987078,
+      "repetition": 2
+    },
+    {
+      "scenario": "modify",
+      "mode": "coordinator",
+      "expected_decision": "MODIFY",
+      "expected_actions": [
+        "SEND_TO_DEBUGGER"
+      ],
+      "prompt_sha256": "386cafbc74a5aeb5f92b63d0ecaa15b4d734cf3b0a8c257dbaa5b49346be6049",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Correctness failed due to output mismatch, requiring repair or debugging. No useful performance path remains unexplored.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "HIGH",
+        "evidence_used": [
+          "validation.correctness_gate",
+          "validation.failure_kind",
+          "validation.assessment",
+          "deterministic_evidence.assessment"
+        ]
+      },
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Correctness failed due to output mismatch, requiring repair or debugging. No useful performance path remains unexplored.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "HIGH",
+        "evidence_used": [
+          "validation.correctness_gate",
+          "validation.failure_kind",
+          "validation.assessment",
+          "deterministic_evidence.assessment"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 5738607459,
+        "load_duration": 980584,
+        "prompt_eval_count": 1682,
+        "eval_count": 110,
+        "done_reason": "stop"
+      },
+      "oracle_match": false,
+      "wall_seconds": 5.741777250019368,
+      "repetition": 2
+    },
+    {
+      "scenario": "retune",
+      "mode": "coordinator",
+      "expected_decision": "RETUNE",
+      "expected_actions": [
+        "RETUNE_CONFIGURATION",
+        "RUN_MORE_BENCHMARKS"
+      ],
+      "prompt_sha256": "5cd0423bcd24e4f740c3ad9dbb935959d719577b9914282ba6b52e1768acbc0d",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Insufficient configurations measured; transformation appears valid, but no configuration above one thread was measured.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "deterministic_evidence",
+          "performance"
+        ]
+      },
+      "decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Insufficient configurations measured; transformation appears valid, but no configuration above one thread was measured.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "deterministic_evidence",
+          "performance"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4503133792,
+        "load_duration": 999000,
+        "prompt_eval_count": 1760,
+        "eval_count": 88,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 4.506060999992769,
+      "repetition": 2
+    },
+    {
+      "scenario": "modify",
+      "mode": "coordinator_without_analysis",
+      "expected_decision": "MODIFY",
+      "expected_actions": [
+        "SEND_TO_DEBUGGER"
+      ],
+      "prompt_sha256": "28100d3c75ff64ed4dcd5540c1fef42de50943f7debda59bcb8bd778e0bbfbad",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Correctness validation failed due to output mismatch, indicating an incorrect candidate.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "HIGH",
+        "evidence_used": [
+          "validation.correctness_gate = FAIL",
+          "validation.failure_kind = OUTPUT_MISMATCH"
+        ]
+      },
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Correctness validation failed due to output mismatch, indicating an incorrect candidate.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "HIGH",
+        "evidence_used": [
+          "validation.correctness_gate = FAIL",
+          "validation.failure_kind = OUTPUT_MISMATCH"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4357143334,
+        "load_duration": 748042,
+        "prompt_eval_count": 1625,
+        "eval_count": 92,
+        "done_reason": "stop"
+      },
+      "oracle_match": false,
+      "wall_seconds": 4.3586968749878,
+      "repetition": 2
+    },
+    {
+      "scenario": "retune",
+      "mode": "coordinator_without_analysis",
+      "expected_decision": "RETUNE",
+      "expected_actions": [
+        "RETUNE_CONFIGURATION",
+        "RUN_MORE_BENCHMARKS"
+      ],
+      "prompt_sha256": "9613a91db612f258913feb537fc1c807322d3b2a4fafb62ddb9a57cec69e261e",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Insufficient configurations measured; further exploration is needed.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance.selection.status",
+          "performance.selection.configuration_dimensions"
+        ]
+      },
+      "decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Insufficient configurations measured; further exploration is needed.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance.selection.status",
+          "performance.selection.configuration_dimensions"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4307658625,
+        "load_duration": 801417,
+        "prompt_eval_count": 1698,
+        "eval_count": 82,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 4.31093833304476,
+      "repetition": 2
+    },
+    {
+      "scenario": "accept",
+      "mode": "coordinator_without_analysis",
+      "expected_decision": "ACCEPT",
+      "expected_actions": [
+        "PROMOTE_CANDIDATE"
+      ],
+      "prompt_sha256": "e144103b5eb32dfde108972bdb4bcf0b76636d1b6f7b7df90e6bafab7e6af57c",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2,
+          "median_seconds": 0.5
+        },
+        "reason": "Correctness passed, and the candidate provides a meaningful measured speedup.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "correctness_gate",
+          "performance.selection.status",
+          "performance.selection.recommended.threads",
+          "performance.selection.recommended.median_seconds"
+        ]
+      },
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2
+        },
+        "reason": "Correctness passed, and the candidate provides a meaningful measured speedup.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "correctness_gate",
+          "performance.selection.status",
+          "performance.selection.recommended.threads",
+          "performance.selection.recommended.median_seconds"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 5955592917,
+        "load_duration": 986958,
+        "prompt_eval_count": 1753,
+        "eval_count": 123,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 5.9577327920123935,
+      "repetition": 3
+    },
+    {
+      "scenario": "modify",
+      "mode": "coordinator_without_analysis",
+      "expected_decision": "MODIFY",
+      "expected_actions": [
+        "SEND_TO_DEBUGGER"
+      ],
+      "prompt_sha256": "28100d3c75ff64ed4dcd5540c1fef42de50943f7debda59bcb8bd778e0bbfbad",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Correctness validation failed due to output mismatch, indicating an incorrect candidate.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "HIGH",
+        "evidence_used": [
+          "validation.correctness_gate = FAIL",
+          "validation.failure_kind = OUTPUT_MISMATCH"
+        ]
+      },
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Correctness validation failed due to output mismatch, indicating an incorrect candidate.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "HIGH",
+        "evidence_used": [
+          "validation.correctness_gate = FAIL",
+          "validation.failure_kind = OUTPUT_MISMATCH"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4378481625,
+        "load_duration": 701791,
+        "prompt_eval_count": 1625,
+        "eval_count": 92,
+        "done_reason": "stop"
+      },
+      "oracle_match": false,
+      "wall_seconds": 4.379948707995936,
+      "repetition": 1
+    },
+    {
+      "scenario": "modify",
+      "mode": "coordinator_without_analysis",
+      "expected_decision": "MODIFY",
+      "expected_actions": [
+        "SEND_TO_DEBUGGER"
+      ],
+      "prompt_sha256": "28100d3c75ff64ed4dcd5540c1fef42de50943f7debda59bcb8bd778e0bbfbad",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Correctness validation failed due to output mismatch, indicating an incorrect candidate.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "HIGH",
+        "evidence_used": [
+          "validation.correctness_gate = FAIL",
+          "validation.failure_kind = OUTPUT_MISMATCH"
+        ]
+      },
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Correctness validation failed due to output mismatch, indicating an incorrect candidate.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "HIGH",
+        "evidence_used": [
+          "validation.correctness_gate = FAIL",
+          "validation.failure_kind = OUTPUT_MISMATCH"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 3867862958,
+        "load_duration": 772375,
+        "prompt_eval_count": 1625,
+        "eval_count": 92,
+        "done_reason": "stop"
+      },
+      "oracle_match": false,
+      "wall_seconds": 3.869834874989465,
+      "repetition": 3
+    },
+    {
+      "scenario": "retune",
+      "mode": "coordinator_without_analysis",
+      "expected_decision": "RETUNE",
+      "expected_actions": [
+        "RETUNE_CONFIGURATION",
+        "RUN_MORE_BENCHMARKS"
+      ],
+      "prompt_sha256": "9613a91db612f258913feb537fc1c807322d3b2a4fafb62ddb9a57cec69e261e",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Insufficient configurations measured; further exploration is needed.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance.selection.status",
+          "performance.selection.configuration_dimensions"
+        ]
+      },
+      "decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Insufficient configurations measured; further exploration is needed.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance.selection.status",
+          "performance.selection.configuration_dimensions"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4052490459,
+        "load_duration": 816584,
+        "prompt_eval_count": 1698,
+        "eval_count": 82,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 4.054156499973033,
+      "repetition": 3
+    },
+    {
+      "scenario": "accept",
+      "mode": "coordinator",
+      "expected_decision": "ACCEPT",
+      "expected_actions": [
+        "PROMOTE_CANDIDATE"
+      ],
+      "prompt_sha256": "ea92a704b9d5ee5beac843965d23b41806c68b05294e114534dd6d2c7958f530",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2,
+          "median_seconds": 0.5
+        },
+        "reason": "Correctness passed, parallel strategy succeeded, and measured speedup is 2.0x.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "Deterministic evidence: parallel_status=PARALLEL_SUCCESS, measured_parallel_speedup=2.0",
+          "Correctness validation: PASS",
+          "Performance selection: SELECTED, recommended configuration: threads=2, median_seconds=0.5"
+        ]
+      },
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 2,
+        "recommended_configuration": {
+          "threads": 2
+        },
+        "reason": "Correctness passed, parallel strategy succeeded, and measured speedup is 2.0x.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "Deterministic evidence: parallel_status=PARALLEL_SUCCESS, measured_parallel_speedup=2.0",
+          "Correctness validation: PASS",
+          "Performance selection: SELECTED, recommended configuration: threads=2, median_seconds=0.5"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 7551045833,
+        "load_duration": 860541,
+        "prompt_eval_count": 1807,
+        "eval_count": 150,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 7.554431667027529,
+      "repetition": 3
+    },
+    {
+      "scenario": "reject",
+      "mode": "coordinator",
+      "expected_decision": "REJECT",
+      "expected_actions": [
+        "REJECT_CANDIDATE"
+      ],
+      "prompt_sha256": "ff1d4d3685ca5515dc6366670c0102f3ed59a28bd4fc3b0539e42f4be55e5520",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Too few configurations were measured, and the candidate appears valid, but no admissible configuration was selected.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "deterministic_evidence",
+          "performance"
+        ]
+      },
+      "decision": {
+        "decision": "RETUNE",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "Too few configurations were measured, and the candidate appears valid, but no admissible configuration was selected.",
+        "next_action": "RUN_MORE_BENCHMARKS",
+        "risk": "LOW",
+        "evidence_used": [
+          "deterministic_evidence",
+          "performance"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 4381620500,
+        "load_duration": 2160125,
+        "prompt_eval_count": 1787,
+        "eval_count": 90,
+        "done_reason": "stop"
+      },
+      "oracle_match": false,
+      "wall_seconds": 4.384174999955576,
+      "repetition": 2
+    },
+    {
+      "scenario": "reject",
+      "mode": "coordinator_without_analysis",
+      "expected_decision": "REJECT",
+      "expected_actions": [
+        "REJECT_CANDIDATE"
+      ],
+      "prompt_sha256": "0f6fcf13c89cd6215c13178a57f7caa8981cf917e2a9e1090358f83ae3e258db",
+      "status": "OK",
+      "validation_errors": [],
+      "raw_decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No beneficial configuration found; parallel strategy failed to scale.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance.selection.status",
+          "performance.selection.configuration_dimensions",
+          "performance.selection.raw_fastest",
+          "performance.selection.best_one_thread",
+          "performance.selection.best_parallel"
+        ]
+      },
+      "decision": {
+        "decision": "REJECT",
+        "recommended_threads": null,
+        "recommended_configuration": null,
+        "reason": "No beneficial configuration found; parallel strategy failed to scale.",
+        "next_action": "REJECT_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance.selection.status",
+          "performance.selection.configuration_dimensions",
+          "performance.selection.raw_fastest",
+          "performance.selection.best_one_thread",
+          "performance.selection.best_parallel"
+        ]
+      },
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 5017882625,
+        "load_duration": 702417,
+        "prompt_eval_count": 1716,
+        "eval_count": 106,
+        "done_reason": "stop"
+      },
+      "oracle_match": true,
+      "wall_seconds": 5.019790165999439,
+      "repetition": 1
+    }
+  ],
+  "summary": {
+    "trials": 24,
+    "valid_responses": 24,
+    "oracle_matches": 15,
+    "failures": 0,
+    "median_wall_seconds": 4.951772812491981
+  }
+}

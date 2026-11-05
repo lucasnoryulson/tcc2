@@ -1,0 +1,44 @@
+{
+  "scenario": "retune",
+  "mode": "coordinator_without_analysis",
+  "expected_decision": "RETUNE",
+  "expected_actions": [
+    "RETUNE_CONFIGURATION",
+    "RUN_MORE_BENCHMARKS"
+  ],
+  "prompt_sha256": "1796dfb938ab8996c017d99b08cc6fca37b8b180881b813273cc47fc329d31f9",
+  "status": "OK",
+  "validation_errors": [],
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Insufficient configurations for parallelization decision",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "validation.correctness_gate == PASS"
+    ]
+  },
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": null,
+    "recommended_configuration": null,
+    "reason": "Insufficient configurations for parallelization decision",
+    "next_action": "REJECT_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "validation.correctness_gate == PASS"
+    ]
+  },
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 3696670083,
+    "load_duration": 607541,
+    "prompt_eval_count": 1546,
+    "eval_count": 76,
+    "done_reason": "stop"
+  },
+  "oracle_match": false,
+  "wall_seconds": 3.6984687499934807
+}

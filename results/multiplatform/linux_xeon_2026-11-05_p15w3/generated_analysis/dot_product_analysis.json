@@ -1,0 +1,51 @@
+{
+  "version": "0.2",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3/sources/analysis/fixtures/dot_product.c",
+  "kernels": [
+    {
+      "name": "kernel_dot",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 9,
+          "end_line": 12,
+          "iterator": "i",
+          "initialization": "int i = 0",
+          "condition": "i < n",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i"
+              ],
+              "expression": "A[i]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "i"
+              ],
+              "expression": "B[i]"
+            }
+          ],
+          "writes": [],
+          "operators": [
+            "+=",
+            "*"
+          ],
+          "scalar_updates": [
+            {
+              "variable": "sum",
+              "operator": "+=",
+              "rhs": "A[i]*B[i]",
+              "expression": "sum += A[i]*B[i]",
+              "update_kind": "compound_assignment"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

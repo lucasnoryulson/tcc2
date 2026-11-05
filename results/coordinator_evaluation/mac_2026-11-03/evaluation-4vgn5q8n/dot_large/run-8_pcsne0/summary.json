@@ -1,0 +1,179 @@
+{
+  "schema": "tcc2-pipeline-run",
+  "version": "0.1",
+  "status": "PREPARED",
+  "steps": [
+    {
+      "name": "static",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/static_analyzer.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+        "--output-dir",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/static.log",
+      "wall_seconds": 0.14676074997987598
+    },
+    {
+      "name": "dependences",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/dependence_analyzer.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis/dot_product_analysis.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/dependences.log",
+      "wall_seconds": 0.06352849997347221
+    },
+    {
+      "name": "patterns",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/pattern_classifier.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis/dot_product_analysis.json",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis/dot_product_dependences.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/patterns.log",
+      "wall_seconds": 0.06488987500779331
+    },
+    {
+      "name": "strategy",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/strategy_planner.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis/dot_product_analysis.json",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis/dot_product_patterns.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/strategy.log",
+      "wall_seconds": 0.06519766699057072
+    },
+    {
+      "name": "transform",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/code_transformer.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis/dot_product_analysis.json",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis/dot_product_strategy.json",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/transform.log",
+      "wall_seconds": 0.06727825000416487
+    },
+    {
+      "name": "correctness",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/scripts/compile_correctness_gate.py",
+        "--sequential",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+        "--candidate",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c",
+        "--driver",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_driver.c",
+        "--compiler",
+        "/opt/homebrew/opt/llvm/bin/clang",
+        "--threads",
+        "1",
+        "2",
+        "4",
+        "--build-dir",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness.log",
+      "wall_seconds": 1.6147609580075368
+    },
+    {
+      "name": "performance",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/scripts/performance_gate.py",
+        "--sequential",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+        "--candidate",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c",
+        "--driver",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_benchmark_driver.c",
+        "--compiler",
+        "/opt/homebrew/opt/llvm/bin/clang",
+        "--correctness",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness.json",
+        "--build-dir",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance",
+        "--csv",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.csv",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.log",
+      "wall_seconds": 13.407827082963195
+    },
+    {
+      "name": "selection",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/performance_selector.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.csv",
+        "--performance-report",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/performance.json",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/selection.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/selection.log",
+      "wall_seconds": 0.27326550002908334
+    },
+    {
+      "name": "context",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/agents/context_builder.py",
+        "--source",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/dot_product.c",
+        "--candidate",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/candidate.c",
+        "--static",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis/dot_product_analysis.json",
+        "--dependences",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis/dot_product_dependences.json",
+        "--patterns",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis/dot_product_patterns.json",
+        "--strategy",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/analysis/dot_product_strategy.json",
+        "--selection",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/selection.json",
+        "--correctness",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/correctness.json",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/context.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/context.log",
+      "wall_seconds": 0.19828795798821375
+    }
+  ],
+  "elapsed_seconds": 15.90644070802955,
+  "context": {
+    "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/coordinator_evaluation/mac_2026-11-03/evaluation-4vgn5q8n/dot_large/run-8_pcsne0/context.json",
+    "sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa"
+  }
+}

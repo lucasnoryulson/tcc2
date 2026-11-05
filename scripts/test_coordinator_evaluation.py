@@ -16,12 +16,14 @@ sys.path.insert(0, str(ROOT))
 from analysis.artifact_provenance import load_context_evidence
 from scripts import evaluate_coordinator as evaluation
 from scripts import test_gate_contracts as fixtures
+from scripts.test_toolchain import find_openmp_compiler
 
 
 class CoordinatorEvaluation(unittest.TestCase):
     def setUp(self):
-        if shutil.which("gcc") is None:
-            self.skipTest("GCC identity is required for evidence fixtures.")
+        self.compiler = find_openmp_compiler()
+        if self.compiler is None:
+            self.skipTest("An OpenMP compiler is required for evidence fixtures.")
         self.fixture = fixtures.GateContracts()
         self.fixture.setUp()
         self.addCleanup(self.fixture.doCleanups)
@@ -51,7 +53,7 @@ class CoordinatorEvaluation(unittest.TestCase):
     def args(self, baseline_only=False):
         return argparse.Namespace(contexts=[self.context_file], baseline_only=baseline_only,
                                   repetitions=2, seed=2026, model="test-stub", timeout=2,
-                                  compiler="gcc", threads=[1, 2], output_dir=self.work / "evaluations")
+                                  compiler=self.compiler, threads=[1, 2], output_dir=self.work / "evaluations")
 
     def test_all_modes_share_evidence_and_measured_result(self):
         before = copy.deepcopy(self.context)

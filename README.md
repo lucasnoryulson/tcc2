@@ -8,6 +8,16 @@ Para continuar este trabalho em outra sessão ou no Mac, leia o
 [roteiro de retomada](tcc2_contexto_para_codex/RETOMAR_NO_MAC.md).
 O `AGENTS.md` da raiz aponta para essas instruções automaticamente.
 
+A atualização experimental de 05/11 está no
+[relatório multiplataforma](docs/experiments/MULTIPLATFORM_REPORT.md), com
+60 configurações Linux, 900 medições externas, três aquecimentos e quinze
+amostras por configuração. O [protocolo e os comandos Mac](docs/experiments/MULTIPLATFORM_METHODOLOGY.md)
+acompanham a [nova monografia](docs/monografia/REVISAO_MULTIPLATAFORMA.md),
+o [Word](docs/monografia/REVISAO_MULTIPLATAFORMA.docx) e o
+[PDF de revisão](docs/monografia/REVISAO_MULTIPLATAFORMA.pdf).
+A coleta equivalente no M5 ainda não foi executada. As campanhas históricas e
+a coleta exploratória anterior permanecem separadas.
+
 ## Pipeline completo e promoção
 
 Com Clang, um compilador com OpenMP e o Ollama/modelo disponíveis, execute:
@@ -21,7 +31,9 @@ O exemplo usa Dot Product e seus drivers existentes. O comando executa análise,
 transformação, gates, Selector, Context Builder, Coordinator e promoção. Cada
 tentativa conserva comandos, logs, evidências e `summary.json` em uma pasta
 exclusiva sob `build/pipeline/`. `--source`, `--driver` e `--benchmark-driver`
-permitem fornecer outro caso dentro do mesmo contrato de fontes C independentes.
+permitem fornecer outro caso dentro do mesmo contrato de fontes C independentes,
+mas o transformador genérico atual só publica redução escalar direta autorizada
+pelo Planner; estratégias não suportadas são recusadas.
 O compilador precisa aceitar `-O3 -fopenmp`; selecione a toolchain adequada ao
 ambiente, especialmente no Mac.
 
@@ -67,6 +79,9 @@ python3 scripts/promote_candidate.py build/dot/decision.json \
 Um artefato produzido em teste com resposta simulada da LLM verifica a integração,
 mas não demonstra autonomia da LLM ou sua contribuição científica. Essa distinção
 é mantida nos relatórios de validação.
+
+O [escopo comprovado da automação](docs/AUTOMATION_SCOPE.md) separa classificação,
+transformação, variantes históricas e execução integrada por kernel.
 
 ## Evidências de corretude e desempenho
 
@@ -240,8 +255,8 @@ executadas no hardware alvo com os drivers de benchmark originais.
 ## Matriz experimental e reprodução — item 5
 
 Os resultados disponíveis foram consolidados em
-[results/consolidated/REPORT.md](results/consolidated/REPORT.md): 19 campanhas,
-seis kernels, matriz CSV, amostras recuperadas e gráficos SVG/PDF/PNG. O relatório
+[results/consolidated/REPORT.md](results/consolidated/REPORT.md): 22 campanhas,
+seis kernels, 173 configurações, 545 tempos recuperados e gráficos SVG/PDF/PNG. O relatório
 separa ganho contra o sequencial de escalabilidade OpenMP e distingue medições
 históricas de evidências verificadas pelos gates atuais.
 
@@ -271,14 +286,14 @@ Os três documentos Word recebidos foram comparados ao código e às evidências
 O [guia de fechamento](docs/FECHAMENTO_TCC.md) reúne os arquivos preparados e
 as pendências pelos seis itens originais:
 
-- [Base Word da monografia](docs/monografia/BASE_MONOGRAFIA.docx) e
+- [Monografia Word revisada](docs/monografia/MONOGRAFIA_REVISAO_FINAL.docx) e
   [fonte Markdown](docs/monografia/BASE_MONOGRAFIA.md).
-- [PowerPoint com 16 slides e notas](docs/defesa/DEFESA_RASCUNHO.pptx) e
+- [PowerPoint revisado com 16 slides e notas](docs/defesa/DEFESA_REVISAO_FINAL.pptx) e
   [roteiro de fala](docs/defesa/SLIDES.md).
 - [Demonstração reproduzível](docs/defesa/DEMONSTRACAO.md).
 - [Revisão dos documentos recebidos](docs/monografia/LEITURA_DOS_DOCUMENTOS.md).
 
 O gerador `scripts/build_academic_material.py` usa as dependências opcionais de
-`requirements-writing.txt`. Ele exporta os rascunhos a partir dos Markdown e
-preserva os Word originais. A avaliação LLM permanece pendente, inclusive na
-redação e nos slides; conferir o formato de entrega e o layout nos aplicativos.
+`requirements-writing.txt`. Ele exporta os materiais revisados a partir dos
+Markdown e preserva os Word originais. A avaliação LLM e a consolidação já estão
+incorporadas; ainda é necessário conferir o modelo institucional e o layout nos aplicativos.

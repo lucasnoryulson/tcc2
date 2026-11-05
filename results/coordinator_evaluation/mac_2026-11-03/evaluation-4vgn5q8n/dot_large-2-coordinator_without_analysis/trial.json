@@ -1,0 +1,68 @@
+{
+  "mode": "coordinator_without_analysis",
+  "status": "OK",
+  "eligible": true,
+  "policy_reason": "Measured parallel selection is admissible.",
+  "candidate_attempts": 1,
+  "llm_calls": 1,
+  "recovery_supported": false,
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 6021341875,
+    "load_duration": 1169166,
+    "prompt_eval_count": 2050,
+    "eval_count": 67,
+    "done_reason": "stop"
+  },
+  "raw_decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 4,
+    "reason": "The candidate has passed correctness validation and is the fastest configuration.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "correctness validation",
+      "performance report"
+    ]
+  },
+  "validation_errors": [],
+  "monetary_cost": null,
+  "prompt_sha256": "da952f0c176002cdf9e6552b4d20066248a56b70fba4720f615a6e35275e7b5c",
+  "ablation_effective": true,
+  "call_wall_seconds": 6.023303332971409,
+  "decision_wall_seconds": 6.025055209000129,
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 4,
+    "reason": "The candidate has passed correctness validation and is the fastest configuration.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "correctness validation",
+      "performance report"
+    ],
+    "recommended_configuration": {
+      "threads": 4
+    }
+  },
+  "effective_accept": true,
+  "nonadmissible_accept_proposal": false,
+  "missed_eligible_opportunity": false,
+  "policy_agreement": true,
+  "attempts_to_acceptable_candidate": 1,
+  "final_mode": "openmp",
+  "selected_configuration": {
+    "threads": 4
+  },
+  "measured_final_seconds": 0.00431633,
+  "speedup_vs_sequential": 1.6727242819710262,
+  "parallel_scaling_speedup": 1.672664045612824,
+  "validation_wall_seconds": 6.204197416082025e-05,
+  "trial_wall_seconds": 6.025118749996182,
+  "case": "dot_large",
+  "repetition": 2,
+  "order_position": 2,
+  "context_sha256": "7680d651fc3efdb2fb3a8b038432465500cbc341a25965819f0afb0bf2cdecfa",
+  "shared_prefix_seconds": 15.90644070802955,
+  "accounted_pipeline_seconds": 21.93155945802573
+}

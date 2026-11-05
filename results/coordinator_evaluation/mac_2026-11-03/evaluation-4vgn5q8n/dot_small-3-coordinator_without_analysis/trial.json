@@ -1,0 +1,69 @@
+{
+  "mode": "coordinator_without_analysis",
+  "status": "INVALID",
+  "eligible": false,
+  "policy_reason": "Selection does not establish a successful parallel candidate.",
+  "candidate_attempts": 1,
+  "llm_calls": 1,
+  "recovery_supported": false,
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 9448412291,
+    "load_duration": 1348541,
+    "prompt_eval_count": 2050,
+    "eval_count": 66,
+    "done_reason": "stop"
+  },
+  "raw_decision": {
+    "decision": "REJECT",
+    "recommended_threads": 1,
+    "reason": "No OpenMP configuration improved over the sequential baseline.",
+    "next_action": "SEND_TO_CODER",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ]
+  },
+  "validation_errors": [
+    "recommended_threads was not present in measured configurations",
+    "REJECT cannot use SEND_TO_CODER"
+  ],
+  "monetary_cost": null,
+  "prompt_sha256": "922ff0e38eddc70400a43d9c7114e448e05b0f24b3200835f34ff5c18a2ced2b",
+  "ablation_effective": true,
+  "call_wall_seconds": 9.450141333974898,
+  "decision_wall_seconds": 9.451155417016707,
+  "decision": {
+    "decision": "REJECT",
+    "recommended_threads": 1,
+    "reason": "No OpenMP configuration improved over the sequential baseline.",
+    "next_action": "SEND_TO_CODER",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ],
+    "recommended_configuration": null
+  },
+  "effective_accept": false,
+  "nonadmissible_accept_proposal": false,
+  "missed_eligible_opportunity": false,
+  "policy_agreement": false,
+  "attempts_to_acceptable_candidate": null,
+  "final_mode": "sequential_fallback",
+  "selected_configuration": null,
+  "measured_final_seconds": 7.993e-07,
+  "speedup_vs_sequential": 1.0,
+  "parallel_scaling_speedup": null,
+  "validation_wall_seconds": 3.2957992516458035e-05,
+  "trial_wall_seconds": 9.451189292012714,
+  "case": "dot_small",
+  "repetition": 3,
+  "order_position": 1,
+  "context_sha256": "df7d8fd40e9322083975c4d3e0e9c6b60db203fe3eb209f5ebaa68b1b42b4d2a",
+  "shared_prefix_seconds": 4.0021890419884585,
+  "accounted_pipeline_seconds": 13.453378334001172
+}
