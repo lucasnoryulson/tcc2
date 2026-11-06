@@ -1,0 +1,73 @@
+{
+  "status": "VERIFIED",
+  "files": 812,
+  "report": {
+    "schema": "tcc2-automation-corpus-evaluation",
+    "version": "1.1",
+    "status": "COMPLETE",
+    "completed_utc": "2026-11-05T20:03:46.559445+00:00",
+    "coverage": {
+      "development": {
+        "programs": 8,
+        "supported_expected": 4,
+        "unsupported_expected": 4,
+        "accepted": 4,
+        "true_acceptances": 4,
+        "false_acceptances": 0,
+        "true_refusals": 4,
+        "false_refusals": 0,
+        "unexpected_errors": 0,
+        "functional_inputs_passed": 8
+      },
+      "test": {
+        "programs": 20,
+        "supported_expected": 10,
+        "unsupported_expected": 10,
+        "accepted": 10,
+        "true_acceptances": 10,
+        "false_acceptances": 0,
+        "true_refusals": 10,
+        "false_refusals": 0,
+        "unexpected_errors": 0,
+        "functional_inputs_passed": 20
+      },
+      "all": {
+        "programs": 28,
+        "supported_expected": 14,
+        "unsupported_expected": 14,
+        "accepted": 14,
+        "true_acceptances": 14,
+        "false_acceptances": 0,
+        "true_refusals": 14,
+        "false_refusals": 0,
+        "unexpected_errors": 0,
+        "functional_inputs_passed": 28
+      }
+    },
+    "measured": false,
+    "sample_count": 0,
+    "warmup_count": 0,
+    "configurations": 0,
+    "protocol": {
+      "samples": 15,
+      "warmups": 3,
+      "seed": 2026,
+      "threads": [
+        1,
+        2,
+        4
+      ],
+      "input_values": "A=((i%23)-11)/8, B=(((i*7)%19)-9)/32; clamp exercises negative, in-range and >1 branches",
+      "timer": "CLOCK_MONOTONIC; per-call mean within external process; first worker initialization included",
+      "oracle": "Formula per element; long-double sum oracle; every timed process validates outside timer",
+      "bootstrap": "5000 paired complete-round percentile resamples; seed shared with collection; n>=15",
+      "gcc_baseline": null,
+      "limitations": [
+        "Controlled authored corpus; convenience selection, no population inference.",
+        "Development/test split is fixed but author designed both; not an untouched external benchmark.",
+        "Correctness applies to deterministic tested inputs; not a proof, race detector, or runtime restrict check.",
+        "Bootstrap assumes sufficient stationarity; does not establish between-session reproducibility."
+      ]
+    }
+  }
+}

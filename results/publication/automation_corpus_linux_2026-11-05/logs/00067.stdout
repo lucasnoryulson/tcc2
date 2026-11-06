@@ -1,0 +1,32 @@
+=================================
+TCC2 STRATEGY PLANNER v0.1
+=================================
+Static:   /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/vector_product/analysis/case_vector_product_analysis.json
+Patterns: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/vector_product/analysis/case_vector_product_patterns.json
+
+Kernel: kernel_case
+Pattern: DOALL_CANDIDATE
+Family: MAP / DATA_PARALLEL
+Classification confidence: medium
+Strategy: DOALL
+
+{
+  "strategy": "DOALL",
+  "direct_code_transformation": true,
+  "schedule": "static",
+  "contract": {
+    "status": "SUPPORTED",
+    "pattern": "DOALL",
+    "iterator": "i",
+    "start_line": 3,
+    "reduction_variable": null,
+    "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+    "source_sha256": "835f08d8a113bc98bc73eace5ef71aae1646c746bb12fa67d2ea732991e19036",
+    "version": "standalone-ast-v2"
+  },
+  "reason": "One injective output write; pure RHS; explicit restrict caller precondition."
+}
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/vector_product/analysis/case_vector_product_strategy.json
+=================================

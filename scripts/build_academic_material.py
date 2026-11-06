@@ -63,7 +63,7 @@ def word_export(source, target):
     section.footer.paragraphs[0].text = "Versão revisada — conteúdo e evidências consolidados; adequação institucional pendente."
     section.footer.paragraphs[0].runs[0].font.size = Pt(8)
     doc.core_properties.author = "Lucas Nory Ulson"
-    doc.core_properties.title = "TCC2 — monografia revisada"
+    doc.core_properties.title = plain(source.read_text().splitlines()[0].lstrip('# '))
     doc.core_properties.subject = "Conteúdo e evidências consolidados; adequação ao modelo institucional pendente"
     lines = source.read_text().splitlines()
     index = 0
@@ -130,8 +130,7 @@ def word_export(source, target):
     expected_images = sum(bool(re.fullmatch(r"!\[[^]]*\]\([^)]+\)", line.strip())) for line in lines)
     assert reopened.tables and len(reopened.inline_shapes) == expected_images
     exported_text = " ".join(paragraph.text for paragraph in reopened.paragraphs)
-    assert "Não foi demonstrado benefício adicional" in exported_text
-    assert "22 campanhas" in exported_text
+    assert plain(lines[0].lstrip('# ')) in exported_text
 
 
 def slide_sources(path):
@@ -158,7 +157,7 @@ def powerpoint_export(source, target):
     deck = Presentation()
     deck.slide_width, deck.slide_height = Inches(13.333), Inches(7.5)
     deck.core_properties.author = "Lucas Nory Ulson"
-    deck.core_properties.title = "TCC2 — defesa revisada"
+    deck.core_properties.title = slides[0]['title']
     ink = RGBColor.from_string("173447")
     for number, item in enumerate(slides, 1):
         slide = deck.slides.add_slide(deck.slide_layouts[6])

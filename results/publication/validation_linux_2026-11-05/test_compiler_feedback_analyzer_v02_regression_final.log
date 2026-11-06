@@ -1,0 +1,27 @@
+=================================
+Compiler Feedback Analyzer v0.2
+Regression Test
+=================================
+
+MANUAL_MEMORY_DEPENDENCE: PASS
+  filter_mode: function
+  dominant_event: VECTORIZATION_BLOCKED_MEMORY_DEPENDENCE
+  strategies: ['SCALAR_ACCUMULATOR', 'LOOP_RESTRUCTURE']
+  discovered ranges: [('kernels/nussinov/manual_openmp.c', 106, 222)]
+
+ACCUMULATOR_COST_MODEL: PASS
+  filter_mode: function
+  dominant_event: VECTORIZATION_REJECTED_BY_COST_MODEL
+  strategies: ['EXPLICIT_SIMD_TRIAL']
+  discovered ranges: [('kernels/nussinov/accumulator_openmp.c', 106, 230)]
+
+SIMD_APPLIED: PASS
+  filter_mode: function
+  dominant_event: VECTORIZATION_APPLIED
+  strategies: []
+  discovered ranges: [('kernels/nussinov/simd_openmp.c', 106, 231)]
+
+=================================
+Compiler Feedback v0.2 regression: PASS
+3/3 cases behaved as expected.
+=================================

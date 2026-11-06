@@ -1,0 +1,12 @@
+{
+  "cause": "VECTORIZATION_COST_MODEL",
+  "action": "INSPECT_VECTORIZATION",
+  "abstain": false,
+  "claims": [
+    {
+      "fact_id": "f1",
+      "field": "message",
+      "value": "the cost-model indicates that vectorization is not beneficial [-Rpass-analysis=loop-vectorize]"
+    }
+  ]
+}

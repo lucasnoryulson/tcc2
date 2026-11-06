@@ -1,0 +1,36 @@
+{
+  "status": "VERIFIED_SEPARATE_SESSIONS",
+  "sessions": [
+    {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/multiplatform/linux_xeon_2026-11-05_p15w3",
+      "report_sha256": "bbd1bcc02fce0701420b112ca3f6fc3506b0aafc5a6a5451edc293ca955fef8b",
+      "samples_sha256": "9980e5237c465d56061314e06bf01a424184ca6e755eda7359de1ceda2c3bac2",
+      "started_utc": "2026-11-05T15:26:15.743549+00:00",
+      "finished_utc": "2026-11-05T16:23:56.233717+00:00",
+      "configurations": 60,
+      "measurements": 900
+    },
+    {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/scaling_linux_session02_2026-11-05",
+      "report_sha256": "82e6dc4bdd8252fc637e4a0b2815bcd1ffeccde5e876c942c55e29df310b8a96",
+      "samples_sha256": "5dd9500a3de4eb3aa3f99ba966408ad418ebc9908b9b1547698b817a7f4d596a",
+      "started_utc": "2026-11-05T18:57:47.139722+00:00",
+      "finished_utc": "2026-11-05T19:54:55.947005+00:00",
+      "configurations": 60,
+      "measurements": 900
+    },
+    {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/scaling_linux_session03_medium_2026-11-05",
+      "report_sha256": "6de50815ced610ea3dcbf0a9f926e3bf21297010d3a2c54e60fbe3f8f6ba606a",
+      "samples_sha256": "9b3c20b4e422c0fd09f57c8944404466092d797a7cfbd41500a6067164ae43f2",
+      "started_utc": "2026-11-05T20:04:17.609522+00:00",
+      "finished_utc": "2026-11-05T20:06:23.743465+00:00",
+      "configurations": 38,
+      "measurements": 570
+    }
+  ],
+  "common_configurations": 38,
+  "method": "Descriptive variation of session medians; no pooled raw observations",
+  "limitation": "Same machine and day; sequential sessions do not establish independence or controlled thermals",
+  "analyzer_sha256": "4689d3a4ce597f01799f1d86edd4bac26f8ecb23b7fb4c011d29df0c43f838c2"
+}

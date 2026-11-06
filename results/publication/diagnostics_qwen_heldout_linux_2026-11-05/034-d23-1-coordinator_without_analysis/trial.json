@@ -1,0 +1,72 @@
+{
+  "case_id": "d23",
+  "family": "covariance",
+  "origin": "archived_static_analysis_view",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator_without_analysis",
+  "status": "OK",
+  "metadata": {
+    "model": "qwen2.5:3b",
+    "created_at": "2026-11-05T20:27:45.680259583Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 45809635451,
+    "load_duration": 213502463,
+    "prompt_eval_count": 163,
+    "prompt_eval_duration": 889807854,
+    "eval_count": 242,
+    "eval_duration": 37798909158
+  },
+  "prompt_sha256": "5d0d16ceb8aa185793ec913cd2ac96c49953255584def230a112460524e1881d",
+  "analysis_available": true,
+  "ablation_effective": true,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 45.811344929999905,
+  "schema_valid": true,
+  "cause_correct": false,
+  "action_acceptable": false,
+  "cause_action_correct": false,
+  "abstain": true,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 5,
+  "claims_count": 5,
+  "output": {
+    "cause": "COMPILE_ERROR",
+    "action": "INSPECT_SCALING",
+    "abstain": true,
+    "claims": [
+      {
+        "fact_id": "F001",
+        "field": "compile_result",
+        "value": "Compilation failed with error messages indicating incorrect syntax or logic errors."
+      },
+      {
+        "fact_id": "F002",
+        "field": "environment_variables",
+        "value": "Environment variables related to compiler settings are not properly configured."
+      },
+      {
+        "fact_id": "F003",
+        "field": "source_code_formatting",
+        "value": "The source code contains inconsistent indentation or uses non-standard formatting, which may cause compilation issues."
+      },
+      {
+        "fact_id": "F004",
+        "field": "parallel_regions_count",
+        "value": "There are more parallel regions than expected in the OpenMP experiment, leading to potential race conditions and synchronization errors."
+      },
+      {
+        "fact_id": "F005",
+        "field": "log_file_content",
+        "value": "Log file indicates a failure during the execution phase of the compiled code, suggesting issues with memory management or data dependencies."
+      }
+    ]
+  },
+  "raw_response_sha256": "185159121081ae0410868077df0b07c617322f26868552f4a89e3de3a4ad94ec"
+}

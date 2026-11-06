@@ -1,0 +1,12 @@
+{
+  "cause": "INCORRECT_RESULT",
+  "action": "DEBUG_RESULT",
+  "abstain": false,
+  "claims": [
+    {
+      "fact_id": "f1",
+      "field": "reference_value",
+      "value": 261762.4999999812
+    }
+  ]
+}

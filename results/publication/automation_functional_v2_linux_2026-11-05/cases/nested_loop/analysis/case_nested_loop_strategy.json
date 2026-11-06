@@ -1,0 +1,34 @@
+{
+  "version": "0.1",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/nested_loop.c",
+  "plans": [
+    {
+      "kernel": "kernel_case",
+      "detected_pattern": "REDUCTION_CANDIDATE",
+      "family": "REDUCE / AGGREGATION",
+      "classification_confidence": "medium",
+      "strategy": {
+        "strategy": "REDUCTION",
+        "reductions": [
+          {
+            "loop_id": 2,
+            "iterator": "j",
+            "reduction_type": "array_element",
+            "write": "Y[i]",
+            "operator": "+",
+            "parallelize_this_loop_directly": false,
+            "preferred_policy": "keep accumulation loop serial and search for an independent outer loop",
+            "ancestor_loops": [
+              {
+                "loop_id": 1,
+                "iterator": "i",
+                "depth": 0
+              }
+            ],
+            "direct_code_transformation": false
+          }
+        ]
+      }
+    }
+  ]
+}

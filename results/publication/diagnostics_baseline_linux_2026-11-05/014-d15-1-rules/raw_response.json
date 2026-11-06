@@ -1,0 +1,12 @@
+{
+  "cause": "INSUFFICIENT_EVIDENCE",
+  "action": "MEASURE_MORE",
+  "abstain": true,
+  "claims": [
+    {
+      "fact_id": "f1",
+      "field": "question",
+      "value": "gain"
+    }
+  ]
+}

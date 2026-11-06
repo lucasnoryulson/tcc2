@@ -1,0 +1,12 @@
+{
+  "cause": "NEAR_TIE",
+  "action": "MEASURE_MORE",
+  "abstain": false,
+  "claims": [
+    {
+      "fact_id": "f1",
+      "field": "question",
+      "value": "gain"
+    }
+  ]
+}

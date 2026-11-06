@@ -82,6 +82,20 @@ class PipelineIntegration(unittest.TestCase):
         self.assertEqual((manifest_path.parent / "parallel.c").read_bytes(), (work / "candidate.c").read_bytes())
         self.assertEqual(json.loads(manifest_path.read_text())["configuration"], {"threads": 2})
 
+    def test_doall_reaches_promotion_with_real_compilation_and_simulated_decision(self):
+        corpus = ROOT / 'analysis/fixtures/publication_corpus'
+        self.args.source = corpus / 'affine_vector.c'
+        self.args.driver = corpus / 'affine_vector_driver.c'
+        code, work = self.execute()
+        self.assertEqual(code, 0, (work / 'summary.json').read_text())
+        summary = json.loads((work / 'summary.json').read_text())
+        manifest_path = Path(summary['manifest']['path'])
+        manifest = json.loads(manifest_path.read_text())
+        self.assertEqual(manifest['status'], 'PROMOTED')
+        self.assertEqual(manifest['coordinator_model'], 'test-stub')
+        self.assertEqual(manifest['revalidation']['status'], 'PASS')
+        self.assertIn('AUTO-GENERATED: DOALL', (manifest_path.parent / 'parallel.c').read_text())
+
     def test_coordinator_rejection_stops_without_promotion(self):
         code, work = self.execute("REJECT")
         self.assertEqual(code, 1)

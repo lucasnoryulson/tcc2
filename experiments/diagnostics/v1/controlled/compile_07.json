@@ -1,0 +1,11 @@
+{
+  "command": [
+    "clang",
+    "-include=tcc2_nonexistent_header_2026.h",
+    "-fsyntax-only",
+    "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "<built-in>:1:10: fatal error: '=tcc2_nonexistent_header_2026.h' file not found\n    1 | #include \"=tcc2_nonexistent_header_2026.h\"\n      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n1 error generated.\n"
+}

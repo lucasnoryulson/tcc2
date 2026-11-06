@@ -1,0 +1,72 @@
+{
+  "case_id": "d23",
+  "family": "covariance",
+  "origin": "archived_static_analysis_view",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator",
+  "status": "OK",
+  "metadata": {
+    "model": "llama3.1:8b",
+    "created_at": "2026-11-05T20:33:42.251281894Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 179498122909,
+    "load_duration": 45587274626,
+    "prompt_eval_count": 343,
+    "prompt_eval_duration": 61896094441,
+    "eval_count": 180,
+    "eval_duration": 67605685944
+  },
+  "prompt_sha256": "255702d7e4ba1b92d97af7a1f3d8a7f425c3de614168810462909eef1c2c664d",
+  "analysis_available": true,
+  "ablation_effective": null,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 179.49962405599945,
+  "schema_valid": true,
+  "cause_correct": false,
+  "action_acceptable": true,
+  "cause_action_correct": false,
+  "abstain": true,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 5,
+  "claims_count": 5,
+  "output": {
+    "cause": "UNDETERMINED",
+    "action": "INSPECT_DEPENDENCE",
+    "abstain": true,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "data.accesses[0].resolved",
+        "value": false
+      },
+      {
+        "fact_id": "f1",
+        "field": "data.accesses[0].relation",
+        "value": "symbolic_relation"
+      },
+      {
+        "fact_id": "f1",
+        "field": "data.accesses[0].dimensions[0].reason",
+        "value": "different_iterators"
+      },
+      {
+        "fact_id": "f1",
+        "field": "data.carried_count",
+        "value": 0
+      },
+      {
+        "fact_id": "f1",
+        "field": "data.unresolved_count",
+        "value": 1
+      }
+    ]
+  },
+  "raw_response_sha256": "9199638c2a34022265950a3d6f9d411167d01dad2a9fc2cf9721c8591834763f"
+}

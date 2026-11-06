@@ -119,12 +119,14 @@ def kernel_figures(analysis, directory):
         plt.close(fig)
 
 
-def fill_cover(template, target):
+def fill_cover(template, target,
+               title='SISTEMAS MULTIAGENTES PARA REESTRUTURAÇÃO AUTÔNOMA DE CÓDIGOS: ',
+               subtitle='Análise de dependências, paralelização OpenMP e coordenação baseada em evidências'):
     from lxml import etree as ET
     replacements = {'ESCOLA': 'ESCOLA POLITÉCNICA', 'CURSO ': 'CURSO DE CIÊNCIA DA COMPUTAÇÃO',
                     'NOME DO AUTOR EM MAIÚSCULAS': 'LUCAS NORY ULSON',
-                    'TÍTULO EM MAIÚSCULAS E NEGRITO: ': 'SISTEMAS MULTIAGENTES PARA REESTRUTURAÇÃO AUTÔNOMA DE CÓDIGOS: ',
-                    'SUBTÍTULO DO TRABALHO SEM NEGRITO': 'Análise de dependências, paralelização OpenMP e coordenação baseada em evidências',
+                    'TÍTULO EM MAIÚSCULAS E NEGRITO: ': title,
+                    'SUBTÍTULO DO TRABALHO SEM NEGRITO': subtitle,
                     'Ano': '2026'}
     with ZipFile(template) as src, ZipFile(target, 'w') as dst:
         for item in src.infolist():
@@ -138,7 +140,7 @@ def fill_cover(template, target):
             dst.writestr(item, data)
 
 
-def format_word(source, target):
+def format_word(source, target, revision='Revisão multiplataforma — 05/11/2026'):
     from docx import Document
     from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
     from docx.enum.style import WD_STYLE_TYPE
@@ -189,7 +191,7 @@ def format_word(source, target):
             for cell in row.cells:
                 cell.width = Cm(16/len(table.columns))
     footer = section.footer.paragraphs[0]
-    footer.text = 'Revisão multiplataforma — 05/11/2026 — '
+    footer.text = revision + ' — '
     field = OxmlElement('w:fldSimple')
     from docx.oxml.ns import qn
     field.set(qn('w:instr'), 'PAGE')
@@ -271,7 +273,7 @@ def pdf_export(source, target):
                     self.notify('TOCEntry', (level, title, self.page, key))
 
     document = ReviewPDF(str(target), pagesize=A4, leftMargin=3*cm, rightMargin=2*cm,
-                                 topMargin=3*cm, bottomMargin=2*cm, title='Revisão multiplataforma TCC2', author='Lucas Nory Ulson')
+                                 topMargin=3*cm, bottomMargin=2*cm, title=plain(source.read_text().splitlines()[0].lstrip('# ')), author='Lucas Nory Ulson')
     story = []
     figure_number = 0
     lines = source.read_text().splitlines()

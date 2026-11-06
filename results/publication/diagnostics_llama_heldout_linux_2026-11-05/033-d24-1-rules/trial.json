@@ -1,0 +1,41 @@
+{
+  "case_id": "d24",
+  "family": "covariance",
+  "origin": "contract_compatibility_probe",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "rules",
+  "status": "OK",
+  "metadata": {},
+  "prompt_sha256": "de9e71c323682b8b74cf4cb582dca66c8c0fe3b4622d747f3b50f90759fc9f7a",
+  "analysis_available": false,
+  "ablation_effective": null,
+  "llm_calls": 0,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 0.0001282480006921105,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": true,
+  "cause_action_correct": true,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": true,
+  "unsupported_claims": 0,
+  "claims_count": 1,
+  "output": {
+    "cause": "SCHEMA_MISMATCH",
+    "action": "ADAPT_SCHEMA",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "received_version",
+        "value": "0.3"
+      }
+    ]
+  },
+  "raw_response_sha256": "98767558e08a8f57de7b0c5b88385bb1500718c8791c2cb9ec15a43607af40f6"
+}

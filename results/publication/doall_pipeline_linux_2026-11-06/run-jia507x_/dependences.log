@@ -1,0 +1,14 @@
+==================================
+TCC2 DEPENDENCE ANALYZER v0.3
+==================================
+Input: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_analysis.json
+
+Kernel: kernel_case
+
+  Loop #1
+    Iterator: i
+    Dependence candidates: (none)
+
+==================================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_dependences.json
+==================================

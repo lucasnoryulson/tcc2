@@ -1,0 +1,62 @@
+{
+  "case_id": "d16",
+  "family": "gemm",
+  "origin": "executed_controlled_compilation_failure",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator_without_analysis",
+  "status": "OK",
+  "metadata": {
+    "model": "llama3.1:8b",
+    "created_at": "2026-11-05T20:40:21.993980379Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 55252649383,
+    "load_duration": 245781919,
+    "prompt_eval_count": 219,
+    "prompt_eval_duration": 10400380870,
+    "eval_count": 125,
+    "eval_duration": 41616612266
+  },
+  "prompt_sha256": "46d05342b04ea87908e868c99535412109f31904872ca3739359536bb251641a",
+  "analysis_available": false,
+  "ablation_effective": false,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 55.25417827199999,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": false,
+  "cause_action_correct": false,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 2,
+  "claims_count": 3,
+  "output": {
+    "cause": "COMPILE_ERROR",
+    "action": "VERIFY_GATES",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "returncode",
+        "value": 1
+      },
+      {
+        "fact_id": "f1",
+        "field": "stderr",
+        "value": "clang: error: unknown argument: '-fthis-option-does-not-exist-tcc2'"
+      },
+      {
+        "fact_id": "f1",
+        "field": "kind",
+        "value": "compilation"
+      }
+    ]
+  },
+  "raw_response_sha256": "0c71530ccdac6911aff62cdebb0f17a86b2c8cff1869b7e9fd5445f12fdd9842"
+}

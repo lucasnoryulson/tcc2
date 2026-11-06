@@ -1,0 +1,12 @@
+{
+  "commit": "b9e252d5fd59141a41ae73c29585769b066d43d7",
+  "polybench_commit": "3e872547cef7e5c9909422ef1e6af03cf4e56072",
+  "collector_sha256": "4f58ea407c809bf69b261ad6561dd78300a636492b1091cb3b417e18a34d0a5e",
+  "copied_paths": [
+    "scripts",
+    "analysis",
+    "kernels",
+    "benchmarks/PolyBenchC-4.2.1"
+  ],
+  "purpose": "Recompile identical frozen implementations in separate new measurement sessions; independent from transformer changes in working tree"
+}

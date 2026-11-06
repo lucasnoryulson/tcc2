@@ -1,0 +1,855 @@
+{
+  "provenance": "Hand-authored controlled microkernels; not a random sample of external programs. Split fixed before final evaluation; test cases were not used to tune a model. All source files count once regardless of input sizes.",
+  "coverage": {
+    "development": {
+      "programs": 8,
+      "supported_expected": 4,
+      "unsupported_expected": 4,
+      "accepted": 4,
+      "true_acceptances": 4,
+      "false_acceptances": 0,
+      "true_refusals": 0,
+      "false_refusals": 0,
+      "unexpected_errors": 4,
+      "functional_inputs_passed": 8
+    },
+    "test": {
+      "programs": 20,
+      "supported_expected": 10,
+      "unsupported_expected": 10,
+      "accepted": 10,
+      "true_acceptances": 10,
+      "false_acceptances": 0,
+      "true_refusals": 0,
+      "false_refusals": 0,
+      "unexpected_errors": 10,
+      "functional_inputs_passed": 20
+    },
+    "all": {
+      "programs": 28,
+      "supported_expected": 14,
+      "unsupported_expected": 14,
+      "accepted": 14,
+      "true_acceptances": 14,
+      "false_acceptances": 0,
+      "true_refusals": 0,
+      "false_refusals": 0,
+      "unexpected_errors": 14,
+      "functional_inputs_passed": 28
+    }
+  },
+  "programs": [
+    {
+      "id": "affine_vector",
+      "split": "development",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 16,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/affine_vector/correctness_small.json",
+            "sha256": "309ff1211c78a8ff14b42fd7ec72079f0f390350cf29284d6e3d6bac3fd6f775"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/affine_vector/correctness_large.json",
+            "sha256": "a1a8fc34ff75690f26bfa18ccebf5d5baf018b258b65438cefc605fd23a39a36"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 3,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "4a049db9b82214aa4563a6cb47f1302e6c1ad983be50973afde8bf155974340d",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "vector_product",
+      "split": "development",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 24,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/vector_product/correctness_small.json",
+            "sha256": "2af8df8b5c3670162f33d66189e5cf5fee35802d4201109a4f9b59dfead47fd3"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/vector_product/correctness_large.json",
+            "sha256": "c31b5b1bac287df6b5a44b432f1975d4ff621cf47f74208591cd1b345d967e6c"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 3,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "835f08d8a113bc98bc73eace5ef71aae1646c746bb12fa67d2ea732991e19036",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "polynomial",
+      "split": "test",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 32,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/polynomial/correctness_small.json",
+            "sha256": "345badf0e86e2188ba54f12e1c1e369f61f8fd8b65cdb8342c487f39d4e2fe8c"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/polynomial/correctness_large.json",
+            "sha256": "29fc13bf99595b1ea8565f7a9110e15f6be6ea3b2e5a62af9dd393c5553825f2"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 3,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "e709007920e24e21591ce84f76de93cdf72861d1f32f96edc0625e11c99b7796",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "absolute_difference",
+      "split": "test",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 40,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/absolute_difference/correctness_small.json",
+            "sha256": "238b30611cab017296bbd670ffa168a81b7c6f34b2cfdefc25d6cb5c0fe1ed24"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/absolute_difference/correctness_large.json",
+            "sha256": "e4f867bebd2b9a1479ced412d583a755427eea22c842ee33011dd7b737eed9fd"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 3,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "e969d0eea06a9f225fee95e0063b6c22a63a31bd304cef97ea33d08313bbd830",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "threshold_filter",
+      "split": "test",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 48,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/threshold_filter/correctness_small.json",
+            "sha256": "828a6091273e48aed59092e74842ef4dff9a271c62721ea157e05ab4dcb3e015"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/threshold_filter/correctness_large.json",
+            "sha256": "04a2ae92afb910afc548ecdb09993f10aea58a9193f502231d73472874d80764"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 3,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "3e6a908b3b8dd35a905f85d5b70377eb492e30d29f44d61c054546010fdc340e",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "clamp",
+      "split": "test",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 56,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/clamp/correctness_small.json",
+            "sha256": "1b3633cdb754d8ac4e73772cda6a5c441f78ad086add71a5289beb5eb0e567f8"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/clamp/correctness_large.json",
+            "sha256": "b8c84e5a0b2d87abd851732664b75ced9a950667e5bd152e4ef64adf99a0eb17"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 3,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "0ecdb2873bd70ea6f456c1e1e613de9c6e21a817a3fb9bb1d2c02b908b69bf2d",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "readonly_stencil",
+      "split": "test",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 64,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/readonly_stencil/correctness_small.json",
+            "sha256": "e805980289a10864dcca8b8580efcefd4c77a1f9eaa32cd4de101e635048fd8c"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/readonly_stencil/correctness_large.json",
+            "sha256": "fcdd094e2c6a4b49683440687d5e7ab40024b03826a186bf3e984c0d8b1c9e0a"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 3,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "8c2ae2f81f38a8c6e7fe188809cfc1c6a766d0fc4c59dcdb3509f57d4f4a9abf",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "reciprocal_quadratic",
+      "split": "test",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 72,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/reciprocal_quadratic/correctness_small.json",
+            "sha256": "a1641dbfa4710897ea690e41ad52cecb230a28347bf9a34424f946c599841374"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/reciprocal_quadratic/correctness_large.json",
+            "sha256": "4132c0178f100d405224ebbaf7dad7ea12e9dc81d899e33ba332bfcf5521f3a0"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 3,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "015c831ee70f057c98c3e09a8c136f3c866488ec21bf77a5a266557d2c7256e0",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "vector_sum",
+      "split": "development",
+      "pattern": "REDUCTION",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 80,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/vector_sum/correctness_small.json",
+            "sha256": "51f3bccab3aae681b7943a584539ed03aa663a8ebb53584650c9fdce07caa307"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/vector_sum/correctness_large.json",
+            "sha256": "531d27c0d30c5416c0d9714b3fee6612c19920b5e76a3b1051ccbe93668b7fe4"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "REDUCTION",
+        "iterator": "i",
+        "start_line": 4,
+        "reduction_variable": "sum",
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "79bbad5a60168a9c37abd5b72fbb2d81ac40b20aca0b4c9e886ae73cd212c9b2",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "sum_squares",
+      "split": "development",
+      "pattern": "REDUCTION",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 88,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/sum_squares/correctness_small.json",
+            "sha256": "c038c79ada0052bb8bf737f1876e6d766196f14688baf6eb67b901666242f8e2"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/sum_squares/correctness_large.json",
+            "sha256": "7b35de972ddc4ec8a4a78fc2a3f2c08a3ef943ae2a00efc698f77b939f155ec6"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "REDUCTION",
+        "iterator": "i",
+        "start_line": 4,
+        "reduction_variable": "sum",
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "697edbcb41e74ca02af42508e90c459ebe4fdd6ad42e23fd4ed2a8977f35e4e3",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "inner_product",
+      "split": "test",
+      "pattern": "REDUCTION",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 96,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/inner_product/correctness_small.json",
+            "sha256": "0ce32eddc21977c855c7b65be6d720629cfeb4ec3e7c1647698f1c521679eb49"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/inner_product/correctness_large.json",
+            "sha256": "0e607095e01c9f5e13fcae156f0601f94976a3150b656176c24ea608c757071d"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "REDUCTION",
+        "iterator": "i",
+        "start_line": 4,
+        "reduction_variable": "sum",
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "5599597ad1d2298ca2089151f7962a0b63b00b7d16d81f18d2e37ecae71bfbc3",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "l1_norm",
+      "split": "test",
+      "pattern": "REDUCTION",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 104,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/l1_norm/correctness_small.json",
+            "sha256": "e1a2892086d41b5553a9034221ac6e63ae349367bfbf1d0540ad886f907fcceb"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/l1_norm/correctness_large.json",
+            "sha256": "0a33cb4bdb248dec450df84da88207f698c4a1fd5ee35afe19b5c8d190f133c3"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "REDUCTION",
+        "iterator": "i",
+        "start_line": 4,
+        "reduction_variable": "sum",
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "1f3036ed66784e33cf70c2c0810147de4af3960a958ae41625e8555f2b04f676",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "squared_distance",
+      "split": "test",
+      "pattern": "REDUCTION",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 112,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/squared_distance/correctness_small.json",
+            "sha256": "b9fedcb28f05ecce7435dc20fe5b0ce2eb72ad834db4699b6dfdbd6c5426e8b4"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/squared_distance/correctness_large.json",
+            "sha256": "c56deb433e5936ecfdb5b334252c5e00e9d5c7d8b9d139534a0cde09b3096938"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "REDUCTION",
+        "iterator": "i",
+        "start_line": 4,
+        "reduction_variable": "sum",
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "1657de726d412f02892340162dfa5f90665aeadbbeafcb1969bb10df402b9e8c",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "count_comparison",
+      "split": "test",
+      "pattern": "REDUCTION",
+      "expected_support": true,
+      "accepted": true,
+      "transform_status": "ACCEPTED",
+      "transform_command_id": 120,
+      "functional_inputs": [
+        {
+          "input": {
+            "id": "small",
+            "n": 1024
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/count_comparison/correctness_small.json",
+            "sha256": "7727077bd25dd0484230c482bb5ba579e6b49b39362b3d610b9bb481e8a54aff"
+          }
+        },
+        {
+          "input": {
+            "id": "large",
+            "n": 1000000
+          },
+          "status": "PASS",
+          "report": {
+            "path": "cases/count_comparison/correctness_large.json",
+            "sha256": "ca5f40af0176da40419fe4e8a9b5a7727849800ed2738c23b83ea55dbab352e1"
+          }
+        }
+      ],
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "REDUCTION",
+        "iterator": "i",
+        "start_line": 4,
+        "reduction_variable": "sum",
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "e0bcf378dcb5ccbd740f64385d09926c94038ca7b21c1431e2f4e641af3c2fb3",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "prefix_dependency",
+      "split": "development",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 128,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "array inputs must be const double pointers",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "inplace_neighbor",
+      "split": "development",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 134,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "array inputs must be const double pointers",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "scatter_permutation",
+      "split": "development",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 140,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "expected a direct variable reference",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "missing_restrict",
+      "split": "development",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 146,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "DOALL requires restrict on every pointer and a mutable double output",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "mutable_input",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 152,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "array inputs must be const double pointers",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "stride_two",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 158,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "supported step is ++iterator",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "early_exit",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 164,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "exactly one assignment is supported in the loop",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "multiple_writes",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 170,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "exactly one assignment is supported in the loop",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "helper_call",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 176,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "calls, casts, nested writes, control flow and unknown expressions are unsupported",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "nested_loop",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 182,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "calls, casts, nested writes, control flow and unknown expressions are unsupported",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "global_side_effect",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 188,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "calls, casts, nested writes, control flow and unknown expressions are unsupported",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "indirect_read_index",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 194,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "only iterator +/- constant input indices are supported",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "self_referential_reduction",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 200,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "RHS references shared state or a pointer outside a subscript",
+        "version": "standalone-ast-v2"
+      }
+    },
+    {
+      "id": "reduction_with_store",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "accepted": false,
+      "transform_status": "ERROR",
+      "transform_command_id": 206,
+      "functional_inputs": [],
+      "contract": {
+        "status": "REFUSED",
+        "reason": "exactly one assignment is supported in the loop",
+        "version": "standalone-ast-v2"
+      }
+    }
+  ]
+}

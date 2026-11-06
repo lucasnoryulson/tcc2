@@ -1160,6 +1160,15 @@ def classify_kernel(
             )
         )
 
+        contract = static_kernel.get("direct_transform_contract", {})
+        if contract.get("status") == "SUPPORTED" and contract.get("pattern") == "DOALL":
+            classification = {
+                "classification": "DOALL_CANDIDATE", "family": pattern_family("DOALL_CANDIDATE"),
+                "confidence": "conservative_contract",
+                "reason": "One injective output write with pure reads and restrict caller preconditions.",
+                "evidence": {"standalone_ast_contract": contract},
+            }
+
         classification[
             "loop_id"
         ] = loop_id

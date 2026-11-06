@@ -1,0 +1,23 @@
+=================================
+TCC2 PATTERN CLASSIFIER v0.6
+=================================
+Static:     /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/multiple_writes/analysis/case_multiple_writes_analysis.json
+Dependence: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/multiple_writes/analysis/case_multiple_writes_dependences.json
+
+Kernel: kernel_case
+Classification: UNKNOWN
+Family: UNKNOWN
+Confidence: low
+Reason: Current analysis produced insufficient evidence.
+
+Loop classifications:
+
+  Loop #1 (i)
+    Pattern: NO_DIRECT_EVIDENCE
+    Family: UNKNOWN
+    Confidence: low
+    Reason: No direct READ/WRITE dependence candidate was associated with this loop level.
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/multiple_writes/analysis/case_multiple_writes_patterns.json
+=================================

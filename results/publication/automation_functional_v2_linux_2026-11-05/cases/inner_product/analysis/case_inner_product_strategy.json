@@ -1,0 +1,28 @@
+{
+  "version": "0.1",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/inner_product.c",
+  "plans": [
+    {
+      "kernel": "kernel_case",
+      "detected_pattern": "REDUCTION_CANDIDATE",
+      "family": "REDUCE / AGGREGATION",
+      "classification_confidence": "medium",
+      "strategy": {
+        "strategy": "REDUCTION",
+        "reductions": [
+          {
+            "loop_id": 1,
+            "iterator": "i",
+            "reduction_type": "scalar",
+            "variable": "sum",
+            "operator": "+",
+            "openmp_construct": "parallel for",
+            "openmp_clause": "reduction(+:sum)",
+            "schedule": "static",
+            "direct_code_transformation": true
+          }
+        ]
+      }
+    }
+  ]
+}

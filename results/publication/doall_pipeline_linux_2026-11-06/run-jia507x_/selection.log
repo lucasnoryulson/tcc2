@@ -1,0 +1,31 @@
+=================================
+TCC2 PERFORMANCE SELECTOR v0.2
+=================================
+
+Status: SELECTED
+
+Raw fastest configuration:
+  Threads:    2
+  Median:     0.001796058 s
+  Speedup:    1.222x
+  Efficiency: 0.611
+
+Near-tie candidates:
+  2 thread(s): 0.001796058 s | speedup 1.222x | efficiency 0.611 | slowdown vs fastest 0.000%
+
+Recommended configuration:
+  Threads:    2
+  Median:     0.001796058 s
+  End-to-end speedup: 1.222x
+
+Performance decomposition:
+  Transformation speedup:      1.145x
+  Parallel scaling speedup:    1.067x
+  Parallel scaling efficiency: 53.36%
+  Runtime reduction:           18.17%
+
+Decision: FASTEST_CONFIGURATION
+Reason: The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.
+
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/selection.json
+=================================

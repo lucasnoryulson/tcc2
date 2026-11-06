@@ -1,0 +1,32 @@
+{
+  "reference_compile": [
+    "clang",
+    "-O0",
+    "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c",
+    "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_driver.c",
+    "-o",
+    "experiments/diagnostics/v1/controlled/reference.bin"
+  ],
+  "compile": [
+    "clang",
+    "-O0",
+    "experiments/diagnostics/v1/controlled/mutant_08.c",
+    "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_driver.c",
+    "-o",
+    "experiments/diagnostics/v1/controlled/mutant_08.bin"
+  ],
+  "compile_returncode": 0,
+  "run": [
+    "/home/liswsz220-01/Desktop/tcc/tcc2/experiments/diagnostics/v1/controlled/mutant_08.bin"
+  ],
+  "returncode": 0,
+  "stdout": "261761.50799298121\n",
+  "stderr": "",
+  "reference_stdout": "261762.4999999812\n",
+  "mutation": [
+    "i < n;",
+    "i < n - 1;"
+  ],
+  "reference_binary_sha256": "8864e9033fccda72636eefe5b51f472eeeaac1df085238438dfbe198f559ff91",
+  "mutant_binary_sha256": "b49d7fc8164d16ff9e06b696447aa5655dc7a6f7cea6c0573086e6fc6c84d428"
+}

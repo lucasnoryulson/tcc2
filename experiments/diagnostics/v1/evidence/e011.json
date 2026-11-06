@@ -1,0 +1,233 @@
+{
+  "version": "0.3",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/medley/nussinov/nussinov.c",
+  "kernels": [
+    {
+      "name": "kernel_nussinov",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        },
+        {
+          "id": 2,
+          "iterator": "j",
+          "dependencies": [
+            {
+              "array": "table",
+              "write": "table[i][j]",
+              "read": "table[i][j]",
+              "resolved": true,
+              "relation": "same_location",
+              "offsets": [
+                0,
+                0
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 0,
+                  "write": "i",
+                  "read": "i"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            },
+            {
+              "array": "table",
+              "write": "table[i][j]",
+              "read": "table[i][j-1]",
+              "resolved": true,
+              "relation": "shifted_access",
+              "offsets": [
+                0,
+                -1
+              ],
+              "carried_by": [
+                "j"
+              ],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 0,
+                  "write": "i",
+                  "read": "i"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": -1,
+                  "write": "j",
+                  "read": "j-1"
+                }
+              ]
+            },
+            {
+              "array": "table",
+              "write": "table[i][j]",
+              "read": "table[i+1][j]",
+              "resolved": true,
+              "relation": "shifted_access",
+              "offsets": [
+                1,
+                0
+              ],
+              "carried_by": [
+                "i"
+              ],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 1,
+                  "write": "i",
+                  "read": "i+1"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            },
+            {
+              "array": "table",
+              "write": "table[i][j]",
+              "read": "table[i+1][j-1]",
+              "resolved": true,
+              "relation": "shifted_access",
+              "offsets": [
+                1,
+                -1
+              ],
+              "carried_by": [
+                "i",
+                "j"
+              ],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 1,
+                  "write": "i",
+                  "read": "i+1"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": -1,
+                  "write": "j",
+                  "read": "j-1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "iterator": "k",
+          "dependencies": [
+            {
+              "array": "table",
+              "write": "table[i][j]",
+              "read": "table[i][j]",
+              "resolved": true,
+              "relation": "same_location",
+              "offsets": [
+                0,
+                0
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 0,
+                  "write": "i",
+                  "read": "i"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            },
+            {
+              "array": "table",
+              "write": "table[i][j]",
+              "read": "table[i][k]",
+              "resolved": false,
+              "relation": "symbolic_relation",
+              "offsets": [
+                0,
+                null
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 0,
+                  "write": "i",
+                  "read": "i"
+                },
+                {
+                  "resolved": false,
+                  "write": "j",
+                  "read": "k",
+                  "write_variable": "j",
+                  "read_variable": "k",
+                  "reason": "different_iterators"
+                }
+              ]
+            },
+            {
+              "array": "table",
+              "write": "table[i][j]",
+              "read": "table[k+1][j]",
+              "resolved": false,
+              "relation": "symbolic_relation",
+              "offsets": [
+                null,
+                0
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": false,
+                  "write": "i",
+                  "read": "k+1",
+                  "write_variable": "i",
+                  "read_variable": "k",
+                  "reason": "different_iterators"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

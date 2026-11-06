@@ -1,0 +1,32 @@
+=================================
+TCC2 PATTERN CLASSIFIER v0.6
+=================================
+Static:     /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/nested_loop/analysis/case_nested_loop_analysis.json
+Dependence: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/nested_loop/analysis/case_nested_loop_dependences.json
+
+Kernel: kernel_case
+Classification: REDUCTION_CANDIDATE
+Family: REDUCE / AGGREGATION
+Confidence: medium
+Reason: At least one loop contains a reduction update.
+
+Loop classifications:
+
+  Loop #1 (i)
+    Pattern: NO_DIRECT_EVIDENCE
+    Family: UNKNOWN
+    Confidence: low
+    Reason: No direct READ/WRITE dependence candidate was associated with this loop level.
+
+  Loop #2 (j)
+    Pattern: REDUCTION_CANDIDATE
+    Family: REDUCE / AGGREGATION
+    Confidence: medium
+    Reason: The loop repeatedly updates the same array element while the current iterator does not participate in the written index.
+    Evidence:
+      reduction_type: array_element
+      updates: [{'type': 'array_element', 'write': 'Y[i]', 'iterator': 'j', 'iterator_in_write': False, 'operators': ['+=']}]
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/nested_loop/analysis/case_nested_loop_patterns.json
+=================================

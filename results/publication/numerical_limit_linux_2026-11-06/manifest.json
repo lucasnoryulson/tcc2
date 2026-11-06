@@ -1,0 +1,29 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "scripts/compile_correctness_gate.py",
+    "--sequential",
+    "results/publication/numerical_limit_linux_2026-11-06/original.c",
+    "--candidate",
+    "results/publication/numerical_limit_linux_2026-11-06/candidate.c",
+    "--driver",
+    "results/publication/numerical_limit_linux_2026-11-06/driver.c",
+    "--build-dir",
+    "results/publication/numerical_limit_linux_2026-11-06/build",
+    "--compiler",
+    "gcc",
+    "--threads",
+    "1",
+    "2",
+    "--output",
+    "results/publication/numerical_limit_linux_2026-11-06/gate.json"
+  ],
+  "returncode": 1,
+  "files": {
+    "original.c": "79bbad5a60168a9c37abd5b72fbb2d81ac40b20aca0b4c9e886ae73cd212c9b2",
+    "candidate.c": "f60c9b15e70fb72c54fd74dfcb2d54341187524e116eb8cc30bc918fadefe0ae",
+    "driver.c": "0d11e6d22ebba85cf106f229df4d11cf37e879658e6a8d5b0e1d04b8a411587c",
+    "protocol.md": "ca3685286321583e9fc18d5cef5e991ed40dc7a806e3d8ffaad1d9b17f0f5a2d"
+  }
+}

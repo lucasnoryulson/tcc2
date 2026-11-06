@@ -1,0 +1,16 @@
+{
+  "method": "Read archived compiler diagnostics and search object bytes for GOMP_parallel; no recompilation or worker-count measurement.",
+  "archive_manifest_sha256": "50b0efa9146c64597c46aa77b79b51f9874deb6993dc342cc677bd19f0a07062",
+  "summary": {
+    "DOALL": {
+      "objects": 32,
+      "parallelizing_message": 32,
+      "contains_GOMP_parallel_bytes": 32
+    },
+    "REDUCTION": {
+      "objects": 24,
+      "parallelizing_message": 0,
+      "contains_GOMP_parallel_bytes": 0
+    }
+  }
+}

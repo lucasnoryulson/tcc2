@@ -1,0 +1,174 @@
+[
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/catalog.json",
+    "sha256": "f366b751ba680c19d970e827bca43e1db4da38223260aac2c52ee48078256322"
+  },
+  {
+    "path": "sources/analysis/conservative_transform.py",
+    "sha256": "e7d0a23c14b9039eb3f0a03fe5a8a9da1a8709620f7522be53487a77691422df"
+  },
+  {
+    "path": "sources/analysis/static_analyzer.py",
+    "sha256": "1cf3b62478aa16e41f287273048c2e4a568d09b908190a7ae356b8284e37734f"
+  },
+  {
+    "path": "sources/analysis/dependence_analyzer.py",
+    "sha256": "173c311b52f18e50acc1ad2c08a0d0ce1f9f2c48d60c022da226f9acf329746a"
+  },
+  {
+    "path": "sources/analysis/pattern_classifier.py",
+    "sha256": "491fdaf81d63b46638c805df78d18b3963fb8a1d66b7bfab092eb6bb601bb44f"
+  },
+  {
+    "path": "sources/analysis/strategy_planner.py",
+    "sha256": "669f2c203483df16b22fd4fc645c65ef125030ac92c02c7c727761bc52f66729"
+  },
+  {
+    "path": "sources/analysis/code_transformer.py",
+    "sha256": "fded4cb4b75067ac18f1757b87ced006e4af541838bec7484bab9edd68c6251a"
+  },
+  {
+    "path": "sources/scripts/evaluate_automation_corpus.py",
+    "sha256": "e43c27e489e22bd46630a20eeee2c70d4ef2eef341eb6d6b8a9d79b62b2f8dd6"
+  },
+  {
+    "path": "sources/scripts/compile_correctness_gate.py",
+    "sha256": "1f6389072e084311918f49277296a7b160dd309168239b8e68328544abe7d4fa"
+  },
+  {
+    "path": "sources/analysis/artifact_provenance.py",
+    "sha256": "5f1e61be9af7dd356891080ea72c1de4a48072cf053f80382960abebc15361fe"
+  },
+  {
+    "path": "sources/scripts/benchmark_scaling.py",
+    "sha256": "4f58ea407c809bf69b261ad6561dd78300a636492b1091cb3b417e18a34d0a5e"
+  },
+  {
+    "path": "sources/scripts/analyze_scaling.py",
+    "sha256": "e9a3b05e9e4497a9c45b0048f98f094d3f57d27d25f92d5936ef1d640781247c"
+  },
+  {
+    "path": "sources/scripts/performance_gate.py",
+    "sha256": "880d2a7e8a18e4425c6c0df3c14bd7a968a13ca5f4428c78baae58295953314e"
+  },
+  {
+    "path": "sources/analysis/performance_selector.py",
+    "sha256": "e3a68cd114d0e67b522d3a7ae51538de66e0963e00e8a643abf4554942723061"
+  },
+  {
+    "path": "sources/scripts/consolidate_experiments.py",
+    "sha256": "5a8e0ae5d6c971e54224a037756ec1ca9258210df82c44d413083405b154720d"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/affine_vector.c",
+    "sha256": "4a049db9b82214aa4563a6cb47f1302e6c1ad983be50973afde8bf155974340d"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/vector_product.c",
+    "sha256": "835f08d8a113bc98bc73eace5ef71aae1646c746bb12fa67d2ea732991e19036"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/polynomial.c",
+    "sha256": "e709007920e24e21591ce84f76de93cdf72861d1f32f96edc0625e11c99b7796"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/absolute_difference.c",
+    "sha256": "e969d0eea06a9f225fee95e0063b6c22a63a31bd304cef97ea33d08313bbd830"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/threshold_filter.c",
+    "sha256": "3e6a908b3b8dd35a905f85d5b70377eb492e30d29f44d61c054546010fdc340e"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/clamp.c",
+    "sha256": "0ecdb2873bd70ea6f456c1e1e613de9c6e21a817a3fb9bb1d2c02b908b69bf2d"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/readonly_stencil.c",
+    "sha256": "8c2ae2f81f38a8c6e7fe188809cfc1c6a766d0fc4c59dcdb3509f57d4f4a9abf"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/reciprocal_quadratic.c",
+    "sha256": "015c831ee70f057c98c3e09a8c136f3c866488ec21bf77a5a266557d2c7256e0"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/vector_sum.c",
+    "sha256": "79bbad5a60168a9c37abd5b72fbb2d81ac40b20aca0b4c9e886ae73cd212c9b2"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/sum_squares.c",
+    "sha256": "697edbcb41e74ca02af42508e90c459ebe4fdd6ad42e23fd4ed2a8977f35e4e3"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/inner_product.c",
+    "sha256": "5599597ad1d2298ca2089151f7962a0b63b00b7d16d81f18d2e37ecae71bfbc3"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/l1_norm.c",
+    "sha256": "1f3036ed66784e33cf70c2c0810147de4af3960a958ae41625e8555f2b04f676"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/squared_distance.c",
+    "sha256": "1657de726d412f02892340162dfa5f90665aeadbbeafcb1969bb10df402b9e8c"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/count_comparison.c",
+    "sha256": "e0bcf378dcb5ccbd740f64385d09926c94038ca7b21c1431e2f4e641af3c2fb3"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/prefix_dependency.c",
+    "sha256": "a3c924ca6b5bcf3761db9466f06c6610fcf32efd7c696ba5889f9ad9f0592e2c"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/inplace_neighbor.c",
+    "sha256": "0338e3f9b73315f38476918998480bebf0ffcaa8ada89b40a5576a584bfe8178"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/scatter_permutation.c",
+    "sha256": "5a295bbe5bba3cb21fe12058d1aaff68e18cd839f41b7151f18750baefd47188"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/missing_restrict.c",
+    "sha256": "8686f568655edd98dbae26c6c4159dba1dcc2f6db265b97cc6ac716bbf664ce9"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/mutable_input.c",
+    "sha256": "76dd78d9691588eb798779b860f27936a43faaae8469b4bf31de79082e1dd83c"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/stride_two.c",
+    "sha256": "7d551ee06813ffdeca9d1ea1724a4ff88b3c3ba15ac86cbb50f3c82aad7ebeba"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/early_exit.c",
+    "sha256": "fe37cc70d57c66e197e704e2555b84c876ae7f446653ff016c77f431daedfa8c"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/multiple_writes.c",
+    "sha256": "9815e72c5c057a66a3175cdde7d8a36638b39bffef371a7941b500fbb8f5e3de"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/helper_call.c",
+    "sha256": "d31349a08ee69270f95d8901ccd0efa22f55249801010508bd31c1896b062bbc"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/nested_loop.c",
+    "sha256": "1607eb9764093c0a7d9907f901f2b58c671f6b78f760e8b8ba9e9ff7fc049ced"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/global_side_effect.c",
+    "sha256": "a431e5712ad4dbfaf20b83a24db6e85387ee0e93214d5b5d5bbf1d86f24ec546"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/indirect_read_index.c",
+    "sha256": "40af53041e6e47be10f511e9a8c3c8bdcb3702aa50df6443b2ac9752086b43f0"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/self_referential_reduction.c",
+    "sha256": "87dffca0969891efa5ea6960ce1d85077e7323ada6df6ecda193519ee0aa177c"
+  },
+  {
+    "path": "sources/analysis/fixtures/publication_corpus/reduction_with_store.c",
+    "sha256": "9ea8360aae57a1fd07fc6c2c4a7bff7a02794dd86e677d0e834cbee9c90bbdbb"
+  }
+]

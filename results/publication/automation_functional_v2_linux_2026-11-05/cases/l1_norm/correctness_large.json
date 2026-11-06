@@ -1,0 +1,186 @@
+{
+  "schema": "tcc2-correctness-gate",
+  "version": "0.2",
+  "status": "PASS",
+  "inputs": {
+    "sequential": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/l1_norm.c",
+    "candidate": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/candidate.c",
+    "driver": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/driver_large.c"
+  },
+  "compiler": "gcc",
+  "threads": [
+    1,
+    2,
+    4
+  ],
+  "validated_threads": [
+    1,
+    2,
+    4
+  ],
+  "tolerances": {
+    "relative": 1e-09,
+    "absolute": 1e-12
+  },
+  "provenance": {
+    "campaign_id": "332bd8b5ab584afd9957c3b56098dd63",
+    "run_id": "8355316e29d44f249f5521d9697d4e0c",
+    "run_dir": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/gate_large/8355316e29d44f249f5521d9697d4e0c",
+    "candidate_id": "sha256:3c38b14dde24218b600716feaff99c0ebdda60e4749c46850cf084b38cd66e4a",
+    "recorded_at": "2026-11-05T19:56:48.496628+00:00",
+    "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "runtime_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "TRUE",
+      "OMP_PLACES": "cores"
+    },
+    "inputs": {
+      "sequential": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/l1_norm.c",
+        "sha256": "1f3036ed66784e33cf70c2c0810147de4af3960a958ae41625e8555f2b04f676",
+        "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/gate_large/8355316e29d44f249f5521d9697d4e0c/sequential/l1_norm.c"
+      },
+      "candidate": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/candidate.c",
+        "sha256": "3c38b14dde24218b600716feaff99c0ebdda60e4749c46850cf084b38cd66e4a",
+        "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/gate_large/8355316e29d44f249f5521d9697d4e0c/candidate/candidate.c"
+      },
+      "driver": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/driver_large.c",
+        "sha256": "aa04bd6657b6a464a2f97946ca863a383dc3dd9b663e6a84644c30575be34ada",
+        "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/gate_large/8355316e29d44f249f5521d9697d4e0c/driver/driver_large.c"
+      }
+    },
+    "toolchain": {
+      "path": "/usr/bin/x86_64-linux-gnu-gcc-13",
+      "sha256": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26",
+      "version": "x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+    },
+    "compile_flags": {
+      "sequential": [
+        "-O3"
+      ],
+      "candidate": [
+        "-O3",
+        "-fopenmp"
+      ]
+    },
+    "link_flags": [
+      "-lm"
+    ],
+    "openmp_environment": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "TRUE",
+      "OMP_PLACES": "cores"
+    }
+  },
+  "compilation": {
+    "sequential": {
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-13",
+        "-O3",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/gate_large/8355316e29d44f249f5521d9697d4e0c/driver/driver_large.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/gate_large/8355316e29d44f249f5521d9697d4e0c/sequential/l1_norm.c",
+        "-lm",
+        "-o",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/gate_large/8355316e29d44f249f5521d9697d4e0c/dot_gate_sequential"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "candidate": {
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-13",
+        "-O3",
+        "-fopenmp",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/gate_large/8355316e29d44f249f5521d9697d4e0c/driver/driver_large.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/gate_large/8355316e29d44f249f5521d9697d4e0c/candidate/candidate.c",
+        "-lm",
+        "-o",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/gate_large/8355316e29d44f249f5521d9697d4e0c/dot_gate_candidate"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "binaries": {
+    "sequential": {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/gate_large/8355316e29d44f249f5521d9697d4e0c/dot_gate_sequential",
+      "sha256": "f3cba3ffc012c30e271444fa71d11627394efb1c3f7076e2a681823a7d9028f1"
+    },
+    "candidate": {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/l1_norm/gate_large/8355316e29d44f249f5521d9697d4e0c/dot_gate_candidate",
+      "sha256": "a2e2301bc7b52c0aa0ca3227fee59bedb0ffd1825215d065c3ec1b836e7a8dea"
+    }
+  },
+  "execution": {
+    "sequential": {
+      "returncode": 0,
+      "stdout": "358696.6875\nAVERAGE_SECONDS=0.0011262679981882684",
+      "stderr": ""
+    },
+    "candidate": {
+      "returncode": 0,
+      "stdout": "358696.6875\nAVERAGE_SECONDS=0.00078839300113031641",
+      "stderr": ""
+    }
+  },
+  "thread_results": [
+    {
+      "threads": 1,
+      "execution": {
+        "returncode": 0,
+        "stdout": "358696.6875\nAVERAGE_SECONDS=0.00098126499869977124",
+        "stderr": ""
+      },
+      "validation": {
+        "reference": 358696.6875,
+        "candidate": 358696.6875,
+        "absolute_error": 0.0,
+        "relative_error": 0.0,
+        "correct": true
+      }
+    },
+    {
+      "threads": 2,
+      "execution": {
+        "returncode": 0,
+        "stdout": "358696.6875\nAVERAGE_SECONDS=0.00070855999729246832",
+        "stderr": ""
+      },
+      "validation": {
+        "reference": 358696.6875,
+        "candidate": 358696.6875,
+        "absolute_error": 0.0,
+        "relative_error": 0.0,
+        "correct": true
+      }
+    },
+    {
+      "threads": 4,
+      "execution": {
+        "returncode": 0,
+        "stdout": "358696.6875\nAVERAGE_SECONDS=0.00078839300113031641",
+        "stderr": ""
+      },
+      "validation": {
+        "reference": 358696.6875,
+        "candidate": 358696.6875,
+        "absolute_error": 0.0,
+        "relative_error": 0.0,
+        "correct": true
+      }
+    }
+  ],
+  "validation": {
+    "reference": 358696.6875,
+    "candidate": 358696.6875,
+    "absolute_error": 0.0,
+    "relative_error": 0.0,
+    "correct": true
+  }
+}

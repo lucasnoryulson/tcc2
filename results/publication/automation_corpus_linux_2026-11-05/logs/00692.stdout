@@ -1,0 +1,15 @@
+=================================
+TCC2 CODE TRANSFORMER v0.1
+=================================
+Kernel: kernel_case
+Source: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/count_comparison.c
+Output: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/count_comparison/candidate.c
+
+Transformations:
+  Loop #1
+    Original line: 4
+    Pragma: #pragma omp parallel for reduction(+:sum) schedule(static)
+
+=================================
+TRANSFORMATION_SUCCESS
+=================================

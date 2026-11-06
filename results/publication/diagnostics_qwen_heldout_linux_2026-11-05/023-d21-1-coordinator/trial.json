@@ -1,0 +1,67 @@
+{
+  "case_id": "d21",
+  "family": "jacobi",
+  "origin": "controlled_evidence_omission",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator",
+  "status": "OK",
+  "metadata": {
+    "model": "qwen2.5:3b",
+    "created_at": "2026-11-05T20:23:54.566843045Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 30250695213,
+    "load_duration": 224485893,
+    "prompt_eval_count": 195,
+    "prompt_eval_duration": 3450529799,
+    "eval_count": 138,
+    "eval_duration": 22889706854
+  },
+  "prompt_sha256": "a00d24906934dd464e718756bf4733ce48be8910bbc8fc294682d0d4cd50b4d4",
+  "analysis_available": false,
+  "ablation_effective": null,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 30.252561282999523,
+  "schema_valid": true,
+  "cause_correct": false,
+  "action_acceptable": false,
+  "cause_action_correct": false,
+  "abstain": true,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 4,
+  "claims_count": 4,
+  "output": {
+    "cause": "DEPENDENCE_RISK",
+    "action": "INSPECT_DEPENDENCE",
+    "abstain": true,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "kind",
+        "value": "availability"
+      },
+      {
+        "fact_id": "f2",
+        "field": "missing_count",
+        "value": "1"
+      },
+      {
+        "fact_id": "f3",
+        "field": "missing_components",
+        "value": "'raw_times'"
+      },
+      {
+        "fact_id": "f4",
+        "field": "data.missing_components",
+        "value": "['raw_times']"
+      }
+    ]
+  },
+  "raw_response_sha256": "8031ac2430416209387c261460461665c54fb39598579c969fd3a88faf489b49"
+}

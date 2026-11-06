@@ -1,0 +1,4 @@
+=================================
+TCC2 CODE TRANSFORMER v0.1
+=================================
+TRANSFORMATION_ERROR: UNSUPPORTED_STANDALONE: calls, casts, nested writes, control flow and unknown expressions are unsupported

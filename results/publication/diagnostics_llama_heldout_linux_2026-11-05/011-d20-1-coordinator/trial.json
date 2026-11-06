@@ -1,0 +1,72 @@
+{
+  "case_id": "d20",
+  "family": "jacobi",
+  "origin": "source_derived_annotation",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator",
+  "status": "OK",
+  "metadata": {
+    "model": "llama3.1:8b",
+    "created_at": "2026-11-05T20:43:19.451981674Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 177446241284,
+    "load_duration": 229538691,
+    "prompt_eval_count": 558,
+    "prompt_eval_duration": 91725627414,
+    "eval_count": 190,
+    "eval_duration": 80894790547
+  },
+  "prompt_sha256": "311cd6b72ec627ecef7db126a5c2f2f444b1e67648751a961b37935e5f2009b9",
+  "analysis_available": true,
+  "ablation_effective": null,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 177.44787270499728,
+  "schema_valid": true,
+  "cause_correct": false,
+  "action_acceptable": false,
+  "cause_action_correct": false,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 5,
+  "claims_count": 5,
+  "output": {
+    "cause": "SCHEMA_MISMATCH",
+    "action": "INSPECT_SCALING",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "data",
+        "value": "schedule(static)"
+      },
+      {
+        "fact_id": "f1",
+        "field": "source_excerpt",
+        "value": "for (i = 1; i < _PB_N - 1; i++)"
+      },
+      {
+        "fact_id": "f1",
+        "field": "source_excerpt",
+        "value": "for (j = 1; j < _PB_N - 1; j++)"
+      },
+      {
+        "fact_id": "f1",
+        "field": "data",
+        "value": "0"
+      },
+      {
+        "fact_id": "f1",
+        "field": "data",
+        "value": "2"
+      }
+    ]
+  },
+  "raw_response_sha256": "7b4af64fb3469dda68e952374d37ed62fec41b3bad282eb6ecf97dfe8bb4b786"
+}

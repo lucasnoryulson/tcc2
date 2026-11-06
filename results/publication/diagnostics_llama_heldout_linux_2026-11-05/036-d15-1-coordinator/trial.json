@@ -1,0 +1,72 @@
+{
+  "case_id": "d15",
+  "family": "gemm",
+  "origin": "controlled_evidence_omission",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator",
+  "status": "OK",
+  "metadata": {
+    "model": "llama3.1:8b",
+    "created_at": "2026-11-05T20:59:28.972885291Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 73267349685,
+    "load_duration": 265395752,
+    "prompt_eval_count": 249,
+    "prompt_eval_duration": 13652722491,
+    "eval_count": 175,
+    "eval_duration": 55260651587
+  },
+  "prompt_sha256": "8df7bceba948a12429694177ff99597ef00aa4d3f6c9c87521be7ee4f1f3bd5f",
+  "analysis_available": false,
+  "ablation_effective": null,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 73.26863206199778,
+  "schema_valid": true,
+  "cause_correct": false,
+  "action_acceptable": false,
+  "cause_action_correct": false,
+  "abstain": false,
+  "abstention_matches_annotation": false,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 3,
+  "claims_count": 5,
+  "output": {
+    "cause": "MEASURED_GAIN",
+    "action": "INSPECT_SCALING",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "sequential_seconds",
+        "value": null
+      },
+      {
+        "fact_id": "f1",
+        "field": "one_thread_seconds",
+        "value": "0.631632"
+      },
+      {
+        "fact_id": "f1",
+        "field": "samples_per_configuration",
+        "value": 15
+      },
+      {
+        "fact_id": "f1",
+        "field": "parallel[0].median_seconds",
+        "value": "0.346942"
+      },
+      {
+        "fact_id": "f1",
+        "field": "parallel[1].median_seconds",
+        "value": "0.221314"
+      }
+    ]
+  },
+  "raw_response_sha256": "84beee60c6cf970daa8004d40a11d99aee6846e7f8fa389200068d38a3bf1f21"
+}

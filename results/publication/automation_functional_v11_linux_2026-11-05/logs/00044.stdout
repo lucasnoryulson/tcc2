@@ -1,0 +1,24 @@
+==============================
+TCC2 STATIC ANALYZER v0.2
+==============================
+Source: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/threshold_filter.c
+
+Kernel: kernel_case
+Loops encontrados: 1
+
+Loop #1
+  Depth: 0
+  Lines: 3 - 6
+  Iterator: i
+  Init: int i = 0
+  Condition: i < n
+  Increment: i++
+  READS:
+    A[i]
+  WRITES:
+    Y[i]
+  Operators: =, >
+
+==============================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/threshold_filter/analysis/case_threshold_filter_analysis.json
+==============================

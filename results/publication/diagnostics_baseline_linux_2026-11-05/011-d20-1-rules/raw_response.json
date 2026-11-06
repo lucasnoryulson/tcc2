@@ -1,0 +1,12 @@
+{
+  "cause": "DEPENDENCE_RISK",
+  "action": "INSPECT_DEPENDENCE",
+  "abstain": false,
+  "claims": [
+    {
+      "fact_id": "f1",
+      "field": "carried_count",
+      "value": 0
+    }
+  ]
+}

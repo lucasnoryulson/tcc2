@@ -1,0 +1,67 @@
+{
+  "case_id": "d18",
+  "family": "jacobi",
+  "origin": "archived_measurement_view",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator",
+  "status": "OK",
+  "metadata": {
+    "model": "qwen2.5:3b",
+    "created_at": "2026-11-05T20:14:56.454194787Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 41252228589,
+    "load_duration": 210297799,
+    "prompt_eval_count": 267,
+    "prompt_eval_duration": 7906381398,
+    "eval_count": 156,
+    "eval_duration": 28883392325
+  },
+  "prompt_sha256": "7355e882c1610d208a9171d9821707f2018ca7d95d09491712740d056869f6a3",
+  "analysis_available": false,
+  "ablation_effective": null,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 41.25381837999885,
+  "schema_valid": true,
+  "cause_correct": false,
+  "action_acceptable": false,
+  "cause_action_correct": false,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 4,
+  "claims_count": 4,
+  "output": {
+    "cause": "DEPENDENCE_RISK",
+    "action": "ADAPT_SCHEMA",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "data.question",
+        "value": "gain"
+      },
+      {
+        "fact_id": "f2",
+        "field": "data.sequential_seconds",
+        "value": "0.010211"
+      },
+      {
+        "fact_id": "f3",
+        "field": "data.one_thread_seconds",
+        "value": "0.010337"
+      },
+      {
+        "fact_id": "f4",
+        "field": "data.parallel.threads",
+        "value": "[\"2\", \"4\"]"
+      }
+    ]
+  },
+  "raw_response_sha256": "b8cc35b6f26062a0b8747314c9cc8e85ec8b794300de4a3bf3f2593723eff77a"
+}

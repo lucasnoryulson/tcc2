@@ -1,0 +1,41 @@
+{
+  "case_id": "d23",
+  "family": "covariance",
+  "origin": "archived_static_analysis_view",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "rules",
+  "status": "OK",
+  "metadata": {},
+  "prompt_sha256": "255702d7e4ba1b92d97af7a1f3d8a7f425c3de614168810462909eef1c2c664d",
+  "analysis_available": true,
+  "ablation_effective": null,
+  "llm_calls": 0,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 0.00012476399933802895,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": true,
+  "cause_action_correct": true,
+  "abstain": true,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": true,
+  "unsupported_claims": 0,
+  "claims_count": 1,
+  "output": {
+    "cause": "INSUFFICIENT_EVIDENCE",
+    "action": "INSPECT_DEPENDENCE",
+    "abstain": true,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "carried_count",
+        "value": 0
+      }
+    ]
+  },
+  "raw_response_sha256": "d113aa8c005672cba8f81cc3710b343535e5804e4159c037e5c281b821e0fcf7"
+}

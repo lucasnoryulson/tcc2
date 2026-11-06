@@ -1,0 +1,12 @@
+{
+  "cause": "COMPILE_ERROR",
+  "action": "INSPECT_BUILD",
+  "abstain": false,
+  "claims": [
+    {
+      "fact_id": "f1",
+      "field": "returncode",
+      "value": 1
+    }
+  ]
+}

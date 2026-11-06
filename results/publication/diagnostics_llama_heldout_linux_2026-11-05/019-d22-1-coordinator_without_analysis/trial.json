@@ -1,0 +1,72 @@
+{
+  "case_id": "d22",
+  "family": "covariance",
+  "origin": "archived_measurement_view",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator_without_analysis",
+  "status": "OK",
+  "metadata": {
+    "model": "llama3.1:8b",
+    "created_at": "2026-11-05T20:49:28.873084563Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 74154271637,
+    "load_duration": 235583885,
+    "prompt_eval_count": 253,
+    "prompt_eval_duration": 13173964270,
+    "eval_count": 179,
+    "eval_duration": 56669976951
+  },
+  "prompt_sha256": "c9edeaac178bc5239593288fc73f8e05a2e07811b8533fd674743fcace272a00",
+  "analysis_available": false,
+  "ablation_effective": false,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 74.15560786700007,
+  "schema_valid": true,
+  "cause_correct": false,
+  "action_acceptable": false,
+  "cause_action_correct": false,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 2,
+  "claims_count": 5,
+  "output": {
+    "cause": "SCHEMA_MISMATCH",
+    "action": "DEBUG_RESULT",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "sequential_seconds",
+        "value": 12.283083
+      },
+      {
+        "fact_id": "f1",
+        "field": "one_thread_seconds",
+        "value": 12.228874
+      },
+      {
+        "fact_id": "f1",
+        "field": "samples_per_configuration",
+        "value": 15
+      },
+      {
+        "fact_id": "f1",
+        "field": "parallel[0].threads",
+        "value": 2
+      },
+      {
+        "fact_id": "f1",
+        "field": "parallel[0].median_seconds",
+        "value": 9.540982
+      }
+    ]
+  },
+  "raw_response_sha256": "464086843c0531b338a85e605a10f41847a39f1a06449104df3dd7855a4c304b"
+}

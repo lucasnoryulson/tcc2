@@ -1,0 +1,41 @@
+{
+  "case_id": "d21",
+  "family": "jacobi",
+  "origin": "controlled_evidence_omission",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "rules",
+  "status": "OK",
+  "metadata": {},
+  "prompt_sha256": "a00d24906934dd464e718756bf4733ce48be8910bbc8fc294682d0d4cd50b4d4",
+  "analysis_available": false,
+  "ablation_effective": null,
+  "llm_calls": 0,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 0.0001342289979220368,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": true,
+  "cause_action_correct": true,
+  "abstain": true,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": true,
+  "unsupported_claims": 0,
+  "claims_count": 1,
+  "output": {
+    "cause": "INSUFFICIENT_EVIDENCE",
+    "action": "INSPECT_EVIDENCE",
+    "abstain": true,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "missing_count",
+        "value": 1
+      }
+    ]
+  },
+  "raw_response_sha256": "e1bda94e8fa2188f7de12b0cd54848cbded872bfc50118cc5dd8fd978dbe41cf"
+}

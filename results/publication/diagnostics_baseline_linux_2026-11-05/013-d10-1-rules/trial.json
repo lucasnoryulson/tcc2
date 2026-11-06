@@ -1,0 +1,41 @@
+{
+  "case_id": "d10",
+  "family": "nussinov",
+  "origin": "archived_static_analysis_view",
+  "split": "development",
+  "repetition": 1,
+  "mode": "rules",
+  "status": "OK",
+  "metadata": {},
+  "prompt_sha256": "592ee4eb3604870975be0e9558fa81dca4af2c67604382047c9291cc7cf83f63",
+  "analysis_available": true,
+  "ablation_effective": null,
+  "llm_calls": 0,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 0.00011332299982313998,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": true,
+  "cause_action_correct": true,
+  "abstain": true,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": true,
+  "unsupported_claims": 0,
+  "claims_count": 1,
+  "output": {
+    "cause": "INSUFFICIENT_EVIDENCE",
+    "action": "INSPECT_DEPENDENCE",
+    "abstain": true,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "carried_count",
+        "value": 3
+      }
+    ]
+  },
+  "raw_response_sha256": "252d7c8304d091a650c815b2291a4bd3a8d1b41495d5c5a8c943bc544cfa0dd1"
+}

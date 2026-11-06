@@ -1,0 +1,11 @@
+kernel,size,variant,status,recommended_threads,recommended_seconds
+covariance,MEDIUM,manual,SELECTED,4,0.004799
+dot,1000000,manual,NO_BENEFICIAL_CONFIGURATION,,
+dot,10000000,manual,SELECTED,2,0.010710628
+dot-auto,1024,automatic,NO_BENEFICIAL_CONFIGURATION,,
+dot-auto,10000000,automatic,SELECTED,2,0.00874206156
+gemm,MEDIUM,manual,SELECTED,4,0.001054
+jacobi-2d,MEDIUM,manual,SELECTED,4,0.003018
+nussinov,MEDIUM,manual,SELECTED,4,0.008697
+nussinov,MEDIUM,simd_auto,SELECTED,4,0.005314
+nussinov,MEDIUM,simd_manual,SELECTED,4,0.005537

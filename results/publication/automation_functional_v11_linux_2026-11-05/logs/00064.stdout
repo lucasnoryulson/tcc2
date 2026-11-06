@@ -1,0 +1,15 @@
+=================================
+TCC2 CODE TRANSFORMER v0.1
+=================================
+Kernel: kernel_case
+Source: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/readonly_stencil.c
+Output: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/readonly_stencil/candidate.c
+
+Transformations:
+  Loop #1
+    Original line: 3
+    Pragma: #pragma omp parallel for schedule(static)
+
+=================================
+TRANSFORMATION_SUCCESS
+=================================

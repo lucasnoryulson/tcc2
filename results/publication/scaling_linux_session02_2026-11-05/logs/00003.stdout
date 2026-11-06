@@ -1,0 +1,127 @@
+diff --git a/analysis/code_transformer.py b/analysis/code_transformer.py
+index a0b55e8..941578b 100644
+--- a/analysis/code_transformer.py
++++ b/analysis/code_transformer.py
+@@ -4,6 +4,9 @@ import re
+ import sys
+ from pathlib import Path
+ 
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++from analysis.conservative_transform import certify_kernel
++
+ 
+ # ============================================================
+ # JSON
+@@ -858,6 +861,16 @@ def apply_strategy(
+ 
+     transformations = []
+ 
++    if strategy_type == "DOALL":
++        contract = static_kernel.get("direct_transform_contract", {})
++        if not strategy.get("direct_code_transformation") or contract.get("status") != "SUPPORTED" or contract.get("pattern") != "DOALL":
++            raise RuntimeError("DOALL requires the conservative standalone AST contract.")
++        index = contract["start_line"] - 1
++        indentation = leading_whitespace(source_lines[index])
++        pragma = indentation + "#pragma omp parallel for schedule(static)\n"
++        source_lines[index:index] = [indentation + "/* TCC2 AUTO-GENERATED: DOALL */\n", pragma]
++        return [{"loop_id": 1, "start_line": index + 1, "pragma": pragma.strip(), "contract": contract}]
++
+     # --------------------------------------------------------
+     # REDUCTION
+     # --------------------------------------------------------
+@@ -1007,6 +1020,25 @@ def transform(
+         )
+     )
+ 
++    # Recheck source bytes with Clang, rather than trusting an editable plan JSON.
++    from analysis.static_analyzer import extract_loops, find_kernel_functions, run_clang
++    actual_kernels = find_kernel_functions(run_clang(source_file, []))
++    if len(actual_kernels) != 1 or actual_kernels[0].get("name") != kernel_name:
++        raise RuntimeError("Standalone transformation requires exactly one matching kernel.")
++    actual_contract = certify_kernel(actual_kernels[0], "".join(source_lines))
++    if actual_contract.get("status") != "SUPPORTED" or actual_contract.get("pattern") != strategy.get("strategy"):
++        raise RuntimeError("UNSUPPORTED_STANDALONE: " + actual_contract.get("reason", "strategy does not match current source"))
++    if strategy.get("strategy") == "REDUCTION":
++        reductions = strategy.get("reductions", [])
++        variable = actual_contract["reduction_variable"]
++        if len(reductions) != 1 or any(reductions[0].get(key) != value for key, value in {
++            "loop_id": 1, "variable": variable, "operator": "+",
++            "openmp_clause": "reduction(+:" + variable + ")", "schedule": "static",
++        }.items()):
++            raise RuntimeError("Reduction plan does not match the current standalone AST contract.")
++    static_kernel = dict(static_kernel, direct_transform_contract=actual_contract,
++                         loops=extract_loops(actual_kernels[0], "".join(source_lines)))
++
+     transformations = apply_strategy(
+         source_lines,
+         static_kernel,
+diff --git a/analysis/pattern_classifier.py b/analysis/pattern_classifier.py
+index 27dcead..194f8f9 100644
+--- a/analysis/pattern_classifier.py
++++ b/analysis/pattern_classifier.py
+@@ -1160,6 +1160,15 @@ def classify_kernel(
+             )
+         )
+ 
++        contract = static_kernel.get("direct_transform_contract", {})
++        if contract.get("status") == "SUPPORTED" and contract.get("pattern") == "DOALL":
++            classification = {
++                "classification": "DOALL_CANDIDATE", "family": pattern_family("DOALL_CANDIDATE"),
++                "confidence": "conservative_contract",
++                "reason": "One injective output write with pure reads and restrict caller preconditions.",
++                "evidence": {"standalone_ast_contract": contract},
++            }
++
+         classification[
+             "loop_id"
+         ] = loop_id
+@@ -1684,4 +1693,4 @@ def main():
+ 
+ 
+ if __name__ == "__main__":
+-    main()
+\ No newline at end of file
++    main()
+diff --git a/analysis/static_analyzer.py b/analysis/static_analyzer.py
+index c62f7d4..c9999b7 100644
+--- a/analysis/static_analyzer.py
++++ b/analysis/static_analyzer.py
+@@ -5,6 +5,9 @@ import subprocess
+ import sys
+ from pathlib import Path
+ 
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++from analysis.conservative_transform import certify_kernel
++
+ 
+ # ============================================================
+ # CLANG
+@@ -1561,7 +1564,8 @@ def analyze(
+             "kernels"
+         ].append({
+             "name": name,
+-            "loops": loops
++            "loops": loops,
++            "direct_transform_contract": certify_kernel(kernel, source_code),
+         })
+ 
+     if output_dir is None:
+diff --git a/analysis/strategy_planner.py b/analysis/strategy_planner.py
+index c524b20..fa2375d 100644
+--- a/analysis/strategy_planner.py
++++ b/analysis/strategy_planner.py
+@@ -850,6 +850,14 @@ def plan_kernel(
+                 ),
+         }
+ 
++    contract = static_kernel.get("direct_transform_contract", {})
++    if contract.get("status") == "SUPPORTED" and contract.get("pattern") == "DOALL":
++        strategy = {
++            "strategy": "DOALL", "direct_code_transformation": True,
++            "schedule": "static", "contract": contract,
++            "reason": "One injective output write; pure RHS; explicit restrict caller precondition.",
++        }
++
+     return {
+         "kernel":
+             pattern_kernel.get(

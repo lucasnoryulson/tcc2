@@ -1,0 +1,41 @@
+{
+  "case_id": "d02",
+  "family": "dot",
+  "origin": "archived_measurement_view",
+  "split": "development",
+  "repetition": 1,
+  "mode": "rules",
+  "status": "OK",
+  "metadata": {},
+  "prompt_sha256": "f53911722f9bd76669d732ea06ec0486567a9d09ed9b582664a2f5b66f0c3275",
+  "analysis_available": false,
+  "ablation_effective": null,
+  "llm_calls": 0,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 0.000123506997624645,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": true,
+  "cause_action_correct": true,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": true,
+  "unsupported_claims": 0,
+  "claims_count": 1,
+  "output": {
+    "cause": "NEAR_TIE",
+    "action": "MEASURE_MORE",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "question",
+        "value": "gain"
+      }
+    ]
+  },
+  "raw_response_sha256": "bc133d876826e4f6204a3cd2d9b2d3c394e8bac5f4180a6663816a0500e3153e"
+}

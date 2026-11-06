@@ -1,0 +1,12 @@
+{
+  "cause": "SCHEMA_MISMATCH",
+  "action": "ADAPT_SCHEMA",
+  "abstain": false,
+  "claims": [
+    {
+      "fact_id": "f1",
+      "field": "received_version",
+      "value": "0.3"
+    }
+  ]
+}

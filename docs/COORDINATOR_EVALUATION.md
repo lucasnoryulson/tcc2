@@ -1,9 +1,17 @@
 # Item 4 — avaliação do Coordinator
 
-Pergunta avaliada: **com as mesmas evidências e o mesmo candidato, o Coordinator
-altera a decisão de admitir uma variante paralela e a que custo?** O experimento
-mede o valor adicional da decisão da LLM sobre o pipeline determinístico atual.
-Não mede geração de código pela LLM nem recuperação autônoma de candidatos.
+Pergunta avaliada: **mantidas as evidências e a configuração admissível, com
+que frequência o Coordinator concorda com a política, veta oportunidades ou
+produz propostas inválidas, e qual custo adicional introduz?** O experimento
+mede conformidade e custo da decisão no contrato atual. Não mede geração de
+código pela LLM nem recuperação autônoma de candidatos.
+
+O Selector escolhe antes da inferência e o Executor exige a mesma configuração.
+Assim, a LLM não pode superar o speedup do baseline nesse desenho: pode manter
+o resultado ou cair no fallback. A igualdade de speedup quando ambos aceitam
+é consequência do contrato, não descoberta sobre a capacidade geral da LLM.
+A nova tarefa de [diagnóstico offline](publication/DIAGNOSTIC_PROTOCOL.md) tem
+catálogo, rótulos e métricas próprios; suas respostas não autorizam promoção.
 
 ## Executar no hardware alvo
 

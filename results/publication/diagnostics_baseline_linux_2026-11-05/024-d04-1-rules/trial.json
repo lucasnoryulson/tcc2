@@ -1,0 +1,41 @@
+{
+  "case_id": "d04",
+  "family": "dot",
+  "origin": "controlled_evidence_omission",
+  "split": "development",
+  "repetition": 1,
+  "mode": "rules",
+  "status": "OK",
+  "metadata": {},
+  "prompt_sha256": "0a166fa1e978265ed3a62ab4000bfcb269ad36715806cff0cb4f9a9cbd4fb3c9",
+  "analysis_available": true,
+  "ablation_effective": null,
+  "llm_calls": 0,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 0.00015720599913038313,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": true,
+  "cause_action_correct": true,
+  "abstain": true,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": true,
+  "unsupported_claims": 0,
+  "claims_count": 1,
+  "output": {
+    "cause": "INSUFFICIENT_EVIDENCE",
+    "action": "INSPECT_EVIDENCE",
+    "abstain": true,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "missing_count",
+        "value": 2
+      }
+    ]
+  },
+  "raw_response_sha256": "9e5796fb28011d212da92847e3df9c101b5a8526558811fc7584655263b008f0"
+}

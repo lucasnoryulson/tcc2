@@ -1,0 +1,115 @@
+CASE affine_vector
+CASE vector_product
+CASE polynomial
+CASE absolute_difference
+CASE threshold_filter
+CASE clamp
+CASE readonly_stencil
+CASE reciprocal_quadratic
+CASE vector_sum
+CASE sum_squares
+CASE inner_product
+CASE l1_norm
+CASE squared_distance
+CASE count_comparison
+CASE prefix_dependency
+CASE inplace_neighbor
+CASE scatter_permutation
+CASE missing_restrict
+CASE mutable_input
+CASE stride_two
+CASE early_exit
+CASE multiple_writes
+CASE helper_call
+CASE nested_loop
+CASE global_side_effect
+CASE indirect_read_index
+CASE self_referential_reduction
+CASE reduction_with_store
+warmup 1/3: 196 configurations
+warmup 2/3: 196 configurations
+warmup 3/3: 196 configurations
+measurement 1/15: 196 configurations
+measurement 2/15: 196 configurations
+measurement 3/15: 196 configurations
+measurement 4/15: 196 configurations
+measurement 5/15: 196 configurations
+measurement 6/15: 196 configurations
+measurement 7/15: 196 configurations
+measurement 8/15: 196 configurations
+measurement 9/15: 196 configurations
+measurement 10/15: 196 configurations
+measurement 11/15: 196 configurations
+measurement 12/15: 196 configurations
+measurement 13/15: 196 configurations
+measurement 14/15: 196 configurations
+measurement 15/15: 196 configurations
+{
+  "schema": "tcc2-automation-corpus-evaluation",
+  "version": "1.1",
+  "status": "COMPLETE",
+  "completed_utc": "2026-11-05T20:09:14.222275+00:00",
+  "coverage": {
+    "development": {
+      "programs": 8,
+      "supported_expected": 4,
+      "unsupported_expected": 4,
+      "accepted": 4,
+      "true_acceptances": 4,
+      "false_acceptances": 0,
+      "true_refusals": 4,
+      "false_refusals": 0,
+      "unexpected_errors": 0,
+      "functional_inputs_passed": 8
+    },
+    "test": {
+      "programs": 20,
+      "supported_expected": 10,
+      "unsupported_expected": 10,
+      "accepted": 10,
+      "true_acceptances": 10,
+      "false_acceptances": 0,
+      "true_refusals": 10,
+      "false_refusals": 0,
+      "unexpected_errors": 0,
+      "functional_inputs_passed": 20
+    },
+    "all": {
+      "programs": 28,
+      "supported_expected": 14,
+      "unsupported_expected": 14,
+      "accepted": 14,
+      "true_acceptances": 14,
+      "false_acceptances": 0,
+      "true_refusals": 14,
+      "false_refusals": 0,
+      "unexpected_errors": 0,
+      "functional_inputs_passed": 28
+    }
+  },
+  "measured": true,
+  "sample_count": 2940,
+  "warmup_count": 588,
+  "configurations": 196,
+  "protocol": {
+    "samples": 15,
+    "warmups": 3,
+    "seed": 2026,
+    "threads": [
+      1,
+      2,
+      4
+    ],
+    "input_values": "A=((i%23)-11)/8, B=(((i*7)%19)-9)/32; clamp exercises negative, in-range and >1 branches",
+    "timer": "CLOCK_MONOTONIC; per-call mean within external process; first worker initialization included",
+    "oracle": "Formula per element; long-double sum oracle; every timed process validates outside timer",
+    "bootstrap": "5000 paired complete-round percentile resamples; seed shared with collection; n>=15",
+    "gcc_baseline": "Original source -O3 -ftree-parallelize-loops=p; identical compiler to original and pipeline; flag is not proof of actual parallelization",
+    "limitations": [
+      "Controlled authored corpus; convenience selection, no population inference.",
+      "Development/test split is fixed but author designed both; not an untouched external benchmark.",
+      "Correctness applies to deterministic tested inputs; not a proof, race detector, or runtime restrict check.",
+      "Bootstrap assumes sufficient stationarity; does not establish between-session reproducibility."
+    ]
+  }
+}

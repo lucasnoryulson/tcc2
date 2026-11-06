@@ -1,0 +1,21 @@
+=================================
+TCC2 STRATEGY PLANNER v0.1
+=================================
+Static:   /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/helper_call/analysis/case_helper_call_analysis.json
+Patterns: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/helper_call/analysis/case_helper_call_patterns.json
+
+Kernel: kernel_case
+Pattern: UNKNOWN
+Family: UNKNOWN
+Classification confidence: low
+Strategy: NO_SAFE_PLAN
+
+{
+  "strategy": "NO_SAFE_PLAN",
+  "direct_code_transformation": false,
+  "reason": "The current classifier did not produce a sufficiently resolved parallel pattern."
+}
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/helper_call/analysis/case_helper_call_strategy.json
+=================================

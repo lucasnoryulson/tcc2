@@ -1,0 +1,30 @@
+{
+  "status": "VERIFIED_ARCHIVE",
+  "campaign": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/scaling_linux_session03_medium_2026-11-05",
+  "analyzer_sha256": "e9a3b05e9e4497a9c45b0048f98f094d3f57d27d25f92d5936ef1d640781247c",
+  "report_sha256": "6de50815ced610ea3dcbf0a9f926e3bf21297010d3a2c54e60fbe3f8f6ba606a",
+  "commands_sha256": "83bbc598ef420702b6e9df14914e2aace9ce0f4ded295f7fc0847586140976c8",
+  "raw_samples_sha256": "9b3c20b4e422c0fd09f57c8944404466092d797a7cfbd41500a6067164ae43f2",
+  "configurations": 38,
+  "measurements": 570,
+  "plots": {
+    "matplotlib": "3.11.2",
+    "files": [
+      "median_seconds.png",
+      "median_seconds.svg",
+      "median_seconds.pdf",
+      "speedup_total.png",
+      "speedup_total.svg",
+      "speedup_total.pdf",
+      "speedup_parallel.png",
+      "speedup_parallel.svg",
+      "speedup_parallel.pdf",
+      "efficiency_parallel.png",
+      "efficiency_parallel.svg",
+      "efficiency_parallel.pdf",
+      "recommended_configuration.png",
+      "recommended_configuration.svg",
+      "recommended_configuration.pdf"
+    ]
+  }
+}

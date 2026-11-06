@@ -1,0 +1,50 @@
+{
+  "version": "0.2",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/indirect_read_index.c",
+  "kernels": [
+    {
+      "name": "kernel_case",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 3,
+          "end_line": 6,
+          "iterator": "i",
+          "initialization": "int i = 0",
+          "condition": "i < n",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i*7%n"
+              ],
+              "expression": "A[i*7%n]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "Y",
+              "indices": [
+                "i"
+              ],
+              "expression": "Y[i]"
+            }
+          ],
+          "operators": [
+            "=",
+            "%",
+            "*"
+          ],
+          "scalar_updates": []
+        }
+      ],
+      "direct_transform_contract": {
+        "status": "REFUSED",
+        "reason": "only iterator +/- constant input indices are supported",
+        "version": "standalone-ast-v2"
+      }
+    }
+  ]
+}

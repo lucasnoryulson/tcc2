@@ -1,0 +1,35 @@
+{
+  "created_utc": "2026-11-06T15:32:45.759437+00:00",
+  "word_checks": {
+    "tables": 22,
+    "images": 19,
+    "paragraphs": 354
+  },
+  "renderer": "ReportLab content review; native Office and institutional approval pending",
+  "files": {
+    "docs/monografia/REVISAO_PUBLICACAO.md": "4087002bd8c02fba008841accc4e8401c99704956af463d86e1e36c2e86e1744",
+    "docs/monografia/REVISAO_PUBLICACAO.docx": "37d602736249c03cc73b1bddb01a28ddd257d52e1e6d96b0d71829150c4a6921",
+    "docs/monografia/REVISAO_PUBLICACAO.pdf": "301178eb159b8ff91e534da4ef466cc62696b4b95b590855c65cffa0db7d3481",
+    "docs/monografia/CAPA_PUCRS_PUBLICACAO.docx": "1d85f86e13942d2c15863be440942f31b8bc82b43e4fd65c516d018893bb282b",
+    "docs/publication/ARTICLE_DRAFT.md": "c14825d6932cf8ec1bdf473a2fc9a64c348b923cce133a2c5c6dff8b9ec60905",
+    "docs/publication/ARTICLE_DRAFT.docx": "1b991eb011657eeaee46a6153fa514fc1d8af95406d32ba767515118a0757bc3",
+    "docs/publication/ARTICLE_DRAFT.pdf": "4cb1aaf96b51028abd83274579d9cc832027b1eed9cf17eb5e19eb57548adbc3",
+    "docs/defesa/SLIDES_PUBLICACAO.md": "649ae19f906e345773e3253e8fdaf6fca4804663ae5eb8afa9dc09cfeb6f8d05",
+    "docs/defesa/DEFESA_PUBLICACAO.pptx": "379e1eb3cf0b441ca49c339b1f0e68e1c2bacbfc92c4dc8c1146e4219437ef58",
+    "docs/monografia/figures_publication/corpus_selected_speedup.pdf": "7bc746fb22d3f856eb24548f11a5ff81e644c720e799626786d780c51b34184b",
+    "docs/monografia/figures_publication/corpus_selected_speedup.png": "344f6e8e670244c6a317be08901063b1d166a996f589e0d3b73646b0105e3ff2",
+    "docs/monografia/figures_publication/corpus_coverage.png": "4c418c4ee99ac35365a8bebf2a876af76a723735da4771faa07062dac262d49d",
+    "docs/monografia/figures_publication/doall_example.svg": "7c7a888681ef06951e11860e6475970117466ba2ba1983bc70f303c4b3d32d7f",
+    "docs/monografia/figures_publication/doall_example.png": "a5860adb9c9bd9b54d0b1bf7aff7a0af378725a3e0e91d4c0eab419ffc001607",
+    "docs/monografia/figures_publication/diagnostic_heldout.png": "681ead72796bbe2ccb8ffd71c5f6c0ca2c7f893337fe7610260a24ffe2fbd8a0",
+    "docs/monografia/figures_publication/diagnostic_heldout.pdf": "0cf486cf3a18b63eea8bbb493281837faa755ce2cf6106feb64e71fa2a776c8f",
+    "docs/monografia/figures_publication/corpus_example_curves.svg": "f9dd80cb0c813e8f220c43428809abc5a54ae58764872396f011e0bce4876849",
+    "docs/monografia/figures_publication/corpus_selected_speedup.svg": "63e09c2effa0116892dc43372b9d71c4ca4420c95fc6045d154051cc33c1f402",
+    "docs/monografia/figures_publication/corpus_coverage.pdf": "2dd8b96a4dcf8be9a4d0384bd83ee2dcd9c3b3efcabcce6150f9bcb3ba25acab",
+    "docs/monografia/figures_publication/corpus_coverage.svg": "19e0af68d7cb9342ab8d219bd10eaab1c1314a2075866fb6239a9e4f2ce86806",
+    "docs/monografia/figures_publication/corpus_example_curves.pdf": "6416d5b8fd33506ee9943b9ce43781d7b23a400d418b60f6d891b35eb6e041be",
+    "docs/monografia/figures_publication/diagnostic_heldout.svg": "4a84af4b7d35fd73764d54af8cb05c0f1c128c80383cd1f58d299dbc55f94bcd",
+    "docs/monografia/figures_publication/doall_example.pdf": "06a5f1bb91f0ab2eb72dc33d9e01f4dee1e068531a43d9ebb2a4c24ef13d4972",
+    "docs/monografia/figures_publication/corpus_example_curves.png": "89ad4a5aaf21b75bb402b156933d768f3faec0bb3f2b736591034617c656ce69"
+  }
+}

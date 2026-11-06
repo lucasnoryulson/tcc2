@@ -1,0 +1,41 @@
+{
+  "case_id": "d12",
+  "family": "nussinov",
+  "origin": "archived_compiler_diagnostic",
+  "split": "development",
+  "repetition": 1,
+  "mode": "rules",
+  "status": "OK",
+  "metadata": {},
+  "prompt_sha256": "d806d551eb4e6ce789250a0be1c83986f76c5dc39d859dfd9aa75b470ad44d03",
+  "analysis_available": true,
+  "ablation_effective": null,
+  "llm_calls": 0,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 0.00011560999701032415,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": true,
+  "cause_action_correct": true,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": true,
+  "unsupported_claims": 0,
+  "claims_count": 1,
+  "output": {
+    "cause": "VECTORIZATION_COST_MODEL",
+    "action": "INSPECT_VECTORIZATION",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "message",
+        "value": "the cost-model indicates that vectorization is not beneficial [-Rpass-analysis=loop-vectorize]"
+      }
+    ]
+  },
+  "raw_response_sha256": "1518b7e8e30f202061e1cb724cf2c2a49ab8db8f7a45cc1d02320008c70e2c1b"
+}

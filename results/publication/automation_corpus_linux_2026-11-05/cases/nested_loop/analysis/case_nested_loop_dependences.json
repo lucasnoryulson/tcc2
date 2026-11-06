@@ -1,0 +1,42 @@
+{
+  "version": "0.3",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/nested_loop.c",
+  "kernels": [
+    {
+      "name": "kernel_case",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        },
+        {
+          "id": 2,
+          "iterator": "j",
+          "dependencies": [
+            {
+              "array": "Y",
+              "write": "Y[i]",
+              "read": "Y[i]",
+              "resolved": true,
+              "relation": "same_location",
+              "offsets": [
+                0
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 0,
+                  "write": "i",
+                  "read": "i"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

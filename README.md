@@ -12,11 +12,45 @@ A atualização experimental de 05/11 está no
 [relatório multiplataforma](docs/experiments/MULTIPLATFORM_REPORT.md), com
 60 configurações Linux, 900 medições externas, três aquecimentos e quinze
 amostras por configuração. O [protocolo e os comandos Mac](docs/experiments/MULTIPLATFORM_METHODOLOGY.md)
-acompanham a [nova monografia](docs/monografia/REVISAO_MULTIPLATAFORMA.md),
+acompanham a [revisão multiplataforma anterior](docs/monografia/REVISAO_MULTIPLATAFORMA.md),
 o [Word](docs/monografia/REVISAO_MULTIPLATAFORMA.docx) e o
 [PDF de revisão](docs/monografia/REVISAO_MULTIPLATAFORMA.pdf).
 A coleta equivalente no M5 ainda não foi executada. As campanhas históricas e
 a coleta exploratória anterior permanecem separadas.
+
+## Fortalecimento científico e escopo atual
+
+A revisão atual estuda **paralelização OpenMP baseada em evidências**, com
+transformação determinística e uma LLM posterior às medições. A extensão
+conservadora acrescenta DOALL ao subconjunto de redução escalar: o Transformer
+reanalisa a fonte atual e recusa corpos fora do contrato AST. Isso não converte
+as implementações manuais PolyBench em saídas automaticamente geradas.
+
+| Eixo | Evidência existente | Ampliação nesta etapa |
+|---|---|---|
+| Transformação automática | Pipeline Dot/redução promovido no M5 | Corpus `standalone-ast-v2` concluído: oito DOALL e seis reduções aceitas, 14 recusas conforme suporte, 28 pares positivos fonte × entrada PASS; 196 configurações e 2.940 medições |
+| Escalabilidade | Campanha principal Linux p15w3: 900 medições | S2 completa: 900; S3 parcial predefinida: 570. Recomendações repetidas em 15/16 combinações S1/S2 e 9/10 comuns às três; matriz M5 equivalente pendente |
+| LLM | Admissão histórica em dois tamanhos de Dot | Heldout offline concluído: 48 chamadas Qwen/Llama, 12 vistas e dois braços por modelo; causa + ação conforme rubrica em 0/12 por braço |
+
+Os protocolos são independentes: [corpus de automação](docs/publication/AUTOMATION_CORPUS.md),
+[repetibilidade](docs/publication/REPEATABILITY_PROTOCOL.md) e
+[diagnóstico](docs/publication/DIAGNOSTIC_PROTOCOL.md). O
+[plano de inferência](docs/publication/DIAGNOSTIC_RUN_PLAN.json) fixa modelos e
+orçamento antes do heldout. As medições de kernels ocorreram sem inferência,
+testes ou renderizações iniciados em paralelo por esta avaliação. Resultados e
+limites estão nas [comparações de sessões](docs/publication/REPEATABILITY_RESULTS.md),
+no [arquivo científico do corpus](results/publication/automation_corpus_linux_2026-11-05/report.json)
+e nos arquivos diagnósticos [Qwen](results/publication/diagnostics_qwen_heldout_linux_2026-11-05/results.json)
+e [Llama](results/publication/diagnostics_llama_heldout_linux_2026-11-05/results.json).
+
+A [auditoria editorial](docs/publication/EDITORIAL_AUDIT.md) orienta uma
+[nova revisão da monografia](docs/monografia/REVISAO_PUBLICACAO.md), preservando
+as versões anteriores. A [matriz de trabalhos relacionados](docs/publication/RELATED_WORK.md),
+o [rascunho de artigo](docs/publication/ARTICLE_DRAFT.md) e o
+[novo roteiro de defesa](docs/defesa/SLIDES_PUBLICACAO.md) não constituem material
+submetido ou aprovação institucional. A bateria final passou com 123 testes sem skips e 23 casos de regressão;
+os novos Word/PDF/PPTX foram exportados e reabertos, com revisão visual de gráficos e páginas representativas. A [execução Mac](docs/publication/MAC_EXECUTION.md) está
+preparada, sem presumir acesso ao hardware ou medição já realizada.
 
 ## Pipeline completo e promoção
 
@@ -32,8 +66,16 @@ transformação, gates, Selector, Context Builder, Coordinator e promoção. Cad
 tentativa conserva comandos, logs, evidências e `summary.json` em uma pasta
 exclusiva sob `build/pipeline/`. `--source`, `--driver` e `--benchmark-driver`
 permitem fornecer outro caso dentro do mesmo contrato de fontes C independentes,
-mas o transformador genérico atual só publica redução escalar direta autorizada
-pelo Planner; estratégias não suportadas são recusadas.
+com transformação conservadora de redução escalar ou DOALL autorizada pelo
+Planner e revalidada no AST atual. DOALL exige atribuição injetiva de saída,
+entradas somente lidas, corpo puro e obrigações de `restrict` atendidas pelo
+chamador; estratégias não suportadas são recusadas. A demonstração histórica
+com inferência e promoção cobre Dot/redução. A nova extensão DOALL tem corpus
+funcional e de desempenho concluído, sem que isso demonstre promoção DOALL com
+inferência real. Na [demonstração integrada DOALL](results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/summary.json),
+corretude e medição reais concluíram, mas Qwen expirou em 180 s: FAILED, sem
+decisão ou promoção, sem retry. O [estado pelos seis itens](docs/STATUS_TCC.md)
+separa essas evidências.
 O compilador precisa aceitar `-O3 -fopenmp`; selecione a toolchain adequada ao
 ambiente, especialmente no Mac.
 
@@ -206,7 +248,8 @@ absolutos: ao trocar de checkout ou máquina, gere evidências novas. Relatório
 contextos históricos sem proveniência não são migrados nem tratados como prova
 da campanha atual.
 
-Este caminho atende fontes e drivers independentes, como o Dot Product. Headers
+Este caminho atende fontes e drivers independentes no subconjunto descrito em
+[docs/AUTOMATION_SCOPE.md](docs/AUTOMATION_SCOPE.md). Headers
 de projeto, bibliotecas externas, toolchain completa e conjuntos de entradas não
 são integralmente arquivados por este contrato; o hash do compilador não substitui
 a descrição do ambiente. Suporte a dependências de projeto exige captura dessas
@@ -215,6 +258,12 @@ dependências antes de ampliar o escopo.
 Os hashes verificam integridade de artefatos produzidos localmente; não são uma
 assinatura de um produtor externo. O executor repete a corretude antes de publicar.
 Um PASS declarado manualmente não constitui evidência suficiente para promoção.
+
+A [contraprova numérica](results/publication/numerical_limit_linux_2026-11-06/gate.json)
+registrou sequencial/1T=0 e redução 2T=`-inf` para entradas finitas grandes;
+o gate retornou FAIL. Logo, reconhecer redução e passar nos drivers do corpus
+não garante corretude para todas as magnitudes. Esse ensaio suplementar não
+foi somado às 28 fontes/2.940 medições.
 
 ## Avaliação dos agentes — item 4
 
@@ -233,7 +282,49 @@ O estudo mede decisões e custo de inferência; `RETUNE/MODIFY` não executam um
 busca por novos candidatos. O protocolo, as métricas e os critérios de conclusão
 estão em [docs/COORDINATOR_EVALUATION.md](docs/COORDINATOR_EVALUATION.md).
 
+### Diagnóstico offline, separado da admissão
+
+`scripts/evaluate_diagnostics.py` recebe vistas de logs, fontes e medidas sem
+rótulo esperado, seleção ou recomendação pronta. Compara regras, LLM e ablação,
+registrando schema, causa/ação conforme rubrica, claims citadas, custo e falhas.
+Seu schema próprio não promove candidatos nem executa reparos. O catálogo tem
+24 vistas de cinco famílias, incluindo omissões e falhas controladas realmente
+executadas; elas não são 24 programas ou incidentes independentes.
+
+O baseline 24/24 implementa a própria rubrica autoral e verifica consistência,
+sem constituir validação humana independente. O preflight em desenvolvimento
+não integra o heldout. Timeout é terminal: os slots LLM restantes ficam
+`NOT_RUN`, sem retries ocultos. O relatório separa slots planejados e tentados.
+
+No heldout concluído, cada modelo executou 24 chamadas em 12 vistas:
+Qwen terminou `COMPLETE_WITH_FAILURES`, com um JSON truncado pelo limite de
+384 tokens; Llama terminou `COMPLETE`. Não houve timeout nem `NOT_RUN`.
+Causa e ação simultaneamente conformes foram 0/12 em cada um dos quatro braços
+LLM. As medianas de latência completo/ablação foram 41,536/39,747 s no Qwen e
+75,712/64,194 s no Llama. São resultados do protocolo e orçamento testados,
+sem comparação causal de tamanho de modelo ou estimativa de acurácia geral.
+Claims sem vínculo exato não equivalem a falsidade factual; a ablação muda
+somente dois casos heldout e esvazia suas listas de evidência. O schema foi
+enviado em `format`, sem enumerar também suas opções nas mensagens, limitando
+atribuir os erros somente à capacidade do modelo. Ver
+[análise diagnóstica](docs/publication/DIAGNOSTIC_RESULTS.md).
+
+```bash
+python3 -B scripts/evaluate_diagnostics.py --baseline-only --repetitions 1 \
+  --output build/diagnostics/nova-execucao
+```
+
+Não confundir esse estudo com `evaluate_coordinator.py`: na admissão, a
+configuração aceita já foi determinada pelo Selector. Com medições fixas,
+a LLM pode concordar, vetar ou falhar; não escolher um speedup admissível superior.
+
 ## Testes
+
+A bateria final desta etapa passou com 123 testes sem skips, 23 casos em seis
+regressões, isolamento estático, três verificações shell e duas recusas de
+sobrescrita. A auditoria confirmou 4.416 arquivos históricos inalterados. Logs
+em `results/publication/validation_linux_2026-11-05/`, incluindo
+`unittest_publication_final.log`. Isso não é prova formal ou inferência LLM.
 
 ```bash
 python3 -B scripts/test_gate_contracts.py
@@ -244,6 +335,7 @@ python3 -B scripts/test_experiment_consolidation.py
 python3 -B scripts/test_coordinator_v02_regression.py
 python3 -B scripts/test_performance_selector_v02_regression.py
 python3 -B scripts/test_autotuning_selector_v01_regression.py
+python3 -B -m unittest scripts.test_automation_corpus scripts.test_diagnostics
 ```
 
 A suíte de contratos inclui compilação e validação reais com GCC/OpenMP, rejeição
@@ -254,7 +346,7 @@ executadas no hardware alvo com os drivers de benchmark originais.
 
 ## Matriz experimental e reprodução — item 5
 
-Os resultados disponíveis foram consolidados em
+O acervo histórico anterior à ampliação foi consolidado em
 [results/consolidated/REPORT.md](results/consolidated/REPORT.md): 22 campanhas,
 seis kernels, 173 configurações, 545 tempos recuperados e gráficos SVG/PDF/PNG. O relatório
 separa ganho contra o sequencial de escalabilidade OpenMP e distingue medições
@@ -295,5 +387,11 @@ as pendências pelos seis itens originais:
 
 O gerador `scripts/build_academic_material.py` usa as dependências opcionais de
 `requirements-writing.txt`. Ele exporta os materiais revisados a partir dos
-Markdown e preserva os Word originais. A avaliação LLM e a consolidação já estão
-incorporadas; ainda é necessário conferir o modelo institucional e o layout nos aplicativos.
+Markdown e preserva os Word originais. A avaliação LLM histórica e a consolidação anterior estão incorporadas nesses
+arquivos. A etapa de publicação usa fontes novas com corpus, sessões e inferências
+concluídos e bateria final aprovada. A [nova monografia PDF](docs/monografia/REVISAO_PUBLICACAO.pdf)
+tem 70 páginas; o [artigo PDF](docs/publication/ARTICLE_DRAFT.pdf), 23; a
+[defesa nova](docs/defesa/DEFESA_PUBLICACAO.pptx), 20 slides com notas. A
+[validação](docs/publication/VALIDATION.md) registra a reabertura dos arquivos e seus limites.
+Não sobrescrever os materiais históricos para atualizá-los. A coleta M5 equivalente,
+a conferência institucional e o layout nativo Office continuam pendentes.

@@ -1,0 +1,38 @@
+==============================
+TCC2 STATIC ANALYZER v0.2
+==============================
+Source: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/nested_loop.c
+
+Kernel: kernel_case
+Loops encontrados: 2
+
+Loop #1
+  Depth: 0
+  Lines: 3 - 6
+  Iterator: i
+  Init: int i = 0
+  Condition: i < n
+  Increment: i++
+  READS:
+    (none)
+  WRITES:
+    (none)
+  Operators: (none)
+
+Loop #2
+  Depth: 1
+  Lines: 5 - None
+  Iterator: j
+  Init: int j = 0
+  Condition: j < 2
+  Increment: j++
+  READS:
+    Y[i]
+    A[i]
+  WRITES:
+    Y[i]
+  Operators: +=
+
+==============================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/nested_loop/analysis/case_nested_loop_analysis.json
+==============================

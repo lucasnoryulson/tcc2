@@ -1,0 +1,26 @@
+=================================
+TCC2 PATTERN CLASSIFIER v0.6
+=================================
+Static:     /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/sum_squares/analysis/case_sum_squares_analysis.json
+Dependence: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/sum_squares/analysis/case_sum_squares_dependences.json
+
+Kernel: kernel_case
+Classification: REDUCTION_CANDIDATE
+Family: REDUCE / AGGREGATION
+Confidence: medium
+Reason: At least one loop contains a reduction update.
+
+Loop classifications:
+
+  Loop #1 (i)
+    Pattern: REDUCTION_CANDIDATE
+    Family: REDUCE / AGGREGATION
+    Confidence: medium
+    Reason: A scalar variable is updated with a reduction-compatible compound operator inside the loop.
+    Evidence:
+      reduction_type: scalar
+      scalar_updates: [{'variable': 'sum', 'operator': '+=', 'rhs': 'A[i]*A[i]', 'expression': 'sum += A[i]*A[i]', 'update_kind': 'compound_assignment'}]
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/sum_squares/analysis/case_sum_squares_patterns.json
+=================================

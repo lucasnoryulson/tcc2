@@ -1,0 +1,41 @@
+{
+  "case_id": "d18",
+  "family": "jacobi",
+  "origin": "archived_measurement_view",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "rules",
+  "status": "OK",
+  "metadata": {},
+  "prompt_sha256": "7355e882c1610d208a9171d9821707f2018ca7d95d09491712740d056869f6a3",
+  "analysis_available": false,
+  "ablation_effective": null,
+  "llm_calls": 0,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 0.00011228000221308321,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": true,
+  "cause_action_correct": true,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": true,
+  "unsupported_claims": 0,
+  "claims_count": 1,
+  "output": {
+    "cause": "MEASURED_GAIN",
+    "action": "VERIFY_GATES",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "question",
+        "value": "gain"
+      }
+    ]
+  },
+  "raw_response_sha256": "5449335a87533688ff3d140163f34eb6be44e71736b42e19403a4705a11c277b"
+}

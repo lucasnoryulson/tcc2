@@ -1,0 +1,14 @@
+==================================
+TCC2 DEPENDENCE ANALYZER v0.3
+==================================
+Input: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/global_side_effect/analysis/case_global_side_effect_analysis.json
+
+Kernel: kernel_case
+
+  Loop #1
+    Iterator: i
+    Dependence candidates: (none)
+
+==================================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/global_side_effect/analysis/case_global_side_effect_dependences.json
+==================================

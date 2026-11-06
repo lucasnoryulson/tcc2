@@ -1,0 +1,67 @@
+{
+  "case_id": "d15",
+  "family": "gemm",
+  "origin": "controlled_evidence_omission",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator",
+  "status": "OK",
+  "metadata": {
+    "model": "qwen2.5:3b",
+    "created_at": "2026-11-05T20:29:03.36982196Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 35535332494,
+    "load_duration": 210057611,
+    "prompt_eval_count": 260,
+    "prompt_eval_duration": 7448766082,
+    "eval_count": 138,
+    "eval_duration": 24223517366
+  },
+  "prompt_sha256": "8df7bceba948a12429694177ff99597ef00aa4d3f6c9c87521be7ee4f1f3bd5f",
+  "analysis_available": false,
+  "ablation_effective": null,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 35.53661829900011,
+  "schema_valid": true,
+  "cause_correct": false,
+  "action_acceptable": false,
+  "cause_action_correct": false,
+  "abstain": false,
+  "abstention_matches_annotation": false,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 3,
+  "claims_count": 4,
+  "output": {
+    "cause": "DEPENDENCE_RISK",
+    "action": "ADAPT_SCHEMA",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "sequential_seconds",
+        "value": null
+      },
+      {
+        "fact_id": "f2",
+        "field": "question",
+        "value": "gain"
+      },
+      {
+        "fact_id": "f3",
+        "field": "parallel.threads",
+        "value": 4
+      },
+      {
+        "fact_id": "f4",
+        "field": "parallel.median_seconds",
+        "value": 0.221314
+      }
+    ]
+  },
+  "raw_response_sha256": "24eef47bdd71470f313f88da1c0e4ca87b2c269b6071eeb9e3c70a88ece346de"
+}

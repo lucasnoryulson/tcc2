@@ -1,0 +1,1766 @@
+[
+  {
+    "kernel": "affine_vector",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/affine_vector_small_sequential_1"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/affine_vector_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/affine_vector_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/affine_vector_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/affine_vector_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/affine_vector_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/affine_vector_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/affine_vector_large_sequential_1"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/affine_vector_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/affine_vector_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/affine_vector_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/affine_vector_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/affine_vector_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "affine_vector",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/affine_vector_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_product_small_sequential_1"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_product_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_product_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_product_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_product_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_product_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_product_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_product_large_sequential_1"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_product_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_product_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_product_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_product_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_product_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "vector_product",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_product_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/polynomial_small_sequential_1"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/polynomial_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/polynomial_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/polynomial_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/polynomial_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/polynomial_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/polynomial_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/polynomial_large_sequential_1"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/polynomial_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/polynomial_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/polynomial_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/polynomial_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/polynomial_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "polynomial",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/polynomial_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/absolute_difference_small_sequential_1"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/absolute_difference_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/absolute_difference_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/absolute_difference_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/absolute_difference_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/absolute_difference_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/absolute_difference_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/absolute_difference_large_sequential_1"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/absolute_difference_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/absolute_difference_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/absolute_difference_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/absolute_difference_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/absolute_difference_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "absolute_difference",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/absolute_difference_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/threshold_filter_small_sequential_1"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/threshold_filter_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/threshold_filter_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/threshold_filter_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/threshold_filter_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/threshold_filter_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/threshold_filter_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/threshold_filter_large_sequential_1"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/threshold_filter_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/threshold_filter_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/threshold_filter_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/threshold_filter_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/threshold_filter_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "threshold_filter",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/threshold_filter_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "clamp",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/clamp_small_sequential_1"
+  },
+  {
+    "kernel": "clamp",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/clamp_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "clamp",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/clamp_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "clamp",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/clamp_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "clamp",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/clamp_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "clamp",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/clamp_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "clamp",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/clamp_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "clamp",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/clamp_large_sequential_1"
+  },
+  {
+    "kernel": "clamp",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/clamp_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "clamp",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/clamp_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "clamp",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/clamp_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "clamp",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/clamp_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "clamp",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/clamp_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "clamp",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/clamp_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/readonly_stencil_small_sequential_1"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/readonly_stencil_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/readonly_stencil_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/readonly_stencil_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/readonly_stencil_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/readonly_stencil_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/readonly_stencil_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/readonly_stencil_large_sequential_1"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/readonly_stencil_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/readonly_stencil_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/readonly_stencil_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/readonly_stencil_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/readonly_stencil_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "readonly_stencil",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/readonly_stencil_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/reciprocal_quadratic_small_sequential_1"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/reciprocal_quadratic_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/reciprocal_quadratic_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/reciprocal_quadratic_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/reciprocal_quadratic_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/reciprocal_quadratic_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/reciprocal_quadratic_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/reciprocal_quadratic_large_sequential_1"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/reciprocal_quadratic_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/reciprocal_quadratic_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/reciprocal_quadratic_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/reciprocal_quadratic_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/reciprocal_quadratic_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "reciprocal_quadratic",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/reciprocal_quadratic_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_sum_small_sequential_1"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_sum_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_sum_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_sum_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_sum_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_sum_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/vector_sum_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_sum_large_sequential_1"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_sum_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_sum_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_sum_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_sum_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_sum_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "vector_sum",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/vector_sum_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/sum_squares_small_sequential_1"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/sum_squares_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/sum_squares_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/sum_squares_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/sum_squares_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/sum_squares_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/sum_squares_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/sum_squares_large_sequential_1"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/sum_squares_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/sum_squares_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/sum_squares_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/sum_squares_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/sum_squares_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "sum_squares",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/sum_squares_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/inner_product_small_sequential_1"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/inner_product_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/inner_product_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/inner_product_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/inner_product_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/inner_product_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/inner_product_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/inner_product_large_sequential_1"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/inner_product_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/inner_product_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/inner_product_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/inner_product_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/inner_product_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "inner_product",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/inner_product_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/l1_norm_small_sequential_1"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/l1_norm_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/l1_norm_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/l1_norm_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/l1_norm_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/l1_norm_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/l1_norm_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/l1_norm_large_sequential_1"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/l1_norm_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/l1_norm_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/l1_norm_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/l1_norm_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/l1_norm_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "l1_norm",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/l1_norm_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/squared_distance_small_sequential_1"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/squared_distance_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/squared_distance_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/squared_distance_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/squared_distance_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/squared_distance_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/squared_distance_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/squared_distance_large_sequential_1"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/squared_distance_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/squared_distance_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/squared_distance_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/squared_distance_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/squared_distance_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "squared_distance",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/squared_distance_large_gcc_autopar_4"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "small",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/count_comparison_small_sequential_1"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/count_comparison_small_pipeline_openmp_1"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/count_comparison_small_pipeline_openmp_2"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "small",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/count_comparison_small_pipeline_openmp_4"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/count_comparison_small_gcc_autopar_1"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/count_comparison_small_gcc_autopar_2"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "small",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1024,
+    "internal_repeats": 1000,
+    "binary": "binaries/count_comparison_small_gcc_autopar_4"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "large",
+    "variant": "sequential",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/count_comparison_large_sequential_1"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/count_comparison_large_pipeline_openmp_1"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/count_comparison_large_pipeline_openmp_2"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "large",
+    "variant": "pipeline_openmp",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/count_comparison_large_pipeline_openmp_4"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 1,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/count_comparison_large_gcc_autopar_1"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 2,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/count_comparison_large_gcc_autopar_2"
+  },
+  {
+    "kernel": "count_comparison",
+    "size": "large",
+    "variant": "gcc_autopar",
+    "threads": 4,
+    "n": 1000000,
+    "internal_repeats": 20,
+    "binary": "binaries/count_comparison_large_gcc_autopar_4"
+  }
+]

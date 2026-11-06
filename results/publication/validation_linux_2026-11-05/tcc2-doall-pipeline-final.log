@@ -1,0 +1,12 @@
+static: running
+dependences: running
+patterns: running
+strategy: running
+transform: running
+correctness: running
+performance: running
+selection: running
+context: running
+coordinator: running
+PIPELINE_STOPPED: coordinator failed; see /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/coordinator.log
+Run evidence: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/summary.json

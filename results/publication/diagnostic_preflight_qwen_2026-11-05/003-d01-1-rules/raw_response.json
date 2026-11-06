@@ -1,0 +1,12 @@
+{
+  "cause": "NO_PARALLEL_GAIN",
+  "action": "KEEP_SEQUENTIAL",
+  "abstain": false,
+  "claims": [
+    {
+      "fact_id": "f1",
+      "field": "question",
+      "value": "gain"
+    }
+  ]
+}

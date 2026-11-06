@@ -1,0 +1,12 @@
+{
+  "cause": "MEASURED_GAIN",
+  "action": "VERIFY_GATES",
+  "abstain": false,
+  "claims": [
+    {
+      "fact_id": "f1",
+      "field": "question",
+      "value": "gain"
+    }
+  ]
+}

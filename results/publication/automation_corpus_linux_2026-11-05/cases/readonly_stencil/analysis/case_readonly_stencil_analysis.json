@@ -1,0 +1,72 @@
+{
+  "version": "0.2",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/readonly_stencil.c",
+  "kernels": [
+    {
+      "name": "kernel_case",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 3,
+          "end_line": 6,
+          "iterator": "i",
+          "initialization": "int i = 0",
+          "condition": "i < n",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i"
+              ],
+              "expression": "A[i]"
+            },
+            {
+              "array": "A",
+              "indices": [
+                "i+1"
+              ],
+              "expression": "A[i+1]"
+            },
+            {
+              "array": "A",
+              "indices": [
+                "i+2"
+              ],
+              "expression": "A[i+2]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "Y",
+              "indices": [
+                "i"
+              ],
+              "expression": "Y[i]"
+            }
+          ],
+          "operators": [
+            "=",
+            "/",
+            "+",
+            "+",
+            "+",
+            "+"
+          ],
+          "scalar_updates": []
+        }
+      ],
+      "direct_transform_contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 3,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "8c2ae2f81f38a8c6e7fe188809cfc1c6a766d0fc4c59dcdb3509f57d4f4a9abf",
+        "version": "standalone-ast-v2"
+      }
+    }
+  ]
+}

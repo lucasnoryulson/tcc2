@@ -850,6 +850,14 @@ def plan_kernel(
                 ),
         }
 
+    contract = static_kernel.get("direct_transform_contract", {})
+    if contract.get("status") == "SUPPORTED" and contract.get("pattern") == "DOALL":
+        strategy = {
+            "strategy": "DOALL", "direct_code_transformation": True,
+            "schedule": "static", "contract": contract,
+            "reason": "One injective output write; pure RHS; explicit restrict caller precondition.",
+        }
+
     return {
         "kernel":
             pattern_kernel.get(

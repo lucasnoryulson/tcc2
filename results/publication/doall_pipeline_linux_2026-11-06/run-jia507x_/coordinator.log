@@ -1,0 +1,3 @@
+Calling Coordinator Agent...
+Model: qwen2.5:3b
+AGENT_ERROR: OLLAMA_TIMEOUT: model did not finish within 180 seconds.

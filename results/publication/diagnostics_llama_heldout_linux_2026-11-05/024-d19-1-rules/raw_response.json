@@ -1,0 +1,12 @@
+{
+  "cause": "SCALING_REGRESSION",
+  "action": "INSPECT_SCALING",
+  "abstain": false,
+  "claims": [
+    {
+      "fact_id": "f1",
+      "field": "question",
+      "value": "scaling"
+    }
+  ]
+}

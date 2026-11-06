@@ -1,0 +1,39 @@
+{
+  "version": "0.3",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/inplace_neighbor.c",
+  "kernels": [
+    {
+      "name": "kernel_case",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": [
+            {
+              "array": "Y",
+              "write": "Y[i]",
+              "read": "Y[i+1]",
+              "resolved": true,
+              "relation": "shifted_access",
+              "offsets": [
+                1
+              ],
+              "carried_by": [
+                "i"
+              ],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 1,
+                  "write": "i",
+                  "read": "i+1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

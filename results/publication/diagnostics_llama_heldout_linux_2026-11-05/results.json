@@ -1,0 +1,4667 @@
+{
+  "schema": "tcc2-offline-diagnosis-results",
+  "version": "1.1",
+  "status": "COMPLETE",
+  "created_at": "2026-11-05T20:30:42.468119+00:00",
+  "catalog_sha256": "628822fb6da6617253c799d8e9eae3e90837ddc056fe95ff7beab731d04fcd38",
+  "implementation_sha256": "75658d6c8eba7489a6a3e6826b630e7c0d2a1ac1c0c44a7d9e6889419477cb9c",
+  "settings": {
+    "model": "llama3.1:8b",
+    "endpoint": "http://localhost:11434",
+    "baseline_only": false,
+    "split": "heldout",
+    "case_ids": null,
+    "repetitions": 1,
+    "timeout_seconds": 180.0,
+    "options": {
+      "temperature": 0,
+      "seed": 2026,
+      "num_ctx": 4096,
+      "num_predict": 384
+    },
+    "order": "seeded shuffle of all selected (case, repetition, mode) attempts",
+    "retries": 0,
+    "repetitions_are_independent_programs": false,
+    "timeout_policy": "terminal for LLM calls; remaining LLM slots NOT_RUN, no hidden retry"
+  },
+  "trials": [
+    {
+      "case_id": "d23",
+      "family": "covariance",
+      "origin": "archived_static_analysis_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:33:42.251281894Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 179498122909,
+        "load_duration": 45587274626,
+        "prompt_eval_count": 343,
+        "prompt_eval_duration": 61896094441,
+        "eval_count": 180,
+        "eval_duration": 67605685944
+      },
+      "prompt_sha256": "255702d7e4ba1b92d97af7a1f3d8a7f425c3de614168810462909eef1c2c664d",
+      "analysis_available": true,
+      "ablation_effective": null,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 179.49962405599945,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": true,
+      "cause_action_correct": false,
+      "abstain": true,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 5,
+      "claims_count": 5,
+      "output": {
+        "cause": "UNDETERMINED",
+        "action": "INSPECT_DEPENDENCE",
+        "abstain": true,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "data.accesses[0].resolved",
+            "value": false
+          },
+          {
+            "fact_id": "f1",
+            "field": "data.accesses[0].relation",
+            "value": "symbolic_relation"
+          },
+          {
+            "fact_id": "f1",
+            "field": "data.accesses[0].dimensions[0].reason",
+            "value": "different_iterators"
+          },
+          {
+            "fact_id": "f1",
+            "field": "data.carried_count",
+            "value": 0
+          },
+          {
+            "fact_id": "f1",
+            "field": "data.unresolved_count",
+            "value": 1
+          }
+        ]
+      },
+      "raw_response_sha256": "9199638c2a34022265950a3d6f9d411167d01dad2a9fc2cf9721c8591834763f"
+    },
+    {
+      "case_id": "d16",
+      "family": "gemm",
+      "origin": "executed_controlled_compilation_failure",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:34:40.59572103Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 58338315698,
+        "load_duration": 240962662,
+        "prompt_eval_count": 219,
+        "prompt_eval_duration": 12163516013,
+        "eval_count": 125,
+        "eval_duration": 42917756067
+      },
+      "prompt_sha256": "46d05342b04ea87908e868c99535412109f31904872ca3739359536bb251641a",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 58.339670308996574,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 2,
+      "claims_count": 3,
+      "output": {
+        "cause": "COMPILE_ERROR",
+        "action": "VERIFY_GATES",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "returncode",
+            "value": 1
+          },
+          {
+            "fact_id": "f1",
+            "field": "stderr",
+            "value": "clang: error: unknown argument: '-fthis-option-does-not-exist-tcc2'"
+          },
+          {
+            "fact_id": "f1",
+            "field": "kind",
+            "value": "compilation"
+          }
+        ]
+      },
+      "raw_response_sha256": "76fbeb5da20a8e79b38f953daf0f3849de98d4453a9a09ec4a43e94f7b29b204"
+    },
+    {
+      "case_id": "d17",
+      "family": "gemm",
+      "origin": "contract_compatibility_probe",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "rules",
+      "status": "OK",
+      "metadata": {},
+      "prompt_sha256": "de9e71c323682b8b74cf4cb582dca66c8c0fe3b4622d747f3b50f90759fc9f7a",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 0,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 0.00011729200195986778,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": true,
+      "cause_action_correct": true,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": true,
+      "unsupported_claims": 0,
+      "claims_count": 1,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "ADAPT_SCHEMA",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "received_version",
+            "value": "0.3"
+          }
+        ]
+      },
+      "raw_response_sha256": "98767558e08a8f57de7b0c5b88385bb1500718c8791c2cb9ec15a43607af40f6"
+    },
+    {
+      "case_id": "d21",
+      "family": "jacobi",
+      "origin": "controlled_evidence_omission",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:35:25.694661662Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 45088460588,
+        "load_duration": 234114785,
+        "prompt_eval_count": 197,
+        "prompt_eval_duration": 6169545828,
+        "eval_count": 112,
+        "eval_duration": 36097020985
+      },
+      "prompt_sha256": "a00d24906934dd464e718756bf4733ce48be8910bbc8fc294682d0d4cd50b4d4",
+      "analysis_available": false,
+      "ablation_effective": false,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 45.090253080001276,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": true,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 2,
+      "claims_count": 3,
+      "output": {
+        "cause": "MEASURED_GAIN",
+        "action": "INSPECT_SCALING",
+        "abstain": true,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "kind",
+            "value": "availability"
+          },
+          {
+            "fact_id": "f1",
+            "field": "missing_count",
+            "value": 1
+          },
+          {
+            "fact_id": "f1",
+            "field": "missing_components",
+            "value": "raw_times"
+          }
+        ]
+      },
+      "raw_response_sha256": "01e5f8e937ee422c7a4db2941b87ff385bd7401f981b64db43654656c4f46ce3"
+    },
+    {
+      "case_id": "d15",
+      "family": "gemm",
+      "origin": "controlled_evidence_omission",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:36:47.034021863Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 81330946272,
+        "load_duration": 237555096,
+        "prompt_eval_count": 249,
+        "prompt_eval_duration": 16417804315,
+        "eval_count": 175,
+        "eval_duration": 60508898163
+      },
+      "prompt_sha256": "8df7bceba948a12429694177ff99597ef00aa4d3f6c9c87521be7ee4f1f3bd5f",
+      "analysis_available": false,
+      "ablation_effective": false,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 81.33247921699876,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": false,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 3,
+      "claims_count": 5,
+      "output": {
+        "cause": "MEASURED_GAIN",
+        "action": "INSPECT_SCALING",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "sequential_seconds",
+            "value": null
+          },
+          {
+            "fact_id": "f1",
+            "field": "one_thread_seconds",
+            "value": "0.631632"
+          },
+          {
+            "fact_id": "f1",
+            "field": "samples_per_configuration",
+            "value": 15
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].median_seconds",
+            "value": "0.346942"
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[1].median_seconds",
+            "value": "0.221314"
+          }
+        ]
+      },
+      "raw_response_sha256": "e0a4e9a90181af077fedcf044d45ebefec00685f12cded03579357e2d92ad009"
+    },
+    {
+      "case_id": "d18",
+      "family": "jacobi",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:38:07.666950453Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 80626851433,
+        "load_duration": 267492661,
+        "prompt_eval_count": 253,
+        "prompt_eval_duration": 14267752604,
+        "eval_count": 177,
+        "eval_duration": 61984203405
+      },
+      "prompt_sha256": "7355e882c1610d208a9171d9821707f2018ca7d95d09491712740d056869f6a3",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 80.62814819300183,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 2,
+      "claims_count": 5,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "DEBUG_RESULT",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "sequential_seconds",
+            "value": 0.010211
+          },
+          {
+            "fact_id": "f1",
+            "field": "one_thread_seconds",
+            "value": 0.010337
+          },
+          {
+            "fact_id": "f1",
+            "field": "samples_per_configuration",
+            "value": 15
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].threads",
+            "value": 2
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].median_seconds",
+            "value": 0.005255
+          }
+        ]
+      },
+      "raw_response_sha256": "5f2da3955b7db3cfd264484d3f73d8ca919a5f2c5f73d5667e4d3967055399f7"
+    },
+    {
+      "case_id": "d16",
+      "family": "gemm",
+      "origin": "executed_controlled_compilation_failure",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "rules",
+      "status": "OK",
+      "metadata": {},
+      "prompt_sha256": "46d05342b04ea87908e868c99535412109f31904872ca3739359536bb251641a",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 0,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 0.00013657399904332124,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": true,
+      "cause_action_correct": true,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": true,
+      "unsupported_claims": 0,
+      "claims_count": 1,
+      "output": {
+        "cause": "COMPILE_ERROR",
+        "action": "INSPECT_BUILD",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "returncode",
+            "value": 1
+          }
+        ]
+      },
+      "raw_response_sha256": "f88661786fae945fd849d0ebe8e513fc33c49a4a7550488c64aeada44f5604e1"
+    },
+    {
+      "case_id": "d20",
+      "family": "jacobi",
+      "origin": "source_derived_annotation",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "rules",
+      "status": "OK",
+      "metadata": {},
+      "prompt_sha256": "311cd6b72ec627ecef7db126a5c2f2f444b1e67648751a961b37935e5f2009b9",
+      "analysis_available": true,
+      "ablation_effective": null,
+      "llm_calls": 0,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 0.0001472469994041603,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": true,
+      "cause_action_correct": true,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": true,
+      "unsupported_claims": 0,
+      "claims_count": 1,
+      "output": {
+        "cause": "DEPENDENCE_RISK",
+        "action": "INSPECT_DEPENDENCE",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "carried_count",
+            "value": 0
+          }
+        ]
+      },
+      "raw_response_sha256": "0fff9da9e2650d162fc4b6e34fa39557ab52a89f8f8c20d2189333dd70ffc8ec"
+    },
+    {
+      "case_id": "d14",
+      "family": "gemm",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:39:26.734980487Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 79049930401,
+        "load_duration": 202458123,
+        "prompt_eval_count": 253,
+        "prompt_eval_duration": 13327058893,
+        "eval_count": 177,
+        "eval_duration": 61429140058
+      },
+      "prompt_sha256": "57e6f82894acc22b3b0212c28bf231645a6a0c0023d5af7d8071cc42f8000c57",
+      "analysis_available": false,
+      "ablation_effective": false,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 79.05134678700051,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 2,
+      "claims_count": 5,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "DEBUG_RESULT",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "sequential_seconds",
+            "value": 0.629662
+          },
+          {
+            "fact_id": "f1",
+            "field": "one_thread_seconds",
+            "value": 0.631632
+          },
+          {
+            "fact_id": "f1",
+            "field": "samples_per_configuration",
+            "value": 15
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].threads",
+            "value": 2
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].median_seconds",
+            "value": 0.346942
+          }
+        ]
+      },
+      "raw_response_sha256": "43d2a1ba57405e1f574c7699132ba70dc576ac598d0d039169d5644d0059d908"
+    },
+    {
+      "case_id": "d16",
+      "family": "gemm",
+      "origin": "executed_controlled_compilation_failure",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:40:21.993980379Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 55252649383,
+        "load_duration": 245781919,
+        "prompt_eval_count": 219,
+        "prompt_eval_duration": 10400380870,
+        "eval_count": 125,
+        "eval_duration": 41616612266
+      },
+      "prompt_sha256": "46d05342b04ea87908e868c99535412109f31904872ca3739359536bb251641a",
+      "analysis_available": false,
+      "ablation_effective": false,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 55.25417827199999,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 2,
+      "claims_count": 3,
+      "output": {
+        "cause": "COMPILE_ERROR",
+        "action": "VERIFY_GATES",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "returncode",
+            "value": 1
+          },
+          {
+            "fact_id": "f1",
+            "field": "stderr",
+            "value": "clang: error: unknown argument: '-fthis-option-does-not-exist-tcc2'"
+          },
+          {
+            "fact_id": "f1",
+            "field": "kind",
+            "value": "compilation"
+          }
+        ]
+      },
+      "raw_response_sha256": "0c71530ccdac6911aff62cdebb0f17a86b2c8cff1869b7e9fd5445f12fdd9842"
+    },
+    {
+      "case_id": "d20",
+      "family": "jacobi",
+      "origin": "source_derived_annotation",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:43:19.451981674Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 177446241284,
+        "load_duration": 229538691,
+        "prompt_eval_count": 558,
+        "prompt_eval_duration": 91725627414,
+        "eval_count": 190,
+        "eval_duration": 80894790547
+      },
+      "prompt_sha256": "311cd6b72ec627ecef7db126a5c2f2f444b1e67648751a961b37935e5f2009b9",
+      "analysis_available": true,
+      "ablation_effective": null,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 177.44787270499728,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 5,
+      "claims_count": 5,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "INSPECT_SCALING",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "data",
+            "value": "schedule(static)"
+          },
+          {
+            "fact_id": "f1",
+            "field": "source_excerpt",
+            "value": "for (i = 1; i < _PB_N - 1; i++)"
+          },
+          {
+            "fact_id": "f1",
+            "field": "source_excerpt",
+            "value": "for (j = 1; j < _PB_N - 1; j++)"
+          },
+          {
+            "fact_id": "f1",
+            "field": "data",
+            "value": "0"
+          },
+          {
+            "fact_id": "f1",
+            "field": "data",
+            "value": "2"
+          }
+        ]
+      },
+      "raw_response_sha256": "7b4af64fb3469dda68e952374d37ed62fec41b3bad282eb6ecf97dfe8bb4b786"
+    },
+    {
+      "case_id": "d24",
+      "family": "covariance",
+      "origin": "contract_compatibility_probe",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:44:17.410113992Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 57951383536,
+        "load_duration": 247804118,
+        "prompt_eval_count": 214,
+        "prompt_eval_duration": 11408782706,
+        "eval_count": 124,
+        "eval_duration": 43315464896
+      },
+      "prompt_sha256": "de9e71c323682b8b74cf4cb582dca66c8c0fe3b4622d747f3b50f90759fc9f7a",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 57.952792374002456,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 1,
+      "claims_count": 3,
+      "output": {
+        "cause": "MEASURED_GAIN",
+        "action": "INSPECT_SCALING",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "received_version",
+            "value": "0.3"
+          },
+          {
+            "fact_id": "f1",
+            "field": "accepted_versions",
+            "value": "2.0"
+          },
+          {
+            "fact_id": "f1",
+            "field": "consumer",
+            "value": "diagnostic contract compatibility probe; not the production gate"
+          }
+        ]
+      },
+      "raw_response_sha256": "a522774a3c9200dd7cc116b1aa55a08069a1ec3d80e1fcf45f4550da452017eb"
+    },
+    {
+      "case_id": "d13",
+      "family": "gemm",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:45:40.573448988Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 83156897567,
+        "load_duration": 236583914,
+        "prompt_eval_count": 253,
+        "prompt_eval_duration": 17172567767,
+        "eval_count": 177,
+        "eval_duration": 61639060528
+      },
+      "prompt_sha256": "cf258bab4afcd7c024664e8a3bd0bfd1361cd81d47a10d1c2b13b99d3fecdae3",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 83.15858707199732,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 2,
+      "claims_count": 5,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "DEBUG_RESULT",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "sequential_seconds",
+            "value": 0.003689
+          },
+          {
+            "fact_id": "f1",
+            "field": "one_thread_seconds",
+            "value": 0.003847
+          },
+          {
+            "fact_id": "f1",
+            "field": "samples_per_configuration",
+            "value": 15
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].threads",
+            "value": 2
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].median_seconds",
+            "value": 0.001909
+          }
+        ]
+      },
+      "raw_response_sha256": "6bb4bec400718d51823911f6f11d613b699e66ed08dbdd57cccae8a83e5ba79a"
+    },
+    {
+      "case_id": "d21",
+      "family": "jacobi",
+      "origin": "controlled_evidence_omission",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "rules",
+      "status": "OK",
+      "metadata": {},
+      "prompt_sha256": "a00d24906934dd464e718756bf4733ce48be8910bbc8fc294682d0d4cd50b4d4",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 0,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 0.00010788699728436768,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": true,
+      "cause_action_correct": true,
+      "abstain": true,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": true,
+      "unsupported_claims": 0,
+      "claims_count": 1,
+      "output": {
+        "cause": "INSUFFICIENT_EVIDENCE",
+        "action": "INSPECT_EVIDENCE",
+        "abstain": true,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "missing_count",
+            "value": 1
+          }
+        ]
+      },
+      "raw_response_sha256": "e1bda94e8fa2188f7de12b0cd54848cbded872bfc50118cc5dd8fd978dbe41cf"
+    },
+    {
+      "case_id": "d14",
+      "family": "gemm",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:47:01.515742628Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 80921022063,
+        "load_duration": 280632600,
+        "prompt_eval_count": 253,
+        "prompt_eval_duration": 13315646710,
+        "eval_count": 177,
+        "eval_duration": 63189803447
+      },
+      "prompt_sha256": "57e6f82894acc22b3b0212c28bf231645a6a0c0023d5af7d8071cc42f8000c57",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 80.92281357699903,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 2,
+      "claims_count": 5,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "DEBUG_RESULT",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "sequential_seconds",
+            "value": 0.629662
+          },
+          {
+            "fact_id": "f1",
+            "field": "one_thread_seconds",
+            "value": 0.631632
+          },
+          {
+            "fact_id": "f1",
+            "field": "samples_per_configuration",
+            "value": 15
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].threads",
+            "value": 2
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].median_seconds",
+            "value": 0.346942
+          }
+        ]
+      },
+      "raw_response_sha256": "9e0a0223c875d65e6fdd57f1614725cc759dedc8d060387e9d806cb7cafbe929"
+    },
+    {
+      "case_id": "d14",
+      "family": "gemm",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "rules",
+      "status": "OK",
+      "metadata": {},
+      "prompt_sha256": "57e6f82894acc22b3b0212c28bf231645a6a0c0023d5af7d8071cc42f8000c57",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 0,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 0.00012763899940182455,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": true,
+      "cause_action_correct": true,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": true,
+      "unsupported_claims": 0,
+      "claims_count": 1,
+      "output": {
+        "cause": "MEASURED_GAIN",
+        "action": "VERIFY_GATES",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "question",
+            "value": "gain"
+          }
+        ]
+      },
+      "raw_response_sha256": "5449335a87533688ff3d140163f34eb6be44e71736b42e19403a4705a11c277b"
+    },
+    {
+      "case_id": "d13",
+      "family": "gemm",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:48:14.660371474Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 73131784934,
+        "load_duration": 177198509,
+        "prompt_eval_count": 253,
+        "prompt_eval_duration": 13066224293,
+        "eval_count": 177,
+        "eval_duration": 55847174979
+      },
+      "prompt_sha256": "cf258bab4afcd7c024664e8a3bd0bfd1361cd81d47a10d1c2b13b99d3fecdae3",
+      "analysis_available": false,
+      "ablation_effective": false,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 73.13320469600148,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 2,
+      "claims_count": 5,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "DEBUG_RESULT",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "sequential_seconds",
+            "value": 0.003689
+          },
+          {
+            "fact_id": "f1",
+            "field": "one_thread_seconds",
+            "value": 0.003847
+          },
+          {
+            "fact_id": "f1",
+            "field": "samples_per_configuration",
+            "value": 15
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].threads",
+            "value": 2
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].median_seconds",
+            "value": 0.001909
+          }
+        ]
+      },
+      "raw_response_sha256": "a40d4f28d92af7332d3634caad1519b45a6a5fa8abf359a10eb830a96f3a956b"
+    },
+    {
+      "case_id": "d13",
+      "family": "gemm",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "rules",
+      "status": "OK",
+      "metadata": {},
+      "prompt_sha256": "cf258bab4afcd7c024664e8a3bd0bfd1361cd81d47a10d1c2b13b99d3fecdae3",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 0,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 0.00012898599743493833,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": true,
+      "cause_action_correct": true,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": true,
+      "unsupported_claims": 0,
+      "claims_count": 1,
+      "output": {
+        "cause": "MEASURED_GAIN",
+        "action": "VERIFY_GATES",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "question",
+            "value": "gain"
+          }
+        ]
+      },
+      "raw_response_sha256": "5449335a87533688ff3d140163f34eb6be44e71736b42e19403a4705a11c277b"
+    },
+    {
+      "case_id": "d22",
+      "family": "covariance",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:49:28.873084563Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 74154271637,
+        "load_duration": 235583885,
+        "prompt_eval_count": 253,
+        "prompt_eval_duration": 13173964270,
+        "eval_count": 179,
+        "eval_duration": 56669976951
+      },
+      "prompt_sha256": "c9edeaac178bc5239593288fc73f8e05a2e07811b8533fd674743fcace272a00",
+      "analysis_available": false,
+      "ablation_effective": false,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 74.15560786700007,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 2,
+      "claims_count": 5,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "DEBUG_RESULT",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "sequential_seconds",
+            "value": 12.283083
+          },
+          {
+            "fact_id": "f1",
+            "field": "one_thread_seconds",
+            "value": 12.228874
+          },
+          {
+            "fact_id": "f1",
+            "field": "samples_per_configuration",
+            "value": 15
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].threads",
+            "value": 2
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].median_seconds",
+            "value": 9.540982
+          }
+        ]
+      },
+      "raw_response_sha256": "464086843c0531b338a85e605a10f41847a39f1a06449104df3dd7855a4c304b"
+    },
+    {
+      "case_id": "d17",
+      "family": "gemm",
+      "origin": "contract_compatibility_probe",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:50:18.419420562Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 49539227485,
+        "load_duration": 247815010,
+        "prompt_eval_count": 214,
+        "prompt_eval_duration": 8992401573,
+        "eval_count": 124,
+        "eval_duration": 37400273681
+      },
+      "prompt_sha256": "de9e71c323682b8b74cf4cb582dca66c8c0fe3b4622d747f3b50f90759fc9f7a",
+      "analysis_available": false,
+      "ablation_effective": false,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 49.540577255000244,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 1,
+      "claims_count": 3,
+      "output": {
+        "cause": "MEASURED_GAIN",
+        "action": "INSPECT_SCALING",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "received_version",
+            "value": "0.3"
+          },
+          {
+            "fact_id": "f1",
+            "field": "accepted_versions",
+            "value": "2.0"
+          },
+          {
+            "fact_id": "f1",
+            "field": "consumer",
+            "value": "diagnostic contract compatibility probe; not the production gate"
+          }
+        ]
+      },
+      "raw_response_sha256": "22a27f6a201b4aa27ca62f33bd6845c0a52aa18da38a8d78ba445a1ebca08580"
+    },
+    {
+      "case_id": "d20",
+      "family": "jacobi",
+      "origin": "source_derived_annotation",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:50:34.0921136Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 15659611289,
+        "load_duration": 250457239,
+        "prompt_eval_count": 165,
+        "prompt_eval_duration": 1917810186,
+        "eval_count": 46,
+        "eval_duration": 12495040257
+      },
+      "prompt_sha256": "5d0d16ceb8aa185793ec913cd2ac96c49953255584def230a112460524e1881d",
+      "analysis_available": true,
+      "ablation_effective": true,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 15.661194857999362,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": true,
+      "abstention_matches_annotation": false,
+      "dangerous_proposal": false,
+      "claims_present": false,
+      "supported_claim_response": false,
+      "unsupported_claims": 0,
+      "claims_count": 0,
+      "output": {
+        "cause": "INSUFFICIENT_EVIDENCE",
+        "action": "INSPECT_EVIDENCE",
+        "abstain": true,
+        "claims": []
+      },
+      "raw_response_sha256": "e7a44188f90a5242b356f4c909315759ed73d3ecfe50770f4936bf078ebec400"
+    },
+    {
+      "case_id": "d18",
+      "family": "jacobi",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "rules",
+      "status": "OK",
+      "metadata": {},
+      "prompt_sha256": "7355e882c1610d208a9171d9821707f2018ca7d95d09491712740d056869f6a3",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 0,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 0.00011228000221308321,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": true,
+      "cause_action_correct": true,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": true,
+      "unsupported_claims": 0,
+      "claims_count": 1,
+      "output": {
+        "cause": "MEASURED_GAIN",
+        "action": "VERIFY_GATES",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "question",
+            "value": "gain"
+          }
+        ]
+      },
+      "raw_response_sha256": "5449335a87533688ff3d140163f34eb6be44e71736b42e19403a4705a11c277b"
+    },
+    {
+      "case_id": "d21",
+      "family": "jacobi",
+      "origin": "controlled_evidence_omission",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:51:17.776927806Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 43672600040,
+        "load_duration": 267255414,
+        "prompt_eval_count": 197,
+        "prompt_eval_duration": 7788189940,
+        "eval_count": 112,
+        "eval_duration": 33078118556
+      },
+      "prompt_sha256": "a00d24906934dd464e718756bf4733ce48be8910bbc8fc294682d0d4cd50b4d4",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 43.673874608000915,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": true,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 2,
+      "claims_count": 3,
+      "output": {
+        "cause": "MEASURED_GAIN",
+        "action": "INSPECT_SCALING",
+        "abstain": true,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "kind",
+            "value": "availability"
+          },
+          {
+            "fact_id": "f1",
+            "field": "missing_count",
+            "value": 1
+          },
+          {
+            "fact_id": "f1",
+            "field": "missing_components",
+            "value": "raw_times"
+          }
+        ]
+      },
+      "raw_response_sha256": "a1d15a2058730819d794e81421eb29543183cdcbd8cf287c8f93ab682d9aa626"
+    },
+    {
+      "case_id": "d19",
+      "family": "jacobi",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "rules",
+      "status": "OK",
+      "metadata": {},
+      "prompt_sha256": "b223c8f74846673e87152f75f08122a20e727742efc8e9a7dd499d2de6e6c754",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 0,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 0.00025026000002981164,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": true,
+      "cause_action_correct": true,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": true,
+      "unsupported_claims": 0,
+      "claims_count": 1,
+      "output": {
+        "cause": "SCALING_REGRESSION",
+        "action": "INSPECT_SCALING",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "question",
+            "value": "scaling"
+          }
+        ]
+      },
+      "raw_response_sha256": "620411ad3908540a7bdb7a1d84adb0922de026e8f05b5907036360a0ad1833bd"
+    },
+    {
+      "case_id": "d17",
+      "family": "gemm",
+      "origin": "contract_compatibility_probe",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:52:07.360201933Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 49558286984,
+        "load_duration": 253518136,
+        "prompt_eval_count": 214,
+        "prompt_eval_duration": 8847399423,
+        "eval_count": 124,
+        "eval_duration": 37566950211
+      },
+      "prompt_sha256": "de9e71c323682b8b74cf4cb582dca66c8c0fe3b4622d747f3b50f90759fc9f7a",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 49.560039586998755,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 1,
+      "claims_count": 3,
+      "output": {
+        "cause": "MEASURED_GAIN",
+        "action": "INSPECT_SCALING",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "received_version",
+            "value": "0.3"
+          },
+          {
+            "fact_id": "f1",
+            "field": "accepted_versions",
+            "value": "2.0"
+          },
+          {
+            "fact_id": "f1",
+            "field": "consumer",
+            "value": "diagnostic contract compatibility probe; not the production gate"
+          }
+        ]
+      },
+      "raw_response_sha256": "df67f850b7c56873510d580258585dcf5958a4e59b38f930b83347260742aae5"
+    },
+    {
+      "case_id": "d18",
+      "family": "jacobi",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:53:24.127940859Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 76754102299,
+        "load_duration": 248921144,
+        "prompt_eval_count": 253,
+        "prompt_eval_duration": 16161363597,
+        "eval_count": 177,
+        "eval_duration": 56277108154
+      },
+      "prompt_sha256": "7355e882c1610d208a9171d9821707f2018ca7d95d09491712740d056869f6a3",
+      "analysis_available": false,
+      "ablation_effective": false,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 76.75592134800172,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 2,
+      "claims_count": 5,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "DEBUG_RESULT",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "sequential_seconds",
+            "value": 0.010211
+          },
+          {
+            "fact_id": "f1",
+            "field": "one_thread_seconds",
+            "value": 0.010337
+          },
+          {
+            "fact_id": "f1",
+            "field": "samples_per_configuration",
+            "value": 15
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].threads",
+            "value": 2
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].median_seconds",
+            "value": 0.005255
+          }
+        ]
+      },
+      "raw_response_sha256": "e1c2ad68e88356c7e6f2121ae371f88c7a7a483f1f4f999c4051bb2d8faaabab"
+    },
+    {
+      "case_id": "d22",
+      "family": "covariance",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "rules",
+      "status": "OK",
+      "metadata": {},
+      "prompt_sha256": "c9edeaac178bc5239593288fc73f8e05a2e07811b8533fd674743fcace272a00",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 0,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 0.00024178099920391105,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": true,
+      "cause_action_correct": true,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": true,
+      "unsupported_claims": 0,
+      "claims_count": 1,
+      "output": {
+        "cause": "MEASURED_GAIN",
+        "action": "VERIFY_GATES",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "question",
+            "value": "gain"
+          }
+        ]
+      },
+      "raw_response_sha256": "5449335a87533688ff3d140163f34eb6be44e71736b42e19403a4705a11c277b"
+    },
+    {
+      "case_id": "d19",
+      "family": "jacobi",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:54:35.586630672Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 71432284593,
+        "load_duration": 249294196,
+        "prompt_eval_count": 253,
+        "prompt_eval_duration": 14516126487,
+        "eval_count": 169,
+        "eval_duration": 52805511721
+      },
+      "prompt_sha256": "b223c8f74846673e87152f75f08122a20e727742efc8e9a7dd499d2de6e6c754",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 71.43393240500154,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 1,
+      "claims_count": 5,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "DEBUG_RESULT",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "question",
+            "value": "scaling"
+          },
+          {
+            "fact_id": "f1",
+            "field": "sequential_seconds",
+            "value": 2.5773
+          },
+          {
+            "fact_id": "f1",
+            "field": "one_thread_seconds",
+            "value": 2.588137
+          },
+          {
+            "fact_id": "f1",
+            "field": "samples_per_configuration",
+            "value": 15
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].threads",
+            "value": 2
+          }
+        ]
+      },
+      "raw_response_sha256": "7a6daf443ba997b8f6a1353823816d096e013420e3521a85634a4b0ed930787c"
+    },
+    {
+      "case_id": "d23",
+      "family": "covariance",
+      "origin": "archived_static_analysis_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "rules",
+      "status": "OK",
+      "metadata": {},
+      "prompt_sha256": "255702d7e4ba1b92d97af7a1f3d8a7f425c3de614168810462909eef1c2c664d",
+      "analysis_available": true,
+      "ablation_effective": null,
+      "llm_calls": 0,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 0.00012476399933802895,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": true,
+      "cause_action_correct": true,
+      "abstain": true,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": true,
+      "unsupported_claims": 0,
+      "claims_count": 1,
+      "output": {
+        "cause": "INSUFFICIENT_EVIDENCE",
+        "action": "INSPECT_DEPENDENCE",
+        "abstain": true,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "carried_count",
+            "value": 0
+          }
+        ]
+      },
+      "raw_response_sha256": "d113aa8c005672cba8f81cc3710b343535e5804e4159c037e5c281b821e0fcf7"
+    },
+    {
+      "case_id": "d24",
+      "family": "covariance",
+      "origin": "contract_compatibility_probe",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:55:25.284463944Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 49682938253,
+        "load_duration": 276395971,
+        "prompt_eval_count": 214,
+        "prompt_eval_duration": 9014428012,
+        "eval_count": 124,
+        "eval_duration": 37504171899
+      },
+      "prompt_sha256": "de9e71c323682b8b74cf4cb582dca66c8c0fe3b4622d747f3b50f90759fc9f7a",
+      "analysis_available": false,
+      "ablation_effective": false,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 49.68456475599669,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 1,
+      "claims_count": 3,
+      "output": {
+        "cause": "MEASURED_GAIN",
+        "action": "INSPECT_SCALING",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "received_version",
+            "value": "0.3"
+          },
+          {
+            "fact_id": "f1",
+            "field": "accepted_versions",
+            "value": "2.0"
+          },
+          {
+            "fact_id": "f1",
+            "field": "consumer",
+            "value": "diagnostic contract compatibility probe; not the production gate"
+          }
+        ]
+      },
+      "raw_response_sha256": "1b05460c92f3522554bb11cab39e3387b256515c83001b5de960a348799be38e"
+    },
+    {
+      "case_id": "d22",
+      "family": "covariance",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:56:43.452484446Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 78153943357,
+        "load_duration": 246204658,
+        "prompt_eval_count": 253,
+        "prompt_eval_duration": 16288146234,
+        "eval_count": 179,
+        "eval_duration": 57522061636
+      },
+      "prompt_sha256": "c9edeaac178bc5239593288fc73f8e05a2e07811b8533fd674743fcace272a00",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 78.1555182009979,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 2,
+      "claims_count": 5,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "DEBUG_RESULT",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "sequential_seconds",
+            "value": 12.283083
+          },
+          {
+            "fact_id": "f1",
+            "field": "one_thread_seconds",
+            "value": 12.228874
+          },
+          {
+            "fact_id": "f1",
+            "field": "samples_per_configuration",
+            "value": 15
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].threads",
+            "value": 2
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].median_seconds",
+            "value": 9.540982
+          }
+        ]
+      },
+      "raw_response_sha256": "1af12ae555283f01473757d20a6252561411874913f592f2f04347c003dc9ba0"
+    },
+    {
+      "case_id": "d15",
+      "family": "gemm",
+      "origin": "controlled_evidence_omission",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "rules",
+      "status": "OK",
+      "metadata": {},
+      "prompt_sha256": "8df7bceba948a12429694177ff99597ef00aa4d3f6c9c87521be7ee4f1f3bd5f",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 0,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 0.00011898199954885058,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": true,
+      "cause_action_correct": true,
+      "abstain": true,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": true,
+      "unsupported_claims": 0,
+      "claims_count": 1,
+      "output": {
+        "cause": "INSUFFICIENT_EVIDENCE",
+        "action": "MEASURE_MORE",
+        "abstain": true,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "question",
+            "value": "gain"
+          }
+        ]
+      },
+      "raw_response_sha256": "6617a3b9561bf68154dddd384abedfb926fa98bb258001abbbf29a6ba73614c7"
+    },
+    {
+      "case_id": "d24",
+      "family": "covariance",
+      "origin": "contract_compatibility_probe",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "rules",
+      "status": "OK",
+      "metadata": {},
+      "prompt_sha256": "de9e71c323682b8b74cf4cb582dca66c8c0fe3b4622d747f3b50f90759fc9f7a",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 0,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 0.0001282480006921105,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": true,
+      "cause_action_correct": true,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": true,
+      "unsupported_claims": 0,
+      "claims_count": 1,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "ADAPT_SCHEMA",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "received_version",
+            "value": "0.3"
+          }
+        ]
+      },
+      "raw_response_sha256": "98767558e08a8f57de7b0c5b88385bb1500718c8791c2cb9ec15a43607af40f6"
+    },
+    {
+      "case_id": "d23",
+      "family": "covariance",
+      "origin": "archived_static_analysis_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:56:59.201043099Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 15727405755,
+        "load_duration": 220471565,
+        "prompt_eval_count": 165,
+        "prompt_eval_duration": 1957721570,
+        "eval_count": 46,
+        "eval_duration": 12553465863
+      },
+      "prompt_sha256": "5d0d16ceb8aa185793ec913cd2ac96c49953255584def230a112460524e1881d",
+      "analysis_available": true,
+      "ablation_effective": true,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 15.72878356900037,
+      "schema_valid": true,
+      "cause_correct": true,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": true,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": false,
+      "supported_claim_response": false,
+      "unsupported_claims": 0,
+      "claims_count": 0,
+      "output": {
+        "cause": "INSUFFICIENT_EVIDENCE",
+        "action": "INSPECT_EVIDENCE",
+        "abstain": true,
+        "claims": []
+      },
+      "raw_response_sha256": "3ccaa31b73c8eb2b042d54da4176a57c6bbfa938f294367a71cb3857329649fb"
+    },
+    {
+      "case_id": "d19",
+      "family": "jacobi",
+      "origin": "archived_measurement_view",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator_without_analysis",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:58:15.697318678Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 76488331440,
+        "load_duration": 305781224,
+        "prompt_eval_count": 253,
+        "prompt_eval_duration": 18645663239,
+        "eval_count": 169,
+        "eval_duration": 53691854401
+      },
+      "prompt_sha256": "b223c8f74846673e87152f75f08122a20e727742efc8e9a7dd499d2de6e6c754",
+      "analysis_available": false,
+      "ablation_effective": false,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 76.48968723100188,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": true,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 1,
+      "claims_count": 5,
+      "output": {
+        "cause": "SCHEMA_MISMATCH",
+        "action": "DEBUG_RESULT",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "question",
+            "value": "scaling"
+          },
+          {
+            "fact_id": "f1",
+            "field": "sequential_seconds",
+            "value": 2.5773
+          },
+          {
+            "fact_id": "f1",
+            "field": "one_thread_seconds",
+            "value": 2.588137
+          },
+          {
+            "fact_id": "f1",
+            "field": "samples_per_configuration",
+            "value": 15
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].threads",
+            "value": 2
+          }
+        ]
+      },
+      "raw_response_sha256": "68fa6c5a1058183eaee8c1b085e0a4c7e774235f9effa00a71a84803d0b68392"
+    },
+    {
+      "case_id": "d15",
+      "family": "gemm",
+      "origin": "controlled_evidence_omission",
+      "split": "heldout",
+      "repetition": 1,
+      "mode": "coordinator",
+      "status": "OK",
+      "metadata": {
+        "model": "llama3.1:8b",
+        "created_at": "2026-11-05T20:59:28.972885291Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 73267349685,
+        "load_duration": 265395752,
+        "prompt_eval_count": 249,
+        "prompt_eval_duration": 13652722491,
+        "eval_count": 175,
+        "eval_duration": 55260651587
+      },
+      "prompt_sha256": "8df7bceba948a12429694177ff99597ef00aa4d3f6c9c87521be7ee4f1f3bd5f",
+      "analysis_available": false,
+      "ablation_effective": null,
+      "llm_calls": 1,
+      "attempted": true,
+      "retries": 0,
+      "wall_seconds": 73.26863206199778,
+      "schema_valid": true,
+      "cause_correct": false,
+      "action_acceptable": false,
+      "cause_action_correct": false,
+      "abstain": false,
+      "abstention_matches_annotation": false,
+      "dangerous_proposal": false,
+      "claims_present": true,
+      "supported_claim_response": false,
+      "unsupported_claims": 3,
+      "claims_count": 5,
+      "output": {
+        "cause": "MEASURED_GAIN",
+        "action": "INSPECT_SCALING",
+        "abstain": false,
+        "claims": [
+          {
+            "fact_id": "f1",
+            "field": "sequential_seconds",
+            "value": null
+          },
+          {
+            "fact_id": "f1",
+            "field": "one_thread_seconds",
+            "value": "0.631632"
+          },
+          {
+            "fact_id": "f1",
+            "field": "samples_per_configuration",
+            "value": 15
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[0].median_seconds",
+            "value": "0.346942"
+          },
+          {
+            "fact_id": "f1",
+            "field": "parallel[1].median_seconds",
+            "value": "0.221314"
+          }
+        ]
+      },
+      "raw_response_sha256": "84beee60c6cf970daa8004d40a11d99aee6846e7f8fa389200068d38a3bf1f21"
+    }
+  ],
+  "server_metadata": {
+    "version": {
+      "version": "0.15.1"
+    },
+    "tags": {
+      "models": [
+        {
+          "name": "qwen2.5:3b",
+          "model": "qwen2.5:3b",
+          "modified_at": "2026-01-26T15:31:23.679417705-03:00",
+          "size": 1929912432,
+          "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen2",
+            "families": [
+              "qwen2"
+            ],
+            "parameter_size": "3.1B",
+            "quantization_level": "Q4_K_M"
+          }
+        },
+        {
+          "name": "llama3.1:8b",
+          "model": "llama3.1:8b",
+          "modified_at": "2026-01-26T15:24:35.083700754-03:00",
+          "size": 4920753328,
+          "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "llama",
+            "families": [
+              "llama"
+            ],
+            "parameter_size": "8.0B",
+            "quantization_level": "Q4_K_M"
+          }
+        },
+        {
+          "name": "phi3:mini",
+          "model": "phi3:mini",
+          "modified_at": "2026-01-26T15:23:11.320917399-03:00",
+          "size": 2176178913,
+          "digest": "4f222292793889a9a40a020799cfd28d53f3e01af25d48e06c5e708610fc47e9",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "phi3",
+            "families": [
+              "phi3"
+            ],
+            "parameter_size": "3.8B",
+            "quantization_level": "Q4_0"
+          }
+        }
+      ]
+    },
+    "show": {
+      "license": "LLAMA 3.1 COMMUNITY LICENSE AGREEMENT\nLlama 3.1 Version Release Date: July 23, 2024\n\n“Agreement” means the terms and conditions for use, reproduction, distribution and modification of the\nLlama Materials set forth herein.\n\n“Documentation” means the specifications, manuals and documentation accompanying Llama 3.1\ndistributed by Meta at https://llama.meta.com/doc/overview.\n\n“Licensee” or “you” means you, or your employer or any other person or entity (if you are entering into\nthis Agreement on such person or entity’s behalf), of the age required under applicable laws, rules or\nregulations to provide legal consent and that has legal authority to bind your employer or such other\nperson or entity if you are entering in this Agreement on their behalf.\n\n“Llama 3.1” means the foundational large language models and software and algorithms, including\nmachine-learning model code, trained model weights, inference-enabling code, training-enabling code,\nfine-tuning enabling code and other elements of the foregoing distributed by Meta at\nhttps://llama.meta.com/llama-downloads.\n\n“Llama Materials” means, collectively, Meta’s proprietary Llama 3.1 and Documentation (and any\nportion thereof) made available under this Agreement.\n\n“Meta” or “we” means Meta Platforms Ireland Limited (if you are located in or, if you are an entity, your\nprincipal place of business is in the EEA or Switzerland) and Meta Platforms, Inc. (if you are located\noutside of the EEA or Switzerland).\n\nBy clicking “I Accept” below or by using or distributing any portion or element of the Llama Materials,\nyou agree to be bound by this Agreement.\n\n1. License Rights and Redistribution.\n\n  a. Grant of Rights. You are granted a non-exclusive, worldwide, non-transferable and royalty-free\nlimited license under Meta’s intellectual property or other rights owned by Meta embodied in the Llama\nMaterials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the\nLlama Materials.\n\n  b. Redistribution and Use.\n\n      i. If you distribute or make available the Llama Materials (or any derivative works\nthereof), or a product or service (including another AI model) that contains any of them, you shall (A)\nprovide a copy of this Agreement with any such Llama Materials; and (B) prominently display “Built with\nLlama” on a related website, user interface, blogpost, about page, or product documentation. If you use\nthe Llama Materials or any outputs or results of the Llama Materials to create, train, fine tune, or\notherwise improve an AI model, which is distributed or made available, you shall also include “Llama” at\nthe beginning of any such AI model name.\n\n      ii. If you receive Llama Materials, or any derivative works thereof, from a Licensee as part \nof an integrated end user product, then Section 2 of this Agreement will not apply to you.\n\n      iii. You must retain in all copies of the Llama Materials that you distribute the following\nattribution notice within a “Notice” text file distributed as a part of such copies: “Llama 3.1 is\nlicensed under the Llama 3.1 Community License, Copyright © Meta Platforms, Inc. All Rights\nReserved.”\n\n      iv. Your use of the Llama Materials must comply with applicable laws and regulations\n(including trade compliance laws and regulations) and adhere to the Acceptable Use Policy for the Llama\nMaterials (available at https://llama.meta.com/llama3_1/use-policy), which is hereby incorporated by\nreference into this Agreement.\n\n2. Additional Commercial Terms. If, on the Llama 3.1 version release date, the monthly active users\nof the products or services made available by or for Licensee, or Licensee’s affiliates, is greater than 700\nmillion monthly active users in the preceding calendar month, you must request a license from Meta,\nwhich Meta may grant to you in its sole discretion, and you are not authorized to exercise any of the\nrights under this Agreement unless or until Meta otherwise expressly grants you such rights.\n\n3. Disclaimer of Warranty. UNLESS REQUIRED BY APPLICABLE LAW, THE LLAMA MATERIALS AND ANY\nOUTPUT AND RESULTS THEREFROM ARE PROVIDED ON AN “AS IS” BASIS, WITHOUT WARRANTIES OF\nANY KIND, AND META DISCLAIMS ALL WARRANTIES OF ANY KIND, BOTH EXPRESS AND IMPLIED,\nINCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OF TITLE, NON-INFRINGEMENT,\nMERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. YOU ARE SOLELY RESPONSIBLE FOR\nDETERMINING THE APPROPRIATENESS OF USING OR REDISTRIBUTING THE LLAMA MATERIALS AND\nASSUME ANY RISKS ASSOCIATED WITH YOUR USE OF THE LLAMA MATERIALS AND ANY OUTPUT AND\nRESULTS.\n\n4. Limitation of Liability. IN NO EVENT WILL META OR ITS AFFILIATES BE LIABLE UNDER ANY THEORY OF\nLIABILITY, WHETHER IN CONTRACT, TORT, NEGLIGENCE, PRODUCTS LIABILITY, OR OTHERWISE, ARISING\nOUT OF THIS AGREEMENT, FOR ANY LOST PROFITS OR ANY INDIRECT, SPECIAL, CONSEQUENTIAL,\nINCIDENTAL, EXEMPLARY OR PUNITIVE DAMAGES, EVEN IF META OR ITS AFFILIATES HAVE BEEN ADVISED\nOF THE POSSIBILITY OF ANY OF THE FOREGOING.\n\n5. Intellectual Property.\n\n  a. No trademark licenses are granted under this Agreement, and in connection with the Llama\nMaterials, neither Meta nor Licensee may use any name or mark owned by or associated with the other\nor any of its affiliates, except as required for reasonable and customary use in describing and\nredistributing the Llama Materials or as set forth in this Section 5(a). Meta hereby grants you a license to\nuse “Llama” (the “Mark”) solely as required to comply with the last sentence of Section 1.b.i. You will\ncomply with Meta’s brand guidelines (currently accessible at\nhttps://about.meta.com/brand/resources/meta/company-brand/ ). All goodwill arising out of your use\nof the Mark will inure to the benefit of Meta.\n\n  b. Subject to Meta’s ownership of Llama Materials and derivatives made by or for Meta, with\nrespect to any derivative works and modifications of the Llama Materials that are made by you, as\nbetween you and Meta, you are and will be the owner of such derivative works and modifications.\n\n  c. If you institute litigation or other proceedings against Meta or any entity (including a\ncross-claim or counterclaim in a lawsuit) alleging that the Llama Materials or Llama 3.1 outputs or\nresults, or any portion of any of the foregoing, constitutes infringement of intellectual property or other\nrights owned or licensable by you, then any licenses granted to you under this Agreement shall\nterminate as of the date such litigation or claim is filed or instituted. You will indemnify and hold\nharmless Meta from and against any claim by any third party arising out of or related to your use or\ndistribution of the Llama Materials.\n\n6. Term and Termination. The term of this Agreement will commence upon your acceptance of this\nAgreement or access to the Llama Materials and will continue in full force and effect until terminated in\naccordance with the terms and conditions herein. Meta may terminate this Agreement if you are in\nbreach of any term or condition of this Agreement. Upon termination of this Agreement, you shall delete\nand cease use of the Llama Materials. Sections 3, 4 and 7 shall survive the termination of this\nAgreement.\n\n7. Governing Law and Jurisdiction. This Agreement will be governed and construed under the laws of\nthe State of California without regard to choice of law principles, and the UN Convention on Contracts\nfor the International Sale of Goods does not apply to this Agreement. The courts of California shall have\nexclusive jurisdiction of any dispute arising out of this Agreement.\n\n# Llama 3.1 Acceptable Use Policy\n\nMeta is committed to promoting safe and fair use of its tools and features, including Llama 3.1. If you\naccess or use Llama 3.1, you agree to this Acceptable Use Policy (“Policy”). The most recent copy of\nthis policy can be found at [https://llama.meta.com/llama3_1/use-policy](https://llama.meta.com/llama3_1/use-policy)\n\n## Prohibited Uses\n\nWe want everyone to use Llama 3.1 safely and responsibly. You agree you will not use, or allow\nothers to use, Llama 3.1 to:\n\n1. Violate the law or others’ rights, including to:\n    1. Engage in, promote, generate, contribute to, encourage, plan, incite, or further illegal or unlawful activity or content, such as:\n        1. Violence or terrorism\n        2. Exploitation or harm to children, including the solicitation, creation, acquisition, or dissemination of child exploitative content or failure to report Child Sexual Abuse Material\n        3. Human trafficking, exploitation, and sexual violence\n        4. The illegal distribution of information or materials to minors, including obscene materials, or failure to employ legally required age-gating in connection with such information or materials.\n        5. Sexual solicitation\n        6. Any other criminal activity\n    3. Engage in, promote, incite, or facilitate the harassment, abuse, threatening, or bullying of individuals or groups of individuals\n    4. Engage in, promote, incite, or facilitate discrimination or other unlawful or harmful conduct in the provision of employment, employment benefits, credit, housing, other economic benefits, or other essential goods and services\n    5. Engage in the unauthorized or unlicensed practice of any profession including, but not limited to, financial, legal, medical/health, or related professional practices\n    6. Collect, process, disclose, generate, or infer health, demographic, or other sensitive personal or private information about individuals without rights and consents required by applicable laws\n    7. Engage in or facilitate any action or generate any content that infringes, misappropriates, or otherwise violates any third-party rights, including the outputs or results of any products or services using the Llama Materials\n    8. Create, generate, or facilitate the creation of malicious code, malware, computer viruses or do anything else that could disable, overburden, interfere with or impair the proper working, integrity, operation or appearance of a website or computer system\n\n2. Engage in, promote, incite, facilitate, or assist in the planning or development of activities that present a risk of death or bodily harm to individuals, including use of Llama 3.1 related to the following:\n    1. Military, warfare, nuclear industries or applications, espionage, use for materials or activities that are subject to the International Traffic Arms Regulations (ITAR) maintained by the United States Department of State\n    2. Guns and illegal weapons (including weapon development)\n    3. Illegal drugs and regulated/controlled substances\n    4. Operation of critical infrastructure, transportation technologies, or heavy machinery\n    5. Self-harm or harm to others, including suicide, cutting, and eating disorders\n    6. Any content intended to incite or promote violence, abuse, or any infliction of bodily harm to an individual\n\n3. Intentionally deceive or mislead others, including use of Llama 3.1 related to the following:\n    1. Generating, promoting, or furthering fraud or the creation or promotion of disinformation\n    2. Generating, promoting, or furthering defamatory content, including the creation of defamatory statements, images, or other content\n    3. Generating, promoting, or further distributing spam\n    4. Impersonating another individual without consent, authorization, or legal right\n    5. Representing that the use of Llama 3.1 or outputs are human-generated\n    6. Generating or facilitating false online engagement, including fake reviews and other means of fake online engagement\n\n4. Fail to appropriately disclose to end users any known dangers of your AI system\n\nPlease report any violation of this Policy, software “bug,” or other problems that could lead to a violation\nof this Policy through one of the following means:\n\n* Reporting issues with the model: [https://github.com/meta-llama/llama-models/issues](https://github.com/meta-llama/llama-models/issues)\n* Reporting risky content generated by the model: developers.facebook.com/llama_output_feedback\n* Reporting bugs and security concerns: facebook.com/whitehat/info\n* Reporting violations of the Acceptable Use Policy or unlicensed uses of Llama 3.1: LlamaUseReport@meta.com",
+      "modelfile": "# Modelfile generated by \"ollama show\"\n# To build a new Modelfile based on this, replace FROM with:\n# FROM llama3.1:8b\n\nFROM /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29\nTEMPLATE \"\"\"{{- if or .System .Tools }}<|start_header_id|>system<|end_header_id|>\n{{- if .System }}\n\n{{ .System }}\n{{- end }}\n{{- if .Tools }}\n\nCutting Knowledge Date: December 2023\n\nWhen you receive a tool call response, use the output to format an answer to the orginal user question.\n\nYou are a helpful assistant with tool calling capabilities.\n{{- end }}<|eot_id|>\n{{- end }}\n{{- range $i, $_ := .Messages }}\n{{- $last := eq (len (slice $.Messages $i)) 1 }}\n{{- if eq .Role \"user\" }}<|start_header_id|>user<|end_header_id|>\n{{- if and $.Tools $last }}\n\nGiven the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt.\n\nRespond in the format {\"name\": function name, \"parameters\": dictionary of argument name and its value}. Do not use variables.\n\n{{ range $.Tools }}\n{{- . }}\n{{ end }}\nQuestion: {{ .Content }}<|eot_id|>\n{{- else }}\n\n{{ .Content }}<|eot_id|>\n{{- end }}{{ if $last }}<|start_header_id|>assistant<|end_header_id|>\n\n{{ end }}\n{{- else if eq .Role \"assistant\" }}<|start_header_id|>assistant<|end_header_id|>\n{{- if .ToolCalls }}\n{{ range .ToolCalls }}\n{\"name\": \"{{ .Function.Name }}\", \"parameters\": {{ .Function.Arguments }}}{{ end }}\n{{- else }}\n\n{{ .Content }}\n{{- end }}{{ if not $last }}<|eot_id|>{{ end }}\n{{- else if eq .Role \"tool\" }}<|start_header_id|>ipython<|end_header_id|>\n\n{{ .Content }}<|eot_id|>{{ if $last }}<|start_header_id|>assistant<|end_header_id|>\n\n{{ end }}\n{{- end }}\n{{- end }}\"\"\"\nPARAMETER stop <|start_header_id|>\nPARAMETER stop <|end_header_id|>\nPARAMETER stop <|eot_id|>\nLICENSE \"LLAMA 3.1 COMMUNITY LICENSE AGREEMENT\nLlama 3.1 Version Release Date: July 23, 2024\n\n“Agreement” means the terms and conditions for use, reproduction, distribution and modification of the\nLlama Materials set forth herein.\n\n“Documentation” means the specifications, manuals and documentation accompanying Llama 3.1\ndistributed by Meta at https://llama.meta.com/doc/overview.\n\n“Licensee” or “you” means you, or your employer or any other person or entity (if you are entering into\nthis Agreement on such person or entity’s behalf), of the age required under applicable laws, rules or\nregulations to provide legal consent and that has legal authority to bind your employer or such other\nperson or entity if you are entering in this Agreement on their behalf.\n\n“Llama 3.1” means the foundational large language models and software and algorithms, including\nmachine-learning model code, trained model weights, inference-enabling code, training-enabling code,\nfine-tuning enabling code and other elements of the foregoing distributed by Meta at\nhttps://llama.meta.com/llama-downloads.\n\n“Llama Materials” means, collectively, Meta’s proprietary Llama 3.1 and Documentation (and any\nportion thereof) made available under this Agreement.\n\n“Meta” or “we” means Meta Platforms Ireland Limited (if you are located in or, if you are an entity, your\nprincipal place of business is in the EEA or Switzerland) and Meta Platforms, Inc. (if you are located\noutside of the EEA or Switzerland).\n\nBy clicking “I Accept” below or by using or distributing any portion or element of the Llama Materials,\nyou agree to be bound by this Agreement.\n\n1. License Rights and Redistribution.\n\n  a. Grant of Rights. You are granted a non-exclusive, worldwide, non-transferable and royalty-free\nlimited license under Meta’s intellectual property or other rights owned by Meta embodied in the Llama\nMaterials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the\nLlama Materials.\n\n  b. Redistribution and Use.\n\n      i. If you distribute or make available the Llama Materials (or any derivative works\nthereof), or a product or service (including another AI model) that contains any of them, you shall (A)\nprovide a copy of this Agreement with any such Llama Materials; and (B) prominently display “Built with\nLlama” on a related website, user interface, blogpost, about page, or product documentation. If you use\nthe Llama Materials or any outputs or results of the Llama Materials to create, train, fine tune, or\notherwise improve an AI model, which is distributed or made available, you shall also include “Llama” at\nthe beginning of any such AI model name.\n\n      ii. If you receive Llama Materials, or any derivative works thereof, from a Licensee as part \nof an integrated end user product, then Section 2 of this Agreement will not apply to you.\n\n      iii. You must retain in all copies of the Llama Materials that you distribute the following\nattribution notice within a “Notice” text file distributed as a part of such copies: “Llama 3.1 is\nlicensed under the Llama 3.1 Community License, Copyright © Meta Platforms, Inc. All Rights\nReserved.”\n\n      iv. Your use of the Llama Materials must comply with applicable laws and regulations\n(including trade compliance laws and regulations) and adhere to the Acceptable Use Policy for the Llama\nMaterials (available at https://llama.meta.com/llama3_1/use-policy), which is hereby incorporated by\nreference into this Agreement.\n\n2. Additional Commercial Terms. If, on the Llama 3.1 version release date, the monthly active users\nof the products or services made available by or for Licensee, or Licensee’s affiliates, is greater than 700\nmillion monthly active users in the preceding calendar month, you must request a license from Meta,\nwhich Meta may grant to you in its sole discretion, and you are not authorized to exercise any of the\nrights under this Agreement unless or until Meta otherwise expressly grants you such rights.\n\n3. Disclaimer of Warranty. UNLESS REQUIRED BY APPLICABLE LAW, THE LLAMA MATERIALS AND ANY\nOUTPUT AND RESULTS THEREFROM ARE PROVIDED ON AN “AS IS” BASIS, WITHOUT WARRANTIES OF\nANY KIND, AND META DISCLAIMS ALL WARRANTIES OF ANY KIND, BOTH EXPRESS AND IMPLIED,\nINCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OF TITLE, NON-INFRINGEMENT,\nMERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. YOU ARE SOLELY RESPONSIBLE FOR\nDETERMINING THE APPROPRIATENESS OF USING OR REDISTRIBUTING THE LLAMA MATERIALS AND\nASSUME ANY RISKS ASSOCIATED WITH YOUR USE OF THE LLAMA MATERIALS AND ANY OUTPUT AND\nRESULTS.\n\n4. Limitation of Liability. IN NO EVENT WILL META OR ITS AFFILIATES BE LIABLE UNDER ANY THEORY OF\nLIABILITY, WHETHER IN CONTRACT, TORT, NEGLIGENCE, PRODUCTS LIABILITY, OR OTHERWISE, ARISING\nOUT OF THIS AGREEMENT, FOR ANY LOST PROFITS OR ANY INDIRECT, SPECIAL, CONSEQUENTIAL,\nINCIDENTAL, EXEMPLARY OR PUNITIVE DAMAGES, EVEN IF META OR ITS AFFILIATES HAVE BEEN ADVISED\nOF THE POSSIBILITY OF ANY OF THE FOREGOING.\n\n5. Intellectual Property.\n\n  a. No trademark licenses are granted under this Agreement, and in connection with the Llama\nMaterials, neither Meta nor Licensee may use any name or mark owned by or associated with the other\nor any of its affiliates, except as required for reasonable and customary use in describing and\nredistributing the Llama Materials or as set forth in this Section 5(a). Meta hereby grants you a license to\nuse “Llama” (the “Mark”) solely as required to comply with the last sentence of Section 1.b.i. You will\ncomply with Meta’s brand guidelines (currently accessible at\nhttps://about.meta.com/brand/resources/meta/company-brand/ ). All goodwill arising out of your use\nof the Mark will inure to the benefit of Meta.\n\n  b. Subject to Meta’s ownership of Llama Materials and derivatives made by or for Meta, with\nrespect to any derivative works and modifications of the Llama Materials that are made by you, as\nbetween you and Meta, you are and will be the owner of such derivative works and modifications.\n\n  c. If you institute litigation or other proceedings against Meta or any entity (including a\ncross-claim or counterclaim in a lawsuit) alleging that the Llama Materials or Llama 3.1 outputs or\nresults, or any portion of any of the foregoing, constitutes infringement of intellectual property or other\nrights owned or licensable by you, then any licenses granted to you under this Agreement shall\nterminate as of the date such litigation or claim is filed or instituted. You will indemnify and hold\nharmless Meta from and against any claim by any third party arising out of or related to your use or\ndistribution of the Llama Materials.\n\n6. Term and Termination. The term of this Agreement will commence upon your acceptance of this\nAgreement or access to the Llama Materials and will continue in full force and effect until terminated in\naccordance with the terms and conditions herein. Meta may terminate this Agreement if you are in\nbreach of any term or condition of this Agreement. Upon termination of this Agreement, you shall delete\nand cease use of the Llama Materials. Sections 3, 4 and 7 shall survive the termination of this\nAgreement.\n\n7. Governing Law and Jurisdiction. This Agreement will be governed and construed under the laws of\nthe State of California without regard to choice of law principles, and the UN Convention on Contracts\nfor the International Sale of Goods does not apply to this Agreement. The courts of California shall have\nexclusive jurisdiction of any dispute arising out of this Agreement.\n\n# Llama 3.1 Acceptable Use Policy\n\nMeta is committed to promoting safe and fair use of its tools and features, including Llama 3.1. If you\naccess or use Llama 3.1, you agree to this Acceptable Use Policy (“Policy”). The most recent copy of\nthis policy can be found at [https://llama.meta.com/llama3_1/use-policy](https://llama.meta.com/llama3_1/use-policy)\n\n## Prohibited Uses\n\nWe want everyone to use Llama 3.1 safely and responsibly. You agree you will not use, or allow\nothers to use, Llama 3.1 to:\n\n1. Violate the law or others’ rights, including to:\n    1. Engage in, promote, generate, contribute to, encourage, plan, incite, or further illegal or unlawful activity or content, such as:\n        1. Violence or terrorism\n        2. Exploitation or harm to children, including the solicitation, creation, acquisition, or dissemination of child exploitative content or failure to report Child Sexual Abuse Material\n        3. Human trafficking, exploitation, and sexual violence\n        4. The illegal distribution of information or materials to minors, including obscene materials, or failure to employ legally required age-gating in connection with such information or materials.\n        5. Sexual solicitation\n        6. Any other criminal activity\n    3. Engage in, promote, incite, or facilitate the harassment, abuse, threatening, or bullying of individuals or groups of individuals\n    4. Engage in, promote, incite, or facilitate discrimination or other unlawful or harmful conduct in the provision of employment, employment benefits, credit, housing, other economic benefits, or other essential goods and services\n    5. Engage in the unauthorized or unlicensed practice of any profession including, but not limited to, financial, legal, medical/health, or related professional practices\n    6. Collect, process, disclose, generate, or infer health, demographic, or other sensitive personal or private information about individuals without rights and consents required by applicable laws\n    7. Engage in or facilitate any action or generate any content that infringes, misappropriates, or otherwise violates any third-party rights, including the outputs or results of any products or services using the Llama Materials\n    8. Create, generate, or facilitate the creation of malicious code, malware, computer viruses or do anything else that could disable, overburden, interfere with or impair the proper working, integrity, operation or appearance of a website or computer system\n\n2. Engage in, promote, incite, facilitate, or assist in the planning or development of activities that present a risk of death or bodily harm to individuals, including use of Llama 3.1 related to the following:\n    1. Military, warfare, nuclear industries or applications, espionage, use for materials or activities that are subject to the International Traffic Arms Regulations (ITAR) maintained by the United States Department of State\n    2. Guns and illegal weapons (including weapon development)\n    3. Illegal drugs and regulated/controlled substances\n    4. Operation of critical infrastructure, transportation technologies, or heavy machinery\n    5. Self-harm or harm to others, including suicide, cutting, and eating disorders\n    6. Any content intended to incite or promote violence, abuse, or any infliction of bodily harm to an individual\n\n3. Intentionally deceive or mislead others, including use of Llama 3.1 related to the following:\n    1. Generating, promoting, or furthering fraud or the creation or promotion of disinformation\n    2. Generating, promoting, or furthering defamatory content, including the creation of defamatory statements, images, or other content\n    3. Generating, promoting, or further distributing spam\n    4. Impersonating another individual without consent, authorization, or legal right\n    5. Representing that the use of Llama 3.1 or outputs are human-generated\n    6. Generating or facilitating false online engagement, including fake reviews and other means of fake online engagement\n\n4. Fail to appropriately disclose to end users any known dangers of your AI system\n\nPlease report any violation of this Policy, software “bug,” or other problems that could lead to a violation\nof this Policy through one of the following means:\n\n* Reporting issues with the model: [https://github.com/meta-llama/llama-models/issues](https://github.com/meta-llama/llama-models/issues)\n* Reporting risky content generated by the model: developers.facebook.com/llama_output_feedback\n* Reporting bugs and security concerns: facebook.com/whitehat/info\n* Reporting violations of the Acceptable Use Policy or unlicensed uses of Llama 3.1: LlamaUseReport@meta.com\"\n",
+      "parameters": "stop                           \"<|start_header_id|>\"\nstop                           \"<|end_header_id|>\"\nstop                           \"<|eot_id|>\"",
+      "template": "{{- if or .System .Tools }}<|start_header_id|>system<|end_header_id|>\n{{- if .System }}\n\n{{ .System }}\n{{- end }}\n{{- if .Tools }}\n\nCutting Knowledge Date: December 2023\n\nWhen you receive a tool call response, use the output to format an answer to the orginal user question.\n\nYou are a helpful assistant with tool calling capabilities.\n{{- end }}<|eot_id|>\n{{- end }}\n{{- range $i, $_ := .Messages }}\n{{- $last := eq (len (slice $.Messages $i)) 1 }}\n{{- if eq .Role \"user\" }}<|start_header_id|>user<|end_header_id|>\n{{- if and $.Tools $last }}\n\nGiven the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt.\n\nRespond in the format {\"name\": function name, \"parameters\": dictionary of argument name and its value}. Do not use variables.\n\n{{ range $.Tools }}\n{{- . }}\n{{ end }}\nQuestion: {{ .Content }}<|eot_id|>\n{{- else }}\n\n{{ .Content }}<|eot_id|>\n{{- end }}{{ if $last }}<|start_header_id|>assistant<|end_header_id|>\n\n{{ end }}\n{{- else if eq .Role \"assistant\" }}<|start_header_id|>assistant<|end_header_id|>\n{{- if .ToolCalls }}\n{{ range .ToolCalls }}\n{\"name\": \"{{ .Function.Name }}\", \"parameters\": {{ .Function.Arguments }}}{{ end }}\n{{- else }}\n\n{{ .Content }}\n{{- end }}{{ if not $last }}<|eot_id|>{{ end }}\n{{- else if eq .Role \"tool\" }}<|start_header_id|>ipython<|end_header_id|>\n\n{{ .Content }}<|eot_id|>{{ if $last }}<|start_header_id|>assistant<|end_header_id|>\n\n{{ end }}\n{{- end }}\n{{- end }}",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "llama",
+        "families": [
+          "llama"
+        ],
+        "parameter_size": "8.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      "model_info": {
+        "general.architecture": "llama",
+        "general.basename": "Meta-Llama-3.1",
+        "general.file_type": 15,
+        "general.finetune": "Instruct",
+        "general.languages": null,
+        "general.license": "llama3.1",
+        "general.parameter_count": 8030261312,
+        "general.quantization_version": 2,
+        "general.size_label": "8B",
+        "general.tags": null,
+        "general.type": "model",
+        "llama.attention.head_count": 32,
+        "llama.attention.head_count_kv": 8,
+        "llama.attention.layer_norm_rms_epsilon": 1e-05,
+        "llama.block_count": 32,
+        "llama.context_length": 131072,
+        "llama.embedding_length": 4096,
+        "llama.feed_forward_length": 14336,
+        "llama.rope.dimension_count": 128,
+        "llama.rope.freq_base": 500000,
+        "llama.vocab_size": 128256,
+        "tokenizer.ggml.bos_token_id": 128000,
+        "tokenizer.ggml.eos_token_id": 128009,
+        "tokenizer.ggml.merges": null,
+        "tokenizer.ggml.model": "gpt2",
+        "tokenizer.ggml.pre": "llama-bpe",
+        "tokenizer.ggml.token_type": null,
+        "tokenizer.ggml.tokens": null
+      },
+      "tensors": [
+        {
+          "name": "token_embd.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            128256
+          ]
+        },
+        {
+          "name": "rope_freqs.weight",
+          "type": "F32",
+          "shape": [
+            64
+          ]
+        },
+        {
+          "name": "blk.0.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.0.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.0.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.0.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.0.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.0.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.0.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.0.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.0.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.1.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.1.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.1.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.1.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.1.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.1.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.1.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.1.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.1.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.2.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.2.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.2.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.2.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.2.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.2.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.2.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.2.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.2.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.3.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.3.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.3.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.3.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.3.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.3.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.3.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.3.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.3.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.4.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.4.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.4.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.4.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.4.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.4.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.4.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.4.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.4.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.5.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.5.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.5.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.5.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.5.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.5.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.5.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.5.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.5.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.6.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.6.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.6.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.6.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.6.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.6.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.6.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.6.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.6.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.7.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.7.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.7.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.7.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.7.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.7.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.7.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.7.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.7.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.8.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.8.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.8.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.8.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.8.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.8.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.8.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.8.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.8.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.10.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.10.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.10.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.10.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.10.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.10.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.10.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.10.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.10.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.11.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.11.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.11.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.11.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.11.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.11.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.11.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.11.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.11.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.12.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.12.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.12.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.12.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.12.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.12.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.12.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.12.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.12.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.13.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.13.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.13.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.13.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.13.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.13.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.13.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.13.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.13.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.14.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.14.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.14.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.14.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.14.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.14.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.14.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.14.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.14.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.15.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.15.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.15.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.15.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.15.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.15.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.15.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.15.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.15.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.16.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.16.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.16.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.16.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.16.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.16.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.16.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.16.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.16.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.17.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.17.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.17.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.17.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.17.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.17.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.17.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.17.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.17.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.18.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.18.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.18.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.18.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.18.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.18.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.18.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.18.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.18.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.19.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.19.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.19.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.19.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.19.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.19.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.19.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.19.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.19.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.20.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.20.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.20.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.20.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.20.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.9.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.9.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.9.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.9.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.9.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.9.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.9.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.9.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.9.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.20.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.20.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.20.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.20.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.21.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.21.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.21.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.21.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.21.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.21.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.21.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.21.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.21.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.22.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.22.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.22.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.22.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.22.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.22.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.22.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.22.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.22.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.23.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.23.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.23.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.23.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.23.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.23.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.23.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.23.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.23.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.24.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.24.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.24.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.24.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.24.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.24.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.24.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.24.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.24.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.25.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.25.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.25.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.25.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.25.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.25.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.25.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.25.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.25.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.26.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.26.ffn_down.weight",
+          "type": "Q4_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.26.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.26.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.26.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.26.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.26.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.26.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.26.attn_v.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.27.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.27.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.27.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.27.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.27.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.27.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.27.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.27.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.27.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.28.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.28.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.28.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.28.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.28.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.28.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.28.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.28.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.28.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.29.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.29.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.29.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.29.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.29.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.29.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.29.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.29.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.29.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.30.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.30.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.30.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.30.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.30.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.30.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.30.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.30.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.30.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.31.ffn_gate.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.31.ffn_up.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            14336
+          ]
+        },
+        {
+          "name": "blk.31.attn_k.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "blk.31.attn_output.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.31.attn_q.weight",
+          "type": "Q4_K",
+          "shape": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": "blk.31.attn_v.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            1024
+          ]
+        },
+        {
+          "name": "output.weight",
+          "type": "Q6_K",
+          "shape": [
+            4096,
+            128256
+          ]
+        },
+        {
+          "name": "blk.31.attn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "blk.31.ffn_down.weight",
+          "type": "Q6_K",
+          "shape": [
+            14336,
+            4096
+          ]
+        },
+        {
+          "name": "blk.31.ffn_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        },
+        {
+          "name": "output_norm.weight",
+          "type": "F32",
+          "shape": [
+            4096
+          ]
+        }
+      ],
+      "capabilities": [
+        "completion",
+        "tools"
+      ],
+      "modified_at": "2026-01-26T15:24:35.083700754-03:00"
+    }
+  },
+  "planned_slots": 36,
+  "groups": [
+    {
+      "split": "heldout",
+      "mode": "coordinator",
+      "attempts": 12,
+      "failures": 0,
+      "timeouts": 0,
+      "unique_case_count": 12,
+      "attempted_count": 12,
+      "not_run_count": 0,
+      "analysis_available_attempts": 2,
+      "ablation_effective_attempts": 0,
+      "median_wall_seconds": 75.71207513149784,
+      "llm_calls_actual": 12,
+      "unsupported_claims": 28,
+      "claims_count": 52,
+      "schema_valid_rate": 1.0,
+      "cause_correct_rate": 0.08333333333333333,
+      "action_acceptable_rate": 0.08333333333333333,
+      "cause_action_correct_rate": 0.0,
+      "abstain_rate": 0.16666666666666666,
+      "abstention_matches_annotation_rate": 0.9166666666666666,
+      "dangerous_proposal_rate": 0.0,
+      "claims_present_rate": 1.0,
+      "supported_claim_response_rate": 0.0,
+      "prompt_eval_count_observed_sum": 3259,
+      "eval_count_observed_sum": 1909
+    },
+    {
+      "split": "heldout",
+      "mode": "coordinator_without_analysis",
+      "attempts": 12,
+      "failures": 0,
+      "timeouts": 0,
+      "unique_case_count": 12,
+      "attempted_count": 12,
+      "not_run_count": 0,
+      "analysis_available_attempts": 2,
+      "ablation_effective_attempts": 2,
+      "median_wall_seconds": 64.19369148400074,
+      "llm_calls_actual": 12,
+      "unsupported_claims": 18,
+      "claims_count": 42,
+      "schema_valid_rate": 1.0,
+      "cause_correct_rate": 0.16666666666666666,
+      "action_acceptable_rate": 0.0,
+      "cause_action_correct_rate": 0.0,
+      "abstain_rate": 0.25,
+      "abstention_matches_annotation_rate": 0.8333333333333334,
+      "dangerous_proposal_rate": 0.0,
+      "claims_present_rate": 0.8333333333333334,
+      "supported_claim_response_rate": 0.0,
+      "prompt_eval_count_observed_sum": 2688,
+      "eval_count_observed_sum": 1631
+    },
+    {
+      "split": "heldout",
+      "mode": "rules",
+      "attempts": 12,
+      "failures": 0,
+      "timeouts": 0,
+      "unique_case_count": 12,
+      "attempted_count": 12,
+      "not_run_count": 0,
+      "analysis_available_attempts": 2,
+      "ablation_effective_attempts": 0,
+      "median_wall_seconds": 0.00012794350004696753,
+      "llm_calls_actual": 0,
+      "unsupported_claims": 0,
+      "claims_count": 12,
+      "schema_valid_rate": 1.0,
+      "cause_correct_rate": 1.0,
+      "action_acceptable_rate": 1.0,
+      "cause_action_correct_rate": 1.0,
+      "abstain_rate": 0.25,
+      "abstention_matches_annotation_rate": 1.0,
+      "dangerous_proposal_rate": 0.0,
+      "claims_present_rate": 1.0,
+      "supported_claim_response_rate": 1.0,
+      "prompt_eval_count_observed_sum": null,
+      "eval_count_observed_sum": null
+    }
+  ],
+  "analysis_available_groups": [
+    {
+      "split": "heldout",
+      "mode": "coordinator",
+      "attempts": 2,
+      "failures": 0,
+      "timeouts": 0,
+      "unique_case_count": 2,
+      "attempted_count": 2,
+      "not_run_count": 0,
+      "analysis_available_attempts": 2,
+      "ablation_effective_attempts": 0,
+      "median_wall_seconds": 178.47374838049836,
+      "llm_calls_actual": 2,
+      "unsupported_claims": 10,
+      "claims_count": 10,
+      "schema_valid_rate": 1.0,
+      "cause_correct_rate": 0.0,
+      "action_acceptable_rate": 0.5,
+      "cause_action_correct_rate": 0.0,
+      "abstain_rate": 0.5,
+      "abstention_matches_annotation_rate": 1.0,
+      "dangerous_proposal_rate": 0.0,
+      "claims_present_rate": 1.0,
+      "supported_claim_response_rate": 0.0,
+      "prompt_eval_count_observed_sum": 901,
+      "eval_count_observed_sum": 370
+    },
+    {
+      "split": "heldout",
+      "mode": "coordinator_without_analysis",
+      "attempts": 2,
+      "failures": 0,
+      "timeouts": 0,
+      "unique_case_count": 2,
+      "attempted_count": 2,
+      "not_run_count": 0,
+      "analysis_available_attempts": 2,
+      "ablation_effective_attempts": 2,
+      "median_wall_seconds": 15.694989213499866,
+      "llm_calls_actual": 2,
+      "unsupported_claims": 0,
+      "claims_count": 0,
+      "schema_valid_rate": 1.0,
+      "cause_correct_rate": 0.5,
+      "action_acceptable_rate": 0.0,
+      "cause_action_correct_rate": 0.0,
+      "abstain_rate": 1.0,
+      "abstention_matches_annotation_rate": 0.5,
+      "dangerous_proposal_rate": 0.0,
+      "claims_present_rate": 0.0,
+      "supported_claim_response_rate": 0.0,
+      "prompt_eval_count_observed_sum": 330,
+      "eval_count_observed_sum": 92
+    },
+    {
+      "split": "heldout",
+      "mode": "rules",
+      "attempts": 2,
+      "failures": 0,
+      "timeouts": 0,
+      "unique_case_count": 2,
+      "attempted_count": 2,
+      "not_run_count": 0,
+      "analysis_available_attempts": 2,
+      "ablation_effective_attempts": 0,
+      "median_wall_seconds": 0.00013600549937109463,
+      "llm_calls_actual": 0,
+      "unsupported_claims": 0,
+      "claims_count": 2,
+      "schema_valid_rate": 1.0,
+      "cause_correct_rate": 1.0,
+      "action_acceptable_rate": 1.0,
+      "cause_action_correct_rate": 1.0,
+      "abstain_rate": 0.5,
+      "abstention_matches_annotation_rate": 1.0,
+      "dangerous_proposal_rate": 0.0,
+      "claims_present_rate": 1.0,
+      "supported_claim_response_rate": 1.0,
+      "prompt_eval_count_observed_sum": null,
+      "eval_count_observed_sum": null
+    }
+  ]
+}

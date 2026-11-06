@@ -1,0 +1,730 @@
+diff --git a/README.md b/README.md
+index 00fe4d0..2bb692b 100644
+--- a/README.md
++++ b/README.md
+@@ -18,6 +18,37 @@ o [Word](docs/monografia/REVISAO_MULTIPLATAFORMA.docx) e o
+ A coleta equivalente no M5 ainda não foi executada. As campanhas históricas e
+ a coleta exploratória anterior permanecem separadas.
+ 
++## Fortalecimento científico e escopo atual
++
++A revisão atual estuda **paralelização OpenMP baseada em evidências**, com
++transformação determinística e uma LLM posterior às medições. A extensão
++conservadora acrescenta DOALL ao subconjunto de redução escalar: o Transformer
++reanalisa a fonte atual e recusa corpos fora do contrato AST. Isso não converte
++as implementações manuais PolyBench em saídas automaticamente geradas.
++
++| Eixo | Evidência existente | Ampliação nesta etapa |
++|---|---|---|
++| Transformação automática | Pipeline Dot/redução promovido no M5 | DOALL e redução sob `standalone-ast-v2`; corpus autoral de 28 fontes, cuja coleta nova está em andamento |
++| Escalabilidade | Campanha principal Linux p15w3 concluída | Sessões adicionais Linux em andamento; matriz equivalente no M5 pendente |
++| LLM | Estudo histórico de admissão em dois tamanhos de Dot | Diagnóstico offline com rubrica própria; campanha heldout ainda a executar |
++
++Os protocolos são independentes: [corpus de automação](docs/publication/AUTOMATION_CORPUS.md),
++[repetibilidade](docs/publication/REPEATABILITY_PROTOCOL.md) e
++[diagnóstico](docs/publication/DIAGNOSTIC_PROTOCOL.md). O
++[plano de inferência](docs/publication/DIAGNOSTIC_RUN_PLAN.json) fixa modelos e
++orçamento antes do heldout. Não há inferência, testes ou renderizações
++concorrentes às medições de kernels. Resultados novos só devem ser incorporados
++após o encerramento e a verificação de suas campanhas.
++
++A [auditoria editorial](docs/publication/EDITORIAL_AUDIT.md) orienta uma
++[nova revisão da monografia](docs/monografia/REVISAO_PUBLICACAO.md), preservando
++as versões anteriores. A [matriz de trabalhos relacionados](docs/publication/RELATED_WORK.md),
++o [rascunho de artigo](docs/publication/ARTICLE_DRAFT.md) e o
++[novo roteiro de defesa](docs/defesa/SLIDES_PUBLICACAO.md) não constituem material
++submetido ou aprovação institucional. O roteiro mantém blocos de resultados
++pendentes identificados. A [execução Mac](docs/publication/MAC_EXECUTION.md) está
++preparada, sem presumir acesso ao hardware ou medição já realizada.
++
+ ## Pipeline completo e promoção
+ 
+ Com Clang, um compilador com OpenMP e o Ollama/modelo disponíveis, execute:
+@@ -32,8 +63,12 @@ transformação, gates, Selector, Context Builder, Coordinator e promoção. Cad
+ tentativa conserva comandos, logs, evidências e `summary.json` em uma pasta
+ exclusiva sob `build/pipeline/`. `--source`, `--driver` e `--benchmark-driver`
+ permitem fornecer outro caso dentro do mesmo contrato de fontes C independentes,
+-mas o transformador genérico atual só publica redução escalar direta autorizada
+-pelo Planner; estratégias não suportadas são recusadas.
++com transformação conservadora de redução escalar ou DOALL autorizada pelo
++Planner e revalidada no AST atual. DOALL exige atribuição injetiva de saída,
++entradas somente lidas, corpo puro e obrigações de `restrict` atendidas pelo
++chamador; estratégias não suportadas são recusadas. A demonstração histórica
++com inferência e promoção cobre Dot/redução. A nova extensão DOALL tem estudo
++próprio, ainda sem resultado científico declarado nesta atualização.
+ O compilador precisa aceitar `-O3 -fopenmp`; selecione a toolchain adequada ao
+ ambiente, especialmente no Mac.
+ 
+@@ -206,7 +241,8 @@ absolutos: ao trocar de checkout ou máquina, gere evidências novas. Relatório
+ contextos históricos sem proveniência não são migrados nem tratados como prova
+ da campanha atual.
+ 
+-Este caminho atende fontes e drivers independentes, como o Dot Product. Headers
++Este caminho atende fontes e drivers independentes no subconjunto descrito em
++[docs/AUTOMATION_SCOPE.md](docs/AUTOMATION_SCOPE.md). Headers
+ de projeto, bibliotecas externas, toolchain completa e conjuntos de entradas não
+ são integralmente arquivados por este contrato; o hash do compilador não substitui
+ a descrição do ambiente. Suporte a dependências de projeto exige captura dessas
+@@ -233,6 +269,29 @@ O estudo mede decisões e custo de inferência; `RETUNE/MODIFY` não executam um
+ busca por novos candidatos. O protocolo, as métricas e os critérios de conclusão
+ estão em [docs/COORDINATOR_EVALUATION.md](docs/COORDINATOR_EVALUATION.md).
+ 
++### Diagnóstico offline, separado da admissão
++
++`scripts/evaluate_diagnostics.py` recebe vistas de logs, fontes e medidas sem
++rótulo esperado, seleção ou recomendação pronta. Compara regras, LLM e ablação,
++registrando schema, causa/ação conforme rubrica, claims citadas, custo e falhas.
++Seu schema próprio não promove candidatos nem executa reparos. O catálogo tem
++24 vistas de cinco famílias, incluindo omissões e falhas controladas realmente
++executadas; elas não são 24 programas ou incidentes independentes.
++
++O baseline 24/24 implementa a própria rubrica autoral e verifica consistência,
++sem constituir validação humana independente. O preflight em desenvolvimento
++não integra o heldout. Timeout é terminal: os slots LLM restantes ficam
++`NOT_RUN`, sem retries ocultos. O relatório separa slots planejados e tentados.
++
++```bash
++python3 -B scripts/evaluate_diagnostics.py --baseline-only --repetitions 1 \
++  --output build/diagnostics/nova-execucao
++```
++
++Não confundir esse estudo com `evaluate_coordinator.py`: na admissão, a
++configuração aceita já foi determinada pelo Selector. Com medições fixas,
++a LLM pode concordar, vetar ou falhar; não escolher um speedup admissível superior.
++
+ ## Testes
+ 
+ ```bash
+@@ -244,6 +303,7 @@ python3 -B scripts/test_experiment_consolidation.py
+ python3 -B scripts/test_coordinator_v02_regression.py
+ python3 -B scripts/test_performance_selector_v02_regression.py
+ python3 -B scripts/test_autotuning_selector_v01_regression.py
++python3 -B -m unittest scripts.test_automation_corpus scripts.test_diagnostics
+ ```
+ 
+ A suíte de contratos inclui compilação e validação reais com GCC/OpenMP, rejeição
+@@ -254,7 +314,7 @@ executadas no hardware alvo com os drivers de benchmark originais.
+ 
+ ## Matriz experimental e reprodução — item 5
+ 
+-Os resultados disponíveis foram consolidados em
++O acervo histórico anterior à ampliação foi consolidado em
+ [results/consolidated/REPORT.md](results/consolidated/REPORT.md): 22 campanhas,
+ seis kernels, 173 configurações, 545 tempos recuperados e gráficos SVG/PDF/PNG. O relatório
+ separa ganho contra o sequencial de escalabilidade OpenMP e distingue medições
+@@ -295,5 +355,7 @@ as pendências pelos seis itens originais:
+ 
+ O gerador `scripts/build_academic_material.py` usa as dependências opcionais de
+ `requirements-writing.txt`. Ele exporta os materiais revisados a partir dos
+-Markdown e preserva os Word originais. A avaliação LLM e a consolidação já estão
+-incorporadas; ainda é necessário conferir o modelo institucional e o layout nos aplicativos.
++Markdown e preserva os Word originais. A avaliação LLM histórica e a consolidação anterior estão incorporadas nesses
++arquivos. A etapa de publicação usa fontes e saídas novas, ainda em preparação;
++não sobrescrever os materiais históricos para atualizá-los. A coleta M5 equivalente,
++a conferência institucional e o layout nativo Office continuam pendentes.
+diff --git a/analysis/code_transformer.py b/analysis/code_transformer.py
+index a0b55e8..b4aebee 100644
+--- a/analysis/code_transformer.py
++++ b/analysis/code_transformer.py
+@@ -4,6 +4,9 @@ import re
+ import sys
+ from pathlib import Path
+ 
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++from analysis.conservative_transform import certify_kernel
++
+ 
+ # ============================================================
+ # JSON
+@@ -858,6 +861,16 @@ def apply_strategy(
+ 
+     transformations = []
+ 
++    if strategy_type == "DOALL":
++        contract = static_kernel.get("direct_transform_contract", {})
++        if not strategy.get("direct_code_transformation") or contract.get("status") != "SUPPORTED" or contract.get("pattern") != "DOALL":
++            raise RuntimeError("DOALL requires the conservative standalone AST contract.")
++        index = contract["start_line"] - 1
++        indentation = leading_whitespace(source_lines[index])
++        pragma = indentation + "#pragma omp parallel for schedule(static)\n"
++        source_lines[index:index] = [indentation + "/* TCC2 AUTO-GENERATED: DOALL */\n", pragma]
++        return [{"loop_id": 1, "start_line": index + 1, "pragma": pragma.strip(), "contract": contract}]
++
+     # --------------------------------------------------------
+     # REDUCTION
+     # --------------------------------------------------------
+@@ -999,13 +1012,29 @@ def transform(
+             "no Static Analyzer JSON."
+         )
+ 
+-    source_lines = (
+-        source_file
+-        .read_text()
+-        .splitlines(
+-            keepends=True
+-        )
+-    )
++    # Clang offsets refer to physical bytes, including CRLF line endings.
++    source_code = source_file.read_bytes().decode("utf-8")
++    source_lines = source_code.split("\n")
++    source_lines = [line + "\n" for line in source_lines[:-1]] + source_lines[-1:]
++
++    # Recheck source bytes with Clang, rather than trusting an editable plan JSON.
++    from analysis.static_analyzer import extract_loops, find_kernel_functions, run_clang
++    actual_kernels = find_kernel_functions(run_clang(source_file, []))
++    if len(actual_kernels) != 1 or actual_kernels[0].get("name") != kernel_name:
++        raise RuntimeError("Standalone transformation requires exactly one matching kernel.")
++    actual_contract = certify_kernel(actual_kernels[0], "".join(source_lines))
++    if actual_contract.get("status") != "SUPPORTED" or actual_contract.get("pattern") != strategy.get("strategy"):
++        raise RuntimeError("UNSUPPORTED_STANDALONE: " + actual_contract.get("reason", "strategy does not match current source"))
++    if strategy.get("strategy") == "REDUCTION":
++        reductions = strategy.get("reductions", [])
++        variable = actual_contract["reduction_variable"]
++        if len(reductions) != 1 or any(reductions[0].get(key) != value for key, value in {
++            "loop_id": 1, "variable": variable, "operator": "+",
++            "openmp_clause": "reduction(+:" + variable + ")", "schedule": "static",
++        }.items()):
++            raise RuntimeError("Reduction plan does not match the current standalone AST contract.")
++    static_kernel = dict(static_kernel, direct_transform_contract=actual_contract,
++                         loops=extract_loops(actual_kernels[0], "".join(source_lines)))
+ 
+     transformations = apply_strategy(
+         source_lines,
+diff --git a/analysis/pattern_classifier.py b/analysis/pattern_classifier.py
+index 27dcead..194f8f9 100644
+--- a/analysis/pattern_classifier.py
++++ b/analysis/pattern_classifier.py
+@@ -1160,6 +1160,15 @@ def classify_kernel(
+             )
+         )
+ 
++        contract = static_kernel.get("direct_transform_contract", {})
++        if contract.get("status") == "SUPPORTED" and contract.get("pattern") == "DOALL":
++            classification = {
++                "classification": "DOALL_CANDIDATE", "family": pattern_family("DOALL_CANDIDATE"),
++                "confidence": "conservative_contract",
++                "reason": "One injective output write with pure reads and restrict caller preconditions.",
++                "evidence": {"standalone_ast_contract": contract},
++            }
++
+         classification[
+             "loop_id"
+         ] = loop_id
+@@ -1684,4 +1693,4 @@ def main():
+ 
+ 
+ if __name__ == "__main__":
+-    main()
+\ No newline at end of file
++    main()
+diff --git a/analysis/static_analyzer.py b/analysis/static_analyzer.py
+index c62f7d4..fe6c934 100644
+--- a/analysis/static_analyzer.py
++++ b/analysis/static_analyzer.py
+@@ -5,6 +5,9 @@ import subprocess
+ import sys
+ from pathlib import Path
+ 
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++from analysis.conservative_transform import certify_kernel
++
+ 
+ # ============================================================
+ # CLANG
+@@ -1449,9 +1452,7 @@ def analyze(
+     )
+ 
+     source_code = (
+-        source.read_text(
+-            errors="replace"
+-        )
++        source.read_bytes().decode("utf-8", errors="replace")
+     )
+ 
+     ast = run_clang(
+@@ -1561,7 +1562,8 @@ def analyze(
+             "kernels"
+         ].append({
+             "name": name,
+-            "loops": loops
++            "loops": loops,
++            "direct_transform_contract": certify_kernel(kernel, source_code),
+         })
+ 
+     if output_dir is None:
+diff --git a/analysis/strategy_planner.py b/analysis/strategy_planner.py
+index c524b20..fa2375d 100644
+--- a/analysis/strategy_planner.py
++++ b/analysis/strategy_planner.py
+@@ -850,6 +850,14 @@ def plan_kernel(
+                 ),
+         }
+ 
++    contract = static_kernel.get("direct_transform_contract", {})
++    if contract.get("status") == "SUPPORTED" and contract.get("pattern") == "DOALL":
++        strategy = {
++            "strategy": "DOALL", "direct_code_transformation": True,
++            "schedule": "static", "contract": contract,
++            "reason": "One injective output write; pure RHS; explicit restrict caller precondition.",
++        }
++
+     return {
+         "kernel":
+             pattern_kernel.get(
+diff --git a/docs/AUTOMATION_SCOPE.md b/docs/AUTOMATION_SCOPE.md
+index 28ff72a..0b23efb 100644
+--- a/docs/AUTOMATION_SCOPE.md
++++ b/docs/AUTOMATION_SCOPE.md
+@@ -1,63 +1,96 @@
+-# Escopo comprovado da automação
++# Escopo implementado e evidências da automação
+ 
+-Este documento delimita o que o checkout atual analisa, transforma e executa
+-automaticamente. Classificação, planejamento, transformação, variantes
+-experimentais e decisão por LLM são capacidades diferentes.
++Classificação, transformação, variante medida, diagnóstico e promoção são
++capacidades distintas. A extensão atual acrescenta uma classe conservadora
++DOALL ao subconjunto de redução escalar; as novas campanhas têm protocolos e
++artefatos próprios e não reclassificam retroativamente resultados manuais.
+ 
+-## Caminho integrado comprovado
++## Contrato de transformação atual
+ 
+-O runner completo foi demonstrado no Mac para **Dot Product em C com redução
+-escalar direta**:
++`analysis/conservative_transform.py`, versão `standalone-ast-v2`, verifica o AST
++obtido da fonte atual. `analysis/code_transformer.py` reanalisa esses bytes antes
++de inserir a diretiva. O nome interno `certify_kernel` é uma checagem local de
++pré-condições, sem certificação externa ou prova formal.
+ 
+-1. análise AST e dependências;
+-2. classificação `REDUCTION_CANDIDATE`;
+-3. planejamento de redução OpenMP;
+-4. inserção determinística de `parallel for reduction`;
+-5. compilação e corretude numérica;
+-6. benchmark e seleção de threads;
+-7. decisão do Coordinator com uma LLM;
+-8. promoção, revalidação e publicação auditável.
++- **REDUCTION:** um acumulador `double` local, inicializado em zero; um laço
++  canônico com `sum += expressão` pura, sem recorrência do acumulador no lado
++  direito; retorno do acumulador e entradas somente lidas.
++- **DOALL:** um laço canônico com atribuição `Y[i] = expressão` pura, escrita
++  injetiva, sem leitura da saída e ponteiros `restrict` no formato admitido.
++  Entradas são `const double *restrict`, e a saída é `double *restrict`.
+ 
+-A execução de 03/11/2026 terminou `PROMOTED` com `llama3.1:8b`, LLVM 23.1.1
+-e 4 threads. Essa evidência comprova o encadeamento do caminho suportado, não
+-uma transformação universal de programas C.
++`restrict` é obrigação do chamador, não análise dinâmica de alias. Extensões de
++buffers válidas, aritmética definida e ausência de comportamento indefinido são
++pré-condições. Os drivers controlados usam buffers separados. Índices de entrada
++são limitados a `i` e `i +/- constante` no intervalo admitido; não há análise
++geral de limites. Fontes independentes devem ter uma função `kernel_*` compatível,
++um único laço externo e formato de fonte reconhecido.
+ 
+-## Cobertura por caso
++Chamadas, atributos, pré-processamento, `_Pragma`, escritas aninhadas, scatter,
++in-place, efeitos laterais, corpos com múltiplas atribuições, laços aninhados e
++nós não reconhecidos são recusados. Algumas recusas são programas paralelizáveis
++fora do suporte, não provas de dependência. A
++[especificação do corpus](publication/AUTOMATION_CORPUS.md) e a
++[revisão do contrato](publication/TRANSFORM_REVIEW.md) detalham as restrições.
+ 
+-| Caso | Análise/classificação | Transformação | Pipeline completo atual |
++## Execução integrada e grau de evidência
++
++O runner encadeia análise AST, dependências reconhecidas, classificação,
++planejamento, transformação, gates, seleção, contexto, Coordinator e promoção.
++A execução histórica de 03/11/2026 no M5 terminou `PROMOTED` para Dot Product,
++com `llama3.1:8b`, LLVM 23.1.1 e 4 threads. Ela demonstra o caminho redução/Dot.
++
++A extensão DOALL está implementada no despacho do runner e tem corpus próprio.
++A nova avaliação funcional/de desempenho e a demonstração integrada DOALL estão
++em preparação/execução nesta etapa. Não declarar promoção DOALL com inferência
++real nem cobertura geral de DOALL antes de sua evidência correspondente.
++
++| Caso | Análise/classificação | Origem da transformação ou variante | Evidência de execução integrada |
+ |---|---|---|---|
+-| Dot Product / REDUCTION | Sim | Redução escalar direta, determinística | Sim |
+-| GEMM / DOALL | Sim | Variante OpenMP manual nas campanhas | Não |
+-| Jacobi-2D / STENCIL | Sim | Variantes manual e tiled | Não |
+-| Covariance / MIXED | Sim | Variante OpenMP manual | Não |
+-| Nussinov / WAVEFRONT | Sim | Transformações adaptativas específicas sobre base OpenMP existente | Não pelo runner genérico |
+-| Wavefront sintético | Sim | Variantes manual/tiled e autotuning | Não pelo runner genérico |
+-
+-`analysis/code_transformer.py` recusa estratégias não suportadas no despacho
+-genérico. As rotinas adaptativas específicas existentes não constituem um
+-transformador universal nem um loop autônomo de reparo.
+-
+-## Papel da LLM
+-
+-Há uma LLM no Coordinator. Análise, transformação suportada, gates, seleção e
+-promoção são determinísticos. O termo “multiagente” descreve a divisão de papéis
+-funcionais; não significa múltiplas LLMs negociando, LangGraph, motor BDI ou
+-blackboard concorrente.
+-
+-A LLM interpreta evidências e propõe uma ação estruturada. Ela não autoriza
+-sozinha corretude, desempenho, configuração ou publicação, e não é responsável
+-pelo speedup medido do código transformado.
+-
+-## Fora do recorte comprovado
+-
+-- GPU/CUDA;
+-- geração geral de C/C++ ou de todos os padrões classificados;
+-- múltiplas LLMs conversando;
+-- busca autônoma por novos candidatos;
+-- reparo autônomo iterativo após `RETUNE`, `MODIFY` ou `REJECT`;
+-- prova formal de equivalência ou ausência de races para todas as entradas;
+-- superioridade sobre geração monolítica de código por LLM.
+-
+-Esses limites devem permanecer na monografia, nos slides e na defesa. Novas
+-capacidades só podem ser acrescentadas a esta tabela após implementação e
+-evidência reproduzível correspondentes.
++| Dot Product / REDUCTION | Sim | Redução escalar determinística | Pipeline histórico com inferência e promoção no M5; nova avaliação do contrato em andamento |
++| Microkernels independentes DOALL | Contrato AST conservador implementado | Geração determinística de `parallel for`, dentro das pré-condições | Corpus autoral e demonstração da extensão em andamento; não herdar a promoção histórica de Dot |
++| GEMM PolyBench / DOALL | Sim | Variante OpenMP manual nas campanhas de escalabilidade | A extensão para microkernels não transforma automaticamente o GEMM aninhado |
++| Jacobi-2D / STENCIL | Sim, com limitações na dependência temporal | Variantes manual/tiled | Fora da geração integrada genérica atual |
++| Covariance / MIXED | Sim, incluindo relações não resolvidas | Variante OpenMP manual | Fora da geração integrada genérica atual |
++| Nussinov / WAVEFRONT | Sim | Variantes manuais e adaptações determinísticas específicas sobre base OpenMP existente | Não demonstrado pelo runner genérico |
++| Wavefront sintético | Sim | Variantes manual/tiled e autotuning | Não demonstrado pelo runner genérico |
++
++O corpus novo contém 28 fontes autorais: 14 positivas e 14 recusas esperadas,
++organizadas em oito arquivos de desenvolvimento e vinte de teste controlado.
++Duas entradas por fonte positiva não contam como programas adicionais. Os
++rótulos refletem a especificação do subconjunto; não são anotação externa ou
++estimativa representativa de programas C. Resultados só entram após coleta e
++verificação próprias, separados das 900 medições p15w3.
++
++## Papel da LLM e duas tarefas diferentes
++
++Há uma LLM no Coordinator de produção. Análise, transformação, gates, Selector
++e promoção são determinísticos. O termo multiagente descreve papéis funcionais,
++sem implicar várias LLMs conversando, LangGraph, BDI ou geração pela LLM.
++
++Na **admissão**, a configuração aceitável já é determinada pelo Selector. A LLM
++pode concordar, vetar ou falhar. Uma configuração diferente não se torna
++admissível pela resposta textual. `RETUNE`, `MODIFY` e `REJECT` interrompem a
++tentativa: não executam um ciclo de recuperação. O ganho do kernel não é ganho
++da LLM, e igualdade de speedup entre braços que aceitam é consequência do desenho.
++
++No **diagnóstico offline**, um harness separado compara regras, LLM completa e
++ablação sobre evidências sem gabarito exposto. Causa e ação são avaliadas contra
++rubrica autoral congelada; claims são verificadas mecanicamente. Esse estudo
++não executa reparos nem alcança o executor de promoção. O baseline perfeito
++confirma sua consistência com a rubrica, sem demonstrar validação humana
++independente. Catálogo, limites e falhas estão em
++[DIAGNOSTIC_PROTOCOL.md](publication/DIAGNOSTIC_PROTOCOL.md).
++
++## Limites mantidos
++
++GPU/CUDA, geração universal de C/C++, múltiplas LLMs negociando, busca autônoma,
++reparo iterativo e superioridade sobre geração monolítica não foram demonstrados.
++Também não há prova formal, ausência geral de races, análise de alias universal
++ou corretude para todas as entradas. Gates e drivers observam casos concretos;
++DOALL usa checagem por elemento nas entradas do corpus antes de emitir checksum.
++
++As campanhas de escalabilidade usam cinco algoritmos e variantes explicitamente
++identificadas. Elas não aumentam implicitamente a amostra de geração automática
++ou de decisões da LLM. O M5 histórico não substitui a nova matriz equivalente,
++que continua dependente da execução naquela máquina.
+diff --git a/docs/COORDINATOR_EVALUATION.md b/docs/COORDINATOR_EVALUATION.md
+index 648ff0d..c63da67 100644
+--- a/docs/COORDINATOR_EVALUATION.md
++++ b/docs/COORDINATOR_EVALUATION.md
+@@ -1,9 +1,17 @@
+ # Item 4 — avaliação do Coordinator
+ 
+-Pergunta avaliada: **com as mesmas evidências e o mesmo candidato, o Coordinator
+-altera a decisão de admitir uma variante paralela e a que custo?** O experimento
+-mede o valor adicional da decisão da LLM sobre o pipeline determinístico atual.
+-Não mede geração de código pela LLM nem recuperação autônoma de candidatos.
++Pergunta avaliada: **mantidas as evidências e a configuração admissível, com
++que frequência o Coordinator concorda com a política, veta oportunidades ou
++produz propostas inválidas, e qual custo adicional introduz?** O experimento
++mede conformidade e custo da decisão no contrato atual. Não mede geração de
++código pela LLM nem recuperação autônoma de candidatos.
++
++O Selector escolhe antes da inferência e o Executor exige a mesma configuração.
++Assim, a LLM não pode superar o speedup do baseline nesse desenho: pode manter
++o resultado ou cair no fallback. A igualdade de speedup quando ambos aceitam
++é consequência do contrato, não descoberta sobre a capacidade geral da LLM.
++A nova tarefa de [diagnóstico offline](publication/DIAGNOSTIC_PROTOCOL.md) tem
++catálogo, rótulos e métricas próprios; suas respostas não autorizam promoção.
+ 
+ ## Executar no hardware alvo
+ 
+diff --git a/docs/STATUS_TCC.md b/docs/STATUS_TCC.md
+index 1646158..7f05e6f 100644
+--- a/docs/STATUS_TCC.md
++++ b/docs/STATUS_TCC.md
+@@ -1,98 +1,132 @@
+-# Estado do TCC — atualização experimental em 5 de novembro de 2026
++# Estado do TCC — fortalecimento científico em 5 de novembro de 2026
+ 
+-Esta numeração corresponde à lista original de conclusão do trabalho.
++Esta numeração corresponde à lista original de conclusão. O fechamento histórico
++no M5 permanece registrado. A etapa atual amplia transformação, desenho
++experimental e redação, sem declarar concluídas campanhas em andamento.
+ 
+-Os itens 1 a 4 preservam o fechamento de 03/11 no Mac. Foi aberta uma etapa
+-complementar dos itens **5 e 6** para comparar escalabilidade de Dot Product,
+-GEMM e Nussinov, incluindo Jacobi-2D e Covariance. O pedido detalhado recebido
+-em 05/11 está preservado em [REQUISITOS_2026-11-05.md](experiments/REQUISITOS_2026-11-05.md).
+-A campanha Linux de quinze amostras terminou; o
+-[protocolo](experiments/MULTIPLATFORM_METHODOLOGY.md) e o
+-[relatório numérico](experiments/MULTIPLATFORM_REPORT.md) são as referências
+-atuais. A campanha equivalente no M5 permanece pendente. A revisão usou a
+-base disponível, conforme autorizado, sem esperar o manuscrito externo.
++O estado operacional e a sequência de execução estão em
++[publication/WORKLOG.md](publication/WORKLOG.md). Os novos estudos usam diretórios
++próprios e preservam a campanha principal Linux p15w3 e o acervo histórico.
+ 
+-| Item | Estado | Evidência / pendência |
++| Item | Estado atual | Evidência e pendência |
+ |---|---|---|
+-| **1. Fechar o pipeline até a geração do resultado final** | Concluído no caminho suportado | No Mac, o pipeline completo executou com LLVM 23.1.1 e inferência real do `llama3.1:8b`: Coordinator `ACCEPT`, promoção, manifesto, evidências e revalidação íntegros. O resultado comprova o caminho Dot Product/redução, não generaliza a automação para os demais padrões. |
+-| **2. Resolver as lacunas de validação e configuração** | Concluído e verificado no Mac | PASS fixo removido; configuração unidimensional preservada; códigos de saída dos gates corrigidos; hashes, campanhas e configurações conferidos. No Mac, a suíte final de 82 testes unittest e 14 casos de regressão passou sem skips. |
+-| **3. Delimitar exatamente o que o sistema automatiza** | Concluído e auditado | Contrato consolidado em `docs/AUTOMATION_SCOPE.md`: caminho integrado para Dot Product/redução escalar; demais padrões separados entre análise, variantes manuais e transformações específicas. Uma LLM apenas no Coordinator; GPU, geração universal e reparo autônomo fora do recorte. |
+-| **4. Fechar a avaliação científica dos agentes** | Concluído no recorte e limitações preservadas | A campanha original `INCOMPLETE` revelou um defeito de schema. Após correção, a replicação com as mesmas evidências terminou `COMPLETE`: 12/12 respostas LLM válidas e concordância total nos dois casos. Ensaio controlado: ACCEPT, REJECT e RETUNE 6/6; MODIFY 0/6 no `llama3.1:8b`. Não foi demonstrado benefício adicional da LLM ou das análises nesta amostra. Ver `COORDINATOR_EVALUATION_MAC.md`. |
+-| **5. Consolidar os experimentos e a reprodução** | Nova campanha Linux validada; coleta equivalente M5 pendente | Matriz anterior de 22 campanhas, campanha exploratória de sete amostras e Dot C nativo anteriores preservados. Protocolo novo: 60 configurações, 900 medições externas, 180 aquecimentos e 60 validações de corretude; fontes, compiladores, executáveis, comandos e saídas arquivados. Estatística, bootstrap e cinco gráficos em SVG/PNG/PDF recalculados. No Linux: 91 testes unittest, 23 casos de regressão e isolamento de análise estática aprovados. |
+-| **6. Fechar monografia e defesa** | Nova revisão de conteúdo exportada; fechamento institucional e Mac pendentes | `REVISAO_MULTIPLATAFORMA.md`, Word e PDF separados incluem arquitetura, contratos, pseudocódigos, exemplos C, ambientes, resultados e ameaças à validade. Exportação Word reaberta: 13 tabelas e 15 imagens. Base original de HEAD e materiais anteriores preservados. Capa oficial pública preenchida em arquivo separado. PDF de revisão via ReportLab; modelo institucional completo autenticado, conferência no Word, banca e incorporação da coleta M5 ainda pendentes. |
+-
+-## Escopo de automação
+-
+-| Caso | Cobertura conhecida no repositório |
+-|---|---|
+-| Dot Product / REDUCTION | Análise, planejamento, transformação de redução escalar, compilação, validação numérica, benchmark, seleção, Coordinator e promoção integrados. |
+-| GEMM / DOALL | Análises e implementação OpenMP manual; não declarar transformação completa automática pelo novo runner. |
+-| Jacobi-2D / STENCIL | Análises e variantes manual/tiled; não declarar transformação completa automática pelo novo runner. |
+-| Nussinov / WAVEFRONT | Análises, variantes OpenMP e transformações adaptativas específicas por feedback de compilação; o novo contrato de gates independentes não cobre o projeto PolyBench completo. |
+-| Covariance / MIXED | Análises e implementação OpenMP manual; não declarar transformação completa automática pelo novo runner. |
+-| Wavefront sintético | Variantes manual/tiled e autotuning existentes; integrar ao contrato de promoção exige evidências novas compatíveis. |
+-
+-Os gates atuais verificam arquivos independentes e um resultado numérico escalar
+-segundo o driver fornecido. Isso não constitui prova formal de equivalência,
+-ausência de races para todas as entradas, nem um transformador universal C/C++.
+-
+-## Evidências do item 5
+-
+-- [Matriz e gráficos](../results/consolidated/REPORT.md).
+-- [Protocolo de reprodução e limites](EXPERIMENT_REPRODUCTION.md).
+-- [Catálogo das campanhas e referências](experiment_catalog.json).
+-
+-Os CSVs históricos permanecem intactos. Campanhas misturadas e cabeçalhos
+-incompatíveis estão no inventário; a consolidação usa fontes selecionadas
+-explicitamente. Três campanhas finais de Dot Product no Mac têm os gates atuais
+-verificáveis neste checkout; duas coletas Linux preservam apenas o resumo. As 17
+-restantes são resultados históricos, sem autorização de promoção pelo contrato atual.
+-
+-## Critério para a próxima fase
+-
+-O material de redação, a comparação com os Word recebidos e os passos finais
+-estão em [FECHAMENTO_TCC.md](FECHAMENTO_TCC.md). A base revisada não é declarada
+-monografia final: os três documentos recebidos eram proposta, guia e resumo,
+-sem um texto final completo de resultados e conclusão. Os originais foram preservados.
+-
+-O fechamento técnico dos itens 1 a 4 permite concentrar a próxima etapa na
+-consolidação do item 5. A redação deve usar o recorte do item 3 e as métricas separadas do item 5:
+-ganho da transformação, escalabilidade OpenMP e ganho contra o sequencial.
+-
+-## Execução final do item 1 no Mac
+-
+-Em 3 de novembro de 2026, o preflight terminou `PREPARED` e a execução completa
++| **1. Fechar o pipeline até a geração do resultado final** | Dot/redução demonstrado; extensão conservadora DOALL implementada | O Mac histórico executou inferência, promoção e revalidação de Dot. A nova extensão reanalisa o AST atual e admite DOALL restrito; corpus e demonstração integrada nova ainda dependem da execução/verificação desta etapa. Não declarar promoção DOALL com inferência real a partir da evidência de Dot. |
++| **2. Resolver lacunas de validação e configuração** | Contratos anteriores preservados; revisão adicional em validação | Gates mantêm vínculos, campanhas, hashes, configuração medida e revalidação. O contrato AST novo trata recorrência, efeitos laterais, offsets/CRLF, atributos, pré-processamento e recusas conservadoras. Novos testes e bateria final têm execução própria; não antecipar sua aprovação. |
++| **3. Delimitar exatamente o que o sistema automatiza** | Escopo revisado | Geração determinística de redução escalar e microkernels DOALL sob `standalone-ast-v2`. GEMM, Jacobi e Covariance das campanhas continuam manuais; Nussinov mantém adaptações específicas. Uma LLM no Coordinator; diagnóstico offline separado da admissão. Ver [AUTOMATION_SCOPE.md](AUTOMATION_SCOPE.md). |
++| **4. Fechar a avaliação científica dos agentes** | Estudo histórico concluído no seu recorte; novo diagnóstico ainda em execução/preparo | No M5 histórico, 12/12 respostas LLM válidas reproduziram a política em dois tamanhos de Dot, sem benefício adicional demonstrado. O novo catálogo diagnóstico tem 24 vistas/5 famílias e rubrica autoral; o baseline 24/24 verifica consistência. Preflight de desenvolvimento é separado; heldout segue plano congelado, sem presumir sucesso ou descartar falhas. |
++| **5. Consolidar experimentos e reprodução** | p15w3 Linux concluído; ampliação em andamento; M5 equivalente pendente | p15w3 contém 60 configurações, 900 medições, 180 aquecimentos e 60 validações aprovadas. Sessões adicionais usam código congelado em b9e252d. O corpus novo tem 28 fontes e compara, com o mesmo GCC, sequencial, OpenMP gerado e autopar. Os números previstos do protocolo não são resultados. Coleta/análise/validação das campanhas novas devem encerrar antes da incorporação. |
++| **6. Fechar monografia e defesa** | Revisão científica e fontes novas em preparação | Auditoria editorial, trabalhos relacionados, revisão da monografia, artigo e novo roteiro de slides preservam versões anteriores. Resultados novos têm blocos pendentes. Exportação, revisão visual, coleta M5, modelo institucional completo, conferência nativa Office e aprovação acadêmica ainda são etapas próprias. |
++
++## 1. Pipeline histórico e extensão atual
++
++Em 03/11/2026 no M5, o preflight terminou `PREPARED`, e o pipeline completo
+ terminou `PROMOTED` com `llama3.1:8b` (ID local `46e0c10c039e`), LLVM Homebrew
+-23.1.1 e configurações 1, 2 e 4 threads. O Coordinator retornou `ACCEPT` e
+-`PROMOTE_CANDIDATE`, recomendando 4 threads. A configuração promovida mediu
+-speedup end-to-end de 2,46546x e escalabilidade contra OpenMP 1T de 2,46466x.
+-
+-- Runner: `build/final-pipeline-mac-2026-11-03/run-4whpshpr/`.
+-- Bundle: `results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/`.
+-- Candidato/`parallel.c`: SHA-256 `5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b`.
+-- Revalidação: `PASS`; todos os hashes declarados no manifesto foram conferidos.
+-
+-Essa execução conclui o item 1 no recorte suportado, mas não conclui a avaliação
+-científica do item 4 nem o TCC como um todo.
+-
+-## Verificação final do item 2 no Mac
+-
+-Em 3 de novembro de 2026, a suíte final registrada executou **82 testes unittest** e
+-os **14 casos de regressão** (Coordinator 7, Performance Selector 3 e
+-Autotuning Selector 4), todos aprovados e sem skips. A primeira execução expôs
+-que `gcc` no macOS era o Apple Clang sem `-fopenmp`; a infraestrutura de testes
+-passou a detectar e provar suporte OpenMP, usando LLVM Homebrew no Mac e
+-preservando `gcc` compatível no Linux. Também foi normalizada a equivalência
+-macOS entre `/var` e `/private/var` nas fixtures. Os contratos de produção não
+-foram relaxados.
+-
+-## Fechamento do item 3
+-
+-O recorte foi auditado contra o despacho real de `analysis/code_transformer.py`
+-e consolidado em `docs/AUTOMATION_SCOPE.md`. O caminho genérico transforma
+-redução escalar direta e recusa estratégias não suportadas; as transformações
+-adaptativas de Nussinov permanecem identificadas como rotinas específicas sobre
+-uma base OpenMP existente. Monografia, README e roteiro de demonstração foram
+-alinhados ao mesmo escopo. As regressões do Adaptive Strategy Planner, Compiler
+-Feedback v0.1/v0.2, isolamento de variantes e a recusa direta de `DOALL` pelo
+-transformador genérico passaram no Mac.
++23.1.1 e threads 1/2/4. O Coordinator recomendou 4T. A configuração promovida
++teve ganho total de 2,46546× e escalabilidade contra OpenMP 1T de 2,46466×.
++
++O bundle está em
++`results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/`.
++O candidato tem SHA-256
++`5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b`.
++A revalidação terminou PASS. Esses resultados pertencem ao Dot/redução histórico.
++
++O código atual acrescenta DOALL conservador, sem alterar o mecanismo de promoção.
++Uma função `kernel_*`, um laço canônico e uma atribuição pura/injetiva são
++pré-condições, com obrigações de `restrict` do chamador. Não se generaliza isso
++ao GEMM aninhado nem às demais fontes PolyBench. O corpus novo mede essa extensão
++separadamente; ver [AUTOMATION_CORPUS.md](publication/AUTOMATION_CORPUS.md).
++
++## 2. Validação: registros anteriores e revisão nova
++
++A suíte histórica Mac de 03/11 executou 82 testes unittest e 14 regressões,
++sem skips. Na etapa p15w3 Linux, 91 testes e 23 casos de regressão, além do
++isolamento estático, foram aprovados. São registros de versões e datas próprias.
++
++Nesta etapa, novas checagens revalidam o corpo AST e a posição física da fonte,
++recusam atributos/pré-processamento e exigem comparação elemento a elemento
++nos drivers DOALL do corpus. Isso não substitui a bateria final da nova árvore,
++registrada separadamente após as medições. Não executar testes, compilações,
++renderizações ou inferência concorrentes aos benchmarks de kernels.
++
++## 3. Três eixos de cobertura
++
++| Eixo | Unidade correta | Limite |
++|---|---|---|
++| Automação | Fonte C distinta, aceitação/recusa conforme suporte, compilação e corretude por entrada | Corpus autoral, sem generalização a C arbitrário; entrada adicional não vira programa adicional |
++| Escalabilidade | Variante × entrada × configuração × sessão | Cinco algoritmos; variantes manuais identificadas; não multiplicar a cobertura automática pelo número de medições |
++| LLM | Decisão ou diagnóstico por caso/braço/modelo | Admissão subordinada ao Selector e diagnóstico por rubrica são tarefas diferentes; sem reparo executado |
++
++O detalhamento vigente é [AUTOMATION_SCOPE.md](AUTOMATION_SCOPE.md). Classificar
++um padrão não basta para afirmar que sua transformação está implementada.
++
++## 4. Avaliação da LLM e limite das conclusões
++
++O estudo histórico de admissão no M5 preserva a campanha original `INCOMPLETE`
++e a replicação após correção de schema. Na replicação, as 12 respostas LLM foram
++válidas e concordaram com a política nos dois tamanhos de Dot. No ensaio
++controlado do `llama3.1:8b`, ACCEPT, REJECT e RETUNE tiveram 6/6, e MODIFY 0/6.
++Não foi demonstrado benefício adicional da LLM nem das análises nessa amostra.
++
++A configuração aceitável já vem do Selector. Logo, aceitar o mesmo candidato
++implica usar o mesmo tempo medido; esse desenho avalia concordância, vetos,
++falhas e custo, sem permitir escolher um speedup admissível superior.
++
++O novo estudo de [diagnóstico](publication/DIAGNOSTIC_PROTOCOL.md) remove o
++rótulo esperado do prompt, mantém causas/ações anotadas previamente e separa
++famílias de desenvolvimento/heldout. São 24 vistas sobre cinco famílias,
++incluindo falhas executadas por injeção controlada; não são 24 programas
++independentes. O baseline implementa a própria rubrica e concorda 24/24, sem
++validação humana independente. O [plano final de inferência](publication/DIAGNOSTIC_RUN_PLAN.json)
++fixa orçamento e modelos antes do heldout. Timeout é terminal, e os slots
++restantes ficam NOT_RUN, sem retry oculto ou execução de reparo.
++
++## 5. Resultados existentes e campanhas novas
++
++A referência numérica já concluída é o
++[relatório multiplataforma p15w3](experiments/MULTIPLATFORM_REPORT.md):
++
++| Entrada maior / origem | Threads recomendadas | Ganho total | Escalabilidade |
++|---|---:|---:|---:|
++| Dot C automático | 2 | 1,254× | 1,276× |
++| Dot C++ manual | 2 | 1,044× | 1,239× |
++| GEMM manual | 4 | 2,845× | 2,854× |
++| Nussinov manual | 4 | 3,195× | 3,204× |
++| Jacobi-2D manual | 2 | 1,177× | 1,182× |
++| Covariance manual | 4 | 2,193× | 2,183× |
++
++Os Dot grandes têm menor mediana em 4T; a recomendação 2T decorre do quase
++empate de 2%. O Dot C pequeno e o C++ menor não tiveram paralelo benéfico.
++ICs bootstrap são condicionais à campanha. Divergências do Nussinov médio entre
++a coleta exploratória e p15w3 motivam sessões adicionais, sem apagar dados.
++
++O [protocolo de repetibilidade](publication/REPEATABILITY_PROTOCOL.md) usa código
++congelado b9e252d, sessões separadas e comparação sem juntar amostras. A terceira
++sessão replica PolyBench MEDIUM e os Dot; LARGE não terá três sessões. O corpus
++novo usa diretório próprio e baseline GCC com mesmo compilador/driver nos braços.
++
++A [matriz histórica](../results/consolidated/REPORT.md), com 22 campanhas,
++continua preservada. Suas lacunas de ambiente/contrato não são preenchidas
++retroativamente. O [roteiro M5](publication/MAC_EXECUTION.md) prepara a nova
++execução, sem substituir medições reais. Linux/M5 será comparação de plataformas
++completas, sem efeito isolado da quantidade de núcleos.
++
++## 6. Redação, defesa e pendências externas
++
++A [auditoria editorial](publication/EDITORIAL_AUDIT.md) corrige a promessa do
++título, a pergunta sobre o Coordinator e inconsistências entre protocolos.
++A [revisão bibliográfica dirigida](publication/RELATED_WORK.md) posiciona
++ParEval, OMPar, P4OMP e RepoOMP, sem alegar reprodução quantitativa desses sistemas.
++
++A [nova monografia](monografia/REVISAO_PUBLICACAO.md), o
++[rascunho de artigo](publication/ARTICLE_DRAFT.md) e o
++[novo roteiro de defesa](defesa/SLIDES_PUBLICACAO.md) usam arquivos separados.
++Resultados em execução permanecem explicitamente pendentes. A revisão anterior
++multiplataforma Word/PDF e a defesa histórica foram preservadas; o PDF anterior
++tem 47 páginas, 13 tabelas e 15 imagens, sem inspeção nativa do layout Office.
++
++O próximo fechamento exige concluir/verificar as novas campanhas, incorporar
++resultados e limitações, exportar arquivos novos e revisar sua apresentação.
++Continuam externos à execução Linux: coleta equivalente M5, modelo institucional
++completo autenticado, conferência nativa Word/PowerPoint, informações da banca,
++revisão humana independente e aprovação editorial/acadêmica. Não há submissão,
++push ou merge autorizado nesta etapa.
+diff --git a/scripts/build_academic_material.py b/scripts/build_academic_material.py
+index c38419f..369d691 100644
+--- a/scripts/build_academic_material.py
++++ b/scripts/build_academic_material.py
+@@ -130,8 +130,7 @@ def word_export(source, target):
+     expected_images = sum(bool(re.fullmatch(r"!\[[^]]*\]\([^)]+\)", line.strip())) for line in lines)
+     assert reopened.tables and len(reopened.inline_shapes) == expected_images
+     exported_text = " ".join(paragraph.text for paragraph in reopened.paragraphs)
+-    assert "Não foi demonstrado benefício adicional" in exported_text
+-    assert "22 campanhas" in exported_text
++    assert plain(lines[0].lstrip('# ')) in exported_text
+ 
+ 
+ def slide_sources(path):
+diff --git a/scripts/build_multiplatform_material.py b/scripts/build_multiplatform_material.py
+index 183f991..5c18838 100644
+--- a/scripts/build_multiplatform_material.py
++++ b/scripts/build_multiplatform_material.py
+@@ -119,12 +119,14 @@ def kernel_figures(analysis, directory):
+         plt.close(fig)
+ 
+ 
+-def fill_cover(template, target):
++def fill_cover(template, target,
++               title='SISTEMAS MULTIAGENTES PARA REESTRUTURAÇÃO AUTÔNOMA DE CÓDIGOS: ',
++               subtitle='Análise de dependências, paralelização OpenMP e coordenação baseada em evidências'):
+     from lxml import etree as ET
+     replacements = {'ESCOLA': 'ESCOLA POLITÉCNICA', 'CURSO ': 'CURSO DE CIÊNCIA DA COMPUTAÇÃO',
+                     'NOME DO AUTOR EM MAIÚSCULAS': 'LUCAS NORY ULSON',
+-                    'TÍTULO EM MAIÚSCULAS E NEGRITO: ': 'SISTEMAS MULTIAGENTES PARA REESTRUTURAÇÃO AUTÔNOMA DE CÓDIGOS: ',
+-                    'SUBTÍTULO DO TRABALHO SEM NEGRITO': 'Análise de dependências, paralelização OpenMP e coordenação baseada em evidências',
++                    'TÍTULO EM MAIÚSCULAS E NEGRITO: ': title,
++                    'SUBTÍTULO DO TRABALHO SEM NEGRITO': subtitle,
+                     'Ano': '2026'}
+     with ZipFile(template) as src, ZipFile(target, 'w') as dst:
+         for item in src.infolist():
+@@ -271,7 +273,7 @@ def pdf_export(source, target):
+                     self.notify('TOCEntry', (level, title, self.page, key))
+ 
+     document = ReviewPDF(str(target), pagesize=A4, leftMargin=3*cm, rightMargin=2*cm,
+-                                 topMargin=3*cm, bottomMargin=2*cm, title='Revisão multiplataforma TCC2', author='Lucas Nory Ulson')
++                                 topMargin=3*cm, bottomMargin=2*cm, title=plain(source.read_text().splitlines()[0].lstrip('# ')), author='Lucas Nory Ulson')
+     story = []
+     figure_number = 0
+     lines = source.read_text().splitlines()
