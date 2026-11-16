@@ -1,0 +1,16 @@
+{
+  "version": "0.3",
+  "source": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/multiplatform/mac_m5_2026-11-16_p15w3_session01/sources/analysis/fixtures/dot_product.c",
+  "kernels": [
+    {
+      "name": "kernel_dot",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        }
+      ]
+    }
+  ]
+}

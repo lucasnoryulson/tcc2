@@ -1,0 +1,68 @@
+{
+  "mode": "coordinator",
+  "status": "OK",
+  "eligible": true,
+  "policy_reason": "Measured parallel selection is admissible.",
+  "candidate_attempts": 1,
+  "llm_calls": 1,
+  "recovery_supported": false,
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 8913259125,
+    "load_duration": 7377125,
+    "prompt_eval_count": 2050,
+    "eval_count": 120,
+    "done_reason": "stop"
+  },
+  "raw_decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 10,
+    "recommended_configuration": {
+      "mode": "openmp",
+      "threads": 10
+    },
+    "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ]
+  },
+  "validation_errors": [],
+  "monetary_cost": null,
+  "prompt_sha256": "cdb5e4f1a20af71cee659899e8dde7945a649435474747cece2eac6a18532135",
+  "ablation_effective": null,
+  "call_wall_seconds": 8.915725833000003,
+  "decision_wall_seconds": 8.916923499999996,
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 10,
+    "recommended_configuration": {
+      "threads": 10
+    },
+    "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ]
+  },
+  "effective_accept": true,
+  "nonadmissible_accept_proposal": false,
+  "missed_eligible_opportunity": false,
+  "policy_agreement": true,
+  "attempts_to_acceptable_candidate": 1,
+  "final_mode": "openmp",
+  "selected_configuration": {
+    "threads": 10
+  },
+  "measured_final_seconds": 0.00131822,
+  "speedup_vs_sequential": 3.723384564033318,
+  "parallel_scaling_speedup": 3.7264493028477794,
+  "validation_wall_seconds": 7.270899999411995e-05,
+  "trial_wall_seconds": 8.916996999999995
+}

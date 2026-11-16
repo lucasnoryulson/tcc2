@@ -1,0 +1,195 @@
+{
+  "schema": "tcc2-performance-gate",
+  "version": "0.1",
+  "status": "PASS",
+  "provenance": {
+    "campaign_id": "0c744c4b5dcb44f69d830a800a757d9c",
+    "run_id": "433a7fca7e6f4e42ba4f7c5ea28de3ac",
+    "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac",
+    "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+    "recorded_at": "2026-11-16T15:17:31.815427+00:00",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "cpu_count": 10,
+    "runtime_environment": {},
+    "inputs": {
+      "sequential": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/fixtures/dot_product.c",
+        "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/sequential/dot_product.c"
+      },
+      "candidate": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/candidate.c",
+        "sha256": "5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/candidate/candidate.c"
+      },
+      "driver": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/fixtures/dot_benchmark_driver.c",
+        "sha256": "414bdff989503693fda942a3a79dc29dfa311532fbb62b8fec4681f15a52db6f",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/driver/dot_benchmark_driver.c"
+      }
+    },
+    "toolchain": {
+      "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+      "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+      "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+    },
+    "compile_flags": {
+      "sequential": [
+        "-O3"
+      ],
+      "candidate": [
+        "-O3",
+        "-fopenmp"
+      ]
+    },
+    "link_flags": [
+      "-lm"
+    ],
+    "openmp_environment": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "TRUE",
+      "OMP_PLACES": "cores"
+    }
+  },
+  "correctness_report": {
+    "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/correctness.json",
+    "sha256": "b6f7b93435f1fe88ceaa0b4c35c9cf453cdacb304d189ec12e568c0a5618a9f9"
+  },
+  "thread_counts": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    10
+  ],
+  "repetitions": 5,
+  "configuration_dimensions": [
+    "threads"
+  ],
+  "compilation": {
+    "sequential": {
+      "command": [
+        "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "-O3",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/driver/dot_benchmark_driver.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/sequential/dot_product.c",
+        "-lm",
+        "-o",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/dot_sequential"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "candidate": {
+      "command": [
+        "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "-O3",
+        "-fopenmp",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/driver/dot_benchmark_driver.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/candidate/candidate.c",
+        "-lm",
+        "-o",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/dot_candidate"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "binaries": {
+    "sequential": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/dot_sequential",
+      "sha256": "a36d50d82a18d8eea3a4122aa6cd3ade2db874ef431f7e32facaabce0cfe8382"
+    },
+    "candidate": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/dot_candidate",
+      "sha256": "6ded9dab3b99c4df3a511ec976b603dbf1f87a6fb22b3afeb9684df257d53868"
+    }
+  },
+  "measurements": [
+    {
+      "mode": "sequential",
+      "threads": 1,
+      "times": [
+        0.00494974,
+        0.00483726,
+        0.00482497,
+        0.0048101,
+        0.00481388
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 1,
+      "times": [
+        0.00492228,
+        0.00484545,
+        0.00485379,
+        0.00485085,
+        0.00485972
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 2,
+      "times": [
+        0.00248407,
+        0.00251308,
+        0.00251174,
+        0.00249438,
+        0.00249543
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 4,
+      "times": [
+        0.00196703,
+        0.00197685,
+        0.00196,
+        0.00197087,
+        0.001969
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 6,
+      "times": [
+        0.00141627,
+        0.00143156,
+        0.00140614,
+        0.00140134,
+        0.0014022
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 8,
+      "times": [
+        0.00149277,
+        0.00139076,
+        0.00136899,
+        0.0014445,
+        0.00137752
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 10,
+      "times": [
+        0.0013209,
+        0.0013402,
+        0.00131045,
+        0.00131333,
+        0.00130192
+      ]
+    }
+  ],
+  "csv": {
+    "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance/433a7fca7e6f4e42ba4f7c5ea28de3ac/performance.csv",
+    "sha256": "0145f06115323fa82ac2663cce9c4e88050c1dbc239e3a1af0db325858498347"
+  },
+  "csv_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/performance.csv"
+}

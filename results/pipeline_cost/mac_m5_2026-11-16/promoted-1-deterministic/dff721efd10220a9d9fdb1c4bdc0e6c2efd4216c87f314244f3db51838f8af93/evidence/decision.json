@@ -1,0 +1,28 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.2",
+  "model": "deterministic-policy",
+  "decision": {
+    "decision": "ACCEPT",
+    "next_action": "PROMOTE_CANDIDATE",
+    "recommended_threads": 10,
+    "recommended_configuration": {
+      "threads": 10
+    },
+    "risk": "LOW",
+    "reason": "Real verified selection satisfies deterministic admission.",
+    "evidence_used": [
+      "linked correctness",
+      "measured selection"
+    ]
+  },
+  "evidence": {
+    "context": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-1/run-28lbvec1/context.json",
+      "sha256": "6ccf2d7a6c0e7a5fa682cb2b9757dd665c5603be121a53fd918ee4bab1ef225d"
+    },
+    "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b",
+    "campaign_id": "0c38f2c2ace24333a3b3892e5ccc8682"
+  },
+  "llm_metadata": {}
+}

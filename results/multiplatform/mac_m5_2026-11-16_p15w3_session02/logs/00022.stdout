@@ -1,0 +1,15 @@
+=================================
+TCC2 CODE TRANSFORMER v0.1
+=================================
+Kernel: kernel_dot
+Source: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/multiplatform/mac_m5_2026-11-16_p15w3_session02/sources/analysis/fixtures/dot_product.c
+Output: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/multiplatform/mac_m5_2026-11-16_p15w3_session02/sources/generated/dot_auto.c
+
+Transformations:
+  Loop #1
+    Original line: 9
+    Pragma: #pragma omp parallel for reduction(+:sum) schedule(static)
+
+=================================
+TRANSFORMATION_SUCCESS
+=================================

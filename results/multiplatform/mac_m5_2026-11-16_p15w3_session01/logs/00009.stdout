@@ -1,0 +1,5 @@
+hw.model: Mac17,2
+hw.memsize: 17179869184
+hw.ncpu: 10
+hw.perflevel0.physicalcpu: 4
+hw.perflevel1.physicalcpu: 6

@@ -1,0 +1,75 @@
+{
+  "status": "SELECTED",
+  "decision": "FASTEST_CONFIGURATION",
+  "parallel_status": "PARALLEL_SUCCESS",
+  "sequential": {
+    "mode": "sequential",
+    "threads": 1,
+    "median_seconds": 0.00482938,
+    "mean_seconds": 0.004859098,
+    "speedup": 1.0,
+    "efficiency": 1.0
+  },
+  "one_thread": {
+    "mode": "openmp",
+    "threads": 1,
+    "median_seconds": 0.00484362,
+    "mean_seconds": 0.004863384,
+    "speedup": 0.9970600501277971,
+    "efficiency": 0.9970600501277971
+  },
+  "best_parallel": {
+    "mode": "openmp",
+    "threads": 10,
+    "median_seconds": 0.00131821,
+    "mean_seconds": 0.001334998,
+    "speedup": 3.6635892611951055,
+    "efficiency": 0.36635892611951054
+  },
+  "transformation_benefit": false,
+  "parallel_benefit": true,
+  "transformation_speedup": 0.9970600501277971,
+  "parallel_scaling_speedup": 3.6743917888652033,
+  "parallel_scaling_efficiency": 0.36743917888652033,
+  "end_to_end_speedup": 3.6635892611951055,
+  "runtime_reduction": 0.7270436370714253,
+  "raw_fastest": {
+    "mode": "openmp",
+    "threads": 10,
+    "median_seconds": 0.00131821,
+    "mean_seconds": 0.001334998,
+    "speedup": 3.6635892611951055,
+    "efficiency": 0.36635892611951054
+  },
+  "near_tie_threshold": 0.02,
+  "near_tie_candidates": [
+    {
+      "mode": "openmp",
+      "threads": 10,
+      "median_seconds": 0.00131821,
+      "mean_seconds": 0.001334998,
+      "speedup": 3.6635892611951055,
+      "efficiency": 0.36635892611951054,
+      "slowdown_vs_fastest": 0.0
+    }
+  ],
+  "recommended": {
+    "mode": "openmp",
+    "threads": 10,
+    "median_seconds": 0.00131821,
+    "mean_seconds": 0.001334998,
+    "speedup": 3.6635892611951055,
+    "efficiency": 0.36635892611951054,
+    "slowdown_vs_fastest": 0.0
+  },
+  "next_action": "PROMOTE_CANDIDATE",
+  "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+  "evidence": {
+    "performance_report": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-1/run-28lbvec1/performance.json",
+      "sha256": "c74bd5474c8db5b4185cf5abcc44c3d867e2dfaa3e1b222cea2f5c8831175f69"
+    },
+    "campaign_id": "0c38f2c2ace24333a3b3892e5ccc8682",
+    "candidate_id": "sha256:5ece8b7eb8416cbc3ad123aa137a81c639253a1d9a3f4565983e2a1c22f7978b"
+  }
+}

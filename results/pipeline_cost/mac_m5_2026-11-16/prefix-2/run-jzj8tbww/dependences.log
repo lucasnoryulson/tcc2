@@ -1,0 +1,14 @@
+==================================
+TCC2 DEPENDENCE ANALYZER v0.3
+==================================
+Input: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/analysis/dot_product_analysis.json
+
+Kernel: kernel_dot
+
+  Loop #1
+    Iterator: i
+    Dependence candidates: (none)
+
+==================================
+JSON salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/analysis/dot_product_dependences.json
+==================================

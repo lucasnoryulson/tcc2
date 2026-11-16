@@ -1,0 +1,17 @@
+kernel,size,variant,selection_threads,selection_sequential,holdout_threads,holdout_sequential,unchanged
+covariance,LARGE,manual,10,False,10,False,True
+covariance,MEDIUM,manual,10,False,10,False,True
+dot,1000000,manual,4,False,4,False,True
+dot,10000000,manual,10,False,6,False,False
+dot-auto,1024,automatic,1,True,1,True,True
+dot-auto,10000000,automatic,10,False,10,False,True
+gemm,LARGE,manual,10,False,10,False,True
+gemm,MEDIUM,manual,8,False,8,False,True
+jacobi-2d,LARGE,manual,10,False,10,False,True
+jacobi-2d,MEDIUM,manual,4,False,4,False,True
+nussinov,LARGE,manual,4,False,4,False,True
+nussinov,LARGE,simd_auto,4,False,4,False,True
+nussinov,LARGE,simd_manual,4,False,4,False,True
+nussinov,MEDIUM,manual,4,False,1,True,False
+nussinov,MEDIUM,simd_auto,1,False,1,False,True
+nussinov,MEDIUM,simd_manual,1,False,1,False,True

@@ -1,0 +1,4 @@
+/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/multiplatform/mac_m5_2026-11-16_p15w3_session02/bin/dot-10000000-manual:
+	/opt/homebrew/opt/llvm/lib/libomp.dylib (compatibility version 5.0.0, current version 5.0.0)
+	/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 2100.43.0)
+	/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1356.0.0)

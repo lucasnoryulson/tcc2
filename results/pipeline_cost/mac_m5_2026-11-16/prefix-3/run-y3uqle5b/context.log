@@ -1,0 +1,12 @@
+=================================
+TCC2 AGENT CONTEXT BUILDER v0.3
+=================================
+Pattern: REDUCTION_CANDIDATE
+Family: REDUCE / AGGREGATION
+Strategy: REDUCTION
+Correctness gate: PASS
+Recommended threads: 10
+Recommended speedup: 3.723x
+Recommended efficiency: 0.372
+=================================
+Context salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/context.json

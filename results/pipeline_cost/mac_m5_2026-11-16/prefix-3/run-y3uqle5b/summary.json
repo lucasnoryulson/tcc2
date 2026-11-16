@@ -1,0 +1,182 @@
+{
+  "schema": "tcc2-pipeline-run",
+  "version": "0.1",
+  "status": "PREPARED",
+  "steps": [
+    {
+      "name": "static",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/static_analyzer.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/fixtures/dot_product.c",
+        "--output-dir",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/analysis"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/static.log",
+      "wall_seconds": 0.07115454200000215
+    },
+    {
+      "name": "dependences",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/dependence_analyzer.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/analysis/dot_product_analysis.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/dependences.log",
+      "wall_seconds": 0.019646874999999397
+    },
+    {
+      "name": "patterns",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/pattern_classifier.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/analysis/dot_product_analysis.json",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/analysis/dot_product_dependences.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/patterns.log",
+      "wall_seconds": 0.020205083000000457
+    },
+    {
+      "name": "strategy",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/strategy_planner.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/analysis/dot_product_analysis.json",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/analysis/dot_product_patterns.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/strategy.log",
+      "wall_seconds": 0.02076641699999726
+    },
+    {
+      "name": "transform",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/code_transformer.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/fixtures/dot_product.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/analysis/dot_product_analysis.json",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/analysis/dot_product_strategy.json",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/candidate.c"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/transform.log",
+      "wall_seconds": 0.048299415999998985
+    },
+    {
+      "name": "correctness",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/scripts/compile_correctness_gate.py",
+        "--sequential",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/fixtures/dot_product.c",
+        "--candidate",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/candidate.c",
+        "--driver",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/fixtures/dot_driver.c",
+        "--compiler",
+        "/opt/homebrew/opt/llvm/bin/clang",
+        "--threads",
+        "1",
+        "2",
+        "4",
+        "6",
+        "8",
+        "10",
+        "--build-dir",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/correctness",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/correctness.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/correctness.log",
+      "wall_seconds": 0.5394065829999946
+    },
+    {
+      "name": "performance",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/scripts/performance_gate.py",
+        "--sequential",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/fixtures/dot_product.c",
+        "--candidate",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/candidate.c",
+        "--driver",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/fixtures/dot_benchmark_driver.c",
+        "--compiler",
+        "/opt/homebrew/opt/llvm/bin/clang",
+        "--correctness",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/correctness.json",
+        "--build-dir",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/performance",
+        "--csv",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/performance.csv",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/performance.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/performance.log",
+      "wall_seconds": 10.573984125000003
+    },
+    {
+      "name": "selection",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/performance_selector.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/performance.csv",
+        "--performance-report",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/performance.json",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/selection.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/selection.log",
+      "wall_seconds": 0.037731625000006375
+    },
+    {
+      "name": "context",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/agents/context_builder.py",
+        "--source",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/fixtures/dot_product.c",
+        "--candidate",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/candidate.c",
+        "--static",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/analysis/dot_product_analysis.json",
+        "--dependences",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/analysis/dot_product_dependences.json",
+        "--patterns",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/analysis/dot_product_patterns.json",
+        "--strategy",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/analysis/dot_product_strategy.json",
+        "--selection",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/selection.json",
+        "--correctness",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/correctness.json",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/context.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/context.log",
+      "wall_seconds": 0.03471525000000497
+    }
+  ],
+  "elapsed_seconds": 11.368339125000006,
+  "context": {
+    "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/context.json",
+    "sha256": "5e02f8010b0a32b89692e3728824b51855cee2a7fac489c27c143b56166134e0"
+  }
+}

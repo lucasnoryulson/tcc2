@@ -1,0 +1,68 @@
+{
+  "mode": "coordinator",
+  "status": "OK",
+  "eligible": true,
+  "policy_reason": "Measured parallel selection is admissible.",
+  "candidate_attempts": 1,
+  "llm_calls": 1,
+  "recovery_supported": false,
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 11192557750,
+    "load_duration": 2359578458,
+    "prompt_eval_count": 2050,
+    "eval_count": 120,
+    "done_reason": "stop"
+  },
+  "raw_decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 10,
+    "recommended_configuration": {
+      "mode": "openmp",
+      "threads": 10
+    },
+    "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ]
+  },
+  "validation_errors": [],
+  "monetary_cost": null,
+  "prompt_sha256": "090178c1957ec4985b9ca4c039bc44e0a5069a150c6ba6a822b610970faedbea",
+  "ablation_effective": null,
+  "call_wall_seconds": 11.196339790999998,
+  "decision_wall_seconds": 11.197207957999998,
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 10,
+    "recommended_configuration": {
+      "threads": 10
+    },
+    "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ]
+  },
+  "effective_accept": true,
+  "nonadmissible_accept_proposal": false,
+  "missed_eligible_opportunity": false,
+  "policy_agreement": true,
+  "attempts_to_acceptable_candidate": 1,
+  "final_mode": "openmp",
+  "selected_configuration": {
+    "threads": 10
+  },
+  "measured_final_seconds": 0.00131821,
+  "speedup_vs_sequential": 3.6635892611951055,
+  "parallel_scaling_speedup": 3.6743917888652033,
+  "validation_wall_seconds": 9.987500000008254e-05,
+  "trial_wall_seconds": 11.197309041999999
+}

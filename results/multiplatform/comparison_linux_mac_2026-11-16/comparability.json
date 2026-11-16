@@ -1,0 +1,12 @@
+{
+  "status": "MATCHED_PROTOCOL",
+  "mismatches": [],
+  "common_threads": [
+    1,
+    2,
+    4
+  ],
+  "left": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/multiplatform/linux_xeon_2026-11-05_p15w3",
+  "right": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/multiplatform/mac_m5_2026-11-16_p15w3_session01",
+  "scope": "Whole platforms including compiler/runtime; no isolated architectural causality"
+}

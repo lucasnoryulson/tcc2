@@ -1,0 +1,44 @@
+Sequential benchmark:
+    Run 1: 0.004989140 s
+    Run 2: 0.004832000 s
+    Run 3: 0.004829380 s
+    Run 4: 0.004826930 s
+    Run 5: 0.004818040 s
+OpenMP benchmark (1 thread(s)):
+    Run 1: 0.004946980 s
+    Run 2: 0.004832860 s
+    Run 3: 0.004831140 s
+    Run 4: 0.004843620 s
+    Run 5: 0.004862320 s
+OpenMP benchmark (2 thread(s)):
+    Run 1: 0.002482990 s
+    Run 2: 0.002479170 s
+    Run 3: 0.002480810 s
+    Run 4: 0.002479280 s
+    Run 5: 0.002497190 s
+OpenMP benchmark (4 thread(s)):
+    Run 1: 0.001969040 s
+    Run 2: 0.002069110 s
+    Run 3: 0.001968930 s
+    Run 4: 0.001984650 s
+    Run 5: 0.002108020 s
+OpenMP benchmark (6 thread(s)):
+    Run 1: 0.001418470 s
+    Run 2: 0.001408280 s
+    Run 3: 0.001410120 s
+    Run 4: 0.001387610 s
+    Run 5: 0.001384450 s
+OpenMP benchmark (8 thread(s)):
+    Run 1: 0.001401810 s
+    Run 2: 0.001446080 s
+    Run 3: 0.001365470 s
+    Run 4: 0.001347240 s
+    Run 5: 0.001441480 s
+OpenMP benchmark (10 thread(s)):
+    Run 1: 0.001372400 s
+    Run 2: 0.001372550 s
+    Run 3: 0.001307470 s
+    Run 4: 0.001318210 s
+    Run 5: 0.001304360 s
+PERFORMANCE GATE: PASS
+CSV salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-1/run-28lbvec1/performance.csv

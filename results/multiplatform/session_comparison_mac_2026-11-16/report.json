@@ -1,0 +1,27 @@
+{
+  "status": "VERIFIED_SEPARATE_SESSIONS",
+  "sessions": [
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/multiplatform/mac_m5_2026-11-16_p15w3_session01",
+      "report_sha256": "3e3adb4cb70aa9122da97e059e3b4050d6e6c5da3ed132d33f60a2c01b374c16",
+      "samples_sha256": "664fb1b41a8cfd4c8baa00ace67e805e2fab2f9da7c99857a354207e237e4be3",
+      "started_utc": "2026-11-16T14:15:11.915577+00:00",
+      "finished_utc": "2026-11-16T14:22:33.259686+00:00",
+      "configurations": 108,
+      "measurements": 1620
+    },
+    {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/multiplatform/mac_m5_2026-11-16_p15w3_session02",
+      "report_sha256": "85cf7b74934d3eb62fad97777f06eec59d9a376a880db39b91754869961b2512",
+      "samples_sha256": "714698d944e3ca7d192a405547b1b3ad97ea5ff9707484083eb48b0928b6015e",
+      "started_utc": "2026-11-16T14:24:04.916869+00:00",
+      "finished_utc": "2026-11-16T14:33:10.372647+00:00",
+      "configurations": 108,
+      "measurements": 1620
+    }
+  ],
+  "common_configurations": 108,
+  "method": "Descriptive variation of session medians; no pooled raw observations",
+  "limitation": "Same machine and day; sequential sessions do not establish independence or controlled thermals",
+  "analyzer_sha256": "4c5b14875bfa683d8c118f57bfdcdf8caa38a5dd535342c114319711d9e4ec9c"
+}
