@@ -1,0 +1,7 @@
+hw.model: Mac17,2
+hw.memsize: 17179869184
+hw.physicalcpu: 10
+hw.logicalcpu: 10
+hw.perflevel0.physicalcpu: 4
+hw.perflevel1.physicalcpu: 6
+machdep.cpu.brand_string: Apple M5

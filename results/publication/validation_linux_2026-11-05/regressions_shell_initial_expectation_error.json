@@ -1,0 +1,57 @@
+[
+  {
+    "script": "scripts/test_adaptive_strategy_planner_v01_regression.py",
+    "returncode": 0
+  },
+  {
+    "script": "scripts/test_autotuning_selector_v01_regression.py",
+    "returncode": 0
+  },
+  {
+    "script": "scripts/test_compiler_feedback_analyzer_v01_regression.py",
+    "returncode": 0
+  },
+  {
+    "script": "scripts/test_compiler_feedback_analyzer_v02_regression.py",
+    "returncode": 0
+  },
+  {
+    "script": "scripts/test_coordinator_v02_regression.py",
+    "returncode": 0
+  },
+  {
+    "script": "scripts/test_performance_selector_v02_regression.py",
+    "returncode": 0
+  },
+  {
+    "script": "scripts/test_static_analysis_variant_isolation.py",
+    "returncode": 0
+  },
+  {
+    "script": "scripts/run_multiplatform_mac.sh",
+    "check": "bash -n",
+    "returncode": 0
+  },
+  {
+    "script": "scripts/run_publication_mac.sh",
+    "check": "bash -n",
+    "returncode": 0
+  },
+  {
+    "script": "scripts/run_diagnostics_mac.sh",
+    "check": "bash -n",
+    "returncode": 0
+  },
+  {
+    "script": "scripts/run_publication_mac.sh",
+    "check": "reject existing output before execution",
+    "returncode": 2,
+    "expected": 2
+  },
+  {
+    "script": "scripts/run_diagnostics_mac.sh",
+    "check": "reject existing output before execution",
+    "returncode": 1,
+    "expected": 2
+  }
+]

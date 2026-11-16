@@ -1,0 +1,17 @@
+{
+  "version": "0.1",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/missing_restrict.c",
+  "plans": [
+    {
+      "kernel": "kernel_case",
+      "detected_pattern": "UNKNOWN",
+      "family": "UNKNOWN",
+      "classification_confidence": "low",
+      "strategy": {
+        "strategy": "NO_SAFE_PLAN",
+        "direct_code_transformation": false,
+        "reason": "The current classifier did not produce a sufficiently resolved parallel pattern."
+      }
+    }
+  ]
+}

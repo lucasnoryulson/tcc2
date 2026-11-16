@@ -1,0 +1,40 @@
+=================================
+TCC2 STRATEGY PLANNER v0.1
+=================================
+Static:   /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/prefix_dependency/analysis/case_prefix_dependency_analysis.json
+Patterns: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/prefix_dependency/analysis/case_prefix_dependency_patterns.json
+
+Kernel: kernel_case
+Pattern: WAVEFRONT_CANDIDATE
+Family: WAVEFRONT / DOACROSS
+Classification confidence: high
+Strategy: WAVEFRONT
+
+{
+  "strategy": "WAVEFRONT",
+  "wavefronts": [
+    {
+      "loop_id": 1,
+      "original_iterators": [
+        "i"
+      ],
+      "dependence_offsets": [
+        [
+          -1
+        ]
+      ],
+      "transformation": "wavefront_diagonalization",
+      "direct_parallel_for": false,
+      "restructure_iteration_space": true,
+      "parallelize_within_front": true,
+      "barrier_between_fronts": true,
+      "schedule": "static"
+    }
+  ],
+  "direct_code_transformation": false,
+  "reason": "Loop-carried dependences prevent a direct parallel-for transformation."
+}
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/prefix_dependency/analysis/case_prefix_dependency_strategy.json
+=================================

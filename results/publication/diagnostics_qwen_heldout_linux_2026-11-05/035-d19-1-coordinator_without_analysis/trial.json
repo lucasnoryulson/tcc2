@@ -1,0 +1,72 @@
+{
+  "case_id": "d19",
+  "family": "jacobi",
+  "origin": "archived_measurement_view",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator_without_analysis",
+  "status": "OK",
+  "metadata": {
+    "model": "qwen2.5:3b",
+    "created_at": "2026-11-05T20:28:27.819555434Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 42130315711,
+    "load_duration": 205412230,
+    "prompt_eval_count": 266,
+    "prompt_eval_duration": 9923830069,
+    "eval_count": 168,
+    "eval_duration": 27534944905
+  },
+  "prompt_sha256": "b223c8f74846673e87152f75f08122a20e727742efc8e9a7dd499d2de6e6c754",
+  "analysis_available": false,
+  "ablation_effective": false,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 42.131728180997015,
+  "schema_valid": true,
+  "cause_correct": false,
+  "action_acceptable": false,
+  "cause_action_correct": false,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 5,
+  "claims_count": 5,
+  "output": {
+    "cause": "DEPENDENCE_RISK",
+    "action": "ADAPT_SCHEMA",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "kind",
+        "value": "timings"
+      },
+      {
+        "fact_id": "f2",
+        "field": "data.kind",
+        "value": "question"
+      },
+      {
+        "fact_id": "f3",
+        "field": "data.question",
+        "value": "scaling"
+      },
+      {
+        "fact_id": "f4",
+        "field": "sequential_seconds",
+        "value": "2.5773"
+      },
+      {
+        "fact_id": "f5",
+        "field": "one_thread_seconds",
+        "value": "2.588137"
+      }
+    ]
+  },
+  "raw_response_sha256": "075ce957f08866aef0e01efc976733f7a34741d4b563cb5adee7dcd4fe62b860"
+}

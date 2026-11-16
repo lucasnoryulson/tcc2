@@ -1,0 +1,36 @@
+{
+  "version": "0.1",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/prefix_dependency.c",
+  "plans": [
+    {
+      "kernel": "kernel_case",
+      "detected_pattern": "WAVEFRONT_CANDIDATE",
+      "family": "WAVEFRONT / DOACROSS",
+      "classification_confidence": "high",
+      "strategy": {
+        "strategy": "WAVEFRONT",
+        "wavefronts": [
+          {
+            "loop_id": 1,
+            "original_iterators": [
+              "i"
+            ],
+            "dependence_offsets": [
+              [
+                -1
+              ]
+            ],
+            "transformation": "wavefront_diagonalization",
+            "direct_parallel_for": false,
+            "restructure_iteration_space": true,
+            "parallelize_within_front": true,
+            "barrier_between_fronts": true,
+            "schedule": "static"
+          }
+        ],
+        "direct_code_transformation": false,
+        "reason": "Loop-carried dependences prevent a direct parallel-for transformation."
+      }
+    }
+  ]
+}

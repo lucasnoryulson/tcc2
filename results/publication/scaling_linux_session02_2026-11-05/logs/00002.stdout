@@ -1,0 +1,17 @@
+ M analysis/code_transformer.py
+ M analysis/pattern_classifier.py
+ M analysis/static_analyzer.py
+ M analysis/strategy_planner.py
+?? analysis/conservative_transform.py
+?? analysis/fixtures/publication_corpus/
+?? docs/monografia/REVISAO_PUBLICACAO.md
+?? docs/publication/
+?? experiments/
+?? results/publication/
+?? scripts/compare_sessions.py
+?? scripts/evaluate_automation_corpus.py
+?? scripts/evaluate_diagnostics.py
+?? scripts/run_diagnostics_mac.sh
+?? scripts/test_automation_corpus.py
+?? scripts/test_compare_sessions.py
+?? scripts/test_diagnostics.py

@@ -1,0 +1,4 @@
+case_id,family,split,origin,repetition,mode,status,schema_valid,cause_correct,action_acceptable,abstain,dangerous_proposal,unsupported_claims,claims_count,attempted,wall_seconds
+d01,dot,development,archived_measurement_view,1,coordinator_without_analysis,OK,True,False,False,False,False,4,4,True,73.71528309700079
+d01,dot,development,archived_measurement_view,1,coordinator,OK,True,False,False,False,False,4,4,True,35.533609343001444
+d01,dot,development,archived_measurement_view,1,rules,OK,True,True,True,False,False,0,1,True,0.00011519499821588397

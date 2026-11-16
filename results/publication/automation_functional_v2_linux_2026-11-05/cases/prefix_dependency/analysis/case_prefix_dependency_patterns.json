@@ -1,0 +1,32 @@
+{
+  "version": "0.6",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/prefix_dependency.c",
+  "kernels": [
+    {
+      "name": "kernel_case",
+      "classification": "WAVEFRONT_CANDIDATE",
+      "family": "WAVEFRONT / DOACROSS",
+      "confidence": "high",
+      "reason": "At least one loop contains resolved shifted dependences.",
+      "loops": [
+        {
+          "classification": "WAVEFRONT_CANDIDATE",
+          "family": "WAVEFRONT / DOACROSS",
+          "confidence": "high",
+          "reason": "Shifted accesses to the same written array were detected.",
+          "evidence": {
+            "shifted_accesses": 1,
+            "offsets": [
+              [
+                -1
+              ]
+            ],
+            "symbolic_relations": 0
+          },
+          "loop_id": 1,
+          "iterator": "i"
+        }
+      ]
+    }
+  ]
+}

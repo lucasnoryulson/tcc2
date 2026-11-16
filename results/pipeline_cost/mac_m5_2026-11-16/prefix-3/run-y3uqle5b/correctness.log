@@ -1,0 +1,38 @@
+=================================
+TCC2 COMPILE + CORRECTNESS GATE
+=================================
+Sequential: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/fixtures/dot_product.c
+Candidate:  /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/candidate.c
+Driver:     /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/analysis/fixtures/dot_driver.c
+Compiler:   /opt/homebrew/opt/llvm/bin/clang
+Threads:    [1, 2, 4, 6, 8, 10]
+
+sequential compilation:
+  Command:
+  /opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23 -O3 /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/correctness/69962d1a8f48464d8b3f8e8d93144f03/driver/dot_driver.c /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/correctness/69962d1a8f48464d8b3f8e8d93144f03/sequential/dot_product.c -lm -o /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/correctness/69962d1a8f48464d8b3f8e8d93144f03/dot_gate_sequential
+  Status: COMPILE_SUCCESS
+
+candidate compilation:
+  Command:
+  /opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23 -O3 -fopenmp /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/correctness/69962d1a8f48464d8b3f8e8d93144f03/driver/dot_driver.c /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/correctness/69962d1a8f48464d8b3f8e8d93144f03/candidate/candidate.c -lm -o /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/correctness/69962d1a8f48464d8b3f8e8d93144f03/dot_gate_candidate
+  Status: COMPILE_SUCCESS
+Threads: 1; sequential: 261762.4999999812; candidate: 261762.4999999812
+Absolute error: 0.000000000000e+00; relative error: 0.000000000000e+00
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 2; sequential: 261762.4999999812; candidate: 261762.49999998021
+Absolute error: 9.895302355289e-10; relative error: 3.780259722187e-15
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 4; sequential: 261762.4999999812; candidate: 261762.49999999182
+Absolute error: 1.062289811671e-08; relative error: 4.058219995877e-14
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 6; sequential: 261762.4999999812; candidate: 261762.49999999657
+Absolute error: 1.536682248116e-08; relative error: 5.870520980338e-14
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 8; sequential: 261762.4999999812; candidate: 261762.50000000146
+Absolute error: 2.025626599789e-08; relative error: 7.738414019536e-14
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 10; sequential: 261762.4999999812; candidate: 261762.50000000073
+Absolute error: 1.952867023647e-08; relative error: 7.460453745846e-14
+Tolerances: relative=1e-09; absolute=1e-12
+Correctness: CORRECT
+GATE RESULT: PASS

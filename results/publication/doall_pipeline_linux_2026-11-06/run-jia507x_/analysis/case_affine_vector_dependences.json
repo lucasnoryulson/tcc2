@@ -1,0 +1,16 @@
+{
+  "version": "0.3",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector.c",
+  "kernels": [
+    {
+      "name": "kernel_case",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "case_id": "d08",
+  "family": "dot",
+  "origin": "executed_controlled_semantic_mutation",
+  "split": "development",
+  "repetition": 1,
+  "mode": "rules",
+  "status": "OK",
+  "metadata": {},
+  "prompt_sha256": "22fb29099064746be73fc677cc903eee0cb46243ffc8324f032b001821b3e632",
+  "analysis_available": true,
+  "ablation_effective": null,
+  "llm_calls": 0,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 0.00042193799890810624,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": true,
+  "cause_action_correct": true,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": true,
+  "unsupported_claims": 0,
+  "claims_count": 1,
+  "output": {
+    "cause": "INCORRECT_RESULT",
+    "action": "DEBUG_RESULT",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "reference_value",
+        "value": 261762.4999999812
+      }
+    ]
+  },
+  "raw_response_sha256": "059b81ec0a54b831563674afa1e185ab2eeb6e32c0200d680f1e7ea254f84088"
+}

@@ -1,0 +1,418 @@
+{
+  "schema": "tcc2-pipeline-cost-v1",
+  "status": "COMPLETE",
+  "started_utc": "2026-11-16T15:17:06.363238+00:00",
+  "protocol": "Separate technical cost campaign; five gate observations/configuration, not pooled with p15w3",
+  "model": "llama3.1:8b",
+  "repetitions": 3,
+  "trials": [
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 4.9579999998883295e-06,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 10,
+        "recommended_configuration": {
+          "threads": 10
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 10
+      },
+      "measured_final_seconds": 0.00131821,
+      "speedup_vs_sequential": 3.6635892611951055,
+      "parallel_scaling_speedup": 3.6743917888652033,
+      "validation_wall_seconds": 9.750000000252612e-06,
+      "trial_wall_seconds": 1.4999999999432134e-05,
+      "repetition": 1,
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-1/run-28lbvec1/context.json",
+        "sha256": "6ccf2d7a6c0e7a5fa682cb2b9757dd665c5603be121a53fd918ee4bab1ef225d"
+      },
+      "promotion": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/promoted-1-deterministic/dff721efd10220a9d9fdb1c4bdc0e6c2efd4216c87f314244f3db51838f8af93"
+    },
+    {
+      "mode": "coordinator",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 11192557750,
+        "load_duration": 2359578458,
+        "prompt_eval_count": 2050,
+        "eval_count": 120,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 10,
+        "recommended_configuration": {
+          "mode": "openmp",
+          "threads": 10
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "090178c1957ec4985b9ca4c039bc44e0a5069a150c6ba6a822b610970faedbea",
+      "ablation_effective": null,
+      "call_wall_seconds": 11.196339790999998,
+      "decision_wall_seconds": 11.197207957999998,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 10,
+        "recommended_configuration": {
+          "threads": 10
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 10
+      },
+      "measured_final_seconds": 0.00131821,
+      "speedup_vs_sequential": 3.6635892611951055,
+      "parallel_scaling_speedup": 3.6743917888652033,
+      "validation_wall_seconds": 9.987500000008254e-05,
+      "trial_wall_seconds": 11.197309041999999,
+      "repetition": 1,
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-1/run-28lbvec1/context.json",
+        "sha256": "6ccf2d7a6c0e7a5fa682cb2b9757dd665c5603be121a53fd918ee4bab1ef225d"
+      },
+      "promotion": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/promoted-1-coordinator/dff721efd10220a9d9fdb1c4bdc0e6c2efd4216c87f314244f3db51838f8af93"
+    },
+    {
+      "mode": "coordinator",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 8847085459,
+        "load_duration": 6197292,
+        "prompt_eval_count": 2050,
+        "eval_count": 120,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 10,
+        "recommended_configuration": {
+          "mode": "openmp",
+          "threads": 10
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "8819299bdbf171f46f096501509d3c344d3b3c5b69941c245e4506892dbb64da",
+      "ablation_effective": null,
+      "call_wall_seconds": 8.849451917000003,
+      "decision_wall_seconds": 8.850030959000001,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 10,
+        "recommended_configuration": {
+          "threads": 10
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 10
+      },
+      "measured_final_seconds": 0.00131333,
+      "speedup_vs_sequential": 3.673844349858756,
+      "parallel_scaling_speedup": 3.69578856799129,
+      "validation_wall_seconds": 5.379200000277251e-05,
+      "trial_wall_seconds": 8.850085499999999,
+      "repetition": 2,
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/context.json",
+        "sha256": "77c671a359ee89617e01cc8af52b62e2b2ba617648455a66d892d344814cb03d"
+      },
+      "promotion": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/promoted-2-coordinator/272178a893b7a886c16245e9523faacc32fc6d0694854accb5b1ac7a50293e97"
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 7.250000003011792e-06,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 10,
+        "recommended_configuration": {
+          "threads": 10
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 10
+      },
+      "measured_final_seconds": 0.00131333,
+      "speedup_vs_sequential": 3.673844349858756,
+      "parallel_scaling_speedup": 3.69578856799129,
+      "validation_wall_seconds": 1.0875000000964974e-05,
+      "trial_wall_seconds": 1.8375000003345576e-05,
+      "repetition": 2,
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/context.json",
+        "sha256": "77c671a359ee89617e01cc8af52b62e2b2ba617648455a66d892d344814cb03d"
+      },
+      "promotion": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/promoted-2-deterministic/272178a893b7a886c16245e9523faacc32fc6d0694854accb5b1ac7a50293e97"
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 4.208000000005541e-06,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 10,
+        "recommended_configuration": {
+          "threads": 10
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 10
+      },
+      "measured_final_seconds": 0.00131822,
+      "speedup_vs_sequential": 3.723384564033318,
+      "parallel_scaling_speedup": 3.7264493028477794,
+      "validation_wall_seconds": 1.024999999543752e-05,
+      "trial_wall_seconds": 1.4749999998286967e-05,
+      "repetition": 3,
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/context.json",
+        "sha256": "5e02f8010b0a32b89692e3728824b51855cee2a7fac489c27c143b56166134e0"
+      },
+      "promotion": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/promoted-3-deterministic/265b34032dcbfb37d9cf44f9aadcf5de8f660a71acf9bdf3075d5aac0c2942b4"
+    },
+    {
+      "mode": "coordinator",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 8913259125,
+        "load_duration": 7377125,
+        "prompt_eval_count": 2050,
+        "eval_count": 120,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 10,
+        "recommended_configuration": {
+          "mode": "openmp",
+          "threads": 10
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "cdb5e4f1a20af71cee659899e8dde7945a649435474747cece2eac6a18532135",
+      "ablation_effective": null,
+      "call_wall_seconds": 8.915725833000003,
+      "decision_wall_seconds": 8.916923499999996,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 10,
+        "recommended_configuration": {
+          "threads": 10
+        },
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 10
+      },
+      "measured_final_seconds": 0.00131822,
+      "speedup_vs_sequential": 3.723384564033318,
+      "parallel_scaling_speedup": 3.7264493028477794,
+      "validation_wall_seconds": 7.270899999411995e-05,
+      "trial_wall_seconds": 8.916996999999995,
+      "repetition": 3,
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/context.json",
+        "sha256": "5e02f8010b0a32b89692e3728824b51855cee2a7fac489c27c143b56166134e0"
+      },
+      "promotion": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/promoted-3-coordinator/265b34032dcbfb37d9cf44f9aadcf5de8f660a71acf9bdf3075d5aac0c2942b4"
+    }
+  ],
+  "prefixes": [
+    {
+      "repetition": 1,
+      "summary": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-1/run-28lbvec1/summary.json",
+        "sha256": "e63dc135617a72acb06a78689f5a6ea9c499cde6a7cd9bff46227cd6d054845b"
+      },
+      "status": "PREPARED",
+      "elapsed_seconds": 12.097380000000001
+    },
+    {
+      "repetition": 2,
+      "summary": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-2/run-jzj8tbww/summary.json",
+        "sha256": "6dd7edc823cd699444e8ccab04b2aa8b7fd43c2de1b33f86d10b045ff2292582"
+      },
+      "status": "PREPARED",
+      "elapsed_seconds": 11.212685708000002
+    },
+    {
+      "repetition": 3,
+      "summary": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/prefix-3/run-y3uqle5b/summary.json",
+        "sha256": "0a79b89e504fe82c73343cc7d4945dfe0c47e1b9ea05b850322871cc19851b19"
+      },
+      "status": "PREPARED",
+      "elapsed_seconds": 11.368339125000006
+    }
+  ],
+  "harness_sources": {
+    "measure_pipeline_cost.py": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/harness_sources/measure_pipeline_cost.py",
+      "sha256": "e16aef6dd30998690154a44568209c2d333993eacef173a23e5f32580cd7405c"
+    },
+    "run_pipeline.py": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/harness_sources/run_pipeline.py",
+      "sha256": "e7ccccaa416b31501c5a9fdc5de733484cbff57959d2a4b734d77d50e1a21ad0"
+    },
+    "process_timing.py": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/harness_sources/process_timing.py",
+      "sha256": "c41ece478d3efcb99c912812a9119293fb550fd462f995cd56c9f5f9828306d9"
+    },
+    "compile_correctness_gate.py": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/harness_sources/compile_correctness_gate.py",
+      "sha256": "8495feea5ef80c4e266a2e04cbc4ba1e7645ba3fe14c5c65579295b166b07422"
+    },
+    "performance_gate.py": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/harness_sources/performance_gate.py",
+      "sha256": "110b1012ae5229736d558d1a89017deb86af371f4d377edece1147b5cb65b632"
+    },
+    "promote_candidate.py": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/pipeline_cost/mac_m5_2026-11-16/harness_sources/promote_candidate.py",
+      "sha256": "534767040515eba7a3ada8c7b8e639ee9d8a2805b56ba5c33d3517cb3fb22dba"
+    }
+  },
+  "finished_utc": "2026-11-16T15:18:13.781344+00:00",
+  "accounting": "Prefix measured once per repetition and shared by both arms; totals are accounting comparisons, not independent end-to-end runs. Promotion includes fresh compilation and validation; stage CSV is inclusive and must not be summed twice."
+}

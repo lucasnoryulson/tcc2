@@ -1,0 +1,159 @@
+{
+  "schema": "tcc2-performance-gate",
+  "version": "0.1",
+  "status": "PASS",
+  "provenance": {
+    "campaign_id": "046203dc164540c79f4dc0423415c6e0",
+    "run_id": "357431dec07244be9f4bc4ef9e618672",
+    "run_dir": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672",
+    "candidate_id": "sha256:25ab2f308e68ad59cb6fca3a42f3a4a30a97c3a4a63468ac8f868f6c3f3c6243",
+    "recorded_at": "2026-11-06T15:22:32.550997+00:00",
+    "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "runtime_environment": {},
+    "inputs": {
+      "sequential": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector.c",
+        "sha256": "4a049db9b82214aa4563a6cb47f1302e6c1ad983be50973afde8bf155974340d",
+        "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/sequential/affine_vector.c"
+      },
+      "candidate": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/candidate.c",
+        "sha256": "25ab2f308e68ad59cb6fca3a42f3a4a30a97c3a4a63468ac8f868f6c3f3c6243",
+        "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/candidate/candidate.c"
+      },
+      "driver": {
+        "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector_benchmark_driver.c",
+        "sha256": "221949591ce7689c531f0492ea6f0f3bb8991f97446b8781d17ec260aff82836",
+        "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/driver/affine_vector_benchmark_driver.c"
+      }
+    },
+    "toolchain": {
+      "path": "/usr/bin/x86_64-linux-gnu-gcc-13",
+      "sha256": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26",
+      "version": "x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+    },
+    "compile_flags": {
+      "sequential": [
+        "-O3"
+      ],
+      "candidate": [
+        "-O3",
+        "-fopenmp"
+      ]
+    },
+    "link_flags": [
+      "-lm"
+    ],
+    "openmp_environment": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "TRUE",
+      "OMP_PLACES": "cores"
+    }
+  },
+  "correctness_report": {
+    "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/correctness.json",
+    "sha256": "b4e23636b9f132d2a6b65feac6702e585555bbce41bb99c272da762592281909"
+  },
+  "thread_counts": [
+    1,
+    2,
+    4
+  ],
+  "repetitions": 5,
+  "configuration_dimensions": [
+    "threads"
+  ],
+  "compilation": {
+    "sequential": {
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-13",
+        "-O3",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/driver/affine_vector_benchmark_driver.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/sequential/affine_vector.c",
+        "-lm",
+        "-o",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/dot_sequential"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "candidate": {
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-13",
+        "-O3",
+        "-fopenmp",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/driver/affine_vector_benchmark_driver.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/candidate/candidate.c",
+        "-lm",
+        "-o",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/dot_candidate"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "binaries": {
+    "sequential": {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/dot_sequential",
+      "sha256": "1cbc00a744ab4a6990ae3dbce78352b1b01967ae7ef3049cadf9c0f0a8ceda9d"
+    },
+    "candidate": {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/dot_candidate",
+      "sha256": "ff19e51264f3bc897b24001fa7f63b89683d89ebf84783e4abf380cfab1b8872"
+    }
+  },
+  "measurements": [
+    {
+      "mode": "sequential",
+      "threads": 1,
+      "times": [
+        0.0021990433502651285,
+        0.00227029629968456,
+        0.002194899250025628,
+        0.002078621900000144,
+        0.002056829250068404
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 1,
+      "times": [
+        0.002050652099569561,
+        0.0018988793002790772,
+        0.0019914056501875166,
+        0.0019166684003721457,
+        0.0019041736006329302
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 2,
+      "times": [
+        0.001655762200243771,
+        0.0017436303503927774,
+        0.0018015119501797016,
+        0.0017960581499210093,
+        0.001989943950320594
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 4,
+      "times": [
+        0.0020523078499536497,
+        0.0017422883494873532,
+        0.0023614337500475814,
+        0.002226444300322328,
+        0.002116166149789933
+      ]
+    }
+  ],
+  "csv": {
+    "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance/357431dec07244be9f4bc4ef9e618672/performance.csv",
+    "sha256": "00599756c3d43f35e3b3e79c32fae395338f1d46b1802060821e10fc0e528011"
+  },
+  "csv_file": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance.csv"
+}

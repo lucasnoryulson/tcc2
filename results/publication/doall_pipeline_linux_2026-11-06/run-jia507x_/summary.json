@@ -1,0 +1,198 @@
+{
+  "schema": "tcc2-pipeline-run",
+  "version": "0.1",
+  "status": "FAILED",
+  "steps": [
+    {
+      "name": "static",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/static_analyzer.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector.c",
+        "--output-dir",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/static.log",
+      "wall_seconds": 0.10054210798989516
+    },
+    {
+      "name": "dependences",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/dependence_analyzer.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_analysis.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/dependences.log",
+      "wall_seconds": 0.050514984992332757
+    },
+    {
+      "name": "patterns",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/pattern_classifier.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_analysis.json",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_dependences.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/patterns.log",
+      "wall_seconds": 0.04460492898942903
+    },
+    {
+      "name": "strategy",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/strategy_planner.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_analysis.json",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_patterns.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/strategy.log",
+      "wall_seconds": 0.04343959200195968
+    },
+    {
+      "name": "transform",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/code_transformer.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector.c",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_analysis.json",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_strategy.json",
+        "--output",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/candidate.c"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/transform.log",
+      "wall_seconds": 0.0929798959987238
+    },
+    {
+      "name": "correctness",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/scripts/compile_correctness_gate.py",
+        "--sequential",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector.c",
+        "--candidate",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/candidate.c",
+        "--driver",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector_driver.c",
+        "--compiler",
+        "gcc",
+        "--threads",
+        "1",
+        "2",
+        "4",
+        "--build-dir",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness",
+        "--output",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness.log",
+      "wall_seconds": 0.4488891900109593
+    },
+    {
+      "name": "performance",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/scripts/performance_gate.py",
+        "--sequential",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector.c",
+        "--candidate",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/candidate.c",
+        "--driver",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector_benchmark_driver.c",
+        "--compiler",
+        "gcc",
+        "--correctness",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness.json",
+        "--build-dir",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance",
+        "--csv",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance.csv",
+        "--output",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance.log",
+      "wall_seconds": 1.5813756220013602
+    },
+    {
+      "name": "selection",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/performance_selector.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance.csv",
+        "--performance-report",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance.json",
+        "--output",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/selection.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/selection.log",
+      "wall_seconds": 0.0697359490004601
+    },
+    {
+      "name": "context",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/agents/context_builder.py",
+        "--source",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector.c",
+        "--candidate",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/candidate.c",
+        "--static",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_analysis.json",
+        "--dependences",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_dependences.json",
+        "--patterns",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_patterns.json",
+        "--strategy",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/analysis/case_affine_vector_strategy.json",
+        "--selection",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/selection.json",
+        "--correctness",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness.json",
+        "--output",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/context.json"
+      ],
+      "returncode": 0,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/context.log",
+      "wall_seconds": 0.08080908899137285
+    },
+    {
+      "name": "coordinator",
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/agents/coordinator_agent.py",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/context.json",
+        "--model",
+        "qwen2.5:3b",
+        "--timeout",
+        "180",
+        "--output",
+        "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/decision.json"
+      ],
+      "returncode": 1,
+      "log": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/coordinator.log",
+      "wall_seconds": 180.22898942600295
+    }
+  ],
+  "elapsed_seconds": 182.7485453219997,
+  "context": {
+    "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/context.json",
+    "sha256": "69446c45be458e5d1fcc80285809783ba5049adcd935616535ed9a96b4cb21b3"
+  },
+  "reason": "coordinator failed; see /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/coordinator.log"
+}

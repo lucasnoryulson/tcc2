@@ -1,0 +1,24 @@
+=================================
+Adaptive Strategy Planner v0.1
+Regression Test
+=================================
+
+MANUAL_TO_ACCUMULATOR: PASS
+  strategy: SCALAR_ACCUMULATOR
+  action: APPLY_SCALAR_ACCUMULATOR
+  next_stage: CODE_TRANSFORMER
+
+ACCUMULATOR_TO_SIMD: PASS
+  strategy: EXPLICIT_SIMD_TRIAL
+  action: APPLY_EXPLICIT_SIMD_REDUCTION
+  next_stage: CODE_TRANSFORMER
+
+SIMD_TO_MEASUREMENT: PASS
+  strategy: None
+  action: MEASURE_EXISTING_CANDIDATE
+  next_stage: CORRECTNESS_AND_PERFORMANCE
+
+=================================
+Adaptive Strategy regression: PASS
+3/3 cases behaved as expected.
+=================================

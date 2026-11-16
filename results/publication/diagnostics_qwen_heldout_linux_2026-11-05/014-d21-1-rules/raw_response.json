@@ -1,0 +1,12 @@
+{
+  "cause": "INSUFFICIENT_EVIDENCE",
+  "action": "INSPECT_EVIDENCE",
+  "abstain": true,
+  "claims": [
+    {
+      "fact_id": "f1",
+      "field": "missing_count",
+      "value": 1
+    }
+  ]
+}

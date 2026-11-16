@@ -1,0 +1,188 @@
+test_all_28_structural_sources_follow_declared_safety_contract (test_automation_corpus.AutomationCorpus.test_all_28_structural_sources_follow_declared_safety_contract) ... ok
+test_archive_checks_binary_attribution_core_statistics_and_selection (test_automation_corpus.AutomationCorpus.test_archive_checks_binary_attribution_core_statistics_and_selection) ... /home/liswsz220-01/Desktop/tcc/tcc2/scripts/evaluate_automation_corpus.py:157: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp_0kn8zyp/samples.csv' mode='r' encoding='UTF-8'>
+  rows = list(csv.DictReader((directory / filename).open()))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/liswsz220-01/Desktop/tcc/tcc2/scripts/evaluate_automation_corpus.py:157: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp_0kn8zyp/warmups.csv' mode='r' encoding='UTF-8'>
+  rows = list(csv.DictReader((directory / filename).open()))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/liswsz220-01/Desktop/tcc/tcc2/scripts/evaluate_automation_corpus.py:178: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp_0kn8zyp/summary.csv' mode='r' encoding='UTF-8'>
+  stored = list(csv.DictReader((directory / 'summary.csv').open()))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_bounds_steps_macros_and_other_side_effects_fail_closed (test_automation_corpus.AutomationCorpus.test_bounds_steps_macros_and_other_side_effects_fail_closed) ... ok
+test_clamp_inputs_exercise_the_upper_saturation_branch (test_automation_corpus.AutomationCorpus.test_clamp_inputs_exercise_the_upper_saturation_branch) ... ok
+test_cleanup_attribute_cannot_hide_a_side_effect_in_reduction (test_automation_corpus.AutomationCorpus.test_cleanup_attribute_cannot_hide_a_side_effect_in_reduction) ... ok
+test_complete_negative_coverage_remains_analyzable (test_automation_corpus.AutomationCorpus.test_complete_negative_coverage_remains_analyzable) ... ok
+test_crlf_offsets_are_preserved_before_pragma_insertion (test_automation_corpus.AutomationCorpus.test_crlf_offsets_are_preserved_before_pragma_insertion) ... ok
+test_existing_dot_remains_supported_and_accumulator_recurrence_is_not (test_automation_corpus.AutomationCorpus.test_existing_dot_remains_supported_and_accumulator_recurrence_is_not) ... ok
+test_ignored_controls_and_spliced_pragma_tokens_are_refused (test_automation_corpus.AutomationCorpus.test_ignored_controls_and_spliced_pragma_tokens_are_refused) ... ok
+test_included_kernel_body_is_not_a_standalone_transform_target (test_automation_corpus.AutomationCorpus.test_included_kernel_body_is_not_a_standalone_transform_target) ... ok
+test_iterator_cannot_shadow_the_bound_parameter (test_automation_corpus.AutomationCorpus.test_iterator_cannot_shadow_the_bound_parameter) ... ok
+test_non_newline_ascii_whitespace_does_not_shift_insertion (test_automation_corpus.AutomationCorpus.test_non_newline_ascii_whitespace_does_not_shift_insertion) ... ok
+test_openmp_conditional_cannot_change_the_certified_loop_body (test_automation_corpus.AutomationCorpus.test_openmp_conditional_cannot_change_the_certified_loop_body) ... ok
+test_per_element_oracle_rejects_wrong_array_even_with_cancelling_checksum (test_automation_corpus.AutomationCorpus.test_per_element_oracle_rejects_wrong_array_even_with_cancelling_checksum) ... ok
+test_readonly_stencil_is_doall_but_inplace_neighbor_is_refused (test_automation_corpus.AutomationCorpus.test_readonly_stencil_is_doall_but_inplace_neighbor_is_refused) ... ok
+test_stale_loop_metadata_is_not_used_for_source_insertion (test_automation_corpus.AutomationCorpus.test_stale_loop_metadata_is_not_used_for_source_insertion) ... ok
+test_transform_crash_or_timeout_is_not_rewarded_as_a_correct_refusal (test_automation_corpus.AutomationCorpus.test_transform_crash_or_timeout_is_not_rewarded_as_a_correct_refusal) ... ok
+test_transform_rechecks_real_source_and_refuses_a_forged_safe_plan (test_automation_corpus.AutomationCorpus.test_transform_rechecks_real_source_and_refuses_a_forged_safe_plan) ... ok
+test_cross_platform_comparison_rejects_changed_protocol_input_and_code (test_benchmark_scaling.ScalingTests.test_cross_platform_comparison_rejects_changed_protocol_input_and_code) ... ok
+test_dispersion_and_paired_bootstrap_preserve_known_ratios (test_benchmark_scaling.ScalingTests.test_dispersion_and_paired_bootstrap_preserve_known_ratios) ... ok
+test_real_dot_and_collision (test_benchmark_scaling.ScalingTests.test_real_dot_and_collision) ... =================================
+Autotuning Selector v0.1 regression: PASS
+4/4 cases behaved as expected.
+=================================
+===== COORDINATOR v0.2 EDGE TESTS =====
+
+-------------------------------------
+ACCEPT_GOOD
+-------------------------------------
+Decision: ACCEPT
+Recommended threads: 4
+Recommended configuration: {'block_size': 64, 'threads': 4}
+Validation: PASS
+
+-------------------------------------
+REJECT_NULL_THREADS
+-------------------------------------
+Decision: REJECT
+Recommended threads: None
+Recommended configuration: None
+Validation: PASS
+
+-------------------------------------
+MODIFY_NULL_THREADS
+-------------------------------------
+Decision: MODIFY
+Recommended threads: None
+Recommended configuration: None
+Validation: PASS
+
+-------------------------------------
+ACCEPT_CONFLICT
+-------------------------------------
+Decision: ACCEPT
+Recommended threads: 10
+Recommended configuration: {'block_size': 64, 'threads': 4}
+Validation: FAIL
+  - recommended_threads was not present in measured configurations
+  - recommended_configuration.threads must match recommended_threads
+=================================
+Coordinator v0.2 regression: PASS
+7/7 cases behaved as expected.
+=================================
+dot 1024: block 1/2
+dot 1024: block 2/2
+ok
+test_real_generated_dot_c_and_three_archived_warmups (test_benchmark_scaling.ScalingTests.test_real_generated_dot_c_and_three_archived_warmups) ... dot-auto 1024: block 1/2
+dot-auto 1024: block 2/2
+ok
+test_reject_invalid_result_and_time (test_benchmark_scaling.ScalingTests.test_reject_invalid_result_and_time) ... ok
+test_selector_distinguishes_fastest_and_near_tie_recommendation (test_benchmark_scaling.ScalingTests.test_selector_distinguishes_fastest_and_near_tie_recommendation) ... ok
+test_separate_baselines_and_preserve_samples (test_benchmark_scaling.ScalingTests.test_separate_baselines_and_preserve_samples) ... ok
+test_candidate_change_during_revalidation_blocks_publication (test_candidate_promotion.CandidatePromotion.test_candidate_change_during_revalidation_blocks_publication) ... ok
+test_changed_candidate_driver_or_original_never_promotes (test_candidate_promotion.CandidatePromotion.test_changed_candidate_driver_or_original_never_promotes) ... ok
+test_changed_decision_binding_or_context_never_promotes (test_candidate_promotion.CandidatePromotion.test_changed_decision_binding_or_context_never_promotes) ... ok
+test_coordinator_invokes_promotion_after_validated_accept (test_candidate_promotion.CandidatePromotion.test_coordinator_invokes_promotion_after_validated_accept) ... ok
+test_duplicate_promotion_preserves_existing_files (test_candidate_promotion.CandidatePromotion.test_duplicate_promotion_preserves_existing_files) ... ok
+test_fresh_gate_failure_leaves_no_final_artifact (test_candidate_promotion.CandidatePromotion.test_fresh_gate_failure_leaves_no_final_artifact) ... ok
+test_incorrect_code_with_fabricated_pass_is_rejected_by_real_gate (test_candidate_promotion.CandidatePromotion.test_incorrect_code_with_fabricated_pass_is_rejected_by_real_gate) ... ok
+test_manual_pass_or_legacy_decision_never_promotes (test_candidate_promotion.CandidatePromotion.test_manual_pass_or_legacy_decision_never_promotes) ... ok
+test_no_performance_gain_or_only_transformation_gain_never_promotes (test_candidate_promotion.CandidatePromotion.test_no_performance_gain_or_only_transformation_gain_never_promotes) ... ok
+test_path_traversal_and_symlink_destination (test_candidate_promotion.CandidatePromotion.test_path_traversal_and_symlink_destination) ... ok
+test_retune_modify_reject_and_wrong_action_never_promote (test_candidate_promotion.CandidatePromotion.test_retune_modify_reject_and_wrong_action_never_promote) ... ok
+test_timeout_or_copy_failure_leaves_no_final_artifact (test_candidate_promotion.CandidatePromotion.test_timeout_or_copy_failure_leaves_no_final_artifact) ... ok
+test_unmeasured_or_inconsistent_configuration_never_promotes (test_candidate_promotion.CandidatePromotion.test_unmeasured_or_inconsistent_configuration_never_promotes) ... ok
+test_valid_promotion_revalidates_and_archives_exact_bytes (test_candidate_promotion.CandidatePromotion.test_valid_promotion_revalidates_and_archives_exact_bytes) ... ok
+test_frequency_is_observation_not_machine_identity (test_compare_sessions.SessionSummaryTests.test_frequency_is_observation_not_machine_identity) ... ok
+test_insufficient_or_disjoint (test_compare_sessions.SessionSummaryTests.test_insufficient_or_disjoint) ... ok
+test_same_labels_cannot_hide_missing_source_or_changed_dimensions (test_compare_sessions.SessionSummaryTests.test_same_labels_cannot_hide_missing_source_or_changed_dimensions) ... ok
+test_separate_medians_and_intersection (test_compare_sessions.SessionSummaryTests.test_separate_medians_and_intersection) ... ok
+test_ablation_changes_prompt_but_preserves_code_gates_and_measurements (test_coordinator_evaluation.CoordinatorEvaluation.test_ablation_changes_prompt_but_preserves_code_gates_and_measurements) ... ok
+test_ablation_without_prompt_change_cannot_complete_study (test_coordinator_evaluation.CoordinatorEvaluation.test_ablation_without_prompt_change_cannot_complete_study) ... ok
+test_all_modes_share_evidence_and_measured_result (test_coordinator_evaluation.CoordinatorEvaluation.test_all_modes_share_evidence_and_measured_result) ... ok
+test_baseline_only_never_calls_llm_and_stays_pending (test_coordinator_evaluation.CoordinatorEvaluation.test_baseline_only_never_calls_llm_and_stays_pending) ... ok
+test_changed_evidence_aborts_instead_of_publishing_stale_results (test_coordinator_evaluation.CoordinatorEvaluation.test_changed_evidence_aborts_instead_of_publishing_stale_results) ... ok
+test_complete_campaign_order_evidence_and_output_are_reproducible (test_coordinator_evaluation.CoordinatorEvaluation.test_complete_campaign_order_evidence_and_output_are_reproducible) ... ok
+test_deferred_actions_do_not_claim_candidate_recovery (test_coordinator_evaluation.CoordinatorEvaluation.test_deferred_actions_do_not_claim_candidate_recovery) ... ok
+test_inference_failure_keeps_all_trials_and_marks_incomplete (test_coordinator_evaluation.CoordinatorEvaluation.test_inference_failure_keeps_all_trials_and_marks_incomplete) ... ok
+test_invalid_responses_and_timeouts_are_retained (test_coordinator_evaluation.CoordinatorEvaluation.test_invalid_responses_and_timeouts_are_retained) ... ok
+test_no_gain_acceptance_is_blocked_and_counted (test_coordinator_evaluation.CoordinatorEvaluation.test_no_gain_acceptance_is_blocked_and_counted) ... ok
+test_transformation_gain_alone_is_not_parallel_admission (test_coordinator_evaluation.CoordinatorEvaluation.test_transformation_gain_alone_is_not_parallel_admission) ... ok
+test_unmeasured_or_boolean_threads_are_never_accepted (test_coordinator_evaluation.CoordinatorEvaluation.test_unmeasured_or_boolean_threads_are_never_accepted) ... ok
+test_accept_without_selector_recommendation_is_invalid (test_coordinator_scenarios.CoordinatorScenarioTests.test_accept_without_selector_recommendation_is_invalid) ... ok
+test_campaign_retains_all_modes_and_scenarios (test_coordinator_scenarios.CoordinatorScenarioTests.test_campaign_retains_all_modes_and_scenarios) ... ok
+test_each_scenario_accepts_its_expected_response (test_coordinator_scenarios.CoordinatorScenarioTests.test_each_scenario_accepts_its_expected_response) ... ok
+test_nonaccept_operational_configuration_is_invalid (test_coordinator_scenarios.CoordinatorScenarioTests.test_nonaccept_operational_configuration_is_invalid) ... ok
+test_prompt_spells_out_reject_null_contract (test_coordinator_scenarios.CoordinatorScenarioTests.test_prompt_spells_out_reject_null_contract) ... ok
+test_schema_declares_complete_configuration_contract (test_coordinator_scenarios.CoordinatorScenarioTests.test_schema_declares_complete_configuration_contract) ... ok
+test_ablation_and_support_use_only_visible_facts (test_diagnostics.DiagnosticTests.test_ablation_and_support_use_only_visible_facts) ... ok
+test_archived_diagnosis_is_rescored_and_raw_tampering_is_detected (test_diagnostics.DiagnosticTests.test_archived_diagnosis_is_rescored_and_raw_tampering_is_detected) ... 1/1 d01 rules: OK
+ok
+test_catalog_and_snapshot_tamper_are_rejected (test_diagnostics.DiagnosticTests.test_catalog_and_snapshot_tamper_are_rejected) ... ok
+test_catalog_family_split_and_baseline_rubric (test_diagnostics.DiagnosticTests.test_catalog_family_split_and_baseline_rubric) ... ok
+test_json_numbers_are_equivalent_but_booleans_and_strings_are_not (test_diagnostics.DiagnosticTests.test_json_numbers_are_equivalent_but_booleans_and_strings_are_not) ... ok
+test_output_collision_is_not_overwritten (test_diagnostics.DiagnosticTests.test_output_collision_is_not_overwritten) ... ok
+test_prompt_excludes_oracle_paths_and_answer_fields (test_diagnostics.DiagnosticTests.test_prompt_excludes_oracle_paths_and_answer_fields) ... ok
+test_schema_claim_types_and_dangerous_invalid_proposal (test_diagnostics.DiagnosticTests.test_schema_claim_types_and_dangerous_invalid_proposal) ... ok
+test_timeout_no_retry_and_denominator (test_diagnostics.DiagnosticTests.test_timeout_no_retry_and_denominator) ... 1/3 d01 coordinator: TIMEOUT
+2/3 d01 coordinator_without_analysis: NOT_RUN
+3/3 d01 rules: OK
+ok
+test_absent_one_thread_is_unknown_instead_of_invented_scaling (test_experiment_consolidation.ExperimentConsolidation.test_absent_one_thread_is_unknown_instead_of_invented_scaling) ... ok
+test_archived_local_summary_is_not_treated_as_verified_without_original_files (test_experiment_consolidation.ExperimentConsolidation.test_archived_local_summary_is_not_treated_as_verified_without_original_files) ... ok
+test_both_harnesses_refuse_to_overwrite_explicit_campaign_directory (test_experiment_consolidation.ExperimentConsolidation.test_both_harnesses_refuse_to_overwrite_explicit_campaign_directory) ... ok
+test_cli_generates_complete_tables_and_samples_without_plotting_dependency (test_experiment_consolidation.ExperimentConsolidation.test_cli_generates_complete_tables_and_samples_without_plotting_dependency) ... ok
+test_csv_with_appended_different_schema_is_rejected_and_inventoried (test_experiment_consolidation.ExperimentConsolidation.test_csv_with_appended_different_schema_is_rejected_and_inventoried) ... ok
+test_direct_context_evidence_is_verified_and_keeps_samples (test_experiment_consolidation.ExperimentConsolidation.test_direct_context_evidence_is_verified_and_keeps_samples) ... ok
+test_duplicate_inventory_files_are_identified_without_pooling (test_experiment_consolidation.ExperimentConsolidation.test_duplicate_inventory_files_are_identified_without_pooling) ... ok
+test_explicit_archived_context_is_not_relabelled_as_verified (test_experiment_consolidation.ExperimentConsolidation.test_explicit_archived_context_is_not_relabelled_as_verified) ... ok
+test_explicit_timestamp_does_not_mix_campaigns (test_experiment_consolidation.ExperimentConsolidation.test_explicit_timestamp_does_not_mix_campaigns) ... ok
+test_harness_rejects_incompatible_historical_header_before_compiling (test_experiment_consolidation.ExperimentConsolidation.test_harness_rejects_incompatible_historical_header_before_compiling) ... ok
+test_harness_scaling_uses_actual_one_thread_even_when_thread_order_differs (test_experiment_consolidation.ExperimentConsolidation.test_harness_scaling_uses_actual_one_thread_even_when_thread_order_differs) ... ok
+test_invalid_present_context_does_not_fall_back_to_archived_summary (test_experiment_consolidation.ExperimentConsolidation.test_invalid_present_context_does_not_fall_back_to_archived_summary) ... ok
+test_multiple_baselines_duplicate_configs_and_nonfinite_times_are_rejected (test_experiment_consolidation.ExperimentConsolidation.test_multiple_baselines_duplicate_configs_and_nonfinite_times_are_rejected) ... ok
+test_nan_and_missing_run_identifiers_in_logs_are_not_silently_dropped (test_experiment_consolidation.ExperimentConsolidation.test_nan_and_missing_run_identifiers_in_logs_are_not_silently_dropped) ... ok
+test_output_cannot_overwrite_source_or_follow_output_symlink (test_experiment_consolidation.ExperimentConsolidation.test_output_cannot_overwrite_source_or_follow_output_symlink) ... ok
+test_raw_logs_recover_individual_samples_and_reject_duplicate_runs (test_experiment_consolidation.ExperimentConsolidation.test_raw_logs_recover_individual_samples_and_reject_duplicate_runs) ... ok
+test_repository_catalog_has_expected_coverage_and_keeps_sources_unchanged (test_experiment_consolidation.ExperimentConsolidation.test_repository_catalog_has_expected_coverage_and_keeps_sources_unchanged) ... ok
+test_sequential_speedup_scaling_and_efficiency_have_distinct_baselines (test_experiment_consolidation.ExperimentConsolidation.test_sequential_speedup_scaling_and_efficiency_have_distinct_baselines) ... ok
+test_summary_raw_disagreement_is_rejected (test_experiment_consolidation.ExperimentConsolidation.test_summary_raw_disagreement_is_rejected) ... ok
+test_tampered_local_evidence_aborts_instead_of_becoming_historical (test_experiment_consolidation.ExperimentConsolidation.test_tampered_local_evidence_aborts_instead_of_becoming_historical) ... ok
+test_tiled_scaling_uses_same_block_size_instead_of_fastest_other_variant (test_experiment_consolidation.ExperimentConsolidation.test_tiled_scaling_uses_same_block_size_instead_of_fastest_other_variant) ... ok
+test_bare_pass_legacy_and_inconsistent_reports_are_rejected (test_gate_contracts.GateContracts.test_bare_pass_legacy_and_inconsistent_reports_are_rejected) ... ok
+test_changed_csv_is_rejected (test_gate_contracts.GateContracts.test_changed_csv_is_rejected) ... ok
+test_changed_inputs_are_rejected_even_at_the_same_path (test_gate_contracts.GateContracts.test_changed_inputs_are_rejected_even_at_the_same_path) ... ok
+test_changed_performance_report_reference_is_rejected (test_gate_contracts.GateContracts.test_changed_performance_report_reference_is_rejected) ... ok
+test_changed_raw_measurements_are_rejected (test_gate_contracts.GateContracts.test_changed_raw_measurements_are_rejected) ... ok
+test_changed_selection_is_rejected (test_gate_contracts.GateContracts.test_changed_selection_is_rejected) ... ok
+test_changed_snapshot_or_binary_is_rejected (test_gate_contracts.GateContracts.test_changed_snapshot_or_binary_is_rejected) ... ok
+test_changed_toolchain_flags_are_rejected (test_gate_contracts.GateContracts.test_changed_toolchain_flags_are_rejected) ... ok
+test_compile_and_runtime_failures_do_not_pass (test_gate_contracts.GateContracts.test_compile_and_runtime_failures_do_not_pass) ... ok
+test_coordinator_binds_decision_to_its_input_context (test_gate_contracts.GateContracts.test_coordinator_binds_decision_to_its_input_context) ... ok
+test_invalid_benchmark_times_are_rejected (test_gate_contracts.GateContracts.test_invalid_benchmark_times_are_rejected) ... ok
+test_invalid_thread_counts (test_gate_contracts.GateContracts.test_invalid_thread_counts) ... ok
+test_legacy_selection_has_no_provenance (test_gate_contracts.GateContracts.test_legacy_selection_has_no_provenance) ... ok
+test_missing_inputs_or_compiler_invalidate_previous_pass (test_gate_contracts.GateContracts.test_missing_inputs_or_compiler_invalidate_previous_pass) ... ok
+test_mixed_campaigns_are_rejected (test_gate_contracts.GateContracts.test_mixed_campaigns_are_rejected) ... ok
+test_nonfinite_correctness_output_is_rejected (test_gate_contracts.GateContracts.test_nonfinite_correctness_output_is_rejected) ... ok
+test_numeric_validation_must_match_execution_output (test_gate_contracts.GateContracts.test_numeric_validation_must_match_execution_output) ... ok
+test_performance_failure_invalidates_previous_pass_report (test_gate_contracts.GateContracts.test_performance_failure_invalidates_previous_pass_report) ... ok
+test_performance_status_and_csv (test_gate_contracts.GateContracts.test_performance_status_and_csv) ... ok
+test_real_dot_gate_and_context (test_gate_contracts.GateContracts.test_real_dot_gate_and_context) ... ok
+test_real_incorrect_candidate (test_gate_contracts.GateContracts.test_real_incorrect_candidate) ... ok
+test_real_performance_cli_selector_and_provenance (test_gate_contracts.GateContracts.test_real_performance_cli_selector_and_provenance) ... ok
+test_report_cannot_overwrite_source (test_gate_contracts.GateContracts.test_report_cannot_overwrite_source) ... ok
+test_report_for_another_source_is_rejected (test_gate_contracts.GateContracts.test_report_for_another_source_is_rejected) ... ok
+test_source_change_during_gate_cannot_pass (test_gate_contracts.GateContracts.test_source_change_during_gate_cannot_pass) ... ok
+test_unvalidated_threads_are_rejected_before_benchmark (test_gate_contracts.GateContracts.test_unvalidated_threads_are_rejected_before_benchmark) ... ok
+test_coordinator_rejection_stops_without_promotion (test_pipeline_integration.PipelineIntegration.test_coordinator_rejection_stops_without_promotion) ... ok
+test_doall_reaches_promotion_with_real_compilation_and_simulated_decision (test_pipeline_integration.PipelineIntegration.test_doall_reaches_promotion_with_real_compilation_and_simulated_decision) ... ok
+test_full_pipeline_generates_revalidated_final_artifact (test_pipeline_integration.PipelineIntegration.test_full_pipeline_generates_revalidated_final_artifact) ... ok
+test_gate_failure_stops_before_coordinator (test_pipeline_integration.PipelineIntegration.test_gate_failure_stops_before_coordinator) ... ok
+test_prepare_only_measures_without_calling_coordinator_or_promoting (test_pipeline_integration.PipelineIntegration.test_prepare_only_measures_without_calling_coordinator_or_promoting) ... ok
+test_timeout_preserves_failed_stage_and_elapsed_time (test_pipeline_integration.PipelineIntegration.test_timeout_preserves_failed_stage_and_elapsed_time) ... ok
+
+----------------------------------------------------------------------
+Ran 123 tests in 23.130s
+
+OK

@@ -1,0 +1,28 @@
+ M README.md
+ M analysis/code_transformer.py
+ M analysis/pattern_classifier.py
+ M analysis/static_analyzer.py
+ M analysis/strategy_planner.py
+ M docs/AUTOMATION_SCOPE.md
+ M docs/COORDINATOR_EVALUATION.md
+ M docs/STATUS_TCC.md
+ M scripts/build_academic_material.py
+ M scripts/build_multiplatform_material.py
+?? analysis/conservative_transform.py
+?? analysis/fixtures/publication_corpus/
+?? docs/defesa/SLIDES_PUBLICACAO.md
+?? docs/monografia/REVISAO_PUBLICACAO.md
+?? docs/monografia/referencias_publicacao.bib
+?? docs/publication/
+?? experiments/
+?? results/publication/
+?? scripts/build_publication_material.py
+?? scripts/compare_sessions.py
+?? scripts/evaluate_automation_corpus.py
+?? scripts/evaluate_diagnostics.py
+?? scripts/report_publication.py
+?? scripts/run_diagnostics_mac.sh
+?? scripts/run_publication_mac.sh
+?? scripts/test_automation_corpus.py
+?? scripts/test_compare_sessions.py
+?? scripts/test_diagnostics.py

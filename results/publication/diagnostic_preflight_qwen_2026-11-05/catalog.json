@@ -1,0 +1,1314 @@
+{
+  "schema": "tcc2-offline-diagnosis-catalog",
+  "version": "1.0",
+  "created_at": "2026-11-05T18:48:11.377706+00:00",
+  "annotation_status": "project-authored, derived from mechanical rubric; not independent human validation",
+  "independence": "24 evidence views over five kernel families; not 24 independent programs or incidents",
+  "split_policy": "entire families: dot+nussinov development; gemm+jacobi+covariance heldout",
+  "cases": [
+    {
+      "id": "d01",
+      "family": "dot",
+      "split": "development",
+      "origin": "archived_measurement_view",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "timings",
+            "data": {
+              "question": "gain",
+              "sequential_seconds": 8.78806e-07,
+              "one_thread_seconds": 1.756122e-06,
+              "samples_per_configuration": 15,
+              "parallel": [
+                {
+                  "threads": 2,
+                  "median_seconds": 1.984088e-06
+                },
+                {
+                  "threads": 4,
+                  "median_seconds": 2.053128e-06
+                }
+              ]
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "results/multiplatform/analysis_linux_xeon_2026-11-05_p15w3/measurements.csv",
+          "snapshot": "evidence/e001.csv",
+          "sha256": "3f8526e9aaca63d9b8bd9e6398748239a58f0db745b2ed6f3115a57b1fea6d8c",
+          "extraction": "filter kernel=dot-auto,size=1024; {}"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "NO_PARALLEL_GAIN"
+        ],
+        "actions": [
+          "KEEP_SEQUENTIAL"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d02",
+      "family": "dot",
+      "split": "development",
+      "origin": "archived_measurement_view",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "timings",
+            "data": {
+              "question": "gain",
+              "sequential_seconds": 0.01083325054,
+              "one_thread_seconds": 0.01102506009,
+              "samples_per_configuration": 15,
+              "parallel": [
+                {
+                  "threads": 2,
+                  "median_seconds": 0.00864162184
+                },
+                {
+                  "threads": 4,
+                  "median_seconds": 0.00863065915
+                }
+              ]
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "results/multiplatform/analysis_linux_xeon_2026-11-05_p15w3/measurements.csv",
+          "snapshot": "evidence/e001.csv",
+          "sha256": "3f8526e9aaca63d9b8bd9e6398748239a58f0db745b2ed6f3115a57b1fea6d8c",
+          "extraction": "filter kernel=dot-auto,size=10000000; {}"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "NEAR_TIE"
+        ],
+        "actions": [
+          "MEASURE_MORE"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d03",
+      "family": "dot",
+      "split": "development",
+      "origin": "archived_measurement_view",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "timings",
+            "data": {
+              "question": "gain",
+              "sequential_seconds": 0.001391504,
+              "one_thread_seconds": 0.003012283,
+              "samples_per_configuration": 15,
+              "parallel": [
+                {
+                  "threads": 2,
+                  "median_seconds": 0.0028528829999999996
+                },
+                {
+                  "threads": 4,
+                  "median_seconds": 0.002930302
+                }
+              ]
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "results/multiplatform/analysis_linux_xeon_2026-11-05_p15w3/measurements.csv",
+          "snapshot": "evidence/e001.csv",
+          "sha256": "3f8526e9aaca63d9b8bd9e6398748239a58f0db745b2ed6f3115a57b1fea6d8c",
+          "extraction": "filter kernel=dot,size=1000000; {}"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "NO_PARALLEL_GAIN"
+        ],
+        "actions": [
+          "KEEP_SEQUENTIAL"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d04",
+      "family": "dot",
+      "split": "development",
+      "origin": "controlled_evidence_omission",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "availability",
+            "data": {
+              "missing_count": 2,
+              "missing_components": [
+                "correctness",
+                "raw_times"
+              ]
+            }
+          }
+        ],
+        "analysis": [
+          {
+            "id": "f2",
+            "kind": "source_code",
+            "data": {
+              "text": "double kernel_dot(\n    int n,\n    const double *A,\n    const double *B\n)\n{\n    double sum = 0.0;\n\n    for (int i = 0; i < n; i++)\n    {\n        sum += A[i] * B[i];\n    }\n\n    return sum;\n}\n"
+            }
+          }
+        ]
+      },
+      "provenance": [
+        {
+          "original_path": "analysis/fixtures/dot_product.c",
+          "snapshot": "evidence/e002.c",
+          "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+          "extraction": "exact snapshot"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "actions": [
+          "INSPECT_EVIDENCE",
+          "MEASURE_MORE"
+        ],
+        "abstain": true,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d05",
+      "family": "dot",
+      "split": "development",
+      "origin": "contract_compatibility_probe",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "contract",
+            "data": {
+              "received_version": "0.3",
+              "accepted_versions": [
+                "2.0"
+              ],
+              "consumer": "diagnostic contract compatibility probe; not the production gate"
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "analysis/output/dot_dependences.json",
+          "snapshot": "evidence/e003.json",
+          "sha256": "54b210b0535d79ac4b2bf645cc0e2ba8eaf4b28e2bfa88ea17a3a5f79f532202",
+          "extraction": "read actual version; explicitly require a different consumer contract"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "SCHEMA_MISMATCH"
+        ],
+        "actions": [
+          "ADAPT_SCHEMA",
+          "INSPECT_EVIDENCE"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d06",
+      "family": "dot",
+      "split": "development",
+      "origin": "executed_controlled_compilation_failure",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "compilation",
+            "data": {
+              "returncode": 1,
+              "stdout": "",
+              "stderr": "clang: error: unknown argument: '-fthis-option-does-not-exist-tcc2'\n"
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "analysis/fixtures/dot_product.c",
+          "snapshot": "evidence/e002.c",
+          "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+          "extraction": "exact snapshot"
+        },
+        {
+          "original_path": "experiments/diagnostics/v1/controlled/compile_06.json",
+          "snapshot": "evidence/e004.json",
+          "sha256": "f859ea5bf899565b0750a60b1315a220386cbef576813a9e15b979fb0e34c1f9",
+          "extraction": "real subprocess result; deliberate unsupported compiler option"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "COMPILE_ERROR"
+        ],
+        "actions": [
+          "INSPECT_BUILD"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d07",
+      "family": "dot",
+      "split": "development",
+      "origin": "executed_controlled_compilation_failure",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "compilation",
+            "data": {
+              "returncode": 1,
+              "stdout": "",
+              "stderr": "<built-in>:1:10: fatal error: '=tcc2_nonexistent_header_2026.h' file not found\n    1 | #include \"=tcc2_nonexistent_header_2026.h\"\n      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n1 error generated.\n"
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "analysis/fixtures/dot_product.c",
+          "snapshot": "evidence/e002.c",
+          "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+          "extraction": "exact snapshot"
+        },
+        {
+          "original_path": "experiments/diagnostics/v1/controlled/compile_07.json",
+          "snapshot": "evidence/e005.json",
+          "sha256": "bb208a38d2776b6fb2929a32a12e8f7723b9c710452f9b5616785004fd91920f",
+          "extraction": "real subprocess result; deliberate unsupported compiler option"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "COMPILE_ERROR"
+        ],
+        "actions": [
+          "INSPECT_BUILD"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d08",
+      "family": "dot",
+      "split": "development",
+      "origin": "executed_controlled_semantic_mutation",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "numeric_comparison",
+            "data": {
+              "reference_value": 261762.4999999812,
+              "observed_value": 261761.5079929812,
+              "matches": false,
+              "relative_tolerance": 1e-09,
+              "absolute_tolerance": 1e-12
+            }
+          }
+        ],
+        "analysis": [
+          {
+            "id": "f2",
+            "kind": "source_code",
+            "data": {
+              "text": "double kernel_dot(\n    int n,\n    const double *A,\n    const double *B\n)\n{\n    double sum = 0.0;\n\n    for (int i = 0; i < n - 1; i++)\n    {\n        sum += A[i] * B[i];\n    }\n\n    return sum;\n}\n"
+            }
+          }
+        ]
+      },
+      "provenance": [
+        {
+          "original_path": "analysis/fixtures/dot_product.c",
+          "snapshot": "evidence/e002.c",
+          "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+          "extraction": "exact snapshot"
+        },
+        {
+          "original_path": "analysis/fixtures/dot_driver.c",
+          "snapshot": "evidence/e006.c",
+          "sha256": "fe30a4bcb70e195a67b0b2c8704f953055cc5df501a69ac5e34022df2719a237",
+          "extraction": "exact snapshot"
+        },
+        {
+          "original_path": "experiments/diagnostics/v1/controlled/mutant_08.c",
+          "snapshot": "evidence/e007.c",
+          "sha256": "29721e799620273f0b7fa0d8c99032bf223802737686e10d0bef75a7a5822ff9",
+          "extraction": "controlled mutation 'i < n;' -> 'i < n - 1;'"
+        },
+        {
+          "original_path": "experiments/diagnostics/v1/controlled/mutant_08.json",
+          "snapshot": "evidence/e008.json",
+          "sha256": "795f9ed51f9c33f1ea1e938526c0c05eb58372569d6b2ef24d35e9deeac8e528",
+          "extraction": "exact snapshot"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "INCORRECT_RESULT"
+        ],
+        "actions": [
+          "DEBUG_RESULT"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d09",
+      "family": "dot",
+      "split": "development",
+      "origin": "executed_controlled_semantic_mutation",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "numeric_comparison",
+            "data": {
+              "reference_value": 261762.4999999812,
+              "observed_value": 0.0,
+              "matches": false,
+              "relative_tolerance": 1e-09,
+              "absolute_tolerance": 1e-12
+            }
+          }
+        ],
+        "analysis": [
+          {
+            "id": "f2",
+            "kind": "source_code",
+            "data": {
+              "text": "double kernel_dot(\n    int n,\n    const double *A,\n    const double *B\n)\n{\n    double sum = 0.0;\n\n    for (int i = 0; i < n; i++)\n    {\n        sum += 0.0;\n    }\n\n    return sum;\n}\n"
+            }
+          }
+        ]
+      },
+      "provenance": [
+        {
+          "original_path": "analysis/fixtures/dot_product.c",
+          "snapshot": "evidence/e002.c",
+          "sha256": "2e8299b82fc8701f2304e41f721dca96395ce135176c643e090e74f75b4535eb",
+          "extraction": "exact snapshot"
+        },
+        {
+          "original_path": "analysis/fixtures/dot_driver.c",
+          "snapshot": "evidence/e006.c",
+          "sha256": "fe30a4bcb70e195a67b0b2c8704f953055cc5df501a69ac5e34022df2719a237",
+          "extraction": "exact snapshot"
+        },
+        {
+          "original_path": "experiments/diagnostics/v1/controlled/mutant_09.c",
+          "snapshot": "evidence/e009.c",
+          "sha256": "ad43f3f3c1a0969c0e5349054f4191c89f01534fb7122352a5a6c6f9fc6ab2e2",
+          "extraction": "controlled mutation 'sum += A[i] * B[i];' -> 'sum += 0.0;'"
+        },
+        {
+          "original_path": "experiments/diagnostics/v1/controlled/mutant_09.json",
+          "snapshot": "evidence/e010.json",
+          "sha256": "12fac6649bd86fa4123a83efdcd8d267d3d7e16cca915bc48340a66ec6a93b45",
+          "extraction": "exact snapshot"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "INCORRECT_RESULT"
+        ],
+        "actions": [
+          "DEBUG_RESULT"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d10",
+      "family": "nussinov",
+      "split": "development",
+      "origin": "archived_static_analysis_view",
+      "evidence": {
+        "observations": [],
+        "analysis": [
+          {
+            "id": "f1",
+            "kind": "dependence",
+            "data": {
+              "carried_count": 3,
+              "unresolved_count": 2,
+              "phase_count": 0,
+              "accesses": [
+                {
+                  "array": "table",
+                  "write": "table[i][j]",
+                  "read": "table[i][j-1]",
+                  "resolved": true,
+                  "relation": "shifted_access",
+                  "offsets": [
+                    0,
+                    -1
+                  ],
+                  "carried_by": [
+                    "j"
+                  ],
+                  "dimensions": [
+                    {
+                      "resolved": true,
+                      "variable": "i",
+                      "offset": 0,
+                      "write": "i",
+                      "read": "i"
+                    },
+                    {
+                      "resolved": true,
+                      "variable": "j",
+                      "offset": -1,
+                      "write": "j",
+                      "read": "j-1"
+                    }
+                  ]
+                },
+                {
+                  "array": "table",
+                  "write": "table[i][j]",
+                  "read": "table[i+1][j]",
+                  "resolved": true,
+                  "relation": "shifted_access",
+                  "offsets": [
+                    1,
+                    0
+                  ],
+                  "carried_by": [
+                    "i"
+                  ],
+                  "dimensions": [
+                    {
+                      "resolved": true,
+                      "variable": "i",
+                      "offset": 1,
+                      "write": "i",
+                      "read": "i+1"
+                    },
+                    {
+                      "resolved": true,
+                      "variable": "j",
+                      "offset": 0,
+                      "write": "j",
+                      "read": "j"
+                    }
+                  ]
+                },
+                {
+                  "array": "table",
+                  "write": "table[i][j]",
+                  "read": "table[i+1][j-1]",
+                  "resolved": true,
+                  "relation": "shifted_access",
+                  "offsets": [
+                    1,
+                    -1
+                  ],
+                  "carried_by": [
+                    "i",
+                    "j"
+                  ],
+                  "dimensions": [
+                    {
+                      "resolved": true,
+                      "variable": "i",
+                      "offset": 1,
+                      "write": "i",
+                      "read": "i+1"
+                    },
+                    {
+                      "resolved": true,
+                      "variable": "j",
+                      "offset": -1,
+                      "write": "j",
+                      "read": "j-1"
+                    }
+                  ]
+                },
+                {
+                  "array": "table",
+                  "write": "table[i][j]",
+                  "read": "table[i][k]",
+                  "resolved": false,
+                  "relation": "symbolic_relation",
+                  "offsets": [
+                    0,
+                    null
+                  ],
+                  "carried_by": [],
+                  "dimensions": [
+                    {
+                      "resolved": true,
+                      "variable": "i",
+                      "offset": 0,
+                      "write": "i",
+                      "read": "i"
+                    },
+                    {
+                      "resolved": false,
+                      "write": "j",
+                      "read": "k",
+                      "write_variable": "j",
+                      "read_variable": "k",
+                      "reason": "different_iterators"
+                    }
+                  ]
+                },
+                {
+                  "array": "table",
+                  "write": "table[i][j]",
+                  "read": "table[k+1][j]",
+                  "resolved": false,
+                  "relation": "symbolic_relation",
+                  "offsets": [
+                    null,
+                    0
+                  ],
+                  "carried_by": [],
+                  "dimensions": [
+                    {
+                      "resolved": false,
+                      "write": "i",
+                      "read": "k+1",
+                      "write_variable": "i",
+                      "read_variable": "k",
+                      "reason": "different_iterators"
+                    },
+                    {
+                      "resolved": true,
+                      "variable": "j",
+                      "offset": 0,
+                      "write": "j",
+                      "read": "j"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "provenance": [
+        {
+          "original_path": "analysis/output/nussinov_dependences.json",
+          "snapshot": "evidence/e011.json",
+          "sha256": "06b6c94299000661ab5750efc0607814feb30ef9ff8b99bfa39814e02bb61f92",
+          "extraction": "count carried_by and unresolved dependence records"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "actions": [
+          "INSPECT_DEPENDENCE",
+          "ESCALATE"
+        ],
+        "abstain": true,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d11",
+      "family": "nussinov",
+      "split": "development",
+      "origin": "archived_compiler_diagnostic",
+      "evidence": {
+        "observations": [],
+        "analysis": [
+          {
+            "id": "f1",
+            "kind": "compiler_feedback",
+            "data": {
+              "message": "loop not vectorized: unsafe dependent memory operations in loop. Use #pragma clang loop distribute(enable) to allow loop distribution to attempt to isolate the offending operations into a separate loop"
+            }
+          }
+        ]
+      },
+      "provenance": [
+        {
+          "original_path": "analysis/output/nussinov_feedback_manual_v02.json",
+          "snapshot": "evidence/e012.json",
+          "sha256": "1c89b9ce93f96c99b5a2c9940ceb440ed0050c3d8d699a67e5a3f562034655e4",
+          "extraction": "extract verbatim compiler message"
+        },
+        {
+          "original_path": "results/mac_m5_2026-09-10/performance/nussinov/diagnostics/vectorization.txt",
+          "snapshot": "evidence/e013.txt",
+          "sha256": "f2573288fb9438a9a20384fb295aa65e363029b2882e552f3496cc32dc09f4f5",
+          "extraction": "exact snapshot"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "VECTORIZATION_BLOCKED"
+        ],
+        "actions": [
+          "INSPECT_VECTORIZATION",
+          "INSPECT_DEPENDENCE"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d12",
+      "family": "nussinov",
+      "split": "development",
+      "origin": "archived_compiler_diagnostic",
+      "evidence": {
+        "observations": [],
+        "analysis": [
+          {
+            "id": "f1",
+            "kind": "compiler_feedback",
+            "data": {
+              "message": "the cost-model indicates that vectorization is not beneficial [-Rpass-analysis=loop-vectorize]"
+            }
+          }
+        ]
+      },
+      "provenance": [
+        {
+          "original_path": "analysis/output/nussinov_feedback_accumulator_v02.json",
+          "snapshot": "evidence/e014.json",
+          "sha256": "1c4e5b49a45310fc1cdb2ddd33f7e1b8fe27b0327406fc2916ba220f86e549dc",
+          "extraction": "extract verbatim compiler message"
+        },
+        {
+          "original_path": "results/mac_m5_2026-09-10/performance/nussinov/diagnostics/accumulator_vectorization.txt",
+          "snapshot": "evidence/e015.txt",
+          "sha256": "49639c86d676794edaa0ce4fd68f587fcea35362909346c5db292fbbaacc3168",
+          "extraction": "exact snapshot"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "VECTORIZATION_COST_MODEL"
+        ],
+        "actions": [
+          "INSPECT_VECTORIZATION",
+          "INSPECT_DEPENDENCE"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d13",
+      "family": "gemm",
+      "split": "heldout",
+      "origin": "archived_measurement_view",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "timings",
+            "data": {
+              "question": "gain",
+              "sequential_seconds": 0.003689,
+              "one_thread_seconds": 0.003847,
+              "samples_per_configuration": 15,
+              "parallel": [
+                {
+                  "threads": 2,
+                  "median_seconds": 0.001909
+                },
+                {
+                  "threads": 4,
+                  "median_seconds": 0.000967
+                }
+              ]
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "results/multiplatform/analysis_linux_xeon_2026-11-05_p15w3/measurements.csv",
+          "snapshot": "evidence/e001.csv",
+          "sha256": "3f8526e9aaca63d9b8bd9e6398748239a58f0db745b2ed6f3115a57b1fea6d8c",
+          "extraction": "filter kernel=gemm,size=MEDIUM; {}"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "MEASURED_GAIN"
+        ],
+        "actions": [
+          "VERIFY_GATES"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d14",
+      "family": "gemm",
+      "split": "heldout",
+      "origin": "archived_measurement_view",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "timings",
+            "data": {
+              "question": "gain",
+              "sequential_seconds": 0.629662,
+              "one_thread_seconds": 0.631632,
+              "samples_per_configuration": 15,
+              "parallel": [
+                {
+                  "threads": 2,
+                  "median_seconds": 0.346942
+                },
+                {
+                  "threads": 4,
+                  "median_seconds": 0.221314
+                }
+              ]
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "results/multiplatform/analysis_linux_xeon_2026-11-05_p15w3/measurements.csv",
+          "snapshot": "evidence/e001.csv",
+          "sha256": "3f8526e9aaca63d9b8bd9e6398748239a58f0db745b2ed6f3115a57b1fea6d8c",
+          "extraction": "filter kernel=gemm,size=LARGE; {}"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "MEASURED_GAIN"
+        ],
+        "actions": [
+          "VERIFY_GATES"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d15",
+      "family": "gemm",
+      "split": "heldout",
+      "origin": "controlled_evidence_omission",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "timings",
+            "data": {
+              "question": "gain",
+              "sequential_seconds": null,
+              "one_thread_seconds": 0.631632,
+              "samples_per_configuration": 15,
+              "parallel": [
+                {
+                  "threads": 2,
+                  "median_seconds": 0.346942
+                },
+                {
+                  "threads": 4,
+                  "median_seconds": 0.221314
+                }
+              ]
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "results/multiplatform/analysis_linux_xeon_2026-11-05_p15w3/measurements.csv",
+          "snapshot": "evidence/e001.csv",
+          "sha256": "3f8526e9aaca63d9b8bd9e6398748239a58f0db745b2ed6f3115a57b1fea6d8c",
+          "extraction": "filter kernel=gemm,size=LARGE; {'omit_seq': True}"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "actions": [
+          "MEASURE_MORE"
+        ],
+        "abstain": true,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d16",
+      "family": "gemm",
+      "split": "heldout",
+      "origin": "executed_controlled_compilation_failure",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "compilation",
+            "data": {
+              "returncode": 1,
+              "stdout": "",
+              "stderr": "clang: error: unknown argument: '-fthis-option-does-not-exist-tcc2'\n"
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "kernels/gemm/manual_openmp.c",
+          "snapshot": "evidence/e016.c",
+          "sha256": "f5346fbd8f7bbc5d0eb12deb4e61103d32ad38a5052cb6c0d4718409cdbb9fcf",
+          "extraction": "exact snapshot"
+        },
+        {
+          "original_path": "experiments/diagnostics/v1/controlled/compile_16.json",
+          "snapshot": "evidence/e017.json",
+          "sha256": "f61bb5a5a21653a59e560fd66e0a04ed1a620672b1f5d68d700bff434b3e2239",
+          "extraction": "real subprocess result; deliberate unsupported compiler option"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "COMPILE_ERROR"
+        ],
+        "actions": [
+          "INSPECT_BUILD"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d17",
+      "family": "gemm",
+      "split": "heldout",
+      "origin": "contract_compatibility_probe",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "contract",
+            "data": {
+              "received_version": "0.3",
+              "accepted_versions": [
+                "2.0"
+              ],
+              "consumer": "diagnostic contract compatibility probe; not the production gate"
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "analysis/output/gemm_dependences.json",
+          "snapshot": "evidence/e018.json",
+          "sha256": "c832bd71dfa7cb6abefe821a7fe2d7948526efa6bf48faae49ee837d6f9e1412",
+          "extraction": "read actual version; explicitly require a different consumer contract"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "SCHEMA_MISMATCH"
+        ],
+        "actions": [
+          "ADAPT_SCHEMA",
+          "INSPECT_EVIDENCE"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d18",
+      "family": "jacobi",
+      "split": "heldout",
+      "origin": "archived_measurement_view",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "timings",
+            "data": {
+              "question": "gain",
+              "sequential_seconds": 0.010211,
+              "one_thread_seconds": 0.010337,
+              "samples_per_configuration": 15,
+              "parallel": [
+                {
+                  "threads": 2,
+                  "median_seconds": 0.005255
+                },
+                {
+                  "threads": 4,
+                  "median_seconds": 0.00283
+                }
+              ]
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "results/multiplatform/analysis_linux_xeon_2026-11-05_p15w3/measurements.csv",
+          "snapshot": "evidence/e001.csv",
+          "sha256": "3f8526e9aaca63d9b8bd9e6398748239a58f0db745b2ed6f3115a57b1fea6d8c",
+          "extraction": "filter kernel=jacobi-2d,size=MEDIUM; {}"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "MEASURED_GAIN"
+        ],
+        "actions": [
+          "VERIFY_GATES"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d19",
+      "family": "jacobi",
+      "split": "heldout",
+      "origin": "archived_measurement_view",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "timings",
+            "data": {
+              "question": "scaling",
+              "sequential_seconds": 2.5773,
+              "one_thread_seconds": 2.588137,
+              "samples_per_configuration": 15,
+              "parallel": [
+                {
+                  "threads": 2,
+                  "median_seconds": 2.190225
+                },
+                {
+                  "threads": 4,
+                  "median_seconds": 2.370977
+                }
+              ]
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "results/multiplatform/analysis_linux_xeon_2026-11-05_p15w3/measurements.csv",
+          "snapshot": "evidence/e001.csv",
+          "sha256": "3f8526e9aaca63d9b8bd9e6398748239a58f0db745b2ed6f3115a57b1fea6d8c",
+          "extraction": "filter kernel=jacobi-2d,size=LARGE; {'question': 'scaling'}"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "SCALING_REGRESSION"
+        ],
+        "actions": [
+          "INSPECT_SCALING"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d20",
+      "family": "jacobi",
+      "split": "heldout",
+      "origin": "source_derived_annotation",
+      "evidence": {
+        "observations": [],
+        "analysis": [
+          {
+            "id": "f1",
+            "kind": "dependence",
+            "data": {
+              "carried_count": 0,
+              "unresolved_count": 0,
+              "phase_count": 2,
+              "source_excerpt": "static\nvoid kernel_jacobi_2d(int tsteps,\n\t\t\t    int n,\n\t\t\t    DATA_TYPE POLYBENCH_2D(A,N,N,n,n),\n\t\t\t    DATA_TYPE POLYBENCH_2D(B,N,N,n,n))\n{\n  int t, i, j;\n\n#pragma scop\n\n#pragma omp parallel private(t, i, j)\n{\n  for (t = 0; t < _PB_TSTEPS; t++)\n    {\n#pragma omp for schedule(static)\n      for (i = 1; i < _PB_N - 1; i++)\n        for (j = 1; j < _PB_N - 1; j++)\n          B[i][j] = SCALAR_VAL(0.2) *\n            (A[i][j] + A[i][j-1] + A[i][1+j] +\n             A[1+i][j] + A[i-1][j]);\n\n#pragma omp for schedule(static)\n      for (i = 1; i < _PB_N - 1; i++)\n        for (j = 1; j < _PB_N - 1; j++)\n          A[i][j] = SCALAR_VAL(0.2) *\n            (B[i][j] + B[i][j-1] + B[i][1+j] +\n             B[1+i][j] + B[i-1][j]);\n    }\n}\n\n#pragma endscop\n}\n"
+            }
+          }
+        ]
+      },
+      "provenance": [
+        {
+          "original_path": "kernels/jacobi-2d/manual_openmp.c",
+          "snapshot": "evidence/e019.c",
+          "sha256": "3f6edf61627122cd553e6964bee9a5e0b10780697940a14f58a9e94f4e933ae5",
+          "extraction": "two producer/consumer phases per timestep; annotation from source, not detected by old dependence analyzer"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "DEPENDENCE_RISK"
+        ],
+        "actions": [
+          "INSPECT_DEPENDENCE",
+          "ESCALATE"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d21",
+      "family": "jacobi",
+      "split": "heldout",
+      "origin": "controlled_evidence_omission",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "availability",
+            "data": {
+              "missing_count": 1,
+              "missing_components": [
+                "raw_times"
+              ]
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "results/multiplatform/analysis_linux_xeon_2026-11-05_p15w3/measurements.csv",
+          "snapshot": "evidence/e001.csv",
+          "sha256": "3f8526e9aaca63d9b8bd9e6398748239a58f0db745b2ed6f3115a57b1fea6d8c",
+          "extraction": "raw samples deliberately withheld; summary alone cannot audit samples"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "actions": [
+          "INSPECT_EVIDENCE",
+          "MEASURE_MORE"
+        ],
+        "abstain": true,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d22",
+      "family": "covariance",
+      "split": "heldout",
+      "origin": "archived_measurement_view",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "timings",
+            "data": {
+              "question": "gain",
+              "sequential_seconds": 12.283083,
+              "one_thread_seconds": 12.228874,
+              "samples_per_configuration": 15,
+              "parallel": [
+                {
+                  "threads": 2,
+                  "median_seconds": 9.540982
+                },
+                {
+                  "threads": 4,
+                  "median_seconds": 5.601431
+                }
+              ]
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "results/multiplatform/analysis_linux_xeon_2026-11-05_p15w3/measurements.csv",
+          "snapshot": "evidence/e001.csv",
+          "sha256": "3f8526e9aaca63d9b8bd9e6398748239a58f0db745b2ed6f3115a57b1fea6d8c",
+          "extraction": "filter kernel=covariance,size=LARGE; {}"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "MEASURED_GAIN"
+        ],
+        "actions": [
+          "VERIFY_GATES"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d23",
+      "family": "covariance",
+      "split": "heldout",
+      "origin": "archived_static_analysis_view",
+      "evidence": {
+        "observations": [],
+        "analysis": [
+          {
+            "id": "f1",
+            "kind": "dependence",
+            "data": {
+              "carried_count": 0,
+              "unresolved_count": 1,
+              "phase_count": 0,
+              "accesses": [
+                {
+                  "array": "cov",
+                  "write": "cov[j][i]",
+                  "read": "cov[i][j]",
+                  "resolved": false,
+                  "relation": "symbolic_relation",
+                  "offsets": [
+                    null,
+                    null
+                  ],
+                  "carried_by": [],
+                  "dimensions": [
+                    {
+                      "resolved": false,
+                      "write": "j",
+                      "read": "i",
+                      "write_variable": "j",
+                      "read_variable": "i",
+                      "reason": "different_iterators"
+                    },
+                    {
+                      "resolved": false,
+                      "write": "i",
+                      "read": "j",
+                      "write_variable": "i",
+                      "read_variable": "j",
+                      "reason": "different_iterators"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "provenance": [
+        {
+          "original_path": "analysis/output/covariance_dependences.json",
+          "snapshot": "evidence/e020.json",
+          "sha256": "fa9f71535062c534a083da009280715d075795f177e64df7d1d928a17d9c1b63",
+          "extraction": "count carried_by and unresolved dependence records"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "INSUFFICIENT_EVIDENCE"
+        ],
+        "actions": [
+          "INSPECT_DEPENDENCE",
+          "ESCALATE"
+        ],
+        "abstain": true,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    },
+    {
+      "id": "d24",
+      "family": "covariance",
+      "split": "heldout",
+      "origin": "contract_compatibility_probe",
+      "evidence": {
+        "observations": [
+          {
+            "id": "f1",
+            "kind": "contract",
+            "data": {
+              "received_version": "0.3",
+              "accepted_versions": [
+                "2.0"
+              ],
+              "consumer": "diagnostic contract compatibility probe; not the production gate"
+            }
+          }
+        ],
+        "analysis": []
+      },
+      "provenance": [
+        {
+          "original_path": "analysis/output/covariance_dependences.json",
+          "snapshot": "evidence/e020.json",
+          "sha256": "fa9f71535062c534a083da009280715d075795f177e64df7d1d928a17d9c1b63",
+          "extraction": "read actual version; explicitly require a different consumer contract"
+        }
+      ],
+      "oracle": {
+        "causes": [
+          "SCHEMA_MISMATCH"
+        ],
+        "actions": [
+          "ADAPT_SCHEMA",
+          "INSPECT_EVIDENCE"
+        ],
+        "abstain": false,
+        "annotation": "Project annotation from the preregistered mechanical rubric; no independent human review."
+      }
+    }
+  ]
+}

@@ -1,0 +1,609 @@
+{
+  "schema": "tcc2-automation-corpus",
+  "version": "1.0",
+  "provenance": "Hand-authored controlled microkernels; not a random sample of external programs. Split fixed before final evaluation; test cases were not used to tune a model. All source files count once regardless of input sizes.",
+  "cases": [
+    {
+      "id": "affine_vector",
+      "split": "development",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "oracle_expression": "2.0 * a + b",
+      "semantics": "2.0 * A[i] + B[i]",
+      "limitation": "One injective output write; all pointer arguments satisfy restrict; valid n+2 input extent.",
+      "source": "affine_vector.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "vector_product",
+      "split": "development",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "oracle_expression": "a * b",
+      "semantics": "A[i] * B[i]",
+      "limitation": "One injective output write; all pointer arguments satisfy restrict; valid n+2 input extent.",
+      "source": "vector_product.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "polynomial",
+      "split": "test",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "oracle_expression": "(a * a + 3.0 * a) + 1.0",
+      "semantics": "(A[i] * A[i] + 3.0 * A[i]) + 1.0",
+      "limitation": "One injective output write; all pointer arguments satisfy restrict; valid n+2 input extent.",
+      "source": "polynomial.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "absolute_difference",
+      "split": "test",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "oracle_expression": "a > b ? a - b : b - a",
+      "semantics": "A[i] > B[i] ? A[i] - B[i] : B[i] - A[i]",
+      "limitation": "One injective output write; all pointer arguments satisfy restrict; valid n+2 input extent.",
+      "source": "absolute_difference.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "threshold_filter",
+      "split": "test",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "oracle_expression": "a > 0.5 ? a : 0.0",
+      "semantics": "A[i] > 0.5 ? A[i] : 0.0",
+      "limitation": "One injective output write; all pointer arguments satisfy restrict; valid n+2 input extent.",
+      "source": "threshold_filter.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "clamp",
+      "split": "test",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "oracle_expression": "a < 0.0 ? 0.0 : (a > 1.0 ? 1.0 : a)",
+      "semantics": "A[i] < 0.0 ? 0.0 : (A[i] > 1.0 ? 1.0 : A[i])",
+      "limitation": "One injective output write; all pointer arguments satisfy restrict; valid n+2 input extent.",
+      "source": "clamp.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "readonly_stencil",
+      "split": "test",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "oracle_expression": "(a + input_a(i + 1) + input_a(i + 2)) / 3.0",
+      "semantics": "(A[i] + A[i + 1] + A[i + 2]) / 3.0",
+      "limitation": "One injective output write; all pointer arguments satisfy restrict; valid n+2 input extent.",
+      "source": "readonly_stencil.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "reciprocal_quadratic",
+      "split": "test",
+      "pattern": "DOALL",
+      "expected_support": true,
+      "oracle_expression": "1.0 / (1.0 + a * a)",
+      "semantics": "1.0 / (1.0 + A[i] * A[i])",
+      "limitation": "One injective output write; all pointer arguments satisfy restrict; valid n+2 input extent.",
+      "source": "reciprocal_quadratic.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "vector_sum",
+      "split": "development",
+      "pattern": "REDUCTION",
+      "expected_support": true,
+      "oracle_expression": "a",
+      "semantics": "sum_i(A[i])",
+      "limitation": "Local double += reduction with zero initializer; finite values, tolerance-based floating validation.",
+      "source": "vector_sum.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "sum_squares",
+      "split": "development",
+      "pattern": "REDUCTION",
+      "expected_support": true,
+      "oracle_expression": "a * a",
+      "semantics": "sum_i(A[i] * A[i])",
+      "limitation": "Local double += reduction with zero initializer; finite values, tolerance-based floating validation.",
+      "source": "sum_squares.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "inner_product",
+      "split": "test",
+      "pattern": "REDUCTION",
+      "expected_support": true,
+      "oracle_expression": "a * b",
+      "semantics": "sum_i(A[i] * B[i])",
+      "limitation": "Local double += reduction with zero initializer; finite values, tolerance-based floating validation.",
+      "source": "inner_product.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "l1_norm",
+      "split": "test",
+      "pattern": "REDUCTION",
+      "expected_support": true,
+      "oracle_expression": "a < 0.0 ? -a : a",
+      "semantics": "sum_i(A[i] < 0.0 ? -A[i] : A[i])",
+      "limitation": "Local double += reduction with zero initializer; finite values, tolerance-based floating validation.",
+      "source": "l1_norm.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "squared_distance",
+      "split": "test",
+      "pattern": "REDUCTION",
+      "expected_support": true,
+      "oracle_expression": "(a - b) * (a - b)",
+      "semantics": "sum_i((A[i] - B[i]) * (A[i] - B[i]))",
+      "limitation": "Local double += reduction with zero initializer; finite values, tolerance-based floating validation.",
+      "source": "squared_distance.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "count_comparison",
+      "split": "test",
+      "pattern": "REDUCTION",
+      "expected_support": true,
+      "oracle_expression": "a > b ? 1.0 : 0.0",
+      "semantics": "sum_i(A[i] > B[i] ? 1.0 : 0.0)",
+      "limitation": "Local double += reduction with zero initializer; finite values, tolerance-based floating validation.",
+      "source": "count_comparison.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "prefix_dependency",
+      "split": "development",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Read of output with cross-iteration dependency."
+      },
+      "semantics": "for (int i = 1; i < n; i++)\n    {\n        Y[i] = Y[i - 1] + A[i];\n    }",
+      "limitation": "Read of output with cross-iteration dependency.",
+      "source": "prefix_dependency.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "inplace_neighbor",
+      "split": "development",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Read of output; anti-dependence on adjacent iteration."
+      },
+      "semantics": "for (int i = 0; i < n; i++)\n    {\n        Y[i] = Y[i + 1] + A[i];\n    }",
+      "limitation": "Read of output; anti-dependence on adjacent iteration.",
+      "source": "inplace_neighbor.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "scatter_permutation",
+      "split": "development",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Output index is not the proven injective iterator."
+      },
+      "semantics": "for (int i = 0; i < n; i++)\n    {\n        Y[(i * 7) % n] = A[i];\n    }",
+      "limitation": "Output index is not the proven injective iterator.",
+      "source": "scatter_permutation.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "missing_restrict",
+      "split": "development",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "No restrict caller contract; input/output aliasing unresolved."
+      },
+      "semantics": "for (int i = 0; i < n; i++)\n    {\n        Y[i] = A[i] + B[i];\n    }",
+      "limitation": "No restrict caller contract; input/output aliasing unresolved.",
+      "source": "missing_restrict.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "mutable_input",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Outside const-input subset even though this particular expression only reads."
+      },
+      "semantics": "for (int i = 0; i < n; i++)\n    {\n        Y[i] = A[i] + B[i];\n    }",
+      "limitation": "Outside const-input subset even though this particular expression only reads.",
+      "source": "mutable_input.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "stride_two",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Unsupported iterator stride; correct conservative refusal."
+      },
+      "semantics": "for (int i = 0; i < n; i += 2)\n    {\n        Y[i] = A[i] * 2.0;\n    }",
+      "limitation": "Unsupported iterator stride; correct conservative refusal.",
+      "source": "stride_two.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "early_exit",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Early exit is incompatible with direct parallel for."
+      },
+      "semantics": "for (int i = 0; i < n; i++)\n    {\n        if (A[i] < 0.0) break;\n        Y[i] = A[i];\n    }",
+      "limitation": "Early exit is incompatible with direct parallel for.",
+      "source": "early_exit.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "multiple_writes",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Two writes overlap across iterations."
+      },
+      "semantics": "for (int i = 0; i < n; i++)\n    {\n        Y[i] = A[i];\n        Y[i + 1] = B[i];\n    }",
+      "limitation": "Two writes overlap across iterations.",
+      "source": "multiple_writes.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "helper_call",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Function calls are outside the pure expression whitelist."
+      },
+      "semantics": "for (int i = 0; i < n; i++)\n    {\n        Y[i] = helper(A[i]);\n    }",
+      "limitation": "Function calls are outside the pure expression whitelist.",
+      "source": "helper_call.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "nested_loop",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Nested composition and output accumulation are unsupported."
+      },
+      "semantics": "for (int i = 0; i < n; i++)\n    {\n        for (int j = 0; j < 2; j++) Y[i] += A[i];\n    }",
+      "limitation": "Nested composition and output accumulation are unsupported.",
+      "source": "nested_loop.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "global_side_effect",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Nested shared scalar write."
+      },
+      "semantics": "for (int i = 0; i < n; i++)\n    {\n        Y[i] = (global_state += A[i]);\n    }",
+      "limitation": "Nested shared scalar write.",
+      "source": "global_side_effect.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "indirect_read_index",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Non-affine input indexing is outside supported subset."
+      },
+      "semantics": "for (int i = 0; i < n; i++)\n    {\n        Y[i] = A[(i * 7) % n];\n    }",
+      "limitation": "Non-affine input indexing is outside supported subset.",
+      "source": "indirect_read_index.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "self_referential_reduction",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Accumulator read in RHS changes recurrence; not a reduction."
+      },
+      "semantics": "double sum = 0.0;\n    for (int i = 0; i < n; i++)\n    {\n        sum += sum + A[i];\n    }\n    return sum;",
+      "limitation": "Accumulator read in RHS changes recurrence; not a reduction.",
+      "source": "self_referential_reduction.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    },
+    {
+      "id": "reduction_with_store",
+      "split": "test",
+      "pattern": "UNSUPPORTED",
+      "expected_support": false,
+      "oracle": {
+        "type": "conservative_refusal",
+        "reason": "Reduction plus loop-carried output store."
+      },
+      "semantics": "double sum = 0.0;\n    for (int i = 0; i < n; i++)\n    {\n        sum += A[i];\n        A[i] = sum;\n    }\n    return sum;",
+      "limitation": "Reduction plus loop-carried output store.",
+      "source": "reduction_with_store.c",
+      "inputs": [
+        {
+          "id": "small",
+          "n": 1024
+        },
+        {
+          "id": "large",
+          "n": 1000000
+        }
+      ]
+    }
+  ]
+}

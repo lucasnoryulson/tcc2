@@ -1,0 +1,18 @@
+=================================
+Static Analysis Variant Isolation
+Regression Test
+=================================
+
+MANUAL_SOURCE: PASS
+  /home/liswsz220-01/Desktop/tcc/tcc2/kernels/nussinov/manual_openmp.c
+
+AUTO_SOURCE: PASS
+  /home/liswsz220-01/Desktop/tcc/tcc2/analysis/output/generated/nussinov_accumulator_auto.c
+
+DISTINCT_OUTPUTS: PASS
+  nussinov_manual_openmp_analysis.json
+  nussinov_accumulator_auto_analysis.json
+
+=================================
+Variant isolation: PASS
+=================================

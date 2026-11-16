@@ -1,0 +1,26 @@
+Sequential benchmark:
+    Run 1: 0.002199043 s
+    Run 2: 0.002270296 s
+    Run 3: 0.002194899 s
+    Run 4: 0.002078622 s
+    Run 5: 0.002056829 s
+OpenMP benchmark (1 thread(s)):
+    Run 1: 0.002050652 s
+    Run 2: 0.001898879 s
+    Run 3: 0.001991406 s
+    Run 4: 0.001916668 s
+    Run 5: 0.001904174 s
+OpenMP benchmark (2 thread(s)):
+    Run 1: 0.001655762 s
+    Run 2: 0.001743630 s
+    Run 3: 0.001801512 s
+    Run 4: 0.001796058 s
+    Run 5: 0.001989944 s
+OpenMP benchmark (4 thread(s)):
+    Run 1: 0.002052308 s
+    Run 2: 0.001742288 s
+    Run 3: 0.002361434 s
+    Run 4: 0.002226444 s
+    Run 5: 0.002116166 s
+PERFORMANCE GATE: PASS
+CSV salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance.csv

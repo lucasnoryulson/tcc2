@@ -1,0 +1,72 @@
+{
+  "case_id": "d16",
+  "family": "gemm",
+  "origin": "executed_controlled_compilation_failure",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator",
+  "status": "OK",
+  "metadata": {
+    "model": "qwen2.5:3b",
+    "created_at": "2026-11-05T20:13:12.800136318Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 37703068100,
+    "load_duration": 190572868,
+    "prompt_eval_count": 217,
+    "prompt_eval_duration": 5392222141,
+    "eval_count": 167,
+    "eval_duration": 27581571272
+  },
+  "prompt_sha256": "46d05342b04ea87908e868c99535412109f31904872ca3739359536bb251641a",
+  "analysis_available": false,
+  "ablation_effective": null,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 37.70441179699992,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": false,
+  "cause_action_correct": false,
+  "abstain": true,
+  "abstention_matches_annotation": false,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 4,
+  "claims_count": 5,
+  "output": {
+    "cause": "COMPILE_ERROR",
+    "action": "ADAPT_SCHEMA",
+    "abstain": true,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "returncode",
+        "value": 1
+      },
+      {
+        "fact_id": "f1",
+        "field": "kind",
+        "value": "compilation"
+      },
+      {
+        "fact_id": "f1",
+        "field": "data.returncode",
+        "value": 1
+      },
+      {
+        "fact_id": "f1",
+        "field": "data.stderr",
+        "value": "clang: error: unknown argument: '-fthis-option-does-not-exist-tcc2'"
+      },
+      {
+        "fact_id": "observations",
+        "field": "analysis",
+        "value": ""
+      }
+    ]
+  },
+  "raw_response_sha256": "aeb9c13e187b006b7ceba66d4d36988316d70399e08ba1cde65e61762dc1400b"
+}

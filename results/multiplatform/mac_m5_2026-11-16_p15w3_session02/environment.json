@@ -1,0 +1,66 @@
+{
+  "utc": "2026-11-16T14:24:04.917105+00:00",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "python": "3.15.2 (main, Oct 25 2026, 16:57:51) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "cpu_count": 10,
+  "affinity": null,
+  "inherited_tuning": {},
+  "arguments": {
+    "output": "results/multiplatform/mac_m5_2026-11-16_p15w3_session02",
+    "cc": "/opt/homebrew/opt/llvm/bin/clang",
+    "cxx": "/opt/homebrew/opt/llvm/bin/clang++",
+    "kernels": [
+      "dot-auto",
+      "dot",
+      "gemm",
+      "nussinov",
+      "jacobi-2d",
+      "covariance"
+    ],
+    "threads": [
+      1,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "dot_sizes": [
+      1000000,
+      10000000
+    ],
+    "auto_dot_sizes": [
+      1024,
+      10000000
+    ],
+    "datasets": [
+      "MEDIUM",
+      "LARGE"
+    ],
+    "repetitions": 15,
+    "warmups": 3,
+    "seed": 2026,
+    "timeout": 600
+  },
+  "compilers": {
+    "/opt/homebrew/opt/llvm/bin/clang": {
+      "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+      "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888"
+    },
+    "/opt/homebrew/opt/llvm/bin/clang++": {
+      "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+      "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888"
+    }
+  },
+  "git rev-parse HEAD": "0d3b54733f4c04a699c5f4e1787b1a7f21ef6f1b",
+  "git status --short": "M scripts/compile_correctness_gate.py\n M scripts/performance_gate.py\n M scripts/run_pipeline.py\n M scripts/test_benchmark_scaling.py\n?? docs/experiments/MAC_EVALUATION_2026-11-16_PLAN.md\n?? results/multiplatform/mac_m5_2026-11-16_p15w3_session01/\n?? results/multiplatform/mac_m5_2026-11-16_p15w3_session02/\n?? results/multiplatform/mac_m5_2026-11-16_selector_frozen.json\n?? scripts/evaluate_selector_holdout.py\n?? scripts/measure_pipeline_cost.py\n?? scripts/process_timing.py\n?? scripts/profile_openmp_auxiliary.py\n?? scripts/test_experiment_cost.py\n?? scripts/test_selector_holdout.py",
+  "git diff": "diff --git a/scripts/compile_correctness_gate.py b/scripts/compile_correctness_gate.py\nindex d3c6050..460d3d3 100644\n--- a/scripts/compile_correctness_gate.py\n+++ b/scripts/compile_correctness_gate.py\n@@ -11,6 +11,7 @@ from analysis.artifact_provenance import (\n     ABS_TOL, COMPILE_FLAGS, OPENMP_ENVIRONMENT, REL_TOL,\n     capture_run, file_record, verify_file, verify_provenance,\n )\n+from scripts.process_timing import run_timed\n \n # ============================================================\n # CONFIGURATION\n@@ -31,8 +32,9 @@ def run_command(\n     Execute a command and return CompletedProcess.\n     \"\"\"\n \n-    return subprocess.run(\n+    return run_timed(\n         command,\n+        origin=\"correctness_gate\",\n         stdout=subprocess.PIPE,\n         stderr=subprocess.PIPE,\n         text=True,\ndiff --git a/scripts/performance_gate.py b/scripts/performance_gate.py\nindex 8fe6dfa..a5f7671 100644\n--- a/scripts/performance_gate.py\n+++ b/scripts/performance_gate.py\n@@ -13,6 +13,7 @@ from analysis.artifact_provenance import (\n     COMPILE_FLAGS, OPENMP_ENVIRONMENT, capture_run, file_record,\n     load_correctness_report, measured_rows, verify_file, verify_provenance,\n )\n+from scripts.process_timing import run_timed\n \n DEFAULT_COMPILER = \"clang\"\n \n@@ -31,8 +32,9 @@ def run_command(\n     command,\n     environment=None\n ):\n-    return subprocess.run(\n+    return run_timed(\n         command,\n+        origin=\"performance_gate\",\n         stdout=subprocess.PIPE,\n         stderr=subprocess.PIPE,\n         text=True,\ndiff --git a/scripts/run_pipeline.py b/scripts/run_pipeline.py\nindex 5b98b42..4db609b 100644\n--- a/scripts/run_pipeline.py\n+++ b/scripts/run_pipeline.py\n@@ -34,7 +34,8 @@ def run_pipeline(args):\n         try:\n             result = subprocess.run(\n                 command, cwd=ROOT, capture_output=True, text=True,\n-                env={**os.environ, \"TCC2_THREAD_COUNTS\": \",\".join(map(str, args.threads))},\n+                env={**os.environ, \"TCC2_THREAD_COUNTS\": \",\".join(map(str, args.threads)),\n+                     \"TCC2_TIMING_STAGE\": name},\n                 timeout=max(300, args.timeout + 15),\n             )\n         except subprocess.TimeoutExpired as error:\ndiff --git a/scripts/test_benchmark_scaling.py b/scripts/test_benchmark_scaling.py\nindex 88d642e..c5a7cb4 100644\n--- a/scripts/test_benchmark_scaling.py\n+++ b/scripts/test_benchmark_scaling.py\n@@ -93,6 +93,10 @@ class ScalingTests(unittest.TestCase):\n                                       datasets=['MINI'], repetitions=2, seed=2026, timeout=30)\n             # GCC needs an explicit C++ standard library when invoked by its C driver.\n             args.cxx = 'g++' if 'gcc' in Path(compiler).name else compiler\n+            # Preserve the clang++ driver name: resolving its symlink to clang\n+            # loses automatic C++ standard-library linkage on macOS.\n+            if 'clang' in Path(compiler).name:\n+                args.cxx = str(Path(compiler).with_name('clang++'))\n             execute(args)\n             report = json.loads((args.output / 'report.json').read_text())\n             self.assertEqual(report['status'], 'COMPLETE')",
+  "git submodule status": "3e872547cef7e5c9909422ef1e6af03cf4e56072 benchmarks/PolyBenchC-4.2.1 (heads/master)\n-fb1c1cca72eaaa660fbfdf8623e79ad2ababbc29 benchmarks/everythingsreduced",
+  "/opt/homebrew/opt/llvm/bin/clang --version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg",
+  "/opt/homebrew/opt/llvm/bin/clang++ --version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg",
+  "uname -a": "Darwin MacBook-Pro-de-Lucas-3.local 25.6.0 Darwin Kernel Version 25.6.0: Fri Jul 31 19:16:20 PDT 2026; root:xnu-12377.161.14~5/RELEASE_ARM64_T8142 arm64",
+  "sw_vers": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83",
+  "sysctl hw.model hw.memsize hw.ncpu hw.perflevel0.physicalcpu hw.perflevel1.physicalcpu": "hw.model: Mac17,2\nhw.memsize: 17179869184\nhw.ncpu: 10\nhw.perflevel0.physicalcpu: 4\nhw.perflevel1.physicalcpu: 6",
+  "pmset -g batt": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=34734179)\t16%; discharging; 1:00 remaining present: true"
+}

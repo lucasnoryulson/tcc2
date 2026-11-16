@@ -1,0 +1,14 @@
+ M scripts/compile_correctness_gate.py
+ M scripts/performance_gate.py
+ M scripts/run_pipeline.py
+ M scripts/test_benchmark_scaling.py
+?? docs/experiments/MAC_EVALUATION_2026-11-16_PLAN.md
+?? results/multiplatform/mac_m5_2026-11-16_p15w3_session01/
+?? results/multiplatform/mac_m5_2026-11-16_p15w3_session02/
+?? results/multiplatform/mac_m5_2026-11-16_selector_frozen.json
+?? scripts/evaluate_selector_holdout.py
+?? scripts/measure_pipeline_cost.py
+?? scripts/process_timing.py
+?? scripts/profile_openmp_auxiliary.py
+?? scripts/test_experiment_cost.py
+?? scripts/test_selector_holdout.py

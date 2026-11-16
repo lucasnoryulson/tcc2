@@ -1,0 +1,28 @@
+kernels/nussinov/manual_openmp.c:41:5: remark: vectorized loop (vectorization width: 16, interleaved count: 2) [-Rpass=loop-vectorize]
+   41 |     for (i = 0; i < n; i++) {
+      |     ^
+kernels/nussinov/manual_openmp.c:74:13: remark: loop not vectorized: Control flow cannot be substituted for a select [-Rpass-analysis=loop-vectorize]
+   74 |             }
+      |             ^
+kernels/nussinov/manual_openmp.c:73:17: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+   73 |                 fprintf(POLYBENCH_DUMP_TARGET, "\n");
+      |                 ^
+kernels/nussinov/manual_openmp.c:76:13: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+   76 |             fprintf(
+      |             ^
+kernels/nussinov/manual_openmp.c:73:17: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+   73 |                 fprintf(POLYBENCH_DUMP_TARGET, "\n");
+      |                 ^
+kernels/nussinov/manual_openmp.c:70:9: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+   70 |         for (j = i; j < n; j++) {
+      |         ^
+kernels/nussinov/manual_openmp.c:199:33: remark: loop not vectorized: unsafe dependent memory operations in loop. Use #pragma clang loop distribute(enable) to allow loop distribution to attempt to isolate the offending operations into a separate loop
+Unknown data dependence. Memory location is the same as accessed at kernels/nussinov/manual_openmp.c:203:35 [-Rpass-analysis=loop-vectorize]
+  199 |                     table[i][j] =
+      |                                 ^
+kernels/nussinov/manual_openmp.c:197:17: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  197 |                 for (k = i + 1; k < j; k++) {
+      |                 ^
+benchmarks/PolyBenchC-4.2.1/utilities/polybench.c:119:1: remark: vectorized loop (vectorization width: 2, interleaved count: 4) [-Rpass=loop-vectorize]
+  119 | #pragma omp parallel for reduction(+:tmp) private(i)
+      | ^

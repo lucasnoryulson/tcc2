@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "office": {
+    "docs/monografia/REVISAO_PUBLICACAO.docx": {
+      "tables": 22,
+      "images": 19,
+      "paragraphs": 354,
+      "reopened": true
+    },
+    "docs/monografia/CAPA_PUCRS_PUBLICACAO.docx": {
+      "tables": 0,
+      "images": 0,
+      "paragraphs": 41,
+      "reopened": true
+    },
+    "docs/publication/ARTICLE_DRAFT.docx": {
+      "tables": 9,
+      "images": 4,
+      "paragraphs": 105,
+      "reopened": true
+    },
+    "docs/defesa/DEFESA_PUBLICACAO.pptx": {
+      "slides": 20,
+      "notes": 20,
+      "reopened": true
+    },
+    "docs/monografia/REVISAO_PUBLICACAO.pdf": {
+      "pages": 70,
+      "text_check": "PASS"
+    },
+    "docs/publication/ARTICLE_DRAFT.pdf": {
+      "pages": 23,
+      "text_check": "PASS"
+    }
+  },
+  "writing_manifest_files": 24,
+  "local_links": "PASS",
+  "visual_review": "Five new figures and monograph PDF pages 40, 46, 47 plus article page 10 inspected; representative renders preserved. Native Word/PowerPoint not available.",
+  "cover_check": "Reads XML w:t including textboxes, absent from Document.paragraphs."
+}

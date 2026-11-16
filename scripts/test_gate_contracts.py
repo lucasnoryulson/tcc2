@@ -78,7 +78,8 @@ class GateContracts(unittest.TestCase):
                 self.source, self.candidate, self.driver, self.work / 'build', self.compiler, [1, 2],
             )
 
-    def bind_performance(self, report=None, candidate_time=0.5, one_thread_time=1.0):
+    def bind_performance(self, report=None, candidate_time=0.5, one_thread_time=1.0,
+                         repetitions=5, warmups=0):
         if report is None:
             report = self.gate_report()
         self.report_path.write_text(json.dumps(report))
@@ -88,13 +89,12 @@ class GateContracts(unittest.TestCase):
             return subprocess.CompletedProcess([compiler, str(driver), str(source)], 0, '', '')
 
         with patch.object(performance, 'compile_program', side_effect=compile_mock), \
-                patch.object(performance, 'benchmark', side_effect=[
-                    {'times': [1.0] * 5}, {'times': [one_thread_time] * 5},
-                    {'times': [candidate_time] * 5},
-                ]), contextlib.redirect_stdout(io.StringIO()):
+                patch.object(performance, 'execute', side_effect=lambda binary, threads: {
+                    None: 1.0, 1: one_thread_time, 2: candidate_time,
+                }[threads]), contextlib.redirect_stdout(io.StringIO()):
             measured = performance.run_gate(
                 self.source, self.candidate, self.benchmark_driver, self.work / 'performance',
-                self.compiler, [1, 2], self.report_path, self.csv_path,
+                self.compiler, [1, 2], self.report_path, self.csv_path, repetitions, warmups,
             )
         self.performance_path.write_text(json.dumps(measured))
         _, rows, reference = provenance.load_performance_report(self.performance_path, self.csv_path)
@@ -232,7 +232,17 @@ class GateContracts(unittest.TestCase):
         _, measured, _ = self.bind_performance()
         measured['measurements'][1]['times'] = [0.1] * 5
         self.performance_path.write_text(json.dumps(measured))
-        with self.assertRaisesRegex(ValueError, 'CSV disagrees'):
+        with self.assertRaisesRegex(ValueError, 'CSV disagrees|Measurement order disagrees'):
+            provenance.load_performance_report(self.performance_path)
+
+    def test_warmups_and_randomized_order_are_verified(self):
+        _, measured, _ = self.bind_performance(repetitions=15, warmups=3)
+        self.assertEqual(len(measured['measurement_order']), 54)
+        self.assertEqual(len(measured['measurements'][0]['times']), 15)
+        measured['measurement_order'][0], measured['measurement_order'][1] = (
+            measured['measurement_order'][1], measured['measurement_order'][0])
+        self.performance_path.write_text(json.dumps(measured))
+        with self.assertRaisesRegex(ValueError, 'Measurement order disagrees with seed'):
             provenance.load_performance_report(self.performance_path)
 
     def test_changed_performance_report_reference_is_rejected(self):
@@ -241,6 +251,47 @@ class GateContracts(unittest.TestCase):
         self.performance_path.write_text(json.dumps(measured))
         with self.assertRaisesRegex(ValueError, 'SHA-256'):
             self.build_context()
+
+    def test_invalid_or_incomplete_measurement_order_is_rejected(self):
+        _, measured, _ = self.bind_performance(warmups=1)
+        invalid = []
+        missing = copy.deepcopy(measured)
+        del missing['measurement_order']
+        invalid.append(missing)
+        for value in (None, {}, [], measured['measurement_order'][:-1]):
+            malformed = copy.deepcopy(measured)
+            malformed['measurement_order'] = value
+            invalid.append(malformed)
+        for field, value in [('repeat', True), ('threads', 1.0), ('seconds', float('nan')),
+                             ('seconds', 0), ('seconds', '1'), ('seconds', True), ('stage', [])]:
+            malformed = copy.deepcopy(measured)
+            malformed['measurement_order'][0][field] = value
+            invalid.append(malformed)
+        duplicate = copy.deepcopy(measured)
+        duplicate['measurement_order'][0] = duplicate['measurement_order'][1]
+        invalid.append(duplicate)
+        for index, report in enumerate(invalid):
+            with self.subTest(index=index), self.assertRaises(ValueError):
+                self.performance_path.write_text(json.dumps(report))
+                provenance.load_performance_report(self.performance_path)
+
+    def test_legacy_performance_without_order_metadata_remains_readable(self):
+        _, measured, _ = self.bind_performance()
+        for key in ('measurement_order', 'warmups', 'seed'):
+            del measured[key]
+        self.performance_path.write_text(json.dumps(measured))
+        provenance.load_performance_report(self.performance_path)
+
+    def test_invalid_sampling_parameters_are_rejected_before_compilation(self):
+        for repetitions, warmups, seed in [(0, 0, 2026), (True, 0, 2026), (1, -1, 2026),
+                                            (1, .5, 2026), (1, 0, None), (1, 0, True)]:
+            with self.subTest(parameters=(repetitions, warmups, seed)), \
+                    patch.object(performance, 'compile_program') as compile_program, \
+                    self.assertRaises(ValueError):
+                performance.run_gate(self.source, self.candidate, self.benchmark_driver,
+                                     self.work / 'performance', self.compiler, [1, 2],
+                                     self.report_path, self.csv_path, repetitions, warmups, seed)
+            compile_program.assert_not_called()
 
     def test_mixed_campaigns_are_rejected(self):
         self.bind_performance()
@@ -274,7 +325,7 @@ class GateContracts(unittest.TestCase):
 
     def test_unvalidated_threads_are_rejected_before_benchmark(self):
         self.report_path.write_text(json.dumps(self.gate_report()))
-        with patch.object(performance, 'benchmark') as benchmark, self.assertRaisesRegex(ValueError, 'every benchmark thread'):
+        with patch.object(performance, 'execute') as benchmark, self.assertRaisesRegex(ValueError, 'every benchmark thread'):
             performance.run_gate(self.source, self.candidate, self.benchmark_driver,
                                  self.work / 'performance', self.compiler, [1, 4], self.report_path, self.csv_path)
         benchmark.assert_not_called()

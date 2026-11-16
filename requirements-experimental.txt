@@ -1,0 +1,3 @@
+-r requirements-publication.txt
+# Used to verify the new PDF independently of its generator.
+pypdf==7.1.0

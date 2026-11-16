@@ -1,0 +1,6 @@
+/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/threshold_filter.c:3:23: optimized: parallelizing inner loop 1
+/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/threshold_filter.c:3:23: optimized: loop vectorized using 16 byte vectors
+/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/threshold_filter.c:3:23: optimized: loop turned into non-loop; it never loops
+/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/threshold_filter.c:5:17: optimized: loop vectorized using 16 byte vectors
+/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/threshold_filter.c:5:17: optimized:  loop versioned for vectorization because of possible aliasing
+/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/threshold_filter.c:3:23: optimized: loop turned into non-loop; it never loops

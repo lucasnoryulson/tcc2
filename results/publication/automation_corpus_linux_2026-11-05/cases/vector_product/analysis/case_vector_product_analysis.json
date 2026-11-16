@@ -1,0 +1,61 @@
+{
+  "version": "0.2",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/vector_product.c",
+  "kernels": [
+    {
+      "name": "kernel_case",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 3,
+          "end_line": 6,
+          "iterator": "i",
+          "initialization": "int i = 0",
+          "condition": "i < n",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i"
+              ],
+              "expression": "A[i]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "i"
+              ],
+              "expression": "B[i]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "Y",
+              "indices": [
+                "i"
+              ],
+              "expression": "Y[i]"
+            }
+          ],
+          "operators": [
+            "=",
+            "*"
+          ],
+          "scalar_updates": []
+        }
+      ],
+      "direct_transform_contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 3,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "835f08d8a113bc98bc73eace5ef71aae1646c746bb12fa67d2ea732991e19036",
+        "version": "standalone-ast-v2"
+      }
+    }
+  ]
+}

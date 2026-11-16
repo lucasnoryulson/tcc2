@@ -1,0 +1,25 @@
+=================================
+TCC2 PATTERN CLASSIFIER v0.6
+=================================
+Static:     /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/affine_vector/analysis/case_affine_vector_analysis.json
+Dependence: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/affine_vector/analysis/case_affine_vector_dependences.json
+
+Kernel: kernel_case
+Classification: DOALL_CANDIDATE
+Family: MAP / DATA_PARALLEL
+Confidence: medium
+Reason: Independent-index candidates were detected and no shifted or symbolic dependences were found.
+
+Loop classifications:
+
+  Loop #1 (i)
+    Pattern: DOALL_CANDIDATE
+    Family: MAP / DATA_PARALLEL
+    Confidence: conservative_contract
+    Reason: One injective output write with pure reads and restrict caller preconditions.
+    Evidence:
+      standalone_ast_contract: {'status': 'SUPPORTED', 'pattern': 'DOALL', 'iterator': 'i', 'start_line': 3, 'reduction_variable': None, 'pointer_precondition': 'valid input extents; DOALL restrict pointers obey the C restrict contract', 'source_sha256': '4a049db9b82214aa4563a6cb47f1302e6c1ad983be50973afde8bf155974340d', 'version': 'standalone-ast-v2'}
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/affine_vector/analysis/case_affine_vector_patterns.json
+=================================

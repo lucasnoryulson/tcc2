@@ -1,0 +1,35 @@
+{
+  "version": "0.6",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/reduction_with_store.c",
+  "kernels": [
+    {
+      "name": "kernel_case",
+      "classification": "REDUCTION_CANDIDATE",
+      "family": "REDUCE / AGGREGATION",
+      "confidence": "medium",
+      "reason": "At least one loop contains a reduction update.",
+      "loops": [
+        {
+          "classification": "REDUCTION_CANDIDATE",
+          "family": "REDUCE / AGGREGATION",
+          "confidence": "medium",
+          "reason": "A scalar variable is updated with a reduction-compatible compound operator inside the loop.",
+          "evidence": {
+            "reduction_type": "scalar",
+            "scalar_updates": [
+              {
+                "variable": "sum",
+                "operator": "+=",
+                "rhs": "A[i]",
+                "expression": "sum += A[i]",
+                "update_kind": "compound_assignment"
+              }
+            ]
+          },
+          "loop_id": 1,
+          "iterator": "i"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "version": "0.6",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/helper_call.c",
+  "kernels": [
+    {
+      "name": "kernel_case",
+      "classification": "UNKNOWN",
+      "family": "UNKNOWN",
+      "confidence": "low",
+      "reason": "Current analysis produced insufficient evidence.",
+      "loops": [
+        {
+          "classification": "NO_DIRECT_EVIDENCE",
+          "family": "UNKNOWN",
+          "confidence": "low",
+          "reason": "No direct READ/WRITE dependence candidate was associated with this loop level.",
+          "evidence": {},
+          "loop_id": 1,
+          "iterator": "i"
+        }
+      ]
+    }
+  ]
+}

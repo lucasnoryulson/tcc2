@@ -1,0 +1,72 @@
+{
+  "case_id": "d13",
+  "family": "gemm",
+  "origin": "archived_measurement_view",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator",
+  "status": "OK",
+  "metadata": {
+    "model": "llama3.1:8b",
+    "created_at": "2026-11-05T20:45:40.573448988Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 83156897567,
+    "load_duration": 236583914,
+    "prompt_eval_count": 253,
+    "prompt_eval_duration": 17172567767,
+    "eval_count": 177,
+    "eval_duration": 61639060528
+  },
+  "prompt_sha256": "cf258bab4afcd7c024664e8a3bd0bfd1361cd81d47a10d1c2b13b99d3fecdae3",
+  "analysis_available": false,
+  "ablation_effective": null,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 83.15858707199732,
+  "schema_valid": true,
+  "cause_correct": false,
+  "action_acceptable": false,
+  "cause_action_correct": false,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 2,
+  "claims_count": 5,
+  "output": {
+    "cause": "SCHEMA_MISMATCH",
+    "action": "DEBUG_RESULT",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "sequential_seconds",
+        "value": 0.003689
+      },
+      {
+        "fact_id": "f1",
+        "field": "one_thread_seconds",
+        "value": 0.003847
+      },
+      {
+        "fact_id": "f1",
+        "field": "samples_per_configuration",
+        "value": 15
+      },
+      {
+        "fact_id": "f1",
+        "field": "parallel[0].threads",
+        "value": 2
+      },
+      {
+        "fact_id": "f1",
+        "field": "parallel[0].median_seconds",
+        "value": 0.001909
+      }
+    ]
+  },
+  "raw_response_sha256": "6bb4bec400718d51823911f6f11d613b699e66ed08dbdd57cccae8a83e5ba79a"
+}

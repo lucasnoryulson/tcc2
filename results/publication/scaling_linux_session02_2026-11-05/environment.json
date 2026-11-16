@@ -1,0 +1,77 @@
+{
+  "utc": "2026-11-05T18:57:47.139993+00:00",
+  "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "cpu_count": 4,
+  "affinity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "inherited_tuning": {},
+  "arguments": {
+    "output": "results/publication/scaling_linux_session02_2026-11-05",
+    "cc": "clang",
+    "cxx": "clang++",
+    "kernels": [
+      "dot-auto",
+      "dot",
+      "gemm",
+      "nussinov",
+      "jacobi-2d",
+      "covariance"
+    ],
+    "threads": [
+      1,
+      2,
+      4
+    ],
+    "dot_sizes": [
+      1000000,
+      10000000
+    ],
+    "auto_dot_sizes": [
+      1024,
+      10000000
+    ],
+    "datasets": [
+      "MEDIUM",
+      "LARGE"
+    ],
+    "repetitions": 15,
+    "warmups": 3,
+    "seed": 2026,
+    "timeout": 600
+  },
+  "compilers": {
+    "clang": {
+      "path": "/usr/lib/llvm-18/bin/clang",
+      "sha256": "8ef402d453d1ba4902e4ee0f0f847f6cfa01400c95aa43c24e97818b9c0e3f45"
+    },
+    "clang++": {
+      "path": "/usr/lib/llvm-18/bin/clang",
+      "sha256": "8ef402d453d1ba4902e4ee0f0f847f6cfa01400c95aa43c24e97818b9c0e3f45"
+    }
+  },
+  "/proc/meminfo": "MemTotal:       20419492 kB\nMemFree:         2970080 kB\nMemAvailable:   11530656 kB\nBuffers:          736400 kB\nCached:          7512788 kB\nSwapCached:          108 kB\nActive:          8626188 kB\nInactive:        7632152 kB\nActive(anon):    6498980 kB\nInactive(anon):  1355924 kB\nActive(file):    2127208 kB\nInactive(file):  6276228 kB\nUnevictable:         104 kB\nMlocked:             104 kB\nSwapTotal:       8388604 kB\nSwapFree:        8388240 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:              4248 kB\nWriteback:             0 kB\nAnonPages:       8009272 kB\nMapped:          2219376 kB\nShmem:            568040 kB\nKReclaimable:     514080 kB\nSlab:             781152 kB\nSReclaimable:     514080 kB\nSUnreclaim:       267072 kB\nKernelStack:       26032 kB\nPageTables:        99332 kB\nSecPageTables:      2780 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    18598348 kB\nCommitted_AS:   32474728 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       84544 kB\nVmallocChunk:          0 kB\nPercpu:             5024 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:    630784 kB\nFilePmdMapped:         0 kB\nCmaTotal:              0 kB\nCmaFree:          461928 kB\nUnaccepted:            0 kB\nBalloon:               0 kB\nGPUActive:        136096 kB\nGPUReclaim:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      520428 kB\nDirectMap2M:    20393984 kB\n",
+  "/proc/loadavg": "0.83 1.19 0.96 2/1624 8\n",
+  "/sys/fs/cgroup/cpuset.cpus.effective": "0-3\n",
+  "frequency_governors": {
+    "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor": "schedutil",
+    "/sys/devices/system/cpu/cpu1/cpufreq/scaling_governor": "schedutil",
+    "/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor": "schedutil",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "schedutil"
+  },
+  "git rev-parse HEAD": "b9e252d5fd59141a41ae73c29585769b066d43d7",
+  "git status --short": "M analysis/code_transformer.py\n M analysis/pattern_classifier.py\n M analysis/static_analyzer.py\n M analysis/strategy_planner.py\n?? analysis/conservative_transform.py\n?? analysis/fixtures/publication_corpus/\n?? docs/monografia/REVISAO_PUBLICACAO.md\n?? docs/publication/\n?? experiments/\n?? results/publication/\n?? scripts/compare_sessions.py\n?? scripts/evaluate_automation_corpus.py\n?? scripts/evaluate_diagnostics.py\n?? scripts/run_diagnostics_mac.sh\n?? scripts/test_automation_corpus.py\n?? scripts/test_compare_sessions.py\n?? scripts/test_diagnostics.py",
+  "git diff": "diff --git a/analysis/code_transformer.py b/analysis/code_transformer.py\nindex a0b55e8..941578b 100644\n--- a/analysis/code_transformer.py\n+++ b/analysis/code_transformer.py\n@@ -4,6 +4,9 @@ import re\n import sys\n from pathlib import Path\n \n+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))\n+from analysis.conservative_transform import certify_kernel\n+\n \n # ============================================================\n # JSON\n@@ -858,6 +861,16 @@ def apply_strategy(\n \n     transformations = []\n \n+    if strategy_type == \"DOALL\":\n+        contract = static_kernel.get(\"direct_transform_contract\", {})\n+        if not strategy.get(\"direct_code_transformation\") or contract.get(\"status\") != \"SUPPORTED\" or contract.get(\"pattern\") != \"DOALL\":\n+            raise RuntimeError(\"DOALL requires the conservative standalone AST contract.\")\n+        index = contract[\"start_line\"] - 1\n+        indentation = leading_whitespace(source_lines[index])\n+        pragma = indentation + \"#pragma omp parallel for schedule(static)\\n\"\n+        source_lines[index:index] = [indentation + \"/* TCC2 AUTO-GENERATED: DOALL */\\n\", pragma]\n+        return [{\"loop_id\": 1, \"start_line\": index + 1, \"pragma\": pragma.strip(), \"contract\": contract}]\n+\n     # --------------------------------------------------------\n     # REDUCTION\n     # --------------------------------------------------------\n@@ -1007,6 +1020,25 @@ def transform(\n         )\n     )\n \n+    # Recheck source bytes with Clang, rather than trusting an editable plan JSON.\n+    from analysis.static_analyzer import extract_loops, find_kernel_functions, run_clang\n+    actual_kernels = find_kernel_functions(run_clang(source_file, []))\n+    if len(actual_kernels) != 1 or actual_kernels[0].get(\"name\") != kernel_name:\n+        raise RuntimeError(\"Standalone transformation requires exactly one matching kernel.\")\n+    actual_contract = certify_kernel(actual_kernels[0], \"\".join(source_lines))\n+    if actual_contract.get(\"status\") != \"SUPPORTED\" or actual_contract.get(\"pattern\") != strategy.get(\"strategy\"):\n+        raise RuntimeError(\"UNSUPPORTED_STANDALONE: \" + actual_contract.get(\"reason\", \"strategy does not match current source\"))\n+    if strategy.get(\"strategy\") == \"REDUCTION\":\n+        reductions = strategy.get(\"reductions\", [])\n+        variable = actual_contract[\"reduction_variable\"]\n+        if len(reductions) != 1 or any(reductions[0].get(key) != value for key, value in {\n+            \"loop_id\": 1, \"variable\": variable, \"operator\": \"+\",\n+            \"openmp_clause\": \"reduction(+:\" + variable + \")\", \"schedule\": \"static\",\n+        }.items()):\n+            raise RuntimeError(\"Reduction plan does not match the current standalone AST contract.\")\n+    static_kernel = dict(static_kernel, direct_transform_contract=actual_contract,\n+                         loops=extract_loops(actual_kernels[0], \"\".join(source_lines)))\n+\n     transformations = apply_strategy(\n         source_lines,\n         static_kernel,\ndiff --git a/analysis/pattern_classifier.py b/analysis/pattern_classifier.py\nindex 27dcead..194f8f9 100644\n--- a/analysis/pattern_classifier.py\n+++ b/analysis/pattern_classifier.py\n@@ -1160,6 +1160,15 @@ def classify_kernel(\n             )\n         )\n \n+        contract = static_kernel.get(\"direct_transform_contract\", {})\n+        if contract.get(\"status\") == \"SUPPORTED\" and contract.get(\"pattern\") == \"DOALL\":\n+            classification = {\n+                \"classification\": \"DOALL_CANDIDATE\", \"family\": pattern_family(\"DOALL_CANDIDATE\"),\n+                \"confidence\": \"conservative_contract\",\n+                \"reason\": \"One injective output write with pure reads and restrict caller preconditions.\",\n+                \"evidence\": {\"standalone_ast_contract\": contract},\n+            }\n+\n         classification[\n             \"loop_id\"\n         ] = loop_id\n@@ -1684,4 +1693,4 @@ def main():\n \n \n if __name__ == \"__main__\":\n-    main()\n\\ No newline at end of file\n+    main()\ndiff --git a/analysis/static_analyzer.py b/analysis/static_analyzer.py\nindex c62f7d4..c9999b7 100644\n--- a/analysis/static_analyzer.py\n+++ b/analysis/static_analyzer.py\n@@ -5,6 +5,9 @@ import subprocess\n import sys\n from pathlib import Path\n \n+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))\n+from analysis.conservative_transform import certify_kernel\n+\n \n # ============================================================\n # CLANG\n@@ -1561,7 +1564,8 @@ def analyze(\n             \"kernels\"\n         ].append({\n             \"name\": name,\n-            \"loops\": loops\n+            \"loops\": loops,\n+            \"direct_transform_contract\": certify_kernel(kernel, source_code),\n         })\n \n     if output_dir is None:\ndiff --git a/analysis/strategy_planner.py b/analysis/strategy_planner.py\nindex c524b20..fa2375d 100644\n--- a/analysis/strategy_planner.py\n+++ b/analysis/strategy_planner.py\n@@ -850,6 +850,14 @@ def plan_kernel(\n                 ),\n         }\n \n+    contract = static_kernel.get(\"direct_transform_contract\", {})\n+    if contract.get(\"status\") == \"SUPPORTED\" and contract.get(\"pattern\") == \"DOALL\":\n+        strategy = {\n+            \"strategy\": \"DOALL\", \"direct_code_transformation\": True,\n+            \"schedule\": \"static\", \"contract\": contract,\n+            \"reason\": \"One injective output write; pure RHS; explicit restrict caller precondition.\",\n+        }\n+\n     return {\n         \"kernel\":\n             pattern_kernel.get(",
+  "git submodule status": "3e872547cef7e5c9909422ef1e6af03cf4e56072 benchmarks/PolyBenchC-4.2.1 (heads/master)\n-fb1c1cca72eaaa660fbfdf8623e79ad2ababbc29 benchmarks/everythingsreduced",
+  "clang --version": "Ubuntu clang version 18.1.3 (1ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/bin",
+  "clang++ --version": "Ubuntu clang version 18.1.3 (1ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/bin",
+  "uname -a": "Linux liswsz220-01-HP-Z220-CMT-BR-Workstation 7.0.0-42-generic #42~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Mon Oct 19 14:43:01 UTC 2 x86_64 x86_64 x86_64 GNU/Linux",
+  "lscpu": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           36 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  4\nOn-line CPU(s) list:                     0-3\nVendor ID:                               GenuineIntel\nModel name:                              Intel(R) Xeon(R) CPU E3-1225 V2 @ 3.20GHz\nCPU family:                              6\nModel:                                   58\nThread(s) per core:                      1\nCore(s) per socket:                      4\nSocket(s):                               1\nStepping:                                9\nCPU(s) scaling MHz:                      95%\nCPU max MHz:                             3600.0000\nCPU min MHz:                             1600.0000\nBogoMIPS:                                6385.38\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm cpuid_fault epb pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid fsgsbase smep erms xsaveopt dtherm ida arat pln pts vnmi md_clear flush_l1d\nVirtualization:                          VT-x\nL1d cache:                               128 KiB (4 instances)\nL1i cache:                               128 KiB (4 instances)\nL2 cache:                                1 MiB (4 instances)\nL3 cache:                                8 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-3\nVulnerability Gather data sampling:      Not affected\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             KVM: Mitigation: Split huge pages\nVulnerability L1tf:                      Mitigation; PTE Inversion; VMX conditional cache flushes, SMT disabled\nVulnerability Mds:                       Mitigation; Clear CPU buffers; SMT disabled\nVulnerability Meltdown:                  Mitigation; PTI\nVulnerability Mmio stale data:           Not affected\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Not affected\nVulnerability Spec rstack overflow:      Not affected\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; IBRS_FW; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                     Vulnerable: No microcode\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Mitigation; IBPB before exit to userspace",
+  "free -h": "total        used        free      shared  buff/cache   available\nMem:            19Gi       8.5Gi       2.8Gi       555Mi       8.4Gi        11Gi\nSwap:          8.0Gi       364Ki       8.0Gi",
+  "uptime": "15:57:47 up  5:29,  1 user,  load average: 0.83, 1.19, 0.96"
+}

@@ -1,0 +1,50 @@
+{
+  "version": "0.2",
+  "source_log": "results/mac_m5_2026-09-10/performance/nussinov/diagnostics/vectorization.txt",
+  "filter_mode": "function",
+  "function_filter": {
+    "name": "kernel_nussinov",
+    "source_ranges": [
+      {
+        "diagnostic_source": "kernels/nussinov/manual_openmp.c",
+        "resolved_source": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/kernels/nussinov/manual_openmp.c",
+        "start": 106,
+        "end": 222
+      }
+    ]
+  },
+  "line_filter": {
+    "start": null,
+    "end": null
+  },
+  "dominant_event": "VECTORIZATION_BLOCKED_MEMORY_DEPENDENCE",
+  "event_counts": {
+    "VECTORIZATION_BLOCKED_MEMORY_DEPENDENCE": 1,
+    "VECTORIZATION_NOT_APPLIED": 1
+  },
+  "candidate_strategy_queue": [
+    "SCALAR_ACCUMULATOR",
+    "LOOP_RESTRUCTURE"
+  ],
+  "events": [
+    {
+      "source": "kernels/nussinov/manual_openmp.c",
+      "line": 199,
+      "column": 33,
+      "event": "VECTORIZATION_BLOCKED_MEMORY_DEPENDENCE",
+      "message": "loop not vectorized: unsafe dependent memory operations in loop. Use #pragma clang loop distribute(enable) to allow loop distribution to attempt to isolate the offending operations into a separate loop",
+      "candidate_strategies": [
+        "SCALAR_ACCUMULATOR",
+        "LOOP_RESTRUCTURE"
+      ]
+    },
+    {
+      "source": "kernels/nussinov/manual_openmp.c",
+      "line": 197,
+      "column": 17,
+      "event": "VECTORIZATION_NOT_APPLIED",
+      "message": "loop not vectorized [-Rpass-missed=loop-vectorize]",
+      "candidate_strategies": []
+    }
+  ]
+}

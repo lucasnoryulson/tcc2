@@ -119,12 +119,14 @@ def kernel_figures(analysis, directory):
         plt.close(fig)
 
 
-def fill_cover(template, target):
+def fill_cover(template, target,
+               title='SISTEMAS MULTIAGENTES PARA REESTRUTURAÇÃO AUTÔNOMA DE CÓDIGOS: ',
+               subtitle='Análise de dependências, paralelização OpenMP e coordenação baseada em evidências'):
     from lxml import etree as ET
     replacements = {'ESCOLA': 'ESCOLA POLITÉCNICA', 'CURSO ': 'CURSO DE CIÊNCIA DA COMPUTAÇÃO',
                     'NOME DO AUTOR EM MAIÚSCULAS': 'LUCAS NORY ULSON',
-                    'TÍTULO EM MAIÚSCULAS E NEGRITO: ': 'SISTEMAS MULTIAGENTES PARA REESTRUTURAÇÃO AUTÔNOMA DE CÓDIGOS: ',
-                    'SUBTÍTULO DO TRABALHO SEM NEGRITO': 'Análise de dependências, paralelização OpenMP e coordenação baseada em evidências',
+                    'TÍTULO EM MAIÚSCULAS E NEGRITO: ': title,
+                    'SUBTÍTULO DO TRABALHO SEM NEGRITO': subtitle,
                     'Ano': '2026'}
     with ZipFile(template) as src, ZipFile(target, 'w') as dst:
         for item in src.infolist():
@@ -138,7 +140,7 @@ def fill_cover(template, target):
             dst.writestr(item, data)
 
 
-def format_word(source, target):
+def format_word(source, target, revision='Revisão multiplataforma — 05/11/2026'):
     from docx import Document
     from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
     from docx.enum.style import WD_STYLE_TYPE
@@ -189,7 +191,7 @@ def format_word(source, target):
             for cell in row.cells:
                 cell.width = Cm(16/len(table.columns))
     footer = section.footer.paragraphs[0]
-    footer.text = 'Revisão multiplataforma — 05/11/2026 — '
+    footer.text = revision + ' — '
     field = OxmlElement('w:fldSimple')
     from docx.oxml.ns import qn
     field.set(qn('w:instr'), 'PAGE')
@@ -229,7 +231,7 @@ def format_word(source, target):
     return dict(tables=len(reopened.tables), images=len(reopened.inline_shapes), paragraphs=len(reopened.paragraphs))
 
 
-def pdf_export(source, target):
+def pdf_export(source, target, consolidated=False):
     from html import escape
     from reportlab.lib import colors
     from reportlab.lib.pagesizes import A4
@@ -264,14 +266,14 @@ def pdf_export(source, target):
         def afterFlowable(self, flowable):
             if isinstance(flowable, Paragraph) and flowable.style.name.startswith('ReviewH'):
                 title = flowable.getPlainText()
-                if re.match(r'^\d+\.', title) or title.startswith(('Referências', 'Apêndice')):
+                if re.match(r'^\d+\.', title) or title.startswith(('Referências', 'Apêndice')) or (consolidated and re.match(r'^[A-Z]\.\d+\.', title)):
                     level = max(0, int(flowable.style.name[-1]) - 2)
                     key = hashlib.sha256(title.encode()).hexdigest()[:16]
                     self.canv.bookmarkPage(key)
                     self.notify('TOCEntry', (level, title, self.page, key))
 
     document = ReviewPDF(str(target), pagesize=A4, leftMargin=3*cm, rightMargin=2*cm,
-                                 topMargin=3*cm, bottomMargin=2*cm, title='Revisão multiplataforma TCC2', author='Lucas Nory Ulson')
+                                 topMargin=3*cm, bottomMargin=2*cm, title=plain(source.read_text().splitlines()[0].lstrip('# ')), author='Lucas Nory Ulson')
     story = []
     figure_number = 0
     lines = source.read_text().splitlines()
@@ -293,10 +295,13 @@ def pdf_export(source, target):
                 raise ValueError('Unclosed PDF code block')
             story.append(Preformatted('\n'.join(block), code, maxLineLength=100))
         elif heading:
+            if consolidated and heading[2] == 'Abstract':
+                story.append(PageBreak())
             if heading[2].startswith('1. Introdução'):
                 toc = TableOfContents()
-                toc.levelStyles = [ParagraphStyle(f'TOC{i}', fontName=serif, fontSize=10, leading=14,
-                                                   leftIndent=i*12, firstLineIndent=0, spaceBefore=3) for i in range(3)]
+                toc.levelStyles = [ParagraphStyle(f'TOC{i}', fontName=serif, fontSize=9.5 if consolidated else 10,
+                                                   leading=12 if consolidated else 14, leftIndent=i*12,
+                                                   firstLineIndent=0, spaceBefore=1 if consolidated else 3) for i in range(3)]
                 story += [PageBreak(), Paragraph('SUMÁRIO', headings[2]), toc, PageBreak()]
             story.append(Paragraph(escape(plain(heading[2])), headings[len(heading[1])]))
         elif image:

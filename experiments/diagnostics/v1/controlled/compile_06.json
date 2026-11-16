@@ -1,0 +1,11 @@
+{
+  "command": [
+    "clang",
+    "-fthis-option-does-not-exist-tcc2",
+    "-fsyntax-only",
+    "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/dot_product.c"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "clang: error: unknown argument: '-fthis-option-does-not-exist-tcc2'\n"
+}

@@ -5,6 +5,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from analysis.conservative_transform import certify_kernel
+
 
 # ============================================================
 # CLANG
@@ -1449,9 +1452,7 @@ def analyze(
     )
 
     source_code = (
-        source.read_text(
-            errors="replace"
-        )
+        source.read_bytes().decode("utf-8", errors="replace")
     )
 
     ast = run_clang(
@@ -1561,7 +1562,8 @@ def analyze(
             "kernels"
         ].append({
             "name": name,
-            "loops": loops
+            "loops": loops,
+            "direct_transform_contract": certify_kernel(kernel, source_code),
         })
 
     if output_dir is None:

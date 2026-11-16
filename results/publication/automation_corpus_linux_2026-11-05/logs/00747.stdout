@@ -1,0 +1,21 @@
+==================================
+TCC2 DEPENDENCE ANALYZER v0.3
+==================================
+Input: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/inplace_neighbor/analysis/case_inplace_neighbor_analysis.json
+
+Kernel: kernel_case
+
+  Loop #1
+    Iterator: i
+    Dependence candidates: 1
+
+      WRITE: Y[i]
+      READ:  Y[i+1]
+      Relation: shifted_access
+      Offset: [+1]
+      Carried by: i
+
+
+==================================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/inplace_neighbor/analysis/case_inplace_neighbor_dependences.json
+==================================

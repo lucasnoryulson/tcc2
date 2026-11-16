@@ -93,6 +93,10 @@ class ScalingTests(unittest.TestCase):
                                       datasets=['MINI'], repetitions=2, seed=2026, timeout=30)
             # GCC needs an explicit C++ standard library when invoked by its C driver.
             args.cxx = 'g++' if 'gcc' in Path(compiler).name else compiler
+            # Preserve the clang++ driver name: resolving its symlink to clang
+            # loses automatic C++ standard-library linkage on macOS.
+            if 'clang' in Path(compiler).name:
+                args.cxx = str(Path(compiler).with_name('clang++'))
             execute(args)
             report = json.loads((args.output / 'report.json').read_text())
             self.assertEqual(report['status'], 'COMPLETE')

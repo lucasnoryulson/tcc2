@@ -1,0 +1,36 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.2",
+  "model": "llama3.1:8b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 4,
+    "recommended_configuration": {
+      "threads": 4
+    },
+    "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ]
+  },
+  "evidence": {
+    "context": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/context.json",
+      "sha256": "af2170672efce9dfcc3e3300231ebdd03ff0ea2552d7b766cdc07610104e943a"
+    },
+    "candidate_id": "sha256:f57214c8bca1d760120d18a2b1b6566faa63fe825003d498542d61b7c2ee8942",
+    "campaign_id": "58a6cd3c2ac34ab3a8d0da0ef6e7e7de"
+  },
+  "llm_metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 11129387375,
+    "load_duration": 2353809708,
+    "prompt_eval_count": 2050,
+    "eval_count": 120,
+    "done_reason": "stop"
+  }
+}

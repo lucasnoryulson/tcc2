@@ -1,0 +1,30 @@
+{
+  "status": "VERIFIED_ARCHIVE",
+  "campaign": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/multiplatform/mac_m5_2026-11-16_p15w3_session02",
+  "analyzer_sha256": "37ebb1272e4aaebe93e24727d4e0d8e3496540248b681770e2e5f96ca0e4f0c7",
+  "report_sha256": "85cf7b74934d3eb62fad97777f06eec59d9a376a880db39b91754869961b2512",
+  "commands_sha256": "70975d5689c282094bf6d56366b8a4d1fe6730ac13bdafd5fbd8eb1a8d07f1e3",
+  "raw_samples_sha256": "714698d944e3ca7d192a405547b1b3ad97ea5ff9707484083eb48b0928b6015e",
+  "configurations": 108,
+  "measurements": 1620,
+  "plots": {
+    "matplotlib": "3.11.2",
+    "files": [
+      "median_seconds.png",
+      "median_seconds.svg",
+      "median_seconds.pdf",
+      "speedup_total.png",
+      "speedup_total.svg",
+      "speedup_total.pdf",
+      "speedup_parallel.png",
+      "speedup_parallel.svg",
+      "speedup_parallel.pdf",
+      "efficiency_parallel.png",
+      "efficiency_parallel.svg",
+      "efficiency_parallel.pdf",
+      "recommended_configuration.png",
+      "recommended_configuration.svg",
+      "recommended_configuration.pdf"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+=================================
+TCC2 STRATEGY PLANNER v0.1
+=================================
+Static:   /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/vector_sum/analysis/case_vector_sum_analysis.json
+Patterns: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/vector_sum/analysis/case_vector_sum_patterns.json
+
+Kernel: kernel_case
+Pattern: REDUCTION_CANDIDATE
+Family: REDUCE / AGGREGATION
+Classification confidence: medium
+Strategy: REDUCTION
+
+{
+  "strategy": "REDUCTION",
+  "reductions": [
+    {
+      "loop_id": 1,
+      "iterator": "i",
+      "reduction_type": "scalar",
+      "variable": "sum",
+      "operator": "+",
+      "openmp_construct": "parallel for",
+      "openmp_clause": "reduction(+:sum)",
+      "schedule": "static",
+      "direct_code_transformation": true
+    }
+  ]
+}
+
+=================================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/cases/vector_sum/analysis/case_vector_sum_strategy.json
+=================================

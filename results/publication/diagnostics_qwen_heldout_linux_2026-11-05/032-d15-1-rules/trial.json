@@ -1,0 +1,41 @@
+{
+  "case_id": "d15",
+  "family": "gemm",
+  "origin": "controlled_evidence_omission",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "rules",
+  "status": "OK",
+  "metadata": {},
+  "prompt_sha256": "8df7bceba948a12429694177ff99597ef00aa4d3f6c9c87521be7ee4f1f3bd5f",
+  "analysis_available": false,
+  "ablation_effective": null,
+  "llm_calls": 0,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 0.00011142199946334586,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": true,
+  "cause_action_correct": true,
+  "abstain": true,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": true,
+  "unsupported_claims": 0,
+  "claims_count": 1,
+  "output": {
+    "cause": "INSUFFICIENT_EVIDENCE",
+    "action": "MEASURE_MORE",
+    "abstain": true,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "question",
+        "value": "gain"
+      }
+    ]
+  },
+  "raw_response_sha256": "6617a3b9561bf68154dddd384abedfb926fa98bb258001abbbf29a6ba73614c7"
+}

@@ -1,0 +1,64 @@
+=================================
+Autotuning Selector v0.1 regression: PASS
+4/4 cases behaved as expected.
+=================================
+===== COORDINATOR v0.2 EDGE TESTS =====
+
+-------------------------------------
+ACCEPT_GOOD
+-------------------------------------
+Decision: ACCEPT
+Recommended threads: 4
+Recommended configuration: {'block_size': 64, 'threads': 4}
+Validation: PASS
+
+-------------------------------------
+REJECT_NULL_THREADS
+-------------------------------------
+Decision: REJECT
+Recommended threads: None
+Recommended configuration: None
+Validation: PASS
+
+-------------------------------------
+MODIFY_NULL_THREADS
+-------------------------------------
+Decision: MODIFY
+Recommended threads: None
+Recommended configuration: None
+Validation: PASS
+
+-------------------------------------
+ACCEPT_CONFLICT
+-------------------------------------
+Decision: ACCEPT
+Recommended threads: 10
+Recommended configuration: {'block_size': 64, 'threads': 4}
+Validation: FAIL
+  - recommended_threads was not present in measured configurations
+  - recommended_configuration.threads must match recommended_threads
+=================================
+Coordinator v0.2 regression: PASS
+7/7 cases behaved as expected.
+=================================
+dot 1024: block 1/2
+dot 1024: block 2/2
+dot-auto 1024: block 1/2
+dot-auto 1024: block 2/2
+1/1 d01 rules: OK
+1/3 d01 coordinator: TIMEOUT
+2/3 d01 coordinator_without_analysis: NOT_RUN
+3/3 d01 rules: OK
+/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/scripts/evaluate_automation_corpus.py:157: ResourceWarning: unclosed file <_io.TextIOWrapper name='/private/var/folders/n0/cm5sdc490fg07wd9nkbqh3280000gn/T/tmph3756thk/samples.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader((directory / filename).open()))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/scripts/evaluate_automation_corpus.py:157: ResourceWarning: unclosed file <_io.TextIOWrapper name='/private/var/folders/n0/cm5sdc490fg07wd9nkbqh3280000gn/T/tmph3756thk/warmups.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader((directory / filename).open()))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/scripts/evaluate_automation_corpus.py:178: ResourceWarning: unclosed file <_io.TextIOWrapper name='/private/var/folders/n0/cm5sdc490fg07wd9nkbqh3280000gn/T/tmph3756thk/summary.csv' mode='r' encoding='utf-8'>
+  stored = list(csv.DictReader((directory / 'summary.csv').open()))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+----------------------------------------------------------------------
+Ran 129 tests in 31.174s
+
+OK

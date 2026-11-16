@@ -1,0 +1,78 @@
+{
+  "recorded_utc": "2026-11-16T14:50:03.627033+00:00",
+  "observations": [
+    {
+      "command": [
+        "/usr/sbin/sysctl",
+        "hw.model",
+        "hw.memsize",
+        "hw.physicalcpu",
+        "hw.logicalcpu",
+        "hw.perflevel0.physicalcpu",
+        "hw.perflevel1.physicalcpu",
+        "machdep.cpu.brand_string"
+      ],
+      "invocation": 1,
+      "stdout": "hw.model: Mac17,2\nhw.memsize: 17179869184\nhw.physicalcpu: 10\nhw.logicalcpu: 10\nhw.perflevel0.physicalcpu: 4\nhw.perflevel1.physicalcpu: 6\nmachdep.cpu.brand_string: Apple M5\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "xcode-select",
+        "-p"
+      ],
+      "invocation": 2,
+      "stdout": "/Library/Developer/CommandLineTools\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "xcrun",
+        "xctrace",
+        "list",
+        "templates"
+      ],
+      "invocation": 3,
+      "stdout": "",
+      "stderr": "xcrun: error: unable to find utility \"xctrace\", not a developer tool or in PATH\n"
+    },
+    {
+      "command": [
+        "sw_vers"
+      ],
+      "invocation": 4,
+      "stdout": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "pmset",
+        "-g",
+        "batt"
+      ],
+      "invocation": 5,
+      "stdout": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=34734179)\t12%; discharging; (no estimate) present: true\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "pmset",
+        "-g",
+        "therm"
+      ],
+      "invocation": 6,
+      "stdout": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ollama",
+        "--version"
+      ],
+      "invocation": 7,
+      "stdout": "ollama version is 0.34.0\n",
+      "stderr": ""
+    }
+  ],
+  "caveat": "Availability and point-in-time observations; no thermal/frequency control or hardware-counter measurement"
+}

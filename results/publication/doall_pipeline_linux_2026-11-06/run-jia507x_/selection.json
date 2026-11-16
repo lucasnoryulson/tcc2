@@ -1,0 +1,75 @@
+{
+  "status": "SELECTED",
+  "decision": "FASTEST_CONFIGURATION",
+  "parallel_status": "PARALLEL_SUCCESS",
+  "sequential": {
+    "mode": "sequential",
+    "threads": 1,
+    "median_seconds": 0.002194899250025628,
+    "mean_seconds": 0.002159938010008773,
+    "speedup": 1.0,
+    "efficiency": 1.0
+  },
+  "one_thread": {
+    "mode": "openmp",
+    "threads": 1,
+    "median_seconds": 0.0019166684003721457,
+    "mean_seconds": 0.0019523558102082462,
+    "speedup": 1.145163790251595,
+    "efficiency": 1.145163790251595
+  },
+  "best_parallel": {
+    "mode": "openmp",
+    "threads": 2,
+    "median_seconds": 0.0017960581499210093,
+    "mean_seconds": 0.0017973813202115706,
+    "speedup": 1.2220646921271228,
+    "efficiency": 0.6110323460635614
+  },
+  "transformation_benefit": true,
+  "parallel_benefit": true,
+  "transformation_speedup": 1.145163790251595,
+  "parallel_scaling_speedup": 1.0671527536324148,
+  "parallel_scaling_efficiency": 0.5335763768162074,
+  "end_to_end_speedup": 1.2220646921271228,
+  "runtime_reduction": 0.18171271419403956,
+  "raw_fastest": {
+    "mode": "openmp",
+    "threads": 2,
+    "median_seconds": 0.0017960581499210093,
+    "mean_seconds": 0.0017973813202115706,
+    "speedup": 1.2220646921271228,
+    "efficiency": 0.6110323460635614
+  },
+  "near_tie_threshold": 0.02,
+  "near_tie_candidates": [
+    {
+      "mode": "openmp",
+      "threads": 2,
+      "median_seconds": 0.0017960581499210093,
+      "mean_seconds": 0.0017973813202115706,
+      "speedup": 1.2220646921271228,
+      "efficiency": 0.6110323460635614,
+      "slowdown_vs_fastest": 0.0
+    }
+  ],
+  "recommended": {
+    "mode": "openmp",
+    "threads": 2,
+    "median_seconds": 0.0017960581499210093,
+    "mean_seconds": 0.0017973813202115706,
+    "speedup": 1.2220646921271228,
+    "efficiency": 0.6110323460635614,
+    "slowdown_vs_fastest": 0.0
+  },
+  "next_action": "PROMOTE_CANDIDATE",
+  "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+  "evidence": {
+    "performance_report": {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance.json",
+      "sha256": "0219818a8424b7255927b642bc9a23cebaad37fcd2b840bb7a383e135278a9db"
+    },
+    "campaign_id": "046203dc164540c79f4dc0423415c6e0",
+    "candidate_id": "sha256:25ab2f308e68ad59cb6fca3a42f3a4a30a97c3a4a63468ac8f868f6c3f3c6243"
+  }
+}

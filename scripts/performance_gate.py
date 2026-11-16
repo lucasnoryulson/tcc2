@@ -3,6 +3,7 @@ import csv
 import json
 import math
 import os
+import random
 import statistics
 import subprocess
 import sys
@@ -13,6 +14,7 @@ from analysis.artifact_provenance import (
     COMPILE_FLAGS, OPENMP_ENVIRONMENT, capture_run, file_record,
     load_correctness_report, measured_rows, verify_file, verify_provenance,
 )
+from scripts.process_timing import run_timed
 
 DEFAULT_COMPILER = "clang"
 
@@ -31,8 +33,9 @@ def run_command(
     command,
     environment=None
 ):
-    return subprocess.run(
+    return run_timed(
         command,
+        origin="performance_gate",
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
@@ -164,7 +167,10 @@ def benchmark(
 
 
 def run_gate(sequential_source, candidate_source, driver, build_dir, compiler,
-             counts, correctness_file, csv_file):
+             counts, correctness_file, csv_file, repetitions=EXTERNAL_REPEATS, warmups=0, seed=2026):
+    if (type(repetitions) is not int or repetitions < 1
+        or type(warmups) is not int or warmups < 0 or type(seed) is not int):
+        raise ValueError('Positive integer repetitions, nonnegative integer warmups and integer seed required.')
     if not counts or any(type(count) is not int or count < 1 for count in counts) or len(set(counts)) != len(counts):
         raise ValueError("Thread counts must be distinct positive integers.")
     correctness, correctness_ref = load_correctness_report(
@@ -186,7 +192,8 @@ def run_gate(sequential_source, candidate_source, driver, build_dir, compiler,
     report = {
         "schema": "tcc2-performance-gate", "version": "0.1", "status": "FAIL",
         "provenance": provenance, "correctness_report": file_record(frozen_correctness),
-        "thread_counts": counts, "repetitions": EXTERNAL_REPEATS,
+        "thread_counts": counts, "repetitions": repetitions,
+        "warmups": warmups, "seed": seed, "measurement_order": [],
         "configuration_dimensions": ["threads"],
         "compilation": {}, "binaries": {}, "measurements": [],
     }
@@ -207,13 +214,22 @@ def run_gate(sequential_source, candidate_source, driver, build_dir, compiler,
             return report
         report["binaries"][name] = file_record(binary)
 
-    print("Sequential benchmark:")
-    result = benchmark(Path(report["binaries"]["sequential"]["path"]))
-    report["measurements"].append({"mode": "sequential", "threads": 1, "times": result["times"]})
-    for count in counts:
-        print(f"OpenMP benchmark ({count} thread(s)):")
-        result = benchmark(Path(report["binaries"]["candidate"]["path"]), count)
-        report["measurements"].append({"mode": "openmp", "threads": count, "times": result["times"]})
+    configurations = [('sequential', 1), *[('openmp', count) for count in counts]]
+    samples = {key: [] for key in configurations}
+    rng = random.Random(seed)
+    for stage, rounds in [('warmup', warmups), ('measurement', repetitions)]:
+        for repeat in range(1, rounds + 1):
+            order = configurations[:]
+            rng.shuffle(order)
+            for mode, count in order:
+                name = 'sequential' if mode == 'sequential' else 'candidate'
+                value = execute(Path(report['binaries'][name]['path']), None if mode == 'sequential' else count)
+                report['measurement_order'].append(dict(stage=stage, repeat=repeat, mode=mode, threads=count, seconds=value))
+                if stage == 'measurement':
+                    samples[mode, count].append(value)
+                print(f'{stage} {repeat}: {mode} {count}T {value:.9f} s')
+    report['measurements'] = [dict(mode=mode, threads=count, times=samples[mode, count])
+                              for mode, count in configurations]
 
     verify_provenance(provenance)
     verify_provenance(correctness["provenance"])
@@ -243,6 +259,9 @@ def main():
     parser.add_argument("--correctness", required=True, type=Path,
                         help="Passing correctness report covering all benchmark threads.")
     parser.add_argument("--compiler", default=DEFAULT_COMPILER)
+    parser.add_argument('--repetitions', type=int, default=EXTERNAL_REPEATS)
+    parser.add_argument('--warmups', type=int, default=0)
+    parser.add_argument('--seed', type=int, default=2026)
     parser.add_argument("--build-dir", type=Path, default=Path("build/performance_gate"))
     parser.add_argument("--csv", type=Path, default=Path("results/dot/auto_generated_performance.csv"))
     parser.add_argument("--output", type=Path,
@@ -261,7 +280,7 @@ def main():
         report = run_gate(
             args.sequential.resolve(), args.candidate.resolve(), args.driver.resolve(),
             args.build_dir.resolve(), args.compiler, THREAD_COUNTS,
-            args.correctness.resolve(), args.csv,
+            args.correctness.resolve(), args.csv, args.repetitions, args.warmups, args.seed,
         )
     except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
         report["reason"] = str(error)

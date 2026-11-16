@@ -1,0 +1,2 @@
+/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/inner_product.c:4:23: optimized: loop vectorized using 16 byte vectors
+/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/inner_product.c:4:23: optimized: loop turned into non-loop; it never loops

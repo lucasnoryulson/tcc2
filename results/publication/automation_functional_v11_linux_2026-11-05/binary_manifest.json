@@ -1,0 +1,114 @@
+[
+  {
+    "path": "cases/affine_vector/original.o",
+    "sha256": "e8f4ae64cf4c719fcb37158125cde238c39ed4c4076334865364c7cbff10428a"
+  },
+  {
+    "path": "cases/vector_product/original.o",
+    "sha256": "22fa69be13117e617e1d62ff1048e854615f522456178a81fbdddcc42fb2443a"
+  },
+  {
+    "path": "cases/polynomial/original.o",
+    "sha256": "99c998106c91b18e3f4d2f08468b0dcab42c31edad90cbff4fa033a7a8592c5f"
+  },
+  {
+    "path": "cases/absolute_difference/original.o",
+    "sha256": "e59470291346810a3e8d39251d3321fb65a4cae7135464fb645d0878bf966f86"
+  },
+  {
+    "path": "cases/threshold_filter/original.o",
+    "sha256": "6294a0c68264aa7fce7d6632453eac5058e9eebbbd0ad72a72ccfe4d8e1952c0"
+  },
+  {
+    "path": "cases/clamp/original.o",
+    "sha256": "1bf9a3ed853bf7739623681fec01168fea5a95878f03b3b1bfacdb7b5f32344d"
+  },
+  {
+    "path": "cases/readonly_stencil/original.o",
+    "sha256": "ee2a278309e192c9620c4a81cde808609b0d147a5915ec28e22c745af924e11f"
+  },
+  {
+    "path": "cases/reciprocal_quadratic/original.o",
+    "sha256": "91d07a932947e112b63368e9e39cc27b0a7ae1eb065010931345cf1e5a86295b"
+  },
+  {
+    "path": "cases/vector_sum/original.o",
+    "sha256": "d1edd25718950c6b80c4fe8959ed019c7224597c01f3c21e1a0c48e90ad0d923"
+  },
+  {
+    "path": "cases/sum_squares/original.o",
+    "sha256": "97c4fd3c76da4a8936b7725f7949d17a3593d1031776efad53a3ac96250e25e1"
+  },
+  {
+    "path": "cases/inner_product/original.o",
+    "sha256": "11b381347ee121679718a3e4769453b8c20999c2a3c68d29297dacdfd8e2047a"
+  },
+  {
+    "path": "cases/l1_norm/original.o",
+    "sha256": "7b19367c03675b6f9dae7c0f6b079537bca8d27183d4b8c262536c50f77b93d8"
+  },
+  {
+    "path": "cases/squared_distance/original.o",
+    "sha256": "939df566890d0dcaa5b876ef2fdc104b5a2f9af58efa5209e2f22fd39dc44580"
+  },
+  {
+    "path": "cases/count_comparison/original.o",
+    "sha256": "d1abcc1f30a88db97dc73984fba826fcd069b840d6969fd72848d8ecd6a7ea84"
+  },
+  {
+    "path": "cases/prefix_dependency/original.o",
+    "sha256": "4851f586db3f87739f1fe9459ac195e1a04b257bbc3c1aba9cc56d52c39ad4b7"
+  },
+  {
+    "path": "cases/inplace_neighbor/original.o",
+    "sha256": "0e5c36e19e67199c3f73e022ab3e7216170996843de2422c95d399540c087f99"
+  },
+  {
+    "path": "cases/scatter_permutation/original.o",
+    "sha256": "854418e64e833aef147c0cf71b67408c0cbd0adec01ceda081a154b8f644fedb"
+  },
+  {
+    "path": "cases/missing_restrict/original.o",
+    "sha256": "0691157de3bdd7d4920a51b4325a40458d9e57afbb4a728c79b12fba05e8c15e"
+  },
+  {
+    "path": "cases/mutable_input/original.o",
+    "sha256": "de07eca41c03e6402ca2f2ebe6e39033f1f157b4fa191da44fc882a85c6df5d8"
+  },
+  {
+    "path": "cases/stride_two/original.o",
+    "sha256": "c2e070e6230972b5a805bdc6ef7226a71bf0b2257fd210312383233777b4fd8e"
+  },
+  {
+    "path": "cases/early_exit/original.o",
+    "sha256": "b38460106190b39582e0eb8907dd0f29a3bc444a67a1cfee0aacec6cc17387b9"
+  },
+  {
+    "path": "cases/multiple_writes/original.o",
+    "sha256": "1c69f9ce1abede01efce3139f6b3169cebf4b0c30bcf59805c90a7040771007f"
+  },
+  {
+    "path": "cases/helper_call/original.o",
+    "sha256": "fbc70267b442204cf0ea1ce852fd9b8242495816689fa57f92324658fc32dbe1"
+  },
+  {
+    "path": "cases/nested_loop/original.o",
+    "sha256": "a797bb567e3227ced5dbdc051861320a7cf03287984834cff38f17a4121d85ee"
+  },
+  {
+    "path": "cases/global_side_effect/original.o",
+    "sha256": "db50a5a53de766aa1daf6ef8486bf6aacf4a7cb8aa6e73eed90015316956f295"
+  },
+  {
+    "path": "cases/indirect_read_index/original.o",
+    "sha256": "0200bf1027af73f8df4833156c23942c5c64b0274b98da3603c8661cb6a41343"
+  },
+  {
+    "path": "cases/self_referential_reduction/original.o",
+    "sha256": "3f0d5c67743b840c70bb429527ba1b9f5c7a7f45388b279ec283e7b0499d747f"
+  },
+  {
+    "path": "cases/reduction_with_store/original.o",
+    "sha256": "ba1afb1fa43a47d63d64d62a85956fffa58b8e1bf479da583848849735c79326"
+  }
+]

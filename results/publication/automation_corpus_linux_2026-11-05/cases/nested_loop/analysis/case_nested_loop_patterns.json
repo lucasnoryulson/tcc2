@@ -1,0 +1,46 @@
+{
+  "version": "0.6",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/nested_loop.c",
+  "kernels": [
+    {
+      "name": "kernel_case",
+      "classification": "REDUCTION_CANDIDATE",
+      "family": "REDUCE / AGGREGATION",
+      "confidence": "medium",
+      "reason": "At least one loop contains a reduction update.",
+      "loops": [
+        {
+          "classification": "NO_DIRECT_EVIDENCE",
+          "family": "UNKNOWN",
+          "confidence": "low",
+          "reason": "No direct READ/WRITE dependence candidate was associated with this loop level.",
+          "evidence": {},
+          "loop_id": 1,
+          "iterator": "i"
+        },
+        {
+          "classification": "REDUCTION_CANDIDATE",
+          "family": "REDUCE / AGGREGATION",
+          "confidence": "medium",
+          "reason": "The loop repeatedly updates the same array element while the current iterator does not participate in the written index.",
+          "evidence": {
+            "reduction_type": "array_element",
+            "updates": [
+              {
+                "type": "array_element",
+                "write": "Y[i]",
+                "iterator": "j",
+                "iterator_in_write": false,
+                "operators": [
+                  "+="
+                ]
+              }
+            ]
+          },
+          "loop_id": 2,
+          "iterator": "j"
+        }
+      ]
+    }
+  ]
+}

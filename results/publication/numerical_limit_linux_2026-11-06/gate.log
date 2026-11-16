@@ -1,0 +1,23 @@
+=================================
+TCC2 COMPILE + CORRECTNESS GATE
+=================================
+Sequential: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/numerical_limit_linux_2026-11-06/original.c
+Candidate:  /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/numerical_limit_linux_2026-11-06/candidate.c
+Driver:     /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/numerical_limit_linux_2026-11-06/driver.c
+Compiler:   gcc
+Threads:    [1, 2]
+
+sequential compilation:
+  Command:
+  /usr/bin/x86_64-linux-gnu-gcc-13 -O3 /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/numerical_limit_linux_2026-11-06/build/eeeda5a3518348db9a4cf0ba40676b35/driver/driver.c /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/numerical_limit_linux_2026-11-06/build/eeeda5a3518348db9a4cf0ba40676b35/sequential/original.c -lm -o /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/numerical_limit_linux_2026-11-06/build/eeeda5a3518348db9a4cf0ba40676b35/dot_gate_sequential
+  Status: COMPILE_SUCCESS
+
+candidate compilation:
+  Command:
+  /usr/bin/x86_64-linux-gnu-gcc-13 -O3 -fopenmp /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/numerical_limit_linux_2026-11-06/build/eeeda5a3518348db9a4cf0ba40676b35/driver/driver.c /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/numerical_limit_linux_2026-11-06/build/eeeda5a3518348db9a4cf0ba40676b35/candidate/candidate.c -lm -o /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/numerical_limit_linux_2026-11-06/build/eeeda5a3518348db9a4cf0ba40676b35/dot_gate_candidate
+  Status: COMPILE_SUCCESS
+Threads: 1; sequential: 0; candidate: 0
+Absolute error: 0.000000000000e+00; relative error: 0.000000000000e+00
+Tolerances: relative=1e-09; absolute=1e-12
+Expected finite zero for the sequential summation order.
+GATE RESULT: FAIL

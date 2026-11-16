@@ -1,0 +1,24 @@
+==============================
+TCC2 STATIC ANALYZER v0.2
+==============================
+Source: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/stride_two.c
+
+Kernel: kernel_case
+Loops encontrados: 1
+
+Loop #1
+  Depth: 0
+  Lines: 3 - 6
+  Iterator: i
+  Init: int i = 0
+  Condition: i < n
+  Increment: i += 2
+  READS:
+    A[i]
+  WRITES:
+    Y[i]
+  Operators: =, *
+
+==============================
+JSON salvo em: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v11_linux_2026-11-05/cases/stride_two/analysis/case_stride_two_analysis.json
+==============================

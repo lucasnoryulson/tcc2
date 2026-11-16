@@ -1,0 +1,458 @@
+{
+  "status": "COMPLETE",
+  "source_campaign": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/results/multiplatform/mac_m5_2026-11-16_p15w3_session01",
+  "sources": [
+    {
+      "original_sha256": "6fffb08701042e8d10cbe87c2aa933ad7612576e5b1c0175bf9c000ae398420d",
+      "instrumented": "sources/nussinov_profile.c",
+      "sha256": "ca9f30daea3e0bc82de373eff255d38d8030a12356f2c6b0888a856b497865d7"
+    },
+    {
+      "original_sha256": "3f6edf61627122cd553e6964bee9a5e0b10780697940a14f58a9e94f4e933ae5",
+      "instrumented": "sources/jacobi-2d_profile.c",
+      "sha256": "dc1fc25d2f939b1e20998fe57ca4a701734a00b5de8aeeef09da3891d5d337ff"
+    },
+    {
+      "original_sha256": "d74e60c860ca8750db7d9c215f80d416e0dc0b6da3c37b04765bb86bd8fe5bc2",
+      "instrumented": "sources/covariance_profile.c",
+      "sha256": "165460e41aad9d5b9201c119118f9d2d45c0547c7ed9e111d4eaa35d31eba350"
+    }
+  ],
+  "correctness": [
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "threads": 4,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 2
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "threads": 1,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 3
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "threads": 10,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 4
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "threads": 10,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 5
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "threads": 1,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 6
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "threads": 1,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 7
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "threads": 4,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 8
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "threads": 10,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 9
+    },
+    {
+      "kernel": "nussinov",
+      "size": "MEDIUM",
+      "threads": 4,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 10
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "threads": 4,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 12
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "threads": 1,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 13
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "threads": 10,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 14
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "threads": 10,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 15
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "threads": 1,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 16
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "threads": 1,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 17
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "threads": 4,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 18
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "threads": 10,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 19
+    },
+    {
+      "kernel": "nussinov",
+      "size": "LARGE",
+      "threads": 4,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 20
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "MEDIUM",
+      "threads": 4,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 22
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "MEDIUM",
+      "threads": 1,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 23
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "MEDIUM",
+      "threads": 10,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 24
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "MEDIUM",
+      "threads": 10,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 25
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "MEDIUM",
+      "threads": 1,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 26
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "MEDIUM",
+      "threads": 1,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 27
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "MEDIUM",
+      "threads": 4,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 28
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "MEDIUM",
+      "threads": 10,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 29
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "MEDIUM",
+      "threads": 4,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 30
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "LARGE",
+      "threads": 4,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 32
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "LARGE",
+      "threads": 1,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 33
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "LARGE",
+      "threads": 10,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 34
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "LARGE",
+      "threads": 10,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 35
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "LARGE",
+      "threads": 1,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 36
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "LARGE",
+      "threads": 1,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 37
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "LARGE",
+      "threads": 4,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 38
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "LARGE",
+      "threads": 10,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 39
+    },
+    {
+      "kernel": "jacobi-2d",
+      "size": "LARGE",
+      "threads": 4,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 40
+    },
+    {
+      "kernel": "covariance",
+      "size": "MEDIUM",
+      "threads": 4,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 42
+    },
+    {
+      "kernel": "covariance",
+      "size": "MEDIUM",
+      "threads": 1,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 43
+    },
+    {
+      "kernel": "covariance",
+      "size": "MEDIUM",
+      "threads": 10,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 44
+    },
+    {
+      "kernel": "covariance",
+      "size": "MEDIUM",
+      "threads": 10,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 45
+    },
+    {
+      "kernel": "covariance",
+      "size": "MEDIUM",
+      "threads": 1,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 46
+    },
+    {
+      "kernel": "covariance",
+      "size": "MEDIUM",
+      "threads": 1,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 47
+    },
+    {
+      "kernel": "covariance",
+      "size": "MEDIUM",
+      "threads": 4,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 48
+    },
+    {
+      "kernel": "covariance",
+      "size": "MEDIUM",
+      "threads": 10,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 49
+    },
+    {
+      "kernel": "covariance",
+      "size": "MEDIUM",
+      "threads": 4,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 50
+    },
+    {
+      "kernel": "covariance",
+      "size": "LARGE",
+      "threads": 4,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 52
+    },
+    {
+      "kernel": "covariance",
+      "size": "LARGE",
+      "threads": 1,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 53
+    },
+    {
+      "kernel": "covariance",
+      "size": "LARGE",
+      "threads": 10,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 54
+    },
+    {
+      "kernel": "covariance",
+      "size": "LARGE",
+      "threads": 10,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 55
+    },
+    {
+      "kernel": "covariance",
+      "size": "LARGE",
+      "threads": 1,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 56
+    },
+    {
+      "kernel": "covariance",
+      "size": "LARGE",
+      "threads": 1,
+      "repeat": 3,
+      "status": "PASS",
+      "command": 57
+    },
+    {
+      "kernel": "covariance",
+      "size": "LARGE",
+      "threads": 4,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 58
+    },
+    {
+      "kernel": "covariance",
+      "size": "LARGE",
+      "threads": 10,
+      "repeat": 2,
+      "status": "PASS",
+      "command": 59
+    },
+    {
+      "kernel": "covariance",
+      "size": "LARGE",
+      "threads": 4,
+      "repeat": 1,
+      "status": "PASS",
+      "command": 60
+    }
+  ],
+  "protocol": "Three instrumented observations per MEDIUM/LARGE and 1/4/10T; no pooling with primary campaign",
+  "scope": "Covariance: triangular phase only; Nussinov: all diagonals; Jacobi: two spatial sweeps per timestep",
+  "limitations": "Clock reads, counters, explicit barriers and output change code; wall intervals include scheduling and imbalance. No cache or DRAM counters; worker IDs do not identify P/E cores."
+}

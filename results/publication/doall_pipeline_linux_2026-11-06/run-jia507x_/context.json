@@ -1,0 +1,421 @@
+{
+  "schema": "tcc2-agent-context",
+  "version": "0.3",
+  "task": "Evaluate the automatically generated parallel candidate and decide the next optimization action.",
+  "source": {
+    "campaign_id": "046203dc164540c79f4dc0423415c6e0",
+    "candidate_id": "sha256:25ab2f308e68ad59cb6fca3a42f3a4a30a97c3a4a63468ac8f868f6c3f3c6243",
+    "candidate_sha256": "25ab2f308e68ad59cb6fca3a42f3a4a30a97c3a4a63468ac8f868f6c3f3c6243",
+    "sequential_sha256": "4a049db9b82214aa4563a6cb47f1302e6c1ad983be50973afde8bf155974340d",
+    "sequential_file": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector.c",
+    "candidate_file": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/candidate.c",
+    "sequential_code": "void kernel_case(int n, const double *restrict A, const double *restrict B, double *restrict Y)\n{\n    for (int i = 0; i < n; i++)\n    {\n        Y[i] = 2.0 * A[i] + B[i];\n    }\n}\n",
+    "candidate_code": "void kernel_case(int n, const double *restrict A, const double *restrict B, double *restrict Y)\n{\n    /* TCC2 AUTO-GENERATED: DOALL */\n    #pragma omp parallel for schedule(static)\n    for (int i = 0; i < n; i++)\n    {\n        Y[i] = 2.0 * A[i] + B[i];\n    }\n}\n"
+  },
+  "static_analysis": {
+    "kernel": {
+      "name": "kernel_case",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 3,
+          "end_line": 6,
+          "iterator": "i",
+          "initialization": "int i = 0",
+          "condition": "i < n",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i"
+              ],
+              "expression": "A[i]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "i"
+              ],
+              "expression": "B[i]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "Y",
+              "indices": [
+                "i"
+              ],
+              "expression": "Y[i]"
+            }
+          ],
+          "operators": [
+            "=",
+            "+",
+            "*"
+          ],
+          "scalar_updates": []
+        }
+      ],
+      "direct_transform_contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 3,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "4a049db9b82214aa4563a6cb47f1302e6c1ad983be50973afde8bf155974340d",
+        "version": "standalone-ast-v2"
+      }
+    }
+  },
+  "dependence_analysis": {
+    "kernel": {
+      "name": "kernel_case",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        }
+      ]
+    }
+  },
+  "pattern": {
+    "classification": "DOALL_CANDIDATE",
+    "family": "MAP / DATA_PARALLEL",
+    "confidence": "medium",
+    "reason": "Independent-index candidates were detected and no shifted or symbolic dependences were found.",
+    "loops": [
+      {
+        "classification": "DOALL_CANDIDATE",
+        "family": "MAP / DATA_PARALLEL",
+        "confidence": "conservative_contract",
+        "reason": "One injective output write with pure reads and restrict caller preconditions.",
+        "evidence": {
+          "standalone_ast_contract": {
+            "status": "SUPPORTED",
+            "pattern": "DOALL",
+            "iterator": "i",
+            "start_line": 3,
+            "reduction_variable": null,
+            "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+            "source_sha256": "4a049db9b82214aa4563a6cb47f1302e6c1ad983be50973afde8bf155974340d",
+            "version": "standalone-ast-v2"
+          }
+        },
+        "loop_id": 1,
+        "iterator": "i"
+      }
+    ]
+  },
+  "strategy": {
+    "detected_pattern": "DOALL_CANDIDATE",
+    "family": "MAP / DATA_PARALLEL",
+    "classification_confidence": "medium",
+    "plan": {
+      "strategy": "DOALL",
+      "direct_code_transformation": true,
+      "schedule": "static",
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 3,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "4a049db9b82214aa4563a6cb47f1302e6c1ad983be50973afde8bf155974340d",
+        "version": "standalone-ast-v2"
+      },
+      "reason": "One injective output write; pure RHS; explicit restrict caller precondition."
+    }
+  },
+  "validation": {
+    "correctness_gate": "PASS",
+    "correctness_report_file": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness.json",
+    "correctness_report_sha256": "b4e23636b9f132d2a6b65feac6702e585555bbce41bb99c272da762592281909",
+    "correctness_report": {
+      "schema": "tcc2-correctness-gate",
+      "version": "0.2",
+      "status": "PASS",
+      "inputs": {
+        "sequential": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector.c",
+        "candidate": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/candidate.c",
+        "driver": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector_driver.c"
+      },
+      "compiler": "gcc",
+      "threads": [
+        1,
+        2,
+        4
+      ],
+      "validated_threads": [
+        1,
+        2,
+        4
+      ],
+      "tolerances": {
+        "relative": 1e-09,
+        "absolute": 1e-12
+      },
+      "provenance": {
+        "campaign_id": "046203dc164540c79f4dc0423415c6e0",
+        "run_id": "e6ba4e9a7d75454982a9f282d0fb30b3",
+        "run_dir": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness/e6ba4e9a7d75454982a9f282d0fb30b3",
+        "candidate_id": "sha256:25ab2f308e68ad59cb6fca3a42f3a4a30a97c3a4a63468ac8f868f6c3f3c6243",
+        "recorded_at": "2026-11-06T15:22:32.096255+00:00",
+        "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+        "cpu_count": 4,
+        "runtime_environment": {},
+        "inputs": {
+          "sequential": {
+            "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector.c",
+            "sha256": "4a049db9b82214aa4563a6cb47f1302e6c1ad983be50973afde8bf155974340d",
+            "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness/e6ba4e9a7d75454982a9f282d0fb30b3/sequential/affine_vector.c"
+          },
+          "candidate": {
+            "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/candidate.c",
+            "sha256": "25ab2f308e68ad59cb6fca3a42f3a4a30a97c3a4a63468ac8f868f6c3f3c6243",
+            "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness/e6ba4e9a7d75454982a9f282d0fb30b3/candidate/candidate.c"
+          },
+          "driver": {
+            "path": "/home/liswsz220-01/Desktop/tcc/tcc2/analysis/fixtures/publication_corpus/affine_vector_driver.c",
+            "sha256": "bc6ed11443477d0a9e3ce0b685b31b676b060ad3de513a1826203fb1c8b6ff39",
+            "snapshot": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness/e6ba4e9a7d75454982a9f282d0fb30b3/driver/affine_vector_driver.c"
+          }
+        },
+        "toolchain": {
+          "path": "/usr/bin/x86_64-linux-gnu-gcc-13",
+          "sha256": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26",
+          "version": "x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+        },
+        "compile_flags": {
+          "sequential": [
+            "-O3"
+          ],
+          "candidate": [
+            "-O3",
+            "-fopenmp"
+          ]
+        },
+        "link_flags": [
+          "-lm"
+        ],
+        "openmp_environment": {
+          "OMP_DYNAMIC": "FALSE",
+          "OMP_PROC_BIND": "TRUE",
+          "OMP_PLACES": "cores"
+        }
+      },
+      "compilation": {
+        "sequential": {
+          "command": [
+            "/usr/bin/x86_64-linux-gnu-gcc-13",
+            "-O3",
+            "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness/e6ba4e9a7d75454982a9f282d0fb30b3/driver/affine_vector_driver.c",
+            "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness/e6ba4e9a7d75454982a9f282d0fb30b3/sequential/affine_vector.c",
+            "-lm",
+            "-o",
+            "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness/e6ba4e9a7d75454982a9f282d0fb30b3/dot_gate_sequential"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        "candidate": {
+          "command": [
+            "/usr/bin/x86_64-linux-gnu-gcc-13",
+            "-O3",
+            "-fopenmp",
+            "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness/e6ba4e9a7d75454982a9f282d0fb30b3/driver/affine_vector_driver.c",
+            "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness/e6ba4e9a7d75454982a9f282d0fb30b3/candidate/candidate.c",
+            "-lm",
+            "-o",
+            "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness/e6ba4e9a7d75454982a9f282d0fb30b3/dot_gate_candidate"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "binaries": {
+        "sequential": {
+          "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness/e6ba4e9a7d75454982a9f282d0fb30b3/dot_gate_sequential",
+          "sha256": "3bd1aac1cdd58a2fe2cf6662bcd423f8e93cbb741dcf74cbe56b04f9f1a2fc05"
+        },
+        "candidate": {
+          "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/correctness/e6ba4e9a7d75454982a9f282d0fb30b3/dot_gate_candidate",
+          "sha256": "ec4683d7ea5f723b574c0a06e31553249baed8a45afd9de6d657e03f0220cfb4"
+        }
+      },
+      "execution": {
+        "sequential": {
+          "returncode": 0,
+          "stdout": "-6.34375\nAVERAGE_SECONDS=0.0021340789971873164",
+          "stderr": ""
+        },
+        "candidate": {
+          "returncode": 0,
+          "stdout": "-6.34375\nAVERAGE_SECONDS=0.0019556629995349795",
+          "stderr": ""
+        }
+      },
+      "thread_results": [
+        {
+          "threads": 1,
+          "execution": {
+            "returncode": 0,
+            "stdout": "-6.34375\nAVERAGE_SECONDS=0.0021416279923869297",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": -6.34375,
+            "candidate": -6.34375,
+            "absolute_error": 0.0,
+            "relative_error": 0.0,
+            "correct": true
+          }
+        },
+        {
+          "threads": 2,
+          "execution": {
+            "returncode": 0,
+            "stdout": "-6.34375\nAVERAGE_SECONDS=0.0019935110030928627",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": -6.34375,
+            "candidate": -6.34375,
+            "absolute_error": 0.0,
+            "relative_error": 0.0,
+            "correct": true
+          }
+        },
+        {
+          "threads": 4,
+          "execution": {
+            "returncode": 0,
+            "stdout": "-6.34375\nAVERAGE_SECONDS=0.0019556629995349795",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": -6.34375,
+            "candidate": -6.34375,
+            "absolute_error": 0.0,
+            "relative_error": 0.0,
+            "correct": true
+          }
+        }
+      ],
+      "validation": {
+        "reference": -6.34375,
+        "candidate": -6.34375,
+        "absolute_error": 0.0,
+        "relative_error": 0.0,
+        "correct": true
+      }
+    }
+  },
+  "performance": {
+    "report": {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance.json",
+      "sha256": "0219818a8424b7255927b642bc9a23cebaad37fcd2b840bb7a383e135278a9db"
+    },
+    "selection_file": {
+      "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/selection.json",
+      "sha256": "5910aca697fff6c244bf554d13c5a9748b601062fd01d756116a8aec12d30ef9"
+    },
+    "selection": {
+      "status": "SELECTED",
+      "decision": "FASTEST_CONFIGURATION",
+      "parallel_status": "PARALLEL_SUCCESS",
+      "sequential": {
+        "mode": "sequential",
+        "threads": 1,
+        "median_seconds": 0.002194899250025628,
+        "mean_seconds": 0.002159938010008773,
+        "speedup": 1.0,
+        "efficiency": 1.0
+      },
+      "one_thread": {
+        "mode": "openmp",
+        "threads": 1,
+        "median_seconds": 0.0019166684003721457,
+        "mean_seconds": 0.0019523558102082462,
+        "speedup": 1.145163790251595,
+        "efficiency": 1.145163790251595
+      },
+      "best_parallel": {
+        "mode": "openmp",
+        "threads": 2,
+        "median_seconds": 0.0017960581499210093,
+        "mean_seconds": 0.0017973813202115706,
+        "speedup": 1.2220646921271228,
+        "efficiency": 0.6110323460635614
+      },
+      "transformation_benefit": true,
+      "parallel_benefit": true,
+      "transformation_speedup": 1.145163790251595,
+      "parallel_scaling_speedup": 1.0671527536324148,
+      "parallel_scaling_efficiency": 0.5335763768162074,
+      "end_to_end_speedup": 1.2220646921271228,
+      "runtime_reduction": 0.18171271419403956,
+      "raw_fastest": {
+        "mode": "openmp",
+        "threads": 2,
+        "median_seconds": 0.0017960581499210093,
+        "mean_seconds": 0.0017973813202115706,
+        "speedup": 1.2220646921271228,
+        "efficiency": 0.6110323460635614
+      },
+      "near_tie_threshold": 0.02,
+      "near_tie_candidates": [
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 0.0017960581499210093,
+          "mean_seconds": 0.0017973813202115706,
+          "speedup": 1.2220646921271228,
+          "efficiency": 0.6110323460635614,
+          "slowdown_vs_fastest": 0.0
+        }
+      ],
+      "recommended": {
+        "mode": "openmp",
+        "threads": 2,
+        "median_seconds": 0.0017960581499210093,
+        "mean_seconds": 0.0017973813202115706,
+        "speedup": 1.2220646921271228,
+        "efficiency": 0.6110323460635614,
+        "slowdown_vs_fastest": 0.0
+      },
+      "next_action": "PROMOTE_CANDIDATE",
+      "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline.",
+      "evidence": {
+        "performance_report": {
+          "path": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/performance.json",
+          "sha256": "0219818a8424b7255927b642bc9a23cebaad37fcd2b840bb7a383e135278a9db"
+        },
+        "campaign_id": "046203dc164540c79f4dc0423415c6e0",
+        "candidate_id": "sha256:25ab2f308e68ad59cb6fca3a42f3a4a30a97c3a4a63468ac8f868f6c3f3c6243"
+      }
+    }
+  },
+  "profiling": {},
+  "agent_constraints": [
+    "Never accept a candidate that has not passed correctness validation.",
+    "Do not remove synchronization required by detected dependences.",
+    "Do not introduce OpenMP transformations that contradict the Strategy Planner.",
+    "Prefer evidence from static analysis, dependence analysis and measured performance over unsupported assumptions.",
+    "If performance differences are within the near-tie threshold, consider resource efficiency before choosing more threads.",
+    "Any proposed code modification must be recompiled and revalidated before being accepted."
+  ],
+  "expected_decision_schema": {
+    "decision": "ACCEPT | RETUNE | MODIFY | REJECT",
+    "recommended_threads": "integer or null",
+    "reason": "short explanation",
+    "next_action": "action for another agent",
+    "risk": "LOW | MEDIUM | HIGH"
+  }
+}

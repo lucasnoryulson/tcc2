@@ -1,0 +1,41 @@
+{
+  "case_id": "d16",
+  "family": "gemm",
+  "origin": "executed_controlled_compilation_failure",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "rules",
+  "status": "OK",
+  "metadata": {},
+  "prompt_sha256": "46d05342b04ea87908e868c99535412109f31904872ca3739359536bb251641a",
+  "analysis_available": false,
+  "ablation_effective": null,
+  "llm_calls": 0,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 0.00013657399904332124,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": true,
+  "cause_action_correct": true,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": true,
+  "unsupported_claims": 0,
+  "claims_count": 1,
+  "output": {
+    "cause": "COMPILE_ERROR",
+    "action": "INSPECT_BUILD",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "returncode",
+        "value": 1
+      }
+    ]
+  },
+  "raw_response_sha256": "f88661786fae945fd849d0ebe8e513fc33c49a4a7550488c64aeada44f5604e1"
+}

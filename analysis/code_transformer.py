@@ -4,6 +4,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from analysis.conservative_transform import certify_kernel
+
 
 # ============================================================
 # JSON
@@ -858,6 +861,16 @@ def apply_strategy(
 
     transformations = []
 
+    if strategy_type == "DOALL":
+        contract = static_kernel.get("direct_transform_contract", {})
+        if not strategy.get("direct_code_transformation") or contract.get("status") != "SUPPORTED" or contract.get("pattern") != "DOALL":
+            raise RuntimeError("DOALL requires the conservative standalone AST contract.")
+        index = contract["start_line"] - 1
+        indentation = leading_whitespace(source_lines[index])
+        pragma = indentation + "#pragma omp parallel for schedule(static)\n"
+        source_lines[index:index] = [indentation + "/* TCC2 AUTO-GENERATED: DOALL */\n", pragma]
+        return [{"loop_id": 1, "start_line": index + 1, "pragma": pragma.strip(), "contract": contract}]
+
     # --------------------------------------------------------
     # REDUCTION
     # --------------------------------------------------------
@@ -999,13 +1012,29 @@ def transform(
             "no Static Analyzer JSON."
         )
 
-    source_lines = (
-        source_file
-        .read_text()
-        .splitlines(
-            keepends=True
-        )
-    )
+    # Clang offsets refer to physical bytes, including CRLF line endings.
+    source_code = source_file.read_bytes().decode("utf-8")
+    source_lines = source_code.split("\n")
+    source_lines = [line + "\n" for line in source_lines[:-1]] + source_lines[-1:]
+
+    # Recheck source bytes with Clang, rather than trusting an editable plan JSON.
+    from analysis.static_analyzer import extract_loops, find_kernel_functions, run_clang
+    actual_kernels = find_kernel_functions(run_clang(source_file, []))
+    if len(actual_kernels) != 1 or actual_kernels[0].get("name") != kernel_name:
+        raise RuntimeError("Standalone transformation requires exactly one matching kernel.")
+    actual_contract = certify_kernel(actual_kernels[0], "".join(source_lines))
+    if actual_contract.get("status") != "SUPPORTED" or actual_contract.get("pattern") != strategy.get("strategy"):
+        raise RuntimeError("UNSUPPORTED_STANDALONE: " + actual_contract.get("reason", "strategy does not match current source"))
+    if strategy.get("strategy") == "REDUCTION":
+        reductions = strategy.get("reductions", [])
+        variable = actual_contract["reduction_variable"]
+        if len(reductions) != 1 or any(reductions[0].get(key) != value for key, value in {
+            "loop_id": 1, "variable": variable, "operator": "+",
+            "openmp_clause": "reduction(+:" + variable + ")", "schedule": "static",
+        }.items()):
+            raise RuntimeError("Reduction plan does not match the current standalone AST contract.")
+    static_kernel = dict(static_kernel, direct_transform_contract=actual_contract,
+                         loops=extract_loops(actual_kernels[0], "".join(source_lines)))
 
     transformations = apply_strategy(
         source_lines,

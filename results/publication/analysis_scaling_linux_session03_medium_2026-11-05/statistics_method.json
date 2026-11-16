@@ -1,0 +1,11 @@
+{
+  "method": "paired complete-block percentile bootstrap",
+  "resamples": 5000,
+  "confidence": 0.95,
+  "seed": 2026,
+  "minimum_samples": 15,
+  "quartiles": "linear interpolation, inclusive",
+  "mad": "median(abs(x - median(x))), unscaled",
+  "stdev": "sample (n-1)",
+  "caveat": "Conditional on these blocks; stationarity/independence not established; no cross-machine pooling or multiple-comparison correction"
+}

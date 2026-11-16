@@ -1,0 +1,75 @@
+diff --git a/scripts/compile_correctness_gate.py b/scripts/compile_correctness_gate.py
+index d3c6050..460d3d3 100644
+--- a/scripts/compile_correctness_gate.py
++++ b/scripts/compile_correctness_gate.py
+@@ -11,6 +11,7 @@ from analysis.artifact_provenance import (
+     ABS_TOL, COMPILE_FLAGS, OPENMP_ENVIRONMENT, REL_TOL,
+     capture_run, file_record, verify_file, verify_provenance,
+ )
++from scripts.process_timing import run_timed
+ 
+ # ============================================================
+ # CONFIGURATION
+@@ -31,8 +32,9 @@ def run_command(
+     Execute a command and return CompletedProcess.
+     """
+ 
+-    return subprocess.run(
++    return run_timed(
+         command,
++        origin="correctness_gate",
+         stdout=subprocess.PIPE,
+         stderr=subprocess.PIPE,
+         text=True,
+diff --git a/scripts/performance_gate.py b/scripts/performance_gate.py
+index 8fe6dfa..a5f7671 100644
+--- a/scripts/performance_gate.py
++++ b/scripts/performance_gate.py
+@@ -13,6 +13,7 @@ from analysis.artifact_provenance import (
+     COMPILE_FLAGS, OPENMP_ENVIRONMENT, capture_run, file_record,
+     load_correctness_report, measured_rows, verify_file, verify_provenance,
+ )
++from scripts.process_timing import run_timed
+ 
+ DEFAULT_COMPILER = "clang"
+ 
+@@ -31,8 +32,9 @@ def run_command(
+     command,
+     environment=None
+ ):
+-    return subprocess.run(
++    return run_timed(
+         command,
++        origin="performance_gate",
+         stdout=subprocess.PIPE,
+         stderr=subprocess.PIPE,
+         text=True,
+diff --git a/scripts/run_pipeline.py b/scripts/run_pipeline.py
+index 5b98b42..4db609b 100644
+--- a/scripts/run_pipeline.py
++++ b/scripts/run_pipeline.py
+@@ -34,7 +34,8 @@ def run_pipeline(args):
+         try:
+             result = subprocess.run(
+                 command, cwd=ROOT, capture_output=True, text=True,
+-                env={**os.environ, "TCC2_THREAD_COUNTS": ",".join(map(str, args.threads))},
++                env={**os.environ, "TCC2_THREAD_COUNTS": ",".join(map(str, args.threads)),
++                     "TCC2_TIMING_STAGE": name},
+                 timeout=max(300, args.timeout + 15),
+             )
+         except subprocess.TimeoutExpired as error:
+diff --git a/scripts/test_benchmark_scaling.py b/scripts/test_benchmark_scaling.py
+index 88d642e..c5a7cb4 100644
+--- a/scripts/test_benchmark_scaling.py
++++ b/scripts/test_benchmark_scaling.py
+@@ -93,6 +93,10 @@ class ScalingTests(unittest.TestCase):
+                                       datasets=['MINI'], repetitions=2, seed=2026, timeout=30)
+             # GCC needs an explicit C++ standard library when invoked by its C driver.
+             args.cxx = 'g++' if 'gcc' in Path(compiler).name else compiler
++            # Preserve the clang++ driver name: resolving its symlink to clang
++            # loses automatic C++ standard-library linkage on macOS.
++            if 'clang' in Path(compiler).name:
++                args.cxx = str(Path(compiler).with_name('clang++'))
+             execute(args)
+             report = json.loads((args.output / 'report.json').read_text())
+             self.assertEqual(report['status'], 'COMPLETE')

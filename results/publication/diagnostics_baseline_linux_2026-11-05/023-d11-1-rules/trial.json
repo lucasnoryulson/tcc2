@@ -1,0 +1,41 @@
+{
+  "case_id": "d11",
+  "family": "nussinov",
+  "origin": "archived_compiler_diagnostic",
+  "split": "development",
+  "repetition": 1,
+  "mode": "rules",
+  "status": "OK",
+  "metadata": {},
+  "prompt_sha256": "04e4de3df319be7a5739461b34ff5c1dc9ff0f13007f322e96f0494ff71bfc76",
+  "analysis_available": true,
+  "ablation_effective": null,
+  "llm_calls": 0,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 0.00012591700215125456,
+  "schema_valid": true,
+  "cause_correct": true,
+  "action_acceptable": true,
+  "cause_action_correct": true,
+  "abstain": false,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": true,
+  "unsupported_claims": 0,
+  "claims_count": 1,
+  "output": {
+    "cause": "VECTORIZATION_BLOCKED",
+    "action": "INSPECT_VECTORIZATION",
+    "abstain": false,
+    "claims": [
+      {
+        "fact_id": "f1",
+        "field": "message",
+        "value": "loop not vectorized: unsafe dependent memory operations in loop. Use #pragma clang loop distribute(enable) to allow loop distribution to attempt to isolate the offending operations into a separate loop"
+      }
+    ]
+  },
+  "raw_response_sha256": "2793a0835b71d7cfa4d81a98168e8426269bb9b22fb2a627ffe36ba2384b3fbb"
+}

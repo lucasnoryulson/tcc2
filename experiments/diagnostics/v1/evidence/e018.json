@@ -1,0 +1,89 @@
+{
+  "version": "0.3",
+  "source": "/home/liswsz220-01/Desktop/TCC2/tcc2/benchmarks/PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c",
+  "kernels": [
+    {
+      "name": "kernel_gemm",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        },
+        {
+          "id": 2,
+          "iterator": "j",
+          "dependencies": [
+            {
+              "array": "C",
+              "write": "C[i][j]",
+              "read": "C[i][j]",
+              "resolved": true,
+              "relation": "same_location",
+              "offsets": [
+                0,
+                0
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 0,
+                  "write": "i",
+                  "read": "i"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "iterator": "k",
+          "dependencies": []
+        },
+        {
+          "id": 4,
+          "iterator": "j",
+          "dependencies": [
+            {
+              "array": "C",
+              "write": "C[i][j]",
+              "read": "C[i][j]",
+              "resolved": true,
+              "relation": "same_location",
+              "offsets": [
+                0,
+                0
+              ],
+              "carried_by": [],
+              "dimensions": [
+                {
+                  "resolved": true,
+                  "variable": "i",
+                  "offset": 0,
+                  "write": "i",
+                  "read": "i"
+                },
+                {
+                  "resolved": true,
+                  "variable": "j",
+                  "offset": 0,
+                  "write": "j",
+                  "read": "j"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

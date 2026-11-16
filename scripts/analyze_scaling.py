@@ -236,7 +236,7 @@ def analyze(directory, output, no_plots=False):
               'O probe confirma o tamanho das equipes no runtime, sem provar a localização de cada thread dos kernels.',
               'Validação de arrays usa binários de dump separados com os mesmos flags de otimização; não prova ausência de races.',
               'Tempos excluem inicialização dos arrays, compilação e inferência. O Dot C++ inclui a primeira inicialização OpenMP; o PolyBench inicializa a equipe no flush antes do timer.',
-              'A coleta M5 equivalente ainda precisa ser executada; dados históricos não formam um experimento pareado com esta coleta.']
+              'Cada arquivo é uma sessão própria. Uma comparação entre plataformas exige verificar separadamente a identidade dos códigos, entradas e protocolo; dados históricos incompatíveis não completam esta coleta.']
     if not no_plots:
         lines += ['', '![Tempos](median_seconds.png)', '', '![Speedup total](speedup_total.png)', '', '![Escalabilidade](speedup_parallel.png)', '', '![Eficiência](efficiency_parallel.png)', '', '![Configuração recomendada](recommended_configuration.png)']
     (output / 'REPORT.md').write_text('\n'.join(lines) + '\n')

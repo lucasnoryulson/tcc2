@@ -1,0 +1,29 @@
+=================================
+TCC2 COMPILE + CORRECTNESS GATE
+=================================
+Sequential: /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/sum_squares.c
+Candidate:  /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/sum_squares/candidate.c
+Driver:     /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/sum_squares/driver_small.c
+Compiler:   gcc
+Threads:    [1, 2, 4]
+
+sequential compilation:
+  Command:
+  /usr/bin/x86_64-linux-gnu-gcc-13 -O3 /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/sum_squares/gate_small/ce6ab7c7c32043278548a3a45ad9419c/driver/driver_small.c /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/sum_squares/gate_small/ce6ab7c7c32043278548a3a45ad9419c/sequential/sum_squares.c -lm -o /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/sum_squares/gate_small/ce6ab7c7c32043278548a3a45ad9419c/dot_gate_sequential
+  Status: COMPILE_SUCCESS
+
+candidate compilation:
+  Command:
+  /usr/bin/x86_64-linux-gnu-gcc-13 -O3 -fopenmp /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/sum_squares/gate_small/ce6ab7c7c32043278548a3a45ad9419c/driver/driver_small.c /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/sum_squares/gate_small/ce6ab7c7c32043278548a3a45ad9419c/candidate/candidate.c -lm -o /home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_corpus_linux_2026-11-05/cases/sum_squares/gate_small/ce6ab7c7c32043278548a3a45ad9419c/dot_gate_candidate
+  Status: COMPILE_SUCCESS
+Threads: 1; sequential: 703.65625; candidate: 703.65625
+Absolute error: 0.000000000000e+00; relative error: 0.000000000000e+00
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 2; sequential: 703.65625; candidate: 703.65625
+Absolute error: 0.000000000000e+00; relative error: 0.000000000000e+00
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 4; sequential: 703.65625; candidate: 703.65625
+Absolute error: 0.000000000000e+00; relative error: 0.000000000000e+00
+Tolerances: relative=1e-09; absolute=1e-12
+Correctness: CORRECT
+GATE RESULT: PASS

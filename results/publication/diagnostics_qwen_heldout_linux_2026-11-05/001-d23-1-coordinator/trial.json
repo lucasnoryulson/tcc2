@@ -1,0 +1,67 @@
+{
+  "case_id": "d23",
+  "family": "covariance",
+  "origin": "archived_static_analysis_view",
+  "split": "heldout",
+  "repetition": 1,
+  "mode": "coordinator",
+  "status": "OK",
+  "metadata": {
+    "model": "qwen2.5:3b",
+    "created_at": "2026-11-05T20:12:35.090257197Z",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 60470345472,
+    "load_duration": 1954719561,
+    "prompt_eval_count": 341,
+    "prompt_eval_duration": 27945560655,
+    "eval_count": 147,
+    "eval_duration": 26456820126
+  },
+  "prompt_sha256": "255702d7e4ba1b92d97af7a1f3d8a7f425c3de614168810462909eef1c2c664d",
+  "analysis_available": true,
+  "ablation_effective": null,
+  "llm_calls": 1,
+  "attempted": true,
+  "retries": 0,
+  "wall_seconds": 60.47168632499961,
+  "schema_valid": true,
+  "cause_correct": false,
+  "action_acceptable": false,
+  "cause_action_correct": false,
+  "abstain": true,
+  "abstention_matches_annotation": true,
+  "dangerous_proposal": false,
+  "claims_present": true,
+  "supported_claim_response": false,
+  "unsupported_claims": 4,
+  "claims_count": 4,
+  "output": {
+    "cause": "DEPENDENCE_RISK",
+    "action": "ADAPT_SCHEMA",
+    "abstain": true,
+    "claims": [
+      {
+        "fact_id": "f1-1",
+        "field": "dependence_relation",
+        "value": "symbolic_relation"
+      },
+      {
+        "fact_id": "f2-1",
+        "field": "write_iterator",
+        "value": "j"
+      },
+      {
+        "fact_id": "f3-1",
+        "field": "read_iterator",
+        "value": "i"
+      },
+      {
+        "fact_id": "f4-1",
+        "field": "different_iterators_reason",
+        "value": "different_iterators"
+      }
+    ]
+  },
+  "raw_response_sha256": "56a880a755603ba3def4e2ff175007ffc9bf7ad0f1c342d67c7727940d385055"
+}

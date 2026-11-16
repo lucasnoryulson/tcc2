@@ -1,0 +1,64 @@
+{
+  "version": "0.2",
+  "source": "/home/liswsz220-01/Desktop/tcc/tcc2/results/publication/automation_functional_v2_linux_2026-11-05/sources/analysis/fixtures/publication_corpus/multiple_writes.c",
+  "kernels": [
+    {
+      "name": "kernel_case",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 3,
+          "end_line": 7,
+          "iterator": "i",
+          "initialization": "int i = 0",
+          "condition": "i < n",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "A",
+              "indices": [
+                "i"
+              ],
+              "expression": "A[i]"
+            },
+            {
+              "array": "B",
+              "indices": [
+                "i"
+              ],
+              "expression": "B[i]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "Y",
+              "indices": [
+                "i"
+              ],
+              "expression": "Y[i]"
+            },
+            {
+              "array": "Y",
+              "indices": [
+                "i+1"
+              ],
+              "expression": "Y[i+1]"
+            }
+          ],
+          "operators": [
+            "=",
+            "=",
+            "+"
+          ],
+          "scalar_updates": []
+        }
+      ],
+      "direct_transform_contract": {
+        "status": "REFUSED",
+        "reason": "exactly one assignment is supported in the loop",
+        "version": "standalone-ast-v2"
+      }
+    }
+  ]
+}
