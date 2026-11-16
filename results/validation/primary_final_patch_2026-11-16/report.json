@@ -1,0 +1,169 @@
+{
+  "status": "PASS",
+  "checked_utc": "2026-11-16T16:39:58.928441+00:00",
+  "base_commit": "a1e4a6e",
+  "input_patch_sha256": "484cb43293bf5631a398a3049785b619dfb0add9efd30a90894b22c72aacfb75",
+  "zip_contains_same_patch": true,
+  "main_unchanged": "cc5406b79a1fac9446c6e0a25920243f82662a6e",
+  "regression": {
+    "status": "PASS",
+    "checked_utc": "2026-11-16T16:39:55.312003+00:00",
+    "checks": [
+      {
+        "name": "unittest",
+        "command": [
+          "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "scripts",
+          "-p",
+          "test_*.py",
+          "-q"
+        ],
+        "returncode": 0
+      },
+      {
+        "name": "adaptive_strategy_planner_v01",
+        "command": [
+          "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+          "-B",
+          "scripts/test_adaptive_strategy_planner_v01_regression.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "name": "autotuning_selector_v01",
+        "command": [
+          "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+          "-B",
+          "scripts/test_autotuning_selector_v01_regression.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "name": "compiler_feedback_analyzer_v01",
+        "command": [
+          "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+          "-B",
+          "scripts/test_compiler_feedback_analyzer_v01_regression.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "name": "compiler_feedback_analyzer_v02",
+        "command": [
+          "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+          "-B",
+          "scripts/test_compiler_feedback_analyzer_v02_regression.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "name": "coordinator_v02",
+        "command": [
+          "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+          "-B",
+          "scripts/test_coordinator_v02_regression.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "name": "performance_selector_v02",
+        "command": [
+          "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+          "-B",
+          "scripts/test_performance_selector_v02_regression.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "name": "static_isolation",
+        "command": [
+          "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+          "-B",
+          "scripts/test_static_analysis_variant_isolation.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "name": "linux_wrapper_syntax",
+        "command": [
+          "bash",
+          "-n",
+          "scripts/profile_linux_followup.sh"
+        ],
+        "returncode": 0
+      },
+      {
+        "name": "previous_results_and_manuscript_preserved",
+        "changed_existing": [],
+        "returncode": 0
+      },
+      {
+        "name": "academic_exports",
+        "returncode": 0,
+        "pdf_pages": 78,
+        "word_tables": 29,
+        "word_images": 21
+      },
+      {
+        "name": "promotion_manifests",
+        "returncode": 0,
+        "count": 6
+      }
+    ],
+    "limitations": "Software and artifact checks; no native Word layout certification or proof of general numerical equivalence"
+  },
+  "axpy": {
+    "run": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/primary-final-patch-validation/axpy/run-6slki9w5",
+    "status": "PREPARED",
+    "correctness": "PASS",
+    "threads": [
+      1,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "repetitions": 15,
+    "warmups": 3,
+    "seed": 2026,
+    "measured_samples": 105,
+    "warmup_samples": 21,
+    "candidate_sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1"
+  },
+  "linux_holdout": {
+    "status": "COMPLETE",
+    "matches_supplied_metrics": true,
+    "cases": 16
+  },
+  "mac_holdout": {
+    "status": "VERIFIED_LATER_HOLDOUT",
+    "unchanged": true,
+    "cases": 16,
+    "stable_cases": 14,
+    "evaluation_path_relocated": true
+  },
+  "historical_axpy": {
+    "candidate_sha256": "f57214c8bca1d760120d18a2b1b6566faa63fe825003d498542d61b7c2ee8942",
+    "verified_files": 21,
+    "original_contract_not_current": true
+  },
+  "consolidated": {
+    "pdf_pages": 78,
+    "word_tables": 27,
+    "word_images": 21
+  },
+  "files": {
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA.md": "8637c308524c44c569d2089fa6f7728d4d91dd86efee3215248d6a52d417962c",
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA.docx": "bad69f7be8b55250c38d1e5504c47064e86ffdb021581bd4570365dce9e46029",
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA.pdf": "452e947468ac1da450a94476963e05f6e243810c24ff142f25d260530a44eb64",
+    "docs/monografia/CAPA_PUCRS_CONSOLIDADA.docx": "3595ea11837e53088cdbbd7283321faf57a03579ba9a5ee773e4356682ce924c",
+    "docs/monografia/referencias_consolidada.bib": "acf78f1758af370c6d5beb4a8d06324fd37bda705a35ffcd4f0ccb1a94d826f4"
+  },
+  "limitations": "Technical AXPY smoke test, not a scientific campaign or live LLM promotion; historical absolute paths not rewritten; no native Office layout certification"
+}

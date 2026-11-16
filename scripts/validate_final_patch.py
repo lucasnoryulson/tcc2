@@ -56,7 +56,11 @@ def check(output, axpy_run, patch):
         raise ValueError('Linux holdout metrics differ from supplied evidence')
     mac = evaluate_frozen(ROOT / 'results/multiplatform/mac_m5_2026-11-16_selector_frozen.json',
         ROOT / 'results/multiplatform/mac_m5_2026-11-16_p15w3_session02', output / 'selector_mac')
-    if mac != json.loads((ROOT / 'results/multiplatform/selector_holdout_mac_2026-11-16/report.json').read_text()):
+    archived_mac = json.loads((ROOT / 'results/multiplatform/selector_holdout_mac_2026-11-16/report.json').read_text())
+    # A new checkout has another evaluation path. Compare all evidence hashes,
+    # frozen choices and metrics without rewriting the historical report paths.
+    if ({k: v for k, v in mac.items() if k != 'evaluation_campaign'}
+        != {k: v for k, v in archived_mac.items() if k != 'evaluation_campaign'}):
         raise ValueError('Pre-existing frozen Mac holdout changed')
 
     promotion = ROOT / 'results/final-promoted/axpy-mac-2026-11-03/0d44fc52cce0b653dfa5d033bbf81f0a5595a9b6228dc1c8fee72c1abc292a52'
@@ -104,7 +108,8 @@ def check(output, axpy_run, patch):
                   repetitions=15, warmups=3, seed=2026, measured_samples=105, warmup_samples=21,
                   candidate_sha256=performance['provenance']['inputs']['candidate']['sha256']),
         linux_holdout=dict(status=linux['status'], matches_supplied_metrics=True, cases=linux['cases']),
-        mac_holdout=dict(status=mac['status'], unchanged=True, cases=mac['cases'], stable_cases=mac['stable_cases']),
+        mac_holdout=dict(status=mac['status'], unchanged=True, cases=mac['cases'], stable_cases=mac['stable_cases'],
+                         evaluation_path_relocated=mac['evaluation_campaign'] != archived_mac['evaluation_campaign']),
         historical_axpy=dict(candidate_sha256=manifest['candidate_sha256'], verified_files=len(manifest['files']),
                              original_contract_not_current=True),
         consolidated=dict(pdf_pages=len(pages), word_tables=len(word.tables), word_images=len(word.inline_shapes)),

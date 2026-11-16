@@ -2,6 +2,11 @@
 
 Sistema híbrido de análise estática, transformação OpenMP e coordenação por LLM.
 
+As alterações finais já estão na pasta principal `tcc2`, na branch
+`feat/final-patch-primary-2026-11-16`, incluindo o commit `b5213bf` do patch.
+O [registro da transferência e dos testes](docs/experiments/PRIMARY_CHECKOUT_2026-11-16.md)
+explica a preservação da branch anterior e das evidências experimentais.
+
 Para continuar este trabalho em outra sessão ou no Mac, leia o
 [contexto atualizado do Codex](tcc2_contexto_para_codex/docs/TCC2_CONTEXT.md), o
 [histórico da conversa](tcc2_contexto_para_codex/docs/CONVERSA_E_DECISOES.md) e o
