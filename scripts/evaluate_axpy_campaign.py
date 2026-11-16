@@ -66,9 +66,9 @@ def verify_seal(directory):
             raise ValueError('Archive SHA-256 mismatch: ' + entry['path'])
 
 
-def prepare(directory):
+def prepare(directory, protocol_path=None):
     directory.mkdir(parents=True, exist_ok=False)
-    write_json(directory / 'protocol.json', json.loads(PROTOCOL.read_text()))
+    write_json(directory / 'protocol.json', json.loads((protocol_path or PROTOCOL).read_text()))
     snapshots = []
     for relative in SOURCES:
         target = directory / 'inputs' / relative
@@ -88,7 +88,7 @@ def prepare(directory):
         git_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()))
 
 
-def verify_inputs(directory):
+def verify_inputs(directory, require_live=False):
     preparation = json.loads((directory / 'preparation.json').read_text())
     for key, filename in [('protocol_sha256', 'protocol.json'), ('source_manifest_sha256', 'source_manifest.json')]:
         if sha(directory / filename) != preparation[key]:
@@ -96,14 +96,16 @@ def verify_inputs(directory):
     for entry in json.loads((directory / 'source_manifest.json').read_text()):
         if sha(directory / entry['snapshot']) != entry['sha256']:
             raise ValueError('Changed frozen input')
-        if entry['original'] and sha(ROOT / entry['original']) != entry['sha256']:
+        if require_live and entry['original'] and sha(ROOT / entry['original']) != entry['sha256']:
             raise ValueError('Live harness/source changed since protocol freeze')
     return json.loads((directory / 'protocol.json').read_text())
 
 
 def collect(directory, number, compiler):
     directory = directory.resolve()
-    protocol = verify_inputs(directory)
+    if number not in (1, 2):
+        raise ValueError('Only sessions 1 and 2 are declared')
+    protocol = verify_inputs(directory, require_live=True)
     if number == 2:
         verify_session(directory / 'session01')
         frozen = json.loads((directory / 'frozen_selection.json').read_text())
@@ -216,6 +218,8 @@ def verify_session(session):
         or (report['configurations'], report['measured_samples'], report['warmup_samples'])
            != (len(summary), len(samples), len(warmups))):
         raise ValueError('Session summary/selection/costs disagree')
+    if report.get('actual_team_sizes_probe') != {str(p): p for p in protocol['threads']}:
+        raise ValueError('Requested and observed OpenMP team sizes disagree')
     return report, summary, samples, costs
 
 
@@ -284,10 +288,13 @@ if __name__ == '__main__':
     parser.add_argument('--directory', required=True, type=Path)
     parser.add_argument('--output', type=Path)
     parser.add_argument('--compiler', default='/opt/homebrew/opt/llvm/bin/clang')
+    parser.add_argument('--protocol', type=Path, help='Optional predeclared protocol, only for prepare')
     args = parser.parse_args()
     directory = args.directory.resolve()
+    if args.protocol is not None and args.command != 'prepare':
+        parser.error('--protocol is accepted only by prepare; sessions use the frozen copy')
     if args.command == 'prepare':
-        prepare(directory)
+        prepare(directory, args.protocol)
     elif args.command.startswith('session'):
         collect(directory, int(args.command[-2:]), args.compiler)
     elif args.command == 'freeze':

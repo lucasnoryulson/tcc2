@@ -72,6 +72,27 @@ class AxpyCampaignTests(unittest.TestCase):
             with self.assertRaises(FileExistsError):
                 campaign.collect(self.directory, 1, 'not-called')
 
+    def test_archived_verification_does_not_require_current_harness_bytes(self):
+        output = self.directory / 'frozen'
+        campaign.prepare(output)
+        entries = json.loads((output / 'source_manifest.json').read_text())
+        # The archive remains self-contained after a new harness revision.
+        with patch.object(campaign, 'ROOT', self.directory / 'different-checkout'):
+            campaign.verify_inputs(output)
+            with self.assertRaises(FileNotFoundError):
+                campaign.verify_inputs(output, require_live=True)
+        self.assertGreater(len(entries), 20)
+
+    def test_alternative_protocol_is_frozen_without_modifying_default(self):
+        protocol = json.loads(campaign.PROTOCOL.read_text())
+        protocol['threads'] = list(range(1, 11))
+        alternative = self.directory / 'all_threads.json'
+        alternative.write_text(json.dumps(protocol))
+        output = self.directory / 'all_threads'
+        campaign.prepare(output, alternative)
+        self.assertEqual(campaign.verify_inputs(output)['threads'], list(range(1, 11)))
+        self.assertEqual(json.loads(campaign.PROTOCOL.read_text())['threads'], [1, 2, 4, 6, 8, 10])
+
     def test_generated_timed_driver_rejects_errors_that_cancel_in_checksum(self):
         compiler = find_openmp_compiler() or shutil.which('cc')
         if compiler is None:

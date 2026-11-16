@@ -1,0 +1,24 @@
+{
+  "schema": "tcc2-axpy-scientific-protocol-v1",
+  "kernel": "axpy",
+  "sessions": 2,
+  "inputs": [
+    {"n": 1024, "inner_repeats": 10000, "logical_buffer_bytes": 24576},
+    {"n": 1000000, "inner_repeats": 100, "logical_buffer_bytes": 24000000},
+    {"n": 10000000, "inner_repeats": 40, "logical_buffer_bytes": 240000000}
+  ],
+  "threads": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  "repetitions": 15,
+  "warmups": 3,
+  "seed": 2026,
+  "compile_flags": {"sequential": ["-O3"], "candidate": ["-O3", "-fopenmp"]},
+  "openmp_environment": {"OMP_DYNAMIC": "FALSE", "OMP_PROC_BIND": "TRUE", "OMP_PLACES": "cores"},
+  "correctness": "Existing fixture and drivers, without algorithmic edits: every output element at N=1024, 1000000, 10000000, plus alpha=-2 and alpha=0 at N=1024. All timed processes check every element after the timed interval. rtol=1e-9, atol=1e-12. Disjoint restrict buffers are a caller obligation, not a detected runtime property.",
+  "sampling": "Randomized complete rounds of separate processes for sequential plus all integer team sizes 1..10. Three warmup rounds excluded from fifteen measured rounds. Fixed per-input inner repeats. Preserve all slow configurations. No pooling across sessions, inputs or historical campaigns.",
+  "holdout": "Freeze session-1 recommendations and hashes before session 2. Evaluate those choices without retuning against the smallest session-2 median including sequential. Inadequacy threshold remains strictly more than 2% slower. Report resource-aware session-2 recommendation separately.",
+  "statistics": "Median, mean, sample SD, MAD, IQR; paired complete-round percentile bootstrap, 5000 resamples, seed 2026, 95% conditional intervals. Tseq/Tp, Tseq/T1, T1/Tp and (T1/Tp)/p are distinct. Include aggregate timed kernel work reconstructed from per-call times and the complete pipeline wall cost; do not equate them.",
+  "cost": "Separate deterministic prefix (including actual compilation, correctness and sampling) from LLM decision/validation and promotion. After performance collection, attempt three paired real decision trials on the frozen largest-input session-1 evidence, with deterministic policy as baseline. Installed llama3.1:8b, temperature zero, one call/trial, timeout 180s, no silent retry. If unavailable or timeout, retain evidence and do not substitute historical latency. Costs reuse one prefix and are accounting comparisons, not independent end-to-end runs; amortization uses held-out times. No accepted decision alone implies promotion.",
+  "power": "AC power with low but charging battery. Record before/after. No exclusive host, thermal or frequency control claimed. Do not overlap benchmarks with tests or inference.",
+  "cooldown_seconds_between_sessions": 30,
+  "scope": "One existing AXPY source, three inputs. Extends the thread grid of the separate six-team campaign, not additional independent programs. The historical 105-sample PREPARED run remains technical validation, not the scientific result. No perf measurements claimed on macOS. No kernel/agent/repair scope expansion."
+}
