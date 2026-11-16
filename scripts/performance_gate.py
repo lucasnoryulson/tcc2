@@ -13,6 +13,7 @@ from analysis.artifact_provenance import (
     COMPILE_FLAGS, OPENMP_ENVIRONMENT, capture_run, file_record,
     load_correctness_report, measured_rows, verify_file, verify_provenance,
 )
+from scripts.process_timing import run_timed
 
 DEFAULT_COMPILER = "clang"
 
@@ -31,8 +32,9 @@ def run_command(
     command,
     environment=None
 ):
-    return subprocess.run(
+    return run_timed(
         command,
+        origin="performance_gate",
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,

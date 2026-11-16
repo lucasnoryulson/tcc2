@@ -105,7 +105,7 @@ def compare(paths, output, no_plots=False):
                common_configurations=len(table), method='Descriptive variation of session medians; no pooled raw observations',
                limitation='Same machine and day; sequential sessions do not establish independence or controlled thermals',
                analyzer_sha256=digest(Path(__file__).read_bytes())))
-    lines = ['# Repetibilidade entre sessões Linux', '',
+    lines = ['# Repetibilidade entre sessões da mesma plataforma', '',
              f'{len(paths)} coletas separadas; {len(table)} configurações comuns. Cada mediana conserva as quinze observações da sua própria sessão.', '',
              'Não se agrupam amostras nem se estima um IC populacional com apenas estas sessões. O CV abaixo descreve as medianas observadas; não identifica uma causa para sua mudança.', '',
              '| Caso / entrada / variante / threads | Medianas por sessão (s) | Máximo/mínimo | CV das medianas |',
@@ -114,7 +114,7 @@ def compare(paths, output, no_plots=False):
         name = ' / '.join(str(row[k]) for k in ('kernel', 'size', 'variant', 'threads'))
         times = '; '.join(f"{row[f'session_{i + 1}_median']:.6g}" for i in range(len(paths)))
         lines.append(f"| {name} | {times} | {row['maximum_over_minimum']:.4f} | {row['cv_session_medians']:.4f} |")
-    lines += ['', 'As recomendações de cada sessão estão em session_selections.csv. As curvas do M5 permanecem pendentes. Sessões do mesmo dia/host não são máquinas independentes e não tornam frequência ou temperatura controladas.', '']
+    lines += ['', 'As recomendações de cada sessão estão em session_selections.csv. Sessões do mesmo dia/host não são máquinas independentes e não tornam frequência ou temperatura controladas.', '']
     (output / 'REPORT.md').write_text('\n'.join(lines))
     if not no_plots:
         import matplotlib

@@ -34,7 +34,8 @@ def run_pipeline(args):
         try:
             result = subprocess.run(
                 command, cwd=ROOT, capture_output=True, text=True,
-                env={**os.environ, "TCC2_THREAD_COUNTS": ",".join(map(str, args.threads))},
+                env={**os.environ, "TCC2_THREAD_COUNTS": ",".join(map(str, args.threads)),
+                     "TCC2_TIMING_STAGE": name},
                 timeout=max(300, args.timeout + 15),
             )
         except subprocess.TimeoutExpired as error:

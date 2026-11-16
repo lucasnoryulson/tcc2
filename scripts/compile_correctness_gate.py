@@ -11,6 +11,7 @@ from analysis.artifact_provenance import (
     ABS_TOL, COMPILE_FLAGS, OPENMP_ENVIRONMENT, REL_TOL,
     capture_run, file_record, verify_file, verify_provenance,
 )
+from scripts.process_timing import run_timed
 
 # ============================================================
 # CONFIGURATION
@@ -31,8 +32,9 @@ def run_command(
     Execute a command and return CompletedProcess.
     """
 
-    return subprocess.run(
+    return run_timed(
         command,
+        origin="correctness_gate",
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
