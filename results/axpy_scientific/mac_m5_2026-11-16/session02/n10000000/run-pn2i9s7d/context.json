@@ -1,0 +1,499 @@
+{
+  "schema": "tcc2-agent-context",
+  "version": "0.3",
+  "task": "Evaluate the automatically generated parallel candidate and decide the next optimization action.",
+  "source": {
+    "campaign_id": "d0a9cfb262a243adb37bdbe1d284dc17",
+    "candidate_id": "sha256:4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+    "candidate_sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+    "sequential_sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea",
+    "sequential_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy.c",
+    "candidate_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/candidate.c",
+    "sequential_code": "/* The caller must supply valid, non-overlapping buffers under C restrict. */\nvoid kernel_axpy(int n, double alpha, const double *restrict X,\n                 const double *restrict Y, double *restrict output)\n{\n    for (int i = 0; i < n; i++)\n    {\n        output[i] = alpha * X[i] + Y[i];\n    }\n}\n",
+    "candidate_code": "/* The caller must supply valid, non-overlapping buffers under C restrict. */\nvoid kernel_axpy(int n, double alpha, const double *restrict X,\n                 const double *restrict Y, double *restrict output)\n{\n    /* TCC2 AUTO-GENERATED: DOALL */\n    #pragma omp parallel for schedule(static)\n    for (int i = 0; i < n; i++)\n    {\n        output[i] = alpha * X[i] + Y[i];\n    }\n}\n"
+  },
+  "static_analysis": {
+    "kernel": {
+      "name": "kernel_axpy",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 5,
+          "end_line": 8,
+          "iterator": "i",
+          "initialization": "int i = 0",
+          "condition": "i < n",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "X",
+              "indices": [
+                "i"
+              ],
+              "expression": "X[i]"
+            },
+            {
+              "array": "Y",
+              "indices": [
+                "i"
+              ],
+              "expression": "Y[i]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "output",
+              "indices": [
+                "i"
+              ],
+              "expression": "output[i]"
+            }
+          ],
+          "operators": [
+            "=",
+            "+",
+            "*"
+          ],
+          "scalar_updates": []
+        }
+      ],
+      "direct_transform_contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 5,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea",
+        "version": "standalone-ast-v2"
+      }
+    }
+  },
+  "dependence_analysis": {
+    "kernel": {
+      "name": "kernel_axpy",
+      "loops": [
+        {
+          "id": 1,
+          "iterator": "i",
+          "dependencies": []
+        }
+      ]
+    }
+  },
+  "pattern": {
+    "classification": "DOALL_CANDIDATE",
+    "family": "MAP / DATA_PARALLEL",
+    "confidence": "medium",
+    "reason": "Independent-index candidates were detected and no shifted or symbolic dependences were found.",
+    "loops": [
+      {
+        "classification": "DOALL_CANDIDATE",
+        "family": "MAP / DATA_PARALLEL",
+        "confidence": "conservative_contract",
+        "reason": "One injective output write with pure reads and restrict caller preconditions.",
+        "evidence": {
+          "standalone_ast_contract": {
+            "status": "SUPPORTED",
+            "pattern": "DOALL",
+            "iterator": "i",
+            "start_line": 5,
+            "reduction_variable": null,
+            "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+            "source_sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea",
+            "version": "standalone-ast-v2"
+          }
+        },
+        "loop_id": 1,
+        "iterator": "i"
+      }
+    ]
+  },
+  "strategy": {
+    "detected_pattern": "DOALL_CANDIDATE",
+    "family": "MAP / DATA_PARALLEL",
+    "classification_confidence": "medium",
+    "plan": {
+      "strategy": "DOALL",
+      "direct_code_transformation": true,
+      "schedule": "static",
+      "contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 5,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea",
+        "version": "standalone-ast-v2"
+      },
+      "reason": "One injective output write; pure RHS; explicit restrict caller precondition."
+    }
+  },
+  "validation": {
+    "correctness_gate": "PASS",
+    "correctness_report_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness.json",
+    "correctness_report_sha256": "dfcb1b5849be9bc37368a60e110ba05f231cbf818a0822585269c89e441fb351",
+    "correctness_report": {
+      "schema": "tcc2-correctness-gate",
+      "version": "0.2",
+      "status": "PASS",
+      "inputs": {
+        "sequential": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy.c",
+        "candidate": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/candidate.c",
+        "driver": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy_driver.c"
+      },
+      "compiler": "/opt/homebrew/opt/llvm/bin/clang",
+      "threads": [
+        1,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "validated_threads": [
+        1,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "tolerances": {
+        "relative": 1e-09,
+        "absolute": 1e-12
+      },
+      "provenance": {
+        "campaign_id": "d0a9cfb262a243adb37bdbe1d284dc17",
+        "run_id": "e8fc8c13e5b14c86bfa5b3f78ecc6576",
+        "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness/e8fc8c13e5b14c86bfa5b3f78ecc6576",
+        "candidate_id": "sha256:4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+        "recorded_at": "2026-11-16T17:12:14.942668+00:00",
+        "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+        "cpu_count": 10,
+        "runtime_environment": {},
+        "inputs": {
+          "sequential": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy.c",
+            "sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness/e8fc8c13e5b14c86bfa5b3f78ecc6576/sequential/axpy.c"
+          },
+          "candidate": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/candidate.c",
+            "sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness/e8fc8c13e5b14c86bfa5b3f78ecc6576/candidate/candidate.c"
+          },
+          "driver": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy_driver.c",
+            "sha256": "83d3f859657947d18131ca03a522de4e954c268e00f0cf428df6daf5b3845b2e",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness/e8fc8c13e5b14c86bfa5b3f78ecc6576/driver/axpy_driver.c"
+          }
+        },
+        "toolchain": {
+          "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+          "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+          "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+        },
+        "compile_flags": {
+          "sequential": [
+            "-O3"
+          ],
+          "candidate": [
+            "-O3",
+            "-fopenmp"
+          ]
+        },
+        "link_flags": [
+          "-lm"
+        ],
+        "openmp_environment": {
+          "OMP_DYNAMIC": "FALSE",
+          "OMP_PROC_BIND": "TRUE",
+          "OMP_PLACES": "cores"
+        }
+      },
+      "compilation": {
+        "sequential": {
+          "command": [
+            "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+            "-O3",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness/e8fc8c13e5b14c86bfa5b3f78ecc6576/driver/axpy_driver.c",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness/e8fc8c13e5b14c86bfa5b3f78ecc6576/sequential/axpy.c",
+            "-lm",
+            "-o",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness/e8fc8c13e5b14c86bfa5b3f78ecc6576/dot_gate_sequential"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        "candidate": {
+          "command": [
+            "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+            "-O3",
+            "-fopenmp",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness/e8fc8c13e5b14c86bfa5b3f78ecc6576/driver/axpy_driver.c",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness/e8fc8c13e5b14c86bfa5b3f78ecc6576/candidate/candidate.c",
+            "-lm",
+            "-o",
+            "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness/e8fc8c13e5b14c86bfa5b3f78ecc6576/dot_gate_candidate"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "binaries": {
+        "sequential": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness/e8fc8c13e5b14c86bfa5b3f78ecc6576/dot_gate_sequential",
+          "sha256": "42205f01452fe52b475de853c1d0f239d994dc3fafaf11db9acf87a1c29450d8"
+        },
+        "candidate": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/correctness/e8fc8c13e5b14c86bfa5b3f78ecc6576/dot_gate_candidate",
+          "sha256": "3aa0a1dd7595dc26e5070485811eb84221940d69bc38677068b668045eecc463"
+        }
+      },
+      "execution": {
+        "sequential": {
+          "returncode": 0,
+          "stdout": "0",
+          "stderr": ""
+        },
+        "candidate": {
+          "returncode": 0,
+          "stdout": "0",
+          "stderr": ""
+        }
+      },
+      "thread_results": [
+        {
+          "threads": 1,
+          "execution": {
+            "returncode": 0,
+            "stdout": "0",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": 0.0,
+            "candidate": 0.0,
+            "absolute_error": 0.0,
+            "relative_error": 0.0,
+            "correct": true
+          }
+        },
+        {
+          "threads": 2,
+          "execution": {
+            "returncode": 0,
+            "stdout": "0",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": 0.0,
+            "candidate": 0.0,
+            "absolute_error": 0.0,
+            "relative_error": 0.0,
+            "correct": true
+          }
+        },
+        {
+          "threads": 4,
+          "execution": {
+            "returncode": 0,
+            "stdout": "0",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": 0.0,
+            "candidate": 0.0,
+            "absolute_error": 0.0,
+            "relative_error": 0.0,
+            "correct": true
+          }
+        },
+        {
+          "threads": 6,
+          "execution": {
+            "returncode": 0,
+            "stdout": "0",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": 0.0,
+            "candidate": 0.0,
+            "absolute_error": 0.0,
+            "relative_error": 0.0,
+            "correct": true
+          }
+        },
+        {
+          "threads": 8,
+          "execution": {
+            "returncode": 0,
+            "stdout": "0",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": 0.0,
+            "candidate": 0.0,
+            "absolute_error": 0.0,
+            "relative_error": 0.0,
+            "correct": true
+          }
+        },
+        {
+          "threads": 10,
+          "execution": {
+            "returncode": 0,
+            "stdout": "0",
+            "stderr": ""
+          },
+          "validation": {
+            "reference": 0.0,
+            "candidate": 0.0,
+            "absolute_error": 0.0,
+            "relative_error": 0.0,
+            "correct": true
+          }
+        }
+      ],
+      "validation": {
+        "reference": 0.0,
+        "candidate": 0.0,
+        "absolute_error": 0.0,
+        "relative_error": 0.0,
+        "correct": true
+      }
+    }
+  },
+  "performance": {
+    "report": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/performance.json",
+      "sha256": "5dfc90a0ca2d99d31f1b17a4c69110c811bd3a83120bc10ec3fcbb2f5361dc4e"
+    },
+    "selection_file": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/selection.json",
+      "sha256": "648f13a32c8a3d666752ac99a61caafa30e6374f44601f555f77018e629e4798"
+    },
+    "selection": {
+      "status": "SELECTED",
+      "decision": "RESOURCE_AWARE_NEAR_TIE",
+      "parallel_status": "PARALLEL_SUCCESS",
+      "sequential": {
+        "mode": "sequential",
+        "threads": 1,
+        "median_seconds": 0.009378175,
+        "mean_seconds": 0.010467748333333334,
+        "speedup": 1.0,
+        "efficiency": 1.0
+      },
+      "one_thread": {
+        "mode": "openmp",
+        "threads": 1,
+        "median_seconds": 0.00947215,
+        "mean_seconds": 0.009759856666666667,
+        "speedup": 0.9900788099850615,
+        "efficiency": 0.9900788099850615
+      },
+      "best_parallel": {
+        "mode": "openmp",
+        "threads": 10,
+        "median_seconds": 0.007867725,
+        "mean_seconds": 0.007828895,
+        "speedup": 1.191980528043367,
+        "efficiency": 0.11919805280433671
+      },
+      "transformation_benefit": false,
+      "parallel_benefit": true,
+      "transformation_speedup": 0.9900788099850615,
+      "parallel_scaling_speedup": 1.200358631876418,
+      "parallel_scaling_efficiency": 0.3000896579691045,
+      "end_to_end_speedup": 1.1884496458035003,
+      "runtime_reduction": 0.15856763176204336,
+      "raw_fastest": {
+        "mode": "openmp",
+        "threads": 10,
+        "median_seconds": 0.007867725,
+        "mean_seconds": 0.007828895,
+        "speedup": 1.191980528043367,
+        "efficiency": 0.11919805280433671
+      },
+      "near_tie_threshold": 0.02,
+      "near_tie_candidates": [
+        {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.0078911,
+          "mean_seconds": 0.008042693333333333,
+          "speedup": 1.1884496458035003,
+          "efficiency": 0.2971124114508751,
+          "slowdown_vs_fastest": 0.0029709986050603376
+        },
+        {
+          "mode": "openmp",
+          "threads": 6,
+          "median_seconds": 0.0079395,
+          "mean_seconds": 0.00799902,
+          "speedup": 1.1812047358145978,
+          "efficiency": 0.19686745596909963,
+          "slowdown_vs_fastest": 0.009122713363774126
+        },
+        {
+          "mode": "openmp",
+          "threads": 8,
+          "median_seconds": 0.0079921,
+          "mean_seconds": 0.007953568333333333,
+          "speedup": 1.173430637754783,
+          "efficiency": 0.14667882971934787,
+          "slowdown_vs_fastest": 0.015808254609814165
+        },
+        {
+          "mode": "openmp",
+          "threads": 10,
+          "median_seconds": 0.007867725,
+          "mean_seconds": 0.007828895,
+          "speedup": 1.191980528043367,
+          "efficiency": 0.11919805280433671,
+          "slowdown_vs_fastest": 0.0
+        }
+      ],
+      "recommended": {
+        "mode": "openmp",
+        "threads": 4,
+        "median_seconds": 0.0078911,
+        "mean_seconds": 0.008042693333333333,
+        "speedup": 1.1884496458035003,
+        "efficiency": 0.2971124114508751,
+        "slowdown_vs_fastest": 0.0029709986050603376
+      },
+      "next_action": "PROMOTE_CANDIDATE",
+      "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.",
+      "evidence": {
+        "performance_report": {
+          "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/performance.json",
+          "sha256": "5dfc90a0ca2d99d31f1b17a4c69110c811bd3a83120bc10ec3fcbb2f5361dc4e"
+        },
+        "campaign_id": "d0a9cfb262a243adb37bdbe1d284dc17",
+        "candidate_id": "sha256:4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1"
+      }
+    }
+  },
+  "profiling": {},
+  "agent_constraints": [
+    "Never accept a candidate that has not passed correctness validation.",
+    "Do not remove synchronization required by detected dependences.",
+    "Do not introduce OpenMP transformations that contradict the Strategy Planner.",
+    "Prefer evidence from static analysis, dependence analysis and measured performance over unsupported assumptions.",
+    "If performance differences are within the near-tie threshold, consider resource efficiency before choosing more threads.",
+    "Any proposed code modification must be recompiled and revalidated before being accepted."
+  ],
+  "expected_decision_schema": {
+    "decision": "ACCEPT | RETUNE | MODIFY | REJECT",
+    "recommended_threads": "integer or null",
+    "reason": "short explanation",
+    "next_action": "action for another agent",
+    "risk": "LOW | MEDIUM | HIGH"
+  }
+}

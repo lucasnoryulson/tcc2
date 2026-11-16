@@ -1,5 +1,9 @@
 # Coleta adicional no Apple M5
 
+A campanha científica AXPY também foi concluída; consulte
+`AXPY_SCIENTIFIC_2026-11-16_REPORT.md` e o protocolo próprio. Os comandos abaixo
+continuam como receitas opcionais, não como indicação de coleta pendente.
+
 As duas campanhas equivalentes de 16/11 já foram coletadas e estão descritas em
 `MAC_EVALUATION_2026-11-16_DELIVERY.md`. Este roteiro recebido no patch é opcional:
 use nomes de saída novos caso precise repetir a coleta. Não substitua as sessões

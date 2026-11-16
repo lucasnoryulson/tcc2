@@ -1,0 +1,249 @@
+{
+  "frozen_at_utc": "2026-11-16T17:10:21.645249+00:00",
+  "choices": [
+    {
+      "kernel": "axpy",
+      "size": 1024,
+      "variant": "automatic",
+      "selection": {
+        "status": "NO_BENEFICIAL_CONFIGURATION",
+        "decision": "NO_BENEFIT",
+        "parallel_status": "NO_BENEFIT",
+        "sequential": {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 2.501e-07,
+          "mean_seconds": 2.5008666666666667e-07,
+          "sample_count": null,
+          "speedup": 1.0,
+          "efficiency": 1.0,
+          "parallel_scaling_speedup": null,
+          "parallel_scaling_efficiency": null
+        },
+        "one_thread": {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 4.566e-07,
+          "mean_seconds": 4.5298666666666666e-07,
+          "sample_count": null,
+          "speedup": 0.5477441962330267,
+          "efficiency": 0.5477441962330267,
+          "parallel_scaling_speedup": 1.0,
+          "parallel_scaling_efficiency": 1.0
+        },
+        "best_parallel": {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 1.31432e-05,
+          "mean_seconds": 1.2904446666666667e-05,
+          "sample_count": null,
+          "speedup": 0.01902885142126727,
+          "efficiency": 0.009514425710633635,
+          "parallel_scaling_speedup": 0.034740398076571914,
+          "parallel_scaling_efficiency": 0.017370199038285957
+        },
+        "transformation_benefit": false,
+        "parallel_benefit": false,
+        "recommended": null,
+        "next_action": "MODIFY_OR_REJECT_CANDIDATE",
+        "reason": "No OpenMP configuration improved over the sequential baseline."
+      }
+    },
+    {
+      "kernel": "axpy",
+      "size": 1000000,
+      "variant": "automatic",
+      "selection": {
+        "status": "SELECTED",
+        "decision": "RESOURCE_AWARE_NEAR_TIE",
+        "parallel_status": "PARALLEL_SUCCESS",
+        "sequential": {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 0.00087471,
+          "mean_seconds": 0.0008270533333333334,
+          "sample_count": null,
+          "speedup": 1.0,
+          "efficiency": 1.0,
+          "parallel_scaling_speedup": null,
+          "parallel_scaling_efficiency": null
+        },
+        "one_thread": {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 0.000831,
+          "mean_seconds": 0.0008330893333333333,
+          "sample_count": null,
+          "speedup": 1.0525992779783393,
+          "efficiency": 1.0525992779783393,
+          "parallel_scaling_speedup": 1.0,
+          "parallel_scaling_efficiency": 1.0
+        },
+        "best_parallel": {
+          "mode": "openmp",
+          "threads": 10,
+          "median_seconds": 0.00065595,
+          "mean_seconds": 0.0005728873333333334,
+          "sample_count": null,
+          "speedup": 1.3335010290418479,
+          "efficiency": 0.13335010290418478,
+          "parallel_scaling_speedup": 1.2668648525040018,
+          "parallel_scaling_efficiency": 0.1266864852504002
+        },
+        "transformation_benefit": true,
+        "parallel_benefit": true,
+        "transformation_speedup": 1.0525992779783393,
+        "parallel_scaling_speedup": 1.2616524458749583,
+        "parallel_scaling_efficiency": 0.2102754076458264,
+        "end_to_end_speedup": 1.3280144535875869,
+        "runtime_reduction": 0.2469961472945319,
+        "raw_fastest": {
+          "mode": "openmp",
+          "threads": 10,
+          "median_seconds": 0.00065595,
+          "mean_seconds": 0.0005728873333333334,
+          "sample_count": null,
+          "speedup": 1.3335010290418479,
+          "efficiency": 0.13335010290418478,
+          "parallel_scaling_speedup": 1.2668648525040018,
+          "parallel_scaling_efficiency": 0.1266864852504002
+        },
+        "near_tie_threshold": 0.02,
+        "near_tie_candidates": [
+          {
+            "mode": "openmp",
+            "threads": 6,
+            "median_seconds": 0.00065866,
+            "mean_seconds": 0.0005887053333333333,
+            "sample_count": null,
+            "speedup": 1.3280144535875869,
+            "efficiency": 0.22133574226459782,
+            "parallel_scaling_speedup": 1.2616524458749583,
+            "parallel_scaling_efficiency": 0.2102754076458264,
+            "slowdown_vs_fastest": 0.004131412455217642
+          },
+          {
+            "mode": "openmp",
+            "threads": 10,
+            "median_seconds": 0.00065595,
+            "mean_seconds": 0.0005728873333333334,
+            "sample_count": null,
+            "speedup": 1.3335010290418479,
+            "efficiency": 0.13335010290418478,
+            "parallel_scaling_speedup": 1.2668648525040018,
+            "parallel_scaling_efficiency": 0.1266864852504002,
+            "slowdown_vs_fastest": 0.0
+          }
+        ],
+        "recommended": {
+          "mode": "openmp",
+          "threads": 6,
+          "median_seconds": 0.00065866,
+          "mean_seconds": 0.0005887053333333333,
+          "sample_count": null,
+          "speedup": 1.3280144535875869,
+          "efficiency": 0.22133574226459782,
+          "parallel_scaling_speedup": 1.2616524458749583,
+          "parallel_scaling_efficiency": 0.2102754076458264,
+          "slowdown_vs_fastest": 0.004131412455217642
+        },
+        "next_action": "PROMOTE_CANDIDATE",
+        "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline."
+      }
+    },
+    {
+      "kernel": "axpy",
+      "size": 10000000,
+      "variant": "automatic",
+      "selection": {
+        "status": "SELECTED",
+        "decision": "FASTEST_CONFIGURATION",
+        "parallel_status": "PARALLEL_SUCCESS",
+        "sequential": {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 0.00978545,
+          "mean_seconds": 0.011130448333333334,
+          "sample_count": null,
+          "speedup": 1.0,
+          "efficiency": 1.0,
+          "parallel_scaling_speedup": null,
+          "parallel_scaling_efficiency": null
+        },
+        "one_thread": {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 0.0094661,
+          "mean_seconds": 0.010879068333333334,
+          "sample_count": null,
+          "speedup": 1.0337361743484645,
+          "efficiency": 1.0337361743484645,
+          "parallel_scaling_speedup": 1.0,
+          "parallel_scaling_efficiency": 1.0
+        },
+        "best_parallel": {
+          "mode": "openmp",
+          "threads": 10,
+          "median_seconds": 0.007808275,
+          "mean_seconds": 0.007857386666666667,
+          "sample_count": null,
+          "speedup": 1.253215338855253,
+          "efficiency": 0.1253215338855253,
+          "parallel_scaling_speedup": 1.2123164207203256,
+          "parallel_scaling_efficiency": 0.12123164207203256
+        },
+        "transformation_benefit": true,
+        "parallel_benefit": true,
+        "transformation_speedup": 1.0337361743484645,
+        "parallel_scaling_speedup": 1.2123164207203256,
+        "parallel_scaling_efficiency": 0.12123164207203256,
+        "end_to_end_speedup": 1.253215338855253,
+        "runtime_reduction": 0.2020525371853108,
+        "raw_fastest": {
+          "mode": "openmp",
+          "threads": 10,
+          "median_seconds": 0.007808275,
+          "mean_seconds": 0.007857386666666667,
+          "sample_count": null,
+          "speedup": 1.253215338855253,
+          "efficiency": 0.1253215338855253,
+          "parallel_scaling_speedup": 1.2123164207203256,
+          "parallel_scaling_efficiency": 0.12123164207203256
+        },
+        "near_tie_threshold": 0.02,
+        "near_tie_candidates": [
+          {
+            "mode": "openmp",
+            "threads": 10,
+            "median_seconds": 0.007808275,
+            "mean_seconds": 0.007857386666666667,
+            "sample_count": null,
+            "speedup": 1.253215338855253,
+            "efficiency": 0.1253215338855253,
+            "parallel_scaling_speedup": 1.2123164207203256,
+            "parallel_scaling_efficiency": 0.12123164207203256,
+            "slowdown_vs_fastest": 0.0
+          }
+        ],
+        "recommended": {
+          "mode": "openmp",
+          "threads": 10,
+          "median_seconds": 0.007808275,
+          "mean_seconds": 0.007857386666666667,
+          "sample_count": null,
+          "speedup": 1.253215338855253,
+          "efficiency": 0.1253215338855253,
+          "parallel_scaling_speedup": 1.2123164207203256,
+          "parallel_scaling_efficiency": 0.12123164207203256,
+          "slowdown_vs_fastest": 0.0
+        },
+        "next_action": "PROMOTE_CANDIDATE",
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline."
+      }
+    }
+  ],
+  "session_finished_utc": "2026-11-16T17:10:03.222403+00:00",
+  "session_report_sha256": "300ae4b20f48954802b5d43b4e97b2b7d8f79f363fce41cee769ab2a8886d07a",
+  "session_manifest_sha256": "158494fbdcd8da8bdeb7a0f66f3d5d37b075e9eef2bde4926b6cc1ac029bf459",
+  "selector_sha256": "e3a68cd114d0e67b522d3a7ae51538de66e0963e00e8a643abf4554942723061"
+}

@@ -1,0 +1,7 @@
+{
+  "status": "PREPARED_NO_MEASUREMENTS",
+  "frozen_at_utc": "2026-11-16T17:08:06.330429+00:00",
+  "protocol_sha256": "030fc4b51da9721d77c6d209f4166840858a3dd47b4154121df4c07f828d9f75",
+  "source_manifest_sha256": "84b0c54c4dcf54c64aca996630f2b080f53f6756642f6e1d3f7ccca3f891acbb",
+  "git_commit": "82de6e06dc7b3930c12b31bea2c123950777018d"
+}

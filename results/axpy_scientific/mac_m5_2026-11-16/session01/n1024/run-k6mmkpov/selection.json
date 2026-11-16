@@ -1,0 +1,42 @@
+{
+  "status": "NO_BENEFICIAL_CONFIGURATION",
+  "decision": "NO_BENEFIT",
+  "parallel_status": "NO_BENEFIT",
+  "sequential": {
+    "mode": "sequential",
+    "threads": 1,
+    "median_seconds": 2.501e-07,
+    "mean_seconds": 2.5008666666666667e-07,
+    "speedup": 1.0,
+    "efficiency": 1.0
+  },
+  "one_thread": {
+    "mode": "openmp",
+    "threads": 1,
+    "median_seconds": 4.566e-07,
+    "mean_seconds": 4.5298666666666666e-07,
+    "speedup": 0.5477441962330267,
+    "efficiency": 0.5477441962330267
+  },
+  "best_parallel": {
+    "mode": "openmp",
+    "threads": 2,
+    "median_seconds": 1.31432e-05,
+    "mean_seconds": 1.2904446666666667e-05,
+    "speedup": 0.01902885142126727,
+    "efficiency": 0.009514425710633635
+  },
+  "transformation_benefit": false,
+  "parallel_benefit": false,
+  "recommended": null,
+  "next_action": "MODIFY_OR_REJECT_CANDIDATE",
+  "reason": "No OpenMP configuration improved over the sequential baseline.",
+  "evidence": {
+    "performance_report": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/performance.json",
+      "sha256": "b698e36a1154749b86e1f487318d0b570cf92ee88cf908a7175d76fc63cda5e3"
+    },
+    "campaign_id": "bec4b079010a428baadbeb73cc398413",
+    "candidate_id": "sha256:4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1"
+  }
+}

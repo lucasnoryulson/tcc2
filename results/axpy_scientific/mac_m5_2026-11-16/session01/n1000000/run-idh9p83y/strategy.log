@@ -1,0 +1,32 @@
+=================================
+TCC2 STRATEGY PLANNER v0.1
+=================================
+Static:   /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1000000/run-idh9p83y/analysis/axpy_analysis.json
+Patterns: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1000000/run-idh9p83y/analysis/axpy_patterns.json
+
+Kernel: kernel_axpy
+Pattern: DOALL_CANDIDATE
+Family: MAP / DATA_PARALLEL
+Classification confidence: medium
+Strategy: DOALL
+
+{
+  "strategy": "DOALL",
+  "direct_code_transformation": true,
+  "schedule": "static",
+  "contract": {
+    "status": "SUPPORTED",
+    "pattern": "DOALL",
+    "iterator": "i",
+    "start_line": 5,
+    "reduction_variable": null,
+    "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+    "source_sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea",
+    "version": "standalone-ast-v2"
+  },
+  "reason": "One injective output write; pure RHS; explicit restrict caller precondition."
+}
+
+=================================
+JSON salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1000000/run-idh9p83y/analysis/axpy_strategy.json
+=================================

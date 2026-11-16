@@ -1,0 +1,55 @@
+{
+  "schema": "tcc2-axpy-scientific-protocol-v1",
+  "kernel": "axpy",
+  "sessions": 2,
+  "inputs": [
+    {
+      "n": 1024,
+      "inner_repeats": 10000,
+      "logical_buffer_bytes": 24576
+    },
+    {
+      "n": 1000000,
+      "inner_repeats": 100,
+      "logical_buffer_bytes": 24000000
+    },
+    {
+      "n": 10000000,
+      "inner_repeats": 40,
+      "logical_buffer_bytes": 240000000
+    }
+  ],
+  "threads": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    10
+  ],
+  "repetitions": 15,
+  "warmups": 3,
+  "seed": 2026,
+  "compile_flags": {
+    "sequential": [
+      "-O3"
+    ],
+    "candidate": [
+      "-O3",
+      "-fopenmp"
+    ]
+  },
+  "openmp_environment": {
+    "OMP_DYNAMIC": "FALSE",
+    "OMP_PROC_BIND": "TRUE",
+    "OMP_PLACES": "cores"
+  },
+  "correctness": "Existing AXPY driver: every element at N=1024, 1000000 and 10000000, plus alpha=-2 and alpha=0 at N=1024; every timed process also checks its full output after timing. Tolerances rtol=1e-9, atol=1e-12.",
+  "sampling": "Independent processes; kernel time divided by fixed inner repeats. Each input has complete randomized configuration rounds, warmups excluded. Same seed and source bytes across sessions. No pooling across inputs or sessions.",
+  "holdout": "Freeze all session-1 choices and archive hashes before session 2 begins. Reapply without retuning. Oracle is smallest session-2 median including sequential; descriptive inadequacy means more than 2% slower.",
+  "statistics": "Median, mean, sample SD, MAD, IQR; paired complete-round percentile bootstrap with 5000 resamples and seed 2026 for 95% conditional intervals. No population/significance claim from two sessions.",
+  "cost": "Actual deterministic pipeline preparation cost per input, including compilation, correctness and sampling. Amortization on both same-session and held-out kernel times. No new LLM/promotion cost is claimed; prefix-only estimate is a lower bound for full admission.",
+  "power": "Do not begin while charge is critically low and falling. Record power/charge before and after sessions. Prefer stable external power; no exclusive host, frequency or thermal control is claimed.",
+  "cooldown_seconds_between_sessions": 30,
+  "scope": "One AXPY source, three fixed input sizes, deterministic generation. No new kernel, repair loop, hardware profiler, LLM architecture, or causal DRAM/cache claim. Existing results are not overwritten."
+}

@@ -1,0 +1,25 @@
+==============================
+TCC2 STATIC ANALYZER v0.2
+==============================
+Source: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy.c
+
+Kernel: kernel_axpy
+Loops encontrados: 1
+
+Loop #1
+  Depth: 0
+  Lines: 5 - 8
+  Iterator: i
+  Init: int i = 0
+  Condition: i < n
+  Increment: i++
+  READS:
+    X[i]
+    Y[i]
+  WRITES:
+    output[i]
+  Operators: =, +, *
+
+==============================
+JSON salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis/axpy_analysis.json
+==============================

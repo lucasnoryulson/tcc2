@@ -1,0 +1,59 @@
+{
+  "schema": "tcc2-axpy-session-v1",
+  "status": "COMPLETE",
+  "started_utc": "2026-11-16T17:08:06.529450+00:00",
+  "protocol_sha256": "030fc4b51da9721d77c6d209f4166840858a3dd47b4154121df4c07f828d9f75",
+  "runs": [
+    {
+      "n": 1024,
+      "work": "n1024/run-k6mmkpov",
+      "performance_sha256": "b698e36a1154749b86e1f487318d0b570cf92ee88cf908a7175d76fc63cda5e3",
+      "correctness_sha256": "f17eb82fe44a1193a4edce3c439ae249d633eab75143961cc9000324cbf4cf83",
+      "candidate_sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+      "benchmark_driver_sha256": "592f324f4a0e1fe8b79283d45f8f8be0956fad54e5890696478353830301d32a",
+      "toolchain": {
+        "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+        "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+      }
+    },
+    {
+      "n": 1000000,
+      "work": "n1000000/run-idh9p83y",
+      "performance_sha256": "17e19f5139ea21b0ff35d6e1197cf9c823c69a30717bc3c2600e5a09071af130",
+      "correctness_sha256": "9f33047de671a934f0107256d17cd200bf23addf71c80ccdf8e117728fed8045",
+      "candidate_sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+      "benchmark_driver_sha256": "d169fe3b72833cc3e588558f29f697f3c0e76e85a5e7b7791ba11eef71483bdf",
+      "toolchain": {
+        "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+        "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+      }
+    },
+    {
+      "n": 10000000,
+      "work": "n10000000/run-sxryguup",
+      "performance_sha256": "5149800fafa9e821b029770d37749cf3289e2fa8c7e300043e12a1d006b5e8e3",
+      "correctness_sha256": "66dcef59937325097310baae67156384b5f4b894aea92946941deb4eae410a95",
+      "candidate_sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+      "benchmark_driver_sha256": "e71ff54424a61923498c412de8d7a27d0b86072d8220ec8c0565b651c434b115",
+      "toolchain": {
+        "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+        "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+      }
+    }
+  ],
+  "actual_team_sizes_probe": {
+    "1": 1,
+    "2": 2,
+    "4": 4,
+    "6": 6,
+    "8": 8,
+    "10": 10
+  },
+  "finished_utc": "2026-11-16T17:10:03.222403+00:00",
+  "configurations": 21,
+  "measured_samples": 315,
+  "warmup_samples": 63
+}

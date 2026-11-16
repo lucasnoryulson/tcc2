@@ -30,7 +30,8 @@ conjuntamente aos critérios de causa e ação da rubrica autoral. Os resultados
 demonstram a integração no subconjunto avaliado, mas não estabelecem
 superioridade da LLM, paralelização geral ou reparo autônomo. A campanha
 multiplataforma equivalente foi concluída; contadores físicos de cache/DRAM
-e a campanha científica do AXPY com o novo contrato permanecem pendentes.
+permanecem indisponíveis. A campanha AXPY sob o contrato atualizado foi concluída
+em duas sessões, com 630 medições e nenhuma escolha congelada inadequada nos três tamanhos.
 
 Palavras-chave: OpenMP; análise de dependências; paralelização automática;
 escalabilidade; modelos de linguagem; reprodutibilidade experimental.
@@ -59,8 +60,9 @@ admission policy with additional cost. In a separate diagnosis evaluation, none
 of 48 calls jointly satisfied the cause and action criteria of the authored
 rubric. The findings demonstrate integration within the evaluated subset, but
 do not establish LLM superiority, general parallelization, or autonomous repair.
-The equivalent M5 campaign is complete; physical cache/DRAM counters and a
-scientific AXPY campaign under the updated contract remain unavailable.
+The equivalent M5 and updated-contract AXPY campaigns are complete. The latter
+contains 630 observations in two sessions, with no frozen choice over 2% slower
+than the later measured oracle across three sizes. Physical cache/DRAM counters remain unavailable.
 
 Keywords: OpenMP; dependence analysis; automatic parallelization; scaling;
 language models; experimental reproducibility.
@@ -275,7 +277,7 @@ fontes independentes execute automaticamente todo o projeto PolyBench.
 |---|---|
 | Dot Product C | Caminho integrado de redução escalar, gates, seleção, decisão e executor; inferência real e promoção concluídas no Mac em 03/11/2026 |
 | Corpus controlado DOALL/REDUCTION | Extensão determinística para atribuição injetiva e redução local; campanha e denominadores próprios, sem nova inferência ou promoção LLM presumida |
-| AXPY | Promoção histórica no M5 com contrato anterior; novo fixture independente com três buffers `restrict` e oráculo elemento a elemento, sujeito a nova execução |
+| AXPY | Promoção histórica no M5 com contrato anterior; novo fixture independente com três buffers `restrict` e oráculo elemento a elemento, avaliado em duas sessões científicas, sem nova promoção LLM |
 | GEMM | Análises e campanhas de variante OpenMP manual |
 | Jacobi-2D | Análises, variante OpenMP manual e experiências específicas com tiling |
 | Covariance | Análises e campanha de variante OpenMP manual |
@@ -1102,6 +1104,12 @@ do Coordinator isolada fornece somente um limite inferior do custo total.
 As novas coletas e o procedimento de perfil estão em
 [FINAL_MAC_RUN.md](../experiments/FINAL_MAC_RUN.md).
 
+A extensão científica AXPY usa as três entradas e os números fixos de chamadas
+internas descritos em §5.8.2, mantendo quinze medições externas e três
+aquecimentos. O protocolo e os hashes foram fixados antes da primeira
+sessão; as escolhas foram congeladas antes da segunda. O custo relatado
+para AXPY é exclusivamente o preparo determinístico observado.
+
 ## 5. Resultados
 
 Os resultados são organizados por unidade experimental: desempenho, cobertura
@@ -1485,6 +1493,14 @@ não houve medição de workers. Evidências:
 [protocolo](../publication/NUMERICAL_LIMIT_PROTOCOL.md) e
 [gate](../../results/publication/numerical_limit_linux_2026-11-06/gate.json).
 
+A bateria da campanha AXPY acrescentou nove testes do harness e drivers,
+totalizando 152 testes aprovados, sem skips, além dos 23 casos de regressão.
+As correções de aliases de caminhos temporários e de quantização de
+temporizador nos microtestes ocorreram antes da coleta científica.
+A verificação final recompõe políticas, ICs, hashes e cópias da monografia
+anterior, além de conferir A4, margens e campo de paginação no Word.
+Ela não certifica renderização nativa nem aprovação institucional.
+
 ### 5.6. Estudo histórico de admissão do Coordinator no Mac
 
 A campanha utilizou `llama3.1:8b`, ID local `46e0c10c039e`, LLVM 23.1.1,
@@ -1540,7 +1556,9 @@ Fonte: campanhas `m5_final_promoted_dot`, `m5_coordinator_dot_large` e
 `m5_coordinator_dot_small` na matriz consolidada. As medidas são por chamada;
 não são tempos totais de otimização nem repetições da decisão LLM.
 
-### 5.8. AXPY: resultado histórico no M5 e novo contrato
+### 5.8. AXPY: histórico e campanha científica sob o novo contrato
+
+#### 5.8.1. Resultado histórico de 03/11
 
 O artefato de promoção de 03/11/2026 contém cinco medições externas por
 configuração, com dez milhões de elementos e quarenta chamadas internas por
@@ -1568,9 +1586,60 @@ checksum escalar com N=1.000.000. A promoção então registrada não certifica
 o contrato aprimorado nem constitui validação integral da entrada temporizada.
 O arquivo original permanece em
 `results/final-promoted/axpy-mac-2026-11-03`, sem substituir hashes ou dados.
-A nova fonte e os dois drivers descritos em §3.8 precisam passar pela nova
-coleta; nenhum tempo histórico foi atribuído à implementação atual. Este caso
-não altera os denominadores de §5.1–5.4.
+A subseção seguinte avalia a fonte e os drivers atuais. Nenhum tempo histórico
+foi atribuído a essa implementação, nem seus dados alteram os denominadores de §5.1–5.4.
+
+#### 5.8.2. Nova campanha científica AXPY
+
+O protocolo AXPY foi fixado antes das medições em `82de6e0`. As duas sessões
+utilizam N=1.024, 1.000.000 e 10.000.000, com respectivamente 10.000, 100 e 40
+chamadas internas por processo. Cada entrada tem sete configurações:
+sequencial e OpenMP em 1/2/4/6/8/10T;
+o conjunto tem 21 por sessão. Quinze processos medidos e três aquecimentos
+por configuração totalizam 630 medições e 126 aquecimentos nas duas sessões.
+O intervalo ocioso previsto entre sessões é de 30 segundos. Toda execução
+temporizada verifica sua saída integralmente fora do intervalo do kernel.
+As três áreas double ocupam logicamente 24.576, 24.000.000 e 240.000.000 bytes;
+isso não mede residência de cache nem tráfego DRAM. As amostras não são somadas
+ao corpus de 28 fontes ou às campanhas multiplataforma anteriores.
+
+| N | Seleção S1 | Mediana selecionada (µs) | S total S1 [IC95%] | S paralelo S1 | E paralela S1 |
+|---|---:|---:|---:|---:|---:|
+| 1.024 | seq. | 0,2501 | 1,000 [1,000; 1,000] | — | — |
+| 1.000.000 | 6T | 658,6600 | 1,328 [1,149; 1,384] | 1,262 | 0,210 |
+| 10.000.000 | 10T | 7808,2750 | 1,253 [1,190; 1,674] | 1,212 | 0,121 |
+
+As medianas, médias, DP amostrais, MAD, IQR e IC95% de todas as configurações permanecem nos CSVs. Os intervalos são bootstrap percentil de 5.000 reamostragens de rodadas completas, condicionais à coleta; não são testes de significância nem estimativas populacionais. A linha sequencial é a própria referência, não um ganho.
+
+![AXPY N=1024: sessões separadas; barras são IC95% condicionais](figures_axpy_2026-11-16/axpy_1024.png)
+
+![AXPY N=1000000: sessões separadas; barras são IC95% condicionais](figures_axpy_2026-11-16/axpy_1000000.png)
+
+![AXPY N=10000000: sessões separadas; barras são IC95% condicionais](figures_axpy_2026-11-16/axpy_10000000.png)
+
+As escolhas foram congeladas em arquivo com SHA-256 antes do início da segunda sessão. O limiar de quase empate permanece em 2%, sem ajustes no holdout.
+
+| N | Configuração congelada | S total S2 | Excesso sobre melhor S2 | Inadequada (>2%) |
+|---|---:|---:|---:|---|
+| 1.024 | seq. | 1,000 | 0,000% | Não |
+| 1.000.000 | 6T | 1,192 | 0,000% | Não |
+| 10.000.000 | 10T | 1,192 | 0,000% | Não |
+
+A recomendação permaneceu igual em 2/3 casos. Nenhuma das três escolhas congeladas ficou mais de 2% acima da menor mediana da segunda sessão, incluindo sequencial. Isso descreve três entradas do mesmo kernel, não três programas independentes. O caso pequeno conservou o sequencial; aumentar threads não foi presumido benéfico.
+
+#### 5.8.3. Amortização do preparo determinístico AXPY
+
+| N | Preparo S1 (s) | Preparo S2 (s) | Equilíbrio do preparo S1 na latência S2 (chamadas) |
+|---|---:|---:|---:|
+| 1.024 | 39,959 | 37,508 | não definido |
+| 1.000.000 | 12,326 | 14,152 | 84220 |
+| 10.000.000 | 63,683 | 61,916 | 42162 |
+
+C é o tempo observado do prefixo real: análises, geração, compilação, corretude, amostragem, seleção e contexto. A economia por chamada usa a configuração congelada e as novas medianas da S2. Não houve nova inferência LLM nem promoção: estes pontos amortizam somente o preparo, constituindo limites inferiores para o custo completo de admissão. Não se transportou a latência LLM histórica ao novo candidato. Sem economia positiva, o equilíbrio não é definido. As duas observações de custo por entrada não sustentam IC populacional.
+
+O macOS registrou energia externa com bateria em 3%, carregando. A carga inicial baixa, a ausência de controle dedicado de temperatura/frequência e a execução no mesmo host/dia limitam a interpretação. O probe confirmou equipes de 1/2/4/6/8/10 workers, não sua alocação P/E durante o kernel. Não se inferem causas físicas de memória das curvas. Todas as configurações lentas e sem ganho foram mantidas.
+
+Fontes: [protocolo fixado](../experiments/AXPY_SCIENTIFIC_PROTOCOL_2026-11-16.json), [arquivos das sessões](../../results/axpy_scientific/mac_m5_2026-11-16/), [análise completa](../../results/axpy_scientific/analysis_mac_m5_2026-11-16/report.json).
 
 ### 5.9. Transferência da seleção entre sessões Linux
 
@@ -1938,7 +2007,12 @@ frequência de reutilização do candidato. As duas campanhas equivalentes M5
 foram concluídas, com uma escolha inadequada em 16 no holdout e estabilidade
 em 14/16. O perfil auxiliar registra esperas, mas não causalidade física de
 memória ou classes de núcleos. A campanha científica AXPY sob o contrato
-atualizado e contadores físicos de cache/DRAM permanecem pendentes. A validação
+atualizado foi concluída com três entradas e 630 medições. Na avaliação posterior,
+os ganhos das escolhas congeladas nas duas entradas maiores foram aproximadamente
+1,192×, enquanto a menor conservou o sequencial; nenhuma excedeu o limiar
+operacional de inadequação. A amortização medida cobre somente o prefixo
+determinístico, não inferência ou promoção. Contadores físicos de cache/DRAM
+permanecem indisponíveis. A validação
 técnica deste patch não substitui essas campanhas nem a revisão institucional.
 
 ## Referências

@@ -1,4 +1,27 @@
-# Estado do TCC — fortalecimento científico atualizado em 6 de novembro de 2026
+# Estado do TCC — atualização de 16 de novembro de 2026
+
+## Estado atual após as campanhas Mac e AXPY
+
+| Item original | Situação em 16/11 |
+|---|---|
+| **1. Pipeline até o resultado final** | Promoções históricas e seis promoções do estudo de custo preservadas. A nova campanha AXPY conclui geração, corretude, medição e contexto, sem nova inferência ou promoção. |
+| **2. Validação e configuração** | Suíte ampliada com 152 testes sem falhas/skips e 23 casos de regressão; hashes, agenda, configuração e saídas integrais verificados. PASS continua limitado às entradas testadas. |
+| **3. Recorte da automação** | Inalterado: redução e DOALL conservador, com uma LLM no Coordinator; não há transformação geral, geração LLM ampla ou reparo autônomo. |
+| **4. Avaliação científica dos agentes** | Estudos anteriores de admissão/diagnóstico e seus resultados negativos preservados. AXPY avalia a geração e seleção determinísticas, não acrescenta evidência de benefício da LLM. |
+| **5. Experimentos e reprodução** | Duas sessões equivalentes M5 com 3.240 medições, holdout e custos concluídos. AXPY acrescenta duas sessões separadas, 630 medições, 126 aquecimentos e três tamanhos, sem escolha congelada inadequada nesta amostra. Profiling físico permanece parcial. |
+| **6. Monografia e defesa** | Monografia consolidada atualizada para 82 páginas, com Word/PDF e revisão anterior de 78 páginas preservada por hash. A4, margens e paginação verificados; revisão nativa Word/ABNT, aprovação institucional e preparação final da defesa continuam pendentes. |
+
+Fontes: [campanha AXPY](experiments/AXPY_SCIENTIFIC_2026-11-16_REPORT.md),
+[validação final](../results/validation/axpy_scientific_2026-11-16/report.json) e
+[entrega Mac](experiments/MAC_EVALUATION_2026-11-16_DELIVERY.md).
+Os dados AXPY foram coletados com energia externa e bateria baixa em carga,
+sem controle térmico dedicado. A amortização nova cobre somente o preparo
+determinístico; não contém nova medição LLM ou custo de promoção.
+
+## Registro detalhado anterior — 5 e 6 de novembro de 2026
+
+O texto abaixo conserva o estado daquela etapa; menções à coleta M5 pendente
+e à monografia de 70 páginas são históricas, não o estado atual acima.
 
 Esta numeração corresponde à lista original de conclusão. O fechamento histórico
 no M5 permanece registrado. Corpus, sessões Linux e inferências heldout foram

@@ -39,6 +39,16 @@ e [PDF](docs/monografia/MONOGRAFIA_CONSOLIDADA.pdf). O
 documenta a separação entre holdout retrospectivo e congelamento prévio,
 as verificações e os limites restantes.
 
+A [campanha científica AXPY](docs/experiments/AXPY_SCIENTIFIC_2026-11-16_REPORT.md)
+foi concluída em duas sessões: três tamanhos, 21 configurações por sessão,
+630 medições e 126 aquecimentos. As escolhas foram congeladas antes do holdout;
+nenhuma excedeu o limiar operacional de 2%, com estabilidade em 2/3 entradas.
+A entrada pequena manteve o sequencial. A amortização cobre o preparo
+determinístico, sem nova inferência LLM ou promoção. A revisão anterior de
+78 páginas está preservada em `MONOGRAFIA_CONSOLIDADA_PRE_AXPY_2026-11-16.*`.
+O [relatório de validação](results/validation/axpy_scientific_2026-11-16/report.json)
+registra a suíte ampliada, os hashes, os ICs recalculados e as verificações Office/PDF.
+
 ## Fortalecimento científico e escopo atual
 
 A revisão atual estuda **paralelização OpenMP baseada em evidências**, com

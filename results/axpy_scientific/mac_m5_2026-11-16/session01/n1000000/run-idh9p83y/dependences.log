@@ -1,0 +1,14 @@
+==================================
+TCC2 DEPENDENCE ANALYZER v0.3
+==================================
+Input: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1000000/run-idh9p83y/analysis/axpy_analysis.json
+
+Kernel: kernel_axpy
+
+  Loop #1
+    Iterator: i
+    Dependence candidates: (none)
+
+==================================
+JSON salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1000000/run-idh9p83y/analysis/axpy_dependences.json
+==================================

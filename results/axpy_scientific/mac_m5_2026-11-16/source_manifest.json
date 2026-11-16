@@ -1,0 +1,122 @@
+[
+  {
+    "original": "analysis/fixtures/axpy.c",
+    "snapshot": "inputs/analysis/fixtures/axpy.c",
+    "sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea"
+  },
+  {
+    "original": "analysis/fixtures/axpy_driver.c",
+    "snapshot": "inputs/analysis/fixtures/axpy_driver.c",
+    "sha256": "83d3f859657947d18131ca03a522de4e954c268e00f0cf428df6daf5b3845b2e"
+  },
+  {
+    "original": "analysis/fixtures/axpy_benchmark_driver.c",
+    "snapshot": "inputs/analysis/fixtures/axpy_benchmark_driver.c",
+    "sha256": "e71ff54424a61923498c412de8d7a27d0b86072d8220ec8c0565b651c434b115"
+  },
+  {
+    "original": "analysis/artifact_provenance.py",
+    "snapshot": "inputs/analysis/artifact_provenance.py",
+    "sha256": "2cf15c8a8b9c971c3b121c39dc0ab19c22998aba14efdd0c855313bd9b4a6182"
+  },
+  {
+    "original": "analysis/conservative_transform.py",
+    "snapshot": "inputs/analysis/conservative_transform.py",
+    "sha256": "e7d0a23c14b9039eb3f0a03fe5a8a9da1a8709620f7522be53487a77691422df"
+  },
+  {
+    "original": "analysis/static_analyzer.py",
+    "snapshot": "inputs/analysis/static_analyzer.py",
+    "sha256": "1cf3b62478aa16e41f287273048c2e4a568d09b908190a7ae356b8284e37734f"
+  },
+  {
+    "original": "analysis/dependence_analyzer.py",
+    "snapshot": "inputs/analysis/dependence_analyzer.py",
+    "sha256": "173c311b52f18e50acc1ad2c08a0d0ce1f9f2c48d60c022da226f9acf329746a"
+  },
+  {
+    "original": "analysis/pattern_classifier.py",
+    "snapshot": "inputs/analysis/pattern_classifier.py",
+    "sha256": "491fdaf81d63b46638c805df78d18b3963fb8a1d66b7bfab092eb6bb601bb44f"
+  },
+  {
+    "original": "analysis/strategy_planner.py",
+    "snapshot": "inputs/analysis/strategy_planner.py",
+    "sha256": "669f2c203483df16b22fd4fc645c65ef125030ac92c02c7c727761bc52f66729"
+  },
+  {
+    "original": "analysis/code_transformer.py",
+    "snapshot": "inputs/analysis/code_transformer.py",
+    "sha256": "fded4cb4b75067ac18f1757b87ced006e4af541838bec7484bab9edd68c6251a"
+  },
+  {
+    "original": "analysis/performance_selector.py",
+    "snapshot": "inputs/analysis/performance_selector.py",
+    "sha256": "e3a68cd114d0e67b522d3a7ae51538de66e0963e00e8a643abf4554942723061"
+  },
+  {
+    "original": "agents/context_builder.py",
+    "snapshot": "inputs/agents/context_builder.py",
+    "sha256": "e7f8f66816ce600e8583da52cb6b884185e1dcfce187edfd71052b1a32099c35"
+  },
+  {
+    "original": "scripts/compile_correctness_gate.py",
+    "snapshot": "inputs/scripts/compile_correctness_gate.py",
+    "sha256": "8495feea5ef80c4e266a2e04cbc4ba1e7645ba3fe14c5c65579295b166b07422"
+  },
+  {
+    "original": "scripts/performance_gate.py",
+    "snapshot": "inputs/scripts/performance_gate.py",
+    "sha256": "afbaee1bc6abe50c8ba2117e0ba813c260c15b6b74f6c69c750151c4a59056a2"
+  },
+  {
+    "original": "scripts/run_pipeline.py",
+    "snapshot": "inputs/scripts/run_pipeline.py",
+    "sha256": "2eb5002c0b0da130badee784e97ec7a0128f309198f5804b2be827edf317997e"
+  },
+  {
+    "original": "scripts/process_timing.py",
+    "snapshot": "inputs/scripts/process_timing.py",
+    "sha256": "c41ece478d3efcb99c912812a9119293fb550fd462f995cd56c9f5f9828306d9"
+  },
+  {
+    "original": "scripts/benchmark_scaling.py",
+    "snapshot": "inputs/scripts/benchmark_scaling.py",
+    "sha256": "4f58ea407c809bf69b261ad6561dd78300a636492b1091cb3b417e18a34d0a5e"
+  },
+  {
+    "original": "scripts/analyze_scaling.py",
+    "snapshot": "inputs/scripts/analyze_scaling.py",
+    "sha256": "37ebb1272e4aaebe93e24727d4e0d8e3496540248b681770e2e5f96ca0e4f0c7"
+  },
+  {
+    "original": "scripts/analyze_pipeline_cost.py",
+    "snapshot": "inputs/scripts/analyze_pipeline_cost.py",
+    "sha256": "216034357ef63569e37340596dd3acd2a474fe38d816696ac7dee657294073a8"
+  },
+  {
+    "original": "scripts/evaluate_selector_holdout.py",
+    "snapshot": "inputs/scripts/evaluate_selector_holdout.py",
+    "sha256": "a7b440479a5e3e40fdc03bea82d3e0f2ebcad666e8b27e25de6bd993f94a04be"
+  },
+  {
+    "original": "scripts/evaluate_axpy_campaign.py",
+    "snapshot": "inputs/scripts/evaluate_axpy_campaign.py",
+    "sha256": "827f1e2dd4dc1bf6a6eedbb98e0d8b37c38772cb3435c5dd029974df27757f35"
+  },
+  {
+    "original": null,
+    "snapshot": "inputs/benchmark_1024.c",
+    "sha256": "592f324f4a0e1fe8b79283d45f8f8be0956fad54e5890696478353830301d32a"
+  },
+  {
+    "original": null,
+    "snapshot": "inputs/benchmark_1000000.c",
+    "sha256": "d169fe3b72833cc3e588558f29f697f3c0e76e85a5e7b7791ba11eef71483bdf"
+  },
+  {
+    "original": null,
+    "snapshot": "inputs/benchmark_10000000.c",
+    "sha256": "e71ff54424a61923498c412de8d7a27d0b86072d8220ec8c0565b651c434b115"
+  }
+]
