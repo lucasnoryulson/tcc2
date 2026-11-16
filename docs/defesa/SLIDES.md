@@ -48,7 +48,7 @@ com resultado negativo/limitado. Não são perguntas equivalentes sobre geraçã
 # Escopo: três níveis diferentes de automação
 
 - Análises: DOALL, REDUCTION, STENCIL, WAVEFRONT e MIXED nos casos tratados.
-- Caminho integrado: Dot Product C com redução escalar suportada.
+- Caminhos integrados: Dot Product/REDUCTION e AXPY/DOALL de laço único.
 - Variantes históricas: manuais ou transformações específicas sobre base existente.
 - CPU/OpenMP; GPU, geração universal e reparo autônomo ficam fora da avaliação.
 
@@ -94,8 +94,8 @@ não arquiva toda biblioteca ou header de projeto e não é prova formal de corr
 
 # Metodologia: unidades e evidências separadas
 
-- 22 campanhas, 173 configurações e 545 tempos individuais recuperados.
-- 17 históricas sem contrato completo; duas arquivadas; três Mac com gates atuais.
+- 23 campanhas, 177 configurações e 565 tempos individuais recuperados.
+- 17 históricas sem contrato completo; duas arquivadas; quatro Mac com gates atuais.
 - Dot Product: dois tamanhos, cinco medições externas por configuração.
 - Driver de corretude separado do benchmark; sem race detector integrado.
 
@@ -127,10 +127,11 @@ não é, por si só, eficiência paralela acima de cem por cento.
 
 # Resultado verificável no Mac
 
-![Dot Product promovido, grande e pequeno no Mac](../../results/consolidated/scaling_m5_verified_2026_11_03.png)
+![Dot Product e AXPY verificados no Mac](../../results/consolidated/scaling_m5_verified_2026_11_03.png)
 
-Promoção final: 2,465× em 4T; estudo grande: 1,673×; pequeno: paralelo não admitido.
-Fonte: três campanhas VERIFIED_LOCAL_GATES do Mac.
+Dot Product: 2,465× em 4T; estudo grande: 1,673×; pequeno: paralelo não admitido.
+AXPY/DOALL: 1,065× em 4T; escalabilidade 1,082×; eficiência 0,271.
+Fonte: quatro campanhas VERIFIED_LOCAL_GATES do Mac.
 
 <!-- fala:
 As curvas azuis comparam com o sequencial; as laranjas comparam com OpenMP 1T.
@@ -200,7 +201,8 @@ interpretação, em vez de serem escondidas por uma tabela única de melhores ga
 - Não houve benefício adicional observado do Coordinator ou das análises na amostra.
 - Os gates bloquearam as respostas inválidas originais; a replicação teve 12/12 válidas.
 - O llama continuou sem reproduzir MODIFY no ensaio controlado.
-- Resultado limitado a dois tamanhos de Dot Product e um modelo.
+- Estudo LLM limitado a dois tamanhos de Dot Product e um modelo; DOALL avaliado
+  em um único AXPY, sem generalização a laços aninhados.
 
 <!-- fala:
 O resultado mais sólido é a integração técnica e a organização das evidências.
@@ -212,7 +214,7 @@ mostrou custo adicional no caso elegível e fragilidade estrutural na rejeição
 
 # Demonstração técnica — opcional
 
-- Mostrar um contexto e relatórios reais vinculados ao Dot Product.
+- Mostrar um contexto e relatórios reais vinculados ao Dot Product ou AXPY.
 - Conferir hash, gate de corretude e configurações medidas.
 - Executar um teste de recusa por alteração de arquivo, em diretório temporário.
 - Separar demonstração do executor de inferência LLM e de resultado científico.

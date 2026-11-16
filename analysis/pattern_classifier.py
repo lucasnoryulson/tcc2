@@ -1003,6 +1003,37 @@ def classify_loop(
     # DOALL / MAP
     # --------------------------------------------------------
 
+    independent_index_writes = (
+        bool(iterator)
+        and not dependencies
+        and bool(writes)
+        and not scalar_updates
+        and all(
+            expression_uses_iterator(write, iterator)
+            for write in writes
+        )
+    )
+
+    if independent_index_writes:
+
+        classification = "DOALL_CANDIDATE"
+
+        return {
+            "classification": classification,
+            "family": pattern_family(classification),
+            "confidence": "medium",
+            "reason": (
+                "No cross-iteration dependence was detected; every written array element "
+                "is indexed by the current iterator and there are no scalar updates."
+            ),
+            "evidence": {
+                "dependency_count": 0,
+                "iterator_in_all_writes": True,
+                "write_count": len(writes),
+                "operators": operators,
+            },
+        }
+
     if same_location and writes:
 
         iterator_in_write = any(

@@ -170,8 +170,8 @@ class ExperimentConsolidation(unittest.TestCase):
         paths = {ROOT / case["source"] for case in catalog["campaigns"]}
         before = {path: path.read_bytes() for path in paths}
         campaigns = consolidation.consolidate(catalog, ROOT)
-        self.assertEqual(len(campaigns), 22)
-        self.assertTrue({"gemm", "dot", "jacobi-2d", "covariance", "nussinov", "wavefront"}.issubset({case["kernel"] for case in campaigns}))
+        self.assertEqual(len(campaigns), 23)
+        self.assertTrue({"gemm", "dot", "axpy", "jacobi-2d", "covariance", "nussinov", "wavefront"}.issubset({case["kernel"] for case in campaigns}))
         self.assertTrue(all(case["evidence_status"] == "HISTORICAL_UNBOUND" for case in campaigns
                             if case["format"] not in ("evaluation_case", "context_evidence")))
         nussinov = next(case for case in campaigns if case["id"] == "nussinov_auto_0911")
@@ -225,8 +225,8 @@ class ExperimentConsolidation(unittest.TestCase):
                                  "--no-plots", "--output-dir", str(output)], capture_output=True, text=True, timeout=30)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         report = json.loads((output / "report.json").read_text())
-        self.assertEqual(len(report["campaigns"]), 22)
-        self.assertEqual(len(consolidation.csv_rows(output / "matrix.csv")), 22)
+        self.assertEqual(len(report["campaigns"]), 23)
+        self.assertEqual(len(consolidation.csv_rows(output / "matrix.csv")), 23)
         self.assertGreater(len(consolidation.csv_rows(output / "samples.csv")), 100)
         self.assertFalse(report["plots"]["files"])
         self.assertTrue((output / "REPORT.md").is_file())

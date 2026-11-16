@@ -4,11 +4,11 @@ Esta numeração corresponde à lista original de conclusão do trabalho.
 
 | Item | Estado | Evidência / pendência |
 |---|---|---|
-| **1. Fechar o pipeline até a geração do resultado final** | Concluído no caminho suportado | No Mac, o pipeline completo executou com LLVM 23.1.1 e inferência real do `llama3.1:8b`: Coordinator `ACCEPT`, promoção, manifesto, evidências e revalidação íntegros. O resultado comprova o caminho Dot Product/redução, não generaliza a automação para os demais padrões. |
-| **2. Resolver as lacunas de validação e configuração** | Concluído e verificado no Mac | PASS fixo removido; configuração unidimensional preservada; códigos de saída dos gates corrigidos; hashes, campanhas e configurações conferidos. No Mac, a suíte final de 82 testes unittest e 14 casos de regressão passou sem skips. |
-| **3. Delimitar exatamente o que o sistema automatiza** | Concluído e auditado | Contrato consolidado em `docs/AUTOMATION_SCOPE.md`: caminho integrado para Dot Product/redução escalar; demais padrões separados entre análise, variantes manuais e transformações específicas. Uma LLM apenas no Coordinator; GPU, geração universal e reparo autônomo fora do recorte. |
+| **1. Fechar o pipeline até a geração do resultado final** | Concluído nos caminhos suportados | No Mac, o pipeline completo executou com LLVM 23.1.1 e inferência real do `llama3.1:8b`: Coordinator `ACCEPT`, promoção, manifesto, evidências e revalidação íntegros para Dot Product/REDUCTION e AXPY/DOALL. Isso não generaliza a automação para os demais padrões. |
+| **2. Resolver as lacunas de validação e configuração** | Concluído e verificado no Mac | PASS fixo removido; configuração unidimensional preservada; códigos de saída dos gates corrigidos; hashes, campanhas e configurações conferidos. No Mac, a suíte final de 85 testes unittest e 14 casos de regressão passou sem skips. |
+| **3. Delimitar exatamente o que o sistema automatiza** | Concluído e auditado | Contrato consolidado em `docs/AUTOMATION_SCOPE.md`: redução escalar e DOALL de laço único não ambíguo; demais padrões separados entre análise, variantes manuais e transformações específicas. Uma LLM apenas no Coordinator; GPU, geração universal e reparo autônomo fora do recorte. |
 | **4. Fechar a avaliação científica dos agentes** | Concluído no recorte e limitações preservadas | A campanha original `INCOMPLETE` revelou um defeito de schema. Após correção, a replicação com as mesmas evidências terminou `COMPLETE`: 12/12 respostas LLM válidas e concordância total nos dois casos. Ensaio controlado: ACCEPT, REJECT e RETUNE 6/6; MODIFY 0/6 no `llama3.1:8b`. Não foi demonstrado benefício adicional da LLM ou das análises nesta amostra. Ver `COORDINATOR_EVALUATION_MAC.md`. |
-| **5. Consolidar os experimentos e a reprodução** | Concluído dentro do acervo disponível | Matriz de 22 campanhas, 173 configurações, 545 tempos, inventário de 44 CSVs e 15 gráficos. As 17 campanhas históricas permanecem `HISTORICAL_UNBOUND`, duas coletas Linux sem o contexto original são `ARCHIVED_SUMMARY_ONLY` e três campanhas finais do Mac são `VERIFIED_LOCAL_GATES`. Lacunas declaradas sem inventar metadados. |
+| **5. Consolidar os experimentos e a reprodução** | Concluído dentro do acervo disponível | Matriz de 23 campanhas, 177 configurações, 565 tempos, inventário de 45 CSVs e 15 gráficos. As 17 campanhas históricas permanecem `HISTORICAL_UNBOUND`, duas coletas Linux sem o contexto original são `ARCHIVED_SUMMARY_ONLY` e quatro campanhas finais do Mac são `VERIFIED_LOCAL_GATES`. Lacunas declaradas sem inventar metadados. |
 | **6. Fechar monografia e defesa** | Conteúdo concluído; acabamento institucional externo pendente | Monografia e apresentação sincronizadas com os passos 1–5; DOCX revisado, PPTX de 16 slides com notas, bibliografia, demonstração e manifesto regenerados. Estrutura Office validada e DOCX inspecionado visualmente. Faltam modelo institucional, orientador/banca, exportação oficial para PDF e ensaio. |
 
 ## Escopo de automação
@@ -16,7 +16,8 @@ Esta numeração corresponde à lista original de conclusão do trabalho.
 | Caso | Cobertura conhecida no repositório |
 |---|---|
 | Dot Product / REDUCTION | Análise, planejamento, transformação de redução escalar, compilação, validação numérica, benchmark, seleção, Coordinator e promoção integrados. |
-| GEMM / DOALL | Análises e implementação OpenMP manual; não declarar transformação completa automática pelo novo runner. |
+| AXPY / DOALL | Caminho integrado para exatamente um laço candidato não ambíguo; AXPY promovido e revalidado no Mac. |
+| GEMM / DOALL aninhado | Análises e implementação OpenMP manual; não declarar transformação completa automática pelo novo runner. |
 | Jacobi-2D / STENCIL | Análises e variantes manual/tiled; não declarar transformação completa automática pelo novo runner. |
 | Nussinov / WAVEFRONT | Análises, variantes OpenMP e transformações adaptativas específicas por feedback de compilação; o novo contrato de gates independentes não cobre o projeto PolyBench completo. |
 | Covariance / MIXED | Análises e implementação OpenMP manual; não declarar transformação completa automática pelo novo runner. |
@@ -34,7 +35,7 @@ ausência de races para todas as entradas, nem um transformador universal C/C++.
 
 Os CSVs históricos permanecem intactos. Campanhas misturadas e cabeçalhos
 incompatíveis estão no inventário; a consolidação usa fontes selecionadas
-explicitamente. Três campanhas finais de Dot Product no Mac têm os gates atuais
+explicitamente. Quatro campanhas finais no Mac têm os gates atuais
 verificáveis neste checkout; duas coletas Linux preservam apenas o resumo. As 17
 restantes são resultados históricos, sem autorização de promoção pelo contrato atual.
 
@@ -67,7 +68,7 @@ científica do item 4 nem o TCC como um todo.
 
 ## Verificação final do item 2 no Mac
 
-Em 3 de novembro de 2026, a suíte final registrada executou **82 testes unittest** e
+Em 3 de novembro de 2026, a suíte final registrada executou **85 testes unittest** e
 os **14 casos de regressão** (Coordinator 7, Performance Selector 3 e
 Autotuning Selector 4), todos aprovados e sem skips. A primeira execução expôs
 que `gcc` no macOS era o Apple Clang sem `-fopenmp`; a infraestrutura de testes
@@ -80,9 +81,9 @@ foram relaxados.
 
 O recorte foi auditado contra o despacho real de `analysis/code_transformer.py`
 e consolidado em `docs/AUTOMATION_SCOPE.md`. O caminho genérico transforma
-redução escalar direta e recusa estratégias não suportadas; as transformações
+redução escalar direta e um único candidato DOALL não ambíguo; as transformações
 adaptativas de Nussinov permanecem identificadas como rotinas específicas sobre
 uma base OpenMP existente. Monografia, README e roteiro de demonstração foram
 alinhados ao mesmo escopo. As regressões do Adaptive Strategy Planner, Compiler
-Feedback v0.1/v0.2, isolamento de variantes e a recusa direta de `DOALL` pelo
+Feedback v0.1/v0.2, isolamento de variantes e a recusa de DOALL ambíguo pelo
 transformador genérico passaram no Mac.

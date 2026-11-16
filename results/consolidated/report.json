@@ -2,7 +2,7 @@
   "schema": "tcc2-experiment-consolidation",
   "version": "0.1",
   "generator_sha256": "9ce67ed59c71b74bb2acc1d594c064230eb3b6f7b8d39536fd6c507193b22f62",
-  "catalog_sha256": "5f40dcfc780f4cd32a8d5f16d235007983f5bfe36d9425e3d1b7b23d86e82372",
+  "catalog_sha256": "d1610471decc6939727f6b3d4d58f7f1ea5f94d74397f64ecba3f800b83781e0",
   "campaigns": [
     {
       "id": "xeon_gemm_0904",
@@ -7750,6 +7750,360 @@
         "reason": "No OpenMP configuration improved over the sequential baseline."
       },
       "selected": null
+    },
+    {
+      "id": "m5_final_promoted_axpy",
+      "kernel": "axpy",
+      "pattern": "DOALL",
+      "source": "build/final-axpy-mac-2026-11-03/run-dxdfj54t/context.json",
+      "format": "context_evidence",
+      "candidate": "build/final-axpy-mac-2026-11-03/run-dxdfj54t/candidate.c",
+      "origin": "transforma\u00e7\u00e3o autom\u00e1tica DOALL de la\u00e7o \u00fanico",
+      "environment": "m5_verified_2026_11_03",
+      "recipe": "dot_gate",
+      "input": "N=10000000, 40 chamadas internas; cinco amostras por configura\u00e7\u00e3o",
+      "correctness": "gates v0.2 vinculados para 1, 2 e 4 threads; bundle promovido e revalidado",
+      "original": "analysis/fixtures/axpy.c",
+      "benchmark_driver": "analysis/fixtures/axpy_benchmark_driver.c",
+      "promotion_manifest": "results/final-promoted/axpy-mac-2026-11-03/0d44fc52cce0b653dfa5d033bbf81f0a5595a9b6228dc1c8fee72c1abc292a52/manifest.json",
+      "limitations": [
+        "suporte DOALL restrito a exatamente um la\u00e7o candidato n\u00e3o amb\u00edguo",
+        "ganho modesto e baixa efici\u00eancia, compat\u00edveis com limita\u00e7\u00e3o por largura de banda"
+      ],
+      "hardware": "Apple M5 / 10 cores / 16 GB / macOS 26.6.2 (03/11)",
+      "compiler": "Homebrew Clang 23.1.1 / caminho, vers\u00e3o e hash vinculados pelos gates",
+      "evidence_status": "VERIFIED_LOCAL_GATES",
+      "missing": [
+        "suporte DOALL restrito a exatamente um la\u00e7o candidato n\u00e3o amb\u00edguo",
+        "ganho modesto e baixa efici\u00eancia, compat\u00edveis com limita\u00e7\u00e3o por largura de banda"
+      ],
+      "recorded_provenance": {
+        "campaign_id": "58a6cd3c2ac34ab3a8d0da0ef6e7e7de",
+        "run_id": "bb2e56003f9345499f5da407c4225667",
+        "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667",
+        "candidate_id": "sha256:f57214c8bca1d760120d18a2b1b6566faa63fe825003d498542d61b7c2ee8942",
+        "recorded_at": "2026-11-03T23:35:17.811543+00:00",
+        "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+        "cpu_count": 10,
+        "runtime_environment": {},
+        "inputs": {
+          "sequential": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/axpy.c",
+            "sha256": "b825af1323423c3bd5731e4978e6dc1104b51478ea15d67f3efea83f7d279aa7",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/sequential/axpy.c"
+          },
+          "candidate": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/candidate.c",
+            "sha256": "f57214c8bca1d760120d18a2b1b6566faa63fe825003d498542d61b7c2ee8942",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/candidate/candidate.c"
+          },
+          "driver": {
+            "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/axpy_benchmark_driver.c",
+            "sha256": "6a997f41ba28cbcabd5883da1ede6193241c4f2430a3d6e43fac9c19e3ba77d5",
+            "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/driver/axpy_benchmark_driver.c"
+          }
+        },
+        "toolchain": {
+          "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+          "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+          "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+        },
+        "compile_flags": {
+          "sequential": [
+            "-O3"
+          ],
+          "candidate": [
+            "-O3",
+            "-fopenmp"
+          ]
+        },
+        "link_flags": [
+          "-lm"
+        ],
+        "openmp_environment": {
+          "OMP_DYNAMIC": "FALSE",
+          "OMP_PROC_BIND": "TRUE",
+          "OMP_PLACES": "cores"
+        }
+      },
+      "references": [
+        {
+          "path": "analysis/fixtures/axpy.c",
+          "sha256_now": "b825af1323423c3bd5731e4978e6dc1104b51478ea15d67f3efea83f7d279aa7"
+        },
+        {
+          "path": "analysis/fixtures/axpy_benchmark_driver.c",
+          "sha256_now": "6a997f41ba28cbcabd5883da1ede6193241c4f2430a3d6e43fac9c19e3ba77d5"
+        },
+        {
+          "path": "build/final-axpy-mac-2026-11-03/run-dxdfj54t/candidate.c",
+          "sha256_now": "f57214c8bca1d760120d18a2b1b6566faa63fe825003d498542d61b7c2ee8942"
+        },
+        {
+          "path": "build/final-axpy-mac-2026-11-03/run-dxdfj54t/context.json",
+          "sha256_now": "af2170672efce9dfcc3e3300231ebdd03ff0ea2552d7b766cdc07610104e943a"
+        },
+        {
+          "path": "results/final-promoted/axpy-mac-2026-11-03/0d44fc52cce0b653dfa5d033bbf81f0a5595a9b6228dc1c8fee72c1abc292a52/manifest.json",
+          "sha256_now": "9c18622220ae41f9256c956b467b3359a58fc500081da959a8d586eedb4808d6"
+        },
+        {
+          "path": "scripts/performance_gate.py",
+          "sha256_now": "880d2a7e8a18e4425c6c0df3c14bd7a968a13ca5f4428c78baae58295953314e"
+        }
+      ],
+      "measurements": [
+        {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 0.00223425,
+          "mean_seconds": 0.0022672,
+          "speedup": 1.0,
+          "efficiency": 1.0,
+          "samples": [
+            0.002408675,
+            0.00223065,
+            0.002237,
+            0.00223425,
+            0.002225425
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 7.084344888555324e-05,
+          "min_seconds": 0.002225425,
+          "max_seconds": 0.002408675,
+          "parallel_scaling_speedup": null,
+          "parallel_scaling_efficiency": null
+        },
+        {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 0.00226995,
+          "mean_seconds": 0.00232391,
+          "speedup": 0.984272781338796,
+          "efficiency": 0.984272781338796,
+          "samples": [
+            0.002448125,
+            0.00226995,
+            0.0024171,
+            0.002245725,
+            0.00223865
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 8.989725885698634e-05,
+          "min_seconds": 0.00223865,
+          "max_seconds": 0.002448125,
+          "parallel_scaling_speedup": 1.0,
+          "parallel_scaling_efficiency": 1.0
+        },
+        {
+          "mode": "openmp",
+          "threads": 2,
+          "median_seconds": 0.002151625,
+          "mean_seconds": 0.002160285,
+          "speedup": 1.0384012083890084,
+          "efficiency": 0.5192006041945042,
+          "samples": [
+            0.002217825,
+            0.0021507,
+            0.002151625,
+            0.002158825,
+            0.00212245
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 3.1341149468390596e-05,
+          "min_seconds": 0.00212245,
+          "max_seconds": 0.002217825,
+          "parallel_scaling_speedup": 1.0549933190030791,
+          "parallel_scaling_efficiency": 0.5274966595015396
+        },
+        {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.0020971,
+          "mean_seconds": 0.002096495,
+          "speedup": 1.065399837871346,
+          "efficiency": 0.2663499594678365,
+          "samples": [
+            0.00209495,
+            0.00210165,
+            0.0020971,
+            0.00208975,
+            0.002099025
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 4.030459030929371e-06,
+          "min_seconds": 0.00208975,
+          "max_seconds": 0.00210165,
+          "parallel_scaling_speedup": 1.0824233465261552,
+          "parallel_scaling_efficiency": 0.2706058366315388
+        }
+      ],
+      "selection": {
+        "status": "SELECTED",
+        "decision": "FASTEST_CONFIGURATION",
+        "parallel_status": "PARALLEL_SUCCESS",
+        "sequential": {
+          "mode": "sequential",
+          "threads": 1,
+          "median_seconds": 0.00223425,
+          "mean_seconds": 0.0022672,
+          "speedup": 1.0,
+          "efficiency": 1.0,
+          "samples": [
+            0.002408675,
+            0.00223065,
+            0.002237,
+            0.00223425,
+            0.002225425
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 7.084344888555324e-05,
+          "min_seconds": 0.002225425,
+          "max_seconds": 0.002408675,
+          "parallel_scaling_speedup": null,
+          "parallel_scaling_efficiency": null
+        },
+        "one_thread": {
+          "mode": "openmp",
+          "threads": 1,
+          "median_seconds": 0.00226995,
+          "mean_seconds": 0.00232391,
+          "speedup": 0.984272781338796,
+          "efficiency": 0.984272781338796,
+          "samples": [
+            0.002448125,
+            0.00226995,
+            0.0024171,
+            0.002245725,
+            0.00223865
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 8.989725885698634e-05,
+          "min_seconds": 0.00223865,
+          "max_seconds": 0.002448125,
+          "parallel_scaling_speedup": 1.0,
+          "parallel_scaling_efficiency": 1.0
+        },
+        "best_parallel": {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.0020971,
+          "mean_seconds": 0.002096495,
+          "speedup": 1.065399837871346,
+          "efficiency": 0.2663499594678365,
+          "samples": [
+            0.00209495,
+            0.00210165,
+            0.0020971,
+            0.00208975,
+            0.002099025
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 4.030459030929371e-06,
+          "min_seconds": 0.00208975,
+          "max_seconds": 0.00210165,
+          "parallel_scaling_speedup": 1.0824233465261552,
+          "parallel_scaling_efficiency": 0.2706058366315388
+        },
+        "transformation_benefit": false,
+        "parallel_benefit": true,
+        "transformation_speedup": 0.984272781338796,
+        "parallel_scaling_speedup": 1.0824233465261552,
+        "parallel_scaling_efficiency": 0.2706058366315388,
+        "end_to_end_speedup": 1.065399837871346,
+        "runtime_reduction": 0.06138525232180814,
+        "raw_fastest": {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.0020971,
+          "mean_seconds": 0.002096495,
+          "speedup": 1.065399837871346,
+          "efficiency": 0.2663499594678365,
+          "samples": [
+            0.00209495,
+            0.00210165,
+            0.0020971,
+            0.00208975,
+            0.002099025
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 4.030459030929371e-06,
+          "min_seconds": 0.00208975,
+          "max_seconds": 0.00210165,
+          "parallel_scaling_speedup": 1.0824233465261552,
+          "parallel_scaling_efficiency": 0.2706058366315388
+        },
+        "near_tie_threshold": 0.02,
+        "near_tie_candidates": [
+          {
+            "mode": "openmp",
+            "threads": 4,
+            "median_seconds": 0.0020971,
+            "mean_seconds": 0.002096495,
+            "speedup": 1.065399837871346,
+            "efficiency": 0.2663499594678365,
+            "samples": [
+              0.00209495,
+              0.00210165,
+              0.0020971,
+              0.00208975,
+              0.002099025
+            ],
+            "sample_count": 5,
+            "std_dev_seconds": 4.030459030929371e-06,
+            "min_seconds": 0.00208975,
+            "max_seconds": 0.00210165,
+            "parallel_scaling_speedup": 1.0824233465261552,
+            "parallel_scaling_efficiency": 0.2706058366315388,
+            "slowdown_vs_fastest": 0.0
+          }
+        ],
+        "recommended": {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.0020971,
+          "mean_seconds": 0.002096495,
+          "speedup": 1.065399837871346,
+          "efficiency": 0.2663499594678365,
+          "samples": [
+            0.00209495,
+            0.00210165,
+            0.0020971,
+            0.00208975,
+            0.002099025
+          ],
+          "sample_count": 5,
+          "std_dev_seconds": 4.030459030929371e-06,
+          "min_seconds": 0.00208975,
+          "max_seconds": 0.00210165,
+          "parallel_scaling_speedup": 1.0824233465261552,
+          "parallel_scaling_efficiency": 0.2706058366315388,
+          "slowdown_vs_fastest": 0.0
+        },
+        "next_action": "PROMOTE_CANDIDATE",
+        "reason": "The fastest configuration is also the resource-aware recommendation. At least one configuration using two or more threads outperformed the transformed one-thread baseline."
+      },
+      "selected": {
+        "mode": "openmp",
+        "threads": 4,
+        "median_seconds": 0.0020971,
+        "mean_seconds": 0.002096495,
+        "speedup": 1.065399837871346,
+        "efficiency": 0.2663499594678365,
+        "samples": [
+          0.00209495,
+          0.00210165,
+          0.0020971,
+          0.00208975,
+          0.002099025
+        ],
+        "sample_count": 5,
+        "std_dev_seconds": 4.030459030929371e-06,
+        "min_seconds": 0.00208975,
+        "max_seconds": 0.00210165,
+        "parallel_scaling_speedup": 1.0824233465261552,
+        "parallel_scaling_efficiency": 0.2706058366315388
+      }
     }
   ],
   "inventory": [
@@ -8034,6 +8388,21 @@
         "efficiency",
         "sustained_gbps",
         "absolute_error"
+      ],
+      "duplicate_of": null,
+      "issues": []
+    },
+    {
+      "path": "results/final-promoted/axpy-mac-2026-11-03/0d44fc52cce0b653dfa5d033bbf81f0a5595a9b6228dc1c8fee72c1abc292a52/evidence/performance.csv",
+      "sha256": "b11d24562d130d97c46d0bf8b263e1abf9d3434ebad4d7f5480c3a5f3a8f9993",
+      "rows": 4,
+      "columns": [
+        "mode",
+        "threads",
+        "median_seconds",
+        "mean_seconds",
+        "speedup",
+        "efficiency"
       ],
       "duplicate_of": null,
       "issues": []

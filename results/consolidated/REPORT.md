@@ -27,6 +27,7 @@ Flags e tamanhos rotulados como receita precisam de confirmação nas campanhas 
 | m5_final_promoted_dot | Apple M5 / 10 cores / 16 GB / macOS 26.6.2 (03/11) | transformação automática de redução + promoção revalidada | 4T | 0.001964 | 2.465 | 2.465 | 0.6162 | VERIFIED_LOCAL_GATES |
 | m5_coordinator_dot_large | Apple M5 / 10 cores / 16 GB / macOS 26.6.2 (03/11) | transformação automática de redução | 4T | 0.004316 | 1.673 | 1.673 | 0.4182 | VERIFIED_LOCAL_GATES |
 | m5_coordinator_dot_small | Apple M5 / 10 cores / 16 GB / macOS 26.6.2 (03/11) | transformação automática de redução | sem recomendação | — | — | — | — | VERIFIED_LOCAL_GATES |
+| m5_final_promoted_axpy | Apple M5 / 10 cores / 16 GB / macOS 26.6.2 (03/11) | transformação automática DOALL de laço único | 4T | 0.002097 | 1.065 | 1.082 | 0.2706 | VERIFIED_LOCAL_GATES |
 
 ## Lacunas por campanha
 
@@ -52,6 +53,7 @@ Flags e tamanhos rotulados como receita precisam de confirmação nas campanhas 
 - **m5_final_promoted_dot**: uma única campanha local de promoção; não representa outros padrões ou plataformas.
 - **m5_coordinator_dot_large**: repetições da decisão LLM reutilizam estas medições e não são novas amostras do kernel.
 - **m5_coordinator_dot_small**: nenhuma configuração paralela satisfez a política de admissão.
+- **m5_final_promoted_axpy**: suporte DOALL restrito a exatamente um laço candidato não ambíguo; ganho modesto e baixa eficiência, compatíveis com limitação por largura de banda.
 
 ## Inventário dos CSVs
 
@@ -71,6 +73,7 @@ Flags e tamanhos rotulados como receita precisam de confirmação nas campanhas 
 | results/dot/auto_generated_performance.csv | 4 | — | — |
 | results/dot/experiment_results.csv | 16 | — | MULTIPLE_BASELINES lines 2,6,10,14; REPEATED_CONFIGURATIONS lines 6,7,8,9,10,11,12,13,14,15,16,17 |
 | results/dot/reduction_results.csv | 6 | — | — |
+| results/final-promoted/axpy-mac-2026-11-03/0d44fc52cce0b653dfa5d033bbf81f0a5595a9b6228dc1c8fee72c1abc292a52/evidence/performance.csv | 4 | — | — |
 | results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/evidence/performance.csv | 4 | — | — |
 | results/gemm/baseline.csv | 1 | — | — |
 | results/gemm/experiment_results.csv | 12 | — | HEADER_MISMATCH lines 10,11,12,13; MULTIPLE_BASELINES lines 2,6; REPEATED_CONFIGURATIONS lines 6,7,8,9 |

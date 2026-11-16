@@ -1,11 +1,11 @@
 # Item 5 — experimentos e reprodução
 
 A consolidação disponível em [results/consolidated/REPORT.md](../results/consolidated/REPORT.md)
-reúne **22 campanhas**, seis kernels, variantes manuais/automáticas e resultados
+reúne **23 campanhas**, sete kernels, variantes manuais/automáticas e resultados
 positivos/negativos. O inventário cobre os 35 CSVs históricos disponíveis no
-checkout inicial e nove CSVs gerados pelas campanhas finais. Não foram executados
+checkout inicial e dez CSVs gerados pelas campanhas finais. Não foram executados
 novos benchmarks apenas para produzir a consolidação: as medições vieram das
-campanhas já preservadas. Foram organizadas 173 configurações e recuperados 545
+campanhas já preservadas. Foram organizadas 177 configurações e recuperados 565
 tempos individuais.
 
 ## Regerar a matriz sem Mac, Ollama ou submódulos
@@ -124,8 +124,9 @@ CSVs de autotuning tiled.
 
 ## Nova coleta com o pipeline suportado
 
-O Dot Product C independente tem captura de fontes, compilador, flags, threads,
-gates e amostras vinculadas. Para produzir evidências novas sem esperar pela LLM:
+Dot Product e AXPY independentes têm captura de fontes, compilador, flags,
+threads, gates e amostras vinculadas. Para produzir evidências novas sem esperar
+pela LLM, o comando padrão continua usando o Dot Product:
 
 ```bash
 python3 -B scripts/run_pipeline.py --prepare-only --compiler gcc --threads 1 2
@@ -180,8 +181,8 @@ enquanto o benchmark usa `POLYBENCH_TIME`; o teste não cobre todas as entradas.
 
 ## Estado de fechamento
 
-Verificação final executada nesta etapa: **82 testes unittest aprovados**, incluindo
-19 testes da consolidação e dos comandos legados alterados, mais 14 casos de
+Verificação final executada nesta etapa: **85 testes unittest aprovados**, incluindo
+19 testes da consolidação, três do caminho DOALL e testes dos comandos legados alterados, mais 14 casos de
 regressão dos seletores e Coordinator. `git diff --check` passou. As 15 figuras
 (cinco conjuntos em SVG/PDF/PNG) foram geradas; o novo PNG do Mac verificável
 foram inspecionados visualmente. Os hashes dos 35 CSVs originais permaneceram
@@ -199,6 +200,6 @@ python3 -B scripts/test_coordinator_v02_regression.py
 A organização, o recálculo das métricas, os gráficos e os comandos estão prontos
 para os dados disponíveis. As lacunas das 17 campanhas históricas foram declaradas,
 as duas coletas Linux sem seus contextos originais foram reclassificadas como
-`ARCHIVED_SUMMARY_ONLY` e três campanhas finais do Mac foram verificadas pelos
+`ARCHIVED_SUMMARY_ONLY` e quatro campanhas finais do Mac foram verificadas pelos
 gates atuais. Isso conclui o item 5 dentro do acervo disponível, sem transformar
 resultados históricos em evidência vinculada.

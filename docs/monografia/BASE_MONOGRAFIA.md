@@ -16,15 +16,16 @@ Este trabalho apresenta um protótipo híbrido para análise e reestruturação 
 código numérico em CPU multicore com OpenMP. A arquitetura separa componentes
 determinísticos de análise, transformação, validação e medição de um Coordinator
 baseado em modelo de linguagem. O fluxo integrado recebe uma fonte C
-independente, identifica uma redução escalar suportada, produz um candidato,
+independente, identifica uma redução escalar ou um DOALL de laço único suportado, produz um candidato,
 verifica sua saída numérica, mede configurações de threads e condiciona a
 publicação a evidências vinculadas ao artefato. Um executor determinístico
 revalida o candidato antes de publicar código e manifesto. A avaliação distingue
 o ganho contra o sequencial da escalabilidade em relação à mesma variante
-OpenMP com uma thread. A consolidação experimental organiza 22 campanhas,
+OpenMP com uma thread. A consolidação experimental organiza 23 campanhas,
 incluindo variantes manuais, transformações automáticas específicas e resultados
 sem ganho. Na campanha final verificável do Mac, o Dot Product promovido apresentou
-ganho de aproximadamente 2,465× com quatro threads; a entrada pequena não satisfez
+ganho de aproximadamente 2,465× com quatro threads; o AXPY DOALL promovido obteve
+1,065×, com eficiência 0,271; a entrada pequena não satisfez
 a política de admissão paralela. Foi implementado um estudo pareado entre a
 política determinística, o Coordinator completo e uma ablação das análises
 estruturadas. Na replicação final no Mac, as 12 inferências foram válidas e os
@@ -44,10 +45,11 @@ This work presents a hybrid prototype for numerical code analysis and
 restructuring on multicore CPUs using OpenMP. Deterministic analysis,
 transformation, validation and measurement components are separated from a
 language-model Coordinator. The integrated workflow supports a standalone C
-scalar-reduction case, binds validation and timing evidence to the candidate,
+scalar-reduction case and one unambiguous single-loop DOALL case, binds validation
+and timing evidence to the candidate,
 and performs fresh correctness validation before publication. Evaluation
 separates speedup over the sequential program from scaling over the same
-OpenMP variant with one thread. Experimental consolidation covers 22 campaigns
+OpenMP variant with one thread. Experimental consolidation covers 23 campaigns
 with manual variants, specific automatic transformations and negative results.
 In the final provenance-verified Mac campaign, the promoted Dot Product achieved
 approximately 2.465× speedup using four threads, while the small input did not
@@ -87,7 +89,7 @@ A proposta inicial descrevia quatro agentes, LangGraph e um ciclo de reparo
 mais amplo. A implementação avaliada adotou um recorte menor: orquestração em
 Python, evidências serializadas em JSON e um Coordinator LLM com ações
 estruturadas. A geração automática integrada foi demonstrada para Dot Product
-com redução escalar. Outros padrões aparecem nas análises e nas campanhas de
+com redução escalar e AXPY com um laço DOALL não ambíguo. Outros padrões aparecem nas análises e nas campanhas de
 variantes, com cobertura parcial de transformação. Essa distinção determina o
 alcance das conclusões.
 
@@ -119,8 +121,8 @@ específicos são extrair informações estruturais; planejar e aplicar uma
 transformação implementada; verificar saídas; medir configurações; rastrear os
 artefatos utilizados; e comparar a decisão da LLM com a política sem LLM.
 
-As contribuições técnicas demonstradas são a integração do caminho de redução
-escalar, o contrato que vincula evidências ao candidato, a revalidação antes da
+As contribuições técnicas demonstradas são a integração dos caminhos de redução
+escalar e DOALL conservador, o contrato que vincula evidências ao candidato, a revalidação antes da
 publicação e a consolidação de métricas com baselines distintos. A contribuição
 empírica adicional do Coordinator depende da conclusão de R3; não é pressuposta
 pela existência desses componentes.
@@ -189,7 +191,7 @@ o contexto verificado, permitindo separar a coleta determinística da inferênci
 |---|---|---|
 | Análise | Extrair estrutura e relações reconhecidas | `analysis/static_analyzer.py`, `dependence_analyzer.py` |
 | Classificação e plano | Identificar padrão e transformação implementada | `pattern_classifier.py`, `strategy_planner.py` |
-| Transformação | Aplicar redução escalar direta suportada | `analysis/code_transformer.py` |
+| Transformação | Aplicar redução escalar ou DOALL de laço único suportado | `analysis/code_transformer.py` |
 | Corretude | Compilar e comparar saída numérica nas threads solicitadas | `scripts/compile_correctness_gate.py` |
 | Desempenho | Registrar tempos brutos e resumos | `scripts/performance_gate.py` |
 | Seleção | Escolher configuração a partir de medições | `analysis/performance_selector.py` |
@@ -205,7 +207,8 @@ fontes independentes execute automaticamente todo o projeto PolyBench.
 | Caso | O que foi automatizado / avaliado |
 |---|---|
 | Dot Product C | Caminho integrado de redução escalar, gates, seleção, decisão e executor; inferência real e promoção concluídas no Mac em 03/11/2026 |
-| GEMM | Análises e campanhas de variante OpenMP manual |
+| AXPY C | Caminho integrado DOALL para exatamente um laço não ambíguo; promoção concluída no Mac em 03/11/2026 |
+| GEMM | Análises e campanhas de variante OpenMP manual; DOALL aninhado não é transformado automaticamente |
 | Jacobi-2D | Análises, variante OpenMP manual e experiências específicas com tiling |
 | Covariance | Análises e campanha de variante OpenMP manual |
 | Nussinov | Análises e transformações adaptativas específicas sobre base OpenMP existente; contratos legados nas campanhas |
@@ -244,11 +247,11 @@ São separados três conjuntos de evidências. O primeiro contém 17 campanhas
 históricas recuperadas de CSVs, logs e dumps, sem o contrato atual completo de
 vínculo ao código medido. O segundo contém duas coletas Linux cujo resumo foi
 preservado, mas cujos contextos originais não estão neste checkout. O terceiro
-contém três campanhas finais de Dot Product no Mac verificáveis pelos gates
-atuais. A consolidação totaliza 22 campanhas e 173 configurações, com 545 tempos
+contém quatro campanhas finais no Mac verificáveis pelos gates atuais. A
+consolidação totaliza 23 campanhas e 177 configurações, com 565 tempos
 individuais recuperados.
 
-Os 35 CSVs históricos foram inventariados sem alteração, junto a nove CSVs das
+Os 35 CSVs históricos foram inventariados sem alteração, junto a dez CSVs das
 campanhas finais. Oito históricos apresentam linhas
 incompatíveis com o cabeçalho; vários acumulam mais de uma execução. A matriz
 usa fontes selecionadas explicitamente, conferindo resumos com amostras quando
@@ -330,7 +333,7 @@ representar nova execução independente do pipeline e sem incluir publicação.
 
 ### 5.1. Verificação técnica
 
-A bateria final registrada contém 82 testes unittest e 14 casos de regressão dos
+A bateria final registrada contém 85 testes unittest e 14 casos de regressão dos
 seletores e Coordinator, cobrindo integração, configuração, alterações de
 artefatos, falhas de gates e promoção. Esses testes verificam comportamento
 de software. Respostas simuladas da LLM usadas em integração não são resultados
@@ -358,8 +361,10 @@ não demonstra um ganho causado pelo Coordinator.
 
 ![Curvas verificáveis do Mac com baselines distintos](../../results/consolidated/scaling_m5_verified_2026_11_03.png)
 
-Fonte: campanhas `m5_final_promoted_dot`, `m5_coordinator_dot_large` e
-`m5_coordinator_dot_small` na matriz consolidada. As medidas são por chamada;
+Fonte: campanhas `m5_final_promoted_dot`, `m5_coordinator_dot_large`,
+`m5_coordinator_dot_small` e `m5_final_promoted_axpy` na matriz consolidada. O
+AXPY selecionou 4T, com ganho 1,065×, escalabilidade 1,082× e eficiência 0,271;
+o resultado é modesto e compatível com pressão de largura de banda. As medidas são por chamada;
 não são tempos totais de otimização nem repetições da decisão LLM.
 
 ### 5.3. Casos históricos: Wavefront e Nussinov
@@ -460,7 +465,8 @@ As principais ameaças à validade são:
 
 ## 7. Conclusão compatível com as evidências atuais
 
-Foi implementado um caminho de reestruturação OpenMP para redução escalar que
+Foram implementados caminhos de reestruturação OpenMP para redução escalar e
+para um único laço DOALL não ambíguo que
 integra análise, geração determinística, validação, medição, seleção e um
 executor de promoção condicionado a evidências. Sua verificação técnica inclui
 recusas por inconsistência e revalidação antes da publicação. A organização dos

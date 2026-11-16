@@ -22,7 +22,8 @@ transformação, gates, Selector, Context Builder, Coordinator e promoção. Cad
 tentativa conserva comandos, logs, evidências e `summary.json` em uma pasta
 exclusiva sob `build/pipeline/`. `--source`, `--driver` e `--benchmark-driver`
 permitem fornecer outro caso dentro do mesmo contrato de fontes C independentes,
-mas o transformador genérico atual só publica redução escalar direta autorizada
+mas o transformador genérico atual só publica redução escalar direta ou um único
+candidato DOALL não ambíguo autorizado
 pelo Planner; estratégias não suportadas são recusadas.
 O compilador precisa aceitar `-O3 -fopenmp`; selecione a toolchain adequada ao
 ambiente, especialmente no Mac.
@@ -245,8 +246,8 @@ executadas no hardware alvo com os drivers de benchmark originais.
 ## Matriz experimental e reprodução — item 5
 
 Os resultados disponíveis foram consolidados em
-[results/consolidated/REPORT.md](results/consolidated/REPORT.md): 22 campanhas,
-seis kernels, 173 configurações, 545 tempos recuperados e gráficos SVG/PDF/PNG. O relatório
+[results/consolidated/REPORT.md](results/consolidated/REPORT.md): 23 campanhas,
+sete kernels, 177 configurações, 565 tempos recuperados e gráficos SVG/PDF/PNG. O relatório
 separa ganho contra o sequencial de escalabilidade OpenMP e distingue medições
 históricas de evidências verificadas pelos gates atuais.
 

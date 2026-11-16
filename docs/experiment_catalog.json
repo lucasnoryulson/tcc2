@@ -429,6 +429,26 @@
       "limitations": [
         "nenhuma configuração paralela satisfez a política de admissão"
       ]
+    },
+    {
+      "id": "m5_final_promoted_axpy",
+      "kernel": "axpy",
+      "pattern": "DOALL",
+      "source": "build/final-axpy-mac-2026-11-03/run-dxdfj54t/context.json",
+      "format": "context_evidence",
+      "candidate": "build/final-axpy-mac-2026-11-03/run-dxdfj54t/candidate.c",
+      "origin": "transformação automática DOALL de laço único",
+      "environment": "m5_verified_2026_11_03",
+      "recipe": "dot_gate",
+      "input": "N=10000000, 40 chamadas internas; cinco amostras por configuração",
+      "correctness": "gates v0.2 vinculados para 1, 2 e 4 threads; bundle promovido e revalidado",
+      "original": "analysis/fixtures/axpy.c",
+      "benchmark_driver": "analysis/fixtures/axpy_benchmark_driver.c",
+      "promotion_manifest": "results/final-promoted/axpy-mac-2026-11-03/0d44fc52cce0b653dfa5d033bbf81f0a5595a9b6228dc1c8fee72c1abc292a52/manifest.json",
+      "limitations": [
+        "suporte DOALL restrito a exatamente um laço candidato não ambíguo",
+        "ganho modesto e baixa eficiência, compatíveis com limitação por largura de banda"
+      ]
     }
   ]
 }

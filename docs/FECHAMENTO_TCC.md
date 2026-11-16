@@ -30,10 +30,10 @@ como versão revisada com adequação institucional ainda pendente.
 | Item | Situação após a revisão |
 |---|---|
 | **1. Pipeline até o resultado final** | Concluído no caminho suportado no Mac: inferência real, `ACCEPT`, promoção, revalidação e auditoria do manifesto |
-| **2. Validação e configuração** | Concluído e verificado no Mac: 82 testes unittest e 14 regressões aprovados, sem skips |
+| **2. Validação e configuração** | Concluído e verificado no Mac: 85 testes unittest e 14 regressões aprovados, sem skips |
 | **3. Delimitação da automação** | Concluída e auditada em código, monografia, slides e `AUTOMATION_SCOPE.md`; preservar na entrega |
 | **4. Avaliação dos agentes** | Campanha original `INCOMPLETE` preservada; contrato corrigido e replicação final `COMPLETE`, sem benefício adicional demonstrado; MODIFY não reproduzido no ensaio controlado |
-| **5. Experimentos e reprodução** | Concluído no acervo disponível: 22 campanhas consolidadas, lacunas históricas declaradas e três campanhas Mac verificadas pelos gates atuais |
+| **5. Experimentos e reprodução** | Concluído no acervo disponível: 23 campanhas consolidadas, lacunas históricas declaradas e quatro campanhas Mac verificadas pelos gates atuais |
 | **6. Monografia e defesa** | Conteúdo revisado e sincronizado com os resultados finais; DOCX e PPTX regenerados e validados. Restam adequação ao modelo institucional, dados de orientação/banca, exportação oficial para PDF e ensaio, que dependem de informações externas. |
 
 ## 1 e 2 — confirmação final do pipeline no ambiente alvo
@@ -60,13 +60,16 @@ LLVM 23.1.1, `PROMOTED` com 4 threads, speedup end-to-end 2,46546x e
 escalabilidade contra OpenMP 1T 2,46466x. Evidências em
 `build/final-pipeline-mac-2026-11-03/run-4whpshpr/` e bundle em
 `results/final-promoted/mac-2026-11-03/5eef401105cc51be73471cfbf836964f858d9453a381224490828123f54eb1d5/`.
-Isso fecha o item 1 no recorte Dot Product/redução; não substitui a campanha
+Isso fecha o item 1 no recorte Dot Product/redução. Uma segunda execução AXPY/DOALL
+também foi promovida com 1,065x em 4T; ambos os casos permanecem recortes, não
+uma generalização. Isso não substitui a campanha
 pareada e a discussão científica do item 4.
 
 ## 3 — recorte que deve permanecer no texto
 
 Manter explícitas a transformação determinística, a geração integrada de redução
-escalar e a origem manual/específica das demais variantes. Remover as afirmações
+escalar e de DOALL com um único laço não ambíguo, e a origem manual/específica
+das demais variantes. Remover as afirmações
 de implementação em LangGraph, GPU, codificador LLM geral e loop de reparo
 autônomo. Não trocar classificação de cinco padrões por geração automática de
 cinco padrões. A mudança em relação à proposta está justificada na revisão.
@@ -105,7 +108,7 @@ executado. O estudo atual avalia decisão, sem gerar novos candidatos pela LLM.
 Os metadados das campanhas que entram no texto foram separados entre vinculados,
 arquivados e históricos: hardware, compilador,
 flags, entrada, origem da variante, corretude, configurações e tempos. Nem todas
-as 22 campanhas precisam ser repetidas; escolher o recorte que sustenta as
+as 23 campanhas precisam ser repetidas; escolher o recorte que sustenta as
 questões de pesquisa e declarar os limites das demais.
 
 Para incluir campanhas novas, registrar suas fontes e ambiente no

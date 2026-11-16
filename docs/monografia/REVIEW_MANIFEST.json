@@ -5,11 +5,11 @@
   "sources": [
     {
       "path": "docs/monografia/BASE_MONOGRAFIA.md",
-      "sha256": "5fd63d7787dea147f19acbd369d16aba98dc496c19477b5b21bf8d0734c19710"
+      "sha256": "82ecc86986600681843d25bbbd67ecbbb9458cff4bf80b09377a81a17500d072"
     },
     {
       "path": "docs/monografia/LEITURA_DOS_DOCUMENTOS.md",
-      "sha256": "0212a1c8a820c95e62ac2e7ab2f2c8872553bbb0d43265d85840dde50a9b9fc3"
+      "sha256": "d68748d456304476cab27ec15822d876b4d4410ad7130632c3997c56303a074a"
     },
     {
       "path": "docs/monografia/referencias.bib",
@@ -17,7 +17,7 @@
     },
     {
       "path": "docs/defesa/SLIDES.md",
-      "sha256": "9c71f9d809fd3eae8cb0591df215488d3ffdf094e665a37d563760b3f5703041"
+      "sha256": "855ef9153390a8435e936b1d5bd5e3632a6384da0326a129ac94109597307782"
     },
     {
       "path": "docs/defesa/DEMONSTRACAO.md",
@@ -25,13 +25,13 @@
     },
     {
       "path": "scripts/build_academic_material.py",
-      "sha256": "8e6a6e684e9b27a2761200bfae510003f2f5608ae89b6ab76a5862a7876ea4f5"
+      "sha256": "86f5ecfdc7f9206115e5bd6f5972bd419a1a9fdf4b432bfaa9db90899de7a43c"
     }
   ],
   "outputs": [
     {
       "path": "docs/monografia/MONOGRAFIA_REVISAO_FINAL.docx",
-      "sha256": "f93a3c330febab2d2cc669e98958a4fe3e462cb36b47ea1dde364e784c967490"
+      "sha256": "631f8290df5e6f2b159608a1f46a42c12a11826dfb87c5055121252acda42771"
     },
     {
       "path": "docs/monografia/ARQUITETURA.png",
@@ -39,11 +39,11 @@
     },
     {
       "path": "docs/monografia/ARQUITETURA.svg",
-      "sha256": "f346ff57c3522cf5f5f2b85f8f1a8c28511032a04f01f8200ae3b2bfc06db3a7"
+      "sha256": "92eed7803365ab5e4c0541da116779136affa4971c6caf795857a4305ce4348f"
     },
     {
       "path": "docs/defesa/DEFESA_REVISAO_FINAL.pptx",
-      "sha256": "2e77ba1181a8ecb15b49155191fff419ae139a921880970a29aa5152dfd3090f"
+      "sha256": "c0aee123224673d5e1e7b8cc0f38f24b9f3401831b3a84f29d65daffd6068173"
     }
   ]
 }

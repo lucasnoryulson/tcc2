@@ -699,6 +699,61 @@ def transform_adaptive_explicit_simd_reduction(
 
 
 # ============================================================
+# DOALL TRANSFORMATION
+# ============================================================
+
+def transform_doall(
+    source_lines,
+    static_kernel,
+    strategy,
+):
+    """Insert a static OpenMP parallel-for for one unambiguous DOALL loop."""
+
+    if not strategy.get("direct_code_transformation", False):
+        raise RuntimeError(
+            "Planner não autorizou transformação DOALL direta."
+        )
+
+    selected = strategy.get("selected_loop") or {}
+    loop_id = selected.get("loop_id")
+    loop = find_loop(static_kernel, loop_id)
+
+    if loop is None:
+        raise RuntimeError(
+            f"Loop DOALL #{loop_id} não encontrado no Static Analyzer JSON."
+        )
+
+    candidates = strategy.get("candidate_loops", [])
+    if len(candidates) != 1 or candidates[0].get("loop_id") != loop_id:
+        raise RuntimeError(
+            "Transformação DOALL direta requer exatamente um candidato selecionado."
+        )
+
+    start_line = loop.get("start_line")
+    index = start_line - 1 if type(start_line) is int else -1
+    if index < 0 or index >= len(source_lines):
+        raise RuntimeError(
+            f"Linha inválida para loop DOALL #{loop_id}: {start_line}"
+        )
+
+    previous_text = source_lines[index - 1] if index > 0 else ""
+    if "#pragma omp parallel for" in previous_text:
+        raise RuntimeError("O loop já parece possuir uma diretiva OpenMP.")
+
+    indentation = leading_whitespace(source_lines[index])
+    schedule = strategy.get("schedule", "static")
+    marker = indentation + "/* TCC2 AUTO-GENERATED: DOALL */\n"
+    pragma = indentation + f"#pragma omp parallel for schedule({schedule})\n"
+    source_lines[index:index] = [marker, pragma]
+
+    return {
+        "loop_id": loop_id,
+        "start_line": start_line,
+        "pragma": pragma.strip(),
+    }
+
+
+# ============================================================
 # REDUCTION TRANSFORMATION
 # ============================================================
 
@@ -857,6 +912,16 @@ def apply_strategy(
     )
 
     transformations = []
+
+    if strategy_type == "DOALL":
+        transformations.append(
+            transform_doall(
+                source_lines,
+                static_kernel,
+                strategy,
+            )
+        )
+        return transformations
 
     # --------------------------------------------------------
     # REDUCTION

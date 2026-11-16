@@ -1,0 +1,159 @@
+{
+  "schema": "tcc2-performance-gate",
+  "version": "0.1",
+  "status": "PASS",
+  "provenance": {
+    "campaign_id": "58a6cd3c2ac34ab3a8d0da0ef6e7e7de",
+    "run_id": "bb2e56003f9345499f5da407c4225667",
+    "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667",
+    "candidate_id": "sha256:f57214c8bca1d760120d18a2b1b6566faa63fe825003d498542d61b7c2ee8942",
+    "recorded_at": "2026-11-03T23:35:17.811543+00:00",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "cpu_count": 10,
+    "runtime_environment": {},
+    "inputs": {
+      "sequential": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/axpy.c",
+        "sha256": "b825af1323423c3bd5731e4978e6dc1104b51478ea15d67f3efea83f7d279aa7",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/sequential/axpy.c"
+      },
+      "candidate": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/candidate.c",
+        "sha256": "f57214c8bca1d760120d18a2b1b6566faa63fe825003d498542d61b7c2ee8942",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/candidate/candidate.c"
+      },
+      "driver": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/fixtures/axpy_benchmark_driver.c",
+        "sha256": "6a997f41ba28cbcabd5883da1ede6193241c4f2430a3d6e43fac9c19e3ba77d5",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/driver/axpy_benchmark_driver.c"
+      }
+    },
+    "toolchain": {
+      "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+      "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+      "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+    },
+    "compile_flags": {
+      "sequential": [
+        "-O3"
+      ],
+      "candidate": [
+        "-O3",
+        "-fopenmp"
+      ]
+    },
+    "link_flags": [
+      "-lm"
+    ],
+    "openmp_environment": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "TRUE",
+      "OMP_PLACES": "cores"
+    }
+  },
+  "correctness_report": {
+    "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/correctness.json",
+    "sha256": "f94e243ac4005d0aaa626c1b86c20c7b36839685ce1142774840f89be6e24bbf"
+  },
+  "thread_counts": [
+    1,
+    2,
+    4
+  ],
+  "repetitions": 5,
+  "configuration_dimensions": [
+    "threads"
+  ],
+  "compilation": {
+    "sequential": {
+      "command": [
+        "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "-O3",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/driver/axpy_benchmark_driver.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/sequential/axpy.c",
+        "-lm",
+        "-o",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/dot_sequential"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "candidate": {
+      "command": [
+        "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "-O3",
+        "-fopenmp",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/driver/axpy_benchmark_driver.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/candidate/candidate.c",
+        "-lm",
+        "-o",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/dot_candidate"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "binaries": {
+    "sequential": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/dot_sequential",
+      "sha256": "109e2652871e2e9a16cd6a72ccf2350fb31808e7f8fc0759a604196ab7218ad2"
+    },
+    "candidate": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/dot_candidate",
+      "sha256": "ae5c6a504436710a9674d0d0ebcb7bb0ba02efe367840ace829b14c0af46e2b9"
+    }
+  },
+  "measurements": [
+    {
+      "mode": "sequential",
+      "threads": 1,
+      "times": [
+        0.002408675,
+        0.00223065,
+        0.002237,
+        0.00223425,
+        0.002225425
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 1,
+      "times": [
+        0.002448125,
+        0.00226995,
+        0.0024171,
+        0.002245725,
+        0.00223865
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 2,
+      "times": [
+        0.002217825,
+        0.0021507,
+        0.002151625,
+        0.002158825,
+        0.00212245
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 4,
+      "times": [
+        0.00209495,
+        0.00210165,
+        0.0020971,
+        0.00208975,
+        0.002099025
+      ]
+    }
+  ],
+  "csv": {
+    "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance/bb2e56003f9345499f5da407c4225667/performance.csv",
+    "sha256": "b11d24562d130d97c46d0bf8b263e1abf9d3434ebad4d7f5480c3a5f3a8f9993"
+  },
+  "csv_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/build/final-axpy-mac-2026-11-03/run-dxdfj54t/performance.csv"
+}

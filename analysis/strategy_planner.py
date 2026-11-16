@@ -246,6 +246,12 @@ def plan_doall(
                 ),
         })
 
+    direct = (
+        len(candidates) == 1
+        and candidates[0].get("loop_id") is not None
+        and candidates[0].get("iterator") is not None
+    )
+
     return {
         "strategy":
             "DOALL",
@@ -263,17 +269,27 @@ def plan_doall(
             candidates,
 
         "loop_selection":
-            "defer_to_loop_hierarchy_analysis",
+            (
+                "single_unambiguous_candidate"
+                if direct
+                else "defer_to_loop_hierarchy_analysis"
+            ),
+
+        "selected_loop":
+            candidates[0]
+            if direct
+            else None,
 
         "direct_code_transformation":
-            False,
+            direct,
 
         "reason":
             (
-                "DOALL evidence exists, but local "
-                "loop analysis alone is not always "
-                "sufficient to select the best "
-                "nesting level."
+                "The kernel has exactly one DOALL candidate, so the target loop is unambiguous."
+                if direct
+                else
+                "DOALL evidence exists, but local loop analysis alone is not always sufficient "
+                "to select the best nesting level."
             ),
     }
 

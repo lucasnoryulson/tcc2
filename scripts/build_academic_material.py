@@ -118,7 +118,7 @@ def word_export(source, target):
     assert reopened.tables and len(reopened.inline_shapes) == 2
     exported_text = " ".join(paragraph.text for paragraph in reopened.paragraphs)
     assert "Não foi demonstrado benefício adicional" in exported_text
-    assert "22 campanhas" in exported_text
+    assert "23 campanhas" in exported_text
 
 
 def slide_sources(path):

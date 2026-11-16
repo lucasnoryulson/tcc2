@@ -6,28 +6,31 @@ experimentais e decisão por LLM são capacidades diferentes.
 
 ## Caminho integrado comprovado
 
-O runner completo foi demonstrado no Mac para **Dot Product em C com redução
-escalar direta**:
+O runner completo foi demonstrado no Mac para dois recortes em C: **Dot Product
+com redução escalar direta** e **AXPY com um único laço DOALL não ambíguo**:
 
 1. análise AST e dependências;
-2. classificação `REDUCTION_CANDIDATE`;
-3. planejamento de redução OpenMP;
-4. inserção determinística de `parallel for reduction`;
+2. classificação `REDUCTION_CANDIDATE` ou `DOALL_CANDIDATE`;
+3. planejamento conservador da estratégia OpenMP;
+4. inserção determinística de `parallel for reduction` ou, no caso DOALL
+   autorizado, `parallel for schedule(static)`;
 5. compilação e corretude numérica;
 6. benchmark e seleção de threads;
 7. decisão do Coordinator com uma LLM;
 8. promoção, revalidação e publicação auditável.
 
-A execução de 03/11/2026 terminou `PROMOTED` com `llama3.1:8b`, LLVM 23.1.1
-e 4 threads. Essa evidência comprova o encadeamento do caminho suportado, não
-uma transformação universal de programas C.
+As duas execuções de 03/11/2026 terminaram `PROMOTED` com `llama3.1:8b`, LLVM
+23.1.1 e 4 threads. O AXPY obteve ganho end-to-end de 1,065x, escalabilidade
+de 1,082x e eficiência de 0,271. Essas evidências comprovam os dois caminhos
+suportados, não uma transformação universal de programas C.
 
 ## Cobertura por caso
 
 | Caso | Análise/classificação | Transformação | Pipeline completo atual |
 |---|---|---|---|
 | Dot Product / REDUCTION | Sim | Redução escalar direta, determinística | Sim |
-| GEMM / DOALL | Sim | Variante OpenMP manual nas campanhas | Não |
+| AXPY / DOALL | Sim | Laço único não ambíguo, determinístico | Sim |
+| GEMM / DOALL aninhado | Sim | Variante OpenMP manual nas campanhas; seleção automática é ambígua | Não |
 | Jacobi-2D / STENCIL | Sim | Variantes manual e tiled | Não |
 | Covariance / MIXED | Sim | Variante OpenMP manual | Não |
 | Nussinov / WAVEFRONT | Sim | Transformações adaptativas específicas sobre base OpenMP existente | Não pelo runner genérico |
@@ -52,6 +55,7 @@ pelo speedup medido do código transformado.
 
 - GPU/CUDA;
 - geração geral de C/C++ ou de todos os padrões classificados;
+- transformação automática de DOALL aninhado ou com múltiplos candidatos;
 - múltiplas LLMs conversando;
 - busca autônoma por novos candidatos;
 - reparo autônomo iterativo após `RETUNE`, `MODIFY` ou `REJECT`;
