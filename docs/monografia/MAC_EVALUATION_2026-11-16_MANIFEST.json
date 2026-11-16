@@ -1,0 +1,40 @@
+{
+  "created_utc": "2026-11-16T15:23:32.019907+00:00",
+  "previous_manuscript_sha256": {
+    "docs/monografia/REVISAO_PUBLICACAO.md": "4087002bd8c02fba008841accc4e8401c99704956af463d86e1e36c2e86e1744",
+    "docs/monografia/REVISAO_PUBLICACAO.docx": "37d602736249c03cc73b1bddb01a28ddd257d52e1e6d96b0d71829150c4a6921",
+    "docs/monografia/REVISAO_PUBLICACAO.pdf": "301178eb159b8ff91e534da4ef466cc62696b4b95b590855c65cffa0db7d3481"
+  },
+  "data": {
+    "mac_session01": "results/multiplatform/analysis_mac_m5_2026-11-16_session01",
+    "mac_session02": "results/multiplatform/analysis_mac_m5_2026-11-16_session02",
+    "holdout": "VERIFIED_LATER_HOLDOUT",
+    "profile": "COMPLETE",
+    "costs": "COMPLETE"
+  },
+  "renderer": "ReportLab content PDF; Word layout and institutional template require native review",
+  "word_checks": {
+    "tables": 29,
+    "images": 21,
+    "paragraphs": 388
+  },
+  "files": {
+    "docs/monografia/REVISAO_EXPERIMENTAL_MAC_2026-11-16.md": "636d79357f7c416ae26c082e3b1ffacd1fb019aef33754e1e9a31f894764a69f",
+    "docs/experiments/MAC_EVALUATION_2026-11-16_REPORT.md": "c70dd1514d08a9f8d6b35f6b0cb7de2146d864b28426b2b21bf814ddac3eff69",
+    "docs/experiments/MAC_AUXILIARY_STATISTICS_2026-11-16.csv": "9e7e1c2b0c840a3c1cf64603bfa8ce0b9717a57c80bff39cdb05bdc87fe478f1",
+    "docs/monografia/figures_mac_2026-11-16/comparison_large.png": "d55683c155f188ab5b0867278a9e5f2ab4f20986429c63bdbc9f292e582221dd",
+    "docs/monografia/figures_mac_2026-11-16/mac_scaling_large.png": "cac4763e09372861d0ea4f678a4fbbe4ab1d272774f7bc6ae6b7fac87df9e3ff",
+    "docs/monografia/figures_mac_2026-11-16/comparison_large.pdf": "a261417240d671959074fe88a1fa88db1561f6bc504593ce55dccd42f55ce0c7",
+    "docs/monografia/figures_mac_2026-11-16/mac_scaling_large.pdf": "878dbafcc1b28a0f5194b4d60452ae06b985845d77fdd24fcb98290a1158f01c",
+    "docs/monografia/figures_mac_2026-11-16/comparison_small.pdf": "2be8e53c297382ad30b36459fc7a2b3781cdbd6fd5f259a337e68c302473fd1f",
+    "docs/monografia/figures_mac_2026-11-16/mac_scaling_small.pdf": "a15ee2abc4b8af0e30eb309925b0b5b2d8e1704ef8138860fae35595ee21c0ac",
+    "docs/monografia/figures_mac_2026-11-16/comparison_small.png": "3e4b6b2894f3042847f13187ecf023dcd5142cd5cda6f2f96e316fe4961d955a",
+    "docs/monografia/figures_mac_2026-11-16/mac_scaling_small.png": "39afc161a94e79c2325fa13c6a71eabef2c1f5409920bdcad62bb363f808c87d",
+    "docs/monografia/figures_mac_2026-11-16/mac_scaling_small.svg": "19e70b941f60a0078586504537f72f460f13cb07ec0ed6c8cf86f939a0f773d7",
+    "docs/monografia/figures_mac_2026-11-16/comparison_small.svg": "7f540a4fba44fe2a7a85195c2814a483110f3e327848682456db922dcc023786",
+    "docs/monografia/figures_mac_2026-11-16/mac_scaling_large.svg": "90a438925c2a26f7e2ef03b158c8cd766037f9ab6d91452eb39ba4155a93c4ef",
+    "docs/monografia/figures_mac_2026-11-16/comparison_large.svg": "3d01f45ac207972d8f5f7deb000a2c651c6ac33f2df37285f702a3e7d1dc46d0",
+    "docs/monografia/REVISAO_EXPERIMENTAL_MAC_2026-11-16.docx": "efa83b228d1da7646758c09291786a6eda87c8dd312c3c7d81a7e3fdc279cbbc",
+    "docs/monografia/REVISAO_EXPERIMENTAL_MAC_2026-11-16.pdf": "adacbd6ed94713466825770a4d46a3d7a81d68a34baaaac88c642ddeaec40d6f"
+  }
+}

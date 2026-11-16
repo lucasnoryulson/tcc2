@@ -15,8 +15,15 @@ amostras por configuração. O [protocolo e os comandos Mac](docs/experiments/MU
 acompanham a [revisão multiplataforma anterior](docs/monografia/REVISAO_MULTIPLATAFORMA.md),
 o [Word](docs/monografia/REVISAO_MULTIPLATAFORMA.docx) e o
 [PDF de revisão](docs/monografia/REVISAO_MULTIPLATAFORMA.pdf).
-A coleta equivalente no M5 ainda não foi executada. As campanhas históricas e
-a coleta exploratória anterior permanecem separadas.
+A coleta equivalente M5 foi executada em duas sessões de 16/11/2026, com
+3.240 medições externas e avaliação independente do Selector. As campanhas
+históricas e a coleta exploratória anterior permanecem separadas.
+
+A entrega mais recente está no [relatório Mac](docs/experiments/MAC_EVALUATION_2026-11-16_DELIVERY.md).
+A monografia atualizada tem arquivos próprios de [Markdown](docs/monografia/REVISAO_EXPERIMENTAL_MAC_2026-11-16.md),
+[Word](docs/monografia/REVISAO_EXPERIMENTAL_MAC_2026-11-16.docx) e
+[PDF, 78 páginas](docs/monografia/REVISAO_EXPERIMENTAL_MAC_2026-11-16.pdf).
+A versão `REVISAO_PUBLICACAO` de 70 páginas foi preservada por hash.
 
 ## Fortalecimento científico e escopo atual
 
@@ -29,7 +36,7 @@ as implementações manuais PolyBench em saídas automaticamente geradas.
 | Eixo | Evidência existente | Ampliação nesta etapa |
 |---|---|---|
 | Transformação automática | Pipeline Dot/redução promovido no M5 | Corpus `standalone-ast-v2` concluído: oito DOALL e seis reduções aceitas, 14 recusas conforme suporte, 28 pares positivos fonte × entrada PASS; 196 configurações e 2.940 medições |
-| Escalabilidade | Campanha principal Linux p15w3: 900 medições | S2 completa: 900; S3 parcial predefinida: 570. Recomendações repetidas em 15/16 combinações S1/S2 e 9/10 comuns às três; matriz M5 equivalente pendente |
+| Escalabilidade | Campanha principal Linux p15w3: 900 medições | Sessões Linux S2/S3 preservadas. M5: duas sessões completas, 3.240 medições, 108 configurações por sessão e comparação nos pontos comuns 1/2/4T. Recomendação estável em 14/16 casos Mac; 1/16 inadequada na avaliação posterior |
 | LLM | Admissão histórica em dois tamanhos de Dot | Heldout offline concluído: 48 chamadas Qwen/Llama, 12 vistas e dois braços por modelo; causa + ação conforme rubrica em 0/12 por braço |
 
 Os protocolos são independentes: [corpus de automação](docs/publication/AUTOMATION_CORPUS.md),
