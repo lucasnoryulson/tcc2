@@ -25,6 +25,15 @@ A monografia atualizada tem arquivos próprios de [Markdown](docs/monografia/REV
 [PDF, 78 páginas](docs/monografia/REVISAO_EXPERIMENTAL_MAC_2026-11-16.pdf).
 A versão `REVISAO_PUBLICACAO` de 70 páginas foi preservada por hash.
 
+O patch final foi integrado sem substituir essas evidências. A
+[monografia consolidada](docs/monografia/MONOGRAFIA_CONSOLIDADA.md) incorpora
+o novo contrato AXPY, a análise temporal Linux e os resultados Mac já coletados;
+há exportações próprias em [Word](docs/monografia/MONOGRAFIA_CONSOLIDADA.docx)
+e [PDF](docs/monografia/MONOGRAFIA_CONSOLIDADA.pdf). O
+[registro de integração](docs/experiments/FINAL_PATCH_INTEGRATION_2026-11-16.md)
+documenta a separação entre holdout retrospectivo e congelamento prévio,
+as verificações e os limites restantes.
+
 ## Fortalecimento científico e escopo atual
 
 A revisão atual estuda **paralelização OpenMP baseada em evidências**, com

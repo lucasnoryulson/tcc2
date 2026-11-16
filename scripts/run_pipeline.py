@@ -84,6 +84,8 @@ def run_pipeline(args):
             "--driver", args.benchmark_driver.resolve(), "--compiler", args.compiler,
             "--correctness", work / "correctness.json", "--build-dir", work / "performance",
             "--csv", work / "performance.csv", "--output", work / "performance.json",
+            '--repetitions', getattr(args, 'repetitions', 5), '--warmups', getattr(args, 'warmups', 0),
+            '--seed', getattr(args, 'seed', 2026),
         ], allow_no_gain=True)
         step("selection", [
             ROOT / "analysis/performance_selector.py", work / "performance.csv",
@@ -132,6 +134,9 @@ def main():
     parser.add_argument("--benchmark-driver", type=Path, default=ROOT / "analysis/fixtures/dot_benchmark_driver.c")
     parser.add_argument("--compiler", default="gcc")
     parser.add_argument("--threads", type=int, nargs="+", default=[1, 2])
+    parser.add_argument('--repetitions', type=int, default=5)
+    parser.add_argument('--warmups', type=int, default=0)
+    parser.add_argument('--seed', type=int, default=2026)
     parser.add_argument("--model", default="qwen2.5:3b")
     parser.add_argument("--prepare-only", action="store_true", help="Stop after verified context creation, before calling the LLM.")
     parser.add_argument("--timeout", type=int, default=600)
@@ -141,7 +146,7 @@ def main():
     if (
         any(count < 1 for count in args.threads) or len(set(args.threads)) != len(args.threads)
         or 1 not in args.threads or not any(count >= 2 for count in args.threads)
-        or args.timeout <= 0
+        or args.timeout <= 0 or args.repetitions < 1 or args.warmups < 0
     ):
         parser.error("Use distinct positive threads including 1 and a parallel configuration, and a positive timeout.")
     code, _ = run_pipeline(args)

@@ -9,6 +9,7 @@ import math
 import os
 from pathlib import Path
 import platform
+import random
 import shutil
 import statistics
 import subprocess
@@ -282,6 +283,41 @@ def load_performance_report(path, csv_path=None):
         raise ValueError("Invalid benchmark repetition count.")
     if any(len(item["times"]) != report.get("repetitions") for item in report["measurements"]):
         raise ValueError("Benchmark repetition counts disagree.")
+    if any(key in report for key in ('measurement_order', 'warmups', 'seed')):
+        counts = {(r['mode'], r['threads']): r['times'] for r in report['measurements']}
+        warmups, repetitions = report.get('warmups'), report['repetitions']
+        if type(warmups) is not int or warmups < 0 or type(report.get('seed')) is not int:
+            raise ValueError('Invalid warm-up or seed metadata.')
+        order = report.get('measurement_order')
+        if not isinstance(order, list) or len(order) != (warmups + repetitions) * len(counts):
+            raise ValueError('Incomplete measurement order.')
+        expected = {(stage, i, mode, threads) for stage, n in [('warmup', warmups), ('measurement', repetitions)]
+                    for i in range(1, n + 1) for mode, threads in counts}
+        seen = set()
+        for item in order:
+            if (not isinstance(item, dict) or item.get('stage') not in ('warmup', 'measurement')
+                or item.get('mode') not in ('sequential', 'openmp')
+                or type(item.get('repeat')) is not int or type(item.get('threads')) is not int
+                or type(item.get('seconds')) not in (int, float)):
+                raise ValueError('Invalid measurement order.')
+            key = (item['stage'], item['repeat'], item['mode'], item['threads'])
+            if key not in expected or key in seen or not math.isfinite(item['seconds']) or item['seconds'] <= 0:
+                raise ValueError('Invalid measurement order.')
+            seen.add(key)
+            if key[0] == 'measurement' and item['seconds'] != counts[key[2:]][key[1] - 1]:
+                raise ValueError('Measurement order disagrees with times.')
+        if seen != expected:
+            raise ValueError('Incomplete measurement order.')
+        rng = random.Random(report['seed'])
+        prescribed = []
+        for stage, n in [('warmup', warmups), ('measurement', repetitions)]:
+            for i in range(1, n + 1):
+                order = list(counts)
+                rng.shuffle(order)
+                prescribed.extend((stage, i, *key) for key in order)
+        actual = [(r['stage'], r['repeat'], r['mode'], r['threads']) for r in report['measurement_order']]
+        if prescribed != actual:
+            raise ValueError('Measurement order disagrees with seed.')
     expected_status = "PASS" if any(row["speedup"] > 1 for row in rows[1:]) else "FAIL"
     if report["status"] != expected_status:
         raise ValueError("Performance status contradicts measured times.")
