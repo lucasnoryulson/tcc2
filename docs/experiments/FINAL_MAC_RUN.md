@@ -1,5 +1,10 @@
 # Coleta adicional no Apple M5
 
+O fechamento mais recente é [BANCA_2026-11-16_DELIVERY.md](BANCA_2026-11-16_DELIVERY.md):
+AXPY 1–10T em duas sessões, custos reais e monografia de 94 páginas. A receita
+abaixo é histórica/opcional; não a trate como pendência nem a execute sobre
+diretórios existentes. Contadores Linux têm roteiro próprio, ainda não coletado.
+
 A campanha científica AXPY também foi concluída; consulte
 `AXPY_SCIENTIFIC_2026-11-16_REPORT.md` e o protocolo próprio. Os comandos abaixo
 continuam como receitas opcionais, não como indicação de coleta pendente.

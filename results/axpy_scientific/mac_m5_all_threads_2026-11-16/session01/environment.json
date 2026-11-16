@@ -1,0 +1,29 @@
+{
+  "utc": "2026-11-16T18:04:52.673716+00:00",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "python": "3.15.2 (main, Oct 25 2026, 16:57:51) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "cpu_count": 10,
+  "affinity": null,
+  "inherited_tuning": {},
+  "arguments": {
+    "output": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01",
+    "cc": "/opt/homebrew/opt/llvm/bin/clang",
+    "cxx": "/opt/homebrew/opt/llvm/bin/clang"
+  },
+  "compilers": {
+    "/opt/homebrew/opt/llvm/bin/clang": {
+      "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+      "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888"
+    }
+  },
+  "git rev-parse HEAD": "62f84f09a0d4a413ecd7347bdaaeea47ee7f52ee",
+  "git status --short": "?? results/axpy_scientific/mac_m5_all_threads_2026-11-16/",
+  "git diff": "",
+  "git submodule status": "3e872547cef7e5c9909422ef1e6af03cf4e56072 benchmarks/PolyBenchC-4.2.1 (heads/master)\n fb1c1cca72eaaa660fbfdf8623e79ad2ababbc29 benchmarks/everythingsreduced (heads/main)",
+  "/opt/homebrew/opt/llvm/bin/clang --version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg",
+  "uname -a": "Darwin MacBook-Pro-de-Lucas-3.local 25.6.0 Darwin Kernel Version 25.6.0: Fri Jul 31 19:16:20 PDT 2026; root:xnu-12377.161.14~5/RELEASE_ARM64_T8142 arm64",
+  "sw_vers": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83",
+  "sysctl hw.model hw.memsize hw.ncpu hw.perflevel0.physicalcpu hw.perflevel1.physicalcpu": "hw.model: Mac17,2\nhw.memsize: 17179869184\nhw.ncpu: 10\nhw.perflevel0.physicalcpu: 4\nhw.perflevel1.physicalcpu: 6",
+  "pmset -g batt": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=34734179)\t3%; charging; (no estimate) present: true"
+}

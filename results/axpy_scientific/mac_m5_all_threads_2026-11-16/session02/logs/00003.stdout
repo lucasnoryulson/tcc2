@@ -1,0 +1,121 @@
+diff --git a/scripts/measure_pipeline_cost.py b/scripts/measure_pipeline_cost.py
+index b4cdf06..4eb82e1 100644
+--- a/scripts/measure_pipeline_cost.py
++++ b/scripts/measure_pipeline_cost.py
+@@ -16,6 +16,7 @@ from scripts.benchmark_scaling import write_csv, write_json
+ from scripts.evaluate_coordinator import run_trial
+ from scripts.promote_candidate import promote_candidate
+ from scripts.run_pipeline import run_pipeline
++from scripts.analyze_pipeline_cost import analyze as verify_prefix
+ 
+ 
+ def break_even(cost, sequential, optimized):
+@@ -46,28 +47,37 @@ def measure(args):
+             write_json(args.output / ('ollama_' + endpoint + '_before.json'), json.load(response))
+     stages, rows = [], []
+     for repeat in range(1, args.repetitions + 1):
+-        pipeline_args = argparse.Namespace(source=ROOT / 'analysis/fixtures/dot_product.c',
+-            driver=ROOT / 'analysis/fixtures/dot_driver.c', benchmark_driver=ROOT / 'analysis/fixtures/dot_benchmark_driver.c',
+-            compiler=args.compiler, threads=args.threads, model=args.model, timeout=args.timeout,
+-            work_dir=args.output / f'prefix-{repeat}', output_dir=args.output / 'unused', prepare_only=True)
+-        code, work = run_pipeline(pipeline_args)
++        reused = getattr(args, 'prepared_run', None)
++        if reused:
++            work = reused.resolve()
++            verify_prefix(work)
++            code = 0
++        else:
++            pipeline_args = argparse.Namespace(source=ROOT / 'analysis/fixtures/dot_product.c',
++                driver=ROOT / 'analysis/fixtures/dot_driver.c', benchmark_driver=ROOT / 'analysis/fixtures/dot_benchmark_driver.c',
++                compiler=args.compiler, threads=args.threads, model=args.model, timeout=args.timeout,
++                work_dir=args.output / f'prefix-{repeat}', output_dir=args.output / 'unused', prepare_only=True)
++            code, work = run_pipeline(pipeline_args)
+         summary = json.loads((work / 'summary.json').read_text())
+         report['prefixes'].append(dict(repetition=repeat, summary=file_record(work / 'summary.json'),
+-                                        status=summary['status'], elapsed_seconds=summary['elapsed_seconds']))
++                                        status=summary['status'], elapsed_seconds=summary['elapsed_seconds'],
++                                        reused_frozen_prefix=bool(reused)))
+         if code:
+             report['status'] = 'FAILED_PREFIX'
+             write_json(args.output / 'report.json', report)
+             return report
+         context, bundle, context_ref = load_context_evidence(work / 'context.json')
+-        timings = [json.loads(s) for s in timing_log.read_text().splitlines()]
++        # Reused evidence was measured in its original campaign, not in this log.
++        timings = [json.loads(s) for s in timing_log.read_text().splitlines()] if timing_log.exists() else []
+         for step in summary['steps']:
+             nested = [r for r in timings if r['stage'] == step['name']
+                       and any(str(work) in arg for arg in r['command'])]
+             compilation = sum(r['wall_seconds'] for r in nested if r['kind'] == 'compilation')
+             execution = sum(r['wall_seconds'] for r in nested if r['kind'] == 'execution')
+             stages.append(dict(repetition=repeat, stage=step['name'], inclusive_seconds=step['wall_seconds'],
+-                               compilation_seconds=compilation, execution_seconds=execution,
+-                               overhead_seconds=step['wall_seconds'] - compilation - execution))
++                               compilation_seconds=None if reused else compilation,
++                               execution_seconds=None if reused else execution,
++                               overhead_seconds=None if reused else step['wall_seconds'] - compilation - execution))
+         sequential = bundle['measurements'][0]['median_seconds']
+         trial_root = args.output / f'decisions-{repeat}'
+         trial_root.mkdir()
+@@ -137,6 +147,9 @@ if __name__ == '__main__':
+     parser.add_argument('--model', default='llama3.1:8b')
+     parser.add_argument('--repetitions', type=int, default=3)
+     parser.add_argument('--timeout', type=int, default=180)
++    parser.add_argument('--prepared-run', type=Path,
++                        help='Reuse one verified immutable prefix; decision/promotion trials remain new. '
++                             'Totals are accounting comparisons, not repeated independent pipelines.')
+     args = parser.parse_args()
+     if args.repetitions < 1 or args.timeout < 1 or len(set(args.threads)) != len(args.threads) or 1 not in args.threads or min(args.threads) < 1:
+         parser.error('Use positive repetitions/timeout and distinct positive threads including 1')
+diff --git a/scripts/profile_linux_followup.sh b/scripts/profile_linux_followup.sh
+index c0f92af..d0f5a4f 100644
+--- a/scripts/profile_linux_followup.sh
++++ b/scripts/profile_linux_followup.sh
+@@ -1,42 +1,9 @@
+ #!/usr/bin/env bash
+ # Collect counters into a NEW archive; existing Linux benchmark archives are read-only.
+-set -uo pipefail
+-if [ "$#" -ne 2 ] || [ "$(uname -s)" != Linux ]; then
+-  echo 'Uso no Linux: bash scripts/profile_linux_followup.sh <campanha-completa> <diretorio-novo>' >&2
++set -euo pipefail
++if [ "$#" -lt 2 ] || [ "$(uname -s)" != Linux ]; then
++  echo 'Uso no Linux: bash scripts/profile_linux_followup.sh <campanha-completa> <diretorio-novo> [--axpy-session <sessao-AXPY>] [--threads 1 2 4] [--memory-event <evento-suportado>]' >&2
+   exit 2
+ fi
+-campaign=$1
+-output=$2
+-if [ -e "$output" ] || [ ! -f "$campaign/report.json" ]; then
+-  echo 'Exige campanha existente e diretório de saída novo.' >&2
+-  exit 2
+-fi
+-mkdir -p "$output"
+-perf --version > "$output/perf-version.txt" 2>&1
+-perf list > "$output/perf-list.txt" 2>&1
+-lscpu > "$output/lscpu.txt" 2>&1
+-uname -a > "$output/uname.txt" 2>&1
+-printf 'case,threads,status\n' > "$output/status.csv"
+-for name in dot-auto-10000000-automatic gemm-LARGE-manual nussinov-LARGE-manual jacobi-2d-LARGE-manual covariance-LARGE-manual; do
+-  binary="$campaign/bin/$name"
+-  if [ ! -x "$binary" ]; then
+-    printf '%s,0,MISSING_BINARY\n' "$name" >> "$output/status.csv"
+-    continue
+-  fi
+-  for threads in 1 2 4; do
+-    command=(env OMP_DYNAMIC=FALSE OMP_PROC_BIND=TRUE OMP_PLACES=cores OMP_NUM_THREADS="$threads"
+-      perf stat --no-big-num -x, -r 5
+-      -e cycles,instructions,cache-references,cache-misses,context-switches,cpu-migrations
+-      -o "$output/$name-${threads}T-perf.csv" -- "$binary")
+-    printf '%q ' "${command[@]}" >> "$output/commands.txt"
+-    printf '\n' >> "$output/commands.txt"
+-    if "${command[@]}" > "$output/$name-${threads}T.stdout" 2> "$output/$name-${threads}T.stderr"; then
+-      status=0
+-    else
+-      status=$?
+-    fi
+-    printf '%s,%s,%s\n' "$name" "$threads" "$status" >> "$output/status.csv"
+-  done
+-done
+-# Generic cache events do not establish DRAM bandwidth. Choose supported memory
+-# controller events from perf-list.txt before a separately declared uncore run.
++script_directory=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
++exec python3 -B "$script_directory/profile_linux_followup.py" "$@"

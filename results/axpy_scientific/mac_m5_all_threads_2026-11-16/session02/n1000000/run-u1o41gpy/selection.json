@@ -1,0 +1,84 @@
+{
+  "status": "SELECTED",
+  "decision": "RESOURCE_AWARE_NEAR_TIE",
+  "parallel_status": "PARALLEL_SUCCESS",
+  "sequential": {
+    "mode": "sequential",
+    "threads": 1,
+    "median_seconds": 0.00120727,
+    "mean_seconds": 0.0012287106666666666,
+    "speedup": 1.0,
+    "efficiency": 1.0
+  },
+  "one_thread": {
+    "mode": "openmp",
+    "threads": 1,
+    "median_seconds": 0.00142518,
+    "mean_seconds": 0.0012924013333333333,
+    "speedup": 0.8471000154366466,
+    "efficiency": 0.8471000154366466
+  },
+  "best_parallel": {
+    "mode": "openmp",
+    "threads": 10,
+    "median_seconds": 0.00084838,
+    "mean_seconds": 0.0008863093333333333,
+    "speedup": 1.42302977439355,
+    "efficiency": 0.142302977439355
+  },
+  "transformation_benefit": false,
+  "parallel_benefit": true,
+  "transformation_speedup": 0.8471000154366466,
+  "parallel_scaling_speedup": 1.6639579684763575,
+  "parallel_scaling_efficiency": 0.41598949211908937,
+  "end_to_end_speedup": 1.4095388207822535,
+  "runtime_reduction": 0.29054809611768706,
+  "raw_fastest": {
+    "mode": "openmp",
+    "threads": 10,
+    "median_seconds": 0.00084838,
+    "mean_seconds": 0.0008863093333333333,
+    "speedup": 1.42302977439355,
+    "efficiency": 0.142302977439355
+  },
+  "near_tie_threshold": 0.02,
+  "near_tie_candidates": [
+    {
+      "mode": "openmp",
+      "threads": 4,
+      "median_seconds": 0.0008565,
+      "mean_seconds": 0.0008719986666666667,
+      "speedup": 1.4095388207822535,
+      "efficiency": 0.35238470519556336,
+      "slowdown_vs_fastest": 0.009571182724722238
+    },
+    {
+      "mode": "openmp",
+      "threads": 10,
+      "median_seconds": 0.00084838,
+      "mean_seconds": 0.0008863093333333333,
+      "speedup": 1.42302977439355,
+      "efficiency": 0.142302977439355,
+      "slowdown_vs_fastest": 0.0
+    }
+  ],
+  "recommended": {
+    "mode": "openmp",
+    "threads": 4,
+    "median_seconds": 0.0008565,
+    "mean_seconds": 0.0008719986666666667,
+    "speedup": 1.4095388207822535,
+    "efficiency": 0.35238470519556336,
+    "slowdown_vs_fastest": 0.009571182724722238
+  },
+  "next_action": "PROMOTE_CANDIDATE",
+  "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.",
+  "evidence": {
+    "performance_report": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1000000/run-u1o41gpy/performance.json",
+      "sha256": "8c131e2c05c892315b34707cd8dd2850ebea232c94ecdd6618b672eb1e6aeb9a"
+    },
+    "campaign_id": "00b4e44831d34839aee97967e5645bfc",
+    "candidate_id": "sha256:4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1"
+  }
+}

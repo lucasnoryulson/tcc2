@@ -1,0 +1,13 @@
+kernel,size,variant,near_tie_threshold,threads,sequential,regret_percent,inadequate
+axpy,1024,automatic,0,1,True,0.0,False
+axpy,1024,automatic,0.01,1,True,0.0,False
+axpy,1024,automatic,0.02,1,True,0.0,False
+axpy,1024,automatic,0.05,1,True,0.0,False
+axpy,1000000,automatic,0,10,False,0.0,False
+axpy,1000000,automatic,0.01,6,False,2.0875079563403176,True
+axpy,1000000,automatic,0.02,6,False,2.0875079563403176,True
+axpy,1000000,automatic,0.05,4,False,0.9571182724722238,False
+axpy,10000000,automatic,0,10,False,1.150805884029471,False
+axpy,10000000,automatic,0.01,4,False,0.0,False
+axpy,10000000,automatic,0.02,4,False,0.0,False
+axpy,10000000,automatic,0.05,4,False,0.0,False

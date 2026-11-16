@@ -1,0 +1,35 @@
+{
+  "status": "COMPLETE",
+  "scientific_samples": 990,
+  "scientific_warmups": 198,
+  "configurations_per_session": 33,
+  "frozen_before_second_session": true,
+  "cooldown_seconds": 118.834193,
+  "source_main_commit": "601b813",
+  "candidate_sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+  "selector_inadequate": 1,
+  "stable_cases": 2,
+  "cases": 3,
+  "cost_status": "COMPLETE",
+  "report_sha256": "abd71a2dfbc40ffe91707f2c544a16621204b30615a636b35db327858364c4de",
+  "inputs": {
+    "results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/report.json": "7b209dad624e17087aecd18c8861ba6ca8268662578a35bdad9054b06dda435f",
+    "results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/report.json": "24f7c505f3144e7a75f5cc26817b181cf015ce7eafef8420da419bbf70a29494",
+    "results/axpy_scientific/mac_m5_all_threads_2026-11-16/frozen_selection.json": "6f1e212de24d3582ab80ee3006821b7c2f24fe3e9929d8ba884b2cb84c94ddc7",
+    "results/axpy_scientific/analysis_mac_m5_all_threads_2026-11-16/report.json": "efcc05f6cb925a53da454a619e989cee375be5dcd66dd256edc07c8a396bde1f",
+    "results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/report.json": "ab60a816bd82df95782628de8c8ebbae0f6ec566296cc32f3e1f701d0a5ff11b"
+  },
+  "figures": {
+    "docs/monografia/figures_banca_2026-11-16/axpy_all_threads_1024.png": "8ed05bb29d8a2e7a059ba2ab747fc6e550e45ee294b451975ee6f9941be7d20e",
+    "docs/monografia/figures_banca_2026-11-16/axpy_all_threads_1024.svg": "466709d82825dafb397a8c03c8a8ac72e56234245cd953b23d94503ead90028a",
+    "docs/monografia/figures_banca_2026-11-16/axpy_all_threads_1024.pdf": "d5dbd86f019bfb0e7a1aab194e7e570e7da3865a5916f891bec1647a264c16df",
+    "docs/monografia/figures_banca_2026-11-16/axpy_all_threads_1000000.png": "5ced2e1fa809d47024dc83d476b557dc90ff6ed1d22bb15970136291c110d24d",
+    "docs/monografia/figures_banca_2026-11-16/axpy_all_threads_1000000.svg": "3a6d1001c6eb46003bbf892fad060fbe91381c0a6b89e11cb5526e047e1270d8",
+    "docs/monografia/figures_banca_2026-11-16/axpy_all_threads_1000000.pdf": "4efe3df4ee1322259834948f45325243f01b92eb64c9b095bd6ba39eb8df2ae1",
+    "docs/monografia/figures_banca_2026-11-16/axpy_all_threads_10000000.png": "29e8efc16114bdb579a84ff0c372403af7072740d079a7857a98c139126fbfc8",
+    "docs/monografia/figures_banca_2026-11-16/axpy_all_threads_10000000.svg": "6f005ce305b171aa300a578826ba923d82aa98a503f914d6504a1a7a68b978b0",
+    "docs/monografia/figures_banca_2026-11-16/axpy_all_threads_10000000.pdf": "856e3f6ce478812b49c00d2ec768fa3e775ca49bfa37b97bbb72dde93adb73d3"
+  },
+  "linux_perf_status": "NOT_RUN_MACOS",
+  "institutional_full_model": "AUTHENTICATION_REQUIRED"
+}

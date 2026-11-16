@@ -1,0 +1,73 @@
+{
+  "mode": "coordinator",
+  "status": "OK",
+  "eligible": true,
+  "policy_reason": "Measured parallel selection is admissible.",
+  "candidate_attempts": 1,
+  "llm_calls": 1,
+  "recovery_supported": false,
+  "metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 59032100042,
+    "load_duration": 2609870042,
+    "prompt_eval_count": 2050,
+    "eval_count": 205,
+    "done_reason": "stop"
+  },
+  "raw_decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 4,
+    "recommended_configuration": {
+      "mode": "openmp",
+      "threads": 4,
+      "median_seconds": 0.00818025,
+      "mean_seconds": 0.0087342316666667,
+      "speedup": 1.5938724366614712,
+      "efficiency": 0.3984681091653678,
+      "slowdown_vs_fastest": 0.0031731432513222
+    },
+    "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ]
+  },
+  "validation_errors": [],
+  "monetary_cost": null,
+  "prompt_sha256": "7dd3fff391eadbc9044a529dbf847e8b513cd0e11a31ba577cb4da2b7aff4d5b",
+  "ablation_effective": null,
+  "call_wall_seconds": 59.04134633298963,
+  "decision_wall_seconds": 59.041713709011674,
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 4,
+    "recommended_configuration": {
+      "threads": 4
+    },
+    "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ]
+  },
+  "effective_accept": true,
+  "nonadmissible_accept_proposal": false,
+  "missed_eligible_opportunity": false,
+  "policy_agreement": true,
+  "attempts_to_acceptable_candidate": 1,
+  "final_mode": "openmp",
+  "selected_configuration": {
+    "threads": 4
+  },
+  "measured_final_seconds": 0.00818025,
+  "speedup_vs_sequential": 1.5938724366614712,
+  "parallel_scaling_speedup": 1.624638611289386,
+  "validation_wall_seconds": 0.00010875007137656212,
+  "trial_wall_seconds": 59.041826291941106
+}

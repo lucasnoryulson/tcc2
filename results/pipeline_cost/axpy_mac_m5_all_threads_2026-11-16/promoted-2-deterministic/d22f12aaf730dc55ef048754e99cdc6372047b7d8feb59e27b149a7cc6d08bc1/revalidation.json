@@ -1,0 +1,147 @@
+{
+  "schema": "tcc2-correctness-gate",
+  "version": "0.2",
+  "status": "PASS",
+  "inputs": {
+    "sequential": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/evidence/sequential.c",
+    "candidate": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/parallel.c",
+    "driver": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/evidence/correctness_driver.c"
+  },
+  "compiler": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+  "threads": [
+    4
+  ],
+  "validated_threads": [
+    4
+  ],
+  "tolerances": {
+    "relative": 1e-09,
+    "absolute": 1e-12
+  },
+  "provenance": {
+    "campaign_id": "11ab44ac197340c9a829e08b6cd90107",
+    "run_id": "aa14dc0b4eb7457c8fc11428786fbef6",
+    "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/revalidation/aa14dc0b4eb7457c8fc11428786fbef6",
+    "candidate_id": "sha256:4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+    "recorded_at": "2026-11-16T18:16:54.879583+00:00",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "cpu_count": 10,
+    "runtime_environment": {},
+    "inputs": {
+      "sequential": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/evidence/sequential.c",
+        "sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/revalidation/aa14dc0b4eb7457c8fc11428786fbef6/sequential/sequential.c"
+      },
+      "candidate": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/parallel.c",
+        "sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/revalidation/aa14dc0b4eb7457c8fc11428786fbef6/candidate/parallel.c"
+      },
+      "driver": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/evidence/correctness_driver.c",
+        "sha256": "83d3f859657947d18131ca03a522de4e954c268e00f0cf428df6daf5b3845b2e",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/revalidation/aa14dc0b4eb7457c8fc11428786fbef6/driver/correctness_driver.c"
+      }
+    },
+    "toolchain": {
+      "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+      "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+      "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+    },
+    "compile_flags": {
+      "sequential": [
+        "-O3"
+      ],
+      "candidate": [
+        "-O3",
+        "-fopenmp"
+      ]
+    },
+    "link_flags": [
+      "-lm"
+    ],
+    "openmp_environment": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "TRUE",
+      "OMP_PLACES": "cores"
+    }
+  },
+  "compilation": {
+    "sequential": {
+      "command": [
+        "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "-O3",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/revalidation/aa14dc0b4eb7457c8fc11428786fbef6/driver/correctness_driver.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/revalidation/aa14dc0b4eb7457c8fc11428786fbef6/sequential/sequential.c",
+        "-lm",
+        "-o",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/revalidation/aa14dc0b4eb7457c8fc11428786fbef6/dot_gate_sequential"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "candidate": {
+      "command": [
+        "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "-O3",
+        "-fopenmp",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/revalidation/aa14dc0b4eb7457c8fc11428786fbef6/driver/correctness_driver.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/revalidation/aa14dc0b4eb7457c8fc11428786fbef6/candidate/parallel.c",
+        "-lm",
+        "-o",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/revalidation/aa14dc0b4eb7457c8fc11428786fbef6/dot_gate_candidate"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "binaries": {
+    "sequential": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/revalidation/aa14dc0b4eb7457c8fc11428786fbef6/dot_gate_sequential",
+      "sha256": "42205f01452fe52b475de853c1d0f239d994dc3fafaf11db9acf87a1c29450d8"
+    },
+    "candidate": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/revalidation/aa14dc0b4eb7457c8fc11428786fbef6/dot_gate_candidate",
+      "sha256": "3aa0a1dd7595dc26e5070485811eb84221940d69bc38677068b668045eecc463"
+    }
+  },
+  "execution": {
+    "sequential": {
+      "returncode": 0,
+      "stdout": "0",
+      "stderr": ""
+    },
+    "candidate": {
+      "returncode": 0,
+      "stdout": "0",
+      "stderr": ""
+    }
+  },
+  "thread_results": [
+    {
+      "threads": 4,
+      "execution": {
+        "returncode": 0,
+        "stdout": "0",
+        "stderr": ""
+      },
+      "validation": {
+        "reference": 0.0,
+        "candidate": 0.0,
+        "absolute_error": 0.0,
+        "relative_error": 0.0,
+        "correct": true
+      }
+    }
+  ],
+  "validation": {
+    "reference": 0.0,
+    "candidate": 0.0,
+    "absolute_error": 0.0,
+    "relative_error": 0.0,
+    "correct": true
+  }
+}

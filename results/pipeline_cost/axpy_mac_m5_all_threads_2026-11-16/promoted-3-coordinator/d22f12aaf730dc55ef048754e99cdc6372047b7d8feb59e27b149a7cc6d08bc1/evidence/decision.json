@@ -1,0 +1,36 @@
+{
+  "schema": "tcc2-coordinator-decision",
+  "version": "0.2",
+  "model": "llama3.1:8b",
+  "decision": {
+    "decision": "ACCEPT",
+    "recommended_threads": 4,
+    "recommended_configuration": {
+      "threads": 4
+    },
+    "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.",
+    "next_action": "PROMOTE_CANDIDATE",
+    "risk": "LOW",
+    "evidence_used": [
+      "performance_report",
+      "campaign_id",
+      "candidate_id"
+    ]
+  },
+  "evidence": {
+    "context": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/context.json",
+      "sha256": "aa4138319e52be41e7f13f059aa92d1876bcf1df097eed41162499a3ec967aca"
+    },
+    "candidate_id": "sha256:4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+    "campaign_id": "b18dc265d944407db43f714000814239"
+  },
+  "llm_metadata": {
+    "model": "llama3.1:8b",
+    "total_duration": 61724699333,
+    "load_duration": 5146708,
+    "prompt_eval_count": 2050,
+    "eval_count": 205,
+    "done_reason": "stop"
+  }
+}

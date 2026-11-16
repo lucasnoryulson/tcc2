@@ -1,0 +1,24 @@
+{
+  "schema": "tcc2-axpy-scientific-protocol-v1",
+  "kernel": "axpy",
+  "sessions": 2,
+  "inputs": [
+    {"n": 1024, "inner_repeats": 10000, "logical_buffer_bytes": 24576},
+    {"n": 1000000, "inner_repeats": 100, "logical_buffer_bytes": 24000000},
+    {"n": 10000000, "inner_repeats": 40, "logical_buffer_bytes": 240000000}
+  ],
+  "threads": [1, 2, 3, 4],
+  "repetitions": 15,
+  "warmups": 3,
+  "seed": 2026,
+  "compile_flags": {"sequential": ["-O3"], "candidate": ["-O3", "-fopenmp"]},
+  "openmp_environment": {"OMP_DYNAMIC": "FALSE", "OMP_PROC_BIND": "TRUE", "OMP_PLACES": "cores"},
+  "correctness": "Existing fixtures with disjoint restrict buffers; full-vector comparison at all three sizes and after each timed process. Relative tolerance 1e-9 and absolute tolerance 1e-12; reject nonfinite values.",
+  "sampling": "Separate processes in randomized complete rounds, fifteen observations plus three warmups. Fixed inner repeats. Never pool inputs, sessions, Linux/Mac or historical campaigns.",
+  "holdout": "Freeze session-1 choices before session 2. Adequacy threshold remains 2% relative to the smallest session-2 median including sequential.",
+  "statistics": "Median, mean, sample SD, MAD, IQR; paired complete-round percentile bootstrap with 5000 resamples, seed 2026, conditional 95% intervals.",
+  "cost": "Deterministic prefix only. No LLM calls or promotion in these two sessions; any later real inference requires a separate cost archive and explicit model/budget.",
+  "power": "Record actual host and power conditions. No exclusive host, thermal or frequency control assumed.",
+  "cooldown_seconds_between_sessions": 30,
+  "scope": "Prepared recipe for the historical four-core Linux host, not an executed experiment. Verify current affinity/cotas before collection; change and freeze a new protocol if the host differs. Whole-process perf collected separately after timing sessions."
+}

@@ -1,0 +1,158 @@
+{
+  "schema": "tcc2-promoted-candidate",
+  "version": "0.1",
+  "status": "PROMOTED",
+  "promoted_at": "2026-11-16T18:16:54.836102+00:00",
+  "promotion_id": "d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1",
+  "candidate_id": "sha256:4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+  "campaign_id": "b18dc265d944407db43f714000814239",
+  "configuration": {
+    "threads": 4
+  },
+  "coordinator_model": "llama3.1:8b",
+  "candidate_sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+  "origins": {
+    "decision": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/decisions-2/coordinator/decision.json",
+      "sha256": "cf416a0784378c2d0f0aabdfe45c52ac998c060e31adabd8816a12c39ae4e1c6"
+    },
+    "context": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/context.json",
+      "sha256": "aa4138319e52be41e7f13f059aa92d1876bcf1df097eed41162499a3ec967aca"
+    },
+    "correctness": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/correctness.json",
+      "sha256": "728ff47f8ebd5c78f06f6d8ffb5938afd90e60ba3b2d2184b737e9fab71588ce"
+    },
+    "performance": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/performance.json",
+      "sha256": "daa9381fec621eae78b18aa40517e018b7247ea3ba7a1755145651cbc07a3a14"
+    },
+    "selection": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/selection.json",
+      "sha256": "83288760925f67045e1cf263aafff41c4c82a48d717098fedf1d4f94ce02b13e"
+    }
+  },
+  "toolchain": {
+    "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+    "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+    "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+  },
+  "compile_flags": {
+    "sequential": [
+      "-O3"
+    ],
+    "candidate": [
+      "-O3",
+      "-fopenmp"
+    ]
+  },
+  "link_flags": [
+    "-lm"
+  ],
+  "openmp_environment": {
+    "OMP_DYNAMIC": "FALSE",
+    "OMP_PROC_BIND": "TRUE",
+    "OMP_PLACES": "cores"
+  },
+  "measured_configuration": {
+    "mode": "openmp",
+    "threads": 4,
+    "median_seconds": 0.00818025,
+    "mean_seconds": 0.008734231666666667,
+    "speedup": 1.5938724366614712,
+    "efficiency": 0.3984681091653678
+  },
+  "metrics": {
+    "end_to_end_speedup": 1.5938724366614712,
+    "transformation_speedup": 0.9810627579486755,
+    "parallel_scaling_speedup": 1.624638611289386,
+    "parallel_scaling_efficiency": 0.4061596528223465
+  },
+  "revalidation": {
+    "status": "PASS",
+    "report": "revalidation.json",
+    "threads": 4
+  },
+  "reproduce_correctness": [
+    "/opt/homebrew/opt/python@3.15/bin/python3.15",
+    "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/scripts/compile_correctness_gate.py",
+    "--sequential",
+    "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-coordinator/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/evidence/sequential.c",
+    "--candidate",
+    "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-coordinator/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/parallel.c",
+    "--driver",
+    "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-coordinator/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1/evidence/correctness_driver.c",
+    "--compiler",
+    "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+    "--threads",
+    "4",
+    "--build-dir",
+    "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promotion_checks/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1"
+  ],
+  "files": {
+    "evidence/benchmark_driver.c": {
+      "sha256": "e71ff54424a61923498c412de8d7a27d0b86072d8220ec8c0565b651c434b115"
+    },
+    "evidence/context.json": {
+      "sha256": "aa4138319e52be41e7f13f059aa92d1876bcf1df097eed41162499a3ec967aca"
+    },
+    "evidence/correctness.json": {
+      "sha256": "728ff47f8ebd5c78f06f6d8ffb5938afd90e60ba3b2d2184b737e9fab71588ce"
+    },
+    "evidence/correctness_candidate.bin": {
+      "sha256": "3aa0a1dd7595dc26e5070485811eb84221940d69bc38677068b668045eecc463"
+    },
+    "evidence/correctness_driver.c": {
+      "sha256": "83d3f859657947d18131ca03a522de4e954c268e00f0cf428df6daf5b3845b2e"
+    },
+    "evidence/correctness_sequential.bin": {
+      "sha256": "42205f01452fe52b475de853c1d0f239d994dc3fafaf11db9acf87a1c29450d8"
+    },
+    "evidence/decision.json": {
+      "sha256": "cf416a0784378c2d0f0aabdfe45c52ac998c060e31adabd8816a12c39ae4e1c6"
+    },
+    "evidence/performance.csv": {
+      "sha256": "524bd538103f8c2cc88c87f4828b2b8b7ec491fd3a96131c72ed6c0f71363a5d"
+    },
+    "evidence/performance.json": {
+      "sha256": "daa9381fec621eae78b18aa40517e018b7247ea3ba7a1755145651cbc07a3a14"
+    },
+    "evidence/performance_candidate.bin": {
+      "sha256": "e34c63b2ed0a72f310cba99f4d7de45f42a6df02933c4774fcb4830e82cc1294"
+    },
+    "evidence/performance_sequential.bin": {
+      "sha256": "396229ab8fec4e0805cd34a3684f09046b3174949cf49c6630b30197d375b606"
+    },
+    "evidence/selection.json": {
+      "sha256": "83288760925f67045e1cf263aafff41c4c82a48d717098fedf1d4f94ce02b13e"
+    },
+    "evidence/sequential.c": {
+      "sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea"
+    },
+    "parallel.c": {
+      "sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1"
+    },
+    "revalidation/40d67e3d18374f75a73e3c8cd4167f3b/candidate/parallel.c": {
+      "sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1"
+    },
+    "revalidation/40d67e3d18374f75a73e3c8cd4167f3b/dot_gate_candidate": {
+      "sha256": "3aa0a1dd7595dc26e5070485811eb84221940d69bc38677068b668045eecc463"
+    },
+    "revalidation/40d67e3d18374f75a73e3c8cd4167f3b/dot_gate_sequential": {
+      "sha256": "42205f01452fe52b475de853c1d0f239d994dc3fafaf11db9acf87a1c29450d8"
+    },
+    "revalidation/40d67e3d18374f75a73e3c8cd4167f3b/driver/correctness_driver.c": {
+      "sha256": "83d3f859657947d18131ca03a522de4e954c268e00f0cf428df6daf5b3845b2e"
+    },
+    "revalidation/40d67e3d18374f75a73e3c8cd4167f3b/sequential/sequential.c": {
+      "sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea"
+    },
+    "revalidation.json": {
+      "sha256": "2958d4aa1a9ee715a7aacefa291f3211eb940eb51e3c01efe0851f9a65cb10bf"
+    },
+    "revalidation.log": {
+      "sha256": "cf8b1e0d316d464a1b9699884ea17acf5d8ba66ac78568117395769b387eefd1"
+    }
+  }
+}
