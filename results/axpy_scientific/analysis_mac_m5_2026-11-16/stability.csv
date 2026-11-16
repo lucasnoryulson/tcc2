@@ -1,0 +1,4 @@
+kernel,size,variant,selection_threads,selection_sequential,holdout_threads,holdout_sequential,unchanged
+axpy,1024,automatic,1,True,1,True,True
+axpy,1000000,automatic,6,False,6,False,True
+axpy,10000000,automatic,10,False,4,False,False

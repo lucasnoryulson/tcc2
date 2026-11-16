@@ -1,0 +1,35 @@
+{
+  "version": "0.6",
+  "source": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/inputs/analysis/fixtures/axpy.c",
+  "kernels": [
+    {
+      "name": "kernel_axpy",
+      "classification": "DOALL_CANDIDATE",
+      "family": "MAP / DATA_PARALLEL",
+      "confidence": "medium",
+      "reason": "Independent-index candidates were detected and no shifted or symbolic dependences were found.",
+      "loops": [
+        {
+          "classification": "DOALL_CANDIDATE",
+          "family": "MAP / DATA_PARALLEL",
+          "confidence": "conservative_contract",
+          "reason": "One injective output write with pure reads and restrict caller preconditions.",
+          "evidence": {
+            "standalone_ast_contract": {
+              "status": "SUPPORTED",
+              "pattern": "DOALL",
+              "iterator": "i",
+              "start_line": 5,
+              "reduction_variable": null,
+              "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+              "source_sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea",
+              "version": "standalone-ast-v2"
+            }
+          },
+          "loop_id": 1,
+          "iterator": "i"
+        }
+      ]
+    }
+  ]
+}

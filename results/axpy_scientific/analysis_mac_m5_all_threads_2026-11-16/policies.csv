@@ -1,0 +1,13 @@
+kernel,size,variant,policy,evaluated_variant,threads,median_seconds,speedup_total,speedup_parallel,efficiency_parallel,regret_percent,inadequate,slower_than_sequential,oracle_variant,oracle_threads,oracle_median_seconds
+axpy,1024,automatic,sequential,sequential,1,2.667e-07,1.0,,,0.0,False,False,sequential,1,2.667e-07
+axpy,1024,automatic,max_threads,automatic,10,6.97988e-05,0.0038209825956893244,0.008359742574370907,0.0008359742574370907,26071.27859017622,True,True,sequential,1,2.667e-07
+axpy,1024,automatic,selector,sequential,1,2.667e-07,1.0,,,0.0,False,False,sequential,1,2.667e-07
+axpy,1024,automatic,fastest_selection,automatic,1,5.835e-07,0.45706940874035995,1.0,1.0,118.78515185601799,True,True,sequential,1,2.667e-07
+axpy,1000000,automatic,sequential,sequential,1,0.00120727,1.0,,,42.302977439355004,True,False,automatic,10,0.00084838
+axpy,1000000,automatic,max_threads,automatic,10,0.00084838,1.42302977439355,1.6798840142389024,0.16798840142389024,0.0,False,False,automatic,10,0.00084838
+axpy,1000000,automatic,selector,automatic,6,0.00086609,1.393931346626794,1.6455333741297093,0.2742555623549516,2.0875079563403176,True,False,automatic,10,0.00084838
+axpy,1000000,automatic,fastest_selection,automatic,10,0.00084838,1.42302977439355,1.6798840142389024,0.16798840142389024,0.0,False,False,automatic,10,0.00084838
+axpy,10000000,automatic,sequential,sequential,1,0.014752175,1.0,,,71.6137456884768,True,False,automatic,4,0.00859615
+axpy,10000000,automatic,max_threads,automatic,10,0.008695075,1.6966127376704627,1.7174176185944343,0.17174176185944343,1.150805884029471,False,False,automatic,4,0.00859615
+axpy,10000000,automatic,selector,automatic,4,0.00859615,1.716137456884768,1.737181761602578,0.4342954404006445,0.0,False,False,automatic,4,0.00859615
+axpy,10000000,automatic,fastest_selection,automatic,10,0.008695075,1.6966127376704627,1.7174176185944343,0.17174176185944343,1.150805884029471,False,False,automatic,4,0.00859615

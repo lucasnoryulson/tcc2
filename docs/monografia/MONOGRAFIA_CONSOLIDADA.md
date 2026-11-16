@@ -12,25 +12,25 @@ que condiciona a seleção de configurações à análise de dependências, à v
 funcional e às medições de desempenho. A transformação determinística abrange
 reduções escalares e laços DOALL sob pré-condições explícitas; um modelo de
 linguagem (LLM) interpreta as evidências sem poder contornar a validação.
-Em um corpus autoral de 28 fontes, as 14 aceitações e 14 recusas corresponderam
-ao contrato de suporte, e todos os 28 pares positivos de fonte e entrada passaram
+Em um corpus autoral de 28 fontes, 14 aceitações e 14 recusas corresponderam
+ao contrato de suporte; os 28 pares positivos de fonte e entrada passaram
 nos testes funcionais. O corpus reúne 2.940 medições em 196 configurações.
 Nos oito DOALL de entrada grande, os ganhos totais variaram de 1,114× a 1,898×.
-Na campanha Linux, o Dot Product C gerado automaticamente obteve 1,254×,
-enquanto GEMM e Nussinov manuais alcançaram 2,845× e 3,195×, respectivamente.
-Na análise temporal retrospectiva Linux, 15 de 16 recomendações ficaram a até 2%
-do melhor tempo posterior. Duas sessões equivalentes no M5 preservaram 3.240
-medições externas; o holdout com decisões previamente congeladas teve uma
-recomendação inadequada em 16 casos e estabilidade de escolha em 14/16.
-Uma execução histórica de AXPY no Apple M5
-registrou 1,065× sob um contrato menos restritivo que o atual. Doze respostas
-válidas da LLM reproduziram a política determinística de admissão, com custo
-adicional. Na avaliação diagnóstica separada, nenhuma das 48 chamadas atendeu
-conjuntamente aos critérios de causa e ação da rubrica autoral. Os resultados
-demonstram a integração no subconjunto avaliado, mas não estabelecem
-superioridade da LLM, paralelização geral ou reparo autônomo. A campanha
-multiplataforma equivalente foi concluída; contadores físicos de cache/DRAM
-e a campanha científica do AXPY com o novo contrato permanecem pendentes.
+A campanha Linux e duas sessões equivalentes no Apple M5 preservaram protocolos
+e resultados separados. No holdout M5 de dezesseis casos, uma escolha excedeu
+em mais de 2% a menor mediana posterior. Uma campanha AXPY adicional avaliou
+três tamanhos e todas as equipes OpenMP de uma a dez threads, com 990 medições,
+198 aquecimentos e validação integral dos vetores. As escolhas congeladas
+obtiveram ganhos de 1,394× e 1,716× nas entradas maiores da segunda sessão;
+a menor permaneceu sequencial. Uma escolha ultrapassou ligeiramente o limiar
+operacional de inadequação. Três novas inferências reais sobre o AXPY
+reproduziram a admissão determinística, com latência mediana de 59,042 s,
+sem ganho adicional do kernel. Na avaliação diagnóstica separada, nenhuma das
+48 chamadas atendeu conjuntamente aos critérios de causa e ação da rubrica
+autoral. Os resultados sustentam a integração no subconjunto avaliado, não
+superioridade da LLM, paralelização geral ou reparo autônomo. O perfil auxiliar
+registra espera entre threads; sem contadores físicos de cache e memória,
+as explicações causais de gargalos permanecem hipóteses.
 
 Palavras-chave: OpenMP; análise de dependências; paralelização automática;
 escalabilidade; modelos de linguagem; reprodutibilidade experimental.
@@ -46,21 +46,21 @@ reductions and DOALL loops under explicit preconditions; a large language model
 authored corpus of 28 sources, 14 acceptances and 14 refusals matched the support
 contract, and all 28 positive source–input pairs passed functional tests. The
 corpus comprises 2,940 measurements across 196 configurations. For the eight
-large DOALL inputs, total speedups ranged from 1.114× to 1.898×. In the Linux
-campaign, automatically generated C Dot Product achieved 1.254×, whereas
-manual GEMM and Nussinov achieved 2.845× and 3.195×, respectively. In a second
-retrospective Linux session comparison, 15 of 16 recommendations were within 2%
-of the subsequent best measured time. Two equivalent M5 sessions preserved
-3,240 external observations; a prospectively frozen holdout had one inadequate
-recommendation out of 16, with choices unchanged in 14/16 cases.
-A historical AXPY execution on Apple M5 recorded 1.065× under a
-less restrictive contract. Twelve valid LLM responses reproduced the deterministic
-admission policy with additional cost. In a separate diagnosis evaluation, none
-of 48 calls jointly satisfied the cause and action criteria of the authored
-rubric. The findings demonstrate integration within the evaluated subset, but
-do not establish LLM superiority, general parallelization, or autonomous repair.
-The equivalent M5 campaign is complete; physical cache/DRAM counters and a
-scientific AXPY campaign under the updated contract remain unavailable.
+large DOALL inputs, total speedups ranged from 1.114× to 1.898×. The Linux
+campaign and two equivalent Apple M5 sessions retained separate protocols and
+results. In the sixteen-case M5 holdout, one choice was more than 2% slower
+than the subsequent best measured median. An additional AXPY campaign tested
+three sizes and every OpenMP team size from one to ten, comprising 990
+observations, 198 warmups, and full-vector validation. Frozen choices achieved
+1.394× and 1.716× speedups for the larger inputs in session two; the smallest
+remained sequential. One choice narrowly exceeded the operational inadequacy
+threshold. Three new real AXPY inferences reproduced deterministic admission,
+with a median latency of 59.042 s and no additional kernel speedup. In a separate
+diagnosis evaluation, none of 48 calls jointly satisfied the cause and action
+criteria of the authored rubric. The findings support integration within the
+evaluated subset, not LLM superiority, general parallelization, or autonomous
+repair. Auxiliary profiling records thread waiting; without physical cache
+and memory counters, causal bottleneck explanations remain hypotheses.
 
 Keywords: OpenMP; dependence analysis; automatic parallelization; scaling;
 language models; experimental reproducibility.
@@ -139,6 +139,10 @@ próprios e resultados separados em §5.2–5.4, preservando suas unidades e lim
 A utilidade adicional de um Coordinator não é pressuposta pela existência
 desses componentes. R3 mede concordância e custo sob uma configuração já
 determinada; R4 examina uma tarefa diagnóstica separada e não autoriza promoção.
+O fechamento experimental acrescenta uma avaliação prospectiva de escolhas AXPY
+e distingue o custo de sua preparação determinística, da inferência real e da
+publicação. Mais observações do mesmo kernel caracterizam sua variabilidade,
+sem aumentar artificialmente a diversidade do corpus de transformação.
 
 ## 2. Fundamentação e posicionamento
 
@@ -190,12 +194,17 @@ Esta revisão também confronta OMPar, P4OMP e RepoOMP por tarefa, baseline,
 corretude e artefatos. O contraste é de desenho experimental; não houve
 reprodução quantitativa desses sistemas na mesma máquina.
 
+Tabela 1 — Trabalhos relacionados e limites de comparação
+
 | Linha de trabalho | Relação com a pergunta deste TCC | Diferença que limita a comparação |
 |---|---|---|
 | ParEval | Avalia geração e tradução de funções paralelas em tarefas diversas | Não estuda especificamente a admissão subordinada ao nosso Selector |
 | OMPar | Produz pragmas com modelos especializados e avalia compilação, saídas e threads | A LLM participa da transformação; nosso caminho gera por regras |
 | P4OMP | Acrescenta instruções recuperadas à geração OpenMP e compara com prompting sem recuperação | Pergunta de geração, não de conformidade diagnóstica sobre logs congelados |
 | RepoOMP | Integra regras, agente e contexto de dependências em hotspots de repositórios | Escopo mais amplo; preprint e protótipo público têm diferenças declaradas |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 Fontes primárias: [ParEval v3](https://arxiv.org/abs/2401.12554v3),
 [OMPar v1](https://arxiv.org/abs/2409.14771v1),
@@ -252,7 +261,9 @@ transformação, gate de corretude, gate de desempenho, seleção, construção 
 contexto, Coordinator e promoção. O modo de preparação encerra após construir
 o contexto verificado, permitindo separar a coleta determinística da inferência.
 
-![Arquitetura implementada: componentes determinísticos, Coordinator LLM e publicação](ARQUITETURA.png)
+![Figura 1 — Arquitetura implementada: componentes determinísticos, Coordinator LLM e publicação](ARQUITETURA.png)
+
+Tabela 2 — Etapas e implementações do pipeline
 
 | Etapa | Responsabilidade | Implementação principal |
 |---|---|---|
@@ -265,22 +276,30 @@ o contexto verificado, permitindo separar a coleta determinística da inferênci
 | Contexto e decisão | Agregar evidências e obter ação estruturada | `agents/context_builder.py`, `coordinator_agent.py` |
 | Promoção | Conferir evidências, revalidar e publicar | `scripts/promote_candidate.py` |
 
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
 A implementação do planejador adaptativo e as transformações específicas de
 Nussinov são caminhos adicionais. Sua existência não significa que o runner de
 fontes independentes execute automaticamente todo o projeto PolyBench.
 
 ### 3.2. Recorte de automação
 
+Tabela 3 — Recorte de automação por caso
+
 | Caso | O que foi automatizado / avaliado |
 |---|---|
 | Dot Product C | Caminho integrado de redução escalar, gates, seleção, decisão e executor; inferência real e promoção concluídas no Mac em 03/11/2026 |
 | Corpus controlado DOALL/REDUCTION | Extensão determinística para atribuição injetiva e redução local; campanha e denominadores próprios, sem nova inferência ou promoção LLM presumida |
-| AXPY | Promoção histórica no M5 com contrato anterior; novo fixture independente com três buffers `restrict` e oráculo elemento a elemento, sujeito a nova execução |
+| AXPY | Histórico preservado; novo fixture com três buffers `restrict`, oráculo por elemento, duas campanhas científicas separadas e estudo real de decisão/promoção sobre evidência congelada |
 | GEMM | Análises e campanhas de variante OpenMP manual |
 | Jacobi-2D | Análises, variante OpenMP manual e experiências específicas com tiling |
 | Covariance | Análises e campanha de variante OpenMP manual |
 | Nussinov | Análises e transformações adaptativas específicas sobre base OpenMP existente; contratos legados nas campanhas |
 | Wavefront sintético | Diagnóstico de baixo desempenho, variante tiled manual e autotuning |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 A classificação de um padrão não comprova a geração automática de código para
 esse padrão. O caso Wavefront registra uma trajetória experimental de diagnóstico,
@@ -315,6 +334,8 @@ designa um papel funcional, não uma instância independente de LLM. Apenas o
 Coordinator consulta um modelo de linguagem; análise, transformação e gates
 são determinísticos. Essa distinção determina o que cada resultado pode demonstrar.
 
+Tabela 4 — Contratos dos componentes e seus limites
+
 | Componente e função | Entrada efetiva | Saída consumida pela etapa seguinte | Limite que importa à interpretação |
 |---|---|---|---|
 | Static Analyzer: `analyze`, `run_clang` | Fonte, diretórios de include e AST JSON do Clang | Funções kernel, laços, intervalos de linhas, leituras, escritas e atualizações escalares | Não é um compilador de otimização completo; depende do AST e das construções reconhecidas |
@@ -324,13 +345,16 @@ são determinísticos. Essa distinção determina o que cada resultado pode demo
 | Code Transformer: `apply_strategy`, `transform_scalar_reduction` | Fonte atual e plano revalidado com AST fresco | Fonte com pragma e registro da transformação | Somente DOALL injetivo e redução escalar do contrato conservador; JSON não substitui pré-condições |
 | Contrato local: `certify_kernel` | AST Clang e bytes atuais do arquivo do kernel | Suporte DOALL/REDUCTION ou recusa motivada | Whitelist sintática com pré-condições de uso, sem prova formal de C ou alias dinâmico |
 | Correctness Gate: `run_gate`, `validate_numeric` | Original, candidato, driver e threads | Compilação, saídas finitas, tolerâncias e relatório v0.2 | Validação empírica do driver, sem equivalência formal ou detector de races |
-| Performance Gate: `execute`, `parse_average_time` | Evidência de corretude e driver de benchmark | Amostras e relatório v0.1 ligado à corretude | Protocolo original de cinco amostras; distinto da nova coleta de quinze |
+| Performance Gate: `execute`, `parse_average_time` | Evidência de corretude e driver de benchmark | Amostras e relatório v0.1 ligado à corretude | Repetições, aquecimentos e seed explícitos; cinco tempos técnicos não completam quinze observações científicas |
 | Performance Selector: `select_configuration` | Tempos por configuração | Mais rápida, conjunto de quase empate e recomendação | Política determinística de 2%; não busca novo código ou configurações não medidas |
 | Context Builder: `build_context` | Análises e evidências verificáveis | Contexto v0.3, bytes congelados e referências | Uma declaração PASS externa não substitui verificação da cadeia de evidências |
 | Coordinator: `compact_context`, `call_ollama`, `validate_decision` | Prompt, schema e contexto | Decisão v0.2 e metadados da inferência | Não gera os kernels nem executa reparo; decisões inválidas são recusadas |
 | Promotion Executor: `promote_candidate` | ACCEPT válido e evidências | Bundle, manifesto e revalidação | Só publica a configuração admissível e medida, após nova compilação e corretude |
 
-![Componentes e artefatos do caminho integrado](figures_multiplatform/arquitetura_componentes.png)
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
+![Figura 2 — Componentes e artefatos do caminho integrado](figures_multiplatform/arquitetura_componentes.png)
 
 As setas da figura representam dependência entre artefatos e ordem do runner.
 Falhas de compilação, ausência de evidência ou divergência de hash encerram a
@@ -514,7 +538,7 @@ se ACCEPT e PROMOTE_CANDIDATE:
     publicar por renomeação atômica
 ```
 
-![Decisão, encerramento e condições adicionais de publicação](figures_multiplatform/fluxo_decisao.png)
+![Figura 3 — Decisão, encerramento e condições adicionais de publicação](figures_multiplatform/fluxo_decisao.png)
 
 RETUNE e MODIFY expressam intenções na interface, mas o runner avaliado não
 executa uma nova busca nem chama um codificador para reparar o candidato.
@@ -567,7 +591,7 @@ para d = 1 até N-1, em todas as threads:
     sincronizar antes de começar a próxima diagonal
 ```
 
-![Dependências entre células e diagonais de Nussinov](figures_multiplatform/nussinov_diagonais.png)
+![Figura 4 — Dependências entre células e diagonais de Nussinov](figures_multiplatform/nussinov_diagonais.png)
 
 As células da mesma diagonal são concorrentes, mas consultam diagonais anteriores.
 O fim do `omp for` precisa da barreira implícita. A largura disponível N−d diminui
@@ -618,8 +642,9 @@ O driver calcula a expressão de referência separadamente em precisão estendid
 quando disponível e verifica cada elemento, rejeitando não finitos e desvios
 superiores à tolerância absoluta/relativa. As entradas compreendem vetores de
 1.024, um milhão e dez milhões de elementos, incluindo fatores negativos e
-zero na menor entrada. O driver de desempenho mantém dez milhões de elementos
-e quarenta chamadas internas por amostra, valida o vetor fora do trecho
+zero na menor entrada. O driver de desempenho padrão mantém dez milhões de elementos
+e quarenta chamadas internas por amostra; a campanha especializa somente N
+e as chamadas internas conforme o protocolo. Valida o vetor fora do trecho
 cronometrado e encerra com erro se qualquer elemento divergir. Isso evita
 que dois erros de sinais opostos desapareçam em um checksum. A cobertura
 permanece limitada às entradas executadas; não se trata de prova formal.
@@ -660,6 +685,23 @@ para todas as combinações de magnitudes ou cancelamentos. Drivers separados
 podem incluir headers, alocação e instrumentação sem ampliar o subconjunto do
 arquivo transformado.
 
+### 3.10. Da estrutura do programa à hipótese de gargalo
+
+O sistema não converte um rótulo de padrão em uma medida de gargalo físico.
+A análise AST e de dependências identifica restrições e oportunidades do
+subconjunto reconhecido. O planejador escolhe uma transformação disponível;
+o gate funcional a testa nas entradas do driver, e o Selector compara apenas
+configurações realmente medidas. Saturação de memória, misses de cache e IPC
+não são saídas inferidas automaticamente desses componentes.
+
+Há três níveis de evidência. A estrutura do código fundamenta uma hipótese,
+como a necessidade de barreiras entre diagonais. Os tempos e a instrumentação
+auxiliar mostram manifestações observadas, como espera maior em uma variante
+instrumentada. Contadores e intervenções controladas seriam necessários para
+isolar causas físicas. Um Coordinator pode discutir esses níveis, mas sua
+explicação não passa a ser uma medição nem modifica um gate. As hipóteses por
+kernel e os testes ainda necessários estão em §6.3.
+
 ## 4. Metodologia
 
 As subseções 4.1–4.4 descrevem o acervo e os protocolos anteriores. A coleta
@@ -667,7 +709,8 @@ exploratória de sete amostras é descrita em 4.5. O protocolo principal de
 três aquecimentos e quinze medições externas está em 4.6, com os ambientes
 comparados em 4.7. As extensões desta revisão são o corpus de transformação
 (4.8), as sessões de repetibilidade (4.9) e a conformidade diagnóstica (4.10).
-Os conjuntos são analisados separadamente; implementação de protocolo, teste
+As campanhas AXPY estão delimitadas em 4.11–4.12; o plano de contadores
+está em 4.13. Os conjuntos são analisados separadamente; implementação de protocolo, teste
 técnico e resultado experimental concluído são estados distintos.
 
 ### 4.1. Acervo anterior, unidades e proveniência
@@ -689,7 +732,7 @@ aumentar artificialmente o tamanho da amostra.
 
 ### 4.2. Corretude e compilação
 
-No caminho independente, a corretude compara o resultado escalar do candidato
+No caminho independente histórico de Dot, a corretude compara o resultado escalar do candidato
 ao sequencial com tolerâncias relativa de 1e-9 e absoluta de 1e-12. O driver
 determinístico de validação utiliza N=1.000.000. São verificadas as threads que
 serão medidas. Esse driver é distinto do driver de benchmark; portanto, o PASS
@@ -800,9 +843,10 @@ autoriza promoção pelo contrato de fontes independentes do pipeline.
 As figuras exibem mediana e amplitude mínimo–máximo, sem intervalos de
 confiança ou alegação de significância. Os CSVs novos também registram desvio
 padrão amostral; a consolidação histórica usa desvio padrão populacional.
-A campanha nova equivalente no M5
-está preparada, mas não foi medida nesta máquina Linux. Dados históricos são
-contexto, sem permitir atribuir causalmente diferenças à arquitetura.
+A campanha equivalente M5 foi coletada posteriormente, em 16/11 (§5.10).
+Ela não foi executada no host Linux, nem usa os tempos exploratórios para
+completar suas amostras. Dados históricos são contexto, sem permitir atribuir
+causalmente diferenças à arquitetura.
 Esta coleta amplia a avaliação de R2, sem ampliar a amostra de decisões LLM de R3.
 
 ### 4.6. Protocolo principal multiplataforma de quinze medições
@@ -810,8 +854,10 @@ Esta coleta amplia a avaliação de R2, sem ampliar a amostra de decisões LLM d
 A coleta principal de 05/11 adota três execuções externas de aquecimento por
 configuração, seguidas de quinze medições externas. Linux mede sequencial e
 OpenMP 1T, 2T e 4T. O script M5 mantém códigos, entradas e critérios e acrescenta
-6T, 8T e 10T; o trecho de comparação direta será 1T/2T/4T. Resultados da nova
-campanha M5 só serão acrescentados após execução real.
+6T, 8T e 10T; a comparação direta usa 1T/2T/4T. As duas sessões M5 efetivamente
+coletadas em 16/11 são apresentadas em §5.10.
+
+Tabela 5 — Entradas e chamadas internas do protocolo multiplataforma
 
 | Caso compilado | Entrada menor | Entrada maior | Chamadas por processo |
 |---|---|---|---:|
@@ -821,6 +867,9 @@ campanha M5 só serão acrescentados após execução real.
 | Nussinov | N=500 | N=2500 | 1 |
 | Jacobi-2D | N=250, TSTEPS=100 | N=1300, TSTEPS=500 | 1 |
 | Covariance | N=260, M=240 | N=1400, M=1200 | 1 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 São cinco algoritmos e seis casos compilados, pois Dot possui dois drivers
 explicitamente separados. Nussinov inclui manual, SIMD manual e adaptação SIMD
@@ -889,20 +938,25 @@ amostras, métodos estatísticos e figuras ficam em diretórios próprios.
 
 ### 4.7. Ambientes Linux e Apple M5
 
-| Característica | Linux da nova campanha | M5 do acervo histórico |
+Tabela 6 — Ambientes efetivamente registrados nas campanhas
+
+| Característica | Linux da campanha principal | M5 das sessões equivalentes de 16/11 |
 |---|---|---|
 | Processador | Intel Xeon E3-1225 V2 | Apple M5, Mac17,2 |
 | Arquitetura | x86-64 | ARM64 |
 | Núcleos registrados | 4 físicos e 4 lógicos | 10, sendo 4 de desempenho e 6 de eficiência |
-| Memória | 19,47 GiB reportados pelo Linux, estado em environment.json | 16 GB registrados em 03/11 |
-| Compilador | Clang 18.1.3 | LLVM Homebrew 23.1.1 registrado em 03/11 |
-| Frequência/energia | Governor schedutil; frequência não fixada | Estado atual deve ser registrado na nova coleta |
+| Memória | 19,47 GiB reportados pelo Linux, estado em environment.json | 16 GiB registrados na coleta |
+| Compilador | Clang 18.1.3 | LLVM Homebrew 23.1.1 |
+| Frequência/energia | Governor schedutil; frequência não fixada | Sessões equivalentes em bateria; AXPY final em energia externa e baixa carga |
 | Threads da nova receita | 1, 2 e 4 | 1, 2, 4, 6, 8 e 10 |
 
-A coluna M5 descreve o acervo, não uma observação feita nesta execução Linux.
-O novo script registra novamente modelo, sistema, compilador, contagens de
-núcleos e energia. O valor histórico não é copiado como metadado de uma
-campanha futura. No Linux, caminho/hash dos compiladores, afinidade disponível,
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
+A coluna M5 resume os metadados das sessões arquivadas, não uma observação
+feita no host Linux. Os scripts registram novamente modelo, sistema, compilador,
+contagens de núcleos e energia em cada sessão. Um valor histórico não é copiado
+como metadado de uma campanha posterior. No Linux, caminho/hash dos compiladores, afinidade disponível,
 versões, macros de entrada e bibliotecas dinâmicas acompanham os registros.
 
 A seleção de mais threads no M5 pode refletir maior capacidade disponível,
@@ -916,7 +970,7 @@ não causas isoladas por contadores ou intervenções neste experimento.
 O comparador das duas campanhas novas exige a mesma identidade de fontes,
 headers, drivers, dimensões e protocolo, e mantém curvas separadas por plataforma.
 Diferenças incompatíveis impedem o gráfico conjunto. Mesmo quando esses critérios
-forem satisfeitos, a comparação será entre plataformas completas; não um teste
+sejam satisfeitos, a comparação é entre plataformas completas; não um teste
 que varia apenas quantidade de núcleos ou ISA.
 
 ### 4.8. Corpus controlado e comparação com autoparalelização GCC
@@ -952,11 +1006,16 @@ e foi preservado fora desta campanha científica.
 
 No contraste de desempenho, o mesmo executável GCC 13.3.0 é usado nos três braços:
 
+Tabela 7 — Braços de compilação do corpus e suas flags
+
 | Braço | Fonte do objeto do kernel | Flags específicas |
 |---|---|---|
 | Original | Sequencial | `-O3` |
 | Pipeline | C gerado por regras DOALL/redução | `-O3 -fopenmp` |
 | GCC autopar | Mesmo sequencial | `-O3 -ftree-parallelize-loops=p -fopt-info-loop-optimized` |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 O driver é um objeto comum compilado somente a `-O3`. Inicialização e validação
 não são autoparalelizadas para aquecer workers apenas num braço. Não se usa
@@ -1091,7 +1150,7 @@ inicial e os números de threads comuns. A máquina M5 tem quatro núcleos P e s
 o probe confirma workers, mas não a classe de núcleo em que executaram.
 Os detalhes de energia, compilador e limitações estão em §5.10.
 
-Para AXPY, a coleta integrada usa 15 medições externas e três aquecimentos
+Na primeira campanha científica AXPY, a coleta integrada usa 15 medições externas e três aquecimentos
 por configuração, com ordem aleatória a cada rodada, incluindo o sequencial
 e 1, 2, 4, 6, 8 e 10 threads no M5. O custo de otimização C inclui as etapas
 do pipeline e pode ser separado do custo da decisão. A estimativa de
@@ -1101,6 +1160,75 @@ Não existe ponto de amortização quando não há economia positiva. A latênci
 do Coordinator isolada fornece somente um limite inferior do custo total.
 As novas coletas e o procedimento de perfil estão em
 [FINAL_MAC_RUN.md](../experiments/FINAL_MAC_RUN.md).
+
+A extensão científica AXPY usa as três entradas e os números fixos de chamadas
+internas descritos em §5.8.2, mantendo quinze medições externas e três
+aquecimentos. O protocolo e os hashes foram fixados antes da primeira
+sessão; as escolhas foram congeladas antes da segunda. O custo relatado
+para essa primeira campanha AXPY é exclusivamente o preparo determinístico
+observado. O estudo adicional descrito a seguir mede decisões reais e promoção
+em arquivos próprios, sem alterar aqueles custos.
+
+### 4.12. Campanha final AXPY e custo real de admissão
+
+O protocolo `AXPY_ALL_THREADS_PROTOCOL_2026-11-16.json`, fixado em `62f84f0`,
+amplia a grade para cada número inteiro de threads entre um e os dez núcleos
+disponíveis. Sequencial e dez configurações OpenMP, três entradas e duas
+sessões resultam em 66 pares configuração–sessão: quinze medições e três
+aquecimentos por par, sem reutilizar amostras da campanha anterior. N e chamadas
+internas permanecem 1.024/10.000, 1.000.000/100 e 10.000.000/40. Fonte, driver,
+flags, ambiente OpenMP, seed e limiar de 2% são congelados antes da coleta.
+
+Cada processo temporiza as chamadas do kernel e depois verifica todos os
+elementos de saída. O gate funcional testa também fatores zero e negativo
+na menor entrada. Os três buffers são disjuntos conforme a obrigação de
+`restrict`; não se mede aliasing arbitrário. O probe confirma o tamanho da
+equipe, sem identificar a classe P/E ocupada por cada worker durante o kernel.
+A ordem por rodada e a estatística seguem §4.6. Mediana, média, DP amostral,
+MAD, IQR e intervalos condicionais de todos os pontos permanecem nos CSVs.
+O somatório dos tempos de kernel é reconstruído das médias por processo e
+chamadas internas, sujeito ao arredondamento do driver; os tempos de parede
+do pipeline e de seus subprocessos são registrados separadamente.
+
+As recomendações da S1 são congeladas antes da S2, com intervalo efetivo de
+118,834 s entre sessões. A adequação usa a menor mediana da S2, incluindo
+sequencial, sem recalibrar escolhas. Após ambas as coletas, três tentativas de
+decisão determinística e três inferências reais `llama3.1:8b` reutilizam o
+mesmo contexto da maior entrada S1. A ordem dos braços é alternada entre
+repetições, com temperatura zero, timeout de 180 s e uma chamada por tentativa,
+sem retry. Não há ablação nessa extensão: ela mede concordância e custo.
+Ollama 0.34.0 registrou o digest `46e0c10c039e`, quantização Q4_K_M e contexto
+efetivo 4096. O servidor informou 5.263.327.231 bytes em `size_vram`; isso
+registra a alocação reportada, não a utilização de GPU ou energia da inferência.
+
+Cada aceitação segue o executor real, incluindo compilação e corretude frescas.
+O prefixo é medido uma vez e compartilhado, não três vezes por braço. O total
+contabilizado por tentativa soma esse prefixo à decisão, validação e promoção;
+não representa uma nova execução independente ponta a ponta. A amortização
+usa tanto os tempos da S1 quanto os tempos posteriores da S2. Sem promoção
+válida ou economia positiva, não se atribui um equilíbrio ao candidato.
+
+### 4.13. Coleta de contadores e critérios de diagnóstico
+
+O roteiro `scripts/profile_linux_followup.sh` chama um coletor que verifica
+os hashes dos binários de Dot Product, GEMM, Nussinov, Jacobi-2D e Covariance,
+e recebe separadamente uma sessão AXPY concluída. Ele prepara comparações entre
+sequencial e variantes OpenMP, registrando comandos, stdout/stderr, hardware,
+versão do perf, permissões observadas e cinco repetições por configuração.
+Ciclos/instruções e referências/misses de cache são solicitados em grupos;
+IPC é a razão dos contadores médios do mesmo grupo, não a média dos IPCs.
+Trocas de contexto e migrações são coletadas separadamente, de modo que uma
+falha no acesso à PMU não elimine o registro dos eventos de software.
+
+Eventos não suportados, não contados ou recusados permanecem indisponíveis,
+nunca são convertidos em zero. Eventos específicos de memória precisam ser
+escolhidos explicitamente conforme `perf list`; misses genéricos não equivalem
+à banda DRAM. O escopo do perf é o processo completo, incluindo inicialização,
+runtime e validação, e difere do trecho cronometrado do kernel. O protocolo não
+mistura esses contadores aos tempos principais nem os divide arbitrariamente
+pelo número de chamadas. O fechamento ocorreu no macOS, sem host Linux
+disponibilizado nesta sessão: o coletor foi testado tecnicamente, mas não produziu
+novos contadores reais. Esse limite permanece explícito em §5.11 e §6.3.
 
 ## 5. Resultados
 
@@ -1113,6 +1241,8 @@ reúne os experimentos exploratórios que precederam as sessões principais.
 ### 5.1. Campanha principal Linux: três aquecimentos e quinze medições
 
 A nova campanha concluiu 60 configurações, 900 amostras externas, 180 aquecimentos e 60 validações aprovadas. As observações pertencem aos cinco algoritmos e seis casos compilados descritos na metodologia. Nenhum tempo anterior foi usado para preencher essa contagem.
+
+Tabela 8 — Recomendações e métricas da campanha principal Linux
 
 | Caso | Entrada | Variante | Recomendação | Tp (s) | S total | S paralelo | E paralela |
 |---|---|---|---:|---:|---:|---:|---:|
@@ -1133,6 +1263,11 @@ A nova campanha concluiu 60 configurações, 900 amostras externas, 180 aquecime
 | covariance | LARGE | manual | 4T | 5.60143 | 2.19285 | 2.18317 | 0.545792 |
 | covariance | MEDIUM | manual | 4T | 0.004922 | 2.17148 | 2.26249 | 0.565624 |
 
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
+Tabela 9 — Menor mediana e recomendação por quase empate no Linux
+
 | Caso / entrada / variante | Menor mediana OpenMP | Recomendação | Estado |
 |---|---:|---:|---|
 | dot-auto / 1024 / automatic | 1T; 1.75612e-06 s | sequencial | NO_BENEFICIAL_CONFIGURATION |
@@ -1152,21 +1287,24 @@ A nova campanha concluiu 60 configurações, 900 amostras externas, 180 aquecime
 | covariance / LARGE / manual | 4T; 5.60143 s | 4T | SELECTED |
 | covariance / MEDIUM / manual | 4T; 0.004922 s | 4T | SELECTED |
 
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
 Os valores são arredondados para apresentação; amostras e resumos completos permanecem nos CSVs. A menor mediana OpenMP pode perder para o sequencial e pode diferir da recomendação por quase empate. Os gráficos usam o mesmo baseline 1T da variante e entrada, com ICs bootstrap condicionais.
 
-![Escalabilidade de dot-auto nas duas entradas; barras indicam IC95% bootstrap](figures_multiplatform/scaling_dot-auto.png)
+![Figura 5 — Escalabilidade de dot-auto nas duas entradas; barras indicam IC95% bootstrap](figures_multiplatform/scaling_dot-auto.png)
 
-![Escalabilidade de dot nas duas entradas; barras indicam IC95% bootstrap](figures_multiplatform/scaling_dot.png)
+![Figura 6 — Escalabilidade de dot nas duas entradas; barras indicam IC95% bootstrap](figures_multiplatform/scaling_dot.png)
 
-![Escalabilidade de gemm nas duas entradas; barras indicam IC95% bootstrap](figures_multiplatform/scaling_gemm.png)
+![Figura 7 — Escalabilidade de gemm nas duas entradas; barras indicam IC95% bootstrap](figures_multiplatform/scaling_gemm.png)
 
-![Escalabilidade de nussinov nas duas entradas; barras indicam IC95% bootstrap](figures_multiplatform/scaling_nussinov.png)
+![Figura 8 — Escalabilidade de nussinov nas duas entradas; barras indicam IC95% bootstrap](figures_multiplatform/scaling_nussinov.png)
 
-![Escalabilidade de jacobi-2d nas duas entradas; barras indicam IC95% bootstrap](figures_multiplatform/scaling_jacobi-2d.png)
+![Figura 9 — Escalabilidade de jacobi-2d nas duas entradas; barras indicam IC95% bootstrap](figures_multiplatform/scaling_jacobi-2d.png)
 
-![Escalabilidade de covariance nas duas entradas; barras indicam IC95% bootstrap](figures_multiplatform/scaling_covariance.png)
+![Figura 10 — Escalabilidade de covariance nas duas entradas; barras indicam IC95% bootstrap](figures_multiplatform/scaling_covariance.png)
 
-![Configurações mais rápidas e recomendações do Selector](../../results/multiplatform/analysis_linux_xeon_2026-11-05_p15w3/recommended_configuration.png)
+![Figura 11 — Configurações mais rápidas e recomendações do Selector](../../results/multiplatform/analysis_linux_xeon_2026-11-05_p15w3/recommended_configuration.png)
 
 A comparação com as novas campanhas M5 está em §5.10. As curvas do acervo de setembro e novembro têm protocolos próprios e não completam a nova matriz. Os resultados novos caracterizam códigos e configurações; não uma melhoria decisória da LLM.
 
@@ -1186,20 +1324,27 @@ com sequencial e candidatos 1/2/4T. As 14 negativas foram recusadas e nenhum
 candidato desses casos foi executado. Esse resultado é conformidade ao
 subconjunto autoral, não acurácia de paralelização em uma população externa.
 
+Tabela 10 — Cobertura do corpus por partição e contrato
+
 | Partição | Fontes | DOALL aceites | RED aceites | Recusas corretas | Falsos aceites/recusas | Pares positivos PASS |
 |---|---:|---:|---:|---:|---:|---:|
 | Desenvolvimento | 8 | 2 | 2 | 4 | 0 / 0 | 8 |
 | Teste controlado | 20 | 6 | 4 | 10 | 0 / 0 | 20 |
 | Total | 28 | 8 | 6 | 14 | 0 / 0 | 28 |
 
-![Fontes aceitas, recusadas e erros conforme o contrato do corpus autoral](figures_publication/corpus_coverage.png)
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
 
-![Exemplo DOALL: fonte, restrições e diretiva produzida por regras](figures_publication/doall_example.png)
+
+![Figura 12 — Fontes aceitas, recusadas e erros conforme o contrato do corpus autoral](figures_publication/corpus_coverage.png)
+
+![Figura 13 — Exemplo DOALL: fonte, restrições e diretiva produzida por regras](figures_publication/doall_example.png)
 
 A tabela usa N=1.000.000 e a recomendação descritiva do Selector em cada braço.
 Tp é mediana em milissegundos; os ICs são do ganho total Tseq/Tp, com bootstrap
 percentil pareado de 5.000 réplicas e quinze processos externos. RED identifica
 redução escalar. Em `seq.`, mantém-se o original e o ganho é 1 por definição.
+
+Tabela 11 — Desempenho por fonte e braço no corpus de entrada grande
 
 | Fonte | Classe | Tseq (ms) | Pipeline: p; Tp (ms) | S total [IC95%] | GCC: p; Tp (ms) | S total [IC95%] |
 |---|---|---:|---:|---:|---:|---:|
@@ -1217,6 +1362,9 @@ redução escalar. Em `seq.`, mantém-se o original e o ganho é 1 por definiç�
 | l1_norm | RED | 0,9287 | 4; 0,2874 | 3,231 [3,005; 3,609] | seq.; 0,9287 | 1,000 [—] |
 | squared_distance | RED | 1,1110 | 2; 0,8099 | 1,372 [1,323; 1,448] | 1; 1,0732 | 1,035 [0,996; 1,095] |
 | count_comparison | RED | 1,0952 | 2; 0,8107 | 1,351 [1,335; 1,421] | 2; 1,0709 | 1,023 [0,997; 1,082] |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 O pipeline recomendou 2T ou 4T nas 14 entradas grandes. Entre as oito DOALL,
 o ganho total ficou entre 1,114× e 1,898×; GCC recomendou configurações 2T/4T
@@ -1247,9 +1395,9 @@ três de 1T; todos os sete ICs de ganho incluem 1. Uma seleção pela mediana
 não estabelece ganho robusto nessas entradas. Cada processo pequeno amortiza
 mil chamadas, sem transformar essas chamadas internas em n independente.
 
-![Ganhos totais das recomendações por fonte e braço, com os ICs condicionais](figures_publication/corpus_selected_speedup.png)
+![Figura 14 — Ganhos totais das recomendações por fonte e braço, com os ICs condicionais](figures_publication/corpus_selected_speedup.png)
 
-![Curvas exemplares do corpus: diferenças de tamanho, classe e braço](figures_publication/corpus_example_curves.png)
+![Figura 15 — Curvas exemplares do corpus: diferenças de tamanho, classe e braço](figures_publication/corpus_example_curves.png)
 
 Os logs de compilação ajudam a distinguir mecanismos. Em todos os 32 objetos
 GCC DOALL de p=2/4 e ambas as entradas, há mensagem `parallelizing inner loop`
@@ -1283,11 +1431,16 @@ em `b9e252d`, anterior à extensão DOALL. O comparador registrou
 flags e plataforma nas configurações comuns. S1/S2 possuem 60 configurações
 comuns; S1/S2/S3 possuem 38. Não se juntaram amostras brutas de sessões.
 
+Tabela 12 — Sessões Linux e respectivas unidades de observação
+
 | Sessão, 05/11/2026 | Escopo | Configurações | Medições externas | Aquecimentos |
 |---|---|---:|---:|---:|
 | S1, 15:26–16:24 UTC | Principal completa | 60 | 900 | 180 |
 | S2, 18:58–19:55 UTC | Repetição completa | 60 | 900 | 180 |
 | S3, 20:04–20:06 UTC | MEDIUM PolyBench e dois tamanhos de ambos os Dot | 38 | 570 | 114 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 S2/S3 acrescentaram 1.470 observações externas em arquivos próprios. Cada
 configuração conserva três aquecimentos e quinze medições de sua sessão;
@@ -1301,6 +1454,8 @@ casos que permaneceram sequenciais. A tabela mostra alguns pontos; cada ganho
 usa o sequencial daquela mesma sessão, sem transformar escolha repetida em
 constância de tempos ou probabilidade de estabilidade geral.
 
+Tabela 13 — Recomendações e ganhos em sessões Linux separadas
+
 | Caso / entrada | S1: recomendação; ganho total | S2: recomendação; ganho total | S3: recomendação; ganho total |
 |---|---:|---:|---:|
 | Dot C automático / 1024 | seq.; 1,000× | seq.; 1,000× | seq.; 1,000× |
@@ -1311,6 +1466,9 @@ constância de tempos ou probabilidade de estabilidade geral.
 | GEMM / LARGE | 4T; 2,845× | 4T; 2,883× | não coletado |
 | Nussinov manual / MEDIUM | 4T; 2,704× | 4T; 2,617× | 4T; 2,409× |
 | Jacobi-2D / LARGE | 2T; 1,177× | 2T; 1,178× | não coletado |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 A única troca de recomendação foi Dot C++ N=10 milhões, 2T→4T→2T. Sua menor
 mediana paralela foi 4T nas três sessões, mas o excesso de tempo de 2T foi
@@ -1360,6 +1518,8 @@ contexto 4096, temperatura zero, seed 2026, limite 384 tokens e timeout 180 s.
 Os IDs locais são `357c53fb659c` e `46e0c10c039e`; digests completos, prompts,
 catálogo e scoring 1.1 estão nos artefatos.
 
+Tabela 14 — Conformidade diagnóstica por modelo e braço
+
 | Modelo / braço | JSON/schema válido | Causa conforme | Ação aceitável | Causa + ação | Abstinência | Abstinência conforme |
 |---|---:|---:|---:|---:|---:|---:|
 | Regras, em cada campanha | 12/12 | 12/12 | 12/12 | 12/12 | 3/12 | 12/12 |
@@ -1367,6 +1527,9 @@ catálogo e scoring 1.1 estão nos artefatos.
 | Qwen sem análise | 12/12 | 1/12 | 0/12 | 0/12 | 8/12 | 5/12 |
 | Llama completo | 12/12 | 1/12 | 1/12 | 0/12 | 2/12 | 11/12 |
 | Llama sem análise | 12/12 | 2/12 | 0/12 | 0/12 | 3/12 | 10/12 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 A conformidade conjunta zero foi conferida diretamente contra o catálogo.
 Ambos acertam a causa de `d16` (`COMPILE_ERROR`), mas suas ações não são
@@ -1377,12 +1540,17 @@ a própria rubrica, sem verdade humana independente ou chance de superá-las
 nessa métrica. Nenhuma proposta perigosa conhecida foi observada; isso não
 estabelece segurança semântica, e nenhuma ação de reparo/promoção foi executada.
 
+Tabela 15 — Verificação de claims e tipos de divergência
+
 | Modelo / braço | Claims verificadas | ID ausente | Campo ausente em data | Valor/tipo divergente | Suportadas | Saídas com claims / slots |
 |---|---:|---:|---:|---:|---:|---:|
 | Qwen completo | 46 | 33 | 9 | 0 | 4 | 11/12 |
 | Qwen sem análise | 52 | 39 | 9 | 0 | 4 | 12/12 |
 | Llama completo | 52 | 0 | 21 | 7 | 24 | 12/12 |
 | Llama sem análise | 42 | 0 | 13 | 5 | 24 | 10/12 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 A decomposição de claims é exploratória e conserva os scores. Primeiro verifica
 ID, depois campo no nível superior de data e então valor/tipo. No Qwen, 90/98
@@ -1409,12 +1577,17 @@ no conjunto original. Qwen, por sua vez, introduz histórias de compilação/log
 sem evidência nessas entradas. Portanto, o gabarito fixo limita interpretar
 conformidade como qualidade da ablação; não se alteraram os rótulos após a coleta.
 
+Tabela 16 — Tokens e latências das inferências diagnósticas
+
 | Modelo / braço | Tokens de prompt | Tokens gerados | Mediana de parede (s) | Mín.–máx. (s) | Soma das latências (s) |
 |---|---:|---:|---:|---:|---:|
 | Qwen completo | 3.332 | 2.109 | 41,536 | 26,517–142,479 | 582,198 |
 | Qwen sem análise | 2.761 | 2.062 | 39,747 | 27,303–49,099 | 466,042 |
 | Llama completo | 3.259 | 1.909 | 75,712 | 43,674–179,500 | 1034,042 |
 | Llama sem análise | 2.688 | 1.631 | 64,194 | 15,661–81,332 | 691,878 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 Qwen teve 6.093/4.171 tokens de prompt/geração observados e soma de latências
 1.048,239 s; Llama, 5.947/3.540 tokens e 1.725,919 s. Comunicação, cache,
@@ -1485,12 +1658,31 @@ não houve medição de workers. Evidências:
 [protocolo](../publication/NUMERICAL_LIMIT_PROTOCOL.md) e
 [gate](../../results/publication/numerical_limit_linux_2026-11-06/gate.json).
 
+A bateria da campanha AXPY acrescentou nove testes do harness e drivers,
+totalizando 152 testes aprovados, sem skips, além dos 23 casos de regressão.
+As correções de aliases de caminhos temporários e de quantização de
+temporizador nos microtestes ocorreram antes da coleta científica.
+A verificação final recompõe políticas, ICs, hashes e cópias da monografia
+anterior, além de conferir A4, margens e campo de paginação no Word.
+Ela não certifica renderização nativa nem aprovação institucional.
+
+No fechamento sobre a main `601b813`, a suíte foi novamente executada:
+161 testes aprovados, sem falhas ou skips, além de 23 casos nos seis scripts
+de regressão e do isolamento estático. Os testes adicionais exercitam a
+verificação de arquivos antigos após evolução do harness, o protocolo de todas
+as equipes, o reuso de prefixo sem dupla contagem e a interpretação de eventos
+perf indisponíveis. Os registros sintéticos dos testes do parser não são
+contadores coletados no Linux. Logs:
+[validação para a banca](../../results/validation/defense_readiness_2026-11-16/regression/report.json).
+
 ### 5.6. Estudo histórico de admissão do Coordinator no Mac
 
 A campanha utilizou `llama3.1:8b`, ID local `46e0c10c039e`, LLVM 23.1.1,
 threads 1, 2 e 4, três repetições e timeout de 600 segundos. As 12 chamadas LLM
 terminaram sem timeout. O Ollama informou contexto máximo de 131.072 tokens; os
 prompts observados consumiram 2.050 tokens.
+
+Tabela 17 — Decisões no estudo histórico do Coordinator
 
 | Caso | Modo | Válidas | Concordância | Aceitação | Mediana da decisão |
 |---|---|---:|---:|---:|---:|
@@ -1500,6 +1692,9 @@ prompts observados consumiram 2.050 tokens.
 | Pequeno | Determinístico | 3/3 | 100% | 0% | 0,000007 s |
 | Pequeno | Coordinator | 3/3 | 100% | 0% | 3,545 s |
 | Pequeno | Sem análises | 3/3 | 100% | 0% | 3,560 s |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 No caso grande, 4 threads obtiveram ganho de 1,673x contra o sequencial e os
 dois braços LLM reproduziram a admissão determinística. No caso pequeno, os dois
@@ -1521,11 +1716,16 @@ possui tarefa, schema, origem e denominadores próprios.
 
 ### 5.7. Execuções históricas verificáveis de Dot Product no Mac
 
+Tabela 18 — Dot Product histórico: baselines e configuração selecionada
+
 | Campanha | Sequencial (s) | OpenMP 1T (s) | Configuração selecionada | Resultado |
 |---|---:|---:|---:|---|
 | Promoção final, N=10.000.000 | 0,004842180 | 0,004840610 | 4T: 0,001964010 | Promovido |
 | Estudo do Coordinator, N=10.000.000 | 0,007220030 | 0,007219770 | 4T: 0,004316330 | Admite 4T |
 | Estudo do Coordinator, N=1.024 | 0,000000799 | 0,000000852 | — | Não admite paralelo |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 Na promoção final, o ganho contra o sequencial foi 2,465×; a escalabilidade
 contra OpenMP 1T também foi 2,465×, com eficiência paralela de aproximadamente
@@ -1534,17 +1734,21 @@ pequena apresentou forte overhead paralelo. O
 resultado demonstra que o pipeline preserva uma recusa motivada pelas medições;
 não demonstra um ganho causado pelo Coordinator.
 
-![Curvas verificáveis do Mac com baselines distintos](../../results/consolidated/scaling_m5_verified_2026_11_03.png)
+![Figura 16 — Curvas verificáveis do Mac com baselines distintos](../../results/consolidated/scaling_m5_verified_2026_11_03.png)
 
 Fonte: campanhas `m5_final_promoted_dot`, `m5_coordinator_dot_large` e
 `m5_coordinator_dot_small` na matriz consolidada. As medidas são por chamada;
 não são tempos totais de otimização nem repetições da decisão LLM.
 
-### 5.8. AXPY: resultado histórico no M5 e novo contrato
+### 5.8. AXPY: histórico e campanha científica sob o novo contrato
+
+#### 5.8.1. Resultado histórico de 03/11
 
 O artefato de promoção de 03/11/2026 contém cinco medições externas por
 configuração, com dez milhões de elementos e quarenta chamadas internas por
 medição. A mediana por chamada e os indicadores recalculados são:
+
+Tabela 19 — AXPY histórico: contrato e tempos de 03/11
 
 | Configuração | Mediana (s) | S total | S paralelo | E paralela |
 |---|---:|---:|---:|---:|
@@ -1552,6 +1756,9 @@ medição. A mediana por chamada e os indicadores recalculados são:
 | OpenMP 1T | 0,002269950 | 0,984 | 1,000 | 1,000 |
 | OpenMP 2T | 0,002151625 | 1,038 | 1,055 | 0,527 |
 | OpenMP 4T | 0,002097100 | 1,065 | 1,082 | 0,271 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 O Selector recomendou 4T. O ganho de cerca de 6,5% em razão de tempos
 corresponde a uma redução de 6,14% da latência do kernel; a baixa eficiência
@@ -1568,9 +1775,147 @@ checksum escalar com N=1.000.000. A promoção então registrada não certifica
 o contrato aprimorado nem constitui validação integral da entrada temporizada.
 O arquivo original permanece em
 `results/final-promoted/axpy-mac-2026-11-03`, sem substituir hashes ou dados.
-A nova fonte e os dois drivers descritos em §3.8 precisam passar pela nova
-coleta; nenhum tempo histórico foi atribuído à implementação atual. Este caso
-não altera os denominadores de §5.1–5.4.
+A subseção seguinte avalia a fonte e os drivers atuais. Nenhum tempo histórico
+foi atribuído a essa implementação, nem seus dados alteram os denominadores de §5.1–5.4.
+
+#### 5.8.2. Primeira campanha científica AXPY: seis tamanhos de equipe
+
+O protocolo AXPY foi fixado antes das medições em `82de6e0`. As duas sessões
+utilizam N=1.024, 1.000.000 e 10.000.000, com respectivamente 10.000, 100 e 40
+chamadas internas por processo. Cada entrada tem sete configurações:
+sequencial e OpenMP em 1/2/4/6/8/10T;
+o conjunto tem 21 por sessão. Quinze processos medidos e três aquecimentos
+por configuração totalizam 630 medições e 126 aquecimentos nas duas sessões.
+O intervalo ocioso previsto entre sessões é de 30 segundos. Toda execução
+temporizada verifica sua saída integralmente fora do intervalo do kernel.
+As três áreas double ocupam logicamente 24.576, 24.000.000 e 240.000.000 bytes;
+isso não mede residência de cache nem tráfego DRAM. As amostras não são somadas
+ao corpus de 28 fontes ou às campanhas multiplataforma anteriores.
+
+Tabela 20 — AXPY: escolhas da primeira campanha científica, S1
+
+| N | Seleção S1 | Mediana selecionada (µs) | S total S1 [IC95%] | S paralelo S1 | E paralela S1 |
+|---|---:|---:|---:|---:|---:|
+| 1.024 | seq. | 0,2501 | 1,000 [1,000; 1,000] | — | — |
+| 1.000.000 | 6T | 658,6600 | 1,328 [1,149; 1,384] | 1,262 | 0,210 |
+| 10.000.000 | 10T | 7808,2750 | 1,253 [1,190; 1,674] | 1,212 | 0,121 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
+As medianas, médias, DP amostrais, MAD, IQR e IC95% de todas as configurações permanecem nos CSVs. Os intervalos são bootstrap percentil de 5.000 reamostragens de rodadas completas, condicionais à coleta; não são testes de significância nem estimativas populacionais. A linha sequencial é a própria referência, não um ganho.
+
+![Figura 17 — AXPY N=1024: sessões separadas; barras são IC95% condicionais](figures_axpy_2026-11-16/axpy_1024.png)
+
+![Figura 18 — AXPY N=1000000: sessões separadas; barras são IC95% condicionais](figures_axpy_2026-11-16/axpy_1000000.png)
+
+![Figura 19 — AXPY N=10000000: sessões separadas; barras são IC95% condicionais](figures_axpy_2026-11-16/axpy_10000000.png)
+
+As escolhas foram congeladas em arquivo com SHA-256 antes do início da segunda sessão. O limiar de quase empate permanece em 2%, sem ajustes no holdout.
+
+Tabela 21 — AXPY: escolhas congeladas da primeira campanha na S2
+
+| N | Configuração congelada | S total S2 | Excesso sobre melhor S2 | Inadequada (>2%) |
+|---|---:|---:|---:|---|
+| 1.024 | seq. | 1,000 | 0,000% | Não |
+| 1.000.000 | 6T | 1,192 | 0,000% | Não |
+| 10.000.000 | 10T | 1,192 | 0,000% | Não |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
+A recomendação permaneceu igual em 2/3 casos. Nenhuma das três escolhas congeladas ficou mais de 2% acima da menor mediana da segunda sessão, incluindo sequencial. Isso descreve três entradas do mesmo kernel, não três programas independentes. O caso pequeno conservou o sequencial; aumentar threads não foi presumido benéfico.
+
+#### 5.8.3. Amortização do preparo determinístico AXPY
+
+Tabela 22 — AXPY: amortização somente do preparo na primeira campanha
+
+| N | Preparo S1 (s) | Preparo S2 (s) | Equilíbrio do preparo S1 na latência S2 (chamadas) |
+|---|---:|---:|---:|
+| 1.024 | 39,959 | 37,508 | não definido |
+| 1.000.000 | 12,326 | 14,152 | 84220 |
+| 10.000.000 | 63,683 | 61,916 | 42162 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
+C é o tempo observado do prefixo real: análises, geração, compilação, corretude, amostragem, seleção e contexto. A economia por chamada usa a configuração congelada e as novas medianas da S2. Não houve nova inferência LLM nem promoção: estes pontos amortizam somente o preparo, constituindo limites inferiores para o custo completo de admissão. Não se transportou a latência LLM histórica ao novo candidato. Sem economia positiva, o equilíbrio não é definido. As duas observações de custo por entrada não sustentam IC populacional.
+
+O macOS registrou energia externa com bateria em 3%, carregando. A carga inicial baixa, a ausência de controle dedicado de temperatura/frequência e a execução no mesmo host/dia limitam a interpretação. O probe confirmou equipes de 1/2/4/6/8/10 workers, não sua alocação P/E durante o kernel. Não se inferem causas físicas de memória das curvas. Todas as configurações lentas e sem ganho foram mantidas.
+
+Fontes: [protocolo fixado](../experiments/AXPY_SCIENTIFIC_PROTOCOL_2026-11-16.json), [arquivos das sessões](../../results/axpy_scientific/mac_m5_2026-11-16/), [análise completa](../../results/axpy_scientific/analysis_mac_m5_2026-11-16/report.json).
+
+#### 5.8.4. Campanha final com todas as equipes de uma a dez threads
+
+Protocolo fixado em `62f84f0`, sobre branch derivada da main `601b813`. As duas sessões usam os fixtures existentes, três tamanhos, sequencial e OpenMP 1–10T. São 33 configurações por sessão, quinze medições e três aquecimentos: 990 medições e 198 aquecimentos. O intervalo entre sessões foi 118.834 s. A escolha foi congelada por SHA-256 antes da S2. Os 66 pares configuração–sessão passaram pela corretude integral dos vetores. Os prefixos terminam PREPARED porque a coleta termina antes da LLM; a campanha científica COMPLETE é sustentada pelo protocolo, duas sessões, amostras e análise, não pelo status isolado do runner.
+
+Os resultados da S1 e a avaliação das escolhas congeladas na S2 são apresentados separadamente.
+
+Tabela 23 — AXPY 1–10T: estatísticas das configurações escolhidas na S1
+
+| N | Configuração congelada S1 | Mediana S1 (µs) | Média S1 (µs) | DP S1 (µs) | S total S1 [IC95%] | E paralela S1 |
+|---|---:|---:|---:|---:|---:|---:|
+| 1.024 | seq. | 0,3082 | 0,3169 | 0,1210 | 1,000 [1,000; 1,000] | — |
+| 1.000.000 | 6T | 837,1400 | 1137,4353 | 826,0358 | 1,367 [1,124; 1,471] | 0,251 |
+| 10.000.000 | 4T | 8180,2500 | 8734,2317 | 1086,0006 | 1,594 [1,231; 1,878] | 0,406 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
+Tabela 24 — AXPY 1–10T: avaliação posterior das escolhas congeladas
+
+| N | Escolha S1 | Escolha S2 | S total da escolha congelada na S2 | Excesso sobre melhor S2 | Inadequada (>2%) |
+|---|---:|---:|---:|---:|---|
+| 1.024 | seq. | seq. | 1,000 | 0,000% | Não |
+| 1.000.000 | 6T | 4T | 1,394 | 2,088% | Sim |
+| 10.000.000 | 4T | 4T | 1,716 | 0,000% | Não |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
+A escolha mudou em um dos três tamanhos. A recomendação congelada de 6T para um milhão de elementos ficou 2,088% acima da menor mediana posterior (10T), cruzando ligeiramente o limite operacional de 2%. A recomendação da própria S2 foi 4T por quase empate; ela não foi usada para corrigir a escolha congelada. Inadequação operacional não significa erro de corretude nem diferença estatisticamente confirmada. Os IC95% são bootstrap percentil pareado de 5.000 rodadas, condicionais à sessão. Nenhum tempo foi excluído como outlier.
+
+![Figura 20 — AXPY N=1024, OpenMP 1–10T: ganhos e IC95% condicionais por sessão](figures_banca_2026-11-16/axpy_all_threads_1024.png)
+
+![Figura 21 — AXPY N=1000000, OpenMP 1–10T: ganhos e IC95% condicionais por sessão](figures_banca_2026-11-16/axpy_all_threads_1000000.png)
+
+![Figura 22 — AXPY N=10000000, OpenMP 1–10T: ganhos e IC95% condicionais por sessão](figures_banca_2026-11-16/axpy_all_threads_10000000.png)
+
+A comparação abaixo é contextual, sem agregar campanhas.
+
+Tabela 25 — Campanhas AXPY separadas: mesmo candidato, baselines distintos
+
+| Campanha / N=10 milhões | Threads medidas | Medições por configuração | Tseq S1 (ms) | Escolha S1; Tp (ms) | Ganho total S1 |
+|---|---|---:|---:|---:|---:|
+| Seis equipes, anterior | 1/2/4/6/8/10 | 15 | 9,785 | 10T; 7,808 | 1,253 |
+| Todas as equipes, atual | 1/2/3/4/5/6/7/8/9/10 | 15 | 13,038 | 4T; 8,180 | 1,594 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
+O candidato gerado conserva SHA-256 `4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1`. O ganho maior da campanha atual não é uma otimização nova: o baseline sequencial ficou mais lento, o conjunto de threads mudou e as condições de sessão não foram isoladas. O histórico de 03/11 usa outro contrato; a execução de 105 medições foi apenas validação técnica. Nenhum desses tempos foi usado para completar as 990 observações.
+
+#### 5.8.5. Custos reais de decisão e promoção AXPY
+
+Tabela 26 — AXPY: custos reais e amortização contabilizada sobre a S2
+
+| Braço | Tentativas | Promoções | Decisão + validação mediana (s) | Promoção mediana (s) | Total contabilizado mediano (s) | Equilíbrio mediano na S2 (chamadas) |
+|---|---:|---:|---:|---:|---:|---:|
+| deterministic | 3/3 | 3 | 0,000024 | 0,931 | 110,593 | 17966 |
+| coordinator | 3/3 | 3 | 59,041822 | 1,721 | 170,709 | 27731 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
+Os braços reutilizam um único prefixo determinístico S1 de N=10 milhões. Há três novas decisões por braço; não são três novas medições do prefixo ou seis pipelines independentes. A promoção recompila e revalida; o mesmo candidato e a configuração 4T são impostos pelos gates. A amortização da tabela usa as latências da S2 e custo total por tentativa antes de resumir. Decisão isolada, preparo e promoção estão discriminados nos CSVs. Reuso, entrada, economia positiva e condições equivalentes são hipóteses do cálculo, não uma promessa de economia futura. O custo real da LLM não foi substituído pela latência histórica. Tempos de kernel somados foram reconstruídos multiplicando cada média por seu número fixo de chamadas internas; há arredondamento de até a resolução de impressão do driver. O custo de parede inclui inicialização e validação, e não deve ser confundido com esse somatório.
+
+As condições de execução limitam a interpretação:
+
+Apple M5, 10 núcleos (4 P/6 E), 16 GiB, macOS 26.6.2, LLVM Homebrew 23.1.1. O probe confirmou todos os tamanhos de equipe, não sua alocação P/E. Energia externa e bateria 3–4%, indicada como carregando; sem controle térmico, de frequência ou exclusividade do host. A inferência ocorreu depois das duas sessões, sem concorrência com benchmarks ou testes. Nenhum contador perf Linux foi coletado no macOS. Uma fonte e três tamanhos não estimam generalização entre programas ou máquinas; duas sessões no mesmo dia não são independência populacional.
+
+
+
+Fontes: [protocolo](../experiments/AXPY_ALL_THREADS_PROTOCOL_2026-11-16.json), [sessões e amostras](../../results/axpy_scientific/mac_m5_all_threads_2026-11-16/), [estatísticas completas](../../results/axpy_scientific/analysis_mac_m5_all_threads_2026-11-16/), [custos e bundles](../../results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/), [análise derivada](../../results/defense_readiness/2026-11-16/REPORT.md).
 
 ### 5.9. Transferência da seleção entre sessões Linux
 
@@ -1579,11 +1924,16 @@ sessão completa de 05/11 como teste temporal. Os 16 pares kernel–entrada–va
 possuem as mesmas configurações. As métricas abaixo foram calculadas sobre os
 arquivos existentes, sem executar novos benchmarks.
 
+Tabela 27 — Políticas Linux na comparação temporal retrospectiva
+
 | Política | Até 2% do oráculo | Mais lento que sequencial | Arrependimento máximo |
 |---|---:|---:|---:|
 | Selector (quase empate) | 15/16 | 0/16 | 3,87% |
 | Menor mediana da primeira sessão | 16/16 | 0/16 | 0% |
 | Maior número de threads | 13/16 | 2/16 | 148,79% |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 A mediana do arrependimento foi zero nas três políticas. A exceção do Selector
 foi Dot C++ grande: selecionou 2T, enquanto o oráculo encontrava 4T, com
@@ -1611,6 +1961,8 @@ Linux usa Clang 18.1.3 e outro runtime. As sessões começaram em bateria
 Assim, o contraste caracteriza plataformas completas, não causalidade de uma
 característica isolada de arquitetura.
 
+Tabela 28 — Recomendações nas entradas grandes da primeira sessão M5
+
 | Entrada grande / variante | Recomendação S1 | Ganho total S1 | Escala S1 |
 |---|---:|---:|---:|
 | Dot C automático | 10T | 3,679× | 3,685× |
@@ -1622,9 +1974,12 @@ característica isolada de arquitetura.
 | Jacobi-2D manual | 10T | 2,525× | 2,076× |
 | Covariance manual | 10T | 4,295× | 4,298× |
 
-![Entradas grandes: escalabilidade nos pontos comuns Linux e M5](figures_mac_2026-11-16/comparison_large.png)
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
 
-![Entradas grandes: extensão Mac de uma a dez threads](figures_mac_2026-11-16/mac_scaling_large.png)
+
+![Figura 23 — Entradas grandes: escalabilidade nos pontos comuns Linux e M5](figures_mac_2026-11-16/comparison_large.png)
+
+![Figura 24 — Entradas grandes: extensão Mac de uma a dez threads](figures_mac_2026-11-16/mac_scaling_large.png)
 
 Os IC95% e estatísticas completos estão em
 [análise S1](../../results/multiplatform/analysis_mac_m5_2026-11-16_session01/measurements.csv)
@@ -1633,11 +1988,16 @@ As recomendações da primeira sessão foram congeladas por hash antes da segund
 No holdout, o comparador descritivo é a menor mediana posterior, incluindo sequencial;
 inadequação operacional significa tempo mais de 2% acima desse comparador.
 
+Tabela 29 — Políticas e inadequações no holdout M5
+
 | Política definida na S1 | Inadequadas na S2 | Mais lentas que sequencial |
 |---|---:|---:|
 | Selector | 1/16 | 1/16 |
 | Maior número de threads | 9/16 | 6/16 |
 | Menor mediana OpenMP na S1 | 2/16 | 2/16 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 A escolha ficou estável em 14/16 casos. Nussinov manual MEDIUM foi o único
 caso inadequado do Selector: 4T levou 0,006819 s contra 0,006101 s sequencial,
@@ -1672,10 +2032,15 @@ e contexto. A ordem entre decisão determinística e LLM foi alternada. As seis
 promoções fizeram nova compilação e validação; não são seis pipelines independentes.
 O modelo local foi `llama3.1:8b`, Q4_K_M, com contexto efetivo 4096 registrado.
 
+Tabela 30 — Dot Product: custo real de admissão no M5
+
 | Braço | Prefixo mediano (s) | Decisão mediana (s) | Promoção mediana (s) | Total contabilizado mediano (s) | Equilíbrio mediano (chamadas) |
 |---|---:|---:|---:|---:|---:|
 | Determinístico | 11,368 | 0,000005 | 0,497 | 11,865 | 3.360 |
 | Coordinator | 11,368 | 8,916923 | 0,756 | 20,842 | 5.929 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 Cada total é calculado por tentativa antes de resumir; somar medianas de etapas
 não reconstrói a mediana do total. A revalidação já integra a promoção e não
@@ -1727,7 +2092,9 @@ As principais ameaças à validade são:
   saídas instrumentadas. Nenhum desses testes prova equivalência para todos
   os valores possíveis ou ausência de races; não há detector de races integrado.
 - **Escopo:** estudo do Coordinator em um kernel com dois tamanhos; variantes
-  históricas de outros padrões não ampliam automaticamente essa amostra.
+  históricas de outros padrões não ampliam automaticamente essa amostra. O
+  estudo AXPY adicional usa uma única entrada/contexto para três decisões por
+  braço; ele não transforma os demais kernels em casos de inferência.
 - **Medição:** campanhas legadas têm seus protocolos próprios; a matriz
   principal embaralha configurações em rodadas com seed 2026. Permanecem
   ausência de controle dedicado de frequência/temperatura e ruído do sistema.
@@ -1759,6 +2126,18 @@ As principais ameaças à validade são:
   heldout; os demais prompts são iguais. Uma chamada por caso/braço não estima
   variância de resposta. Claims verificam triplas, sem julgamento causal humano;
   opções perigosas explícitas e oráculo mecânico limitam generalização.
+
+- **Energia e custos finais:** a campanha AXPY 1–10T ocorreu com bateria em
+  3–4%, indicada como carregando pela fonte externa, sem controle térmico.
+  Uma razão de speedup maior que na campanha anterior não indica código novo:
+  o candidato é idêntico e o baseline também mudou. As três observações LLM
+  compartilham um prefixo e contexto; cache, carregamento, estado do servidor e
+  condições da máquina participam da latência, sem estimativa populacional.
+- **Explicação de gargalos:** a instrumentação auxiliar modifica o programa.
+  Tempos de espera não decompõem sozinhos sincronização, desbalanceamento e
+  escalonamento. Não foram coletados novos ciclos, instruções, IPC, misses,
+  trocas de contexto, migrações ou eventos de memória no macOS; o roteiro Linux
+  preparado não supre essa ausência experimental.
 
 ### 6.1. Interpretação técnica da escalabilidade
 
@@ -1873,14 +2252,43 @@ limite de repetibilidade, sem juntar amostras ou escolher apenas o resultado
 mais favorável. Um IC estreito dentro de uma campanha não elimina variabilidade
 entre campanhas nem torna a frequência/temperatura controlada.
 
-As recomendações distintas do acervo M5 são compatíveis com diferentes recursos
-e custos, mas os novos pontos M5 ainda não foram coletados. O subconjunto
-1T/2T/4T servirá à comparação com códigos e entradas verificados; 6T/8T/10T
-serão analisados como extensão heterogênea. Comparar os tempos absolutos ou as
+As recomendações distintas do M5 são compatíveis com diferentes recursos
+e custos. Os novos pontos M5 foram coletados e comparados em §5.10. O subconjunto
+1T/2T/4T conserva códigos e entradas verificados; 6T/8T/10T são analisados como
+extensão heterogênea. Comparar os tempos absolutos ou as
 curvas normalizadas continua sendo comparar plataformas completas, incluindo
 compiladores e runtimes, sem atribuir diferenças exclusivamente à quantidade de
 núcleos. A ampliação de algoritmos responde a R2; não amplia a evidência causal
 de contribuição da LLM em R3.
+
+### 6.3. Síntese de gargalos: observação, hipótese e confirmação necessária
+
+A tabela separa fatos sustentados pelos artefatos e mecanismos que ainda
+precisam de teste. O planejador explora a estrutura reconhecida; ele não escolhe
+uma estratégia após medir automaticamente a banda DRAM. A seleção final é
+empírica, restrita à grade de threads efetivamente avaliada.
+
+Tabela 31 — Gargalos por kernel: evidência, hipótese e confirmação necessária
+
+| Kernel e estratégia avaliada | Observação sustentada | Hipótese de gargalo | O que falta para confirmar a causa |
+|---|---|---|---|
+| Dot Product: redução OpenMP gerada | Entrada pequena sem ganho; recomendações distintas nas entradas/plataformas maiores | Granularidade e custo da região paralela; pressão de leitura no vetor grande | Contadores pareados de ciclos/instruções e cache, mais ensaio controlado de banda e tamanho |
+| AXPY: DOALL gerado com saída separada | Validação integral; sequencial escolhido no pequeno; ganhos posteriores de 1,394× e 1,716× nos maiores | Overhead no pequeno; movimento de dados nos maiores, dado o baixo trabalho por byte lógico | Eventos de memória suportados e comparação controlada; os 24 bytes lógicos por elemento não são tráfego DRAM medido |
+| GEMM: partição manual por linhas | Ganho Linux LARGE de 2,845×; laço interno contíguo e reuso de B no código | Localidade e reuso limitam o efeito do tamanho, além do trabalho computacional | IPC, cache e memória por variante/entrada; comparação de localidade sem trocar simultaneamente todo o código |
+| Nussinov: diagonais e SIMD específico | Barreiras entre diagonais no código; espera instrumentada LARGE de 61,30% em 10T no M5 | Largura decrescente, sincronização e acessos ao longo da tabela | Perfil de ciclos/espera e intervenção que preserve dependências; IPC isolado não identifica qual mecanismo domina |
+| Jacobi-2D: varreduras manuais com região persistente | Dependência entre fases; espera instrumentada LARGE de 56,21% em 10T no M5 | Sincronização, localidade e pressão de memória | Eventos de memória e tempo por fase sob entradas/configurações iguais |
+| Covariance: fases manuais e partição estática triangular | Quantidade de pares atribuídos desigual; espera instrumentada LARGE de 42,99% em 10T | Desbalanceamento na fase triangular, com contribuição possível de cache e memória | Variante de distribuição com corretude revalidada, medida sob as mesmas condições; contadores por fase |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
+
+As porcentagens são do perfil auxiliar, não frações causais do tempo dos
+executáveis principais. O código confirma a presença de barreiras e o domínio
+triangular; os registros confirmam as esperas observadas na instrumentação.
+Não confirmam que memória, cache ou escalonamento seja o único fator limitante.
+O roteiro Linux preserva falhas e eventos indisponíveis e não altera permissões
+do sistema para fabricar uma coleta. Sua execução real nos seis kernels
+permanece uma pendência, pois esta etapa ocorreu no macOS.
 
 ## 7. Conclusão
 
@@ -1938,10 +2346,40 @@ frequência de reutilização do candidato. As duas campanhas equivalentes M5
 foram concluídas, com uma escolha inadequada em 16 no holdout e estabilidade
 em 14/16. O perfil auxiliar registra esperas, mas não causalidade física de
 memória ou classes de núcleos. A campanha científica AXPY sob o contrato
-atualizado e contadores físicos de cache/DRAM permanecem pendentes. A validação
-técnica deste patch não substitui essas campanhas nem a revisão institucional.
+atualizado foi concluída com três entradas e 630 medições. Na avaliação posterior,
+os ganhos das escolhas congeladas nas duas entradas maiores foram aproximadamente
+1,192×, enquanto a menor conservou o sequencial; nenhuma excedeu o limiar
+operacional de inadequação naquela primeira campanha.
+
+A campanha final separada ampliou a grade AXPY para todas as equipes de uma a
+dez threads, mantendo três tamanhos e duas sessões, com 990 medições e 198
+aquecimentos. A recomendação permaneceu igual em dois dos três casos. Na S2,
+as escolhas congeladas produziram 1,394× e 1,716× nas entradas maiores; o menor
+caso permaneceu sequencial. O excesso de 2,088% de uma escolha frente à menor
+mediana posterior ultrapassou ligeiramente o limiar operacional, sem retuning
+para apagar a inadequação. O mesmo candidato gerado permaneceu vinculado por
+SHA-256; a mudança de ganhos entre campanhas não representa nova otimização.
+
+Três inferências reais AXPY concordaram com a política e produziram promoções
+válidas, mas acrescentaram latência mediana de 59,042 s sem mudar a configuração
+ou o tempo atribuído ao kernel. Com o prefixo compartilhado e as latências da
+S2, a estimativa mediana de amortização foi de 17.966 chamadas equivalentes no
+braço determinístico e 27.731 no braço LLM. Esses totais são contabilizações
+por tentativa, não execuções independentes do pipeline nem garantias de economia
+futura. Custo, corretude e ganho precisam ser considerados conjuntamente.
+
+O fechamento conclui as coletas AXPY e sua análise no hardware disponível,
+preservando resultados negativos e a distinção entre transformação automática,
+variantes manuais e decisão LLM. Permanecem a coleta real de contadores Linux,
+sem dados substituídos por hipóteses, e a conferência institucional completa do
+documento. A revisão de conteúdo e os testes não substituem validação nativa
+do layout, revisão humana, aprovação acadêmica ou preparação da defesa.
 
 ## Referências
+
+Abdullah, Wali Mohammad; Kabir, Azmain. P4OMP: Retrieval-Augmented Prompting for
+OpenMP Parallelism in Serial Code. 2025. arXiv:2506.22703v1.
+[Preprint consultado](https://arxiv.org/abs/2506.22703v1).
 
 Amdahl, Gene M. Validity of the Single Processor Approach to Achieving Large
 Scale Computing Capabilities. AFIPS Spring Joint Computer Conference, 1967,
@@ -1951,45 +2389,45 @@ Efron, Bradley. Bootstrap Methods: Another Look at the Jackknife. The Annals
 of Statistics, 7(1), 1–26, 1979. DOI 10.1214/aos/1176344552.
 [Artigo original](https://sites.stat.washington.edu/courses/stat527/s13/readings/ann_stat1979.pdf).
 
-PUCRS. Biblioteca Central Irmão José Otão. Capas padrão e modelo de trabalhos
-acadêmicos. Consulta em 05/11/2026. [Capa pública de graduação](https://biblioteca.pucrs.br/apoio-a-pesquisa/capas-padrao-pucrs/capa-para-tcc/);
-[modelo completo com acesso autenticado](https://biblioteca.pucrs.br/apoio-a-pesquisa/modelos-de-normas-tecnicas-de-documentacao/trabalhos-academicos-abnt/).
-
-Williams, Samuel; Waterman, Andrew; Patterson, David. Roofline: An Insightful
-Visual Performance Model for Multicore Architectures. Communications of the ACM,
-52(4), 65–76, 2009. DOI 10.1145/1498765.1498785.
-[Repositório institucional dos autores](https://escholarship.org/uc/item/5tz795vq).
-
-OpenMP Architecture Review Board. OpenMP Application Programming Interface,
-Version 5.2. 2021. [Especificação oficial](https://www.openmp.org/spec-html/5.2/openmp.html).
-
-Wu, Qingyun et al. AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent
-Conversation. 2023. arXiv:2308.08155v2. [Artigo](https://arxiv.org/abs/2308.08155).
-
-Nichols, Daniel; Davis, Joshua H.; Xie, Zhaojun; Rajaram, Arjun; Bhatele, Abhinav.
-Can Large Language Models Write Parallel Code? 2024. arXiv:2401.12554v3;
-HPDC '24, DOI 10.1145/3625549.3658689. [Artigo](https://arxiv.org/abs/2401.12554).
-
-Pouchet, Louis-Noël. PolyBench/C: the Polyhedral Benchmark suite. Página do
-projeto. [Fonte primária](https://www.cs.colostate.edu/~pouchet/software/polybench/polybench.html).
+Free Software Foundation. Using the GNU Compiler Collection: Optimize Options,
+GCC 13. [Manual oficial](https://gcc.gnu.org/onlinedocs/gcc-13.4.0/gcc/Optimize-Options.html).
+Consulta em 05/11/2026; versão do manual 13.4.0, compilador experimental
+identificado separadamente pelos metadados, sem presumir identidade de versão.
 
 Kadosh, Tal et al. OMPar: Automatic Parallelization with AI-Driven Source-to-Source
 Compilation. 2024. arXiv:2409.14771v1;
 [preprint](https://arxiv.org/abs/2409.14771v1) e
 [versão de workshop consultada](https://mlforsystems.org/assets/papers/neurips2024/paper12.pdf).
 
-Abdullah, Wali Mohammad; Kabir, Azmain. P4OMP: Retrieval-Augmented Prompting for
-OpenMP Parallelism in Serial Code. 2025. arXiv:2506.22703v1.
-[Preprint consultado](https://arxiv.org/abs/2506.22703v1).
+Linux perf. perf-stat(1): Run a command and gather performance counter statistics. Manual da ferramenta, reproduzido pelo projeto man-pages. Disponível em: [manual perf-stat](https://man7.org/linux/man-pages/man1/perf-stat.1.html). Acesso em: 16 nov. 2026.
+
+Nichols, Daniel; Davis, Joshua H.; Xie, Zhaojun; Rajaram, Arjun; Bhatele, Abhinav.
+Can Large Language Models Write Parallel Code? 2024. arXiv:2401.12554v3;
+HPDC '24, DOI 10.1145/3625549.3658689. [Artigo](https://arxiv.org/abs/2401.12554).
+
+Ollama. Structured Outputs. Documentação do projeto. Disponível em: [documentação oficial](https://docs.ollama.com/capabilities/structured-outputs). Acesso em: 16 nov. 2026.
+
+OpenMP Architecture Review Board. OpenMP Application Programming Interface,
+Version 5.2. 2021. [Especificação oficial](https://www.openmp.org/spec-html/5.2/openmp.html).
+
+Pouchet, Louis-Noël. PolyBench/C: the Polyhedral Benchmark suite. Página do
+projeto. [Fonte primária](https://www.cs.colostate.edu/~pouchet/software/polybench/polybench.html).
+
+PUCRS. Biblioteca Central Irmão José Otão. Capas padrão e modelo de trabalhos
+acadêmicos. Consulta em 05/11/2026. [Capa pública de graduação](https://biblioteca.pucrs.br/apoio-a-pesquisa/capas-padrao-pucrs/capa-para-tcc/);
+[modelo completo com acesso autenticado](https://biblioteca.pucrs.br/apoio-a-pesquisa/modelos-de-normas-tecnicas-de-documentacao/trabalhos-academicos-abnt/).
 
 Qian, Yongjie et al. RepoOMP: Repository-Aware Hotspot OpenMP Parallelization
 via Dependency-Aware Context Reduction. 2026. arXiv:2608.05855v1.
 [Preprint consultado](https://arxiv.org/abs/2608.05855v1).
 
-Free Software Foundation. Using the GNU Compiler Collection: Optimize Options,
-GCC 13. [Manual oficial](https://gcc.gnu.org/onlinedocs/gcc-13.4.0/gcc/Optimize-Options.html).
-Consulta em 05/11/2026; versão do manual 13.4.0, compilador experimental
-identificado separadamente pelos metadados, sem presumir identidade de versão.
+Williams, Samuel; Waterman, Andrew; Patterson, David. Roofline: An Insightful
+Visual Performance Model for Multicore Architectures. Communications of the ACM,
+52(4), 65–76, 2009. DOI 10.1145/1498765.1498785.
+[Repositório institucional dos autores](https://escholarship.org/uc/item/5tz795vq).
+
+Wu, Qingyun et al. AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent
+Conversation. 2023. arXiv:2308.08155v2. [Artigo](https://arxiv.org/abs/2308.08155).
 
 ## Apêndice A. Campanhas históricas e exploratórias preservadas
 
@@ -1999,12 +2437,17 @@ repetibilidade; não substituem a matriz Linux/M5 equivalente.
 
 ### A.1. Casos históricos: Wavefront e Nussinov
 
+Tabela 32 — Casos históricos de Wavefront e Nussinov
+
 | Campanha | Configuração analítica | Ganho vs. seq. | Escalabilidade da mesma variante | Eficiência paralela |
 |---|---|---:|---:|---:|
 | Wavefront manual Mac, 09/09 | 1T | 1,412× | 1,000× | 1,000 |
 | Wavefront tiled Mac, 09/09 | bloco 64, 4T | 3,400× | 2,377× | 0,594 |
 | Nussinov SIMD manual, 11/09 | 4T | 4,037× | 3,015× | 0,754 |
 | Nussinov automático, 11/09 | 4T | 4,106× | 3,005× | 0,751 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 No Wavefront manual, a recomendação de uma thread expressa benefício de
 transformação, sem sucesso multicore. A variante tiled apresenta ganho com
@@ -2032,6 +2475,8 @@ de Nussinov são compartilhados entre suas três variantes, sem criar novas
 amostras independentes. A tabela usa sempre quatro threads para tornar o ponto
 de comparação explícito; a menor mediana pode pertencer a outra configuração.
 
+Tabela 33 — Campanha Linux exploratória de sete medições
+
 | Kernel / entrada | Variante | Tseq (s) | T1 (s) | T4 (s) | S total | S paralelo | E paralela |
 |---|---|---:|---:|---:|---:|---:|---:|
 | dot / 1000000 | manual | 0.001473456 | 0.003553676 | 0.003692308 | 0.399 | 0.962 | 0.241 |
@@ -2044,6 +2489,9 @@ de comparação explícito; a menor mediana pode pertencer a outra configuraçã
 | nussinov / MEDIUM | manual | 0.021994000 | 0.028491000 | 0.052671000 | 0.418 | 0.541 | 0.135 |
 | nussinov / MEDIUM | simd_auto | 0.021994000 | 0.019298000 | 0.016583000 | 1.326 | 1.164 | 0.291 |
 | nussinov / MEDIUM | simd_manual | 0.021994000 | 0.019309000 | 0.030927000 | 0.711 | 0.624 | 0.156 |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 Dot C++ grande teve menor mediana em 3T (0,010432664 s; ganho total 1,049×).
 Para N=1 milhão, todas as configurações OpenMP foram mais lentas que o sequencial.
@@ -2058,11 +2506,11 @@ No GEMM médio, T1/Tp excede p em 2T e 3T. Essas razões de medianas não
 comprovam superlinearidade causal: cache, frequência e variabilidade do baseline
 podem contribuir. As amostras permanecem disponíveis, sem descartar outliers.
 
-![Tempos reais e amplitude mínimo–máximo da coleta Linux](../../results/scaling/analysis_linux_xeon_2026-11-05/median_seconds.png)
+![Figura 25 — Tempos reais e amplitude mínimo–máximo da coleta Linux](../../results/scaling/analysis_linux_xeon_2026-11-05/median_seconds.png)
 
-![Escalabilidade da mesma variante e entrada no Linux](../../results/scaling/analysis_linux_xeon_2026-11-05/speedup_parallel.png)
+![Figura 26 — Escalabilidade da mesma variante e entrada no Linux](../../results/scaling/analysis_linux_xeon_2026-11-05/speedup_parallel.png)
 
-![Eficiência paralela da coleta Linux](../../results/scaling/analysis_linux_xeon_2026-11-05/efficiency_parallel.png)
+![Figura 27 — Eficiência paralela da coleta Linux](../../results/scaling/analysis_linux_xeon_2026-11-05/efficiency_parallel.png)
 
 ### A.3. Dot C exploratório: cinco medições e regime de medição
 
@@ -2074,10 +2522,15 @@ de N=1024. Esses drivers e a distribuição dos valores diferem do Dot C++ manua
 A validação do pipeline usa seu driver de N=1 milhão e não constitui um teste
 de todas as entradas temporizadas.
 
+Tabela 34 — Dot C exploratório: tempos e seleção técnica
+
 | Caso | Tseq (s) | T1 (s) | T4 (s) | S total 4T | S paralelo 4T | Seleção |
 |---|---:|---:|---:|---:|---:|---|
 | large | 0.010385878850 | 0.010864713850 | 0.008063438350 | 1.288 | 1.347 | 3T; S total 1.264× |
 | small | 0.000000889980 | 0.000001850426 | 0.000004171944 | 0.213 | 0.444 | Sem paralelo admissível |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 No caso grande, 4T teve a menor mediana (0,00806343835 s), mas 3T ficou
 1,908% acima dela; a política de quase empate de 2% recomendou 3T, com
@@ -2108,12 +2561,17 @@ candidato e driver de benchmark arquivado da promoção M5; GEMM/Nussinov
 históricos não têm esse vínculo completo. O compilador Linux é Clang 18.1.3,
 enquanto o acervo M5 registra LLVM Homebrew 23.1.1.
 
+Tabela 35 — Comparação contextual de registros históricos Linux e M5
+
 | Caso | Linux exploratório T4 (s) | Linux T1/T4 | M5 arquivado T4 (s) | M5 T1/T4 | Registro M5 |
 |---|---:|---:|---:|---:|---|
 | dot automatic_C | 0.008063438 | 1.347 | 0.001964010 | 2.465 | 03/11; gates verificados no Mac |
 | gemm manual | 0.284841000 | 2.245 | 0.043192000 | 3.282 | setembro; HISTORICAL_UNBOUND |
 | nussinov manual | 4.596830000 | 3.616 | 0.319542000 | 2.957 | setembro; HISTORICAL_UNBOUND |
 | nussinov simd_manual | 4.898844000 | 3.585 | 0.209503000 | 3.015 | setembro; HISTORICAL_UNBOUND |
+
+Fonte: elaboração a partir dos protocolos, códigos e artefatos explicitados nesta seção.
+
 
 Nussinov manual tem maior escalabilidade normalizada no Linux exploratório, mas menor
 latência absoluta no registro M5. Logo, escalabilidade relativa e desempenho
@@ -2129,9 +2587,9 @@ contexto inválido continuam sendo erros. Não se reescreveram caminhos nem
 relatórios históricos para simular uma validação Linux desses gates.
 
 O Nussinov automático histórico continua com hardware desconhecido e não
-foi incluído como medição M5. As novas curvas M5 nas mesmas entradas, fontes,
-repetições e política de medição ainda são necessárias para fortalecer esta
-comparação. Os números acima não isolam ISA, memória ou contribuição da LLM.
+foi incluído como medição M5. As curvas M5 compatíveis foram posteriormente
+coletadas e estão separadas em §5.10. Os números históricos acima não isolam
+ISA, memória ou contribuição da LLM.
 
 ## Apêndice B. Rastreabilidade e reprodução
 

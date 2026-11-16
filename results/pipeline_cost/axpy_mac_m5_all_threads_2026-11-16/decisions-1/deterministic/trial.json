@@ -1,0 +1,37 @@
+{
+  "mode": "deterministic",
+  "status": "OK",
+  "eligible": true,
+  "policy_reason": "Measured parallel selection is admissible.",
+  "candidate_attempts": 1,
+  "llm_calls": 0,
+  "recovery_supported": false,
+  "metadata": {},
+  "raw_decision": null,
+  "validation_errors": [],
+  "monetary_cost": null,
+  "decision_wall_seconds": 4.332978278398514e-06,
+  "decision": {
+    "decision": "ACCEPT",
+    "next_action": "PROMOTE_CANDIDATE",
+    "recommended_threads": 4,
+    "recommended_configuration": {
+      "threads": 4
+    },
+    "risk": "LOW"
+  },
+  "effective_accept": true,
+  "nonadmissible_accept_proposal": false,
+  "missed_eligible_opportunity": false,
+  "policy_agreement": true,
+  "attempts_to_acceptable_candidate": 1,
+  "final_mode": "openmp",
+  "selected_configuration": {
+    "threads": 4
+  },
+  "measured_final_seconds": 0.00818025,
+  "speedup_vs_sequential": 1.5938724366614712,
+  "parallel_scaling_speedup": 1.624638611289386,
+  "validation_wall_seconds": 9.624985978007317e-06,
+  "trial_wall_seconds": 1.4249933883547783e-05
+}

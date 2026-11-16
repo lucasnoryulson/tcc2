@@ -1,0 +1,1743 @@
+{
+  "schema": "tcc2-performance-gate",
+  "version": "0.1",
+  "status": "FAIL",
+  "provenance": {
+    "campaign_id": "d6353946a5a940fcb0055acd2e52ec9f",
+    "run_id": "979d126d0adf4a4ebcf88e16fb406631",
+    "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631",
+    "candidate_id": "sha256:4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+    "recorded_at": "2026-11-16T18:10:16.087170+00:00",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "cpu_count": 10,
+    "runtime_environment": {},
+    "inputs": {
+      "sequential": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/inputs/analysis/fixtures/axpy.c",
+        "sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/sequential/axpy.c"
+      },
+      "candidate": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/candidate.c",
+        "sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/candidate/candidate.c"
+      },
+      "driver": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/inputs/benchmark_1024.c",
+        "sha256": "592f324f4a0e1fe8b79283d45f8f8be0956fad54e5890696478353830301d32a",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/driver/benchmark_1024.c"
+      }
+    },
+    "toolchain": {
+      "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+      "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+      "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+    },
+    "compile_flags": {
+      "sequential": [
+        "-O3"
+      ],
+      "candidate": [
+        "-O3",
+        "-fopenmp"
+      ]
+    },
+    "link_flags": [
+      "-lm"
+    ],
+    "openmp_environment": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "TRUE",
+      "OMP_PLACES": "cores"
+    }
+  },
+  "correctness_report": {
+    "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/correctness.json",
+    "sha256": "01b47fabff4ce4e1fa367df5122bea1e9a4ab7aa904d2b005fb54b08daa6677e"
+  },
+  "thread_counts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "repetitions": 15,
+  "warmups": 3,
+  "seed": 2026,
+  "measurement_order": [
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 4.145e-07
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 1.80153e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 5.5355e-06
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 6.3918e-06
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 2.24164e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 8.3548e-06
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 1.92324e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 2.63201e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 2.12184e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 1.16776e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 2e-07
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 2.21165e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 2.046e-07
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 1.78543e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 4.9042e-06
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 1.30747e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 3.13123e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 1.05106e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 1.219e-07
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 8.4141e-06
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 2.33632e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 2.91382e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 2.20266e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 3.49969e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 3.088e-07
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 1.18618e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 2.79557e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 8.1335e-06
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 3.16895e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 1.07639e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 1.973e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 3.3013e-05
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 1.63e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 4.10987e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 3.40196e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 1.894e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 3.63255e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 4.29526e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 1.45067e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.18354e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 1.90409e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 4.71783e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 4.522e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 2.66662e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.16558e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 4.72349e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 2.078e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 4.4054e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 5.89761e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 1.78216e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 1.45687e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 3.986e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 3.75756e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 4.82344e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 2.73757e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 4.371e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 2.078e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 2.54422e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 7.21001e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 1.9635e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.21489e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 1.80677e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 3.70497e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 4.11247e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 5.22275e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 4.78126e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 4.83031e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 3.89121e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 3.961e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 6.16037e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 4.55739e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 2.58733e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 2.81408e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 2.54e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.42139e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 1.86137e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 6.24261e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 3.078e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 6.49633e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 5.18922e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.85858e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 2.46746e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 6.13451e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 2.45424e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 5.2927e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 6.436e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 2.50196e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 5.20934e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 3.217e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.7872e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 6.20544e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 6.92e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 1.89549e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 1.10418e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 3.71064e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 2.63274e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 2.69918e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 1.47336e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 3.1118e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 1.59134e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 5.835e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 5.32825e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 6.53154e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 2.06465e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 2.17788e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 4.24022e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 5.38829e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.46275e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 6.24466e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 2.494e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 2.82821e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.68056e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 4.848e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 2.551e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 2.78109e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 2.30159e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 4.71987e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 6.12627e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 6.29201e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 7.83768e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 5.8996e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.76435e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 2.72019e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 2.501e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 4.97323e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 4.47611e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 6.14796e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 1.68604e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 1.86208e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 6.67257e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 6.111e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 5.33536e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 2.53053e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.43499e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 2.667e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 4.84269e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 5.44316e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 6.97988e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 6.40245e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 2.14449e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 5.878e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 3.38136e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 5.60037e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 4.94673e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 1.77876e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.40452e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 6.98242e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 3.22391e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 6.46935e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 2.39988e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 4.607e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 5.26127e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 5.35544e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 3.096e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 5.954e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 5.04892e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 7.45456e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 2.05505e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 6.61023e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 5.4404e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 3.092e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.52996e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 2.98915e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 2.11857e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 5.89531e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 6.7343e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 6.341e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 3.359e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 7.68853e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 5.17325e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 3.85301e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 2.88996e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.68725e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 5.17663e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 2.07358e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 5.85472e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 4.97906e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 3.108e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 5.89214e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 5.904e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 3.28456e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 1.88843e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 4.66527e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 2.09849e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 6.35991e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.76697e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 7.48368e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 6.45763e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 3,
+      "seconds": 2.25582e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 5,
+      "seconds": 3.31888e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 2.18677e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 1.29324e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 7,
+      "seconds": 4.55183e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 9,
+      "seconds": 6.3884e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 7.49931e-05
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 5.824e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 3.075e-07
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 5.39411e-05
+    }
+  ],
+  "configuration_dimensions": [
+    "threads"
+  ],
+  "compilation": {
+    "sequential": {
+      "command": [
+        "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "-O3",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/driver/benchmark_1024.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/sequential/axpy.c",
+        "-lm",
+        "-o",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/dot_sequential"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "candidate": {
+      "command": [
+        "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "-O3",
+        "-fopenmp",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/driver/benchmark_1024.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/candidate/candidate.c",
+        "-lm",
+        "-o",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/dot_candidate"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "binaries": {
+    "sequential": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/dot_sequential",
+      "sha256": "e2956e16f8f7050bb71b5462c174746fbe66889430a07e223a52edb2409574a1"
+    },
+    "candidate": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/dot_candidate",
+      "sha256": "18c4242bfa14882a7adace080dcd8088c4b1577c055a848df35450a58714f66a"
+    }
+  },
+  "measurements": [
+    {
+      "mode": "sequential",
+      "threads": 1,
+      "times": [
+        1.894e-07,
+        2.078e-07,
+        2.078e-07,
+        2.54e-07,
+        3.078e-07,
+        3.217e-07,
+        2.494e-07,
+        2.551e-07,
+        2.501e-07,
+        2.667e-07,
+        3.096e-07,
+        3.092e-07,
+        3.359e-07,
+        3.108e-07,
+        3.075e-07
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 1,
+      "times": [
+        4.522e-07,
+        3.986e-07,
+        4.371e-07,
+        3.961e-07,
+        6.436e-07,
+        6.92e-07,
+        5.835e-07,
+        4.848e-07,
+        6.111e-07,
+        5.878e-07,
+        4.607e-07,
+        5.954e-07,
+        6.341e-07,
+        5.904e-07,
+        5.824e-07
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 2,
+      "times": [
+        1.18354e-05,
+        1.16558e-05,
+        1.21489e-05,
+        1.42139e-05,
+        1.85858e-05,
+        1.7872e-05,
+        1.46275e-05,
+        1.68056e-05,
+        1.76435e-05,
+        1.43499e-05,
+        1.40452e-05,
+        1.52996e-05,
+        1.68725e-05,
+        1.76697e-05,
+        1.29324e-05
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 3,
+      "times": [
+        1.45067e-05,
+        1.45687e-05,
+        1.9635e-05,
+        1.86137e-05,
+        2.50196e-05,
+        1.10418e-05,
+        2.06465e-05,
+        2.30159e-05,
+        1.68604e-05,
+        2.14449e-05,
+        1.77876e-05,
+        2.05505e-05,
+        2.07358e-05,
+        1.88843e-05,
+        2.25582e-05
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 4,
+      "times": [
+        1.90409e-05,
+        1.78216e-05,
+        1.80677e-05,
+        2.58733e-05,
+        2.46746e-05,
+        1.47336e-05,
+        2.17788e-05,
+        2.78109e-05,
+        1.86208e-05,
+        2.53053e-05,
+        2.39988e-05,
+        2.11857e-05,
+        2.88996e-05,
+        2.09849e-05,
+        2.18677e-05
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 5,
+      "times": [
+        2.66662e-05,
+        2.73757e-05,
+        2.54422e-05,
+        2.81408e-05,
+        2.45424e-05,
+        1.89549e-05,
+        1.59134e-05,
+        2.82821e-05,
+        2.72019e-05,
+        3.38136e-05,
+        3.22391e-05,
+        2.98915e-05,
+        3.85301e-05,
+        3.28456e-05,
+        3.31888e-05
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 6,
+      "times": [
+        3.63255e-05,
+        3.75756e-05,
+        3.70497e-05,
+        3.89121e-05,
+        5.18922e-05,
+        3.71064e-05,
+        4.24022e-05,
+        4.71987e-05,
+        4.47611e-05,
+        4.84269e-05,
+        4.94673e-05,
+        5.04892e-05,
+        5.17325e-05,
+        4.97906e-05,
+        5.39411e-05
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 7,
+      "times": [
+        3.40196e-05,
+        4.82344e-05,
+        4.11247e-05,
+        4.55739e-05,
+        5.20934e-05,
+        2.63274e-05,
+        5.38829e-05,
+        5.8996e-05,
+        5.33536e-05,
+        5.60037e-05,
+        5.35544e-05,
+        5.4404e-05,
+        5.17663e-05,
+        4.66527e-05,
+        4.55183e-05
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 8,
+      "times": [
+        4.71783e-05,
+        4.4054e-05,
+        4.78126e-05,
+        4.83031e-05,
+        6.49633e-05,
+        2.69918e-05,
+        6.53154e-05,
+        6.29201e-05,
+        4.97323e-05,
+        5.44316e-05,
+        5.26127e-05,
+        5.89531e-05,
+        5.85472e-05,
+        5.89214e-05,
+        6.45763e-05
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 9,
+      "times": [
+        4.29526e-05,
+        4.72349e-05,
+        5.22275e-05,
+        6.24261e-05,
+        6.13451e-05,
+        6.20544e-05,
+        5.32825e-05,
+        6.12627e-05,
+        6.14796e-05,
+        6.40245e-05,
+        6.46935e-05,
+        6.61023e-05,
+        6.7343e-05,
+        6.35991e-05,
+        6.3884e-05
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 10,
+      "times": [
+        4.10987e-05,
+        5.89761e-05,
+        7.21001e-05,
+        6.16037e-05,
+        5.2927e-05,
+        3.1118e-05,
+        6.24466e-05,
+        7.83768e-05,
+        6.67257e-05,
+        6.97988e-05,
+        6.98242e-05,
+        7.45456e-05,
+        7.68853e-05,
+        7.48368e-05,
+        7.49931e-05
+      ]
+    }
+  ],
+  "csv": {
+    "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance/979d126d0adf4a4ebcf88e16fb406631/performance.csv",
+    "sha256": "7fe8102cbb0716f0e763b5284848d3da395af8f2f56a58c1efac2315fcc62690"
+  },
+  "csv_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session02/n1024/run-plx5sv3l/performance.csv"
+}

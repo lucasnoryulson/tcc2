@@ -1,0 +1,45 @@
+{
+  "status": "COMPLETE",
+  "completed_utc": "2026-11-16T18:14:21.719316+00:00",
+  "sessions": 2,
+  "configurations_per_session": 33,
+  "measured_samples": 990,
+  "warmup_samples": 198,
+  "stable_cases": 2,
+  "cases": 3,
+  "selector_inadequate": 1,
+  "first_report_sha256": "7b209dad624e17087aecd18c8861ba6ca8268662578a35bdad9054b06dda435f",
+  "second_report_sha256": "24f7c505f3144e7a75f5cc26817b181cf015ce7eafef8420da419bbf70a29494",
+  "frozen_choices_sha256": "6f1e212de24d3582ab80ee3006821b7c2f24fe3e9929d8ba884b2cb84c94ddc7",
+  "protocol_sha256": "860fc787803210d45c4ea3307b65f8f8e703919afba92390742611e26de124f7",
+  "amortization": [
+    {
+      "n": 1024,
+      "measured_prefix_seconds": 61.18492879101541,
+      "second_session_prefix_seconds": 62.993355666985735,
+      "in_sample_prefix_break_even": null,
+      "holdout_prefix_break_even": null,
+      "lower_bound_full_admission": true,
+      "new_llm_cost_measured": false
+    },
+    {
+      "n": 1000000,
+      "measured_prefix_seconds": 28.733080083038658,
+      "second_session_prefix_seconds": 25.680084832943976,
+      "in_sample_prefix_break_even": 93525,
+      "holdout_prefix_break_even": 84217,
+      "lower_bound_full_admission": true,
+      "new_llm_cost_measured": false
+    },
+    {
+      "n": 10000000,
+      "measured_prefix_seconds": 109.662066583056,
+      "second_session_prefix_seconds": 112.92734658299014,
+      "in_sample_prefix_break_even": 22573,
+      "holdout_prefix_break_even": 17814,
+      "lower_bound_full_admission": true,
+      "new_llm_cost_measured": false
+    }
+  ],
+  "limitations": "One source, same host/day, no independent-machine or population inference. Input footprints are logical bytes, not measured cache/DRAM residency. Prefix-only costs exclude LLM and promotion."
+}

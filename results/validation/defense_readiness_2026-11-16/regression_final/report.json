@@ -1,0 +1,112 @@
+{
+  "status": "PASS",
+  "checked_utc": "2026-11-16T18:36:23.891017+00:00",
+  "checks": [
+    {
+      "name": "unittest",
+      "command": [
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_*.py",
+        "-q"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "adaptive_strategy_planner_v01",
+      "command": [
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+        "-B",
+        "scripts/test_adaptive_strategy_planner_v01_regression.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "autotuning_selector_v01",
+      "command": [
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+        "-B",
+        "scripts/test_autotuning_selector_v01_regression.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "compiler_feedback_analyzer_v01",
+      "command": [
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+        "-B",
+        "scripts/test_compiler_feedback_analyzer_v01_regression.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "compiler_feedback_analyzer_v02",
+      "command": [
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+        "-B",
+        "scripts/test_compiler_feedback_analyzer_v02_regression.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "coordinator_v02",
+      "command": [
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+        "-B",
+        "scripts/test_coordinator_v02_regression.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "performance_selector_v02",
+      "command": [
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+        "-B",
+        "scripts/test_performance_selector_v02_regression.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "static_isolation",
+      "command": [
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2-experiments-mac-2026-11-16/build/experimental-venv/bin/python",
+        "-B",
+        "scripts/test_static_analysis_variant_isolation.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "linux_wrapper_syntax",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/profile_linux_followup.sh"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "previous_results_and_manuscript_preserved",
+      "changed_existing": [],
+      "returncode": 0
+    },
+    {
+      "name": "academic_exports",
+      "returncode": 0,
+      "pdf_pages": 78,
+      "word_tables": 29,
+      "word_images": 21
+    },
+    {
+      "name": "promotion_manifests",
+      "returncode": 0,
+      "count": 6
+    }
+  ],
+  "limitations": "Software and artifact checks; no native Word layout certification or proof of general numerical equivalence"
+}

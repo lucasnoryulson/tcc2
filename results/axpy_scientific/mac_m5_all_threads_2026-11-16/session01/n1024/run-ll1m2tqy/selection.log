@@ -1,0 +1,9 @@
+=================================
+TCC2 PERFORMANCE SELECTOR v0.2
+=================================
+
+Status: NO_BENEFICIAL_CONFIGURATION
+Reason: No OpenMP configuration improved over the sequential baseline.
+
+JSON salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n1024/run-ll1m2tqy/selection.json
+=================================

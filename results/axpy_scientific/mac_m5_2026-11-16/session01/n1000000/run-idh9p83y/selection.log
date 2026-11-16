@@ -1,0 +1,32 @@
+=================================
+TCC2 PERFORMANCE SELECTOR v0.2
+=================================
+
+Status: SELECTED
+
+Raw fastest configuration:
+  Threads:    10
+  Median:     0.000655950 s
+  Speedup:    1.334x
+  Efficiency: 0.133
+
+Near-tie candidates:
+  6 thread(s): 0.000658660 s | speedup 1.328x | efficiency 0.221 | slowdown vs fastest 0.413%
+  10 thread(s): 0.000655950 s | speedup 1.334x | efficiency 0.133 | slowdown vs fastest 0.000%
+
+Recommended configuration:
+  Threads:    6
+  Median:     0.000658660 s
+  End-to-end speedup: 1.328x
+
+Performance decomposition:
+  Transformation speedup:      1.053x
+  Parallel scaling speedup:    1.262x
+  Parallel scaling efficiency: 21.03%
+  Runtime reduction:           24.70%
+
+Decision: RESOURCE_AWARE_NEAR_TIE
+Reason: Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.
+
+JSON salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1000000/run-idh9p83y/selection.json
+=================================

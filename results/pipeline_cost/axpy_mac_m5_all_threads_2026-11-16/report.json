@@ -1,0 +1,436 @@
+{
+  "schema": "tcc2-pipeline-cost-v1",
+  "status": "COMPLETE",
+  "started_utc": "2026-11-16T18:14:56.642821+00:00",
+  "protocol": "New decision/promotion trials on a shared verified prefix; inspect prefix sampling separately",
+  "model": "llama3.1:8b",
+  "repetitions": 3,
+  "trials": [
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 4.332978278398514e-06,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00818025,
+      "speedup_vs_sequential": 1.5938724366614712,
+      "parallel_scaling_speedup": 1.624638611289386,
+      "validation_wall_seconds": 9.624985978007317e-06,
+      "trial_wall_seconds": 1.4249933883547783e-05,
+      "repetition": 1,
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/context.json",
+        "sha256": "aa4138319e52be41e7f13f059aa92d1876bcf1df097eed41162499a3ec967aca"
+      },
+      "promotion": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-1-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1"
+    },
+    {
+      "mode": "coordinator",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 59032100042,
+        "load_duration": 2609870042,
+        "prompt_eval_count": 2050,
+        "eval_count": 205,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00818025,
+          "mean_seconds": 0.0087342316666667,
+          "speedup": 1.5938724366614712,
+          "efficiency": 0.3984681091653678,
+          "slowdown_vs_fastest": 0.0031731432513222
+        },
+        "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "7dd3fff391eadbc9044a529dbf847e8b513cd0e11a31ba577cb4da2b7aff4d5b",
+      "ablation_effective": null,
+      "call_wall_seconds": 59.04134633298963,
+      "decision_wall_seconds": 59.041713709011674,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00818025,
+      "speedup_vs_sequential": 1.5938724366614712,
+      "parallel_scaling_speedup": 1.624638611289386,
+      "validation_wall_seconds": 0.00010875007137656212,
+      "trial_wall_seconds": 59.041826291941106,
+      "repetition": 1,
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/context.json",
+        "sha256": "aa4138319e52be41e7f13f059aa92d1876bcf1df097eed41162499a3ec967aca"
+      },
+      "promotion": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-1-coordinator/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1"
+    },
+    {
+      "mode": "coordinator",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 54945502667,
+        "load_duration": 5168292,
+        "prompt_eval_count": 2050,
+        "eval_count": 205,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00818025,
+          "mean_seconds": 0.0087342316666667,
+          "speedup": 1.5938724366614712,
+          "efficiency": 0.3984681091653678,
+          "slowdown_vs_fastest": 0.0031731432513222
+        },
+        "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "7dd3fff391eadbc9044a529dbf847e8b513cd0e11a31ba577cb4da2b7aff4d5b",
+      "ablation_effective": null,
+      "call_wall_seconds": 54.94964283390436,
+      "decision_wall_seconds": 54.95044499996584,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00818025,
+      "speedup_vs_sequential": 1.5938724366614712,
+      "parallel_scaling_speedup": 1.624638611289386,
+      "validation_wall_seconds": 4.8749963752925396e-05,
+      "trial_wall_seconds": 54.95049479196314,
+      "repetition": 2,
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/context.json",
+        "sha256": "aa4138319e52be41e7f13f059aa92d1876bcf1df097eed41162499a3ec967aca"
+      },
+      "promotion": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-coordinator/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1"
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 1.762493047863245e-05,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00818025,
+      "speedup_vs_sequential": 1.5938724366614712,
+      "parallel_scaling_speedup": 1.624638611289386,
+      "validation_wall_seconds": 1.9249971956014633e-05,
+      "trial_wall_seconds": 3.724999260157347e-05,
+      "repetition": 2,
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/context.json",
+        "sha256": "aa4138319e52be41e7f13f059aa92d1876bcf1df097eed41162499a3ec967aca"
+      },
+      "promotion": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-2-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1"
+    },
+    {
+      "mode": "deterministic",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 0,
+      "recovery_supported": false,
+      "metadata": {},
+      "raw_decision": null,
+      "validation_errors": [],
+      "monetary_cost": null,
+      "decision_wall_seconds": 7.958966307342052e-06,
+      "decision": {
+        "decision": "ACCEPT",
+        "next_action": "PROMOTE_CANDIDATE",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "risk": "LOW"
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00818025,
+      "speedup_vs_sequential": 1.5938724366614712,
+      "parallel_scaling_speedup": 1.624638611289386,
+      "validation_wall_seconds": 1.620908733457327e-05,
+      "trial_wall_seconds": 2.4417066015303135e-05,
+      "repetition": 3,
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/context.json",
+        "sha256": "aa4138319e52be41e7f13f059aa92d1876bcf1df097eed41162499a3ec967aca"
+      },
+      "promotion": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-3-deterministic/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1"
+    },
+    {
+      "mode": "coordinator",
+      "status": "OK",
+      "eligible": true,
+      "policy_reason": "Measured parallel selection is admissible.",
+      "candidate_attempts": 1,
+      "llm_calls": 1,
+      "recovery_supported": false,
+      "metadata": {
+        "model": "llama3.1:8b",
+        "total_duration": 61724699333,
+        "load_duration": 5146708,
+        "prompt_eval_count": 2050,
+        "eval_count": 205,
+        "done_reason": "stop"
+      },
+      "raw_decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "mode": "openmp",
+          "threads": 4,
+          "median_seconds": 0.00818025,
+          "mean_seconds": 0.0087342316666667,
+          "speedup": 1.5938724366614712,
+          "efficiency": 0.3984681091653678,
+          "slowdown_vs_fastest": 0.0031731432513222
+        },
+        "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "validation_errors": [],
+      "monetary_cost": null,
+      "prompt_sha256": "7dd3fff391eadbc9044a529dbf847e8b513cd0e11a31ba577cb4da2b7aff4d5b",
+      "ablation_effective": null,
+      "call_wall_seconds": 61.73052929202095,
+      "decision_wall_seconds": 61.731268209056,
+      "decision": {
+        "decision": "ACCEPT",
+        "recommended_threads": 4,
+        "recommended_configuration": {
+          "threads": 4
+        },
+        "reason": "Multiple configurations are within 2.0% of the fastest median. The configuration using fewer threads was preferred. At least one configuration using two or more threads outperformed the sequential baseline.",
+        "next_action": "PROMOTE_CANDIDATE",
+        "risk": "LOW",
+        "evidence_used": [
+          "performance_report",
+          "campaign_id",
+          "candidate_id"
+        ]
+      },
+      "effective_accept": true,
+      "nonadmissible_accept_proposal": false,
+      "missed_eligible_opportunity": false,
+      "policy_agreement": true,
+      "attempts_to_acceptable_candidate": 1,
+      "final_mode": "openmp",
+      "selected_configuration": {
+        "threads": 4
+      },
+      "measured_final_seconds": 0.00818025,
+      "speedup_vs_sequential": 1.5938724366614712,
+      "parallel_scaling_speedup": 1.624638611289386,
+      "validation_wall_seconds": 0.00017758295871317387,
+      "trial_wall_seconds": 61.731446583988145,
+      "repetition": 3,
+      "context": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/context.json",
+        "sha256": "aa4138319e52be41e7f13f059aa92d1876bcf1df097eed41162499a3ec967aca"
+      },
+      "promotion": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/promoted-3-coordinator/d22f12aaf730dc55ef048754e99cdc6372047b7d8feb59e27b149a7cc6d08bc1"
+    }
+  ],
+  "prefixes": [
+    {
+      "repetition": 1,
+      "summary": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/summary.json",
+        "sha256": "c5612a4100febe4300c97c687b29b8896fb248ce725d0ce9d78450270491029e"
+      },
+      "status": "PREPARED",
+      "elapsed_seconds": 109.662066583056,
+      "reused_frozen_prefix": true
+    },
+    {
+      "repetition": 2,
+      "summary": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/summary.json",
+        "sha256": "c5612a4100febe4300c97c687b29b8896fb248ce725d0ce9d78450270491029e"
+      },
+      "status": "PREPARED",
+      "elapsed_seconds": 109.662066583056,
+      "reused_frozen_prefix": true
+    },
+    {
+      "repetition": 3,
+      "summary": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_all_threads_2026-11-16/session01/n10000000/run-sdiht4su/summary.json",
+        "sha256": "c5612a4100febe4300c97c687b29b8896fb248ce725d0ce9d78450270491029e"
+      },
+      "status": "PREPARED",
+      "elapsed_seconds": 109.662066583056,
+      "reused_frozen_prefix": true
+    }
+  ],
+  "harness_sources": {
+    "measure_pipeline_cost.py": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/harness_sources/measure_pipeline_cost.py",
+      "sha256": "afe5ac62aa1beb1f6600c798fc4eb48977c38bf73d419be6ff8f87cdd2ac485c"
+    },
+    "run_pipeline.py": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/harness_sources/run_pipeline.py",
+      "sha256": "2eb5002c0b0da130badee784e97ec7a0128f309198f5804b2be827edf317997e"
+    },
+    "process_timing.py": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/harness_sources/process_timing.py",
+      "sha256": "c41ece478d3efcb99c912812a9119293fb550fd462f995cd56c9f5f9828306d9"
+    },
+    "compile_correctness_gate.py": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/harness_sources/compile_correctness_gate.py",
+      "sha256": "8495feea5ef80c4e266a2e04cbc4ba1e7645ba3fe14c5c65579295b166b07422"
+    },
+    "performance_gate.py": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/harness_sources/performance_gate.py",
+      "sha256": "afbaee1bc6abe50c8ba2117e0ba813c260c15b6b74f6c69c750151c4a59056a2"
+    },
+    "promote_candidate.py": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/pipeline_cost/axpy_mac_m5_all_threads_2026-11-16/harness_sources/promote_candidate.py",
+      "sha256": "534767040515eba7a3ada8c7b8e639ee9d8a2805b56ba5c33d3517cb3fb22dba"
+    }
+  },
+  "finished_utc": "2026-11-16T18:18:00.321594+00:00",
+  "accounting": "A reused frozen prefix is measured once for all trials; otherwise once per repetition. Both arms share prefix evidence. Totals are accounting comparisons, not independent end-to-end runs. Promotion includes fresh compilation and validation; stage CSV is inclusive and must not be summed twice."
+}

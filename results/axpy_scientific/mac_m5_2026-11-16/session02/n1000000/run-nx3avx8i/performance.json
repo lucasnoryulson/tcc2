@@ -1,0 +1,1151 @@
+{
+  "schema": "tcc2-performance-gate",
+  "version": "0.1",
+  "status": "PASS",
+  "provenance": {
+    "campaign_id": "3c3e4caf634d4104aacb4d88f8a7871f",
+    "run_id": "9afbf49e946046d6b81998f68ec2c46a",
+    "run_dir": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a",
+    "candidate_id": "sha256:4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+    "recorded_at": "2026-11-16T17:12:01.774294+00:00",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "cpu_count": 10,
+    "runtime_environment": {},
+    "inputs": {
+      "sequential": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy.c",
+        "sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/sequential/axpy.c"
+      },
+      "candidate": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/candidate.c",
+        "sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/candidate/candidate.c"
+      },
+      "driver": {
+        "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/benchmark_1000000.c",
+        "sha256": "d169fe3b72833cc3e588558f29f697f3c0e76e85a5e7b7791ba11eef71483bdf",
+        "snapshot": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/driver/benchmark_1000000.c"
+      }
+    },
+    "toolchain": {
+      "path": "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+      "sha256": "570c488e53383b198796e706e91b5ce5ec45bb730683a5af5e822d56a2eb1888",
+      "version": "Homebrew clang version 23.1.1\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /opt/homebrew/Cellar/llvm/23.1.1/bin\nConfiguration file: /opt/homebrew/Cellar/llvm/23.1.1/etc/clang/arm64-apple-darwin25.cfg"
+    },
+    "compile_flags": {
+      "sequential": [
+        "-O3"
+      ],
+      "candidate": [
+        "-O3",
+        "-fopenmp"
+      ]
+    },
+    "link_flags": [
+      "-lm"
+    ],
+    "openmp_environment": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "TRUE",
+      "OMP_PLACES": "cores"
+    }
+  },
+  "correctness_report": {
+    "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/correctness.json",
+    "sha256": "1e9676fa0815983ef607d6fd7acb98e72d9d89b43a0cd118132b58fbe02bb640"
+  },
+  "thread_counts": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    10
+  ],
+  "repetitions": 15,
+  "warmups": 3,
+  "seed": 2026,
+  "measurement_order": [
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00014571
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00035514
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00013391
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00014162
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00013086
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00023201
+    },
+    {
+      "stage": "warmup",
+      "repeat": 1,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00040697
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00037773
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00043732
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00023261
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00013777
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00014051
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00015861
+    },
+    {
+      "stage": "warmup",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00017161
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00028439
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00019372
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00019896
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00017994
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00020034
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00064017
+    },
+    {
+      "stage": "warmup",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00065571
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00064035
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00082357
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00076896
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00068702
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00077284
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00089216
+    },
+    {
+      "stage": "measurement",
+      "repeat": 1,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00084258
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00096152
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00075978
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00078527
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00084966
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00090685
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00079258
+    },
+    {
+      "stage": "measurement",
+      "repeat": 2,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00071306
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00079167
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00090483
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00073514
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00099781
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00070908
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00071782
+    },
+    {
+      "stage": "measurement",
+      "repeat": 3,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.0007947
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00076509
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00077638
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00091082
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00077827
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00068373
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00071704
+    },
+    {
+      "stage": "measurement",
+      "repeat": 4,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00105695
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00073643
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00082112
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00099935
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00092819
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00080407
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00085081
+    },
+    {
+      "stage": "measurement",
+      "repeat": 5,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00092544
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00070988
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.0008553
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00091455
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.0008878
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00066505
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00073857
+    },
+    {
+      "stage": "measurement",
+      "repeat": 6,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.0007863
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00080422
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00079302
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00090956
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00068818
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00076755
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.0008995
+    },
+    {
+      "stage": "measurement",
+      "repeat": 7,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00071842
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00090658
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00084247
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00070098
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00067848
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00075023
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00078701
+    },
+    {
+      "stage": "measurement",
+      "repeat": 8,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00078952
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00081167
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00079715
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00084028
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.000881
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00066858
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00090167
+    },
+    {
+      "stage": "measurement",
+      "repeat": 9,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00071874
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00080555
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00089716
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00088458
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.0006231
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00078374
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00084397
+    },
+    {
+      "stage": "measurement",
+      "repeat": 10,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00087951
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00083105
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00083258
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00098248
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.0007786
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00082775
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.0012012
+    },
+    {
+      "stage": "measurement",
+      "repeat": 11,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00092868
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00088312
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00064056
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00090892
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00078694
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00081286
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00079279
+    },
+    {
+      "stage": "measurement",
+      "repeat": 12,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00079226
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00083869
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00076087
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00088054
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00119722
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00075386
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00088774
+    },
+    {
+      "stage": "measurement",
+      "repeat": 13,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00090633
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00080182
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00092032
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00093881
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.0006999
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00080737
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00080807
+    },
+    {
+      "stage": "measurement",
+      "repeat": 14,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00082183
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "sequential",
+      "threads": 1,
+      "seconds": 0.00090723
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 1,
+      "seconds": 0.00093885
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 10,
+      "seconds": 0.00066207
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 6,
+      "seconds": 0.00079304
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 4,
+      "seconds": 0.00083057
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 8,
+      "seconds": 0.00082653
+    },
+    {
+      "stage": "measurement",
+      "repeat": 15,
+      "mode": "openmp",
+      "threads": 2,
+      "seconds": 0.00088892
+    }
+  ],
+  "configuration_dimensions": [
+    "threads"
+  ],
+  "compilation": {
+    "sequential": {
+      "command": [
+        "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "-O3",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/driver/benchmark_1000000.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/sequential/axpy.c",
+        "-lm",
+        "-o",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/dot_sequential"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "candidate": {
+      "command": [
+        "/opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23",
+        "-O3",
+        "-fopenmp",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/driver/benchmark_1000000.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/candidate/candidate.c",
+        "-lm",
+        "-o",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/dot_candidate"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "binaries": {
+    "sequential": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/dot_sequential",
+      "sha256": "81f62263128161c27c5347b6781a2249a447d58719ec8c8c6c57d3520ab519f1"
+    },
+    "candidate": {
+      "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/dot_candidate",
+      "sha256": "1798fea2ee8b80b21c7fdcce5627e0b62428982bf9be8be2de07bfe15b536e2a"
+    }
+  },
+  "measurements": [
+    {
+      "mode": "sequential",
+      "threads": 1,
+      "times": [
+        0.00089216,
+        0.00096152,
+        0.00099781,
+        0.00105695,
+        0.00099935,
+        0.0008878,
+        0.0008995,
+        0.00084247,
+        0.000881,
+        0.00088458,
+        0.0012012,
+        0.00088312,
+        0.00119722,
+        0.00092032,
+        0.00090723
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 1,
+      "times": [
+        0.00082357,
+        0.00090685,
+        0.00090483,
+        0.00091082,
+        0.00092544,
+        0.00091455,
+        0.00090956,
+        0.00090658,
+        0.00090167,
+        0.00089716,
+        0.00092868,
+        0.00090892,
+        0.00090633,
+        0.00093881,
+        0.00093885
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 2,
+      "times": [
+        0.00076896,
+        0.00079258,
+        0.0007947,
+        0.00077827,
+        0.00092819,
+        0.0007863,
+        0.00079302,
+        0.00070098,
+        0.00084028,
+        0.00080555,
+        0.00098248,
+        0.00081286,
+        0.00088774,
+        0.00080182,
+        0.00088892
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 4,
+      "times": [
+        0.00077284,
+        0.00084966,
+        0.00071782,
+        0.00077638,
+        0.00073643,
+        0.00073857,
+        0.00076755,
+        0.00078701,
+        0.00079715,
+        0.00078374,
+        0.00082775,
+        0.00079279,
+        0.00088054,
+        0.00080737,
+        0.00083057
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 6,
+      "times": [
+        0.00064035,
+        0.00078527,
+        0.00070908,
+        0.00071704,
+        0.00080407,
+        0.00070988,
+        0.00068818,
+        0.00075023,
+        0.00071874,
+        0.00084397,
+        0.0007786,
+        0.00079226,
+        0.00076087,
+        0.00080807,
+        0.00079304
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 8,
+      "times": [
+        0.00068702,
+        0.00071306,
+        0.00079167,
+        0.00068373,
+        0.00085081,
+        0.00066505,
+        0.00080422,
+        0.00067848,
+        0.00066858,
+        0.00087951,
+        0.00083105,
+        0.00078694,
+        0.00075386,
+        0.00082183,
+        0.00082653
+      ]
+    },
+    {
+      "mode": "openmp",
+      "threads": 10,
+      "times": [
+        0.00084258,
+        0.00075978,
+        0.00073514,
+        0.00076509,
+        0.00082112,
+        0.0008553,
+        0.00071842,
+        0.00078952,
+        0.00081167,
+        0.0006231,
+        0.00083258,
+        0.00064056,
+        0.00083869,
+        0.0006999,
+        0.00066207
+      ]
+    }
+  ],
+  "csv": {
+    "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance/9afbf49e946046d6b81998f68ec2c46a/performance.csv",
+    "sha256": "2d9d858ce4a85229a29f6be7e7a4a75e6253fd7fbfe823faf912ad0ac69d9b2b"
+  },
+  "csv_file": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n1000000/run-nx3avx8i/performance.csv"
+}

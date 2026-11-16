@@ -1,0 +1,22 @@
+{
+  "created_utc": "2026-11-16T18:36:27.876480+00:00",
+  "previous_revision_sha256": {
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA_PRE_BANCA_2026-11-16.md": "be487190b53854854144632debb5e47f04156d7cc7c04b058f2d38bdb2f02453",
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA_PRE_BANCA_2026-11-16.docx": "ab3ec42cb58d60320753ec92784dc2fddadbaca094e18f845852e4413c78591f",
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA_PRE_BANCA_2026-11-16.pdf": "c40974ac1899e77d75223b05cfdfc0747897092579c3d36f48eed8b24964c7a8",
+    "docs/monografia/CAPA_PUCRS_CONSOLIDADA_PRE_BANCA_2026-11-16.docx": "3595ea11837e53088cdbbd7283321faf57a03579ba9a5ee773e4356682ce924c",
+    "docs/monografia/referencias_consolidada_PRE_BANCA_2026-11-16.bib": "acf78f1758af370c6d5beb4a8d06324fd37bda705a35ffcd4f0ccb1a94d826f4",
+    "docs/monografia/AXPY_SCIENTIFIC_2026-11-16_MANIFEST_PRE_BANCA_2026-11-16.json": "8bccbf2d8d7ea094892d32a15483b59c51abebfe68954754b8c72f41c68f48fc"
+  },
+  "files": {
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA.md": "288dd87c46e9c906f4b0f2e9a939547afb45c273e001a1cbe13e8b8628206b23",
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA.docx": "edd1c29a975aed7f382f9c2dd49a8f1f36c79162126da1bd20a351bb31e667fb",
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA.pdf": "6a09551b43390a4107723c8a0bacc281d44ff9611e87857eb43d1034cae33e1c",
+    "docs/monografia/CAPA_PUCRS_CONSOLIDADA.docx": "3595ea11837e53088cdbbd7283321faf57a03579ba9a5ee773e4356682ce924c",
+    "docs/monografia/referencias_consolidada.bib": "3da786c1e04484a37bfbadbab39daf5d974d1148fb047602161eced795f4bd57"
+  },
+  "pdf_pages": 94,
+  "word_tables": 35,
+  "word_images": 27,
+  "scope": "A4, margins, captions, fields and readable PDF checked in software. PDF is a separate ReportLab content export, not a native Word render. Complete PUCRS model requires institutional login; approval/committee data not inferred."
+}

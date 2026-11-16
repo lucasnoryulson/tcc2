@@ -1,0 +1,38 @@
+=================================
+TCC2 COMPILE + CORRECTNESS GATE
+=================================
+Sequential: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy.c
+Candidate:  /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n10000000/run-sxryguup/candidate.c
+Driver:     /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy_driver.c
+Compiler:   /opt/homebrew/opt/llvm/bin/clang
+Threads:    [1, 2, 4, 6, 8, 10]
+
+sequential compilation:
+  Command:
+  /opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23 -O3 /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n10000000/run-sxryguup/correctness/93ba19f7b26640e4bcee38d46d674543/driver/axpy_driver.c /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n10000000/run-sxryguup/correctness/93ba19f7b26640e4bcee38d46d674543/sequential/axpy.c -lm -o /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n10000000/run-sxryguup/correctness/93ba19f7b26640e4bcee38d46d674543/dot_gate_sequential
+  Status: COMPILE_SUCCESS
+
+candidate compilation:
+  Command:
+  /opt/homebrew/Cellar/llvm/23.1.1/bin/clang-23 -O3 -fopenmp /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n10000000/run-sxryguup/correctness/93ba19f7b26640e4bcee38d46d674543/driver/axpy_driver.c /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n10000000/run-sxryguup/correctness/93ba19f7b26640e4bcee38d46d674543/candidate/candidate.c -lm -o /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n10000000/run-sxryguup/correctness/93ba19f7b26640e4bcee38d46d674543/dot_gate_candidate
+  Status: COMPILE_SUCCESS
+Threads: 1; sequential: 0; candidate: 0
+Absolute error: 0.000000000000e+00; relative error: 0.000000000000e+00
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 2; sequential: 0; candidate: 0
+Absolute error: 0.000000000000e+00; relative error: 0.000000000000e+00
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 4; sequential: 0; candidate: 0
+Absolute error: 0.000000000000e+00; relative error: 0.000000000000e+00
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 6; sequential: 0; candidate: 0
+Absolute error: 0.000000000000e+00; relative error: 0.000000000000e+00
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 8; sequential: 0; candidate: 0
+Absolute error: 0.000000000000e+00; relative error: 0.000000000000e+00
+Tolerances: relative=1e-09; absolute=1e-12
+Threads: 10; sequential: 0; candidate: 0
+Absolute error: 0.000000000000e+00; relative error: 0.000000000000e+00
+Tolerances: relative=1e-09; absolute=1e-12
+Correctness: CORRECT
+GATE RESULT: PASS

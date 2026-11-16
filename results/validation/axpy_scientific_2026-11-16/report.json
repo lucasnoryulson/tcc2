@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "checked_utc": "2026-11-16T17:26:16.451630+00:00",
+  "unit_tests": 152,
+  "unit_seconds": 66.461,
+  "skips": 0,
+  "regression_cases": 23,
+  "two_session_archives": "VERIFIED",
+  "scientific_samples": 630,
+  "scientific_warmups": 126,
+  "configurations_per_session": 21,
+  "frozen_before_holdout": true,
+  "recomputed_policies_and_bootstrap": true,
+  "archived_previous_revision_verified": true,
+  "candidate_sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+  "pdf_pages": 82,
+  "word_tables": 30,
+  "word_images": 24,
+  "a4_margins_and_page_field_verified": true,
+  "main_unchanged": "cc5406b79a1fac9446c6e0a25920243f82662a6e",
+  "study_report_sha256": "4fa734b7033103cf22d429205ebf471c05f92a7692d68f63ca3f38d098bd5ad3",
+  "manuscript_manifest_sha256": "8bccbf2d8d7ea094892d32a15483b59c51abebfe68954754b8c72f41c68f48fc",
+  "preflight_corrections": [
+    "Canonicalized macOS /var versus /private/var test paths",
+    "Used declared 10000 inner calls for microtests to avoid zero-resolution timings"
+  ],
+  "limitations": "Native Word/ABNT review not certified; no new LLM or promotion; low battery while charging and uncontrolled thermals; prefix-only amortization"
+}

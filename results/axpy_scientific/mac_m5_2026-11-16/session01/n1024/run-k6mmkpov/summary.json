@@ -1,0 +1,188 @@
+{
+  "schema": "tcc2-pipeline-run",
+  "version": "0.1",
+  "status": "PREPARED",
+  "steps": [
+    {
+      "name": "static",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/static_analyzer.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy.c",
+        "--output-dir",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/static.log",
+      "wall_seconds": 0.11360991699621081
+    },
+    {
+      "name": "dependences",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/dependence_analyzer.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis/axpy_analysis.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/dependences.log",
+      "wall_seconds": 0.05616858403664082
+    },
+    {
+      "name": "patterns",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/pattern_classifier.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis/axpy_analysis.json",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis/axpy_dependences.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/patterns.log",
+      "wall_seconds": 0.0693950419081375
+    },
+    {
+      "name": "strategy",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/strategy_planner.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis/axpy_analysis.json",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis/axpy_patterns.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/strategy.log",
+      "wall_seconds": 0.08639000006951392
+    },
+    {
+      "name": "transform",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/code_transformer.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy.c",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis/axpy_analysis.json",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis/axpy_strategy.json",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/candidate.c"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/transform.log",
+      "wall_seconds": 0.18015741708222777
+    },
+    {
+      "name": "correctness",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/scripts/compile_correctness_gate.py",
+        "--sequential",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy.c",
+        "--candidate",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/candidate.c",
+        "--driver",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy_driver.c",
+        "--compiler",
+        "/opt/homebrew/opt/llvm/bin/clang",
+        "--threads",
+        "1",
+        "2",
+        "4",
+        "6",
+        "8",
+        "10",
+        "--build-dir",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/correctness",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/correctness.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/correctness.log",
+      "wall_seconds": 2.8487462499178946
+    },
+    {
+      "name": "performance",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/scripts/performance_gate.py",
+        "--sequential",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy.c",
+        "--candidate",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/candidate.c",
+        "--driver",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/benchmark_1024.c",
+        "--compiler",
+        "/opt/homebrew/opt/llvm/bin/clang",
+        "--correctness",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/correctness.json",
+        "--build-dir",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/performance",
+        "--csv",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/performance.csv",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/performance.json",
+        "--repetitions",
+        "15",
+        "--warmups",
+        "3",
+        "--seed",
+        "2026"
+      ],
+      "returncode": 1,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/performance.log",
+      "wall_seconds": 36.437498459010385
+    },
+    {
+      "name": "selection",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/analysis/performance_selector.py",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/performance.csv",
+        "--performance-report",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/performance.json",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/selection.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/selection.log",
+      "wall_seconds": 0.07825208292342722
+    },
+    {
+      "name": "context",
+      "command": [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "-B",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/agents/context_builder.py",
+        "--source",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy.c",
+        "--candidate",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/candidate.c",
+        "--static",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis/axpy_analysis.json",
+        "--dependences",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis/axpy_dependences.json",
+        "--patterns",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis/axpy_patterns.json",
+        "--strategy",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/analysis/axpy_strategy.json",
+        "--selection",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/selection.json",
+        "--correctness",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/correctness.json",
+        "--output",
+        "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/context.json"
+      ],
+      "returncode": 0,
+      "log": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/context.log",
+      "wall_seconds": 0.07779716607183218
+    }
+  ],
+  "elapsed_seconds": 39.95861554099247,
+  "context": {
+    "path": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n1024/run-k6mmkpov/context.json",
+    "sha256": "b7465f36da2c938c70d1b65a922b5a23130e75e1d18f38bd6bc95f083f74240b"
+  }
+}

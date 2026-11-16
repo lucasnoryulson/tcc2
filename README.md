@@ -2,8 +2,10 @@
 
 Sistema híbrido de análise estática, transformação OpenMP e coordenação por LLM.
 
-As alterações finais já estão na pasta principal `tcc2`, na branch
-`feat/final-patch-primary-2026-11-16`, incluindo o commit `b5213bf` do patch.
+O fechamento atual está na pasta principal `tcc2`, na branch
+`feat/defense-readiness-2026-11-16`, derivada da main remota `601b813`.
+O [relatório de entrega à banca](docs/experiments/BANCA_2026-11-16_DELIVERY.md)
+registra experimentos, testes, arquivos e pendências reais. Não houve push ou merge.
 O [registro da transferência e dos testes](docs/experiments/PRIMARY_CHECKOUT_2026-11-16.md)
 explica a preservação da branch anterior e das evidências experimentais.
 
@@ -24,8 +26,8 @@ A coleta equivalente M5 foi executada em duas sessões de 16/11/2026, com
 3.240 medições externas e avaliação independente do Selector. As campanhas
 históricas e a coleta exploratória anterior permanecem separadas.
 
-A entrega mais recente está no [relatório Mac](docs/experiments/MAC_EVALUATION_2026-11-16_DELIVERY.md).
-A monografia atualizada tem arquivos próprios de [Markdown](docs/monografia/REVISAO_EXPERIMENTAL_MAC_2026-11-16.md),
+A entrega Mac anterior está no [relatório Mac](docs/experiments/MAC_EVALUATION_2026-11-16_DELIVERY.md).
+Sua monografia de 78 páginas tem arquivos próprios de [Markdown](docs/monografia/REVISAO_EXPERIMENTAL_MAC_2026-11-16.md),
 [Word](docs/monografia/REVISAO_EXPERIMENTAL_MAC_2026-11-16.docx) e
 [PDF, 78 páginas](docs/monografia/REVISAO_EXPERIMENTAL_MAC_2026-11-16.pdf).
 A versão `REVISAO_PUBLICACAO` de 70 páginas foi preservada por hash.
@@ -38,6 +40,33 @@ e [PDF](docs/monografia/MONOGRAFIA_CONSOLIDADA.pdf). O
 [registro de integração](docs/experiments/FINAL_PATCH_INTEGRATION_2026-11-16.md)
 documenta a separação entre holdout retrospectivo e congelamento prévio,
 as verificações e os limites restantes.
+
+A [campanha científica AXPY](docs/experiments/AXPY_SCIENTIFIC_2026-11-16_REPORT.md)
+foi concluída em duas sessões: três tamanhos, 21 configurações por sessão,
+630 medições e 126 aquecimentos. As escolhas foram congeladas antes do holdout;
+nenhuma excedeu o limiar operacional de 2%, com estabilidade em 2/3 entradas.
+A entrada pequena manteve o sequencial. A amortização cobre o preparo
+determinístico, sem nova inferência LLM ou promoção. A revisão anterior de
+78 páginas está preservada em `MONOGRAFIA_CONSOLIDADA_PRE_AXPY_2026-11-16.*`.
+O [relatório de validação](results/validation/axpy_scientific_2026-11-16/report.json)
+registra a suíte ampliada, os hashes, os ICs recalculados e as verificações Office/PDF.
+
+A [campanha final AXPY 1–10T](results/defense_readiness/2026-11-16/REPORT.md)
+é separada da anterior: duas sessões, três tamanhos, 990 medições e 198
+aquecimentos. A escolha congelada excedeu ligeiramente o limite de 2% em um
+dos três casos; estabilidade de escolha em 2/3. Três inferências reais e três
+decisões determinísticas geraram seis promoções com revalidação. O custo
+contabilizado foi amortizado em estimativas medianas de 17.966 chamadas no
+braço determinístico e 27.731 no braço LLM, usando as latências posteriores.
+
+A fonte principal é [MONOGRAFIA_CONSOLIDADA.md](docs/monografia/MONOGRAFIA_CONSOLIDADA.md),
+com [Word](docs/monografia/MONOGRAFIA_CONSOLIDADA.docx) e
+[PDF de 94 páginas](docs/monografia/MONOGRAFIA_CONSOLIDADA.pdf), 35 tabelas e
+27 figuras numeradas. A revisão de 82 páginas está em `*_PRE_BANCA_2026-11-16.*`.
+Foram aprovados 161 testes sem falhas/skips e 23 casos de regressão. Permanecem
+a [coleta real de contadores Linux](docs/experiments/LINUX_COUNTERS_FOLLOWUP_2026-11-16.md),
+o modelo institucional completo e a conferência nativa do Word/defesa;
+não se confunde exportação de conteúdo com aprovação acadêmica.
 
 ## Fortalecimento científico e escopo atual
 
@@ -93,7 +122,9 @@ entradas somente lidas, corpo puro e obrigações de `restrict` atendidas pelo
 chamador; estratégias não suportadas são recusadas. A demonstração histórica
 com inferência e promoção cobre Dot/redução. A nova extensão DOALL tem corpus
 funcional e de desempenho concluído, sem que isso demonstre promoção DOALL com
-inferência real. Na [demonstração integrada DOALL](results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/summary.json),
+inferência real naquela campanha. O estudo AXPY final agora acrescenta promoção
+DOALL com inferência real, sobre o prefixo científico congelado e configuração 4T.
+Na [demonstração integrada DOALL anterior](results/publication/doall_pipeline_linux_2026-11-06/run-jia507x_/summary.json),
 corretude e medição reais concluíram, mas Qwen expirou em 180 s: FAILED, sem
 decisão ou promoção, sem retry. O [estado pelos seis itens](docs/STATUS_TCC.md)
 separa essas evidências.

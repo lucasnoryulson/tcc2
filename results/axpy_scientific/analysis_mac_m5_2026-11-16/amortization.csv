@@ -1,0 +1,4 @@
+n,measured_prefix_seconds,second_session_prefix_seconds,in_sample_prefix_break_even,holdout_prefix_break_even,lower_bound_full_admission,new_llm_cost_measured
+1024,39.95861554099247,37.508361708023585,,,True,False
+1000000,12.326358875026926,14.152353249955922,57032,84220,True,False
+10000000,63.68263583292719,61.91590416699182,32206,42162,True,False

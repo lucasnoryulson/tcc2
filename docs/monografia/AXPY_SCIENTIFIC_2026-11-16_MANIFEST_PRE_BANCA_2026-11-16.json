@@ -1,0 +1,30 @@
+{
+  "created_utc": "2026-11-16T17:24:47.644216+00:00",
+  "previous_revision_sha256": {
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA_PRE_AXPY_2026-11-16.md": "8637c308524c44c569d2089fa6f7728d4d91dd86efee3215248d6a52d417962c",
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA_PRE_AXPY_2026-11-16.docx": "bad69f7be8b55250c38d1e5504c47064e86ffdb021581bd4570365dce9e46029",
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA_PRE_AXPY_2026-11-16.pdf": "452e947468ac1da450a94476963e05f6e243810c24ff142f25d260530a44eb64",
+    "docs/monografia/CAPA_PUCRS_CONSOLIDADA_PRE_AXPY_2026-11-16.docx": "3595ea11837e53088cdbbd7283321faf57a03579ba9a5ee773e4356682ce924c"
+  },
+  "study_report_sha256": "4fa734b7033103cf22d429205ebf471c05f92a7692d68f63ca3f38d098bd5ad3",
+  "files": {
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA.md": "be487190b53854854144632debb5e47f04156d7cc7c04b058f2d38bdb2f02453",
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA.docx": "ab3ec42cb58d60320753ec92784dc2fddadbaca094e18f845852e4413c78591f",
+    "docs/monografia/MONOGRAFIA_CONSOLIDADA.pdf": "c40974ac1899e77d75223b05cfdfc0747897092579c3d36f48eed8b24964c7a8",
+    "docs/monografia/CAPA_PUCRS_CONSOLIDADA.docx": "3595ea11837e53088cdbbd7283321faf57a03579ba9a5ee773e4356682ce924c",
+    "docs/experiments/AXPY_SCIENTIFIC_2026-11-16_REPORT.md": "d85d945bf7a7b8210e598ced645e1f3035ec8663921b0a541f15aff10dbdea51",
+    "docs/monografia/figures_axpy_2026-11-16/axpy_1024.png": "d9db8ba3054753c8cbb0fff9a998c6fc8807e955bb8c5eb75385c3370cd689fb",
+    "docs/monografia/figures_axpy_2026-11-16/axpy_1024.svg": "d654eb62eef37cf3b11ac349accf6535391827eb10811f0b0ec8951bb5dee187",
+    "docs/monografia/figures_axpy_2026-11-16/axpy_1024.pdf": "a62ae6450a56bfea7902c68d14eca24ea98f7492bd0ebfc468133dc29b092866",
+    "docs/monografia/figures_axpy_2026-11-16/axpy_1000000.png": "10237be62866206825b0b8e1b1f68b1ef6f61c07422c39584a279caf7bac8ade",
+    "docs/monografia/figures_axpy_2026-11-16/axpy_1000000.svg": "0e5822584891e6975d8e8097e12ecc527ef219feff6dd5fcfc8233f2b458c2ef",
+    "docs/monografia/figures_axpy_2026-11-16/axpy_1000000.pdf": "98cf0f18d53ae563ca2a84f4c1de20ca0b32396b5f68b82b2930a87be7e03bff",
+    "docs/monografia/figures_axpy_2026-11-16/axpy_10000000.png": "ed13aeb0b3ec1e6e45d6a121664ed4fb91ff8adadbbace86738c7741ffeaee2a",
+    "docs/monografia/figures_axpy_2026-11-16/axpy_10000000.svg": "3aa9de440b868094b9ba704ec15e4b7456aea0f5d1e1716b50ed470423e6c743",
+    "docs/monografia/figures_axpy_2026-11-16/axpy_10000000.pdf": "eb6015d7d4fb97bc170c4682ceaa95efc1adee014adcdbd1acee227f2eddb053"
+  },
+  "pdf_pages": 82,
+  "word_tables": 30,
+  "word_images": 24,
+  "renderer": "ReportLab content export; native Word/ABNT review remains required"
+}

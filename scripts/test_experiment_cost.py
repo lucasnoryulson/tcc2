@@ -8,11 +8,19 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from scripts.measure_pipeline_cost import break_even
+from scripts.measure_pipeline_cost import break_even, prepared_prefix
 from scripts.process_timing import run_timed
 
 
 class ExperimentCostTests(unittest.TestCase):
+    def test_reused_prefix_must_not_include_prior_inference(self):
+        with patch('scripts.measure_pipeline_cost.verify_prefix', return_value={'status': 'PREPARED'}):
+            self.assertEqual(prepared_prefix(Path('.')), Path('.').resolve())
+        for status in ('PROMOTED', 'NOT_PROMOTED', 'FAILED'):
+            with self.subTest(status=status), patch('scripts.measure_pipeline_cost.verify_prefix', return_value={'status': status}):
+                with self.assertRaisesRegex(ValueError, 'Only PREPARED'):
+                    prepared_prefix(Path('.'))
+
     def test_break_even_requires_positive_saving_and_rounds_up(self):
         self.assertEqual(break_even(10, 3, 1.5), 7)
         self.assertIsNone(break_even(10, 3, 3))

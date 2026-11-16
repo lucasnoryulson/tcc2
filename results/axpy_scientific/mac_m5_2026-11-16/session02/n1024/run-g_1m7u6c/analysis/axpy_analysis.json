@@ -1,0 +1,62 @@
+{
+  "version": "0.2",
+  "source": "/Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/inputs/analysis/fixtures/axpy.c",
+  "kernels": [
+    {
+      "name": "kernel_axpy",
+      "loops": [
+        {
+          "id": 1,
+          "nesting_depth": 0,
+          "start_line": 5,
+          "end_line": 8,
+          "iterator": "i",
+          "initialization": "int i = 0",
+          "condition": "i < n",
+          "increment": "i++",
+          "reads": [
+            {
+              "array": "X",
+              "indices": [
+                "i"
+              ],
+              "expression": "X[i]"
+            },
+            {
+              "array": "Y",
+              "indices": [
+                "i"
+              ],
+              "expression": "Y[i]"
+            }
+          ],
+          "writes": [
+            {
+              "array": "output",
+              "indices": [
+                "i"
+              ],
+              "expression": "output[i]"
+            }
+          ],
+          "operators": [
+            "=",
+            "+",
+            "*"
+          ],
+          "scalar_updates": []
+        }
+      ],
+      "direct_transform_contract": {
+        "status": "SUPPORTED",
+        "pattern": "DOALL",
+        "iterator": "i",
+        "start_line": 5,
+        "reduction_variable": null,
+        "pointer_precondition": "valid input extents; DOALL restrict pointers obey the C restrict contract",
+        "source_sha256": "c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea",
+        "version": "standalone-ast-v2"
+      }
+    }
+  ]
+}

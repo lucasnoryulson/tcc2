@@ -1,0 +1,25 @@
+=================================
+TCC2 PATTERN CLASSIFIER v0.6
+=================================
+Static:     /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/analysis/axpy_analysis.json
+Dependence: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/analysis/axpy_dependences.json
+
+Kernel: kernel_axpy
+Classification: DOALL_CANDIDATE
+Family: MAP / DATA_PARALLEL
+Confidence: medium
+Reason: Independent-index candidates were detected and no shifted or symbolic dependences were found.
+
+Loop classifications:
+
+  Loop #1 (i)
+    Pattern: DOALL_CANDIDATE
+    Family: MAP / DATA_PARALLEL
+    Confidence: conservative_contract
+    Reason: One injective output write with pure reads and restrict caller preconditions.
+    Evidence:
+      standalone_ast_contract: {'status': 'SUPPORTED', 'pattern': 'DOALL', 'iterator': 'i', 'start_line': 5, 'reduction_variable': None, 'pointer_precondition': 'valid input extents; DOALL restrict pointers obey the C restrict contract', 'source_sha256': 'c5de0df6c49d6766d1d65db70b48a61b796571c3389329eba1b9aeb335a5afea', 'version': 'standalone-ast-v2'}
+
+=================================
+JSON salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session02/n10000000/run-pn2i9s7d/analysis/axpy_patterns.json
+=================================

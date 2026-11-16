@@ -1,0 +1,65 @@
+{
+  "status": "VERIFIED_WITH_EXTERNAL_PENDING",
+  "checked_utc": "2026-11-16T18:36:41.616154+00:00",
+  "software_and_artifact_checks": "PASS",
+  "unit_tests": 161,
+  "unit_seconds": 61.318,
+  "skips": 0,
+  "regression_cases": 23,
+  "preserved_scientific_sessions": [
+    {
+      "campaign": "mac_m5_2026-11-16",
+      "session": 1,
+      "status": "COMPLETE"
+    },
+    {
+      "campaign": "mac_m5_2026-11-16",
+      "session": 2,
+      "status": "COMPLETE"
+    },
+    {
+      "campaign": "mac_m5_all_threads_2026-11-16",
+      "session": 1,
+      "status": "COMPLETE"
+    },
+    {
+      "campaign": "mac_m5_all_threads_2026-11-16",
+      "session": 2,
+      "status": "COMPLETE"
+    }
+  ],
+  "axpy_new_samples": 990,
+  "axpy_new_warmups": 198,
+  "frozen_holdout_verified": true,
+  "recomputed_policies_bootstrap_and_amortization": true,
+  "selector_inadequate": 1,
+  "stable_cases": 2,
+  "real_llm_calls": 3,
+  "local_promotions_verified": 6,
+  "candidate_sha256": "4877d57708a392900b11ca3e6cc90e3e1e4c2497ef5c2e58460268cdfc94d1d1",
+  "pdf_pages": 94,
+  "tables": 35,
+  "figures": 27,
+  "a4_margins_captions_toc_fields_verified": true,
+  "recovered_cost_invocation_sources": {
+    "git_commit": "22e5ed2",
+    "files": {
+      "scripts/measure_pipeline_cost.py": "afe5ac62aa1beb1f6600c798fc4eb48977c38bf73d419be6ff8f87cdd2ac485c",
+      "scripts/evaluate_coordinator.py": "8503eadd39a5b59582ab32f057c6263f0ccc9a53e1ac0ede973d3252ad789cc2",
+      "agents/coordinator_agent.py": "a798d4ef5e888d0b12a4c3cc8f02dc126e0e00688c0ab8834c6e7226630de0f0",
+      "scripts/promote_candidate.py": "534767040515eba7a3ada8c7b8e639ee9d8a2805b56ba5c33d3517cb3fb22dba",
+      "analysis/artifact_provenance.py": "2cf15c8a8b9c971c3b121c39dc0ab19c22998aba14efdd0c855313bd9b4a6182",
+      "analysis/performance_selector.py": "e3a68cd114d0e67b522d3a7ae51538de66e0963e00e8a643abf4554942723061"
+    },
+    "limitation": "Recovered from invocation revision at final validation; not claimed as in-process import hashes"
+  },
+  "manuscript_manifest_sha256": "e9bcee152036bd57f0b7782ab6f41e63697799604f927d1a587ac7173aef5c1c",
+  "latest_main_used": "601b813",
+  "local_main_unchanged": "cc5406b79a1fac9446c6e0a25920243f82662a6e",
+  "external_pending": {
+    "linux_perf": "NOT_RUN_MACOS",
+    "native_word_layout": "NOT_CERTIFIED",
+    "complete_pucrs_model": "AUTHENTICATED_ACCESS_REQUIRED",
+    "academic_approval": "NOT_INFERRED"
+  }
+}

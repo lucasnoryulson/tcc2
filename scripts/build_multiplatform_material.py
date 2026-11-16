@@ -171,7 +171,8 @@ def format_word(source, target, revision='Revisão multiplataforma — 05/11/202
         if i and paragraph.runs and all(r.italic for r in paragraph.runs) and paragraphs[i-1]._p.xpath('.//w:drawing'):
             figure_number += 1
             image = paragraphs[i-1]
-            paragraph.text = f'Figura {figure_number} — ' + paragraph.text
+            if not re.match(r'^Figura \d+ — ', paragraph.text):
+                paragraph.text = f'Figura {figure_number} — ' + paragraph.text
             paragraph.paragraph_format.line_spacing = 1
             paragraph.paragraph_format.keep_with_next = True
             image.paragraph_format.keep_with_next = True
@@ -257,6 +258,9 @@ def pdf_export(source, target, consolidated=False):
     styles = getSampleStyleSheet()
     body = ParagraphStyle('ReviewBody', fontName=serif, fontSize=12, leading=18, spaceAfter=8, alignment=4)
     caption = ParagraphStyle('ReviewCaption', parent=body, fontSize=8, leading=11, alignment=1)
+    table_caption = ParagraphStyle('ReviewTableCaption', parent=body, fontSize=10, leading=14,
+                                   alignment=0, keepWithNext=True)
+    source_note = ParagraphStyle('ReviewSourceNote', parent=body, fontSize=9, leading=12, alignment=0)
     cell = ParagraphStyle('ReviewCell', fontName=sans, fontSize=7, leading=9)
     code = ParagraphStyle('ReviewCode', fontName=mono, fontSize=7.5, leading=10, spaceAfter=10)
     headings = {i: ParagraphStyle(f'ReviewH{i}', fontName=sans, fontSize={1:18, 2:15, 3:12, 4:11}[i],
@@ -310,7 +314,8 @@ def pdf_export(source, target, consolidated=False):
             with PILImage.open(path) as pic:
                 width, height = pic.size
             scale = min(16*cm/width, 20*cm/height)
-            story.append(KeepTogether([Paragraph(escape(f'Figura {figure_number} — {image[1]}'), caption),
+            title = image[1] if re.match(r'^Figura \d+ — ', image[1]) else f'Figura {figure_number} — {image[1]}'
+            story.append(KeepTogether([Paragraph(escape(title), caption),
                          Image(str(path), width=width*scale, height=height*scale),
                          Paragraph('Fonte: elaboração a partir do código e dos resultados do projeto.', caption), Spacer(1, 8)]))
         elif line.startswith('|'):
@@ -325,14 +330,25 @@ def pdf_export(source, target, consolidated=False):
                                         ('GRID',(0,0),(-1,-1),.4,colors.HexColor('#888888')),
                                         ('VALIGN',(0,0),(-1,-1),'TOP'), ('TOPPADDING',(0,0),(-1,-1),5),
                                         ('BOTTOMPADDING',(0,0),(-1,-1),5)]))
-            story += [table, Spacer(1, 8)]
+            if consolidated and story and isinstance(story[-1], Paragraph) and story[-1].style.name == 'ReviewTableCaption':
+                title = story.pop()
+                # Short tables stay with their title; long ones may split with
+                # repeated headers, but their title cannot be orphaned.
+                story += [KeepTogether([title, table]) if len(rows) <= 8 else title]
+                if len(rows) > 8:
+                    story.append(table)
+                story.append(Spacer(1, 8))
+            else:
+                story += [table, Spacer(1, 8)]
             continue
         else:
             text = [line]
             while i + 1 < len(lines) and lines[i+1].strip() and not re.match(r'^(#|\||!\[|```|- |\d+\. )', lines[i+1]):
                 i += 1
                 text.append(lines[i].strip())
-            story.append(Paragraph(escape(plain(' '.join(text))), body))
+            style = (table_caption if consolidated and line.startswith('Tabela ') else
+                     source_note if consolidated and line.startswith(('Fonte:', 'Fontes:')) else body)
+            story.append(Paragraph(escape(plain(' '.join(text))), style))
         i += 1
 
     def footer(canvas, doc):

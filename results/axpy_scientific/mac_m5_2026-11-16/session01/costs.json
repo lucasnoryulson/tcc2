@@ -1,0 +1,74 @@
+[
+  {
+    "n": 1024,
+    "status": "PREPARED",
+    "steps_seconds": {
+      "static": 0.11360991699621081,
+      "dependences": 0.05616858403664082,
+      "patterns": 0.0693950419081375,
+      "strategy": 0.08639000006951392,
+      "transform": 0.18015741708222777,
+      "correctness": 2.8487462499178946,
+      "performance": 36.437498459010385,
+      "selection": 0.07825208292342722,
+      "context": 0.07779716607183218
+    },
+    "elapsed_seconds": 39.95861554099247,
+    "sequential_seconds": 2.501e-07,
+    "selected_seconds": 2.501e-07,
+    "deterministic_prefix_seconds": 39.94801491801627,
+    "coordinator_step_seconds": null,
+    "prefix_break_even": null,
+    "inference_only_break_even": null,
+    "observed_pipeline_break_even": null,
+    "limitation": "Prefix estimate assumes reuse of the measured candidate; only PROMOTED has observed full admission cost"
+  },
+  {
+    "n": 1000000,
+    "status": "PREPARED",
+    "steps_seconds": {
+      "static": 0.10140745900571346,
+      "dependences": 0.04406779201235622,
+      "patterns": 0.04371033306233585,
+      "strategy": 0.03889899991918355,
+      "transform": 0.09367070801090449,
+      "correctness": 1.1822625000495464,
+      "performance": 10.619057791074738,
+      "selection": 0.10231779201421887,
+      "context": 0.09625666704960167
+    },
+    "elapsed_seconds": 12.326358875026926,
+    "sequential_seconds": 0.00087471,
+    "selected_seconds": 0.00065866,
+    "deterministic_prefix_seconds": 12.321650042198598,
+    "coordinator_step_seconds": null,
+    "prefix_break_even": 57032,
+    "inference_only_break_even": null,
+    "observed_pipeline_break_even": null,
+    "limitation": "Prefix estimate assumes reuse of the measured candidate; only PROMOTED has observed full admission cost"
+  },
+  {
+    "n": 10000000,
+    "status": "PREPARED",
+    "steps_seconds": {
+      "static": 0.1653261249884963,
+      "dependences": 0.06593333394266665,
+      "patterns": 0.061691292095929384,
+      "strategy": 0.05268079193774611,
+      "transform": 0.11850066599436104,
+      "correctness": 1.5827902919845656,
+      "performance": 61.379955957992934,
+      "selection": 0.155381791992113,
+      "context": 0.09449591604061425
+    },
+    "elapsed_seconds": 63.68263583292719,
+    "sequential_seconds": 0.00978545,
+    "selected_seconds": 0.007808275,
+    "deterministic_prefix_seconds": 63.676756166969426,
+    "coordinator_step_seconds": null,
+    "prefix_break_even": 32206,
+    "inference_only_break_even": null,
+    "observed_pipeline_break_even": null,
+    "limitation": "Prefix estimate assumes reuse of the measured candidate; only PROMOTED has observed full admission cost"
+  }
+]

@@ -1,5 +1,15 @@
 # TCC2 — contexto atualizado para continuidade no Codex
 
+> Atualização de continuidade, 16/11/2026: o corpo abaixo conserva a transferência
+> de 03/11. O estado vigente está em [STATUS_TCC](../../docs/STATUS_TCC.md) e na
+> [entrega para banca](../../docs/experiments/BANCA_2026-11-16_DELIVERY.md).
+> Branch `feat/defense-readiness-2026-11-16`, baseada na main remota `601b813`.
+> AXPY final: 990 medições, 198 aquecimentos, três inferências reais e seis
+> promoções locais; 161 testes e 23 regressões aprovados. Monografia principal
+> com Word/PDF de 94 páginas. Contadores Linux e revisão institucional/nativa
+> permanecem pendentes. Sem push/merge; não reabrir as coletas já concluídas
+> como se só houvesse a validação técnica de 105 medições PREPARED.
+
 **Atualização: 03/11/2026, após implementação, avaliação local e preparação da redação.**
 Autor: **Lucas Nory Ulson**. Projeto: TCC2 de Ciência da Computação, PUCRS.
 Título: *Sistemas Multiagentes para Reestruturação Autônoma de Códigos*.

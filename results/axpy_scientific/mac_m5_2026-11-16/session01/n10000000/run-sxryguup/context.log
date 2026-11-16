@@ -1,0 +1,12 @@
+=================================
+TCC2 AGENT CONTEXT BUILDER v0.3
+=================================
+Pattern: DOALL_CANDIDATE
+Family: MAP / DATA_PARALLEL
+Strategy: DOALL
+Correctness gate: PASS
+Recommended threads: 10
+Recommended speedup: 1.253x
+Recommended efficiency: 0.125
+=================================
+Context salvo em: /Users/lucasulson/Desktop/PUCRS/Ultimo semestre/TCC2/tcc2/results/axpy_scientific/mac_m5_2026-11-16/session01/n10000000/run-sxryguup/context.json
